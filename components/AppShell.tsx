@@ -5,6 +5,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Route } from 'react-router-dom';
 
 import Tabs from './pages/Tabs';
+import { Onboarding } from './pages/Onboarding';
 
 setupIonicReact({});
 
@@ -23,7 +24,7 @@ const AppShell = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet id="main">
-          <Route path="/" render={() => <Tabs />} />
+          <Route path="/" render={() => <Onboarding />} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
