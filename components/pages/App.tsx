@@ -5,6 +5,7 @@ import {
   IonTabButton,
   IonIcon,
   IonLabel,
+  IonFooter,
 } from '@ionic/react'
 import {
   flash,
