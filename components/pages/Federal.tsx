@@ -18,7 +18,9 @@ export function Federal() {
   return (
     <IonPage>
       <IonHeader className="ion-no-border bg-white">
-        <h1 className="text-center mx-3">Und wo ist deine Schule?</h1>
+        <h1 className="text-center mx-3 mt-4 text-xl mb-3 font-bold">
+          Und wo ist deine Schule?
+        </h1>
         <p className="text-base text-gray-700 text-center mb-2">
           Wir stellen sicher, dass du Probeprüfungen aus deinem Bundesland
           bekommst

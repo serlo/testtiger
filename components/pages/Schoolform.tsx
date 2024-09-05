@@ -18,7 +18,7 @@ export function Schoolform() {
   return (
     <IonPage>
       <IonHeader className="ion-no-border bg-white">
-        <h1 className="text-center mx-3">
+        <h1 className="text-center mx-3 mt-4 text-xl mb-3 font-bold">
           Hallo Jamal! Welche Schule besuchst du?
         </h1>
         <p className="text-base text-gray-700 text-center mb-2">
