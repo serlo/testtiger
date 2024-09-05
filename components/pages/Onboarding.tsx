@@ -1,6 +1,7 @@
 import {
   IonButton,
   IonContent,
+  IonFooter,
   IonHeader,
   IonPage,
   IonTitle,
@@ -16,15 +17,18 @@ export function Onboarding() {
         <div className="text-center text-lg mt-6 italic text-blue-600">
           Freies lernen. Für immer
         </div>
-        <div className="mt-24 text-center">
+        <img src="/img/startscreen.jpg" className="mx-auto" alt=""></img>
+      </IonContent>
+      <IonFooter className="ion-no-border">
+        <div className="my-3 text-center bg-white">
           <p>
             <IonButton fill="outline">Ich war schon mal hier</IonButton>
           </p>
-          <p className="mt-12">
-            <IonButton>Ich bin neu hier</IonButton>
+          <p className="mt-6">
+            <IonButton routerLink="/name">Ich bin neu hier</IonButton>
           </p>
         </div>
-      </IonContent>
+      </IonFooter>
     </IonPage>
   )
 }
