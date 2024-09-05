@@ -11,7 +11,7 @@ import {
 export function Onboarding() {
   return (
     <IonPage>
-      <IonContent className="ion-padding" fullscreen>
+      <IonContent className="ion-padding">
         <div className="text-center text-5xl mt-10">🐯</div>
         <div className="text-center text-4xl mt-6">TestTiger</div>
         <div className="text-center text-lg mt-6 italic text-blue-600">

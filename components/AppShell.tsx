@@ -4,11 +4,13 @@ import { StatusBar, Style } from '@capacitor/status-bar'
 import { IonReactRouter } from '@ionic/react-router'
 import { Redirect, Route } from 'react-router-dom'
 
-import Tabs from './pages/Tabs'
 import { Onboarding } from './pages/Onboarding'
 import { Name } from './pages/Name'
 import { Schoolform } from './pages/Schoolform'
 import { Federal } from './pages/Federal'
+import { Focus } from './pages/Focus'
+import { Ready } from './pages/Ready'
+import { App } from './pages/App'
 
 setupIonicReact({})
 
@@ -31,6 +33,9 @@ const AppShell = () => {
           <Route path="/name" render={() => <Name />} />
           <Route path="/schoolform" render={() => <Schoolform />} />
           <Route path="/federal" render={() => <Federal />} />
+          <Route path="/focus" render={() => <Focus />} />
+          <Route path="/ready" render={() => <Ready />} />
+          <Route path="/app" render={() => <App />} />
           <Route
             path=""
             render={() => <Redirect to="/onboarding" />}

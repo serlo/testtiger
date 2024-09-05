@@ -17,7 +17,7 @@ import {
 export function Federal() {
   return (
     <IonPage>
-      <IonHeader className="ion-no-border">
+      <IonHeader className="ion-no-border bg-white">
         <h1 className="text-center mx-3">Und wo ist deine Schule?</h1>
         <p className="text-base text-gray-700 text-center mb-2">
           Wir stellen sicher, dass du Probeprüfungen aus deinem Bundesland
@@ -57,10 +57,10 @@ export function Federal() {
       <IonFooter>
         <div className="my-3 text-center bg-white">
           <p className="mt-6 flex justify-around">
-            <IonButton routerLink="/name" fill="outline">
+            <IonButton routerLink="/schoolform" fill="outline">
               zurück
             </IonButton>
-            <IonButton routerLink="/schoolform">weiter</IonButton>
+            <IonButton routerLink="/focus">weiter</IonButton>
           </p>
         </div>
       </IonFooter>
