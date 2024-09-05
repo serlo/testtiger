@@ -6,9 +6,13 @@ import {
   IonPage,
 } from '@ionic/react'
 import { useHistory } from 'react-router'
+import { selectName } from '../../store/selectors'
+import { Store } from '../../store'
+import { setName } from '../../store/actions'
 
 export function Name() {
   const history = useHistory()
+  const name = Store.useState(s => s.name)
   return (
     <IonPage>
       <IonContent className="ion-padding">
@@ -21,7 +25,12 @@ export function Name() {
               e.preventDefault()
             }}
           >
-            <IonInput></IonInput>
+            <IonInput
+              value={name}
+              onIonInput={e => {
+                setName(e.target.value?.toString() || '')
+              }}
+            ></IonInput>
           </form>
         </div>
       </IonContent>

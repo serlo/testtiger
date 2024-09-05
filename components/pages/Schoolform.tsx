@@ -13,13 +13,15 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
+import { Store } from '../../store'
 
 export function Schoolform() {
+  const name = Store.useState(s => s.name)
   return (
     <IonPage>
       <IonHeader className="ion-no-border bg-white">
         <h1 className="text-center mx-3 mt-4 text-xl mb-3 font-bold">
-          Hallo Jamal! Welche Schule besuchst du?
+          Hallo {name}! Welche Schule besuchst du?
         </h1>
         <p className="text-base text-gray-700 text-center mb-2">
           Wir passend die Prüfungsvorbereitung anhand deiner Schulform an.

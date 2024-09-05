@@ -7,14 +7,16 @@ import {
   IonIcon,
 } from '@ionic/react'
 import { chevronForward } from 'ionicons/icons'
+import { Store } from '../../../store'
 
 export function Home() {
+  const name = Store.useState(s => s.name)
   return (
     <IonPage>
       <IonHeader></IonHeader>
       <IonContent fullscreen>
         <div className="mx-auto max-w-[600px] px-3">
-          <h1 className="font-bold text-2xl mt-4">👋 Jamal</h1>
+          <h1 className="font-bold text-2xl mt-4">👋 {name}</h1>
           <p className="my-4">
             Deine Prüfungsvorbereitung: <strong>21%</strong>
           </p>
