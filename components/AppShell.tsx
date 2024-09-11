@@ -11,6 +11,8 @@ import { Federal } from './pages/Federal'
 import { Focus } from './pages/Focus'
 import { Ready } from './pages/Ready'
 import { App } from './pages/App'
+import { Topic } from './pages/Topic'
+import { Chat } from './pages/Chat'
 
 setupIonicReact({})
 
@@ -41,6 +43,71 @@ const AppShell = () => {
             render={() => <Redirect to="/onboarding" />}
             exact={true}
           />
+          <Route
+            path="/topic/1"
+            render={() => (
+              <Topic
+                title={'Grundlagen - Zahlen und Größen'}
+                exercises={[
+                  { title: '2023 / 1) Zahlen ordnen' },
+                  { title: '2023 / 5) Rabattaktion' },
+                  { title: '2022v2 / 1) Einheiten umrechnen' },
+                ]}
+              />
+            )}
+          />
+          <Route
+            path="/topic/2"
+            render={() => (
+              <Topic
+                title={'Terme und Gleichungen'}
+                exercises={[
+                  { title: '2023 / 3) Lineares Gleichungssystem' },
+                  { title: '2022v1 / 3) Lineares Gleichungssystem' },
+                  { title: '2022v1 / 4) Binom ergänzen' },
+                ]}
+              />
+            )}
+          />
+          <Route
+            path="/topic/3"
+            render={() => (
+              <Topic
+                title={'Körper und Figuren'}
+                exercises={[
+                  { title: '2023 / 2) Volumen berechnen' },
+                  { title: '2023 / 6) Parallelogramm' },
+                  { title: '2022v1 / 2) Dreieck' },
+                ]}
+              />
+            )}
+          />
+          <Route
+            path="/topic/4"
+            render={() => (
+              <Topic
+                title={'Funktionen und Graphen'}
+                exercises={[
+                  { title: '2023 / 4) Parabel im Koordinatensystem' },
+                  { title: '2022v2 / 2) Gerade im Koordinatensystem' },
+                ]}
+              />
+            )}
+          />
+          <Route
+            path="/topic/5"
+            render={() => (
+              <Topic
+                title={'Zufall und Daten'}
+                exercises={[{ title: '2022v1 / 6) Diagramm auswerten' }]}
+              />
+            )}
+          />
+          <Route
+            path="/topic/6"
+            render={() => <Topic title={'Digitale Werkzeuge'} exercises={[]} />}
+          />
+          <Route path="/exercise" render={() => <Chat />} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

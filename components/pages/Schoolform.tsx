@@ -21,22 +21,20 @@ export function Schoolform() {
     <IonPage>
       <IonHeader className="ion-no-border bg-white">
         <h1 className="text-center mx-3 mt-4 text-xl mb-3 font-bold">
-          Hallo {name}! Welche Schule besuchst du?
+          Hallo {name}! Für welche Prüfung möchtest du lernen?
         </h1>
         <p className="text-base text-gray-700 text-center mb-2">
-          Wir passend die Prüfungsvorbereitung anhand deiner Schulform an.
+          Wir erweitern unser Angebot laufend.
         </p>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonList>
-          <IonRadioGroup>
+          <IonRadioGroup
+            value={'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)'}
+          >
             {[
-              'Mittelschule',
-              'Realschule',
-              'Gymnasium',
-              'Gesamtschule',
-              'Wirtschaftsschule',
-              'FOS / BOS',
+              'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)',
+              'Bayern - qualifizierender Mittelschulabschluss (Quali)',
             ].map(n => (
               <IonItem key={n}>
                 <IonRadio key={n} value={n}>
@@ -53,7 +51,7 @@ export function Schoolform() {
             <IonButton routerLink="/name" fill="outline">
               zurück
             </IonButton>
-            <IonButton routerLink="/federal">weiter</IonButton>
+            <IonButton routerLink="/ready">weiter</IonButton>
           </p>
         </div>
       </IonFooter>
