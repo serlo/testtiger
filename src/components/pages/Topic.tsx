@@ -9,11 +9,13 @@ import {
 } from '@ionic/react'
 import { useHistory } from 'react-router'
 import { setExercise } from '../../../store/actions'
+import { exercisesData } from '@/content/exercises'
+import { generateSeed } from '@/data/generate-seed'
 
 interface TopicProps {
   title: string
   color: string
-  exercises: { title: string }[]
+  exercises: number[]
 }
 
 export function Topic({ title, color, exercises }: TopicProps) {
@@ -34,16 +36,18 @@ export function Topic({ title, color, exercises }: TopicProps) {
           <h2 className="mt-8 font-bold">Aufgaben:</h2>
           <div className="">
             {exercises.map((ex, i) => {
+              const content = exercisesData[ex]
+              if (!content) return null
               return (
                 <button
                   key={i}
                   className="m-2 border p-3 hover:bg-gray-200 block rounded-lg"
                   onClick={() => {
-                    setExercise(202, '012')
+                    setExercise(ex, generateSeed())
                     history.push('/exercise')
                   }}
                 >
-                  {ex.title}
+                  {content.title}
                 </button>
               )
             })}

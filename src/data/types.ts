@@ -13,3 +13,12 @@ export interface Exercise<T = unknown> {
     solutions: ((props: { data: T }) => JSX.Element)[]
   }
 }
+
+export interface Navigation {
+  topics: {
+    title: string
+    headerColor: string
+    twColor: string
+    exercises: number[]
+  }[]
+}

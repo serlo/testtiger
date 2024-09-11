@@ -2,6 +2,7 @@ import { IonPage, IonHeader, IonContent } from '@ionic/react'
 import { Store } from '../../../../store'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
+import { navigationData } from '@/content/navigations'
 
 export function Home() {
   const name = Store.useState(s => s.name)
@@ -31,23 +32,16 @@ export function Home() {
             <h2 className="font-bold">Aufgaben nach Thema</h2>
           </div>
           <div className="flex overflow-x-auto mt-3 pb-3">
-            {[
-              { name: 'Grundlagen - Zahlen und Größen', color: 'bg-blue-300' },
-              { name: 'Terme und Gleichungen', color: 'bg-red-500' },
-              { name: 'Körper und Figuren', color: 'bg-yellow-400' },
-              { name: 'Funktionen und Graphen', color: 'bg-green-600' },
-              { name: 'Zufall und Daten', color: 'bg-purple-600' },
-              { name: 'Digitale Werkzeuge', color: 'bg-fuchsia-500' },
-            ].map(({ name, color }, i) => (
+            {navigationData[1].topics.map(({ title, twColor }, i) => (
               <button
-                key={name}
+                key={title}
                 className="w-36 border mx-3 flex-shrink-0 rounded block flex justify-start flex-col hover:shadow-lg"
                 onClick={() => {
                   history.push(`/topic/${i + 1}`)
                 }}
               >
-                <div className={clsx('w-full bg-blue-200 h-24', color)}></div>
-                <div className="p-2">{name}</div>
+                <div className={clsx('w-full bg-blue-200 h-24', twColor)}></div>
+                <div className="p-2">{title}</div>
               </button>
             ))}
           </div>
