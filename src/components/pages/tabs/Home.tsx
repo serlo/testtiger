@@ -1,5 +1,5 @@
 import { IonPage, IonHeader, IonContent } from '@ionic/react'
-import { Store } from '../../../store'
+import { Store } from '../../../../store'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
 

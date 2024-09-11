@@ -6,9 +6,9 @@ import {
   IonPage,
 } from '@ionic/react'
 import { useHistory } from 'react-router'
-import { selectName } from '../../store/selectors'
-import { Store } from '../../store'
-import { setName } from '../../store/actions'
+import { selectName } from '../../../store/selectors'
+import { Store } from '../../../store'
+import { setName } from '../../../store/actions'
 
 export function Name() {
   const history = useHistory()

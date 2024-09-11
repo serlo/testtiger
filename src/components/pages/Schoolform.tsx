@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { Store } from '../../store'
+import { Store } from '../../../store'
 
 export function Schoolform() {
   const name = Store.useState(s => s.name)

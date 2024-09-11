@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { lists } from '../../mock'
+import { lists } from '../../../mock'
 
 const App = dynamic(() => import('../../components/AppShell'), {
   ssr: false,
