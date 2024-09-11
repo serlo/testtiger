@@ -99,7 +99,7 @@ export const exercise201: Exercise<DATA> = {
             </p>
             <p>
               <br></br>
-              {buildSqrt(data.e)} liegt damit zwischen den Qaudratwurzeln:
+              {buildSqrt(data.e)} liegt damit zwischen den Quadratwurzeln:
             </p>
             <p>
               {buildSqrt(lower * lower)} {' < '} {buildSqrt(data.e)} {' < '}{' '}
