@@ -11,15 +11,16 @@ import { useHistory } from 'react-router'
 
 interface TopicProps {
   title: string
+  color: string
   exercises: { title: string }[]
 }
 
-export function Topic({ title, exercises }: TopicProps) {
+export function Topic({ title, color, exercises }: TopicProps) {
   const history = useHistory()
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={color}>
           <IonButtons slot="start">
             <IonBackButton defaultHref="/app/home"></IonBackButton>
           </IonButtons>

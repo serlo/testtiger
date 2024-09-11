@@ -48,6 +48,7 @@ const AppShell = () => {
             render={() => (
               <Topic
                 title={'Grundlagen - Zahlen und Größen'}
+                color={'primary'}
                 exercises={[
                   { title: '2023 / 1) Zahlen ordnen' },
                   { title: '2023 / 5) Rabattaktion' },
@@ -61,6 +62,7 @@ const AppShell = () => {
             render={() => (
               <Topic
                 title={'Terme und Gleichungen'}
+                color={'danger'}
                 exercises={[
                   { title: '2023 / 3) Lineares Gleichungssystem' },
                   { title: '2022v1 / 3) Lineares Gleichungssystem' },
@@ -74,6 +76,7 @@ const AppShell = () => {
             render={() => (
               <Topic
                 title={'Körper und Figuren'}
+                color={'warning'}
                 exercises={[
                   { title: '2023 / 2) Volumen berechnen' },
                   { title: '2023 / 6) Parallelogramm' },
@@ -87,6 +90,7 @@ const AppShell = () => {
             render={() => (
               <Topic
                 title={'Funktionen und Graphen'}
+                color={'success'}
                 exercises={[
                   { title: '2023 / 4) Parabel im Koordinatensystem' },
                   { title: '2022v2 / 2) Gerade im Koordinatensystem' },
@@ -99,13 +103,20 @@ const AppShell = () => {
             render={() => (
               <Topic
                 title={'Zufall und Daten'}
+                color={'tertiary'}
                 exercises={[{ title: '2022v1 / 6) Diagramm auswerten' }]}
               />
             )}
           />
           <Route
             path="/topic/6"
-            render={() => <Topic title={'Digitale Werkzeuge'} exercises={[]} />}
+            render={() => (
+              <Topic
+                title={'Digitale Werkzeuge'}
+                color={'medium'}
+                exercises={[]}
+              />
+            )}
           />
           <Route path="/exercise" render={() => <Chat />} />
         </IonRouterOutlet>
