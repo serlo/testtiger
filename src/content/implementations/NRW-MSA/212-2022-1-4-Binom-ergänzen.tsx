@@ -45,7 +45,9 @@ export const exercise212: Exercise<DATA> = {
           b² = {data.b * data.b}
           {data.c}
         </p>
-        <p>Wende die Quadratwurzel an und bestimme b:</p>
+        <p>
+          Wende die Quadratwurzel an und bestimme den positiven Wert von b. :
+        </p>
         <p>
           b = {buildSqrt(data.b * data.b + '' + data.c)} = {data.b}
           {data.c == '' ? '' : 'y'}
