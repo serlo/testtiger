@@ -45,7 +45,7 @@ export const exercise205: Exercise<DATA> = {
   solution({ data }) {
     return (
       <>
-        <p>Wir berechnen den Verkaufspreis mit der Formel des Prozentwerts:</p>
+        <p>Wir berechnen zuerst den Rabatt mit der Formel des Prozentwerts:</p>
         <p>W = G · p</p>
 
         <p>
@@ -57,9 +57,13 @@ export const exercise205: Exercise<DATA> = {
           W = {data.preis} · {pp(data.rabatt / 100)}
         </p>
         <p>W = {pp((data.preis * data.rabatt) / 100)}</p>
+        <p>Der Rabatt beträgt {pp((data.preis * data.rabatt) / 100)} € </p>
         <p>
-          Der neue Verkaufspreis beträgt {pp((data.preis * data.rabatt) / 100)}{' '}
-          €{' '}
+          <br></br>Damit beträgt der neue Verkaufspreis:
+        </p>
+        <p>
+          {data.preis} − {pp((data.preis * data.rabatt) / 100)} ={' '}
+          {pp(data.preis - (data.preis * data.rabatt) / 100)}
         </p>
       </>
     )
