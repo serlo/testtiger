@@ -1,14 +1,19 @@
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
+  IonModal,
   IonPage,
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
+import { useRef } from 'react'
 
 export function Chat() {
+  const modal = useRef<HTMLIonModalElement>(null)
+  const input = useRef<HTMLIonInputElement>(null)
   return (
     <IonPage>
       <IonHeader>
@@ -48,14 +53,28 @@ export function Chat() {
 
           {/* Buttons */}
           <div className="flex justify-between mt-4 self-end gap-4">
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600">
-              Beispiele anzeigen
-            </button>
+            <IonButton id="open-modal">Beispiele anzeigen</IonButton>
             <button className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600">
               Lösung anzeigen
             </button>
           </div>
         </div>
+        <IonModal ref={modal} trigger="open-modal">
+          <IonHeader>
+            <IonToolbar>
+              <IonButtons slot="start">
+                <IonButton onClick={() => modal.current?.dismiss()}>
+                  zurück
+                </IonButton>
+              </IonButtons>
+              <IonTitle>Beispiel</IonTitle>
+              <IonButtons slot="end">
+                <IonButton strong={true}>NEU</IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent className="ion-padding">TODO</IonContent>
+        </IonModal>
       </IonContent>
     </IonPage>
   )
