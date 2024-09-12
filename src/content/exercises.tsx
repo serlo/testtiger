@@ -13,6 +13,7 @@ import { exercise215 } from './implementations/NRW-MSA/215-2022-2-1-Einheiten-um
 import { exercise216 } from './implementations/NRW-MSA/216-2022-2-2-Gerade-im-ks'
 import { exercise220 } from './implementations/NRW-MSA/220-2021-1-1-Schätzaufgabe'
 import { exercise213 } from './implementations/NRW-MSA/213-2022-1-5-Schätzaufgabe-höhe'
+import { exercise223 } from './implementations/NRW-MSA/223-2021-1-4-Geraden-im-ks'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   201: exercise201,
@@ -29,4 +30,5 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   215: exercise215,
   216: exercise216,
   220: exercise220,
+  223: exercise223,
 }

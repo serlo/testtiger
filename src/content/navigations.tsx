@@ -25,7 +25,7 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Funktionen und Graphen',
         headerColor: 'success',
         twColor: 'bg-green-600',
-        exercises: [204, 216],
+        exercises: [204, 216, 223],
       },
       {
         title: 'Zufall und Daten',

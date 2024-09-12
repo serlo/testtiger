@@ -137,7 +137,7 @@ export const exercise216: Exercise<DATA> = {
         const y_2 = pp(1 * data.m + data.b)
         return (
           <>
-            <p>Der Funktionsterm hat die Form y = mx + b. </p>
+            <p>Der Funktionsterm hat allgemein die Form y = mx + b. </p>
             <p>
               Dabei steht m für die Steigung der Geraden und b für den
               y-Achsenabschnitt.
@@ -149,8 +149,8 @@ export const exercise216: Exercise<DATA> = {
             <p>
               Aus den Punkten {'(0|' + data.b + ')'} und{' '}
               {'(1|' + pp(1 * data.m + data.b) + ')'} folgt, dass die Gerade
-              eine Steigung von m = {data.m} haben muss. Das kannst du auch mit
-              der Punkt-Steigungs-Formel berechnen:
+              eine Steigung von m = {pp(data.m)} haben muss. Das kannst du auch
+              mit der Punkt-Steigungs-Formel berechnen:
             </p>
             <p>
               m = {buildInlineFrac(y_2 + ' − ' + data.b, '1 − 0')} ={' '}
