@@ -1,3 +1,4 @@
+/** change 12-09-24 Added Euro symbol in solution */
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
@@ -62,8 +63,8 @@ export const exercise205: Exercise<DATA> = {
           <br></br>Damit beträgt der neue Verkaufspreis:
         </p>
         <p>
-          {data.preis} − {pp((data.preis * data.rabatt) / 100)} ={' '}
-          {pp(data.preis - (data.preis * data.rabatt) / 100)}
+          {data.preis} €− {pp((data.preis * data.rabatt) / 100)}€ ={' '}
+          {pp(data.preis - (data.preis * data.rabatt) / 100)}€
         </p>
       </>
     )
