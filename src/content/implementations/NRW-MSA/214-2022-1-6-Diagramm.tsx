@@ -19,8 +19,8 @@ interface DATA {
 
 export const exercise214: Exercise<DATA> = {
   title: '2022 Variante 1 /6) Diagramm auswerten',
-  useCalculator: false,
-  duration: -1,
+  useCalculator: true,
+  duration: -3,
   generator(rng) {
     return {
       maenner_1: rng.randomIntBetween(30, 42),
@@ -427,7 +427,7 @@ export const exercise214: Exercise<DATA> = {
             <p>
               G = {data.umfrage} : {pp(data.maenner_1 / 100)} ={' '}
               {pp(
-                Math.round((data.umfrage / (data.maenner_1 / 100)) * 100) / 100
+                Math.round((data.umfrage / (data.maenner_1 / 100)) * 100) / 100,
               )}
             </p>
             <p>

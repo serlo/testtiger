@@ -11,7 +11,7 @@ interface DATA {
 export const exercise206: Exercise<DATA> = {
   title: '2023 /6) Parallelogramm',
   useCalculator: false,
-  duration: -1,
+  duration: -2,
 
   generator(rng) {
     return {

@@ -10,7 +10,7 @@ interface DATA {
 export const exercise212: Exercise<DATA> = {
   title: '2022 Variante 1 /4) Binom ergänzen',
   useCalculator: false,
-  duration: -3,
+  duration: -2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(-6, 6),

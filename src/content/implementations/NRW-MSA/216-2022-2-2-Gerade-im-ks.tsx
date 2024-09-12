@@ -52,10 +52,7 @@ export const exercise216: Exercise<DATA> = {
                 strokeWidth={4}
               />
             </svg>
-            <p>
-              a) Ergänze in der Wertetabelle die fehlenden Werte. {data.m};{' '}
-              {data.b}
-            </p>
+            <p>a) Ergänze in der Wertetabelle die fehlenden Werte.</p>
             <svg viewBox="0 0 700 500" className="h-[170px]">
               <image
                 href="/content/NRW_MSA_Wertetabelle.PNG"
