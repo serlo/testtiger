@@ -34,7 +34,7 @@ export const exercise206: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <svg viewBox="0 0 720 480" className="h-[280px]">
+            <svg viewBox="0 0 790 480" className="h-[280px]">
               <image
                 href="/content/NRW_MSA_Parallelogramm.PNG"
                 height="500"
@@ -42,13 +42,13 @@ export const exercise206: Exercise<DATA> = {
               />
 
               <text
-                x={270}
+                x={260}
                 y={420}
                 fontSize={40}
                 textAnchor="right"
                 stroke="black"
               >
-                {data.breite} cm
+                a = {data.breite} cm
               </text>
               <text
                 x={630}
@@ -57,7 +57,7 @@ export const exercise206: Exercise<DATA> = {
                 textAnchor="right"
                 stroke="black"
               >
-                {data.länge} cm
+                b = {data.länge} cm
               </text>
               <text
                 x={75}
@@ -111,8 +111,9 @@ export const exercise206: Exercise<DATA> = {
             </p>
             <p>A = a · h</p>
             <p>
-              Dabei steht h für die Höhe des Parallelogramms. Diese ist aber
-              immer kleiner, als die Seite b.
+              Dabei steht a für die Länge der Grundseite und h für die Höhe des
+              Parallelogramms, die senkrecht auf a steht. Diese ist aber immer
+              kleiner, als die Seite b.
             </p>
             <p>
               h {'<'} {data.länge} cm{' '}
