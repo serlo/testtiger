@@ -11,6 +11,7 @@ import { exercise212 } from './implementations/NRW-MSA/212-2022-1-4-Binom-ergän
 import { exercise214 } from './implementations/NRW-MSA/214-2022-1-6-Diagramm'
 import { exercise215 } from './implementations/NRW-MSA/215-2022-2-1-Einheiten-umrechnen'
 import { exercise216 } from './implementations/NRW-MSA/216-2022-2-2-Gerade-im-ks'
+import { exercise220 } from './implementations/NRW-MSA/220-2021-1-1-Schätzaufgabe'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   201: exercise201,
@@ -25,4 +26,5 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   214: exercise214,
   215: exercise215,
   216: exercise216,
+  220: exercise220,
 }
