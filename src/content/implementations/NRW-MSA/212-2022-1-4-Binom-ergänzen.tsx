@@ -10,7 +10,7 @@ interface DATA {
 export const exercise212: Exercise<DATA> = {
   title: '2022 Variante 1 /4) Binom ergänzen',
   useCalculator: false,
-  duration: -3,
+  duration: -2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(-6, 6),
@@ -45,7 +45,9 @@ export const exercise212: Exercise<DATA> = {
           b² = {data.b * data.b}
           {data.c}
         </p>
-        <p>Wende die Quadratwurzel an und bestimme b:</p>
+        <p>
+          Wende die Quadratwurzel an und bestimme den positiven Wert von b. :
+        </p>
         <p>
           b = {buildSqrt(data.b * data.b + '' + data.c)} = {data.b}
           {data.c == '' ? '' : 'y'}

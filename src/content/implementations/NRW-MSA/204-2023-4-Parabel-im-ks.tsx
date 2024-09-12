@@ -12,7 +12,7 @@ interface DATA {
 export const exercise204: Exercise<DATA> = {
   title: '2023 /4) Parabel im Koordinatensystem',
   useCalculator: false,
-  duration: -3,
+  duration: -2,
 
   generator(rng) {
     return {
@@ -46,7 +46,7 @@ export const exercise204: Exercise<DATA> = {
           a: number,
           b: number,
           c: number,
-          step: number
+          step: number,
         ): string {
           let points = ''
           for (let x = -4; x <= 11; x += step) {
@@ -59,7 +59,7 @@ export const exercise204: Exercise<DATA> = {
           data.a,
           data.x_s,
           data.y_s,
-          0.1
+          0.1,
         )
 
         return (
