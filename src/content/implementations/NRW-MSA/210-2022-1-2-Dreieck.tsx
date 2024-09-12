@@ -9,8 +9,8 @@ interface DATA {
 
 export const exercise210: Exercise<DATA> = {
   title: '2022 Variante 1 /2) Dreieck',
-  useCalculator: false,
-  duration: -1,
+  useCalculator: true,
+  duration: -3,
 
   generator(rng) {
     return {
@@ -81,14 +81,14 @@ export const exercise210: Exercise<DATA> = {
               b ={' '}
               {pp(
                 Math.round(Math.sqrt(data.c * data.c - data.a * data.a) * 100) /
-                  100
+                  100,
               )}
             </p>
             <p>
               Die Seite b ist ungefähr{' '}
               {pp(
                 Math.round(Math.sqrt(data.c * data.c - data.a * data.a) * 100) /
-                  100
+                  100,
               )}{' '}
               cm lang.
             </p>
@@ -121,8 +121,8 @@ export const exercise210: Exercise<DATA> = {
               α ={' '}
               {pp(
                 Math.round(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360 * 100
-                ) / 100
+                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360 * 100,
+                ) / 100,
               )}
               °
             </p>
@@ -130,8 +130,8 @@ export const exercise210: Exercise<DATA> = {
               Der Winkel α ist ungefähr{' '}
               {pp(
                 Math.round(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360 * 100
-                ) / 100
+                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360 * 100,
+                ) / 100,
               )}
               ° groß.
             </p>

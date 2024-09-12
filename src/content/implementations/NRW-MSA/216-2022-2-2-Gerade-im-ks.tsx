@@ -9,7 +9,7 @@ interface DATA {
 export const exercise216: Exercise<DATA> = {
   title: '2022 Variante 2 /2) Gerade im Korrdinatensystem',
   useCalculator: false,
-  duration: -1,
+  duration: -3,
   generator(rng) {
     return {
       m: rng.randomIntBetween(-5, 5) / 2,
