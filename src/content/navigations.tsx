@@ -7,7 +7,7 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Grundlagen - Zahlen und Größen',
         headerColor: 'primary',
         twColor: 'bg-blue-300',
-        exercises: [201, 205, 215, 220],
+        exercises: [201, 205, 213, 215, 220],
       },
       {
         title: 'Terme und Gleichungen',
