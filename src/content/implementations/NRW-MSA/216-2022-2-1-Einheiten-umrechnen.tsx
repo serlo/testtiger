@@ -9,7 +9,7 @@ interface DATA {
   cubics: number
 }
 
-export const exercise215: Exercise<DATA> = {
+export const exercise216: Exercise<DATA> = {
   title: '2022 Variante 2 /1) Einheiten umrechnen',
   useCalculator: false,
   duration: -1,

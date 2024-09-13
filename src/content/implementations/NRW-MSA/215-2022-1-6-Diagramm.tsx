@@ -17,7 +17,7 @@ interface DATA {
   umfrage: number
 }
 
-export const exercise214: Exercise<DATA> = {
+export const exercise215: Exercise<DATA> = {
   title: '2022 Variante 1 /6) Diagramm auswerten',
   useCalculator: true,
   duration: -3,

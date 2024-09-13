@@ -5,17 +5,18 @@ import { exercise203 } from './implementations/NRW-MSA/203-2023-3-lineares-gleic
 import { exercise204 } from './implementations/NRW-MSA/204-2023-4-Parabel-im-ks'
 import { exercise205 } from './implementations/NRW-MSA/205-2023-5-Sneaker-Rabatt'
 import { exercise206 } from './implementations/NRW-MSA/206-2023-6-Parallelogramm'
-import { exercise210 } from './implementations/NRW-MSA/210-2022-1-2-Dreieck'
-import { exercise211 } from './implementations/NRW-MSA/211-2022-1-3-lineares-gleichungssystem'
-import { exercise212 } from './implementations/NRW-MSA/212-2022-1-4-Binom-ergänzen'
-import { exercise214 } from './implementations/NRW-MSA/214-2022-1-6-Diagramm'
-import { exercise215 } from './implementations/NRW-MSA/215-2022-2-1-Einheiten-umrechnen'
-import { exercise216 } from './implementations/NRW-MSA/216-2022-2-2-Gerade-im-ks'
+import { exercise213 } from './implementations/NRW-MSA/213-2022-1-4-Binom-ergänzen'
+import { exercise217 } from './implementations/NRW-MSA/217-2022-2-2-Gerade-im-ks'
 import { exercise220 } from './implementations/NRW-MSA/220-2021-1-1-Schätzaufgabe'
-import { exercise213 } from './implementations/NRW-MSA/213-2022-1-5-Schätzaufgabe-höhe'
+import { exercise214 } from './implementations/NRW-MSA/214-2022-1-5-Schätzaufgabe-höhe'
 import { exercise223 } from './implementations/NRW-MSA/223-2021-1-4-Geraden-im-ks'
 import { exercise224 } from './implementations/NRW-MSA/224-2021-1-5-Tabellenkalkulation'
 import { exercise207 } from './implementations/NRW-MSA/207-2023-2-1-Herz'
+import { exercise210 } from './implementations/NRW-MSA/210-2022-1-1-Potenzen'
+import { exercise211 } from './implementations/NRW-MSA/212-2022-1-3-lineares-gleichungssystem'
+import { exercise212 } from './implementations/NRW-MSA/211-2022-1-2-Dreieck'
+import { exercise215 } from './implementations/NRW-MSA/215-2022-1-6-Diagramm'
+import { exercise216 } from './implementations/NRW-MSA/216-2022-2-1-Einheiten-umrechnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   201: exercise201,
@@ -32,6 +33,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   214: exercise214,
   215: exercise215,
   216: exercise216,
+  217: exercise217,
   220: exercise220,
   223: exercise223,
   224: exercise224,
