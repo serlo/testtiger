@@ -12,7 +12,7 @@ interface DATA {
 export const exercise207: Exercise<DATA> = {
   title: '2023 Prüfungsteil 2 /1) Herz',
   useCalculator: false,
-  duration: -1,
+  duration: -10,
   generator(rng) {
     return {
       kante: rng.randomIntBetween(4, 10),
