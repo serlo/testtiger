@@ -15,6 +15,7 @@ import { exercise220 } from './implementations/NRW-MSA/220-2021-1-1-Schätzaufga
 import { exercise213 } from './implementations/NRW-MSA/213-2022-1-5-Schätzaufgabe-höhe'
 import { exercise223 } from './implementations/NRW-MSA/223-2021-1-4-Geraden-im-ks'
 import { exercise224 } from './implementations/NRW-MSA/224-2021-1-5-Tabellenkalkulation'
+import { exercise207 } from './implementations/NRW-MSA/207-2023-2-1-Herz'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   201: exercise201,
@@ -23,6 +24,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   204: exercise204,
   205: exercise205,
   206: exercise206,
+  207: exercise207,
   210: exercise210,
   211: exercise211,
   212: exercise212,
