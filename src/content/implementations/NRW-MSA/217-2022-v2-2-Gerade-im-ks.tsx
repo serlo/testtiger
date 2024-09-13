@@ -135,6 +135,17 @@ export const exercise217: Exercise<DATA> = {
       },
       ({ data }) => {
         const y_2 = pp(1 * data.m + data.b)
+        let b_print = ''
+        if (data.b !== 0) {
+          b_print = pp(data.b, 'merge_op')
+        }
+        let m_print = pp(data.m)
+        if (data.m == 1) {
+          m_print = ''
+        }
+        if (data.m == -1) {
+          m_print = '-'
+        }
         return (
           <>
             <p>Der Funktionsterm hat allgemein die Form y = mx + b. </p>
@@ -144,18 +155,19 @@ export const exercise217: Exercise<DATA> = {
             </p>
             <p>
               <br></br>Aus der Wertetabelle kannst du den Wert des
-              y-Achsenabschnitts bei x = 0 ablesen: b = {data.b}
+              y-Achsenabschnitts bei x = 0 ablesen: b = {pp(data.b)}
             </p>
             <p>
-              Aus den Punkten {'(0|' + data.b + ')'} und{' '}
+              Aus den Punkten {'(0|' + pp(data.b) + ')'} und{' '}
               {'(1|' + pp(1 * data.m + data.b) + ')'} folgt, dass die Gerade
               eine Steigung von m = {pp(data.m)} haben muss. Das kannst du auch
               mit der Punkt-Steigungs-Formel berechnen:
             </p>
             <p>
-              m = {buildInlineFrac(y_2 + ' − ' + data.b, '1 − 0')} ={' '}
+              m = {buildInlineFrac(y_2 + ' − ' + pp(data.b), '1 − 0')} ={' '}
               {pp(data.m)}
             </p>
+            <p>Die Funktionsgleichung ist also y={m_print + 'x' + b_print}.</p>
           </>
         )
       },
