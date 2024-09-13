@@ -1,10 +1,12 @@
 import { Exercise } from '@/data/types'
-import { buildOverline } from '@/helper/math-builder'
+import { buildFrac, buildOverline } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   kante: number
   dichte: number
+  zaehler: number
+  nenner: number
 }
 
 export const exercise207: Exercise<DATA> = {
@@ -15,10 +17,12 @@ export const exercise207: Exercise<DATA> = {
     return {
       kante: rng.randomIntBetween(4, 10),
       dichte: rng.randomIntBetween(101, 140),
+      zaehler: rng.randomIntBetween(2, 5),
+      nenner: rng.randomIntBetween(4, 5),
     }
   },
   constraint({ data }) {
-    return true
+    return data.zaehler != data.nenner
   },
   task({ data }) {
     return <></>
@@ -112,7 +116,56 @@ export const exercise207: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>e) Berechne die Breite b eines Herzens.</p>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p>
+              f) Die Herzen werden in den Farben rot und weiß produziert und
+              farblich gemischt in Kartons verpackt. Beim Fabrikverkauf werden
+              die Herzen angeboten. Die Kunden dürfen ohne hinzusehen
+              nacheinander zwei Herzen aus dem Karton ziehen. Zu diesem
+              Zufallsversuch gehört das folgende Baumdiagramm.
+            </p>
+            <svg viewBox="0 0 700 500" className="h-[250px]">
+              <image
+                href="/content/NRW_MSA-Baumdiagramm.PNG"
+                height="500"
+                width="700"
+              />
+              <text
+                x={200}
+                y={140}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {buildFrac(data.zaehler, data.nenner)}
+              </text>
+            </svg>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p>
+              g) Gesucht ist die Wahrscheinlichkeit, dass zwei
+              verschiedenfarbige Herzen gezogen werden.
+            </p>
+            <ol>
+              <li>
+                Ergänze im Baumdiagramm die dafür notwendigen
+                Wahrscheinlichkeiten.
+              </li>
+              <li>
+                Ergänze im Baumdiagramm die dafür notwendigen
+                Wahrscheinlichkeiten.
+              </li>
+            </ol>
           </>
         )
       },
