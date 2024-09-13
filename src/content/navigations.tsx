@@ -13,7 +13,7 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Terme und Gleichungen',
         headerColor: 'danger',
         twColor: 'bg-red-500',
-        exercises: [203, 212, 213],
+        exercises: [203, 212, 213, 227],
       },
       {
         title: 'Körper und Figuren',

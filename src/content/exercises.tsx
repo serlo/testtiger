@@ -18,6 +18,7 @@ import { exercise211 } from './implementations/NRW-MSA/211-2022-1-2-Dreieck'
 import { exercise215 } from './implementations/NRW-MSA/215-2022-1-6-Diagramm'
 import { exercise216 } from './implementations/NRW-MSA/216-2022-v2-1-Einheiten-umrechnen'
 import { exercise218 } from './implementations/NRW-MSA/218-2022-2-1-Rösti'
+import { exercise227 } from './implementations/NRW-MSA/227-2021-v2-4-lineares-gleichungssystem'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   201: exercise201,
@@ -39,5 +40,6 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   220: exercise220,
   223: exercise223,
   224: exercise224,
+  227: exercise227,
 }
 // π · −
