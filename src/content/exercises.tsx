@@ -13,8 +13,8 @@ import { exercise223 } from './implementations/NRW-MSA/223-2021-v1-4-Geraden-im-
 import { exercise224 } from './implementations/NRW-MSA/224-2021-v1-5-Tabellenkalkulation'
 import { exercise207 } from './implementations/NRW-MSA/207-2023-2-1-Herz'
 import { exercise210 } from './implementations/NRW-MSA/210-2022-1-1-Potenzen'
-import { exercise211 } from './implementations/NRW-MSA/212-2022-1-3-lineares-gleichungssystem'
-import { exercise212 } from './implementations/NRW-MSA/211-2022-1-2-Dreieck'
+import { exercise212 } from './implementations/NRW-MSA/212-2022-1-3-lineares-gleichungssystem'
+import { exercise211 } from './implementations/NRW-MSA/211-2022-1-2-Dreieck'
 import { exercise215 } from './implementations/NRW-MSA/215-2022-1-6-Diagramm'
 import { exercise216 } from './implementations/NRW-MSA/216-2022-v2-1-Einheiten-umrechnen'
 import { exercise218 } from './implementations/NRW-MSA/218-2022-2-1-Rösti'
@@ -40,4 +40,4 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   223: exercise223,
   224: exercise224,
 }
-// π ·
+// π · −

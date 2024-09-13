@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   x: number
@@ -8,7 +9,7 @@ interface DATA {
   d: number
 }
 
-export const exercise211: Exercise<DATA> = {
+export const exercise212: Exercise<DATA> = {
   title: '2022 Variante 1 /3) Lineares Gleichungssystem',
   useCalculator: false,
   duration: -2,
@@ -31,7 +32,7 @@ export const exercise211: Exercise<DATA> = {
   },
   task({ data }) {
     const c = data.a * data.x - data.b * data.y
-    const e = data.a * data.x - data.d * data.y
+    const e = -data.a * data.x - data.d * data.y
     return (
       <>
         <p>Löse das lineare Gleichungssystem.</p>
@@ -64,7 +65,7 @@ export const exercise211: Exercise<DATA> = {
         <p>Fasse die Terme zusammen:</p>
         <p>
           {Math.abs(-data.b - data.d) == 1 ? '' : -data.b - data.d}
-          {-data.b - data.d == -1 ? '−' : false}y = {c + e}
+          {-data.b - data.d == -1 ? '−' : false}y = {pp(c + e)}
         </p>
         <p>{data.y != 1 ? 'Löse die Gleichung nach y:' : false}</p>
         <p>{data.y != 1 ? 'y = ' + data.y : false}</p>

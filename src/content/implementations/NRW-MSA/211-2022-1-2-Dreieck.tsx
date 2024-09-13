@@ -7,7 +7,7 @@ interface DATA {
   c: number
 }
 
-export const exercise212: Exercise<DATA> = {
+export const exercise211: Exercise<DATA> = {
   title: '2022 Variante 1 /2) Dreieck',
   useCalculator: true,
   duration: -3,
