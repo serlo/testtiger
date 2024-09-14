@@ -63,6 +63,50 @@ export function buildSqrt(x: JSX.Element | number | string) {
   )
 }
 
+export function buildRoot(x: JSX.Element | number | string, n: number = 2) {
+  return (
+    <span
+      className="inline-flex items-stretch ml-0.5 pb-1"
+      style={{ verticalAlign: 'middle' }}
+    >
+      {/* Optionaler Exponent oberhalb der Wurzel (wird nur angezeigt, wenn n > 2 ist) */}
+      {n > 2 && (
+        <span
+          className="text-xs"
+          style={{
+            paddingRight: '0px',
+            paddingLeft: '1px',
+            position: 'relative',
+            top: '-0.4em',
+          }}
+        >
+          {n}
+        </span>
+      )}
+      <div>
+        <svg
+          viewBox="0 0 6 12"
+          width={7}
+          height="100%"
+          preserveAspectRatio="none"
+          aria-label="√"
+        >
+          <path
+            vectorEffect="non-scaling-stroke"
+            d="M5.9,0.2H6l-2.49975 11.5L0.5 6"
+            strokeWidth={1}
+            fill="none"
+            stroke="black"
+          />
+        </svg>
+      </div>
+      <div className="border-t-[1.5px] border-black leading-none px-0.5 pt-0.5">
+        {x}
+      </div>
+    </span>
+  )
+}
+
 export function buildVec2(
   x: JSX.Element | string | number,
   y: JSX.Element | string | number,

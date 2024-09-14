@@ -21,6 +21,7 @@ import { exercise218 } from './implementations/NRW-MSA/218-2022-2-1-Rösti'
 import { exercise227 } from './implementations/NRW-MSA/227-2021-v2-4-lineares-gleichungssystem'
 import { exercise234 } from './implementations/NRW-MSA/234-2019-1-4-Tabellenkalkulation'
 import { exercise235 } from './implementations/NRW-MSA/235-2021-v2-4-lineares-gleichungssystem'
+import { exercise219 } from './implementations/NRW-MSA/219-2022-2-2-Wassermelonen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   201: exercise201,
@@ -45,5 +46,6 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   227: exercise227,
   234: exercise234,
   235: exercise235,
+  219: exercise219,
 }
-// π · −
+// π · − ≈
