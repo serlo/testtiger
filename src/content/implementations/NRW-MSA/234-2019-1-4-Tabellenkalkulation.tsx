@@ -11,7 +11,7 @@ interface DATA {
   item_3: number
 }
 
-export const exercise231: Exercise<DATA> = {
+export const exercise234: Exercise<DATA> = {
   title: '2019 /1) Tabellenkalkulation',
   useCalculator: false,
   duration: -1,
