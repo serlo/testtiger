@@ -23,6 +23,7 @@ import { exercise34 } from './implementations/NRW-MSA/34-2019-1-4-Tabellenkalkul
 import { exercise35 } from './implementations/NRW-MSA/35-2019-1-5-lineares-gleichungssystem'
 import { exercise19 } from './implementations/NRW-MSA/19-2022-2-2-Wassermelonen'
 import { exercise8 } from './implementations/NRW-MSA/8-2023-2-2-Varroa-Milbe'
+import { exercise192 } from './implementations/NRW-MSA/19_2-2022-2-3-Parabel-und-Rechteck'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -49,6 +50,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   27: exercise27,
   34: exercise34,
   35: exercise35,
+  192: exercise192,
 }
 
 // symbols:
