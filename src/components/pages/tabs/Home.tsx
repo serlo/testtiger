@@ -15,7 +15,7 @@ export function Home() {
     if (!name) {
       setName('Anna')
     }
-  }, [])
+  }, [name])
 
   const exercises = Object.entries(exercisesData)
   exercises.reverse()
