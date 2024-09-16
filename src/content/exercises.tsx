@@ -22,6 +22,7 @@ import { exercise27 } from './implementations/NRW-MSA/27-2021-v2-4-lineares-glei
 import { exercise34 } from './implementations/NRW-MSA/34-2019-1-4-Tabellenkalkulation'
 import { exercise35 } from './implementations/NRW-MSA/35-2019-1-5-lineares-gleichungssystem'
 import { exercise19 } from './implementations/NRW-MSA/19-2022-2-2-Wassermelonen'
+import { exercise8 } from './implementations/NRW-MSA/8-2023-2-2-Varroa-Milbe'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -31,6 +32,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   5: exercise5,
   6: exercise6,
   7: exercise7,
+  8: exercise8,
   10: exercise10,
   11: exercise11,
   12: exercise12,
