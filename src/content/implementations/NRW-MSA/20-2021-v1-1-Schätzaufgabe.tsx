@@ -9,7 +9,7 @@ export const exercise20: Exercise<DATA> = {
   useCalculator: false,
   duration: 1,
   generator(rng) {
-    // Entfernen von Duplikaten passiert in Zukunft auf einer höheren Ebene für alle Aufgaben
+    // Entfernen von Duplikaten passiert automatisch beim Generieren
     const task = rng.randomItemFromArray([1, 2, 3, 4, 5])
     return { task }
   },

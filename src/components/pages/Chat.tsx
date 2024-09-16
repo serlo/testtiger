@@ -17,6 +17,8 @@ import { generateSeed } from '@/data/generate-seed'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { generateData } from '@/data/generate-data'
 import { navigationData } from '@/content/navigations'
+import { constrainedGeneration } from '@/helper/constrained-generation'
+import { isDeepEqual } from '@/helper/is-deep-equal'
 
 interface ChatProps {
   id: number
@@ -166,7 +168,17 @@ export function Chat({ id }: ChatProps) {
                 <IonButton
                   strong={true}
                   onClick={() => {
-                    setExampleSeed(generateSeed())
+                    setExampleSeed(seed => {
+                      const currentData = generateData(id, seed, content)
+                      const newSeed = constrainedGeneration(
+                        () => generateSeed(),
+                        seed => {
+                          const newData = generateData(id, seed, content)
+                          return !isDeepEqual(currentData, newData)
+                        },
+                      )
+                      return newSeed
+                    })
                   }}
                 >
                   NEU
