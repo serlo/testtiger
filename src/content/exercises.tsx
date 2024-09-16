@@ -1,51 +1,63 @@
 import { Exercise } from '@/data/types'
-import { exercise201 } from './implementations/NRW-MSA/201-2023-1-zahlen-ordnen'
-import { exercise202 } from './implementations/NRW-MSA/202-2023-2-volumen-berechnen'
-import { exercise203 } from './implementations/NRW-MSA/203-2023-3-lineares-gleichungssystem'
-import { exercise204 } from './implementations/NRW-MSA/204-2023-4-Parabel-im-ks'
-import { exercise205 } from './implementations/NRW-MSA/205-2023-5-Sneaker-Rabatt'
-import { exercise206 } from './implementations/NRW-MSA/206-2023-6-Parallelogramm'
-import { exercise213 } from './implementations/NRW-MSA/213-2022-1-4-Binom-ergänzen'
-import { exercise217 } from './implementations/NRW-MSA/217-2022-v2-2-Gerade-im-ks'
-import { exercise220 } from './implementations/NRW-MSA/220-2021-v1-1-Schätzaufgabe'
-import { exercise214 } from './implementations/NRW-MSA/214-2022-1-5-Schätzaufgabe-höhe'
-import { exercise223 } from './implementations/NRW-MSA/223-2021-v1-4-Geraden-im-ks'
-import { exercise224 } from './implementations/NRW-MSA/224-2021-v1-5-Tabellenkalkulation'
-import { exercise207 } from './implementations/NRW-MSA/207-2023-2-1-Herz'
-import { exercise210 } from './implementations/NRW-MSA/210-2022-1-1-Potenzen'
-import { exercise212 } from './implementations/NRW-MSA/212-2022-1-3-lineares-gleichungssystem'
-import { exercise211 } from './implementations/NRW-MSA/211-2022-1-2-Dreieck'
-import { exercise215 } from './implementations/NRW-MSA/215-2022-1-6-Diagramm'
-import { exercise216 } from './implementations/NRW-MSA/216-2022-v2-1-Einheiten-umrechnen'
-import { exercise218 } from './implementations/NRW-MSA/218-2022-2-1-Rösti'
-import { exercise227 } from './implementations/NRW-MSA/227-2021-v2-4-lineares-gleichungssystem'
-import { exercise234 } from './implementations/NRW-MSA/234-2019-1-4-Tabellenkalkulation'
-import { exercise235 } from './implementations/NRW-MSA/235-2021-v2-4-lineares-gleichungssystem'
-import { exercise219 } from './implementations/NRW-MSA/219-2022-2-2-Wassermelonen'
+import { exercise1 } from './implementations/NRW-MSA/1-2023-1-zahlen-ordnen'
+import { exercise2 } from './implementations/NRW-MSA/2-2023-2-volumen-berechnen'
+import { exercise3 } from './implementations/NRW-MSA/3-2023-3-lineares-gleichungssystem'
+import { exercise4 } from './implementations/NRW-MSA/4-2023-4-Parabel-im-ks'
+import { exercise5 } from './implementations/NRW-MSA/5-2023-5-Sneaker-Rabatt'
+import { exercise6 } from './implementations/NRW-MSA/6-2023-6-Parallelogramm'
+import { exercise13 } from './implementations/NRW-MSA/13-2022-1-4-Binom-ergänzen'
+import { exercise17 } from './implementations/NRW-MSA/17-2022-v2-2-Gerade-im-ks'
+import { exercise20 } from './implementations/NRW-MSA/20-2021-v1-1-Schätzaufgabe'
+import { exercise14 } from './implementations/NRW-MSA/14-2022-1-5-Schätzaufgabe-höhe'
+import { exercise23 } from './implementations/NRW-MSA/23-2021-v1-4-Geraden-im-ks'
+import { exercise24 } from './implementations/NRW-MSA/24-2021-v1-5-Tabellenkalkulation'
+import { exercise7 } from './implementations/NRW-MSA/7-2023-2-1-Herz'
+import { exercise10 } from './implementations/NRW-MSA/10-2022-1-1-Potenzen'
+import { exercise12 } from './implementations/NRW-MSA/12-2022-1-3-lineares-gleichungssystem'
+import { exercise11 } from './implementations/NRW-MSA/11-2022-1-2-Dreieck'
+import { exercise15 } from './implementations/NRW-MSA/15-2022-1-6-Diagramm'
+import { exercise16 } from './implementations/NRW-MSA/16-2022-v2-1-Einheiten-umrechnen'
+import { exercise18 } from './implementations/NRW-MSA/18-2022-2-1-Rösti'
+import { exercise27 } from './implementations/NRW-MSA/27-2021-v2-4-lineares-gleichungssystem'
+import { exercise34 } from './implementations/NRW-MSA/34-2019-1-4-Tabellenkalkulation'
+import { exercise35 } from './implementations/NRW-MSA/35-2021-v2-4-lineares-gleichungssystem'
+import { exercise19 } from './implementations/NRW-MSA/19-2022-2-2-Wassermelonen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
-  201: exercise201,
-  202: exercise202,
-  203: exercise203,
-  204: exercise204,
-  205: exercise205,
-  206: exercise206,
-  207: exercise207,
-  210: exercise210,
-  211: exercise211,
-  212: exercise212,
-  213: exercise213,
-  214: exercise214,
-  215: exercise215,
-  216: exercise216,
-  217: exercise217,
-  218: exercise218,
-  220: exercise220,
-  223: exercise223,
-  224: exercise224,
-  227: exercise227,
-  234: exercise234,
-  235: exercise235,
-  219: exercise219,
+  1: exercise1,
+  2: exercise2,
+  3: exercise3,
+  4: exercise4,
+  5: exercise5,
+  6: exercise6,
+  7: exercise7,
+  10: exercise10,
+  11: exercise11,
+  12: exercise12,
+  13: exercise13,
+  14: exercise14,
+  15: exercise15,
+  16: exercise16,
+  17: exercise17,
+  18: exercise18,
+  19: exercise19,
+  20: exercise20,
+  23: exercise23,
+  24: exercise24,
+  27: exercise27,
+  34: exercise34,
+  35: exercise35,
 }
-// π · − ≈
+
+// symbols:
+
+// ℚ
+// ·
+// −
+// ×
+// α β γ δ
+// ∠ ∡
+// ⊕
+// ≙ ≠ ⇒ ∈ ∉
+
+// π ≈

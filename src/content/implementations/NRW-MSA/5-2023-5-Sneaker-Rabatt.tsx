@@ -8,7 +8,7 @@ interface DATA {
   rabatt: number
 }
 
-export const exercise205: Exercise<DATA> = {
+export const exercise5: Exercise<DATA> = {
   title: '2023 /5) Rabattaktion',
   useCalculator: false,
   duration: -2,

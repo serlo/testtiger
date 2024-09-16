@@ -10,7 +10,7 @@ interface DATA {
   e: number
 }
 
-export const exercise201: Exercise<DATA> = {
+export const exercise1: Exercise<DATA> = {
   title: '2023 /1) Zahlen ordnen',
   useCalculator: false,
   duration: -2,

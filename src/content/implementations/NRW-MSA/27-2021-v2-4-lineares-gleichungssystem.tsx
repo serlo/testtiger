@@ -12,7 +12,7 @@ interface DATA {
   b_2_b: number
 }
 
-export const exercise227: Exercise<DATA> = {
+export const exercise27: Exercise<DATA> = {
   title: '2021 Variante 2 /4) Lineares Gleichungssystem',
   useCalculator: false,
   duration: -3,

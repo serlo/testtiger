@@ -14,7 +14,7 @@ interface DATA {
   order: number
 }
 
-export const exercise223: Exercise<DATA> = {
+export const exercise23: Exercise<DATA> = {
   title: '2021 Variante 1 /4) Gerade im Koordinatensystem',
   useCalculator: false,
   duration: -2,

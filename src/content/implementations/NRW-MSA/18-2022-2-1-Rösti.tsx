@@ -10,7 +10,7 @@ interface DATA {
   prob_2: number
 }
 
-export const exercise218: Exercise<DATA> = {
+export const exercise18: Exercise<DATA> = {
   title: '2022 Prüfungsteil 2 /1) Rösti',
   useCalculator: false,
   duration: -10,

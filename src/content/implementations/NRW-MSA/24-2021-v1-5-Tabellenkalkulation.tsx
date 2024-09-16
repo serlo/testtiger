@@ -7,7 +7,7 @@ interface DATA {
   coin: number
 }
 
-export const exercise224: Exercise<DATA> = {
+export const exercise24: Exercise<DATA> = {
   title: '2021 Variante 1 /5) Tabellenkalkulation',
   useCalculator: false,
   duration: -3,

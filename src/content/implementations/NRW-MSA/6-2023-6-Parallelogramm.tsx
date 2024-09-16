@@ -8,7 +8,7 @@ interface DATA {
   alpha: number
 }
 
-export const exercise206: Exercise<DATA> = {
+export const exercise6: Exercise<DATA> = {
   title: '2023 /6) Parallelogramm',
   useCalculator: false,
   duration: -2,

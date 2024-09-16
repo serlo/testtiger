@@ -9,7 +9,7 @@ interface DATA {
   sup: string
 }
 
-export const exercise204: Exercise<DATA> = {
+export const exercise4: Exercise<DATA> = {
   title: '2023 /4) Parabel im Koordinatensystem',
   useCalculator: false,
   duration: -2,

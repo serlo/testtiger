@@ -10,7 +10,7 @@ const generateRandomItemFromArray = (arr: number[]): number => {
 }
 let availableTasks = [1, 2, 3, 4, 5] // Initiales Array der Aufgaben
 
-export const exercise220: Exercise<DATA> = {
+export const exercise20: Exercise<DATA> = {
   title: '2021 Variante 1 /1) Schätzaufgabe',
   useCalculator: false,
   duration: -1,

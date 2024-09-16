@@ -10,7 +10,7 @@ interface DATA {
   exponent_2: number
 }
 
-export const exercise210: Exercise<DATA> = {
+export const exercise10: Exercise<DATA> = {
   title: '2022 Variante 1 /1) Potenzen',
   useCalculator: false,
   duration: -2,

@@ -6,7 +6,7 @@ interface DATA {
   c: number
 }
 
-export const exercise202: Exercise<DATA> = {
+export const exercise2: Exercise<DATA> = {
   title: '2023 /2) Volumen berechnen',
   useCalculator: false,
   duration: -2,

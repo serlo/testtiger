@@ -9,7 +9,7 @@ interface DATA {
   nenner: number
 }
 
-export const exercise207: Exercise<DATA> = {
+export const exercise7: Exercise<DATA> = {
   title: '2023 Prüfungsteil 2 /1) Herz',
   useCalculator: false,
   duration: -10,

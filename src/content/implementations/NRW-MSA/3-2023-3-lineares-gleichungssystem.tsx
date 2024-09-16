@@ -9,7 +9,7 @@ interface DATA {
   d: number
 }
 
-export const exercise203: Exercise<DATA> = {
+export const exercise3: Exercise<DATA> = {
   title: '2023 /3) Lineares Gleichungssystem',
   useCalculator: false,
   duration: -3,

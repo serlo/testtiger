@@ -7,7 +7,7 @@ interface DATA {
   b: number
 }
 
-export const exercise217: Exercise<DATA> = {
+export const exercise17: Exercise<DATA> = {
   title: '2022 Variante 2 /2) Gerade im Korrdinatensystem',
   useCalculator: false,
   duration: -3,
