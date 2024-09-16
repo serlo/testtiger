@@ -8,7 +8,7 @@ interface DATA {
 }
 
 export const exercise17: Exercise<DATA> = {
-  title: '2022 Variante 2 /2) Gerade im Korrdinatensystem',
+  title: '2022 Variante 2 /2) Gerade im Koordinatensystem',
   useCalculator: false,
   duration: 3,
   generator(rng) {

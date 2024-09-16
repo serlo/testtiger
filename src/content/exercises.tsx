@@ -20,7 +20,7 @@ import { exercise16 } from './implementations/NRW-MSA/16-2022-v2-1-Einheiten-umr
 import { exercise18 } from './implementations/NRW-MSA/18-2022-2-1-Rösti'
 import { exercise27 } from './implementations/NRW-MSA/27-2021-v2-4-lineares-gleichungssystem'
 import { exercise34 } from './implementations/NRW-MSA/34-2019-1-4-Tabellenkalkulation'
-import { exercise35 } from './implementations/NRW-MSA/35-2021-v2-4-lineares-gleichungssystem'
+import { exercise35 } from './implementations/NRW-MSA/35-2019-5-lineares-gleichungssystem'
 import { exercise19 } from './implementations/NRW-MSA/19-2022-2-2-Wassermelonen'
 import { exercise8 } from './implementations/NRW-MSA/8-2023-2-2-Varroa-Milbe'
 
