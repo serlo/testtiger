@@ -7,7 +7,7 @@ Erstelle dir als einen GitHub-Account. Lasse dich über diesen Account in dieses
 Installiere drei Programme auf deinen Computer:
 
 1. [GitHub Desktop](https://github.com/apps/desktop) für den Zugriff auf den Quellcode.
-2. [NodeJS](https://nodejs.org/en) als Laufzeitumgebung (empfohlene Version 20 LTS )
+2. [NodeJS](https://nodejs.org/en) als Laufzeitumgebung (empfohlene Version 20 LTS, du brauchst keine Tools für native Bibliotheken)
 3. [VS Code](https://code.visualstudio.com/) als Code-Editor
 
 Öffne nun GitHub Desktop, melde dich an und nutze "clone repository", um den TestTiger auf deinen Computer zu speichern. Wähle einen Ordner dafür aus.

@@ -3,11 +3,6 @@ import { Exercise } from '@/data/types'
 interface DATA {
   task: number
 }
-const generateRandomItemFromArray = (arr: number[]): number => {
-  const randomIndex = Math.floor(Math.random() * arr.length)
-  const [item] = arr.splice(randomIndex, 1) // Entfernt das ausgewählte Element aus dem Array
-  return item
-}
 let availableTasks = [1, 2, 3, 4, 5] // Initiales Array der Aufgaben
 
 export const exercise14: Exercise<DATA> = {
@@ -18,8 +13,7 @@ export const exercise14: Exercise<DATA> = {
     if (availableTasks.length === 0) {
       availableTasks = [1, 2, 3, 4, 5] // Fülle das Array wieder auf, wenn es leer ist
     }
-
-    const task = generateRandomItemFromArray(availableTasks) // Generiere eine Zufallsaufgabe
+    const task = rng.randomItemFromArray(availableTasks) // Generiere eine Zufallsaufgabe
     return { task }
   },
   constraint({ data }) {
@@ -32,7 +26,7 @@ export const exercise14: Exercise<DATA> = {
       description: string,
     ) => (
       <>
-        <svg viewBox="0 0 700 500" className="h-[370px]">
+        <svg viewBox="0 0 700 500">
           <image href={imageUrl} height="500" width="700" />
         </svg>
         <p>{description}</p>
@@ -81,7 +75,7 @@ export const exercise14: Exercise<DATA> = {
       description: string,
     ) => (
       <>
-        <svg viewBox="0 0 700 500" className="h-[370px]">
+        <svg viewBox="0 0 700 500">
           <image href={imageUrl} height="500" width="700" />
         </svg>
         <p>{description}</p>

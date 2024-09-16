@@ -33,7 +33,7 @@ export const exercise5: Exercise<DATA> = {
 
         <p>Berechne den neuen Verkaufspreis.</p>
 
-        <svg viewBox="0 0 300 250" className="h-[300px]">
+        <svg viewBox="0 0 300 250">
           <image href="/content/NRW_MSA_Sneaker.PNG" height="250" width="300" />
 
           <text x={30} y={160} fontSize={30} textAnchor="right" stroke="black">

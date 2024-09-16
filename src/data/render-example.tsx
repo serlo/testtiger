@@ -29,18 +29,20 @@ export function renderExample(
                   }),
                 )}
               </div>
-              <details className="mb-4">
-                <summary className="cursor-pointer text-secondary">
-                  Lösung
-                </summary>
-                <div className="border pt-5 pb-3 px-4">
-                  {proseWrapper(
-                    exercise.subtasks!.solutions[i]({
-                      data,
-                    }),
-                  )}
-                </div>
-              </details>
+              {exercise.subtasks!.solutions[i] && (
+                <details className="mb-4">
+                  <summary className="cursor-pointer text-secondary">
+                    Lösung
+                  </summary>
+                  <div className="border pt-5 pb-3 px-4">
+                    {proseWrapper(
+                      exercise.subtasks!.solutions[i]({
+                        data,
+                      }),
+                    )}
+                  </div>
+                </details>
+              )}
             </Fragment>
           )
         })}

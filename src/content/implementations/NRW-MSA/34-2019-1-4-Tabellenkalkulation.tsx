@@ -74,7 +74,7 @@ export const exercise34: Exercise<DATA> = {
               Tabellenkalkulation berechnet er die Kosten für die
               Jugendherberge.
             </p>
-            <svg viewBox="0 0 600 300" className="h-[260px]">
+            <svg viewBox="0 0 600 300">
               <image
                 href="/content/NRW_MSA_Tabellenkalk_2.PNG"
                 height="300"

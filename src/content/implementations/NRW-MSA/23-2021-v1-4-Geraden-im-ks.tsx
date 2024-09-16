@@ -104,7 +104,7 @@ export const exercise23: Exercise<DATA> = {
 
         return (
           <>
-            <svg viewBox="0 0 1000 450" className="h-[450px]">
+            <svg viewBox="0 0 500 450">
               <image
                 href="/content/NRW_MSA_KS_Vorlage.png"
                 height="500"

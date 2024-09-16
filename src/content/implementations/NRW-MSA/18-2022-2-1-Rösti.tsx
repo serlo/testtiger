@@ -46,7 +46,7 @@ export const exercise18: Exercise<DATA> = {
               eine zylindrische Form gegossen (Abbildung 3) und anschließend
               gebacken. Für ein Rösti benötigt man {data.gewicht} g Teig.
             </p>
-            <svg viewBox="0 0 700 430" className="h-[250px]">
+            <svg viewBox="0 0 700 430">
               <image
                 href="/content/NRW_MSA_rösti.jpg"
                 height="500"
@@ -54,7 +54,7 @@ export const exercise18: Exercise<DATA> = {
               />
             </svg>
             <p>Abbildung 1: Rösti</p>
-            <svg viewBox="0 0 700 450" className="h-[180px]">
+            <svg viewBox="0 0 700 450">
               <image
                 href="/content/NRW_MSA_röstirezept.png"
                 height="500"
@@ -62,7 +62,7 @@ export const exercise18: Exercise<DATA> = {
               />
             </svg>
             <p>Abbildung 2: Rezept für Rösti-Teig</p>
-            <svg viewBox="0 0 700 500" className="h-[180px]">
+            <svg viewBox="0 0 700 500">
               <image href="/content/NRW_MSA_zyl.jpg" height="500" width="700" />
             </svg>
             <p>Abbildung 3: zylindrische Form</p>
@@ -126,7 +126,7 @@ export const exercise18: Exercise<DATA> = {
               Das Baumdiagramm zeigt die Anteile. Die Anteile werden im
               Folgenden als Wahrscheinlichkeiten gedeutet.
             </p>
-            <svg viewBox="0 0 700 430" className="h-[250px]">
+            <svg viewBox="0 0 700 430">
               <image
                 href="/content/NRW_MSA_Baumdiagramm_2.png"
                 height="350"
@@ -341,7 +341,7 @@ export const exercise18: Exercise<DATA> = {
               Die Pfade im Baumdiagramm, die aus einem gemeinsamen Punkt kommen,
               ergeben zusammen immer 100 %.
             </p>
-            <svg viewBox="0 0 700 430" className="h-[250px]">
+            <svg viewBox="0 0 700 430">
               <image
                 href="/content/NRW_MSA_Baumdiagramm_2.png"
                 height="350"

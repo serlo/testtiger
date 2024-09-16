@@ -40,7 +40,7 @@ export const exercise24: Exercise<DATA> = {
               Bekleidung und hat die Senkung der Mehrwertsteuer an seine Kunden
               weitergegeben. Dafür hat er eine Excel-Tabelle angelegt:
             </p>
-            <svg viewBox="0 0 600 120" className="h-[100px]">
+            <svg viewBox="0 0 600 120">
               <image
                 href="/content/NRW_MSA_Tabellenkalk.png"
                 height="120"
@@ -136,7 +136,7 @@ export const exercise24: Exercise<DATA> = {
               {pp(Math.round(data.preis * 1.16 * 100) / 100)} €
             </p>
             <p>Damit ist die ausgefüllte Tabelle:</p>
-            <svg viewBox="0 0 600 120" className="h-[100px]">
+            <svg viewBox="0 0 600 120">
               <image
                 href="/content/NRW_MSA_Tabellenkalk.png"
                 height="120"

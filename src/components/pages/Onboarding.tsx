@@ -21,6 +21,9 @@ export function Onboarding() {
       </IonContent>
       <IonFooter className="ion-no-border">
         <div className="my-3 text-center bg-white">
+          <IonButton routerLink="/app/home" fill="clear">
+            Überspringen
+          </IonButton>
           <p className="mt-6">
             <IonButton routerLink="/name">Ich bin neu hier</IonButton>
           </p>

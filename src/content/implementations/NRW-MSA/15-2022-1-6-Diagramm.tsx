@@ -69,7 +69,7 @@ export const exercise15: Exercise<DATA> = {
               Diagramm zeigt den Anteil der Männer und Frauen, die mindestens
               2,5 Stunden pro Woche körperlich aktiv sind.
             </p>
-            <svg viewBox="0 0 700 500" className="h-[350px]">
+            <svg viewBox="0 0 700 500">
               <image
                 href="/content/NRW_MSA_Diagramm.png"
                 height="500"

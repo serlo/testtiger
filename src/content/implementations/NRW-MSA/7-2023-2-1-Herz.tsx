@@ -44,7 +44,7 @@ export const exercise7: Exercise<DATA> = {
               cm, an das zwei Halbkreise mit einem Radius von jeweils{' '}
               {pp(data.kante / 2)} cm angesetzt sind (Abbildung).
             </p>
-            <svg viewBox="0 0 700 500" className="h-[250px]">
+            <svg viewBox="0 0 700 500" className="min-w-[328px]">
               <image
                 href="/content/NRW_MSA-23-2-1.PNG"
                 height="500"
@@ -133,7 +133,7 @@ export const exercise7: Exercise<DATA> = {
               nacheinander zwei Herzen aus dem Karton ziehen. Zu diesem
               Zufallsversuch gehört das folgende Baumdiagramm.
             </p>
-            <svg viewBox="0 0 700 500" className="h-[250px]">
+            <svg viewBox="0 0 700 500">
               <image
                 href="/content/NRW_MSA-Baumdiagramm.PNG"
                 height="500"

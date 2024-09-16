@@ -45,7 +45,7 @@ export const exercise19: Exercise<DATA> = {
               Sinja hat eine nahezu kugelförmige Wassermelone gekauft, die einen
               Durchmesser von ca. {data.durchmesser} cm hat (Abbildung 1).
             </p>
-            <svg viewBox="0 0 500 350" className="h-[300px]">
+            <svg viewBox="0 0 500 350">
               <image
                 href="/content/NRW_MSA_Melone.PNG"
                 height="350"
@@ -120,7 +120,7 @@ export const exercise19: Exercise<DATA> = {
               )}{' '}
               cm hat.
             </p>
-            <svg viewBox="0 0 500 350" className="h-[300px]">
+            <svg viewBox="0 0 500 350">
               <image
                 href="/content/NRW_MSA_Melone_dice.jpg"
                 height="350"
@@ -150,7 +150,7 @@ export const exercise19: Exercise<DATA> = {
               {data.gewicht} g schweren Wassermelone unter idealen Bedingungen
               voraussichtlich entwickelt. Sie erstellt dazu eine Tabelle.
             </p>
-            <svg viewBox="0 0 550 120" className="h-[120px]">
+            <svg viewBox="0 0 550 120">
               <image
                 href="/content/NRW_MSA_Melone_Tabelle.PNG"
                 height="120"
@@ -196,7 +196,7 @@ export const exercise19: Exercise<DATA> = {
               Wachstum dieser Wassermelone.“
             </p>
             <p>Hat Sinja recht? Begründe deine Entscheidung.</p>
-            <svg viewBox="0 0 550 220" className="h-[220px]">
+            <svg viewBox="0 0 550 220">
               <image
                 href="/content/NRW_MSA_Melone_Graph.jpg"
                 height="220"

@@ -28,7 +28,7 @@ export const exercise2: Exercise<DATA> = {
 
         <p>Gib dein Ergebnis in Litern ( ℓ ) an. </p>
 
-        <svg viewBox="0 0 700 500" className="h-[250px]">
+        <svg viewBox="0 0 700 500">
           <image
             href="/content/NRW_MSA_2023_Teil1_A2.PNG"
             height="500"

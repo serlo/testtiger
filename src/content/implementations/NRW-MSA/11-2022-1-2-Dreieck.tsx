@@ -35,7 +35,7 @@ export const exercise11: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <svg viewBox="0 0 720 480" className="h-[260px]">
+            <svg viewBox="0 0 720 480">
               <image
                 href="/content/NRW_MSA_Dreieck.jpg"
                 height="500"
