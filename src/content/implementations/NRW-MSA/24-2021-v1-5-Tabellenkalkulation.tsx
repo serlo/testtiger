@@ -10,7 +10,7 @@ interface DATA {
 export const exercise24: Exercise<DATA> = {
   title: '2021 Variante 1 /5) Tabellenkalkulation',
   useCalculator: false,
-  duration: -3,
+  duration: 3,
   generator(rng) {
     return {
       preis: rng.randomIntBetween(1500, 3500) / 100,
@@ -27,6 +27,9 @@ export const exercise24: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         return (

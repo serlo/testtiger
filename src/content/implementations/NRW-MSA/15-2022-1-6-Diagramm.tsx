@@ -20,7 +20,7 @@ interface DATA {
 export const exercise15: Exercise<DATA> = {
   title: '2022 Variante 1 /6) Diagramm auswerten',
   useCalculator: true,
-  duration: -3,
+  duration: 3,
   generator(rng) {
     return {
       maenner_1: rng.randomIntBetween(30, 42),
@@ -56,6 +56,9 @@ export const exercise15: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         return (

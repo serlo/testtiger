@@ -14,6 +14,11 @@ export function renderExample(
   if (exercise.subtasks) {
     return (
       <>
+        {proseWrapper(
+          exercise.subtasks.intro({
+            data,
+          }),
+        )}
         {exercise.subtasks.tasks.map((t, i) => {
           return (
             <Fragment key={i}>

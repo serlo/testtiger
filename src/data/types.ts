@@ -9,6 +9,7 @@ export interface Exercise<T = unknown> {
   task: (props: { data: T }) => JSX.Element
   solution: (props: { data: T }) => JSX.Element
   subtasks?: {
+    intro: (props: { data: T }) => JSX.Element
     tasks: ((props: { data: T }) => JSX.Element)[]
     solutions: ((props: { data: T }) => JSX.Element)[]
   }

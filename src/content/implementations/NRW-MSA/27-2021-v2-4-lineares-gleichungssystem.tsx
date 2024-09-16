@@ -15,7 +15,7 @@ interface DATA {
 export const exercise27: Exercise<DATA> = {
   title: '2021 Variante 2 /4) Lineares Gleichungssystem',
   useCalculator: false,
-  duration: -3,
+  duration: 3,
   generator(rng) {
     return {
       x: rng.randomIntBetween(1, 8),
@@ -48,6 +48,9 @@ export const exercise27: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         const c = data.b * data.x - data.a * data.y

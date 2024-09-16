@@ -12,7 +12,7 @@ interface DATA {
 export const exercise12: Exercise<DATA> = {
   title: '2022 Variante 1 /3) Lineares Gleichungssystem',
   useCalculator: false,
-  duration: -2,
+  duration: 2,
   generator(rng) {
     return {
       x: rng.randomIntBetween(1, 8),

@@ -12,7 +12,7 @@ interface DATA {
 export const exercise4: Exercise<DATA> = {
   title: '2023 /4) Parabel im Koordinatensystem',
   useCalculator: false,
-  duration: -2,
+  duration: 2,
 
   generator(rng) {
     return {
@@ -34,50 +34,54 @@ export const exercise4: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      function toX(n: number) {
+        return 109 + n * 35.714
+      }
+      function toY(n: number) {
+        return 333 - n * 35.714
+      }
+      function generateParabolaPoints(
+        a: number,
+        b: number,
+        c: number,
+        step: number,
+      ): string {
+        let points = ''
+        for (let x = -4; x <= 11; x += step) {
+          const y = a * (x - b) * (x - b) + c
+          points += `${toX(x)},${toY(y)} `
+        }
+        return points.trim()
+      }
+      const parabolaPoints = generateParabolaPoints(
+        data.a,
+        data.x_s,
+        data.y_s,
+        0.1,
+      )
+      return (
+        <>
+          <svg viewBox="0 0 500 450" className="max-w-[500px]">
+            <image
+              href="/content/KS_groß_Vorlage.png"
+              width="500"
+              height="450"
+            />
+            <polyline
+              points={parabolaPoints}
+              stroke="blue"
+              strokeWidth="2"
+              fill="none"
+            />
+          </svg>
+        </>
+      )
+    },
     tasks: [
       ({ data }) => {
-        function toX(n: number) {
-          return 109 + n * 35.714
-        }
-        function toY(n: number) {
-          return 333 - n * 35.714
-        }
-        function generateParabolaPoints(
-          a: number,
-          b: number,
-          c: number,
-          step: number,
-        ): string {
-          let points = ''
-          for (let x = -4; x <= 11; x += step) {
-            const y = a * (x - b) * (x - b) + c
-            points += `${toX(x)},${toY(y)} `
-          }
-          return points.trim()
-        }
-        const parabolaPoints = generateParabolaPoints(
-          data.a,
-          data.x_s,
-          data.y_s,
-          0.1,
-        )
-
         return (
           <>
-            <svg viewBox="0 0 500 450" className="max-w-[500px]">
-              <image
-                href="/content/KS_groß_Vorlage.png"
-                width="500"
-                height="450"
-              />
-              <polyline
-                points={parabolaPoints}
-                stroke="blue"
-                strokeWidth="2"
-                fill="none"
-              />
-            </svg>
-
             <p>
               a) Wähle, welche der angegebenen Funktionsgleichungen zu dem
               Graphen von f passt.

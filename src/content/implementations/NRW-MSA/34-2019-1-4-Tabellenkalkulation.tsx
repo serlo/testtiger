@@ -14,7 +14,7 @@ interface DATA {
 export const exercise34: Exercise<DATA> = {
   title: '2019 /1) Tabellenkalkulation',
   useCalculator: false,
-  duration: -1,
+  duration: 1,
   generator(rng) {
     return {
       preis: rng.randomIntBetween(12, 19),
@@ -35,6 +35,9 @@ export const exercise34: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         // Funktion zum Mischen des Arrays

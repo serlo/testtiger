@@ -13,7 +13,7 @@ interface DATA {
 export const exercise18: Exercise<DATA> = {
   title: '2022 Prüfungsteil 2 /1) Rösti',
   useCalculator: false,
-  duration: -10,
+  duration: 10,
   generator(rng) {
     return {
       gewicht: rng.randomIntBetween(60, 100),
@@ -33,6 +33,9 @@ export const exercise18: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         return (

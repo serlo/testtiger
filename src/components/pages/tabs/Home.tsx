@@ -3,10 +3,23 @@ import { Store } from '../../../../store'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
+import { useEffect } from 'react'
+import { setName } from '../../../../store/actions'
+import { exercisesData } from '@/content/exercises'
 
 export function Home() {
   const name = Store.useState(s => s.name)
   const history = useHistory()
+
+  useEffect(() => {
+    if (!name) {
+      setName('Anna')
+    }
+  }, [])
+
+  const exercises = Object.entries(exercisesData)
+  exercises.reverse()
+
   return (
     <IonPage>
       <IonHeader></IonHeader>
@@ -44,6 +57,36 @@ export function Home() {
                 <div className="p-2">{title}</div>
               </button>
             ))}
+          </div>
+          <div className="mt-8">
+            Liste aller Aufgaben (Redaktion):
+            {exercises.map(([id, content]) => {
+              return (
+                <div
+                  key={id}
+                  className="my-3 cursor-pointer hover:bg-gray-100 rounded-lg p-1"
+                  onClick={() => {
+                    history.push('/exercise/' + id)
+                  }}
+                >
+                  <div>
+                    {content.title}{' '}
+                    <small className="text-gray-400">({id})</small>
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    {content.duration} min,{' '}
+                    {
+                      navigationData[1].topics.find(e =>
+                        e.exercises.includes(parseInt(id)),
+                      )?.title
+                    }
+                    {content.subtasks ? (
+                      <>, {content.subtasks.tasks.length} Teilaufgaben</>
+                    ) : null}
+                  </div>
+                </div>
+              )
+            })}
           </div>
           <div className="h-24"></div>
         </div>

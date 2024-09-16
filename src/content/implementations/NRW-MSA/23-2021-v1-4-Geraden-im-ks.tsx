@@ -17,7 +17,7 @@ interface DATA {
 export const exercise23: Exercise<DATA> = {
   title: '2021 Variante 1 /4) Gerade im Koordinatensystem',
   useCalculator: false,
-  duration: -2,
+  duration: 2,
   generator(rng) {
     return {
       m_1: rng.randomIntBetween(-4, 3) / 2,
@@ -54,6 +54,9 @@ export const exercise23: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         // Funktion zum Mischen des Arrays

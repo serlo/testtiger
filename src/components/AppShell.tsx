@@ -14,6 +14,7 @@ import { App } from './pages/App'
 import { Topic } from './pages/Topic'
 import { Chat } from './pages/Chat'
 import { navigationData } from '@/content/navigations'
+import { exercisesData } from '@/content/exercises'
 
 setupIonicReact({})
 
@@ -57,7 +58,15 @@ const AppShell = () => {
               )}
             />
           ))}
-          <Route path="/exercise" render={() => <Chat />} />
+          {Object.keys(exercisesData)
+            .map(x => parseInt(x))
+            .map(id => (
+              <Route
+                path={`/exercise/${id}`}
+                key={id}
+                render={() => <Chat id={id} />}
+              />
+            ))}
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

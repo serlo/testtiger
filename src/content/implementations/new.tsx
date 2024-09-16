@@ -5,7 +5,7 @@ interface DATA {}
 export const exerciseXXX: Exercise<DATA> = {
   title: 'NEU',
   useCalculator: false,
-  duration: -1,
+  duration: 42,
   generator(rng) {
     return {}
   },

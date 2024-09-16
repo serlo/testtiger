@@ -12,7 +12,7 @@ interface DATA {
 export const exercise19: Exercise<DATA> = {
   title: '2022 Prüfungsteil 2 /2) Wassermelonen',
   useCalculator: false,
-  duration: -10,
+  duration: 10,
   generator(rng) {
     return {
       durchmesser: rng.randomIntBetween(20, 30),
@@ -30,6 +30,9 @@ export const exercise19: Exercise<DATA> = {
     return <></>
   },
   subtasks: {
+    intro: ({ data }) => {
+      return <></>
+    },
     tasks: [
       ({ data }) => {
         return (

@@ -9,7 +9,7 @@ interface DATA {
 export const exercise2: Exercise<DATA> = {
   title: '2023 /2) Volumen berechnen',
   useCalculator: false,
-  duration: -2,
+  duration: 2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(1, 9) * 10,

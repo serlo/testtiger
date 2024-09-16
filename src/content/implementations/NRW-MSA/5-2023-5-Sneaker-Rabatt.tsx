@@ -11,7 +11,7 @@ interface DATA {
 export const exercise5: Exercise<DATA> = {
   title: '2023 /5) Rabattaktion',
   useCalculator: false,
-  duration: -2,
+  duration: 2,
 
   generator(rng) {
     return {

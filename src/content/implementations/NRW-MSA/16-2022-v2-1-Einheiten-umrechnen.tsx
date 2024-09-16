@@ -12,7 +12,7 @@ interface DATA {
 export const exercise16: Exercise<DATA> = {
   title: '2022 Variante 2 /1) Einheiten umrechnen',
   useCalculator: false,
-  duration: -1,
+  duration: 1,
   generator(rng) {
     return {
       hours: (rng.randomIntBetween(30, 60) * 5) / 100,

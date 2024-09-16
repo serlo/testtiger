@@ -8,7 +8,6 @@ import {
   IonToolbar,
 } from '@ionic/react'
 import { useHistory } from 'react-router'
-import { setExercise } from '../../../store/actions'
 import { exercisesData } from '@/content/exercises'
 import { generateSeed } from '@/data/generate-seed'
 
@@ -43,8 +42,7 @@ export function Topic({ title, color, exercises }: TopicProps) {
                   key={i}
                   className="m-2 border p-3 hover:bg-gray-200 block rounded-lg"
                   onClick={() => {
-                    setExercise(ex, generateSeed())
-                    history.push('/exercise')
+                    history.push('/exercise/' + ex)
                   }}
                 >
                   {content.title}

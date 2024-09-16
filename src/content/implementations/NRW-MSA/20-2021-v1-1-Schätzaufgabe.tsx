@@ -13,7 +13,7 @@ let availableTasks = [1, 2, 3, 4, 5] // Initiales Array der Aufgaben
 export const exercise20: Exercise<DATA> = {
   title: '2021 Variante 1 /1) Schätzaufgabe',
   useCalculator: false,
-  duration: -1,
+  duration: 1,
   generator(rng) {
     if (availableTasks.length === 0) {
       availableTasks = [1, 2, 3, 4, 5] // Fülle das Array wieder auf, wenn es leer ist
