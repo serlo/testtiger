@@ -38,7 +38,7 @@ export const exercise13: Exercise<DATA> = {
       <>
         <p>
           Verwende die 1. binomische Formel und vergleiche die Terme mit der
-          Aufgabenstellung:
+          Aufgabe:
         </p>
         <p> (a + b)² = a² + 2ab + b²</p>
         <p>
