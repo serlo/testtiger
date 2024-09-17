@@ -19,7 +19,7 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Körper und Figuren',
         headerColor: 'warning',
         twColor: 'bg-yellow-400',
-        exercises: [2, 6, 7, 11, 18, 19],
+        exercises: [2, 6, 7, 11, 18, 19, 28],
       },
       {
         title: 'Funktionen und Graphen',
