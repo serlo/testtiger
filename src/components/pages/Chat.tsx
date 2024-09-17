@@ -27,7 +27,7 @@ interface ChatProps {
 export function Chat({ id }: ChatProps) {
   const modal = useRef<HTMLIonModalElement>(null)
 
-  const seed = Store.useState(s => s.seed)
+  const [seed, setSeed] = useState(generateSeed())
 
   const content = exercisesData[id]
 
@@ -52,11 +52,35 @@ export function Chat({ id }: ChatProps) {
             <IonBackButton defaultHref="/app/home"></IonBackButton>
           </IonButtons>
           <IonTitle>{content.title}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton
+              strong={true}
+              onClick={() => {
+                setSeed(seed => {
+                  const currentData = generateData(id, seed, content)
+                  const newSeed = constrainedGeneration(
+                    () => generateSeed(),
+                    seed => {
+                      const newData = generateData(id, seed, content)
+                      return !isDeepEqual(currentData, newData)
+                    },
+                  )
+                  return newSeed
+                })
+              }}
+            >
+              NEU
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <div className={color}>
           <div className="flex flex-col items-start justify-start min-h-screen bg-gray-50 p-4 px-2 max-w-[360px] mx-auto">
+            <p className="text-gray-400 text-xs mb-2 ml-2">
+              Aufgabe {content.useCalculator ? 'mit' : 'ohne'} Taschenrechner -{' '}
+              {content.duration} min
+            </p>
             {/* Chat Message */}
             {withSubtasks ? (
               <>
@@ -122,10 +146,6 @@ export function Chat({ id }: ChatProps) {
                       content.task({ data: generateData(id, seed, content) }),
                     )}
                   </div>
-                  <p className="text-gray-400 text-xs mt-1">
-                    Aufgabe ohne Taschenrechner. Arbeite am besten mit Papier &
-                    Stift
-                  </p>
                 </div>
 
                 {/* Buttons */}
