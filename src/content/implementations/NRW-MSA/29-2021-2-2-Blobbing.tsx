@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -8,6 +9,7 @@ interface DATA {
   fake_a: number
   fake_x: number
   fake_y: number
+  g: number
 }
 
 export const exercise29: Exercise<DATA> = {
@@ -22,6 +24,7 @@ export const exercise29: Exercise<DATA> = {
       fake_a: rng.randomIntBetween(16, 25) / 100,
       fake_x: rng.randomIntBetween(3, 8),
       fake_y: rng.randomIntBetween(3, 8),
+      g: rng.randomIntBetween(900, 1100) / 100,
     }
   },
   constraint({ data }) {
@@ -79,8 +82,14 @@ export const exercise29: Exercise<DATA> = {
           </p>
           <p>
             Der Jumper kann zwischen verschiedenen Absprunghöhen wählen. Ein
-            Sprung aus fünf Meter Höhe dauert ca. 1 Sekunde. Ein Sprung aus zehn
-            Meter Höhe dauert ca. 1,42 Sekunden.
+            Sprung aus fünf Meter Höhe dauert ca.{' '}
+            {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)}{' '}
+            {Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100 == 1
+              ? 'Sekunde'
+              : 'Sekunden'}
+            . Ein Sprung aus zehn Meter Höhe dauert ca.{' '}
+            {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)}{' '}
+            Sekunden.
           </p>
           <svg viewBox="0 0 700 500">
             <image
@@ -88,6 +97,42 @@ export const exercise29: Exercise<DATA> = {
               height="500"
               width="700"
             />
+            <text
+              x={420}
+              y={250}
+              fontSize={30}
+              textAnchor="right"
+              stroke="black"
+            >
+              {pp(Math.round(Math.pow((2 * 3) / data.g, 0.5) * 100) / 100)} s
+            </text>
+            <text
+              x={410}
+              y={320}
+              fontSize={30}
+              textAnchor="right"
+              stroke="black"
+            >
+              {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)} s
+            </text>
+            <text
+              x={410}
+              y={395}
+              fontSize={30}
+              textAnchor="right"
+              stroke="black"
+            >
+              {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)} s
+            </text>
+            <text
+              x={410}
+              y={465}
+              fontSize={30}
+              textAnchor="right"
+              stroke="black"
+            >
+              {pp(Math.round(Math.pow((2 * 15) / data.g, 0.5) * 100) / 100)} s
+            </text>
           </svg>
           <p>Tabelle 1: Sprungdauer in Abhängigkeit von der Absprunghöhe</p>
           <svg viewBox="0 0 700 500">
@@ -210,7 +255,7 @@ export const exercise29: Exercise<DATA> = {
               Begründe mithilfe der Abbildung 4, dass sich die Funktion f mit{' '}
             </p>
             <p>
-              f(x) = a · (x − {data.x_s})² + {data.y_s}
+              f(x) = a · (x − {data.x_s})² + {data.y_s} und a{' < '}0
             </p>
             <p>zur Modellierung der Flugbahn von Blobber A eignet.</p>
           </>
@@ -239,7 +284,7 @@ export const exercise29: Exercise<DATA> = {
             </p>
             <p>
               beschrieben werden. Die Funktionsgleichung g mit g(x) = {pp(a)} x²{' '}
-              {pp(2 * data.x_s * a)}x + 1
+              {pp(-a * 2 * data.x_s, 'merge_op')}x + 1
             </p>
             <p>
               Zeige durch Termumformungen, dass die Funktionsgleichungen von f
@@ -278,51 +323,300 @@ export const exercise29: Exercise<DATA> = {
     ],
     solutions: [
       ({ data }) => {
+        function toX(n: number) {
+          return 40 + n * (450 / 11.18)
+        }
+        function toY(n: number) {
+          return 405 - n * ((4 * 450) / 11.18)
+        }
+        function generateParabolaPoints(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 15; x += step) {
+            const y = Math.pow((2 * x) / data.g, 0.5)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints(0.1)
         return (
           <>
-            <p></p>
+            <svg viewBox="0 0 700 500">
+              <image
+                href="/content/NRW_MSA_Blobbing_4.jpg"
+                height="500"
+                width="700"
+              />
+              <text
+                x={toX(0) - 5}
+                y={toY(0) + 5}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}
+              </text>
+              <text
+                x={toX(3) - 5}
+                y={toY(Math.pow((2 * 3) / data.g, 0.5)) + 5}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}
+              </text>
+              <text
+                x={toX(5) - 5}
+                y={toY(Math.pow((2 * 5) / data.g, 0.5)) + 5}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}
+              </text>
+              <text
+                x={toX(10) - 5}
+                y={toY(Math.pow((2 * 10) / data.g, 0.5)) + 5}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}
+              </text>
+              <text
+                x={toX(15) - 5}
+                y={toY(Math.pow((2 * 15) / data.g, 0.5)) + 5}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}
+              </text>
+              <polyline
+                points={parabolaPoints}
+                stroke="blue"
+                strokeWidth="3"
+                fill="none"
+              />
+            </svg>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Wähle zwei Punkte und überprüfe ob die Zunahme der Sprungdauer
+              linear ist:
+            </p>
+            <ul>
+              <li>
+                Punkt 1: (5|
+                {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)})
+              </li>
+              <li>
+                Punkt 1: (10|
+                {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)})
+              </li>
+            </ul>
+            <p>
+              Zwischen 0 und 5 Metern nimmt die Sprungdauer um{' '}
+              {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)}{' '}
+              Sekunden zu.
+            </p>
+            <p>
+              Zwischen 5 und 10 Metern nimmt die Sprungdauer um{' '}
+              {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)} −{' '}
+              {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)} ={' '}
+              {pp(
+                Math.round(
+                  (Math.pow((2 * 10) / data.g, 0.5) -
+                    Math.pow((2 * 5) / data.g, 0.5)) *
+                    100,
+                ) / 100,
+              )}{' '}
+              Sekunden zu.
+            </p>
+            <p>Damit ist der Zusammenhang nicht linear.</p>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Aus der Skizze kannst du den Scheitel der Parabel ablesen: S(
+              {data.x_s}|{data.y_s})
+            </p>
+            <p>Die Funktion hat dann allgemein den Funktionsterm:</p>
+            <p>
+              f(x) = a · (x − {data.x_s})² + {data.y_s}
+            </p>
+            <p>Da die Parabel nach unten geöffnet ist muss a{' < '}0 sein.</p>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Um a zu berechnen, setze den Punkt (0|1) in f(x) ein und löse die
+              Gleichung:
+            </p>
+            <p>
+              1 = a · (1 − {data.x_s})² + {data.y_s}
+            </p>
+            <p>
+              1 = a · {(1 - data.x_s) * (1 - data.x_s)} + {data.y_s}
+            </p>
+            <p>
+              {1 - data.y_s} = a · {(1 - data.x_s) * (1 - data.x_s)}
+            </p>
+            <p>a = {pp((1 - data.y_s) / Math.pow(1 - data.x_s, 2))}</p>
+          </>
+        )
+      },
+      ({ data }) => {
+        const a = (1 - data.y_s) / (data.x_s * data.x_s)
+        return (
+          <>
+            <p>Löse die Klammer auf und vereinfache den Term:</p>
+            <p>
+              f(x) = {pp(a)} · (x − {data.x_s})² + {data.y_s}
+            </p>
+            <p>
+              f(x) = {pp(a)} · (x² − 2 · x · {data.x_s} + {data.x_s}²) +{' '}
+              {data.y_s}
+            </p>
+            <p>
+              f(x) = {pp(a)} · (x² − {2 * data.x_s}x + {data.x_s * data.x_s}) +{' '}
+              {data.y_s}
+            </p>
+            <p>
+              f(x) = {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
+              {pp(a * data.x_s * data.x_s)} + {data.y_s}
+            </p>
+            <p>
+              f(x) = {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
+              {pp(a * data.x_s * data.x_s + data.y_s, 'merge_op')} = g(x)
+            </p>
+          </>
+        )
+      },
+      ({ data }) => {
+        const a = (1 - data.y_s) / (data.x_s * data.x_s)
+        const string = (pp(a * 2 * data.x_s) + '±') as unknown as JSX.Element
+        return (
+          <>
+            <p>Setze die Funktionsgleichung 0:</p>
+            <p>
+              0 = {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
+              {pp(a * data.x_s * data.x_s + data.y_s, 'merge_op')}
+            </p>
+            <p>Setze die Werte für a, b und c in die Mitternachtsformel ein:</p>
+            <p>
+              x<sub>1/2</sub> ={' '}
+              {buildInlineFrac(
+                <>
+                  {'-b'} {' ± '}
+                  {buildSqrt('b² - 4ac')}
+                </>,
+                '2 · a',
+              )}
+            </p>
+            <p>
+              x<sub>1/2</sub> ={' '}
+              {buildInlineFrac(
+                <>
+                  {pp(a * 2 * data.x_s)} {' ± '}
+                  {buildSqrt(
+                    pp(a * 2 * data.x_s * a * 2 * data.x_s) +
+                      ' ' +
+                      pp(
+                        4 * a * a * data.x_s * data.x_s + data.y_s,
+                        'merge_op',
+                      ),
+                  )}
+                </>,
+                pp(2 * a),
+              )}
+            </p>
+            <p>
+              x<sub>1/2</sub> ≈{' '}
+              {buildInlineFrac(
+                <>
+                  {pp(a * 2 * data.x_s)} {' ± '}
+                  {pp(
+                    Math.round(
+                      100 *
+                        Math.pow(
+                          a * 2 * data.x_s * a * 2 * data.x_s +
+                            4 * a * a * data.x_s * data.x_s +
+                            data.y_s,
+                          0.5,
+                        ),
+                    ) / 100,
+                  )}
+                </>,
+                pp(2 * a),
+              )}
+            </p>
+            <p>
+              x<sub>1</sub> ≈{' '}
+              {pp(
+                Math.round(
+                  ((a * 2 * data.x_s +
+                    Math.pow(
+                      a * 2 * data.x_s * a * 2 * data.x_s -
+                        4 * a * (a * data.x_s * data.x_s + data.y_s),
+                      0.5,
+                    )) /
+                    (2 * a)) *
+                    100,
+                ) / 100,
+              )}
+            </p>
+            <p>
+              {' '}
+              x<sub>2</sub> ≈{' '}
+              {pp(
+                Math.round(
+                  ((a * 2 * data.x_s -
+                    Math.pow(
+                      a * 2 * data.x_s * a * 2 * data.x_s -
+                        4 * a * (a * data.x_s * data.x_s + data.y_s),
+                      0.5,
+                    )) /
+                    (2 * a)) *
+                    100,
+                ) / 100,
+              )}
+            </p>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p></p>
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p></p>
+            {data.coin == true ? (
+              <p>
+                Mögliche Gemeinsamkeit: Die Funktionen besitzen den gleichen
+                Öffnungsfaktor a. Die Flugbahnen haben damit ein ähnliches
+                Profil. <br></br>
+                <br></br> Mögliche Unterschied: Die Funktionen haben
+                unterschiedliche Scheitelpunktkoordinaten. Der höchste Punkt der
+                Flugbahn ist daher unterschiedlich.
+              </p>
+            ) : (
+              <p>
+                Mögliche Gemeinsamkeit: Die Funktionen besitzen die gleiche
+                Scheitelpunktkoordinate x<sub>s</sub>. Damit erreichen die
+                Flugbahnen beide ihren Höhepunkt nach x<sub>s</sub> = {data.x_s}{' '}
+                Metern. <br></br>
+                <br></br> Mögliche Unterschied: Die Funktionen haben
+                unterschiedliche Öffnungsfaktoren. Sie besitzen eine
+                unterschiedliche Form.
+              </p>
+            )}
           </>
         )
       },
