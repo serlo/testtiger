@@ -36,11 +36,14 @@ export const exercise13: Exercise<DATA> = {
   solution({ data }) {
     return (
       <>
-        <p>Verwende die 1. binomische Formel:</p>
+        <p>
+          Verwende die 1. binomische Formel und vergleiche die Terme mit der
+          Aufgabenstellung:
+        </p>
         <p>(a + b)² = a² + 2ab + b²</p>
         <p>
-          Vergleiche die Terme in der Aufgabenstellung mit den Termen der 1.
-          binomischen Formel:
+          ({data.a}x + _____ )² = {data.a * data.a}x² + _____ +{data.b * data.b}
+          {data.c}
         </p>
         <p>
           b² = {data.b * data.b}
