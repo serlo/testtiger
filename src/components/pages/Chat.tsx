@@ -27,7 +27,7 @@ interface ChatProps {
 export function Chat({ id }: ChatProps) {
   const modal = useRef<HTMLIonModalElement>(null)
 
-  const seed = Store.useState(s => s.seed)
+  const [seed, setSeed] = useState(generateSeed())
 
   const content = exercisesData[id]
 
@@ -52,11 +52,35 @@ export function Chat({ id }: ChatProps) {
             <IonBackButton defaultHref="/app/home"></IonBackButton>
           </IonButtons>
           <IonTitle>{content.title}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton
+              strong={true}
+              onClick={() => {
+                setSeed(seed => {
+                  const currentData = generateData(id, seed, content)
+                  const newSeed = constrainedGeneration(
+                    () => generateSeed(),
+                    seed => {
+                      const newData = generateData(id, seed, content)
+                      return !isDeepEqual(currentData, newData)
+                    },
+                  )
+                  return newSeed
+                })
+              }}
+            >
+              NEU
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <div className={color}>
           <div className="flex flex-col items-start justify-start min-h-screen bg-gray-50 p-4 px-2 max-w-[360px] mx-auto">
+            <p className="text-gray-400 text-xs mb-2 ml-2">
+              Aufgabe {content.useCalculator ? 'mit' : 'ohne'} Taschenrechner -{' '}
+              {content.duration} min
+            </p>
             {/* Chat Message */}
             {withSubtasks ? (
               <>
@@ -80,7 +104,7 @@ export function Chat({ id }: ChatProps) {
                       </div>
                       {content.subtasks!.solutions[i] && (
                         <>
-                          <div className="flex justify-between mt-4 self-end gap-4">
+                          <div className="flex justify-between self-end gap-4 -mt-2 mb-2">
                             <button
                               className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mb-3"
                               onClick={() => {
@@ -95,7 +119,7 @@ export function Chat({ id }: ChatProps) {
                             </button>
                           </div>
                           {subShow[i] && (
-                            <div className="mb-4">
+                            <div className="mb-4 -mt-3">
                               <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
                                 {proseWrapper(
                                   content.subtasks!.solutions[i]({
@@ -122,10 +146,6 @@ export function Chat({ id }: ChatProps) {
                       content.task({ data: generateData(id, seed, content) }),
                     )}
                   </div>
-                  <p className="text-gray-400 text-xs mt-1">
-                    Aufgabe ohne Taschenrechner. Arbeite am besten mit Papier &
-                    Stift
-                  </p>
                 </div>
 
                 {/* Buttons */}
