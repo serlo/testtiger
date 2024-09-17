@@ -25,6 +25,7 @@ import { exercise19 } from './implementations/NRW-MSA/19-2022-2-2-Wassermelonen'
 import { exercise8 } from './implementations/NRW-MSA/8-2023-2-2-Varroa-Milbe'
 import { exercise192 } from './implementations/NRW-MSA/19_2-2022-2-3-Parabel-und-Rechteck'
 import { exercise28 } from './implementations/NRW-MSA/28-2021-2-1-Glaskugeln'
+import { exercise29 } from './implementations/NRW-MSA/29-2021-2-2-Blobbing'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -50,6 +51,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   24: exercise24,
   27: exercise27,
   28: exercise28,
+  29: exercise29,
   34: exercise34,
   35: exercise35,
   192: exercise192,
