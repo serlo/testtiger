@@ -104,7 +104,7 @@ export function Chat({ id }: ChatProps) {
                       </div>
                       {content.subtasks!.solutions[i] && (
                         <>
-                          <div className="flex justify-between mt-4 self-end gap-4">
+                          <div className="flex justify-between self-end gap-4 -mt-2 mb-2">
                             <button
                               className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mb-3"
                               onClick={() => {
@@ -119,7 +119,7 @@ export function Chat({ id }: ChatProps) {
                             </button>
                           </div>
                           {subShow[i] && (
-                            <div className="mb-4">
+                            <div className="mb-4 -mt-3">
                               <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
                                 {proseWrapper(
                                   content.subtasks!.solutions[i]({
