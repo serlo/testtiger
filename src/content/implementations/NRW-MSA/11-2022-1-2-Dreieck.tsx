@@ -73,12 +73,12 @@ export const exercise11: Exercise<DATA> = {
             </p>
             <p>b² = c² − a²</p>
 
-            <p>Setze die gegebenen Seitenlängen:</p>
+            <p>Setze die gegebenen Seitenlängen ein:</p>
             <p>
               b² = {data.c}² − {pp(data.a)}²
             </p>
 
-            <p>Wende die Quadratwurzel an und bestimme b.</p>
+            <p>Ziehe die Quadratwurzel und bestimme b:</p>
             <p>b = {buildSqrt(data.c + '² − ' + pp(data.a) + '²')}</p>
             <p>
               b ={' '}
