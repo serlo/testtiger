@@ -13,13 +13,13 @@ export const exercise13: Exercise<DATA> = {
   duration: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(-6, 6),
+      a: rng.randomIntBetween(1, 6),
       b: rng.randomIntBetween(2, 6),
       c: rng.randomItemFromArray(['', 'y²']),
     }
   },
   constraint({ data }) {
-    return data.a != 1 && data.a != 0 && data.a != -1
+    return data.a != 0 && data.a != -1
   },
   task({ data }) {
     return (
