@@ -16,14 +16,14 @@ export const exercise192: Exercise<DATA> = {
   duration: 10,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(-1, -1) / 2,
+      a: rng.randomIntBetween(-4, -1) / 2,
       x: rng.randomIntBetween(2, 5),
       y: rng.randomIntBetween(2, 5),
     }
   },
   constraint({ data }) {
     const b = data.y + data.x * data.x * Math.abs(data.a)
-    return ((b * 2) % 2 == 0 || (b * 2) % 2 == 1) && b + data.a < 8
+    return (b * 2) % 1 == 0 && b + data.a < 9
   },
   task({ data }) {
     return <></>
@@ -34,6 +34,32 @@ export const exercise192: Exercise<DATA> = {
   subtasks: {
     intro: ({ data }) => {
       const b = data.y + data.x * data.x * Math.abs(data.a)
+      function toX(n: number) {
+        return 350 + n * (450 / 12)
+      }
+      function toY(n: number) {
+        return 412 - n * (450 / 12)
+      }
+      function generateParabolaPoints(
+        a: number,
+        b: number,
+
+        step: number,
+      ): string {
+        let points = ''
+        for (let x = -8; x <= 8; x += step) {
+          const y = a * x * x + b
+          points += `${toX(x)},${toY(y)} `
+        }
+        return points.trim()
+      }
+      const parabolaPoints = generateParabolaPoints(
+        data.a,
+
+        b,
+        0.1,
+      )
+
       return (
         <>
           <p>
@@ -44,6 +70,19 @@ export const exercise192: Exercise<DATA> = {
             f(x) = {data.a == -1 ? '− ' : pp(data.a)}x<sup>2</sup> + {pp(b)}
           </p>
           <p>in ein Koordinatensystem (Abbildung 1).</p>
+          <svg viewBox="0 0 700 450" className="max-w-[328px]">
+            <image
+              href="/content/NRW_MSA_KS_groß.png"
+              width="700"
+              height="450"
+            />
+            <polyline
+              points={parabolaPoints}
+              stroke="blue"
+              strokeWidth="3"
+              fill="none"
+            />
+          </svg>
         </>
       )
     },
@@ -215,9 +254,95 @@ export const exercise192: Exercise<DATA> = {
         )
       },
       ({ data }) => {
+        const b = data.y + data.x * data.x * Math.abs(data.a)
+        function toX(n: number) {
+          return 352 + n * (450 / 12)
+        }
+        function toY(n: number) {
+          return 412 - n * (450 / 12)
+        }
+        function generateParabolaPoints(
+          a: number,
+          b: number,
+
+          step: number,
+        ): string {
+          let points = ''
+          for (let x = -8; x <= 8; x += step) {
+            const y = a * x * x + b
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints(
+          data.a,
+
+          b,
+          0.1,
+        )
         return (
           <>
             <p>Deine Skizze sollte etwa so aussehen:</p>
+            <svg viewBox="0 0 700 450" className="max-w-[328px]">
+              <image
+                href="/content/NRW_MSA_KS_groß.png"
+                width="700"
+                height="450"
+              />
+              <polyline
+                points={parabolaPoints}
+                stroke="blue"
+                strokeWidth="3"
+                fill="none"
+              />
+
+              <text
+                x={toX(1) - 5}
+                y={toY(b + data.a) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}A2
+              </text>
+              <text
+                x={toX(-1) - 30}
+                y={toY(b + data.a) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                B2
+                {'×'}
+              </text>
+              <text
+                x={toX(1) - 5}
+                y={toY(0) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}D2
+              </text>
+              <text
+                x={toX(-1) - 31}
+                y={toY(0) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                C2{'×'}
+              </text>
+              <rect
+                x={toX(-1)}
+                y={toY(b + data.a)} // obere linke Ecke
+                width={toX(1) - toX(-1)} // Breite des Rechtecks
+                height={toY(0) - toY(b + data.a)} // Höhe des Rechtecks
+                fill="none" // Farbe des Rechtecks
+                stroke="black"
+                strokeWidth={2}
+              />
+            </svg>
           </>
         )
       },
@@ -308,14 +433,41 @@ export const exercise192: Exercise<DATA> = {
               {pp((2 * b - zahl) / (2 * data.a))} = 0
             </p>
             <p>
-              Die Mitternachts - Formel ergibt für die Gleichung die Lösungen:
+              Die Mitternachts - Formel ergibt für die Gleichung{' '}
+              {data.a * 2 == -1
+                ? 'die Lösungen:'
+                : 'keine Lösungen. Das bedeutet, dass es kein Rechteck mit dem Umfang ' +
+                  pp(zahl) +
+                  ' geben kann.'}
             </p>
-            <p>
-              x<sub>1</sub> = {pp((4 / (2 * Math.abs(data.a)) + 1) / 2)}
-            </p>
-            <p>
-              x<sub>2</sub> = {pp((4 / (2 * Math.abs(data.a)) - 1) / 2)}
-            </p>
+
+            {data.a * 2 == -1 && (
+              <>
+                <p>
+                  x<sub>1</sub> ={' '}
+                  {convertToFractionString(
+                    (4 / (2 * Math.abs(data.a)) + 1) / 2,
+                  )}
+                </p>
+                <p>
+                  x<sub>2</sub> ={' '}
+                  {convertToFractionString(
+                    (4 / (2 * Math.abs(data.a)) - 1) / 2,
+                  )}
+                </p>
+                <p>
+                  Das bedeutet, dass für die Werte x<sub>1</sub> ={' '}
+                  {convertToFractionString(
+                    (4 / (2 * Math.abs(data.a)) + 1) / 2,
+                  )}{' '}
+                  und x<sub>2</sub> ={' '}
+                  {convertToFractionString(
+                    (4 / (2 * Math.abs(data.a)) - 1) / 2,
+                  )}{' '}
+                  ein Rechteck mit dem Umfang {pp(zahl)} existiert.
+                </p>
+              </>
+            )}
           </>
         )
       },
