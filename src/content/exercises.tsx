@@ -27,6 +27,7 @@ import { exercise192 } from './implementations/NRW-MSA/19_2-2022-2-3-Parabel-und
 import { exercise28 } from './implementations/NRW-MSA/28-2021-2-1-Glaskugeln'
 import { exercise29 } from './implementations/NRW-MSA/29-2021-2-2-Blobbing'
 import { exercise36 } from './implementations/NRW-MSA/36-2019-2-1-Kaugummis'
+import { exercise21 } from './implementations/NRW-MSA/21-2021-v1-2-Einheiten-umrechnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -48,6 +49,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   18: exercise18,
   19: exercise19,
   20: exercise20,
+  21: exercise21,
   23: exercise23,
   24: exercise24,
   27: exercise27,

@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   x_s: number
@@ -139,22 +140,32 @@ export const exercise4: Exercise<DATA> = {
         return (
           <>
             <p>
-              Der Scheitel der Parabel liegt im Punkt S({data.x_s}
-              {'|'}
-              {data.y_s}). Dieser ist damit um {Math.abs(data.x_s)}{' '}
+              Der Scheitel der Parabel liegt im Punkt S({data.x_s}|{data.y_s}).
+              Dieser ist damit um {Math.abs(data.x_s)}{' '}
               {Math.abs(data.x_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
               {data.x_s > 0 ? 'rechts' : 'links'} und {data.y_s}{' '}
               {Math.abs(data.y_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
               {data.y_s > 0 ? 'oben' : 'unten'} verschoben.
             </p>
+            <ul>
+              <li>
+                Verschiebung um {Math.abs(data.x_s)}{' '}
+                {Math.abs(data.x_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
+                {data.x_s > 0 ? 'rechts' : 'links'}:<br></br> (x{' '}
+                {pp(data.x_s, 'merge_op')})² im Funktionsterm{' '}
+              </li>
+              <li></li>
+            </ul>
             <p>
               Zudem ist die Parabel nach {data.a == 1 ? 'oben' : 'unten'}{' '}
-              geöffnet.
+              geöffnet, weil das Vorzeichen{' '}
+              {data.a == 1 ? 'positiv' : 'negativ'} ist.
             </p>
             <p>
-              Das entspricht dem Funktionsterm f(x) = {data.a == 1 ? '' : '−'}{' '}
-              (x {data.x_s > 0 ? '−' : '+'} {Math.abs(data.x_s)})²{' '}
-              {data.y_s > 0 ? '+' : '−'} {Math.abs(data.y_s)}
+              Das entspricht dem Funktionsterm <br></br>f(x) ={' '}
+              {data.a == 1 ? '' : '−'} (x {data.x_s > 0 ? '−' : '+'}{' '}
+              {Math.abs(data.x_s)})² {data.y_s > 0 ? '+' : '−'}{' '}
+              {Math.abs(data.y_s)}
             </p>
           </>
         )
