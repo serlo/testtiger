@@ -3,6 +3,7 @@ import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   hours: number
+  centimeters: number
 }
 
 export const exercise21: Exercise<DATA> = {
@@ -11,7 +12,10 @@ export const exercise21: Exercise<DATA> = {
   duration: 2,
   points: [3],
   generator(rng) {
-    return { hours: (rng.randomIntBetween(30, 60) * 5) / 100 }
+    return {
+      hours: (rng.randomIntBetween(30, 60) * 5) / 100,
+      centimeters: rng.randomIntBetween(100, 10000),
+    }
   },
   constraint({ data }) {
     return true
@@ -43,6 +47,7 @@ export const exercise21: Exercise<DATA> = {
         return (
           <>
             <p>b) Rechne Zentimeter in Meter um.</p>
+            <p>{pp(data.centimeters)} cm = ______ m</p>
           </>
         )
       },
