@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import { buildFrac, buildInlineFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import Fraction from 'fraction.js'
 
@@ -86,8 +86,8 @@ export const exercise36: Exercise<DATA> = {
               c) Der Behälter für die Kaugummikugeln ist {pp(data.length)} cm
               breit, {pp(data.length)} cm tief und {pp(data.height)} cm hoch.
               Steffi möchte wissen, wie viele Kaugummikugeln in den Behälter
-              passen und rechnet ({pp(data.length)} · {pp(data.length)} ·{' '}
-              {pp(data.height)}) :{' '}
+              passen und rechnet <br></br>({pp(data.length)} · {pp(data.length)}{' '}
+              · {pp(data.height)}) :{' '}
               {pp(
                 Math.round(
                   (((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000) *
@@ -159,6 +159,22 @@ export const exercise36: Exercise<DATA> = {
           }
           return value
         }
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.red, data.red + data.white)
+        const bruch_2 = kürzeBruch(data.red, data.red + data.white - 1)
         return (
           <>
             <p>
@@ -172,13 +188,12 @@ export const exercise36: Exercise<DATA> = {
                 height="500"
                 width="700"
               />
-              <text
-                x={150}
-                y={200}
-                fontSize={30}
-                textAnchor="right"
-                stroke="black"
-              ></text>
+              <foreignObject x="120" y="180" width={200} height={200}>
+                {buildFrac(bruch.zähler, bruch.nenner)}
+              </foreignObject>
+              <foreignObject x="400" y="300" width={200} height={200}>
+                {buildFrac(bruch_2.zähler, bruch_2.nenner)}
+              </foreignObject>
             </svg>
             <p> Ergänze die fehlenden Einträge im Baumdiagramm.</p>
           </>
