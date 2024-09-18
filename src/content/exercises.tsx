@@ -28,6 +28,7 @@ import { exercise28 } from './implementations/NRW-MSA/28-2021-2-1-Glaskugeln'
 import { exercise29 } from './implementations/NRW-MSA/29-2021-2-2-Blobbing'
 import { exercise36 } from './implementations/NRW-MSA/36-2019-2-1-Kaugummis'
 import { exercise21 } from './implementations/NRW-MSA/21-2021-v1-2-Einheiten-umrechnen'
+import { exercise37 } from './implementations/NRW-MSA/37-2021-v1-3-volumen-gewicht'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -58,6 +59,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   34: exercise34,
   35: exercise35,
   36: exercise36,
+  37: exercise37,
   192: exercise192,
 }
 
