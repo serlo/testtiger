@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppPolynom } from '@/helper/pretty-print'
 
 interface DATA {
   m_1: number
@@ -11,7 +11,7 @@ interface DATA {
   b_3: number
   m_b: number
   b_b: number
-  order: number
+  order: number[]
 }
 
 export const exercise23: Exercise<DATA> = {
@@ -28,7 +28,7 @@ export const exercise23: Exercise<DATA> = {
       b_3: rng.randomIntBetween(-2, 3) / 2,
       m_b: rng.randomIntBetween(-6, 6) / 2,
       b_b: rng.randomIntBetween(-8, 6) / 2,
-      order: rng.randomIntBetween(1, 2),
+      order: rng.shuffleArray([0, 1, 2]),
     }
   },
   constraint({ data }) {
@@ -59,48 +59,33 @@ export const exercise23: Exercise<DATA> = {
     },
     tasks: [
       ({ data }) => {
-        // Funktion zum Mischen des Arrays
-        function shuffleArray(array: any[]) {
-          for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1))
-            ;[array[i], array[j]] = [array[j], array[i]]
-          }
-          return array
-        }
-
         // Liste der Elemente
         const listItems = [
           <li key="1">
-            y = {data.m_1 == -1 ? '− x' : false}
-            {data.m_1 == 1 ? 'x' : false}
-            {Math.abs(data.m_1) != 1 && data.m_1 != 0
-              ? pp(data.m_1) + 'x '
-              : false}{' '}
-            {data.b_1 > 0 && data.m_1 != 0 ? '+ ' : false}
-            {data.b_1 != 0 && pp(data.b_1)}
+            y ={' '}
+            {ppPolynom([
+              [data.m_1, 'x', 1],
+              [data.b_1, 'x', 0],
+            ])}
           </li>,
           <li key="2">
-            y = {data.m_2 == -1 ? '− x' : false}
-            {data.m_2 == 1 ? 'x' : false}
-            {Math.abs(data.m_2) != 1 && data.m_2 != 0
-              ? pp(data.m_2) + 'x '
-              : false}{' '}
-            {data.b_2 > 0 && data.m_2 != 0 ? '+ ' : false}
-            {data.b_2 != 0 && pp(data.b_2)}
+            y ={' '}
+            {ppPolynom([
+              [data.m_2, 'x', 1],
+              [data.b_2, 'x', 0],
+            ])}
           </li>,
           <li key="3">
-            y = {data.m_3 == -1 ? '− x' : false}
-            {data.m_3 == 1 ? 'x' : false}
-            {Math.abs(data.m_3) != 1 && data.m_3 != 0
-              ? pp(data.m_3) + 'x '
-              : false}{' '}
-            {data.b_3 > 0 && data.m_3 != 0 ? '+ ' : false}
-            {data.b_3 != 0 && pp(data.b_3)}
+            y ={' '}
+            {ppPolynom([
+              [data.m_3, 'x', 1],
+              [data.b_3, 'x', 0],
+            ])}
           </li>,
         ]
 
         // Gemischte Liste der Elemente
-        const shuffledItems = shuffleArray(listItems)
+        const shuffledItems = data.order.map(i => listItems[i])
 
         return (
           <>
@@ -225,33 +210,27 @@ export const exercise23: Exercise<DATA> = {
             </p>
             <ul>
               <li>
-                f: y = {data.m_1 == -1 ? '− x' : false}
-                {data.m_1 == 1 ? 'x' : false}
-                {Math.abs(data.m_1) != 1 && data.m_1 != 0
-                  ? pp(data.m_1) + 'x '
-                  : false}{' '}
-                {data.b_1 > 0 && data.m_1 != 0 ? '+ ' : false}
-                {data.b_1 != 0 && pp(data.b_1)}
+                f: y ={' '}
+                {ppPolynom([
+                  [data.m_1, 'x', 1],
+                  [data.b_1, 'x', 0],
+                ])}
               </li>
 
               <li>
-                g: y = {data.m_2 == -1 ? '− x' : false}
-                {data.m_2 == 1 ? 'x' : false}
-                {Math.abs(data.m_2) != 1 && data.m_2 != 0
-                  ? pp(data.m_2) + 'x '
-                  : false}{' '}
-                {data.b_2 > 0 && data.m_2 != 0 ? '+ ' : false}
-                {data.b_2 != 0 && pp(data.b_2)}
+                g: y ={' '}
+                {ppPolynom([
+                  [data.m_2, 'x', 1],
+                  [data.b_2, 'x', 0],
+                ])}
               </li>
 
               <li>
-                h: y = {data.m_3 == -1 ? '− x' : false}
-                {data.m_3 == 1 ? 'x' : false}
-                {Math.abs(data.m_3) != 1 && data.m_3 != 0
-                  ? pp(data.m_3) + 'x '
-                  : false}{' '}
-                {data.b_3 > 0 && data.m_3 != 0 ? '+ ' : false}
-                {data.b_3 != 0 && pp(data.b_3)}
+                h: y ={' '}
+                {ppPolynom([
+                  [data.m_3, 'x', 1],
+                  [data.b_3, 'x', 0],
+                ])}
               </li>
             </ul>
           </>
