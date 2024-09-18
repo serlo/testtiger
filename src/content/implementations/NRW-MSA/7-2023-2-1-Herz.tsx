@@ -209,6 +209,108 @@ export const exercise7: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
+            <p>
+              {' '}
+              zeichne ein Quadrat mit der Seitenlänge {data.kante} cm. Achte
+              darauf, dass der Winkel, in dem das Quadrat zur Horizontalen
+              steht, 45° beträgt.
+              <svg viewBox="0 0 328 200" className="min-w-[328px]">
+                <image
+                  href="/content/NRW_MSA_Herz_Kon.PNG"
+                  height="200"
+                  width="328"
+                />
+                <text
+                  x={220}
+                  y={50}
+                  fontSize={20}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  {data.kante} cm
+                </text>
+                <text
+                  x={380}
+                  y={230}
+                  fontSize={30}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  {pp(data.kante / 2)} cm
+                </text>
+              </svg>
+            </p>
+            <p>
+              Bestimme die Mittelpunkte der oberen Kanten. Stich mit dem Zirkel
+              ein und zeichne jeweils einen Halbkreise mit dem Radius{' '}
+              {pp(data.kante / 2)} cm.
+            </p>
+            <svg viewBox="0 0 328 200" className="min-w-[328px]">
+              <image
+                href="/content/NRW_MSA_Herz_Kon2.png"
+                height="200"
+                width="328"
+              />
+              <text
+                x={225}
+                y={90}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {data.kante / 2} cm
+              </text>
+              <text
+                x={380}
+                y={230}
+                fontSize={30}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(data.kante / 2)} cm
+              </text>
+            </svg>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p></p>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p></p>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p></p>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p></p>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
+            <p></p>
+          </>
+        )
+      },
+      ({ data }) => {
+        return (
+          <>
             <p></p>
           </>
         )
