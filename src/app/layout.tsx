@@ -6,6 +6,8 @@ import '@ionic/react/css/core.css'
 
 import '@ionic/react/css/structure.css'
 
+import '../../styles/test.css'
+
 import { Inter } from 'next/font/google'
 
 const inter = Inter({
