@@ -39,7 +39,7 @@ export function buildSqrt(x: JSX.Element | number | string) {
       className="inline-flex items-stretch ml-0.5 pb-1"
       style={{ verticalAlign: 'middle' }}
     >
-      <div>
+      <span className="block">
         <svg
           viewBox="0 0 6 12"
           width={7}
@@ -55,10 +55,10 @@ export function buildSqrt(x: JSX.Element | number | string) {
             stroke="black"
           />
         </svg>
-      </div>
-      <div className="border-t-[1.5px] border-black leading-none px-0.5 pt-0.5">
+      </span>
+      <span className="block border-t-[1.5px] border-black leading-none px-0.5 pt-0.5">
         {x}
-      </div>
+      </span>
     </span>
   )
 }
@@ -215,6 +215,25 @@ const rightarrow = (
     ></path>
   </svg>
 )
+
+export function buildEquation(data: (JSX.Element | string | number)[][]) {
+  return (
+    <div className="not-prose">
+      <table className="not-prose">
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i}>
+              <td className="text-right">{row[0]}</td>
+              <td className="px-1">{row[1]}</td>
+              <td>{row[2]}</td>
+              <td className="pl-4">{row[3]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
 /*interface JSXOptions {
   width?: number
