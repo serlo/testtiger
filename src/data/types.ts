@@ -4,7 +4,7 @@ export interface Exercise<T = unknown> {
   title: string
   useCalculator: boolean
   duration: number
-  be?: number | number[]
+  points?: number | number[]
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
