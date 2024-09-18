@@ -15,9 +15,9 @@ export const exercise37: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      l: rng.randomIntBetween(4, 15),
-      h: rng.randomIntBetween(7, 25),
       d: rng.randomIntBetween(6, 9) / 10,
+      l: rng.randomIntBetween(4, 15),
+      h: rng.randomIntBetween(2, 9) * 3,
     }
   },
   constraint({ data }) {
@@ -43,39 +43,41 @@ export const exercise37: Exercise<DATA> = {
         <p>
           Die Formel zur Berechnung des <strong>Volumens</strong> einer Pyramide
           lautet:
-        </p>
-        <p>
+          <br /> {'  '}
           <strong>V = {buildInlineFrac('G · h', 3)}</strong>
         </p>
-        <p>Die Grundfläche der Pyramide ist ein Quadrat mit der Fläche:</p>
         <p>
-          G = {data.l} cm · {data.l} cm = {data.l * data.l} cm2
+          Die Grundfläche der Pyramide ist ein Quadrat mit der Seitenlänge{' '}
+          {data.l} cm:
+          <br />G = {data.l} cm · {data.l} cm = {data.l * data.l} cm²
         </p>
-        <p>Setze G und h in die Volumenformel ein:</p>
         <p>
+          Setze G und h in die Volumenformel ein:
+          <br />
           <strong>
             V ={' '}
             {buildInlineFrac(
               <>
-                {data.l * data.l} cm2 · {data.h} cm
+                {data.l * data.l} cm² · {data.h} cm
               </>,
               3,
             )}{' '}
-            = {pp(Math.round((data.l * data.l * data.h) / 3))} cm³
+            = {pp(Math.round(((data.l * data.l * data.h) / 3) * 100) / 100)} cm³
           </strong>
         </p>
         <p>
-          Die Formel zur Berechnung des <strong>Gewichts m</strong> lautet:
+          Die Formel zur Berechnung des <strong>Gewichts m</strong> lautet:{' '}
+          <br /> <strong>m = V · Dichte </strong>
         </p>
         <p>
-          <strong>m = V · Dichte </strong>
-        </p>
-        <p>Setze ein:</p>
-        <p>
+          Setze ein: <br />
           <strong>
             m = {pp(Math.round((data.l * data.l * data.h) / 3))} cm³ ·{' '}
             {pp(data.d)} {buildInlineFrac('g', 'cm³')} ={' '}
-            {pp(Math.round((data.l * data.l * data.h) / 3) * data.d)} g
+            {pp(
+              Math.round(((data.l * data.l * data.h) / 3) * data.d * 100) / 100,
+            )}{' '}
+            g
           </strong>
         </p>
       </>
