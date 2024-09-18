@@ -1,12 +1,14 @@
 import { Exercise } from '@/data/types'
 import { buildFrac, buildOverline } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   kante: number
   dichte: number
   zaehler: number
   nenner: number
+  red: number
 }
 
 export const exercise7: Exercise<DATA> = {
@@ -19,10 +21,15 @@ export const exercise7: Exercise<DATA> = {
       dichte: rng.randomIntBetween(101, 140),
       zaehler: rng.randomIntBetween(2, 5),
       nenner: rng.randomIntBetween(4, 5),
+      red: rng.randomIntBetween(12, 22),
     }
   },
   constraint({ data }) {
-    return data.zaehler != data.nenner
+    return (
+      data.zaehler != data.nenner &&
+      data.zaehler < data.nenner &&
+      (data.red / (data.zaehler / data.nenner)) % 1 == 0
+    )
   },
   task({ data }) {
     return <></>
@@ -79,8 +86,13 @@ export const exercise7: Exercise<DATA> = {
             <p>
               b) Bestätige rechnerisch, dass ein Herz einen Flächeninhalt von
               ca.{' '}
-              {data.kante * data.kante +
-                Math.PI * (data.kante / 2) * (data.kante / 2)}{' '}
+              {pp(
+                roundToDigits(
+                  data.kante * data.kante +
+                    Math.PI * (data.kante / 2) * (data.kante / 2),
+                  2,
+                ),
+              )}{' '}
               cm² hat.
             </p>
           </>
@@ -98,7 +110,6 @@ export const exercise7: Exercise<DATA> = {
         )
       },
       ({ data }) => {
-        const Strecke = 'M' + <sub>1</sub> + 'M' + <sub>2</sub>
         return (
           <>
             <p>
@@ -109,9 +120,16 @@ export const exercise7: Exercise<DATA> = {
               angesetzten Halbkreise.
             </p>
             <p>
-              ge durch eine Rechnung, dass die Strecke {buildOverline(Strecke)}
+              Zeige durch eine Rechnung, dass die Strecke{' '}
+              {buildOverline('M1M2')}
               ​​ eine Länge von etwa{' '}
-              {Math.sqrt((data.kante / 2) * (data.kante / 2) * 2)} cm hat.{' '}
+              {pp(
+                roundToDigits(
+                  Math.sqrt((data.kante / 2) * (data.kante / 2) * 2),
+                  2,
+                ),
+              )}{' '}
+              cm hat.{' '}
             </p>
           </>
         )
@@ -123,7 +141,22 @@ export const exercise7: Exercise<DATA> = {
           </>
         )
       },
+
       ({ data }) => {
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.zaehler, data.nenner)
         return (
           <>
             <p>
@@ -133,22 +166,21 @@ export const exercise7: Exercise<DATA> = {
               nacheinander zwei Herzen aus dem Karton ziehen. Zu diesem
               Zufallsversuch gehört das folgende Baumdiagramm.
             </p>
-            <svg viewBox="0 0 700 500">
+            <svg viewBox="0 0 328 150">
               <image
                 href="/content/NRW_MSA-Baumdiagramm.PNG"
-                height="500"
-                width="700"
+                height="150"
+                width="328"
               />
-              <text
-                x={200}
-                y={140}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {buildFrac(data.zaehler, data.nenner)}
-              </text>
+              <foreignObject x="50" y="-10" width={70} height={70}>
+                {buildFrac(bruch.zähler, bruch.nenner)}
+              </foreignObject>
             </svg>
+            <p>
+              In einem Karton sind {data.red} Herzen rot, die restlichen Herzen
+              sind weiß. Begründe, dass sich in dem Karton insgesamt{' '}
+              {data.red / (data.zaehler / data.nenner)} Herzen befinden.
+            </p>
           </>
         )
       },
