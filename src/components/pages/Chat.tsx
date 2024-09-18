@@ -95,12 +95,16 @@ export function Chat({ id }: ChatProps) {
                     <Fragment key={i}>
                       <div className="mb-4">
                         <div className="bg-white p-2 rounded-lg text-sm">
-                          {i == 0 &&
-                            proseWrapper(
-                              content.subtasks!.intro({
-                                data: generateData(id, seed, content),
-                              }),
-                            )}
+                          {i == 0 && (
+                            <>
+                              {proseWrapper(
+                                content.subtasks!.intro({
+                                  data: generateData(id, seed, content),
+                                }),
+                              )}
+                              <div className="h-4"></div>
+                            </>
+                          )}
                           {proseWrapper(
                             t({
                               data: generateData(id, seed, content),
