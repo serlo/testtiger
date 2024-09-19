@@ -463,15 +463,15 @@ export const exercise29: Exercise<DATA> = {
               Gleichung:
             </p>
             <p>
-              1 = a · (1 − {data.x_s})² + {data.y_s}
+              1 = a · (0 − {data.x_s})² + {data.y_s}
             </p>
             <p>
-              1 = a · {(1 - data.x_s) * (1 - data.x_s)} + {data.y_s}
+              1 = a · {data.x_s * data.x_s} + {data.y_s}
             </p>
             <p>
-              {1 - data.y_s} = a · {(1 - data.x_s) * (1 - data.x_s)}
+              {1 - data.y_s} = a · {data.x_s * data.x_s}
             </p>
-            <p>a = {pp((1 - data.y_s) / Math.pow(1 - data.x_s, 2))}</p>
+            <p>a = {pp((1 - data.y_s) / Math.pow(data.x_s, 2))}</p>
           </>
         )
       },
