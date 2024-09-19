@@ -1,5 +1,11 @@
 import { Exercise } from '@/data/types'
-import { buildFrac, buildOverline } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildFrac,
+  buildInlineFrac,
+  buildOverline,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -119,6 +125,13 @@ export const exercise7: Exercise<DATA> = {
               {buildOverline('AB')} geht durch die Mittelpunkte M1​ und M2​ der
               angesetzten Halbkreise.
             </p>
+            <svg viewBox="0 0 328 200" className="min-w-[328px]">
+              <image
+                href="/content/NRW_MSA_Herz_Skizze.png"
+                height="200"
+                width="328"
+              />
+            </svg>
             <p>
               Zeige durch eine Rechnung, dass die Strecke{' '}
               {buildOverline('M1M2')}
@@ -276,42 +289,344 @@ export const exercise7: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Berechne die Gesamtfläche, indem du die Fläche des Quadrats und
+              eines Kreises berechnest:
+            </p>
+            <p>
+              A<sub>Quadrat</sub> = {data.kante} · {data.kante} ={' '}
+              {data.kante * data.kante} cm²
+            </p>
+            <p>
+              Die beiden Halbkreise ergeben eine Gesamtfläche eines Kreises:
+            </p>
+            <p>
+              A<sub>Kreis</sub> = π · r² = π · {pp(data.kante / 2)}² ≈{' '}
+              {pp(
+                roundToDigits(Math.PI * (data.kante / 2) * (data.kante / 2), 2),
+              )}{' '}
+              cm²{' '}
+            </p>
+            Damit ist die Gesamtfläche: <br></br>A<sub>ges</sub> ={' '}
+            {data.kante * data.kante} +{' '}
+            {pp(
+              roundToDigits(Math.PI * (data.kante / 2) * (data.kante / 2), 2),
+            )}{' '}
+            ={' '}
+            {pp(
+              roundToDigits(
+                data.kante * data.kante +
+                  Math.PI * (data.kante / 2) * (data.kante / 2),
+                2,
+              ),
+            )}{' '}
+            cm²
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>Rechne die Fläches eines Herzes um in dm²:</p>
+            <p>
+              {pp(
+                roundToDigits(
+                  data.kante * data.kante +
+                    Math.PI * (data.kante / 2) * (data.kante / 2),
+                  2,
+                ),
+              )}{' '}
+              cm² ≈{' '}
+              {pp(
+                roundToDigits(
+                  (data.kante * data.kante +
+                    Math.PI * (data.kante / 2) * (data.kante / 2)) /
+                    100,
+                  2,
+                ),
+              )}{' '}
+              dm²
+            </p>
+            <p>1 dm² wiegt {data.dichte} g. Ein Herz wiegt damit:</p>
+            <p>
+              {pp(
+                roundToDigits(
+                  (data.kante * data.kante +
+                    Math.PI * (data.kante / 2) * (data.kante / 2)) /
+                    100,
+                  2,
+                ),
+              )}{' '}
+              · {data.dichte} ={' '}
+              {pp(
+                roundToDigits(
+                  ((data.kante * data.kante +
+                    Math.PI * (data.kante / 2) * (data.kante / 2)) /
+                    100) *
+                    data.dichte,
+                  2,
+                ),
+              )}{' '}
+              g
+            </p>
+          </>
+        )
+      },
+      ({ data }) => {
+        const term = String(data.kante / 2) + '²'
+        return (
+          <>
+            <p>
+              Das Dreieck M<sub>1</sub>M<sub>2</sub>C ist rechtwinklig mit der
+              gesuchten Strecke als Hypotenuse.
+            </p>
+            <p>
+              Die Seitenlängen sind bereits gegeben, denn sie entsprechen dem
+              Radius der Halbkreise.
+            </p>
+
+            <p>
+              Mit dem Satz des Pythagoras kannst du eine fehlende Seite im
+              rechtwinkligen Dreieck berechnen:
+            </p>
+            <p>
+              {buildEquation([
+                ['M1M2²', '=', 'r² + r²', 'Einsetzen der Werte'],
+                [
+                  '',
+                  '=',
+                  pp(data.kante / 2) + '² + ' + pp(data.kante / 2) + '²',
+                  '',
+                ],
+                [
+                  '',
+                  '=',
+                  pp(
+                    (data.kante / 2) * (data.kante / 2) +
+                      (data.kante / 2) * (data.kante / 2),
+                  ),
+                  '',
+                ],
+              ])}
+            </p>
+            <p>
+              Berechne die Streckenlänge von M1M2, indem du die Quadratwurzel
+              auf beiden Seiten anwendest:
+            </p>
+            <p>
+              M1M2 ={' '}
+              {buildSqrt(
+                pp(
+                  (data.kante / 2) * (data.kante / 2) +
+                    (data.kante / 2) * (data.kante / 2),
+                ),
+              )}{' '}
+              ={' '}
+              {pp(
+                roundToDigits(
+                  Math.pow(
+                    (data.kante / 2) * (data.kante / 2) +
+                      (data.kante / 2) * (data.kante / 2),
+                    0.5,
+                  ),
+                  2,
+                ),
+              )}{' '}
+              cm
+            </p>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Die Breite b setzt sich aus verschiedenen Teilstrecken zusammen,
+              die bekannte Streckenlängen haben.
+            </p>
+            <p>
+              {buildEquation([
+                ['b', '=', 'r + M1M2 + r'],
+                [
+                  'b',
+                  '=',
+                  pp(data.kante / 2) +
+                    ' + ' +
+                    pp(
+                      roundToDigits(
+                        Math.pow(
+                          (data.kante / 2) * (data.kante / 2) +
+                            (data.kante / 2) * (data.kante / 2),
+                          0.5,
+                        ),
+                        2,
+                      ),
+                    ) +
+                    ' + ' +
+                    pp(data.kante / 2),
+                ],
+                [
+                  'b',
+                  '=',
+                  pp(
+                    2 * (data.kante / 2) +
+                      roundToDigits(
+                        Math.pow(
+                          (data.kante / 2) * (data.kante / 2) +
+                            (data.kante / 2) * (data.kante / 2),
+                          0.5,
+                        ),
+                        2,
+                      ),
+                  ) + ' cm',
+                ],
+              ])}{' '}
+            </p>
           </>
         )
       },
       ({ data }) => {
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.zaehler, data.nenner)
         return (
           <>
-            <p></p>
+            <p>
+              Berechne die Gesamtzahl der Herzen, wenn {data.red} Herzen dem
+              Anteil {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
+              {(data.zaehler / data.nenner) * 100} % entsprechen.
+            </p>
+            <p>Mit dem Dreisatz lautet die Rechnung:</p>
+            {buildEquation([
+              [
+                pp(data.red) + ' Herzen',
+                '≙',
+                (data.zaehler / data.nenner) * 100 + ' %',
+              ],
+              [
+                '1 Herz',
+                '≙',
+                pp(data.zaehler / data.nenner / data.red) + ' %',
+                '|: ' + pp(data.zaehler / data.nenner / data.red),
+              ],
+              [
+                Math.round(1 / (data.zaehler / data.nenner / data.red)) +
+                  ' Herzen',
+                '≙',
+                '100 %',
+              ],
+            ])}
           </>
         )
       },
       ({ data }) => {
+        const gesamt = data.red / (data.zaehler / data.nenner)
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.zaehler, data.nenner)
+        const bruch2 = kürzeBruch(data.nenner - data.zaehler, data.nenner)
+        const bruch3 = kürzeBruch(data.red - 1, gesamt - 1)
+        const bruch4 = kürzeBruch(gesamt - data.red, gesamt - 1)
+        const bruch5 = kürzeBruch(data.red, gesamt - 1)
+        const bruch6 = kürzeBruch(gesamt - data.red - 1, gesamt - 1)
         return (
           <>
-            <p></p>
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p></p>
+            <p>
+              (1) Berechne zuerst die Wahrscheinlichkeit, ein weißes Herz zu
+              ziehen. Beide Wahrscheinlichkeiten müssen in Summe 1 ergeben:
+            </p>
+            <p>
+              1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
+              {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
+            </p>
+            <p>
+              Beim zweiten Ziehen enthält der Karton ein Herz der gezogenen
+              Farbe weniger. Das muss für die Wahrscheinlichkeiten
+              berücksichtigt werden. Das Baumdiagramm ist:
+            </p>
+            <svg viewBox="0 0 328 220">
+              <image
+                href="/content/NRW_MSA-Baumdiagramm.PNG"
+                height="220"
+                width="328"
+              />
+              <foreignObject x="50" y="20" width={20} height={60}>
+                {buildFrac(bruch.zähler, bruch.nenner)}
+              </foreignObject>
+              <foreignObject x="50" y="120" width={20} height={60}>
+                {buildFrac(bruch2.zähler, bruch2.nenner)}
+              </foreignObject>
+              <foreignObject x="220" y="0" width={30} height={60}>
+                {buildFrac(bruch3.zähler, bruch3.nenner)}
+              </foreignObject>
+              <foreignObject x="210" y="60" width={30} height={60}>
+                {buildFrac(bruch4.zähler, bruch4.nenner)}
+              </foreignObject>
+              <foreignObject x="240" y="90" width={30} height={60}>
+                {buildFrac(bruch5.zähler, bruch5.nenner)}
+              </foreignObject>
+              <foreignObject x="220" y="150" width={30} height={60}>
+                {buildFrac(bruch6.zähler, bruch6.nenner)}
+              </foreignObject>
+            </svg>
+            <p>
+              (2) Für die Wahrscheinlichkeit betrachte die beiden Pfade, die zum
+              Ereignis {'"'}Unterschiedliche Farben{'"'} passen.
+            </p>
+            <p>
+              Verwende die Pfadregeln, um die Wahrscheinlichkeit zu berechnen:
+            </p>
+            <p>
+              p(rw;wr) = {buildFrac(bruch.zähler, bruch.nenner)} ·{' '}
+              {buildFrac(bruch4.zähler, bruch4.nenner)} +{' '}
+              {buildFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
+              {buildFrac(bruch5.zähler, bruch5.nenner)}
+            </p>
+            <p>
+              p(rw;wr) ={' '}
+              {pp(
+                roundToDigits(
+                  ((data.red * (gesamt - data.red)) / (gesamt * (gesamt - 1))) *
+                    2,
+                  4,
+                ),
+              )}
+            </p>
+            <p>
+              Die Wahrscheinlichkeit beträgt{' '}
+              {pp(
+                100 *
+                  roundToDigits(
+                    ((data.red * (gesamt - data.red)) /
+                      (gesamt * (gesamt - 1))) *
+                      2,
+                    4,
+                  ),
+              )}{' '}
+              %
+            </p>
           </>
         )
       },
