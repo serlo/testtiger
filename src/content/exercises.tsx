@@ -30,6 +30,7 @@ import { exercise36 } from './implementations/NRW-MSA/36-2019-2-1-Kaugummis'
 import { exercise21 } from './implementations/NRW-MSA/21-2021-v1-2-Einheiten-umrechnen'
 import { exercise37 } from './implementations/NRW-MSA/37-2021-v1-3-volumen-gewicht'
 import { exercise38 } from './implementations/NRW-MSA/38-2019-2-2-Pool'
+import { exercise46 } from './implementations/NRW-MSA/46-2018-2-2-Kaffee'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -63,6 +64,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   37: exercise37,
   38: exercise38,
   192: exercise192,
+  46: exercise46,
 }
 
 // symbols:
