@@ -8,6 +8,7 @@ interface DATA {
   dicke: number
   prob_1: number
   prob_2: number
+  case: number
 }
 
 export const exercise18: Exercise<DATA> = {
@@ -21,6 +22,7 @@ export const exercise18: Exercise<DATA> = {
       dicke: rng.randomIntBetween(2, 4),
       prob_1: rng.randomIntBetween(95, 99),
       prob_2: rng.randomIntBetween(95, 99),
+      case: rng.randomIntBetween(1, 3),
     }
   },
   constraint({ data }) {
@@ -110,7 +112,9 @@ export const exercise18: Exercise<DATA> = {
               d) Das Unternehmen möchte zusätzlich Mini-Rösti herstellen. Ein
               Mini-Rösti soll auch {data.dicke} cm dick sein, aber nur das halbe
               Volumen haben. Ein Mitarbeiter behauptet: „Für ein Mini-Rösti
-              brauchen wir eine Form mit halbem Durchmesser!“ Hat er recht?{' '}
+              brauchen wir eine Form mit {data.case == 1 && 'halbem'}
+              {data.case == 2 && 'viertel'}
+              {data.case == 2 && 'doppeltem'} Durchmesser!“ Hat er recht?{' '}
             </p>
             <p>Begründe deine Entscheidung.</p>
           </>
@@ -329,7 +333,14 @@ export const exercise18: Exercise<DATA> = {
                     100,
                 ) / 100,
               )}{' '}
-              cm³. Die Aussage stimmt <strong>nicht</strong>.
+              cm³. Das ist ein Viertel des Volumens des normalen Röstis. Also
+              ist die Aussage{' '}
+              <strong>
+                {data.case == 1 && 'falsch'}
+                {data.case == 2 && 'richtig'}
+                {data.case == 3 && 'falsch'}
+              </strong>
+              .
             </p>
           </>
         )
