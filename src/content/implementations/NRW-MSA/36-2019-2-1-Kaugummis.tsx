@@ -1,6 +1,12 @@
 import { Exercise } from '@/data/types'
-import { buildFrac, buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildFrac,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 import Fraction from 'fraction.js'
 
 interface DATA {
@@ -22,8 +28,8 @@ export const exercise36: Exercise<DATA> = {
       weight: rng.randomIntBetween(70, 130) / 100,
       length: rng.randomIntBetween(12, 19) + 0.5,
       height: rng.randomIntBetween(35, 45) + 0.5,
-      red: rng.randomItemFromArray([2, 4, 6, 8]),
-      white: rng.randomItemFromArray([18, 16, 14, 12]),
+      red: rng.randomItemFromArray([2, 4, 6, 8, 10]),
+      white: rng.randomItemFromArray([18, 16, 14, 12, 10]),
     }
   },
   constraint({ data }) {
@@ -182,16 +188,16 @@ export const exercise36: Exercise<DATA> = {
               beim ersten und zweiten Drehen eine rote oder weiße Kaugummikugel
               zu erhalten.
             </p>
-            <svg viewBox="0 0 700 500">
+            <svg viewBox="0 0 400 382">
               <image
                 href="/content/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
-                height="500"
-                width="700"
+                height="400"
+                width="382"
               />
-              <foreignObject x="120" y="180" width={200} height={200}>
+              <foreignObject x="60" y="120" width={200} height={200}>
                 {buildFrac(bruch.zähler, bruch.nenner)}
               </foreignObject>
-              <foreignObject x="400" y="300" width={200} height={200}>
+              <foreignObject x="220" y="210" width={200} height={200}>
                 {buildFrac(bruch_2.zähler, bruch_2.nenner)}
               </foreignObject>
             </svg>
@@ -216,42 +222,292 @@ export const exercise36: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>Berechne das Volumen der Kugel mit der Formel:</p>
+            <p>V = {buildInlineFrac(4, 3)} π · r³</p>
+            <p>
+              Bestimme den Wert des Radius und setze ein: r ={' '}
+              {buildInlineFrac('d', 2)} = {pp(data.dia / 2)} cm
+            </p>
+            <p>
+              V ≈{' '}
+              {pp(
+                roundToDigits((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3), 2),
+              )}{' '}
+              mm³
+            </p>
+            Rechne das Volumen in cm³ um.
+            <p>
+              {pp(
+                roundToDigits((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3), 2),
+              )}{' '}
+              : 1000 ≈{' '}
+              {pp(
+                roundToDigits(
+                  ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
+                  2,
+                ),
+              )}{' '}
+              cm³
+            </p>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Eine Kugel hat das Volumen von etwa{' '}
+              {pp(
+                roundToDigits(
+                  ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
+                  2,
+                ),
+              )}{' '}
+              cm³.
+            </p>
+            <p>
+              Damit hat sie ein Gewicht von:<br></br>{' '}
+              {pp(
+                roundToDigits(
+                  ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
+                  2,
+                ),
+              )}{' '}
+              · {pp(data.weight)} ≈{' '}
+              {pp(
+                roundToDigits(
+                  (data.weight *
+                    (4 / 3) *
+                    Math.PI *
+                    Math.pow(data.dia / 2, 3)) /
+                    1000,
+                  2,
+                ),
+              )}{' '}
+              g{' '}
+            </p>
+            <p>
+              {' '}
+              In einer 300 g - Packung sind demnach:<br></br> 300 :{' '}
+              {pp(
+                roundToDigits(
+                  (data.weight *
+                    (4 / 3) *
+                    Math.PI *
+                    Math.pow(data.dia / 2, 3)) /
+                    1000,
+                  2,
+                ),
+              )}{' '}
+              {(300 /
+                roundToDigits(
+                  (data.weight *
+                    (4 / 3) *
+                    Math.PI *
+                    Math.pow(data.dia / 2, 3)) /
+                    1000,
+                  2,
+                )) %
+                1 ==
+              0
+                ? '='
+                : '≈'}{' '}
+              {Math.round(
+                300 /
+                  roundToDigits(
+                    (data.weight *
+                      (4 / 3) *
+                      Math.PI *
+                      Math.pow(data.dia / 2, 3)) /
+                      1000,
+                    2,
+                  ),
+              )}
+            </p>
           </>
         )
       },
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Steffi hat mit dem Term in der Klammer das Volumen des
+              quaderförmigen Behälters berechnet.
+            </p>
+            <p>
+              Geteilt durch das Volumen einer Kugel hat sie versucht die Anzahl
+              der Kaugummis zu bestimmen, die in den Behälter passen.
+            </p>
+            <p>
+              Das Volumen des Behälters wird aber nicht vollständig von den
+              Kugeln ausgefüllt. Zwischen den Kugeln bleibt Platz frei, der
+              nicht bestzt werden kann. Damit ist Steffis Ansatz{' '}
+              <strong>nicht geeignet</strong>.
+            </p>
           </>
         )
       },
       ({ data }) => {
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.red, data.red + data.white)
         return (
           <>
-            <p></p>
+            <p>
+              Eine Kaugummikugel zufällig aus dem Behälter zu ziehen entspricht
+              einem Laplace-Zufallsexperiment.
+            </p>
+            <p>
+              Da jede Kugel gleich beschaffen ist, ist die Wahrscheinlichkeit
+              für das Ziehen einer Kugel gleich. Mit der Laplace-Formel gilt:
+            </p>
+
+            {buildEquation([
+              [
+                'P("rote Kugel")',
+                '=',
+                buildFrac('Anzahl roter Kugeln', 'Anzahl aller Kugeln'),
+              ],
+              ['', '=', buildFrac(data.red, data.red + data.white)],
+              ['', '=', buildFrac(bruch.zähler, bruch.nenner)],
+            ])}
           </>
         )
       },
       ({ data }) => {
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.red, data.red + data.white)
+        const bruch2 = kürzeBruch(data.white, data.red + data.white)
+        const bruch3 = kürzeBruch(data.red - 1, data.red + data.white - 1)
+        const bruch4 = kürzeBruch(data.white, data.red + data.white - 1)
+        const bruch5 = kürzeBruch(data.red, data.red + data.white - 1)
+        const bruch6 = kürzeBruch(data.white - 1, data.red + data.white - 1)
         return (
           <>
-            <p></p>
+            <p>
+              Die Wahrscheinlichkeit im ersten Zug einen weißen Kaugummi zu
+              ziehen beträgt:
+            </p>
+            <p>
+              1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
+              {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
+            </p>
+            <p>
+              Da bekannt ist, dass {data.red} rote, {data.white} weiße und
+              insgesamt {data.red + data.white} Kaugummis vorhanden sind, kann
+              die 2. Ebene des Baumdiagramms vollständig ausgefüllt werden.
+            </p>
+            <p>
+              {' '}
+              Achte dabei darauf, dass beim zweiten Zug eine Kugel der gezogenen
+              Farbe weniger vorhanden ist.
+            </p>
+            <svg viewBox="0 0 400 382">
+              <image
+                href="/content/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
+                height="400"
+                width="382"
+              />
+              <foreignObject x="60" y="120" width={200} height={200}>
+                {buildFrac(bruch.zähler, bruch.nenner)}
+              </foreignObject>
+              <foreignObject x="60" y="260" width={200} height={200}>
+                {buildFrac(bruch2.zähler, bruch2.nenner)}
+              </foreignObject>
+              <foreignObject x="220" y="80" width={200} height={200}>
+                {buildFrac(bruch3.zähler, bruch3.nenner)}
+              </foreignObject>
+              <foreignObject x="230" y="180" width={200} height={200}>
+                {buildFrac(bruch4.zähler, bruch4.nenner)}
+              </foreignObject>
+              <foreignObject x="210" y="220" width={200} height={200}>
+                {buildFrac(bruch5.zähler, bruch5.nenner)}
+              </foreignObject>
+              <foreignObject x="220" y="310" width={200} height={200}>
+                {buildFrac(bruch6.zähler, bruch6.nenner)}
+              </foreignObject>
+            </svg>
           </>
         )
       },
       ({ data }) => {
+        function gcd(a: number, b: number): number {
+          return b === 0 ? a : gcd(b, a % b)
+        }
+        function kürzeBruch(
+          zähler: number,
+          nenner: number,
+        ): { zähler: number; nenner: number } {
+          const teiler = gcd(zähler, nenner)
+          return {
+            zähler: zähler / teiler,
+            nenner: nenner / teiler,
+          }
+        }
+        const bruch = kürzeBruch(data.red, data.red + data.white)
+        const bruch2 = kürzeBruch(data.white, data.red + data.white)
+        const bruch3 = kürzeBruch(data.red - 1, data.red + data.white - 1)
+        const bruch4 = kürzeBruch(data.white, data.red + data.white - 1)
+        const bruch5 = kürzeBruch(data.red, data.red + data.white - 1)
+        const bruch6 = kürzeBruch(data.white - 1, data.red + data.white - 1)
         return (
           <>
-            <p></p>
+            <p>
+              Berechne die Wahrscheinlichkeit mithilfe der passenden Pfade im
+              Baumdiagramm. Bestimme dazu die Pfade mit verschiedenfarbigen
+              Kaugummis. Mit den Pfadregeln gilt:
+            </p>
+            <p>
+              p(rw;wr) = {buildInlineFrac(bruch.zähler, bruch.nenner)} ·{' '}
+              {buildInlineFrac(bruch4.zähler, bruch4.nenner)} +{' '}
+              {buildInlineFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
+              {buildInlineFrac(bruch5.zähler, bruch5.nenner)}
+            </p>
+            <p>
+              p(rw;wr) ={' '}
+              {pp(
+                roundToDigits(
+                  2 *
+                    ((data.red * data.white) /
+                      ((data.red + data.white) * (data.red + data.white - 1))),
+                  2,
+                ),
+              )}
+            </p>
+            <p>
+              Damit hat Steffis Bruder{' '}
+              {roundToDigits(
+                2 *
+                  ((data.red * data.white) /
+                    ((data.red + data.white) * (data.red + data.white - 1))),
+                2,
+              ) < 0.5
+                ? 'recht.'
+                : 'nicht recht.'}
+            </p>
           </>
         )
       },
