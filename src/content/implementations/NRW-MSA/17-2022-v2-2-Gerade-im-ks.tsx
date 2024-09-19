@@ -207,7 +207,7 @@ export const exercise17: Exercise<DATA> = {
                 />
                 <text
                   x={250}
-                  y={(182 - (329 / 10.22) * (data.m * -5 + data.b)) / 2}
+                  y={(250 - (329 / 10.22) * (data.m * -5 + data.b)) / 2}
                   fontSize={10}
                   textAnchor="right"
                   stroke="orange"
