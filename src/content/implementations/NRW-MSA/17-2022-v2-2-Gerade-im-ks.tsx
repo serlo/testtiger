@@ -192,16 +192,16 @@ export const exercise17: Exercise<DATA> = {
                 <line
                   x1={0}
                   y1={182 - (329 / 10) * (data.m * -5 + data.b)}
-                  x2={329}
+                  x2={328}
                   y2={182 - (329 / 10) * (data.m * 5 + data.b)}
                   stroke="blue"
                   strokeWidth={3}
                 />
                 <line
-                  x1={329}
-                  y1={184 - (329 / 10.1) * (data.m * -5 + data.b)}
-                  x2={0}
-                  y2={184 - (329 / 10.1) * (data.m * 5 + data.b)}
+                  x2={326}
+                  y2={184 - (329 / 10.1) * (data.m * -5 + data.b)}
+                  x1={-2}
+                  y1={184 - (329 / 10.1) * (data.m * 5 + data.b)}
                   stroke="orange"
                   strokeWidth={3}
                 />
