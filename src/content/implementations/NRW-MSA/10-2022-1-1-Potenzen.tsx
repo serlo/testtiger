@@ -7,7 +7,9 @@ interface DATA {
   basis: number
   exponent: number
   basis_2: number
-  exponent_2: number
+  case: number
+  basis_3: number
+  bool: boolean
 }
 
 export const exercise10: Exercise<DATA> = {
@@ -21,7 +23,9 @@ export const exercise10: Exercise<DATA> = {
       basis: rng.randomIntBetween(-8, -1),
       exponent: rng.randomIntBetween(1, 4),
       basis_2: rng.randomIntBetween(2, 6),
-      exponent_2: rng.randomIntBetween(3, 4),
+      case: rng.randomIntBetween(1, 3),
+      basis_3: rng.randomIntBetween(2, 4),
+      bool: rng.randomBoolean(),
     }
   },
   constraint({ data }) {
@@ -64,7 +68,26 @@ export const exercise10: Exercise<DATA> = {
         return (
           <>
             <p>
-              c) 2<sup>2</sup> ist die Hälfte von 2<sup>{data.exponent_2}</sup>.
+              c) {data.basis_3}
+              <sup>
+                {data.case == 1 && '2'}
+                {data.case == 2 && '2'}
+                {data.case == 3 && '3'}
+              </sup>{' '}
+              ist
+              {data.basis_3 == 2 && data.bool == true && ' die Hälfte '}
+              {data.basis_3 == 2 && data.bool == false && ' das Doppelte '}
+              {data.basis_3 == 3 && data.bool == true && ' ein Drittel '}
+              {data.basis_3 == 3 && data.bool == false && ' das Dreifache '}
+              {data.basis_3 == 4 && data.bool == true && ' ein Viertel '}
+              {data.basis_3 == 4 && data.bool == false && ' das Vierfache '}
+              von {data.basis_3}
+              <sup>
+                {data.case == 1 && '3'}
+                {data.case == 2 && '4'}
+                {data.case == 3 && '4'}
+              </sup>
+              .
             </p>
           </>
         )
@@ -74,12 +97,13 @@ export const exercise10: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p>Forme die Potenzen um und vergleiche:</p>
             <p>
-              10<sup>{data.potenz_1}</sup> = {Math.pow(10, data.potenz_1)}
+              Bei gleicher Basis kannst du direkt die Exponenten vergleichen:
             </p>
             <p>
-              10<sup>{data.potenz_2}</sup> = {Math.pow(10, data.potenz_2)}
+              {pp(data.potenz_1)}{' '}
+              {data.potenz_1 > data.potenz_2 ? ' > ' : ' < '}{' '}
+              {pp(data.potenz_2)}
             </p>
             <p>
               Damit ist die Aussage{' '}
@@ -91,18 +115,26 @@ export const exercise10: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p>Berechne die Potenzen und vergleiche:</p>
             <p>
-              {pp(data.basis)}
-              <sup>{data.exponent}</sup> = −
-              {Math.abs(Math.pow(data.basis, data.exponent))}{' '}
+              Untersuche, wie ungerade bzw. gerade Exponenten den Term (
+              {pp(data.basis)})<sup>{data.exponent}</sup> beeinflussen:
             </p>
+            <ul>
+              <li>
+                Bei geraden Exponenten wird das negative Vorzeichen positiv.
+                Beispiel: ({pp(data.basis)})<sup>2</sup> ={' '}
+                {Math.abs(data.basis)}
+                <sup>2</sup>
+              </li>
+              <li>
+                Bei ungeraden Exponenten bleibt das Ergebnis negativ. Beispiel:
+                ({pp(data.basis)})<sup>3</sup> = − {Math.abs(data.basis)}
+                <sup>2</sup>
+              </li>
+            </ul>
+
             <p>
-              ({pp(data.basis)})<sup>{data.exponent}</sup> ={' '}
-              {pp(Math.pow(data.basis, data.exponent))}
-            </p>
-            <p>
-              Damit ist die Aussage{' '}
+              In diesem Fall ist die Aussage{' '}
               {data.exponent % 2 == 1 ? 'richtig.' : 'falsch.'}
             </p>
           </>
@@ -113,14 +145,32 @@ export const exercise10: Exercise<DATA> = {
           <>
             <p>Berechne die Potenzen und vergleiche:</p>
             <p>
-              2<sup>2</sup> = 4
+              {data.basis_3}
+              <sup>
+                {data.case == 1 && '2'}
+                {data.case == 2 && '2'}
+                {data.case == 3 && '3'}
+              </sup>{' '}
+              = {data.case == 1 && Math.pow(data.basis_3, 2)}
+              {data.case == 2 && Math.pow(data.basis_3, 2)}
+              {data.case == 3 && Math.pow(data.basis_3, 3)}
             </p>
             <p>
-              2<sup>{data.exponent_2}</sup> = {Math.pow(2, data.exponent_2)}
+              {data.basis_3}
+              <sup>
+                {data.case == 1 && '3'}
+                {data.case == 2 && '4'}
+                {data.case == 3 && '4'}
+              </sup>{' '}
+              = {data.case == 1 && Math.pow(data.basis_3, 3)}
+              {data.case == 2 && Math.pow(data.basis_3, 4)}
+              {data.case == 3 && Math.pow(data.basis_3, 4)}
             </p>
             <p>
               Damit ist die Aussage{' '}
-              {data.exponent_2 == 3 ? 'richtig.' : 'falsch.'}
+              {data.bool == true && (data.case == 1 || data.case == 3)
+                ? 'richtig.'
+                : 'falsch.'}
             </p>
           </>
         )
