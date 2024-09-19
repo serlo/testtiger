@@ -1,5 +1,9 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import Fraction from 'fraction.js'
 import build from 'next/dist/build'
@@ -379,16 +383,28 @@ export const exercise192: Exercise<DATA> = {
       },
       ({ data }) => {
         const b = data.y + data.x * data.x * Math.abs(data.a)
+        const string1 =
+          '2 · 2x + 2 · (' +
+          (data.a == -1
+            ? '− x²' + pp(b, 'merge_op')
+            : pp(data.a) + 'x²' + pp(b, 'merge_op')) +
+          ')'
+        const string2 =
+          '4x + (' +
+          (2 * data.a == -1
+            ? '− x²)' + pp(2 * b, 'merge_op')
+            : pp(2 * data.a) + 'x²)' + pp(2 * b, 'merge_op'))
+        const string3 =
+          (2 * data.a == -1 ? '− ' : pp(2 * data.a, 'merge_op')) +
+          'x² + 4x ' +
+          pp(2 * b, 'merge_op')
         return (
           <>
             <p>
-              2 · 2x + 2 · ({data.a == -1 ? '− ' : pp(data.a)}x<sup>2</sup> +{' '}
-              {pp(b)}) = 4x + ({2 * data.a == -1 ? '− ' : pp(2 * data.a)}x
-              <sup>2</sup>) + {pp(2 * b)}
-              <br></br>{' '}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-              {2 * data.a == -1 ? '− ' : pp(2 * data.a)}x<sup>2</sup> + 4x +{' '}
-              {pp(2 * b)}
+              {buildEquation([
+                [string1, '=', string2],
+                ['', '=', string3],
+              ])}
             </p>
           </>
         )
@@ -433,10 +449,45 @@ export const exercise192: Exercise<DATA> = {
               {pp((2 * b - zahl) / (2 * data.a))} = 0
             </p>
             <p>
-              Die Mitternachts - Formel ergibt für die Gleichung{' '}
+              Das ist eine quadratische Gleichung. Zur Lösung verwende die
+              Mitternachtsformel und setze die Werte ein.{' '}
+            </p>
+            <p>
+              <p>
+                x<sub>1/2</sub> ={' '}
+                {buildInlineFrac(
+                  <>
+                    {'-b'} {' ± '}
+                    {buildSqrt('b² - 4ac')}
+                  </>,
+                  '2 · a',
+                )}
+              </p>
+            </p>
+            <p>
+              x<sub>1/2</sub> ={' '}
+              {buildInlineFrac(
+                <>
+                  {convertToFractionString(4 / (2 * Math.abs(data.a)))} {' ± '}
+                  {buildSqrt(
+                    '(-' +
+                      convertToFractionString(4 / (2 * Math.abs(data.a))) +
+                      ')²' +
+                      ' - 4 · ' +
+                      pp(-data.a * 2) +
+                      ' · ' +
+                      pp((2 * b - zahl) / (2 * data.a)),
+                  )}
+                </>,
+                '2 · ' + -data.a * 2,
+              )}
+            </p>
+            <p>
+              {' '}
+              Die Gleichung besitzt{' '}
               {data.a * 2 == -1
                 ? 'die Lösungen:'
-                : 'keine Lösungen. Das bedeutet, dass es kein Rechteck mit dem Umfang ' +
+                : 'keine Lösungen, da der Wert unter der Wurzel negativ ist. Das bedeutet, dass es kein Rechteck mit dem Umfang ' +
                   pp(zahl) +
                   ' geben kann.'}
             </p>
