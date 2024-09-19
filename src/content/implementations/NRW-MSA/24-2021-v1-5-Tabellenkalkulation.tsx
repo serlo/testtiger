@@ -1,9 +1,12 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
+  preis_p: number
   preis: number
+  preis_t: number
   coin: number
 }
 
@@ -13,6 +16,8 @@ export const exercise24: Exercise<DATA> = {
   duration: 3,
   generator(rng) {
     return {
+      preis_t: rng.randomIntBetween(500, 1000) / 100,
+      preis_p: rng.randomIntBetween(1000, 1500) / 100,
       preis: rng.randomIntBetween(1500, 3500) / 100,
       coin: rng.randomIntBetween(1, 9),
     }
@@ -42,13 +47,13 @@ export const exercise24: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 600 120">
               <image
-                href="/content/NRW_MSA_Tabellenkalk.png"
+                href="/content/NRW_MSA_Tabellenkalk.PNG"
                 height="120"
                 width="600"
               />
               <text
-                x={223}
-                y={102}
+                x={210}
+                y={110}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -56,15 +61,93 @@ export const exercise24: Exercise<DATA> = {
                 {pp(data.preis)}
               </text>
               <text
-                x={568}
-                y={102}
+                x={210}
+                y={66}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(data.preis_t)}
+              </text>
+              <text
+                x={330}
+                y={66}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_t * 1.19, 2))}
+              </text>
+              <text
+                x={330}
+                y={88}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_p * 1.19, 2))}
+              </text>
+              <text
+                x={450}
+                y={88}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_p * 1.16, 2))}
+              </text>
+              <text
+                x={450}
+                y={66}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_t * 1.16, 2))}
+              </text>
+              <text
+                x={210}
+                y={88}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(data.preis_p)}
+              </text>
+              <text
+                x={558}
+                y={110}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
               >
                 {pp(
-                  Math.round((data.preis * 1.19 - data.preis * 1.16) * 100) /
-                    100,
+                  roundToDigits(data.preis * 1.19, 2) -
+                    roundToDigits(data.preis * 1.16, 2),
+                )}
+              </text>
+              <text
+                x={558}
+                y={66}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(
+                  roundToDigits(data.preis_t * 1.19, 2) -
+                    roundToDigits(data.preis_t * 1.16, 2),
+                )}
+              </text>
+              <text
+                x={558}
+                y={88}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(
+                  roundToDigits(data.preis_p * 1.19, 2) -
+                    roundToDigits(data.preis_p * 1.16, 2),
                 )}
               </text>
             </svg>
