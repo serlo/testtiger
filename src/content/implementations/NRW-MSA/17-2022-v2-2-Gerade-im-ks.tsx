@@ -183,32 +183,32 @@ export const exercise17: Exercise<DATA> = {
         return (
           <>
             <p>
-              <svg viewBox="0 0 1000 450" className="h-[450px]">
+              <svg viewBox="0 0 329 250" className="h-[250px]">
                 <image
                   href="/content/NRW_MSA_KS_Vorlage.png"
-                  height="500"
-                  width="500"
+                  height="250"
+                  width="329"
                 />
                 <line
                   x1={0}
-                  y1={338 - (380 / 7.6) * (data.m * -5 + data.b)}
-                  x2={500}
-                  y2={338 - (380 / 7.6) * (data.m * 5 + data.b)}
+                  y1={182 - (329 / 10) * (data.m * -5 + data.b)}
+                  x2={329}
+                  y2={182 - (329 / 10) * (data.m * 5 + data.b)}
                   stroke="blue"
-                  strokeWidth={4}
+                  strokeWidth={3}
                 />
                 <line
-                  x1={500}
-                  y1={338 - (380 / 7.6) * (data.m * -5 + data.b)}
+                  x1={329}
+                  y1={184 - (329 / 10.1) * (data.m * -5 + data.b)}
                   x2={0}
-                  y2={338 - (380 / 7.6) * (data.m * 5 + data.b)}
+                  y2={184 - (329 / 10.1) * (data.m * 5 + data.b)}
                   stroke="orange"
-                  strokeWidth={4}
+                  strokeWidth={3}
                 />
                 <text
-                  x={350}
-                  y={(338 - (380 / 7.6) * (data.m * -5 + data.b) + 250) / 2}
-                  fontSize={20}
+                  x={250}
+                  y={(182 - (329 / 10.22) * (data.m * -5 + data.b)) / 2}
+                  fontSize={10}
                   textAnchor="right"
                   stroke="orange"
                 >
