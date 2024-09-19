@@ -405,7 +405,7 @@ export const exercise15: Exercise<DATA> = {
               data.frauen_3 > data.frauen_4 &&
               data.frauen_4 > data.frauen_5 &&
               data.frauen_5 > data.frauen_6
-                ? 'Diese Aussage trifft zu, der Anteil der körperlich aktiven Frauen wird in jeder Kategorie geringer.'
+                ? 'Diese Aussage trifft zu, der Anteil der körperlich aktiven Frauen wird mit steigendem Alter immer geringer.'
                 : 'Diese Aussage trifft nicht zu. '}
               {data.frauen_3 < data.frauen_4
                 ? 'Der Anteil der körperlich aktiven Frauen nimmt von 40-49 bis 50-59 beispielsweise zu.'
