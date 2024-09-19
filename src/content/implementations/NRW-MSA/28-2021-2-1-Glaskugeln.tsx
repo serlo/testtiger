@@ -8,6 +8,7 @@ interface DATA {
   control: number
   error_1: number
   error_2: number
+  case: number
 }
 
 export const exercise28: Exercise<DATA> = {
@@ -21,6 +22,7 @@ export const exercise28: Exercise<DATA> = {
       control: rng.randomIntBetween(16, 24) * 100,
       error_1: rng.randomIntBetween(95, 99),
       error_2: rng.randomIntBetween(95, 99),
+      case: rng.randomIntBetween(1, 3),
     }
   },
   constraint({ data }) {
@@ -77,7 +79,11 @@ export const exercise28: Exercise<DATA> = {
           <>
             <p>
               c) Ein Praktikant behauptet: „Für eine Glaskugel mit doppeltem
-              Durchmesser benötigt man auch doppelt so viel Farbe.“
+              {data.case == 1 && 'Durchmesser'} {data.case == 2 && 'Radius'}{' '}
+              {data.case == 3 && 'Durchmesser'} benötigt man auch{' '}
+              {data.case == 1 && 'doppelt'}
+              {data.case == 2 && 'dreimal'}
+              {data.case == 3 && 'viermal'} so viel Farbe.“
             </p>
             <p>Hat der Praktikant recht? Begründe.</p>
           </>
@@ -229,8 +235,9 @@ export const exercise28: Exercise<DATA> = {
           <>
             <p>
               {' '}
-              Bei einer Verdoppelung des Durchmessers verdoppelt sich auch der
-              Radius.
+              {data.case == 1 ||
+                (data.case == 3 &&
+                  'Bei einer Verdoppelung des Durchmessers verdoppelt sich auch der Radius.')}
             </p>
             <p>
               Setze den verdoppelten Radius in die Formel ein und untersuche,
@@ -243,6 +250,11 @@ export const exercise28: Exercise<DATA> = {
             <p>
               Die Oberfläche einer Kugel mit doppeltem Durchmesser ist 4 mal so
               groß wie die Oberfläche der ursprünglichen Kugel.
+            </p>
+            <p>
+              Damit ist die Aussage {data.case == 1 && 'falsch.'}
+              {data.case == 2 && 'falsch.'}
+              {data.case == 3 && 'richtig.'}
             </p>
           </>
         )
