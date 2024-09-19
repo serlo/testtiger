@@ -71,221 +71,231 @@ export const exercise15: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 700 500">
               <image
-                href="/content/NRW_MSA_Diagramm.png"
+                href="/content/NRW_MSA_Diagramm.PNG"
                 height="500"
                 width="700"
               />
+
+              <text
+                x={60}
+                y={40}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                Prozent
+              </text>
               <rect
-                x={145}
-                y={405 - (39 / 5) * data.maenner_1} // obere linke Ecke
+                x={70}
+                y={418 - 8.8 * data.maenner_1} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.maenner_1} // Höhe des Rechtecks
+                height={8.8 * data.maenner_1} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={147}
-                y={405 - (39 / 5) * data.maenner_1 - 10}
-                fontSize={10}
+                x={70}
+                y={418 - 8.8 * data.maenner_1 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.maenner_1} %
               </text>
               <rect
-                x={175}
-                y={405 - (39 / 5) * data.frauen_1} // obere linke Ecke
+                x={100}
+                y={418 - 8.8 * data.frauen_1} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.frauen_1} // Höhe des Rechtecks
+                height={8.8 * data.frauen_1} // Höhe des Rechtecks
                 fill="green" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={177}
-                y={405 - (39 / 5) * data.frauen_1 - 10}
-                fontSize={10}
+                x={100}
+                y={418 - 8.8 * data.frauen_1 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.frauen_1} %
               </text>
               <rect
-                x={245}
-                y={405 - (39 / 5) * data.maenner_2} // obere linke Ecke
+                x={180}
+                y={418 - 8.8 * data.maenner_2} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.maenner_2} // Höhe des Rechtecks
+                height={8.8 * data.maenner_2} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={245}
-                y={405 - (39 / 5) * data.maenner_2 - 10}
-                fontSize={10}
+                x={180}
+                y={418 - 8.8 * data.maenner_2 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.maenner_2} %
               </text>
               <rect
-                x={275}
-                y={405 - (39 / 5) * data.frauen_2} // obere linke Ecke
+                x={210}
+                y={418 - 8.8 * data.frauen_2} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.frauen_2} // Höhe des Rechtecks
+                height={8.8 * data.frauen_2} // Höhe des Rechtecks
                 fill="green" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={275}
-                y={405 - (39 / 5) * data.frauen_2 - 10}
-                fontSize={10}
+                x={210}
+                y={418 - 8.8 * data.frauen_2 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.frauen_2} %
               </text>
               <rect
-                x={340}
-                y={405 - (39 / 5) * data.maenner_3} // obere linke Ecke
+                x={290}
+                y={418 - 8.8 * data.maenner_3} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.maenner_3} // Höhe des Rechtecks
+                height={8.8 * data.maenner_3} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={340}
-                y={405 - (39 / 5) * data.maenner_3 - 10}
-                fontSize={10}
+                x={290}
+                y={418 - 8.8 * data.maenner_3 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.maenner_3} %
               </text>
               <rect
-                x={370}
-                y={405 - (39 / 5) * data.frauen_3} // obere linke Ecke
+                x={320}
+                y={418 - 8.8 * data.frauen_3} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.frauen_3} // Höhe des Rechtecks
+                height={8.8 * data.frauen_3} // Höhe des Rechtecks
                 fill="green" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={370}
-                y={405 - (39 / 5) * data.frauen_3 - 10}
-                fontSize={10}
+                x={320}
+                y={418 - 8.8 * data.frauen_3 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.frauen_3} %
               </text>
               <rect
-                x={435}
-                y={405 - (39 / 5) * data.maenner_4} // obere linke Ecke
+                x={390}
+                y={418 - 8.8 * data.maenner_4} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.maenner_4} // Höhe des Rechtecks
+                height={8.8 * data.maenner_4} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={435}
-                y={405 - (39 / 5) * data.maenner_4 - 10}
-                fontSize={10}
+                x={390}
+                y={418 - 8.8 * data.maenner_4 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.maenner_4} %
               </text>
               <rect
-                x={465}
-                y={405 - (39 / 5) * data.frauen_4} // obere linke Ecke
+                x={420}
+                y={418 - 8.8 * data.frauen_4} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.frauen_4} // Höhe des Rechtecks
+                height={8.8 * data.frauen_4} // Höhe des Rechtecks
                 fill="green" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={465}
-                y={405 - (39 / 5) * data.frauen_4 - 10}
-                fontSize={10}
+                x={420}
+                y={418 - 8.8 * data.frauen_4 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.frauen_4} %
               </text>
               <rect
-                x={530}
-                y={405 - (39 / 5) * data.maenner_5} // obere linke Ecke
+                x={500}
+                y={418 - 8.8 * data.maenner_5} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.maenner_5} // Höhe des Rechtecks
+                height={8.8 * data.maenner_5} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={530}
-                y={405 - (39 / 5) * data.maenner_5 - 10}
-                fontSize={10}
+                x={500}
+                y={418 - 8.8 * data.maenner_5 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.maenner_5} %
               </text>
               <rect
-                x={560}
-                y={405 - (39 / 5) * data.frauen_5} // obere linke Ecke
+                x={530}
+                y={418 - 8.8 * data.frauen_5} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.frauen_5} // Höhe des Rechtecks
+                height={8.8 * data.frauen_5} // Höhe des Rechtecks
                 fill="green" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={560}
-                y={405 - (39 / 5) * data.frauen_5 - 10}
-                fontSize={10}
+                x={530}
+                y={418 - 8.8 * data.frauen_5 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.frauen_5} %
               </text>
               <rect
-                x={625}
-                y={405 - (39 / 5) * data.maenner_6} // obere linke Ecke
+                x={600}
+                y={418 - 8.8 * data.maenner_6} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.maenner_6} // Höhe des Rechtecks
+                height={8.8 * data.maenner_6} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={625}
-                y={405 - (39 / 5) * data.maenner_6 - 10}
-                fontSize={10}
+                x={600}
+                y={418 - 8.8 * data.maenner_6 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.maenner_6} %
               </text>
               <rect
-                x={655}
-                y={405 - (39 / 5) * data.frauen_6} // obere linke Ecke
+                x={630}
+                y={418 - 8.8 * data.frauen_6} // obere linke Ecke
                 width={25} // Breite des Rechtecks
-                height={(39 / 5) * data.frauen_6} // Höhe des Rechtecks
+                height={8.8 * data.frauen_6} // Höhe des Rechtecks
                 fill="green" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <text
-                x={655}
-                y={405 - (39 / 5) * data.frauen_6 - 10}
-                fontSize={10}
+                x={630}
+                y={418 - 8.8 * data.frauen_6 - 10}
+                fontSize={20}
                 textAnchor="right"
                 stroke="black"
               >
