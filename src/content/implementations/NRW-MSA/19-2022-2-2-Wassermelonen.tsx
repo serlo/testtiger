@@ -7,6 +7,7 @@ interface DATA {
   durchmesser: number
   schale: number
   gewicht: number
+  case: number
 }
 
 export const exercise19: Exercise<DATA> = {
@@ -18,6 +19,7 @@ export const exercise19: Exercise<DATA> = {
       durchmesser: rng.randomIntBetween(20, 30),
       schale: rng.randomIntBetween(3, 7) / 2,
       gewicht: rng.randomIntBetween(2, 6) * 100,
+      case: rng.randomIntBetween(1, 3),
     }
   },
   constraint({ data }) {
@@ -189,6 +191,30 @@ export const exercise19: Exercise<DATA> = {
         )
       },
       ({ data }) => {
+        function toX(n: number) {
+          return 73 + n * (450 / 12)
+        }
+        function toY(n: number) {
+          return 160 - n * (450 / 12)
+        }
+        function generateParabolaPoints(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 10; x += step) {
+            const y = 0.5 * x * x
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        function generateRootPoints(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 10; x += step) {
+            const y = 2 * Math.pow(x, 0.3)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints(0.1)
+        const RootPoints = generateRootPoints(0.1)
         return (
           <>
             <p>
@@ -196,13 +222,45 @@ export const exercise19: Exercise<DATA> = {
               Wachstum dieser Wassermelone.“
             </p>
             <p>Hat Sinja recht? Begründe deine Entscheidung.</p>
-            <svg viewBox="0 0 550 220">
-              <image
-                href="/content/NRW_MSA_Melone_Graph.jpg"
-                height="220"
-                width="550"
-              />
-            </svg>
+            {data.case == 1 && (
+              <svg viewBox="0 0 550 220">
+                <image
+                  href="/content/NRW_MSA_Melone_Graph.jpg"
+                  height="220"
+                  width="550"
+                />
+              </svg>
+            )}
+            {data.case == 2 && (
+              <svg viewBox="0 0 550 220">
+                <image
+                  href="/content/NRW_MSA_Melone_Plot.PNG"
+                  height="220"
+                  width="550"
+                />
+                <polyline
+                  points={parabolaPoints}
+                  stroke="black"
+                  strokeWidth="3"
+                  fill="none"
+                />
+              </svg>
+            )}
+            {data.case == 3 && (
+              <svg viewBox="0 0 550 220">
+                <image
+                  href="/content/NRW_MSA_Melone_Plot.PNG"
+                  height="220"
+                  width="550"
+                />
+                <polyline
+                  points={RootPoints}
+                  stroke="black"
+                  strokeWidth="3"
+                  fill="none"
+                />
+              </svg>
+            )}
           </>
         )
       },
@@ -495,15 +553,44 @@ export const exercise19: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p>
-              Der Graph in der Abbildung 3 stellt ein lineares Wachstum dar,
-              d.h. die Zunahme pro Zeitschritt ist immer gleich. Das Gewicht der
-              Wassermelone verdoppelt sich jedoch pro Zeitschritt und wächst
-              damit exponentiell.
-            </p>
-            <p>
-              <strong>Sinja hat nicht recht.</strong>
-            </p>
+            {
+              <>
+                <p>
+                  data.case==1 && Der Graph in der Abbildung 3 stellt ein
+                  lineares Wachstum dar, d.h. die Zunahme pro Zeitschritt ist
+                  immer gleich. Das Gewicht der Wassermelone verdoppelt sich
+                  jedoch pro Zeitschritt und wächst damit exponentiell.
+                </p>
+                <p>
+                  <strong>Sinja hat nicht recht.</strong>
+                </p>
+              </>
+            }
+            {
+              <>
+                <p>
+                  data.case==2 && Der Graph in der Abbildung 3 wächst schnell
+                  an. In gleichen Zeitabständen nimmt das Gewicht etwa um den
+                  doppelten Wert zu. Damit stellt der Graph ungefähr das
+                  Wachstum der Wassermelone dar.
+                </p>
+                <p>
+                  <strong>Sinja hat recht.</strong>
+                </p>
+              </>
+            }
+            {
+              <>
+                <p>
+                  data.case==3 && Der Graph in der Abbildung 3 wächst zunehmend
+                  langsamer. Das Gewicht der Wassermelone verdoppelt sich jedoch
+                  pro Zeitschritt und wächst damit exponentiell.
+                </p>
+                <p>
+                  <strong>Sinja hat nicht recht.</strong>
+                </p>
+              </>
+            }
           </>
         )
       },
