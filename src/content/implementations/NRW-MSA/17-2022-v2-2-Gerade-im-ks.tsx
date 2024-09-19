@@ -151,7 +151,9 @@ export const exercise17: Exercise<DATA> = {
         }
         return (
           <>
-            <p>Der Funktionsterm hat allgemein die Form y = mx + b. </p>
+            <p>
+              Der Funktionsterm hat allgemein die Form <br /> y = mx + b.{' '}
+            </p>
             <p>
               Dabei steht m für die Steigung der Geraden und b für den
               y-Achsenabschnitt.
@@ -170,7 +172,10 @@ export const exercise17: Exercise<DATA> = {
               m = {buildInlineFrac(y_2 + ' − ' + pp(data.b), '1 − 0')} ={' '}
               {pp(data.m)}
             </p>
-            <p>Die Funktionsgleichung ist also y={m_print + 'x' + b_print}.</p>
+            <p>
+              Die Funktionsgleichung ist also <br /> y={m_print + 'x' + b_print}
+              .
+            </p>
           </>
         )
       },
