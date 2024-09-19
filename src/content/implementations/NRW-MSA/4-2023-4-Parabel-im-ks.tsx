@@ -151,10 +151,16 @@ export const exercise4: Exercise<DATA> = {
               <li>
                 Verschiebung um {Math.abs(data.x_s)}{' '}
                 {Math.abs(data.x_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
-                {data.x_s > 0 ? 'rechts' : 'links'}:<br></br> (x{' '}
-                {pp(data.x_s, 'merge_op')})² im Funktionsterm{' '}
+                {data.x_s > 0 ? 'rechts' : 'links'}:<br></br> (x
+                <strong> {pp(-data.x_s, 'merge_op')}</strong>)² im Funktionsterm{' '}
               </li>
-              <li></li>
+              <li>
+                Verschiebung um {Math.abs(data.y_s)}{' '}
+                {Math.abs(data.y_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
+                {data.y_s > 0 ? 'oben' : 'unten'}:<br></br> (x{' '}
+                {pp(-data.x_s, 'merge_op')})²{' '}
+                <strong>{pp(data.y_s, 'merge_op')}</strong> im Funktionsterm{' '}
+              </li>
             </ul>
             <p>
               Zudem ist die Parabel nach {data.a == 1 ? 'oben' : 'unten'}{' '}
