@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-tailwind-ionic-capacitor-starter",
-  "version": "5.0.0",
+  "name": "test-tiger",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": ">=18.17"
