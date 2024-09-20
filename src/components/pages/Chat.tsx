@@ -18,11 +18,13 @@ import { proseWrapper } from '@/helper/prose-wrapper'
 import { generateData } from '@/data/generate-data'
 import { navigationData } from '@/content/navigations'
 import { constrainedGeneration } from '@/helper/constrained-generation'
-import { useActions, useUIState } from 'ai/rsc'
-import { AI, AIState } from '@/helper/chat-helper'
-import { BotMessage, UserMessage } from '@/components/ui/Message'
+import { BotMessage, Message, UserMessage } from '@/components/ui/Message'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { nanoid } from '@/helper/nanoid'
+import { Message as IMessage } from '@/helper/types'
+import { getSystemPrompt } from '@/helper/get-system-prompt'
+import { Url } from '@/helper/url'
+import { aiRequest } from './api/ai-fake-api'
 
 interface ChatProps {
   id: number
@@ -40,8 +42,14 @@ export function Chat({ id }: ChatProps) {
 
   const withSubtasks = !!content.subtasks
 
-  const { submitUserMessage } = useActions()
-  const [messages, setMessages] = useUIState<typeof AI>()
+  const [messages, setMessages] = useState<IMessage[]>([
+    {
+      id: nanoid(),
+      role: 'system',
+      // TODO Pass extra context of the student in here and integrate it into the system-prompt
+      content: getSystemPrompt(),
+    },
+  ])
   const [userInput, setUserInput] = useState('')
 
   const [subShow, setSubShow] = useState<boolean[]>(
@@ -60,18 +68,63 @@ export function Chat({ id }: ChatProps) {
 
     setUserInput('')
 
-    // Optimistically add user message to UI
-    setMessages(currentMessages => [
-      ...currentMessages,
-      {
-        id: nanoid(),
-        display: <UserMessage>{value}</UserMessage>,
-      },
-    ])
+    const userMessage: IMessage = {
+      id: nanoid(),
+      role: 'user',
+      content: value,
+    }
+    const messageWithUserMessage = [...messages, userMessage]
+    setMessages(currentMessages => [...currentMessages, userMessage])
 
-    // Submit message to AI
-    const responseMessage = await submitUserMessage({ message: value })
-    setMessages(currentMessages => [...currentMessages, responseMessage])
+    const aiResponse = await submitUserMessage({
+      messages: messageWithUserMessage,
+    })
+
+    setMessages(currentMessages => [...currentMessages, aiResponse])
+  }
+
+  const submitUserMessage = async ({
+    messages,
+  }: {
+    messages: IMessage[]
+  }): Promise<IMessage> => {
+    try {
+      // Could not get the API to work
+      // const response = await fetch('http://localhost:3000/api/ai', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     messages,
+      //   }),
+      // })
+
+      // if (!response.ok) {
+      //   throw new Error('Failed to fetch AI response')
+      // }
+      // const data = await response.json()
+
+
+      const data = await aiRequest({ messages })
+      console.log('Response from ai', data)
+      if (data.error) {
+        throw new Error(data.error)
+      }
+
+      return {
+        id: data.id!,
+        role: 'assistant',
+        content: data.message!,
+      }
+    } catch (error) {
+      console.error('Error fetching AI response:', error)
+      return {
+        id: nanoid(),
+        role: 'assistant',
+        content: 'Error: Unable to get a response from the AI',
+      }
+    }
   }
 
   return (
@@ -215,8 +268,8 @@ export function Chat({ id }: ChatProps) {
             )}
             {/* AI Chat Messages */}
             <div className="w-full flex flex-col space-y-2">
-              {messages.map(({ id, display }) => (
-                <Fragment key={id}>{display}</Fragment>
+              {messages.map(message => (
+                <Message key={message.id} message={message} />
               ))}
             </div>
 
