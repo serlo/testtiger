@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   mass: number
@@ -84,25 +85,23 @@ export const exercise8: Exercise<DATA> = {
               voraussichtliche Anzahl der Milben für die kommenden vier und acht
               Wochen. Die Werte halten sie in einer Tabelle fest.
             </p>
-            <p>
-              <svg viewBox="0 0 700 200">
-                <image
-                  href="/content/NRW_MSA_Milbe_Tabelle.PNG"
-                  height="200"
-                  width="700"
-                />
-                <text
-                  x={250}
-                  y={145}
-                  fontSize={30}
-                  textAnchor="right"
-                  stroke="black"
-                >
-                  {data.count}
-                </text>
-              </svg>
-              <p>Ergänze die fehlenden Werte in der Tabelle.</p>
-            </p>
+            <svg viewBox="0 0 700 200">
+              <image
+                href="/content/NRW_MSA_Milbe_Tabelle.PNG"
+                height="200"
+                width="700"
+              />
+              <text
+                x={250}
+                y={145}
+                fontSize={30}
+                textAnchor="right"
+                stroke="black"
+              >
+                {data.count}
+              </text>
+            </svg>
+            <p>Ergänze die fehlenden Werte in der Tabelle.</p>
           </>
         )
       },
@@ -130,8 +129,7 @@ export const exercise8: Exercise<DATA> = {
           <>
             <p>
               d) Bestätige mithilfe der Funktionsgleichung, dass nach 12 Wochen
-              ca.{' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 100)}{' '}
+              ca. {pp(roundToDigits(Math.pow(1.19, 12) * data.count, -2))}{' '}
               Milben vorhanden sind.
             </p>
           </>
@@ -157,8 +155,8 @@ export const exercise8: Exercise<DATA> = {
             <p>
               f) Damit das Bienenvolk überlebt, wird nach 12 Wochen Ameisensäure
               eingesetzt. Dadurch wird die Anzahl von ca.{' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 100)}{' '}
-              Milben einmalig um 90% reduziert.
+              {pp(roundToDigits(Math.pow(1.19, 12) * data.count, -2))} Milben
+              einmalig um 90% reduziert.
             </p>
             <p>
               Weise nach, dass durch die Behandlung mit der Ameisensäure die
@@ -193,22 +191,20 @@ export const exercise8: Exercise<DATA> = {
               {data.mass == 1 || data.mass == 2
                 ? buildInlineFrac(pp(data.mass), 15)
                 : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
-              mm ={' '}
-              {pp(Math.round(((data.length * data.mass) / 15) * 100) / 100)} mm
+              mm = {pp(roundToDigits((data.length * data.mass) / 15, 2))} mm
             </p>
             <p>
               Breite: {data.width} mm ≙ {data.width} ·{' '}
               {data.mass == 1 || data.mass == 2
                 ? buildInlineFrac(pp(data.mass), 15)
                 : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
-              mm = {pp(Math.round(((data.width * data.mass) / 15) * 100) / 100)}{' '}
-              mm
+              mm = {pp(roundToDigits((data.width * data.mass) / 15, 2))} mm
             </p>
             <p>
               Die Milbe hat in echt eine Länge von etwa{' '}
-              {pp(Math.round(((data.length * data.mass) / 15) * 100) / 100)} mm
-              und eine Breite von etwa{' '}
-              {pp(Math.round(((data.width * data.mass) / 15) * 100) / 100)} mm.
+              {pp(roundToDigits((data.length * data.mass) / 15, 2))} mm und eine
+              Breite von etwa{' '}
+              {pp(roundToDigits((data.width * data.mass) / 15, 2))} mm.
             </p>
           </>
         )
@@ -291,7 +287,7 @@ export const exercise8: Exercise<DATA> = {
             <p>
               Nach 12 Wochen beträgt die Anzahl{' '}
               {pp(Math.round(Math.pow(1.19, 12) * data.count))} ≈{' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 100)}.
+              {pp(roundToDigits(Math.pow(1.19, 12) * data.count, -2))}.
             </p>
           </>
         )
@@ -304,7 +300,6 @@ export const exercise8: Exercise<DATA> = {
               <sup>x</sup> kannst du die Anzahl der Wochen bestimmen.{' '}
             </p>
             <p>
-              {' '}
               Setze die Anzahl der Milben ein und löse die Gleichung nach x.
             </p>
             <p>
@@ -313,17 +308,18 @@ export const exercise8: Exercise<DATA> = {
             </p>
             <p> Teile beide Seiten durch {data.count}.</p>
             <p>
-              {pp(Math.round((data.goal / data.count) * 100) / 100)} = 1,19
+              {pp(roundToDigits(data.goal / data.count, 2))} = 1,19
               <sup>x</sup>
             </p>
             <p>Wende den Logarithmus zur Basis 1,19 an:</p>
             <p>
               x = log<sub>1,19</sub>(
-              {pp(Math.round((data.goal / data.count) * 100) / 100)}) ≈{' '}
+              {pp(roundToDigits(data.goal / data.count, 2))}) ≈{' '}
               {pp(
-                Math.round(
-                  (Math.log(data.goal / data.count) / Math.log(1.19)) * 100,
-                ) / 100,
+                roundToDigits(
+                  Math.log(data.goal / data.count) / Math.log(1.19),
+                  2,
+                ),
               )}
             </p>
             <p>
@@ -337,6 +333,7 @@ export const exercise8: Exercise<DATA> = {
         )
       },
       ({ data }) => {
+        const a = roundToDigits(Math.pow(1.19, 12) * data.count * 0.1, -1)
         return (
           <>
             <p>
@@ -344,19 +341,15 @@ export const exercise8: Exercise<DATA> = {
               Ameisensäure übrig sind.
             </p>
             <p>
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 100)} ⋅
-              0,1 ={' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 10)}{' '}
-              Milben
+              {pp(roundToDigits(Math.pow(1.19, 12) * data.count, -2))} ⋅ 0,1 ={' '}
+              {pp(a)} Milben
             </p>
             <p>
               Diese Anzahl ist der neue Anfangswert. Mit dem Wachstumsfaktor
               1,19 können wir die Funktionsgleichung{' '}
             </p>
             <p>
-              g(x) ={' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 10)} ⋅
-              1,19<sup>x</sup>
+              g(x) = {pp(a)} ⋅ 1,19<sup>x</sup>
             </p>
             <p>
               verwenden. Berechne den Wert nach 21 Wochen. Da 12 Wochen bereits
@@ -364,30 +357,13 @@ export const exercise8: Exercise<DATA> = {
               Setze diesen Wert in die neue Funktionsgleichung ein:
             </p>
             <p>
-              g(9) ={' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 10)} ⋅
-              1,19<sup>9</sup> ≈{' '}
-              {pp(
-                Math.round(
-                  Math.pow(1.19, 9) *
-                    Math.round((Math.pow(1.19, 12) * data.count) / 100) *
-                    10,
-                ),
-              )}
+              g(9) = {pp(a)} ⋅ 1,19<sup>9</sup> ≈{' '}
+              {pp(Math.round(Math.pow(1.19, 9) * a))}
             </p>
             <p>
-              Nach 21 Wochen sind es etwa{' '}
-              {pp(Math.round((Math.pow(1.19, 12) * data.count) / 100) * 10)} ⋅
-              1,19<sup>9</sup> ≈{' '}
-              {pp(
-                Math.round(
-                  Math.pow(1.19, 9) *
-                    Math.round((Math.pow(1.19, 12) * data.count) / 100) *
-                    10,
-                ),
-              )}
-              , wodurch der Wert von 10000 Milben auf jeden Fall unterschritten
-              ist.
+              Nach 21 Wochen sind es etwa {pp(a)} ⋅ 1,19<sup>9</sup> ≈{' '}
+              {pp(Math.round(Math.pow(1.19, 9) * a))}, wodurch der Wert von
+              10000 Milben auf jeden Fall unterschritten ist.
             </p>
           </>
         )
