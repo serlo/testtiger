@@ -26,7 +26,7 @@ export const exercise1: Exercise<DATA> = {
   },
   constraint({ data }) {
     return (
-      data.c != data.d && data.d != 1 && pp(Math.sqrt(data.e)).includes(',')
+      data.c != data.d && data.d != 1 && !Number.isInteger(Math.sqrt(data.e))
     )
   },
   task({ data }) {
