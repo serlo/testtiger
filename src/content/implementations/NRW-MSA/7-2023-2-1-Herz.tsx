@@ -275,6 +275,7 @@ export const exercise7: Exercise<DATA> = {
         )
       },
       ({ data }) => {
+        const A = Math.PI * (data.kante / 2) * (data.kante / 2)
         return (
           <>
             <p>
@@ -290,79 +291,39 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <p>
               A<sub>Kreis</sub> = π · r² = π · {pp(data.kante / 2)}² ≈{' '}
-              {pp(
-                roundToDigits(Math.PI * (data.kante / 2) * (data.kante / 2), 2),
-              )}{' '}
-              cm²{' '}
+              {pp(roundToDigits(A, 2))} cm²{' '}
             </p>
             <p>
               Damit ist die Gesamtfläche: <br></br>A<sub>ges</sub> ={' '}
-              {data.kante * data.kante} +{' '}
-              {pp(
-                roundToDigits(Math.PI * (data.kante / 2) * (data.kante / 2), 2),
-              )}{' '}
-              ={' '}
-              {pp(
-                roundToDigits(
-                  data.kante * data.kante +
-                    Math.PI * (data.kante / 2) * (data.kante / 2),
-                  2,
-                ),
-              )}{' '}
-              cm²
+              {data.kante * data.kante} + {pp(roundToDigits(A, 2))} ={' '}
+              {pp(roundToDigits(data.kante * data.kante + A, 2))} cm²
             </p>
           </>
         )
       },
       ({ data }) => {
+        const A =
+          data.kante * data.kante +
+          Math.PI * (data.kante / 2) * (data.kante / 2)
         return (
           <>
             <p>Rechne die Fläches eines Herzes um in dm²:</p>
             <p>
-              {pp(
-                roundToDigits(
-                  data.kante * data.kante +
-                    Math.PI * (data.kante / 2) * (data.kante / 2),
-                  2,
-                ),
-              )}{' '}
-              cm² ≈{' '}
-              {pp(
-                roundToDigits(
-                  (data.kante * data.kante +
-                    Math.PI * (data.kante / 2) * (data.kante / 2)) /
-                    100,
-                  2,
-                ),
-              )}{' '}
+              {pp(roundToDigits(A, 2))} cm² ≈ {pp(roundToDigits(A / 100, 2))}{' '}
               dm²
             </p>
             <p>1 dm² wiegt {data.dichte} g. Ein Herz wiegt damit:</p>
             <p>
-              {pp(
-                roundToDigits(
-                  (data.kante * data.kante +
-                    Math.PI * (data.kante / 2) * (data.kante / 2)) /
-                    100,
-                  2,
-                ),
-              )}{' '}
-              · {data.dichte} ={' '}
-              {pp(
-                roundToDigits(
-                  ((data.kante * data.kante +
-                    Math.PI * (data.kante / 2) * (data.kante / 2)) /
-                    100) *
-                    data.dichte,
-                  2,
-                ),
-              )}{' '}
-              g
+              {pp(roundToDigits(A / 100, 2))} · {data.dichte} ={' '}
+              {pp(roundToDigits((A / 100) * data.dichte, 2))} g
             </p>
           </>
         )
       },
       ({ data }) => {
+        const m1m2 =
+          (data.kante / 2) * (data.kante / 2) +
+          (data.kante / 2) * (data.kante / 2)
         return (
           <>
             <p>
@@ -386,40 +347,15 @@ export const exercise7: Exercise<DATA> = {
                 pp(data.kante / 2) + '² + ' + pp(data.kante / 2) + '²',
                 '',
               ],
-              [
-                '',
-                '=',
-                pp(
-                  (data.kante / 2) * (data.kante / 2) +
-                    (data.kante / 2) * (data.kante / 2),
-                ),
-                '',
-              ],
+              ['', '=', pp(m1m2), ''],
             ])}
             <p>
               Berechne die Streckenlänge von M1M2, indem du die Quadratwurzel
               auf beiden Seiten anwendest:
             </p>
             <p>
-              M1M2 ={' '}
-              {buildSqrt(
-                pp(
-                  (data.kante / 2) * (data.kante / 2) +
-                    (data.kante / 2) * (data.kante / 2),
-                ),
-              )}{' '}
-              ={' '}
-              {pp(
-                roundToDigits(
-                  Math.pow(
-                    (data.kante / 2) * (data.kante / 2) +
-                      (data.kante / 2) * (data.kante / 2),
-                    0.5,
-                  ),
-                  2,
-                ),
-              )}{' '}
-              cm
+              M1M2 = {buildSqrt(pp(m1m2))} ={' '}
+              {pp(roundToDigits(Math.pow(m1m2, 0.5), 2))} cm
             </p>
           </>
         )
