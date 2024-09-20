@@ -92,13 +92,13 @@ export const exercise46: Exercise<DATA> = {
             <p>
               b) Pro Jahr benutzt jede Person durchschnittlich {data.usage}{' '}
               Pappbecher. In Deutschland leben derzeit ca. 82 Millionen
-              Menschen. Karin behauptet: "Jede Stunde werden in Deutschland
+              Menschen. Karin behauptet: {'"'}Jede Stunde werden in Deutschland
               ungefähr{' '}
               {data.bool == true
                 ? Math.round((data.usage * 83000000) / (365 * 24) / 10000) *
                   10000
                 : data.trash}{' '}
-              Pappbecher in den Müll geworfen."
+              Pappbecher in den Müll geworfen.{'"'}
             </p>
             <p>Hat Karin recht? Begründe.</p>
           </>
@@ -178,9 +178,9 @@ export const exercise46: Exercise<DATA> = {
               e) Karin berechnet das Volumen näherungsweise mit der Formel für
               den Zylinder. Als Radius nimmt sie den Mittelwert der beiden
               Radien des Kegelstumpfes, die Höhe bleibt gleich.<br></br> Karin
-              behauptet: "Das Ergebnis weicht um weniger als 1 % vom Ergebnis
-              des Kegelstumpfes ab." <br></br>Hat sie recht? Begründe deine
-              Antwort mit einer Rechnung.
+              behauptet: {'"'}Das Ergebnis weicht um weniger als 1 % vom
+              Ergebnis des Kegelstumpfes ab.{'"'} <br></br>Hat sie recht?
+              Begründe deine Antwort mit einer Rechnung.
             </p>
           </>
         )
