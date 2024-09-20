@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   a: number
@@ -83,15 +84,13 @@ export const exercise11: Exercise<DATA> = {
             <p>
               b ={' '}
               {pp(
-                Math.round(Math.sqrt(data.c * data.c - data.a * data.a) * 100) /
-                  100,
+                roundToDigits(Math.sqrt(data.c * data.c - data.a * data.a), 2),
               )}
             </p>
             <p>
               Die Seite b ist ungefähr{' '}
               {pp(
-                Math.round(Math.sqrt(data.c * data.c - data.a * data.a) * 100) /
-                  100,
+                roundToDigits(Math.sqrt(data.c * data.c - data.a * data.a), 2),
               )}{' '}
               cm lang.
             </p>
@@ -123,18 +122,20 @@ export const exercise11: Exercise<DATA> = {
             <p>
               α ={' '}
               {pp(
-                Math.round(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360 * 100,
-                ) / 100,
+                roundToDigits(
+                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
+                  2,
+                ),
               )}
               °
             </p>
             <p>
               Der Winkel α ist ungefähr{' '}
               {pp(
-                Math.round(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360 * 100,
-                ) / 100,
+                roundToDigits(
+                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
+                  2,
+                ),
               )}
               ° groß.
             </p>

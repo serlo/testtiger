@@ -56,7 +56,6 @@ export const exercise10: Exercise<DATA> = {
         return (
           <>
             <p>
-              {' '}
               b) {pp(data.basis)}
               <sup>{data.exponent}</sup> {'='} ({pp(data.basis)})
               <sup>{data.exponent}</sup>
