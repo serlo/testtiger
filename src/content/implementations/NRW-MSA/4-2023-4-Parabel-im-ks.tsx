@@ -130,9 +130,10 @@ export const exercise4: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            Der Funktionsterm lautet: f(x) = {data.a == 1 ? '' : '−'} (x{' '}
-            {data.x_s > 0 ? '−' : '+'} {Math.abs(data.x_s)})²{' '}
-            {data.y_s > 0 ? '+' : '−'} {Math.abs(data.y_s)}
+            <p>
+              Der Funktionsterm lautet: f(x) = {data.a == 1 ? '' : '−'} (x{' '}
+              {pp(data.x_s, 'merge_op')})<sup>2</sup> {pp(data.y_s, 'merge_op')}
+            </p>
           </>
         )
       },
@@ -169,9 +170,8 @@ export const exercise4: Exercise<DATA> = {
             </p>
             <p>
               Das entspricht dem Funktionsterm <br></br>f(x) ={' '}
-              {data.a == 1 ? '' : '−'} (x {data.x_s > 0 ? '−' : '+'}{' '}
-              {Math.abs(data.x_s)})² {data.y_s > 0 ? '+' : '−'}{' '}
-              {Math.abs(data.y_s)}
+              {data.a == 1 ? '' : '−'} (x {pp(-data.x_s, 'merge_op')})²{' '}
+              {pp(data.y_s, 'merge_op')}
             </p>
           </>
         )
