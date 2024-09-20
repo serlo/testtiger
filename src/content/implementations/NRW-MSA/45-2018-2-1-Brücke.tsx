@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { buildFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -27,8 +28,8 @@ export const exercise45: Exercise<DATA> = {
       alpha_max: rng.randomIntBetween(65, 75) / 10,
       width: rng.randomIntBetween(250, 350) * 5,
       scale: rng.randomItemFromArray([5, 10, 20, 30]),
-      x_1: rng.randomIntBetween(110, 150),
-      x_2: rng.randomIntBetween(160, 220),
+      x_1: rng.randomIntBetween(110, 160),
+      x_2: rng.randomIntBetween(180, 220),
       x_3: rng.randomIntBetween(240, 280),
     }
   },
@@ -82,6 +83,33 @@ export const exercise45: Exercise<DATA> = {
                 height="180"
                 width="328"
               />
+              <text
+                x={data.x_1 - 3}
+                y={104}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                x
+              </text>
+              <text
+                x={data.x_2 - 3}
+                y={87}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                x
+              </text>
+              <text
+                x={data.x_3 - 3}
+                y={56}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                x
+              </text>
               <line
                 x1={84}
                 y1={144}
@@ -312,14 +340,53 @@ export const exercise45: Exercise<DATA> = {
       ({ data }) => {
         return (
           <>
-            <p></p>
+            <p>
+              Rechne die Geschwindigkeit in Kilometer pro Minute um, um das
+              Ergebnis in Minuten zu erhalten:
+            </p>
+            <p>
+              {pp(data.pace)} : 60 = {pp(roundToDigits(data.pace / 60, 4))}
+            </p>
+            <p>
+              Weg, Geschwindigkeit und Zeit hängen über dieses Gesetz zusammen:
+            </p>
+            <p>Zeit = {buildFrac('Strecke', 'Geschwindigkeit')}</p>
+            <p>Setze ein und berechne die Zeit für den Fußweg:</p>
+            <p>
+              Zeit ={' '}
+              {buildFrac(pp(data.weg), pp(roundToDigits(data.pace / 60, 4)))} ={' '}
+              {pp(roundToDigits(data.weg / (data.pace / 60), 2))} ≈{' '}
+              {pp(Math.round(data.weg / (data.pace / 60)))}
+            </p>
+            <p>
+              Die Freunde brauchen etwa{' '}
+              {pp(Math.round(data.weg / (data.pace / 60)))} Minuten für den
+              Fußweg.
+            </p>
           </>
         )
       },
       ({ data }) => {
+        const züge = [
+          (data.x_1 - 84) / (144 - 102),
+          (data.x_2 - data.x_1) / (102 - 85),
+          (data.x_3 - data.x_2) / (85 - 54),
+          (304 - data.x_3) / (54 - 25),
+        ].sort((a, b) => a - b)
         return (
           <>
-            <p></p>
+            <p>
+              Auf der Teilstrecke{' '}
+              {züge[0] == (data.x_1 - 84) / (144 - 102) && '1'}
+              {züge[0] == (data.x_2 - data.x_1) / (102 - 85) && '2'}
+              {züge[0] == (data.x_3 - data.x_2) / (85 - 54) && '3'}
+              {züge[0] == (304 - data.x_3) / (54 - 25) && '4'} fährt der Zug mit
+              der höchsten Geschwindigkeit.
+            </p>
+            <p>
+              Dort verläuft die Gerade am steilsten, was bedeutet, dass die
+              meiste Strecke im Verhältnis zur Zeit zurückgelegt wird.
+            </p>
           </>
         )
       },
