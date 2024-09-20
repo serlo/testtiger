@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   gewicht: number
@@ -96,9 +97,10 @@ export const exercise18: Exercise<DATA> = {
             <p>
               Zeige, dass die zylindrische Form einen Durchmesser von ca.{' '}
               {pp(
-                Math.round(
-                  2 * Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 100,
-                ) / 100,
+                roundToDigits(
+                  2 * Math.sqrt(data.volumen / (data.dicke * Math.PI)),
+                  2,
+                ),
               )}{' '}
               cm haben muss.
             </p>
@@ -195,12 +197,11 @@ export const exercise18: Exercise<DATA> = {
               für ein Rösti braucht:
             </p>
             <p>
-              710 : {data.gewicht} ={' '}
-              {pp(Math.round((710 / data.gewicht) * 100) / 100)}
+              710 : {data.gewicht} = {pp(roundToDigits(710 / data.gewicht, 2))}
             </p>
             <p>
               Das entspricht{' '}
-              {pp(710 / data.gewicht).includes(',') == true
+              {!Number.isInteger(710 / data.gewicht)
                 ? 'etwas mehr als ' + Math.floor(710 / data.gewicht) + ' Rösti.'
                 : 'genau ' + Math.floor(710 / data.gewicht) + ' Rösti.'}
             </p>
@@ -216,16 +217,20 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <p>
               1 cm³ = 100 : {data.volumen} g ={' '}
-              {pp(Math.round((100 / data.volumen) * 100) / 100)} g
+              {pp(roundToDigits(100 / data.volumen, 2))} g
             </p>
             <p>
               Ein Kubikzentimeter wiegt also{' '}
-              {pp(Math.round((100 / data.volumen) * 100) / 100)} g.
+              {pp(roundToDigits(100 / data.volumen, 2))} g.
             </p>
           </>
         )
       },
       ({ data }) => {
+        const r = roundToDigits(
+          Math.sqrt(data.volumen / (data.dicke * Math.PI)),
+          2,
+        )
         return (
           <>
             <p>
@@ -246,32 +251,10 @@ export const exercise18: Exercise<DATA> = {
               {data.volumen} : {data.dicke}π = r²{' '}
             </p>
             <p>r = {buildSqrt(data.volumen + ': ' + data.dicke + 'π')}</p>
-            <p>
-              r ={' '}
-              {pp(
-                Math.round(
-                  100 * Math.sqrt(data.volumen / (data.dicke * Math.PI)),
-                ) / 100,
-              )}
-            </p>
+            <p>r = {pp(r)}</p>
             <p>Berechne den Durchmesser, in dem du den Radius verdoppelst:</p>
-            <p>
-              d = 2 · r ={' '}
-              {pp(
-                Math.round(
-                  2 * Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 100,
-                ) / 100,
-              )}
-            </p>
-            <p>
-              Der Durchmesser beträgt{' '}
-              {pp(
-                Math.round(
-                  2 * Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 100,
-                ) / 100,
-              )}{' '}
-              cm.
-            </p>
+            <p>d = 2 · r = {pp(2 * r)}</p>
+            <p>Der Durchmesser beträgt {pp(2 * r)} cm.</p>
           </>
         )
       },
