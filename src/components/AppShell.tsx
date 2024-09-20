@@ -15,6 +15,7 @@ import { Topic } from './pages/Topic'
 import { Chat } from './pages/Chat'
 import { navigationData } from '@/content/navigations'
 import { exercisesData } from '@/content/exercises'
+import { AI } from '@/helper/chat-helper'
 
 setupIonicReact({})
 
@@ -64,7 +65,11 @@ const AppShell = () => {
               <Route
                 path={`/exercise/${id}`}
                 key={id}
-                render={() => <Chat id={id} />}
+                render={() => (
+                  <AI>
+                    <Chat id={id} />
+                  </AI>
+                )}
               />
             ))}
         </IonRouterOutlet>

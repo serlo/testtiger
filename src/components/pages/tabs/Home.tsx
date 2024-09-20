@@ -1,13 +1,16 @@
-import { IonPage, IonHeader, IonContent } from '@ionic/react'
+import { IonPage, IonHeader, IonContent, IonIcon } from '@ionic/react'
+import { chatbox } from 'ionicons/icons'
+
 import { Store } from '../../../../store'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { setName } from '../../../../store/actions'
 import { exercisesData } from '@/content/exercises'
 
 export function Home() {
+  const [chatIsOpen, setIsChatOpen] = useState(false)
   const name = Store.useState(s => s.name)
   const history = useHistory()
 
@@ -24,7 +27,13 @@ export function Home() {
     <IonPage>
       <IonHeader></IonHeader>
       <IonContent fullscreen>
-        <div className="mx-4 px-3">
+        <div className="mx-4 px-3 relative">
+          <button
+            className="absolute top-4 right-4"
+            onClick={() => setIsChatOpen(!chatIsOpen)}
+          >
+            <IonIcon icon={chatbox} className="text-2xl"></IonIcon>
+          </button>
           <h1 className="font-bold text-2xl mt-4">👋 {name}</h1>
           <p className="my-4">
             Deine Prüfungsvorbereitung: <strong>0%</strong>

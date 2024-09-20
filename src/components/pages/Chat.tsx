@@ -18,7 +18,11 @@ import { proseWrapper } from '@/helper/prose-wrapper'
 import { generateData } from '@/data/generate-data'
 import { navigationData } from '@/content/navigations'
 import { constrainedGeneration } from '@/helper/constrained-generation'
+import { useActions, useUIState } from 'ai/rsc'
+import { AI, AIState } from '@/helper/chat-helper'
+import { BotMessage, UserMessage } from '@/components/ui/Message'
 import { isDeepEqual } from '@/helper/is-deep-equal'
+import { nanoid } from '@/helper/nanoid'
 
 interface ChatProps {
   id: number
@@ -36,6 +40,10 @@ export function Chat({ id }: ChatProps) {
 
   const withSubtasks = !!content.subtasks
 
+  const { submitUserMessage } = useActions()
+  const [messages, setMessages] = useUIState<typeof AI>()
+  const [userInput, setUserInput] = useState('')
+
   const [subShow, setSubShow] = useState<boolean[]>(
     Array.from({ length: content.subtasks?.tasks.length || 0 }),
   )
@@ -43,6 +51,28 @@ export function Chat({ id }: ChatProps) {
   const color =
     navigationData[1].topics.find(t => t.exercises.includes(id))?.twColor ??
     'bg-gray-600'
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    const value = userInput.trim()
+    if (!value) return
+
+    setUserInput('')
+
+    // Optimistically add user message to UI
+    setMessages(currentMessages => [
+      ...currentMessages,
+      {
+        id: nanoid(),
+        display: <UserMessage>{value}</UserMessage>,
+      },
+    ])
+
+    // Submit message to AI
+    const responseMessage = await submitUserMessage({ message: value })
+    setMessages(currentMessages => [...currentMessages, responseMessage])
+  }
 
   return (
     <IonPage>
@@ -183,6 +213,28 @@ export function Chat({ id }: ChatProps) {
                 )}
               </>
             )}
+            {/* AI Chat Messages */}
+            <div className="w-full flex flex-col space-y-2">
+              {messages.map(({ id, display }) => (
+                <Fragment key={id}>{display}</Fragment>
+              ))}
+            </div>
+
+            {/* User Input */}
+            <form onSubmit={handleSubmit} className="w-full mt-4">
+              <textarea
+                value={userInput}
+                onChange={e => setUserInput(e.target.value)}
+                placeholder="Schreibe deine Nachricht..."
+                className="w-full p-2 border rounded-md"
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mt-2"
+              >
+                Senden
+              </button>
+            </form>
           </div>
         </div>
         <IonModal ref={modal} trigger="open-modal">
