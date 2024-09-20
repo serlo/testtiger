@@ -3,17 +3,13 @@ import { Exercise } from '@/data/types'
 interface DATA {
   task: number
 }
-let availableTasks = [1, 2, 3, 4, 5] // Initiales Array der Aufgaben
 
 export const exercise14: Exercise<DATA> = {
   title: '2022 Variante 1 /5) Höhe schätzen',
   useCalculator: false,
   duration: 1,
   generator(rng) {
-    if (availableTasks.length === 0) {
-      availableTasks = [1, 2, 3, 4, 5] // Fülle das Array wieder auf, wenn es leer ist
-    }
-    const task = rng.randomItemFromArray(availableTasks) // Generiere eine Zufallsaufgabe
+    const task = rng.randomItemFromArray([1, 2, 3, 4, 5])
     return { task }
   },
   constraint({ data }) {
