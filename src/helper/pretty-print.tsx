@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 /** pretty print a number */
 export function pp(
   x: number,
@@ -31,7 +33,7 @@ export function ppPolynom(polynom: [number, string, number][]): JSX.Element {
   let isFirstElement = true
   return (
     <>
-      {polynom.map(([koeff, variable, exp]) => {
+      {polynom.map(([koeff, variable, exp], i) => {
         if (koeff === 0) return null
         let beginWithWhitespace = true
         if (isFirstElement) {
@@ -39,7 +41,7 @@ export function ppPolynom(polynom: [number, string, number][]): JSX.Element {
           isFirstElement = false
         }
         return (
-          <>
+          <Fragment key={i}>
             {beginWithWhitespace ? ' ' : null}
             {beginWithWhitespace
               ? koeff === 1 && exp !== 0
@@ -58,7 +60,7 @@ export function ppPolynom(polynom: [number, string, number][]): JSX.Element {
                 {exp === 1 ? null : <sup>{exp}</sup>}
               </>
             )}
-          </>
+          </Fragment>
         )
       })}
     </>

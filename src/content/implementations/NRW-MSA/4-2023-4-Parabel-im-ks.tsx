@@ -87,34 +87,32 @@ export const exercise4: Exercise<DATA> = {
               a) Wähle, welche der angegebenen Funktionsgleichungen zu dem
               Graphen von f passt.
             </p>
-            <p>
-              <ul>
-                <li>
-                  f(x) = {data.correct_random == 1 && data.a == 1 ? '' : '−'}(x{' '}
-                  {data.correct_random == 1 && data.x_s > 0 ? '−' : '+'}{' '}
-                  {Math.abs(data.x_s)})
-                  <sup>{data.correct_random == 1 ? '2' : data.sup}</sup>
-                  {data.correct_random == 1 && data.y_s > 0 ? '+' : '+'}
-                  {Math.abs(data.y_s)}
-                </li>
-                <li>
-                  f(x) = {data.correct_random == 2 && data.a == 1 ? '' : '−'}(x{' '}
-                  {data.correct_random == 2 && data.x_s > 0 ? '−' : '+'}{' '}
-                  {Math.abs(data.x_s)})
-                  <sup>{data.correct_random == 2 ? '2' : 2}</sup>
-                  {data.correct_random == 2 && data.y_s > 0 ? '+' : '−'}
-                  {Math.abs(data.y_s)}
-                </li>
-                <li>
-                  f(x) = {data.correct_random == 3 && data.a == 1 ? '' : ' '}(x{' '}
-                  {data.correct_random == 3 && data.x_s > 0 ? '−' : '+'}{' '}
-                  {Math.abs(data.x_s)})
-                  <sup>{data.correct_random == 3 ? '2' : data.sup}</sup>
-                  {data.correct_random == 3 && data.y_s > 0 ? '+' : '−'}
-                  {Math.abs(data.y_s)}
-                </li>
-              </ul>
-            </p>
+            <ul>
+              <li>
+                f(x) = {data.correct_random == 1 && data.a == 1 ? '' : '−'}(x{' '}
+                {data.correct_random == 1 && data.x_s > 0 ? '−' : '+'}{' '}
+                {Math.abs(data.x_s)})
+                <sup>{data.correct_random == 1 ? '2' : data.sup}</sup>
+                {data.correct_random == 1 && data.y_s > 0 ? '+' : '+'}
+                {Math.abs(data.y_s)}
+              </li>
+              <li>
+                f(x) = {data.correct_random == 2 && data.a == 1 ? '' : '−'}(x{' '}
+                {data.correct_random == 2 && data.x_s > 0 ? '−' : '+'}{' '}
+                {Math.abs(data.x_s)})
+                <sup>{data.correct_random == 2 ? '2' : 2}</sup>
+                {data.correct_random == 2 && data.y_s > 0 ? '+' : '−'}
+                {Math.abs(data.y_s)}
+              </li>
+              <li>
+                f(x) = {data.correct_random == 3 && data.a == 1 ? '' : ' '}(x{' '}
+                {data.correct_random == 3 && data.x_s > 0 ? '−' : '+'}{' '}
+                {Math.abs(data.x_s)})
+                <sup>{data.correct_random == 3 ? '2' : data.sup}</sup>
+                {data.correct_random == 3 && data.y_s > 0 ? '+' : '−'}
+                {Math.abs(data.y_s)}
+              </li>
+            </ul>
           </>
         )
       },
