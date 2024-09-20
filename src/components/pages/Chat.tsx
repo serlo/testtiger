@@ -18,12 +18,11 @@ import { proseWrapper } from '@/helper/prose-wrapper'
 import { generateData } from '@/data/generate-data'
 import { navigationData } from '@/content/navigations'
 import { constrainedGeneration } from '@/helper/constrained-generation'
-import { BotMessage, Message, UserMessage } from '@/components/ui/Message'
+import { Message, SpinnerMessage } from '@/components/ui/Message'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { nanoid } from '@/helper/nanoid'
 import { Message as IMessage } from '@/helper/types'
 import { getSystemPrompt } from '@/helper/get-system-prompt'
-import { Url } from '@/helper/url'
 import { aiRequest } from './api/ai-fake-api'
 
 interface ChatProps {
@@ -42,6 +41,7 @@ export function Chat({ id }: ChatProps) {
 
   const withSubtasks = !!content.subtasks
 
+  const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState<IMessage[]>([
     {
       id: nanoid(),
@@ -76,11 +76,14 @@ export function Chat({ id }: ChatProps) {
     const messageWithUserMessage = [...messages, userMessage]
     setMessages(currentMessages => [...currentMessages, userMessage])
 
+    setIsLoading(true)
+
     const aiResponse = await submitUserMessage({
       messages: messageWithUserMessage,
     })
 
     setMessages(currentMessages => [...currentMessages, aiResponse])
+    setIsLoading(false)
   }
 
   const submitUserMessage = async ({
@@ -89,23 +92,6 @@ export function Chat({ id }: ChatProps) {
     messages: IMessage[]
   }): Promise<IMessage> => {
     try {
-      // Could not get the API to work
-      // const response = await fetch('http://localhost:3000/api/ai', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     messages,
-      //   }),
-      // })
-
-      // if (!response.ok) {
-      //   throw new Error('Failed to fetch AI response')
-      // }
-      // const data = await response.json()
-
-
       const data = await aiRequest({ messages })
       console.log('Response from ai', data)
       if (data.error) {
@@ -267,10 +253,11 @@ export function Chat({ id }: ChatProps) {
               </>
             )}
             {/* AI Chat Messages */}
-            <div className="w-full flex flex-col space-y-2">
+            <div className="w-full flex flex-col space-y-12 mt-4">
               {messages.map(message => (
                 <Message key={message.id} message={message} />
               ))}
+              {isLoading && <SpinnerMessage />}
             </div>
 
             {/* User Input */}
@@ -279,7 +266,7 @@ export function Chat({ id }: ChatProps) {
                 value={userInput}
                 onChange={e => setUserInput(e.target.value)}
                 placeholder="Schreibe deine Nachricht..."
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border rounded-md resize-none"
               />
               <button
                 type="submit"

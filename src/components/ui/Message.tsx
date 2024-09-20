@@ -55,7 +55,7 @@ export const Message = ({ message }: { message: IMessage }) => {
 
 export function UserMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="group relative flex items-start md:-ml-12">
+    <div className="group relative flex items-start ">
       <div className="flex size-[25px] shrink-0 select-none items-center justify-center rounded-md border bg-background shadow-sm">
         <Image src="/img/student.jpg" alt="User" width={25} height={25} />
       </div>
@@ -76,7 +76,7 @@ export function BotMessage({
     if (typeof content === 'string') {
       return (
         <MemoizedReactMarkdown
-          className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0"
+          className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 text-gray-900"
           remarkPlugins={[remarkGfm, remarkMath]}
           components={{
             p({ children }) {
@@ -94,7 +94,7 @@ export function BotMessage({
           return (
             <MemoizedReactMarkdown
               key={index}
-              className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0"
+              className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 text-gray-900"
               remarkPlugins={[remarkGfm, remarkMath]}
               components={{
                 p({ children }) {
@@ -145,11 +145,11 @@ export function BotMessage({
   }
 
   return (
-    <div className={cn('group relative flex items-start md:-ml-12', className)}>
+    <div className={cn('group relative flex items-start', className)}>
       <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border">
         <Image src="/img/birdie.svg" alt="Bot" width={24} height={24} />
       </div>
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
+      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1 text-gray-600">
         {renderContent(message.content)}
       </div>
     </div>
@@ -158,7 +158,7 @@ export function BotMessage({
 
 export function SpinnerMessage() {
   return (
-    <div className="group relative flex items-start md:-ml-12">
+    <div className="group relative flex items-start">
       <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border bg-primary text-primary-foreground shadow-sm">
         <Image src="//img/birdie.svg" alt="Birdie" width={24} height={24} />
       </div>
