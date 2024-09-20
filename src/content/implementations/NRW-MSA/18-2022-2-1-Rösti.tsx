@@ -259,6 +259,7 @@ export const exercise18: Exercise<DATA> = {
         )
       },
       ({ data }) => {
+        const d = Math.sqrt(data.volumen / (data.dicke * Math.PI))
         return (
           <>
             <p>Berechne zuerst das Volumen des Mini-Röstis:</p>
@@ -268,54 +269,23 @@ export const exercise18: Exercise<DATA> = {
             <p>
               Das Mini-Rösti hat ein Volumen von {pp(data.volumen / 2)} cm³.
               <br></br>Vergleiche mit dem Volumen eines Zylinders mit halbem
-              Durchmesser d ={' '}
-              {pp(
-                Math.round(
-                  Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 100,
-                ) / 100,
-              )}{' '}
-              cm:
+              Durchmesser d = {pp(roundToDigits(d, 2))} cm:
             </p>
 
             <p>
               V<sub>Zylinder</sub> = r² · π · h
             </p>
             <p>
-              V<sub>Zylinder</sub> ={' '}
-              {pp(
-                Math.round(
-                  Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 50,
-                ) / 100,
-              )}
-              ² · π · {data.dicke}
+              V<sub>Zylinder</sub> = {pp(roundToDigits(d / 2, 2))}² · π ·{' '}
+              {data.dicke}
             </p>
             <p>
               V<sub>Zylinder</sub> ={' '}
-              {pp(
-                Math.round(
-                  Math.pow(
-                    Math.sqrt(data.volumen / (data.dicke * Math.PI)) / 2,
-                    2,
-                  ) *
-                    Math.PI *
-                    data.dicke *
-                    100,
-                ) / 100,
-              )}
+              {pp(roundToDigits(Math.pow(d / 2, 2) * Math.PI * data.dicke, 2))}
             </p>
             <p>
               Das Volumen eines Zylinders mit halbem Durchmesser beträgt{' '}
-              {pp(
-                Math.round(
-                  Math.pow(
-                    Math.sqrt(data.volumen / (data.dicke * Math.PI)) / 2,
-                    2,
-                  ) *
-                    Math.PI *
-                    data.dicke *
-                    100,
-                ) / 100,
-              )}{' '}
+              {pp(roundToDigits(Math.pow(d / 2, 2) * Math.PI * data.dicke, 2))}{' '}
               cm³. Das ist ein Viertel des Volumens des normalen Röstis. Also
               ist die Aussage{' '}
               <strong>
@@ -395,65 +365,35 @@ export const exercise18: Exercise<DATA> = {
             <p>
               P(&quot;Beide Vorgaben werden eingehalten&quot;) ={' '}
               {pp(data.prob_1 / 100)} · {pp(data.prob_2 / 100)} ={' '}
-              {pp(
-                Math.round(
-                  (((data.prob_1 / 100) * data.prob_2) / 100) * 10000,
-                ) / 10000,
-              )}
+              {pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4))}
             </p>
             <p>
               Damit beträgt die Wahrscheinlichkeit{' '}
-              {pp(
-                Math.round(
-                  (((data.prob_1 / 100) * data.prob_2) / 100) * 10000,
-                ) / 100,
-              )}{' '}
+              {pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4))}{' '}
               %, dass beide Vorgaben eingehalten werden.
             </p>
           </>
         )
       },
       ({ data }) => {
+        const p = ((data.prob_1 / 100) * data.prob_2) / 100
         return (
           <>
             <p>
-              Bei{' '}
-              {pp(
-                Math.round(
-                  (((data.prob_1 / 100) * data.prob_2) / 100) * 10000,
-                ) / 100,
-              )}{' '}
-              % der Röstis werden die Vorgaben eingehalten. Die Anzahl beträgt:
+              Bei {pp(roundToDigits(p * 100, 2))} % der Röstis werden die
+              Vorgaben eingehalten. Die Anzahl beträgt:
             </p>
             <p>
-              10000 ·{' '}
-              {pp(
-                Math.round(
-                  (((data.prob_1 / 100) * data.prob_2) / 100) * 10000,
-                ) / 10000,
-              )}{' '}
-              ={' '}
-              {pp(
-                Math.round((((data.prob_1 / 100) * data.prob_2) / 100) * 10000),
-              )}
+              10000 · {pp(roundToDigits(p, 4))} = {pp(Math.round(p * 10000))}
             </p>
             <p>Die aussortierten Röstis betragen demnach:</p>
             <p>
-              10000 −{' '}
-              {pp(
-                Math.round((((data.prob_1 / 100) * data.prob_2) / 100) * 10000),
-              )}{' '}
-              ={' '}
-              {10000 -
-                Math.round((((data.prob_1 / 100) * data.prob_2) / 100) * 10000)}
+              10000 − {pp(Math.round(p * 10000))} ={' '}
+              {10000 - Math.round(p * 10000)}
             </p>
             <p>
-              {10000 -
-                Math.round(
-                  (((data.prob_1 / 100) * data.prob_2) / 100) * 10000,
-                )}{' '}
-              Röstis werden erwartungsgemäßg aussortiert, weil sie den Vorgaben
-              nicht entsprechen.
+              {10000 - Math.round(p * 10000)} Röstis werden erwartungsgemäßg
+              aussortiert, weil sie den Vorgaben nicht entsprechen.
             </p>
           </>
         )
