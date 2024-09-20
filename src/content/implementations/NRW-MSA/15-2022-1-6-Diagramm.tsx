@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   maenner_1: number
@@ -439,9 +440,7 @@ export const exercise15: Exercise<DATA> = {
             <p>Stelle die Formel um und bestimme den Grundwert G.</p>
             <p>
               G = {data.umfrage} : {pp(data.maenner_1 / 100)} ={' '}
-              {pp(
-                Math.round((data.umfrage / (data.maenner_1 / 100)) * 100) / 100,
-              )}
+              {pp(roundToDigits(data.umfrage / (data.maenner_1 / 100), 2))}
             </p>
             <p>
               Es wurden etwa {Math.round(data.umfrage / (data.maenner_1 / 100))}{' '}
