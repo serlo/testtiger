@@ -4,9 +4,8 @@ import {
   buildInlineFrac,
   buildSqrt,
 } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppPolynom } from '@/helper/pretty-print'
 import Fraction from 'fraction.js'
-import build from 'next/dist/build'
 
 interface DATA {
   a: number
@@ -57,12 +56,7 @@ export const exercise192: Exercise<DATA> = {
         }
         return points.trim()
       }
-      const parabolaPoints = generateParabolaPoints(
-        data.a,
-
-        b,
-        0.1,
-      )
+      const parabolaPoints = generateParabolaPoints(data.a, b, 0.1)
 
       return (
         <>
@@ -71,7 +65,11 @@ export const exercise192: Exercise<DATA> = {
             der Funktionsgleichung{' '}
           </p>
           <p>
-            f(x) = {data.a == -1 ? '− ' : pp(data.a)}x<sup>2</sup> + {pp(b)}
+            f(x) ={' '}
+            {ppPolynom([
+              [data.a, 'x', 2],
+              [b, 'x', 0],
+            ])}
           </p>
           <p>in ein Koordinatensystem (Abbildung 1).</p>
           <svg viewBox="0 0 700 450" className="max-w-[328px]">
@@ -153,8 +151,12 @@ export const exercise192: Exercise<DATA> = {
               berechnen:
             </p>
             <p>
-              2 · 2x + 2 · ({data.a == -1 ? '− ' : pp(data.a)}x<sup>2</sup> +{' '}
-              {pp(b)})
+              2 · 2x + 2 · (
+              {ppPolynom([
+                [data.a, 'x', 2],
+                [b, 'x', 0],
+              ])}
+              )
             </p>
             <p>
               Dabei ist x{' > '}0 und steht für die x-Koordinate des zum
@@ -173,8 +175,11 @@ export const exercise192: Exercise<DATA> = {
           <>
             <p>
               f) Julia vereinfacht den Term (I) zu (II){' '}
-              {data.a * 2 == -1 ? '− ' : pp(data.a * 2)}x<sup>2</sup> + 4x +{' '}
-              {pp(2 * b)}
+              {ppPolynom([
+                [data.a * 2, 'x', 2],
+                [4, 'x', 1],
+                [2 * b, 'x', 0],
+              ])}
             </p>
             <p>
               Zeige durch Termumformungen, dass die beiden Terme (I) und (II)
@@ -191,8 +196,12 @@ export const exercise192: Exercise<DATA> = {
           <>
             <p>g) Julia stellt die folgende Gleichung auf:</p>
             <p>
-              {data.a * 2 == -1 ? '− ' : pp(data.a * 2)}x<sup>2</sup> + 4x +{' '}
-              {pp(2 * b)} = {pp(zahl)}
+              {ppPolynom([
+                [data.a * 2, 'x', 2],
+                [4, 'x', 1],
+                [2 * b, 'x', 0],
+              ])}{' '}
+              = {pp(zahl)}
             </p>
             <p>(1) Löse die Gleichung.</p>
             <p>
