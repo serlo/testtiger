@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { kürzeBruch } from '@/helper/kuerze-bruch'
 import {
   buildEquation,
   buildFrac,
@@ -156,19 +157,6 @@ export const exercise7: Exercise<DATA> = {
       },
 
       ({ data }) => {
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.zaehler, data.nenner)
         return (
           <>
@@ -307,20 +295,22 @@ export const exercise7: Exercise<DATA> = {
               )}{' '}
               cm²{' '}
             </p>
-            Damit ist die Gesamtfläche: <br></br>A<sub>ges</sub> ={' '}
-            {data.kante * data.kante} +{' '}
-            {pp(
-              roundToDigits(Math.PI * (data.kante / 2) * (data.kante / 2), 2),
-            )}{' '}
-            ={' '}
-            {pp(
-              roundToDigits(
-                data.kante * data.kante +
-                  Math.PI * (data.kante / 2) * (data.kante / 2),
-                2,
-              ),
-            )}{' '}
-            cm²
+            <p>
+              Damit ist die Gesamtfläche: <br></br>A<sub>ges</sub> ={' '}
+              {data.kante * data.kante} +{' '}
+              {pp(
+                roundToDigits(Math.PI * (data.kante / 2) * (data.kante / 2), 2),
+              )}{' '}
+              ={' '}
+              {pp(
+                roundToDigits(
+                  data.kante * data.kante +
+                    Math.PI * (data.kante / 2) * (data.kante / 2),
+                  2,
+                ),
+              )}{' '}
+              cm²
+            </p>
           </>
         )
       },
@@ -373,7 +363,6 @@ export const exercise7: Exercise<DATA> = {
         )
       },
       ({ data }) => {
-        const term = String(data.kante / 2) + '²'
         return (
           <>
             <p>
@@ -389,26 +378,24 @@ export const exercise7: Exercise<DATA> = {
               Mit dem Satz des Pythagoras kannst du eine fehlende Seite im
               rechtwinkligen Dreieck berechnen:
             </p>
-            <p>
-              {buildEquation([
-                ['M1M2²', '=', 'r² + r²', 'Einsetzen der Werte'],
-                [
-                  '',
-                  '=',
-                  pp(data.kante / 2) + '² + ' + pp(data.kante / 2) + '²',
-                  '',
-                ],
-                [
-                  '',
-                  '=',
-                  pp(
-                    (data.kante / 2) * (data.kante / 2) +
-                      (data.kante / 2) * (data.kante / 2),
-                  ),
-                  '',
-                ],
-              ])}
-            </p>
+            {buildEquation([
+              ['M1M2²', '=', 'r² + r²', 'Einsetzen der Werte'],
+              [
+                '',
+                '=',
+                pp(data.kante / 2) + '² + ' + pp(data.kante / 2) + '²',
+                '',
+              ],
+              [
+                '',
+                '=',
+                pp(
+                  (data.kante / 2) * (data.kante / 2) +
+                    (data.kante / 2) * (data.kante / 2),
+                ),
+                '',
+              ],
+            ])}
             <p>
               Berechne die Streckenlänge von M1M2, indem du die Quadratwurzel
               auf beiden Seiten anwendest:
@@ -444,61 +431,46 @@ export const exercise7: Exercise<DATA> = {
               Die Breite b setzt sich aus verschiedenen Teilstrecken zusammen,
               die bekannte Streckenlängen haben.
             </p>
-            <p>
-              {buildEquation([
-                ['b', '=', 'r + M1M2 + r'],
-                [
-                  'b',
-                  '=',
-                  pp(data.kante / 2) +
-                    ' + ' +
-                    pp(
-                      roundToDigits(
-                        Math.pow(
-                          (data.kante / 2) * (data.kante / 2) +
-                            (data.kante / 2) * (data.kante / 2),
-                          0.5,
-                        ),
-                        2,
-                      ),
-                    ) +
-                    ' + ' +
-                    pp(data.kante / 2),
-                ],
-                [
-                  'b',
-                  '=',
+            {buildEquation([
+              ['b', '=', 'r + M1M2 + r'],
+              [
+                'b',
+                '=',
+                pp(data.kante / 2) +
+                  ' + ' +
                   pp(
-                    2 * (data.kante / 2) +
-                      roundToDigits(
-                        Math.pow(
-                          (data.kante / 2) * (data.kante / 2) +
-                            (data.kante / 2) * (data.kante / 2),
-                          0.5,
-                        ),
-                        2,
+                    roundToDigits(
+                      Math.pow(
+                        (data.kante / 2) * (data.kante / 2) +
+                          (data.kante / 2) * (data.kante / 2),
+                        0.5,
                       ),
-                  ) + ' cm',
-                ],
-              ])}{' '}
-            </p>
+                      2,
+                    ),
+                  ) +
+                  ' + ' +
+                  pp(data.kante / 2),
+              ],
+              [
+                'b',
+                '=',
+                pp(
+                  2 * (data.kante / 2) +
+                    roundToDigits(
+                      Math.pow(
+                        (data.kante / 2) * (data.kante / 2) +
+                          (data.kante / 2) * (data.kante / 2),
+                        0.5,
+                      ),
+                      2,
+                    ),
+                ) + ' cm',
+              ],
+            ])}
           </>
         )
       },
       ({ data }) => {
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.zaehler, data.nenner)
         return (
           <>
@@ -532,19 +504,6 @@ export const exercise7: Exercise<DATA> = {
       },
       ({ data }) => {
         const gesamt = data.red / (data.zaehler / data.nenner)
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.zaehler, data.nenner)
         const bruch2 = kürzeBruch(data.nenner - data.zaehler, data.nenner)
         const bruch3 = kürzeBruch(data.red - 1, gesamt - 1)
