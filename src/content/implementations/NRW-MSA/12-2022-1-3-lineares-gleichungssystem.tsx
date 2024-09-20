@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
-import { pp } from '@/helper/pretty-print'
+import { buildEquation } from '@/helper/math-builder'
+import { pp, ppPolynom } from '@/helper/pretty-print'
 
 interface DATA {
   x: number
@@ -40,12 +41,10 @@ export const exercise12: Exercise<DATA> = {
         <p>Notiere deinen Lösungsweg.</p>
 
         <p>
-          I &nbsp;&nbsp; {data.a}x − {data.b}y = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c}
+          I &nbsp;&nbsp; {data.a}x − {data.b}y = {pp(c)}
         </p>
         <p>
-          II &nbsp; −{data.a}x − {data.d}y = {e < 0 ? '−' : false}
-          {e < 0 ? -e : e}
+          II &nbsp; −{data.a}x − {data.d}y = {pp(e)}
         </p>
       </>
     )
@@ -53,44 +52,44 @@ export const exercise12: Exercise<DATA> = {
   solution({ data }) {
     const c = data.a * data.x - data.b * data.y
     const e = -data.a * data.x - data.d * data.y
+    const bd = -data.b - data.d
     return (
       <>
         <p>Addiere die Gleichungen I+II:</p>
         <p>
-          − {data.b}y + (− {data.d}y) = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c} + {e < 0 ? '(− ' : false}
-          {e < 0 ? -e : e}
-          {e < 0 ? ')' : false}
+          −{data.b}y + (− {data.d}y) = {pp(c)} + {pp(e, 'embrace_neg')}
         </p>
         <p>Fasse die Terme zusammen:</p>
         <p>
-          {Math.abs(-data.b - data.d) == 1 ? '' : -data.b - data.d}
-          {-data.b - data.d == -1 ? '−' : false}y = {pp(c + e)}
+          {ppPolynom([[bd, 'y', 1]])} = {pp(c + e)}
         </p>
-        <p>{data.y != 1 ? 'Löse die Gleichung nach y:' : false}</p>
-        <p>{data.y != 1 ? 'y = ' + data.y : false}</p>
+        {bd != 1 && (
+          <>
+            <p>Löse die Gleichung nach y:</p>
+            <p>y = {data.y}</p>
+          </>
+        )}
+
         <p>
           Setze den Wert für y in eine der Gleichungen ein. y in I eingesetzt
           liefert:
         </p>
         <p>
-          {data.a}x − {data.b} · {data.y} = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c}
+          {data.a}x − {data.b} · {data.y} = {pp(c)}
         </p>
         <p>Vereinfache die Gleichung und löse nach x.</p>
+        {buildEquation([
+          [
+            <>{data.a}x</>,
+            '=',
+            <>
+              {pp(c)} + {data.b} · {data.y}
+            </>,
+          ],
+          [<>{data.a}x</>, '=', pp(c + data.b * data.y)],
+          [<>x</>, '=', data.x],
+        ])}
         <p>
-          {data.a}x = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c} + {data.b} · {data.y}
-        </p>
-        <p>
-          {data.a}x = {c + data.b * data.y < 0 ? '− ' : false}
-          {c + data.b * data.y < 0
-            ? -1 * (c + data.b * data.y)
-            : c + data.b * data.y}
-        </p>
-        <p>x = {data.x}</p>
-        <p>
-          <br></br>
           Die Lösungsmenge des Gleichungssystems ist {'L={('}
           {data.x}; {data.y}
           {')}'}
