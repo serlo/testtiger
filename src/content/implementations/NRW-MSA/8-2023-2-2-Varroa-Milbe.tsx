@@ -12,7 +12,8 @@ interface DATA {
 }
 
 export const exercise8: Exercise<DATA> = {
-  title: '2023 Prüfungsteil 2 /2) Varroa-Milbe',
+  title: 'Varroa-Milbe',
+  source: '2023 Prüfungsteil 2 / 2',
   useCalculator: true,
   duration: 10,
   generator(rng) {

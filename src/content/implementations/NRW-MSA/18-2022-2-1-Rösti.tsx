@@ -13,7 +13,8 @@ interface DATA {
 }
 
 export const exercise18: Exercise<DATA> = {
-  title: '2022 Prüfungsteil 2 /1) Rösti',
+  title: 'Rösti',
+  source: '2022 Prüfungsteil 2 / 1',
   useCalculator: false,
   duration: 10,
   generator(rng) {

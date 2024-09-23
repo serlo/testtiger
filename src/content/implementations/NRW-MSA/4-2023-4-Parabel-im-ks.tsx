@@ -11,7 +11,8 @@ interface DATA {
 }
 
 export const exercise4: Exercise<DATA> = {
-  title: '2023 /4) Parabel im Koordinatensystem',
+  title: 'Parabel im Koordinatensystem',
+  source: '2023 / 4',
   useCalculator: false,
   duration: 2,
 

@@ -5,7 +5,8 @@ interface DATA {
 }
 
 export const exercise20: Exercise<DATA> = {
-  title: '2021 Variante 1 /1) Schätzaufgabe',
+  title: 'Schätzaufgabe',
+  source: '2021 Variante 1 / 1',
   useCalculator: false,
   duration: 1,
   generator(rng) {

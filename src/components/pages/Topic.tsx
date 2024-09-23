@@ -45,6 +45,7 @@ export function Topic({ title, color, exercises }: TopicProps) {
                     history.push('/exercise/' + ex)
                   }}
                 >
+                  {content.source && <>[{content.source}] </>}
                   {content.title}
                 </button>
               )

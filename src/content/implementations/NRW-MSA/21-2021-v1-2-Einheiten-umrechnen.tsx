@@ -9,7 +9,8 @@ interface DATA {
 }
 
 export const exercise21: Exercise<DATA> = {
-  title: '2021 Variante 1 /2) Einheiten umrechnen',
+  title: 'Einheiten umrechnen',
+  source: '2021 Variante 1 / 2',
   useCalculator: false,
   duration: 2,
   points: [3],

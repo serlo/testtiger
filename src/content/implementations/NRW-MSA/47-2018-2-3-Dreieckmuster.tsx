@@ -11,7 +11,8 @@ interface DATA {
 }
 
 export const exercise47: Exercise<DATA> = {
-  title: '2018 Prüfungsteil /2) Dreieckmuster',
+  title: 'Dreieckmuster',
+  source: '2018 Prüfungsteil / 2',
   useCalculator: true,
   duration: 10,
   points: [42],

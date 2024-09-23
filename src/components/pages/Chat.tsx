@@ -51,7 +51,10 @@ export function Chat({ id }: ChatProps) {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/app/home"></IonBackButton>
           </IonButtons>
-          <IonTitle>{content.title}</IonTitle>
+          <IonTitle>
+            {content.source && <>[{content.source}] </>}
+            {content.title}
+          </IonTitle>
           <IonButtons slot="end">
             <IonButton
               strong={true}

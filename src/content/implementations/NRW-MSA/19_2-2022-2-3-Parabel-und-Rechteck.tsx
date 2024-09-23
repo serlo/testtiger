@@ -14,7 +14,8 @@ interface DATA {
 }
 
 export const exercise192: Exercise<DATA> = {
-  title: '2022 Prüfungsteil 2 /3) Parabel und Rechteck',
+  title: 'Parabel und Rechteck',
+  source: '2022 Prüfungsteil 2 / 3',
   useCalculator: true,
   duration: 10,
   generator(rng) {

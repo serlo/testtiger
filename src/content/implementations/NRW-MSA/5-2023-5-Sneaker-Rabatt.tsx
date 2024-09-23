@@ -9,7 +9,8 @@ interface DATA {
 }
 
 export const exercise5: Exercise<DATA> = {
-  title: '2023 /5) Rabattaktion',
+  title: 'Rabattaktion',
+  source: '2023 / 5',
   useCalculator: false,
   duration: 2,
 

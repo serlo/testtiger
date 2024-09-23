@@ -13,7 +13,8 @@ interface DATA {
 }
 
 export const exercise10: Exercise<DATA> = {
-  title: '2022 Variante 1 /1) Potenzen',
+  title: 'Potenzen',
+  source: '2022 Variante 1 / 1',
   useCalculator: false,
   duration: 2,
   generator(rng) {

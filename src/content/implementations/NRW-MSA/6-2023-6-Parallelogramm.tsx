@@ -9,7 +9,8 @@ interface DATA {
 }
 
 export const exercise6: Exercise<DATA> = {
-  title: '2023 /6) Parallelogramm',
+  title: 'Parallelogramm',
+  source: '2023 / 6',
   useCalculator: false,
   duration: 2,
 

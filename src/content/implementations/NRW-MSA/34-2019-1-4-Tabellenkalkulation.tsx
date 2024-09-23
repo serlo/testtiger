@@ -12,7 +12,8 @@ interface DATA {
 }
 
 export const exercise34: Exercise<DATA> = {
-  title: '2019 /1) Tabellenkalkulation',
+  title: 'Tabellenkalkulation',
+  source: '2019 / 1',
   useCalculator: false,
   duration: 1,
   generator(rng) {

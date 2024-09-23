@@ -11,7 +11,8 @@ interface DATA {
 }
 
 export const exercise1: Exercise<DATA> = {
-  title: '2023 /1) Zahlen ordnen',
+  title: 'Zahlen ordnen',
+  source: '2023 / 1',
   useCalculator: false,
   duration: 2,
   points: [1, 1],

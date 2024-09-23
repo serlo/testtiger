@@ -13,7 +13,8 @@ interface DATA {
 }
 
 export const exercise38: Exercise<DATA> = {
-  title: '2019 Prüfungsteil 2 /2) Pool',
+  title: 'Pool',
+  source: '2019 Prüfungsteil 2 / 2',
   useCalculator: true,
   duration: 10,
   points: [42],

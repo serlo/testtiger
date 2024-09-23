@@ -19,7 +19,8 @@ interface DATA {
 }
 
 export const exercise15: Exercise<DATA> = {
-  title: '2022 Variante 1 /6) Diagramm auswerten',
+  title: 'Diagramm auswerten',
+  source: '2022 Variante 1 / 6',
   useCalculator: true,
   duration: 3,
   generator(rng) {

@@ -11,7 +11,8 @@ interface DATA {
 }
 
 export const exercise24: Exercise<DATA> = {
-  title: '2021 Variante 1 /5) Tabellenkalkulation',
+  title: 'Tabellenkalkulation',
+  source: '2021 Variante 1 / 5',
   useCalculator: false,
   duration: 3,
   generator(rng) {

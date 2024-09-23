@@ -8,7 +8,8 @@ interface DATA {
 }
 
 export const exercise13: Exercise<DATA> = {
-  title: '2022 Variante 1 /4) Binom ergänzen',
+  title: 'Binom ergänzen',
+  source: '2022 Variante 1 / 4',
   useCalculator: false,
   duration: 2,
   generator(rng) {

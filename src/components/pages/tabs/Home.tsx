@@ -70,6 +70,11 @@ export function Home() {
                   }}
                 >
                   <div>
+                    {content.source && (
+                      <span className="text-fuchsia-900">
+                        [{content.source}]{' '}
+                      </span>
+                    )}
                     {content.title}{' '}
                     <small className="text-gray-400">({id})</small>
                   </div>
