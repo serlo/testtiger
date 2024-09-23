@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
   a: number
@@ -48,7 +48,7 @@ export const exercise1: Exercise<DATA> = {
               </p>
               <p>
                 {pp(data.a)} &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
-                &nbsp;&nbsp;&nbsp;&nbsp; {buildInlineFrac(data.c, data.d)}
+                &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.c / data.d)}
               </p>
             </>
           )
@@ -60,7 +60,7 @@ export const exercise1: Exercise<DATA> = {
               <p>Wandle den Bruch zuerst in eine Dezimalzahl um:</p>
 
               <p>
-                {buildInlineFrac(data.c, data.d)} = {pp(data.c / data.d)}
+                {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
               </p>
 
               <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>

@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import { Color1, Color2, Color3 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 
 interface DATA {
   a: number
@@ -14,7 +19,7 @@ export const exercise13: Exercise<DATA> = {
   duration: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(1, 6),
+      a: rng.randomIntBetween(2, 6),
       b: rng.randomIntBetween(2, 6),
       c: rng.randomItemFromArray(['', 'y²']),
     }
@@ -41,11 +46,31 @@ export const exercise13: Exercise<DATA> = {
           Verwende die 1. binomische Formel und vergleiche die Terme mit der
           Aufgabe:
         </p>
-        <p> (a + b)² = a² + 2ab + b²</p>
-        <p>
-          ({data.a}x + _____ )² = {data.a * data.a}x² + _____ +{data.b * data.b}
-          {data.c}
-        </p>
+        {buildEquation([
+          [
+            <>
+              ( <Color1>a</Color1> &nbsp; + &nbsp; b &nbsp; )²
+            </>,
+            '=',
+            <>
+              &nbsp;&nbsp;
+              <Color2>a²</Color2>&nbsp; + 2ab + <Color3>b²</Color3>
+            </>,
+          ],
+          [
+            <>
+              (<Color1>{data.a}x</Color1> + ____ )²
+            </>,
+            '=',
+            <>
+              <Color2>{data.a * data.a}x²</Color2> + ____ +
+              <Color3>
+                {data.b * data.b}
+                {data.c}
+              </Color3>
+            </>,
+          ],
+        ])}
         <p>Im Vergleich siehst du:</p>
         <p>
           b² = {data.b * data.b}
