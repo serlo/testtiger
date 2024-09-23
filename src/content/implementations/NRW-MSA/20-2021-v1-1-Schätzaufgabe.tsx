@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { getImageAndDescription } from '@/helper/get-image-and-description'
 
 interface DATA {
   task: number
@@ -18,48 +19,30 @@ export const exercise20: Exercise<DATA> = {
     return true
   },
   task({ data }) {
-    const getImageAndDescription = (
-      taskNumber: number,
-      imageUrl: string,
-      description: string,
-    ) => (
-      <>
-        <svg viewBox="0 0 700 500">
-          <image href={imageUrl} height="500" width="700" />
-        </svg>
-        <p>{description}</p>
-      </>
-    )
-
     return (
       <>
         {data.task === 1 &&
           getImageAndDescription(
-            1,
             '/content/NRW_MSA_Schätzen_1.jpg',
             'Schätze: Wie viele Röhrchen sind von dem Insektenhotel zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 2 &&
           getImageAndDescription(
-            2,
             '/content/NRW_MSA_Schätzen_2.jpg',
             'Schätze: Wie viele Holzscheite sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 3 &&
           getImageAndDescription(
-            3,
             '/content/NRW_MSA_Schätzen_3.jpg',
             'Schätze: Wie viele Bücher sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 4 &&
           getImageAndDescription(
-            4,
             '/content/NRW_MSA_Schätzen_4.jpg',
             'Schätze: Wie viele Bananen sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 5 &&
           getImageAndDescription(
-            5,
             '/content/NRW_MSA_Schätzen_5.jpg',
             'Schätze: Wie viele Beeren sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}

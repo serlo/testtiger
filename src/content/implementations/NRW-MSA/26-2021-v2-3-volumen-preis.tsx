@@ -3,10 +3,11 @@ import { Exercise } from '@/data/types'
 interface DATA {}
 
 export const exercise26: Exercise<DATA> = {
-  title: 'NEU',
+  title: 'Volumen und Preis',
+  source: '2021 Variante 2 / 3',
   useCalculator: false,
-  duration: 42,
-  points: [42],
+  duration: 5,
+  points: [4],
   generator(rng) {
     return {}
   },
@@ -20,7 +21,46 @@ export const exercise26: Exercise<DATA> = {
     main: [
       {
         task({ data }) {
-          return <></>
+          return (
+            <>
+              <p> Herr Celik hat einen alten LKW gekauft.</p>
+
+              <svg viewBox="0 0 537 520">
+                <image
+                  href="/content/NRW_MSA_2021_v2_3.PNG"
+                  width="537"
+                  height="520"
+                />
+                <text
+                  x={70}
+                  y={300}
+                  fontSize={30}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  {2} cm
+                </text>
+                <text
+                  x={370}
+                  y={390}
+                  fontSize={30}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  {1} cm
+                </text>
+                <text
+                  x={520}
+                  y={450}
+                  fontSize={30}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  {0} cm
+                </text>
+              </svg>
+            </>
+          )
         },
         solution({ data }) {
           return <></>
