@@ -5,7 +5,7 @@ export function Color1({ children }: { children: ReactNode }) {
 }
 
 export function Color2({ children }: { children: ReactNode }) {
-  return <span className="text-green-700">{children}</span>
+  return <span className="text-green-600">{children}</span>
 }
 
 export function Color3({ children }: { children: ReactNode }) {

@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildRoot } from '@/helper/math-builder'
+import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   durchmesser: number
@@ -63,10 +64,10 @@ export const exercise19: Exercise<DATA> = {
                 a) Zeige rechnerisch, dass diese Wassermelone ein Volumen von V
                 ≈{' '}
                 {pp(
-                  Math.round(
-                    ((4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3)) /
-                      100,
-                  ) * 100,
+                  roundToDigits(
+                    (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
+                    -2,
+                  ),
                 )}{' '}
                 cm³{' '}
               </p>
@@ -74,6 +75,7 @@ export const exercise19: Exercise<DATA> = {
           )
         },
         solution({ data }) {
+          const V = (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3)
           return (
             <>
               <p>
@@ -86,26 +88,10 @@ export const exercise19: Exercise<DATA> = {
               </p>
               <p>Setze die Werte ein und runde das Ergebnis:</p>
               <p>
-                V = {buildInlineFrac(4, 3)} · π · {data.durchmesser / 2}³
+                V = {buildInlineFrac(4, 3)} · π · {pp(data.durchmesser / 2)}³
               </p>
-              <p>
-                V ={' '}
-                {pp(
-                  Math.round(
-                    (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3) * 100,
-                  ) / 100,
-                )}
-              </p>
-              <p>
-                V ≈{' '}
-                {pp(
-                  Math.round(
-                    ((4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3)) /
-                      100,
-                  ) * 100,
-                )}{' '}
-                cm³
-              </p>
+              <p>V = {pp(roundToDigits(V, 2))}</p>
+              <p>V ≈ {pp(roundToDigits(V, -2))} cm³</p>
             </>
           )
         },
@@ -126,91 +112,30 @@ export const exercise19: Exercise<DATA> = {
           )
         },
         solution({ data }) {
+          const r = data.durchmesser / 2 - data.schale
+          const V = roundToDigits((4 / 3) * Math.PI * Math.pow(r, 3), 2)
+          const V_außen = roundToDigits(
+            (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
+            -2,
+          )
+          const p = V / V_außen
           return (
             <>
               <p>
                 Der innere Radius bis zur Schale beträgt: r<sub>innen</sub> ={' '}
-                {data.durchmesser / 2} − {pp(data.schale)} ={' '}
-                {pp(data.durchmesser / 2 - data.schale)} cm
+                {pp(data.durchmesser / 2)} − {pp(data.schale)} = {pp(r)} cm
               </p>
               <p>
                 Berechne damit das Volumen des Fruchfleisches in der Melone:
               </p>
               <p>
-                V = {buildInlineFrac(4, 3)} · π ·{' '}
-                {data.durchmesser / 2 - data.schale}³
+                V = {buildInlineFrac(4, 3)} · π · {pp(r)}³
               </p>
-              <p>
-                V ={' '}
-                {pp(
-                  Math.round(
-                    (4 / 3) *
-                      Math.PI *
-                      Math.pow(data.durchmesser / 2 - data.schale, 3) *
-                      100,
-                  ) / 100,
-                )}{' '}
-                cm³
-              </p>
+              <p>V = {pp(V)} cm³</p>
               <p>Berechne den Anteil des Fruchtfleisches vom ganzen Volumen:</p>
               <p>
-                {buildInlineFrac(
-                  pp(
-                    Math.round(
-                      (4 / 3) *
-                        Math.PI *
-                        Math.pow(data.durchmesser / 2 - data.schale, 3) *
-                        100,
-                    ) / 100,
-                  ),
-                  pp(
-                    Math.round(
-                      ((4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3)) /
-                        100,
-                    ) * 100,
-                  ),
-                )}{' '}
-                ={' '}
-                {pp(
-                  Math.round(
-                    (Math.round(
-                      (4 / 3) *
-                        Math.PI *
-                        Math.pow(data.durchmesser / 2 - data.schale, 3) *
-                        100,
-                    ) /
-                      100 /
-                      (Math.round(
-                        ((4 / 3) *
-                          Math.PI *
-                          Math.pow(data.durchmesser / 2, 3)) /
-                          100,
-                      ) *
-                        100)) *
-                      10000,
-                  ) / 10000,
-                )}{' '}
-                ≙{' '}
-                {pp(
-                  Math.round(
-                    (Math.round(
-                      (4 / 3) *
-                        Math.PI *
-                        Math.pow(data.durchmesser / 2 - data.schale, 3) *
-                        100,
-                    ) /
-                      100 /
-                      (Math.round(
-                        ((4 / 3) *
-                          Math.PI *
-                          Math.pow(data.durchmesser / 2, 3)) /
-                          100,
-                      ) *
-                        100)) *
-                      10000,
-                  ) / 100,
-                )}{' '}
-                %
+                {buildInlineFrac(pp(V), pp(V_außen))} ={' '}
+                {pp(roundToDigits(p, 4))} ≙ {pp(roundToDigits(p * 100, 2))} %
               </p>
             </>
           )
@@ -218,6 +143,10 @@ export const exercise19: Exercise<DATA> = {
       },
       {
         task({ data }) {
+          const V = roundToDigits(
+            (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
+            -2,
+          )
           return (
             <>
               <p>
@@ -226,31 +155,11 @@ export const exercise19: Exercise<DATA> = {
               </p>
               <p>
                 Eine würfelförmige Wassermelone hat ebenfalls ein Volumen von V
-                ≈{' '}
-                {pp(
-                  Math.round(
-                    ((4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3)) /
-                      100,
-                  ) * 100,
-                )}{' '}
-                cm³ .
+                ≈ {pp(V)} cm³ .
               </p>
               <p>
                 Bestätige durch eine Rechnung, dass diese Wassermelone eine
-                Kantenlänge von ca.{' '}
-                {pp(
-                  Math.round(
-                    Math.pow(
-                      Math.round(
-                        ((4 / 3) *
-                          Math.PI *
-                          Math.pow(data.durchmesser / 2, 3)) /
-                          100,
-                      ) * 100,
-                      1 / 3,
-                    ) * 100,
-                  ) / 100,
-                )}{' '}
+                Kantenlänge von ca. {pp(roundToDigits(Math.pow(V, 1 / 3), 2))}{' '}
                 cm hat.
               </p>
               <svg viewBox="0 0 500 350">
@@ -265,6 +174,10 @@ export const exercise19: Exercise<DATA> = {
           )
         },
         solution({ data }) {
+          const V = roundToDigits(
+            (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
+            -2,
+          )
           return (
             <>
               <p>Das Volumen eines Würfels wird berechnet mit der Formel:</p>
@@ -276,35 +189,8 @@ export const exercise19: Exercise<DATA> = {
                 Berechne a, indem du den Wert für das Volumen einsetzt und die
                 Gleichung umformst:
               </p>
-              <p>
-                a ={' '}
-                {buildRoot(
-                  pp(
-                    Math.round(
-                      ((4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3)) /
-                        100,
-                    ) * 100,
-                  ),
-                  3,
-                )}
-              </p>
-              <p>
-                a ≈{' '}
-                {pp(
-                  Math.round(
-                    Math.pow(
-                      Math.round(
-                        ((4 / 3) *
-                          Math.PI *
-                          Math.pow(data.durchmesser / 2, 3)) /
-                          100,
-                      ) * 100,
-                      1 / 3,
-                    ) * 100,
-                  ) / 100,
-                )}{' '}
-                cm
-              </p>
+              <p>a = {buildSqrt(pp(V), 3)}</p>
+              <p>a ≈ {pp(roundToDigits(Math.pow(V, 1 / 3), 2))} cm</p>
             </>
           )
         },
@@ -321,6 +207,18 @@ export const exercise19: Exercise<DATA> = {
           )
         },
         solution({ data }) {
+          const V = roundToDigits(
+            (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
+            -2,
+          )
+          const O1 = roundToDigits(
+            6 * Math.pow(roundToDigits(Math.pow(V, 1 / 3), 2), 2),
+            2,
+          )
+          const O2 = roundToDigits(
+            4 * Math.PI * Math.pow(data.durchmesser / 2, 2),
+            2,
+          )
           return (
             <>
               <p>Berechne die Oberfläche des Würfels:</p>
@@ -328,105 +226,16 @@ export const exercise19: Exercise<DATA> = {
               <p>
                 a ist hierbei die Kantenlänge des Würfels. Setze die Werte ein:
               </p>
-              <p>
-                O = 6 ·{' '}
-                {pp(
-                  Math.round(
-                    Math.pow(
-                      Math.round(
-                        ((4 / 3) *
-                          Math.PI *
-                          Math.pow(data.durchmesser / 2, 3)) /
-                          100,
-                      ) * 100,
-                      1 / 3,
-                    ) * 100,
-                  ) / 100,
-                )}
-                ²
-              </p>
-              <p>
-                O ={' '}
-                {pp(
-                  Math.round(
-                    6 *
-                      (Math.round(
-                        Math.pow(
-                          Math.round(
-                            ((4 / 3) *
-                              Math.PI *
-                              Math.pow(data.durchmesser / 2, 3)) /
-                              100,
-                          ) * 100,
-                          1 / 3,
-                        ) * 100,
-                      ) /
-                        100) *
-                      (Math.round(
-                        Math.pow(
-                          Math.round(
-                            ((4 / 3) *
-                              Math.PI *
-                              Math.pow(data.durchmesser / 2, 3)) /
-                              100,
-                          ) * 100,
-                          1 / 3,
-                        ) * 100,
-                      ) /
-                        100) *
-                      100,
-                  ) / 100,
-                )}{' '}
-                cm²
-              </p>
+              <p>O = 6 · {pp(roundToDigits(Math.pow(V, 1 / 3), 2))}²</p>
+              <p>O = {pp(O1)} cm²</p>
               <p>
                 Berechne die Oberfläche der kugelförmigen Melone und vergleiche:
               </p>
               <p>O = 4 · π · r²</p>
-              <p>O = 4 · π · {data.durchmesser / 2}²</p>
+              <p>O = 4 · π · {pp(data.durchmesser / 2)}²</p>
+              <p>O = {pp(O2)} cm²</p>
               <p>
-                O ={' '}
-                {pp(
-                  Math.round(
-                    4 * Math.PI * Math.pow(data.durchmesser / 2, 2) * 100,
-                  ) / 100,
-                )}{' '}
-                cm²
-              </p>
-              <p>
-                {Math.round(
-                  6 *
-                    (Math.round(
-                      Math.pow(
-                        Math.round(
-                          ((4 / 3) *
-                            Math.PI *
-                            Math.pow(data.durchmesser / 2, 3)) /
-                            100,
-                        ) * 100,
-                        1 / 3,
-                      ) * 100,
-                    ) /
-                      100) *
-                    (Math.round(
-                      Math.pow(
-                        Math.round(
-                          ((4 / 3) *
-                            Math.PI *
-                            Math.pow(data.durchmesser / 2, 3)) /
-                            100,
-                        ) * 100,
-                        1 / 3,
-                      ) * 100,
-                    ) /
-                      100) *
-                    100,
-                ) /
-                  100 >
-                Math.round(
-                  4 * Math.PI * Math.pow(data.durchmesser / 2, 2) * 100,
-                ) /
-                  100
+                {O1 > O2
                   ? 'Die würfelförmige Melone hat bei gleichem Volumen eine größere Oberfläche.'
                   : 'Die kugelförmige Melone hat bei gleichem Volumen eine größere Oberfläche.'}
               </p>
@@ -574,44 +383,44 @@ export const exercise19: Exercise<DATA> = {
         solution({ data }) {
           return (
             <>
-              {
+              {data.case == 1 && (
                 <>
                   <p>
-                    data.case==1 && Der Graph in der Abbildung 3 stellt ein
-                    lineares Wachstum dar, d.h. die Zunahme pro Zeitschritt ist
-                    immer gleich. Das Gewicht der Wassermelone verdoppelt sich
-                    jedoch pro Zeitschritt und wächst damit exponentiell.
+                    Der Graph in der Abbildung 3 stellt ein lineares Wachstum
+                    dar, d.h. die Zunahme pro Zeitschritt ist immer gleich. Das
+                    Gewicht der Wassermelone verdoppelt sich jedoch pro
+                    Zeitschritt und wächst damit exponentiell.
                   </p>
                   <p>
                     <strong>Sinja hat nicht recht.</strong>
                   </p>
                 </>
-              }
-              {
+              )}
+              {data.case == 2 && (
                 <>
                   <p>
-                    data.case==2 && Der Graph in der Abbildung 3 wächst schnell
-                    an. In gleichen Zeitabständen nimmt das Gewicht etwa um den
-                    doppelten Wert zu. Damit stellt der Graph ungefähr das
-                    Wachstum der Wassermelone dar.
+                    Der Graph in der Abbildung 3 wächst schnell an. In gleichen
+                    Zeitabständen nimmt das Gewicht etwa um den doppelten Wert
+                    zu. Damit stellt der Graph ungefähr das Wachstum der
+                    Wassermelone dar.
                   </p>
                   <p>
                     <strong>Sinja hat recht.</strong>
                   </p>
                 </>
-              }
-              {
+              )}
+              {data.case == 3 && (
                 <>
                   <p>
-                    data.case==3 && Der Graph in der Abbildung 3 wächst
-                    zunehmend langsamer. Das Gewicht der Wassermelone verdoppelt
-                    sich jedoch pro Zeitschritt und wächst damit exponentiell.
+                    Der Graph in der Abbildung 3 wächst zunehmend langsamer. Das
+                    Gewicht der Wassermelone verdoppelt sich jedoch pro
+                    Zeitschritt und wächst damit exponentiell.
                   </p>
                   <p>
                     <strong>Sinja hat nicht recht.</strong>
                   </p>
                 </>
-              }
+              )}
             </>
           )
         },
