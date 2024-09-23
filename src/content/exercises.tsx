@@ -33,6 +33,7 @@ import { exercise38 } from './implementations/NRW-MSA/38-2019-2-2-Pool'
 import { exercise46 } from './implementations/NRW-MSA/46-2018-2-2-Kaffee'
 import { exercise45 } from './implementations/NRW-MSA/45-2018-2-1-Brücke'
 import { exercise47 } from './implementations/NRW-MSA/47-2018-2-3-Dreieckmuster'
+import { exercise26 } from './implementations/NRW-MSA/26-2021-v2-3-volumen-preis'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -57,6 +58,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   21: exercise21,
   23: exercise23,
   24: exercise24,
+  26: exercise26,
   27: exercise27,
   28: exercise28,
   29: exercise29,
