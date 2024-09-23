@@ -66,3 +66,5 @@ export function ppPolynom(polynom: [number, string, number][]): JSX.Element {
     </>
   )
 }
+
+export function ppFrac(n: number) {}

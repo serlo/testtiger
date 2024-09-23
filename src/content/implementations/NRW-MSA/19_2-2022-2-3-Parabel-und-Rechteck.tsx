@@ -366,21 +366,21 @@ export const exercise192: Exercise<DATA> = {
             <p>Setze die x-Koordinate in den Term ein und fasse zusammen:</p>
             <p>
               U<sub>Rechteck </sub> = 2 · 2x + 2 · (
-              {data.a == -1 ? '− ' : pp(data.a)}x<sup>2</sup> + {pp(b)}){' '}
+              {ppPolynom([[data.a, 'x', 2]])} + {pp(b)}){' '}
             </p>
             <p>
-              U<sub>Rechteck </sub> = 2 · 2 · {data.x} + 2 · (
-              {data.a == -1 ? '− ' : pp(data.a) + ' ·'} {data.x}
+              U<sub>Rechteck </sub> = 2 · 2 · {data.x} + 2 · ({pp(data.a)} ·{' '}
+              {data.x}
               <sup>2</sup> + {pp(b)}){' '}
             </p>
 
             <p>
               U<sub>Rechteck </sub> = {4 * data.x} + 2 · (
-              {data.a == -1 ? '− ' : pp(data.a) + ' ·'} {data.x * data.x} +{' '}
-              {pp(b)}){' '}
+              {data.a == -1 ? '−' : pp(data.a) + ' · '}
+              {data.x * data.x} + {pp(b)}){' '}
             </p>
             <p>
-              U<sub>Rechteck </sub> =
+              U<sub>Rechteck </sub> ={' '}
               {pp(4 * data.x + 2 * (data.a * data.x * data.x + b))}{' '}
             </p>
             <p>
@@ -392,27 +392,44 @@ export const exercise192: Exercise<DATA> = {
       },
       ({ data }) => {
         const b = data.y + data.x * data.x * Math.abs(data.a)
-        const string1 =
-          '2 · 2x + 2 · (' +
-          (data.a == -1
-            ? '− x²' + pp(b, 'merge_op')
-            : pp(data.a) + 'x²' + pp(b, 'merge_op')) +
-          ')'
-        const string2 =
-          '4x + (' +
-          (2 * data.a == -1
-            ? '− x²)' + pp(2 * b, 'merge_op')
-            : pp(2 * data.a) + 'x²)' + pp(2 * b, 'merge_op'))
-        const string3 =
-          (2 * data.a == -1 ? '− ' : pp(2 * data.a, 'merge_op')) +
-          'x² + 4x ' +
-          pp(2 * b, 'merge_op')
         return (
           <>
             <p>
               {buildEquation([
-                [string1, '=', string2],
-                ['', '=', string3],
+                [
+                  '',
+                  '',
+                  <>
+                    2 · 2x + 2 · (
+                    {ppPolynom([
+                      [data.a, 'x', 2],
+                      [b, 'x', 0],
+                    ])}
+                    )
+                  </>,
+                ],
+                [
+                  '',
+                  '=',
+                  <>
+                    {ppPolynom([
+                      [4, 'x', 1],
+                      [data.a * 2, 'x', 2],
+                      [b * 2, 'x', 0],
+                    ])}
+                  </>,
+                ],
+                [
+                  '',
+                  '=',
+                  <>
+                    {ppPolynom([
+                      [data.a * 2, 'x', 2],
+                      [4, 'x', 1],
+                      [b * 2, 'x', 0],
+                    ])}
+                  </>,
+                ],
               ])}
             </p>
           </>
@@ -438,6 +455,9 @@ export const exercise192: Exercise<DATA> = {
           return value
         }
 
+        const k_b = 4 / (2 * data.a)
+        const k_c = (2 * b - zahl) / (2 * data.a)
+
         return (
           <>
             <p>
@@ -445,17 +465,15 @@ export const exercise192: Exercise<DATA> = {
               kannst:
             </p>
             <p>
-              {data.a * 2 == -1 ? '− ' : pp(data.a * 2)}x<sup>2</sup> + 4x +{' '}
-              {pp(2 * b)} = {pp(zahl)}
+              {ppPolynom([[data.a * 2, 'x', 2]])} + 4x + {pp(2 * b)} ={' '}
+              {pp(zahl)}
             </p>
             <p>
-              {data.a * 2 == -1 ? '− ' : pp(data.a * 2)}x<sup>2</sup> + 4x{' '}
-              {pp(2 * b - zahl)} = 0
+              {ppPolynom([[data.a * 2, 'x', 2]])} + 4x {pp(2 * b - zahl)} = 0
             </p>
             <p>
-              x<sup>2</sup> -{' '}
-              {convertToFractionString(4 / (2 * Math.abs(data.a)))}x +{' '}
-              {pp((2 * b - zahl) / (2 * data.a))} = 0
+              x<sup>2</sup> {/* TODO: make this less confusing */}-{' '}
+              {convertToFractionString(k_b)}x + {pp(k_c)} = 0
             </p>
             <p>
               Das ist eine quadratische Gleichung. Zur Lösung verwende die
@@ -464,28 +482,22 @@ export const exercise192: Exercise<DATA> = {
             <p>
               <p>
                 x<sub>1/2</sub> ={' '}
-                {buildInlineFrac(
-                  <>
-                    {'-b'} {' ± '}
-                    {buildSqrt('b² - 4ac')}
-                  </>,
-                  '2 · a',
-                )}
+                {buildInlineFrac(<>−b ± {buildSqrt('b² − 4ac')}</>, '2 · a')}
               </p>
             </p>
             <p>
               x<sub>1/2</sub> ={' '}
               {buildInlineFrac(
                 <>
-                  {convertToFractionString(4 / (2 * Math.abs(data.a)))} {' ± '}
+                  {convertToFractionString(k_b)} {' ± '}
                   {buildSqrt(
                     '(-' +
-                      convertToFractionString(4 / (2 * Math.abs(data.a))) +
+                      convertToFractionString(k_b) +
                       ')²' +
                       ' - 4 · ' +
                       pp(-data.a * 2) +
                       ' · ' +
-                      pp((2 * b - zahl) / (2 * data.a)),
+                      pp(k_c),
                   )}
                 </>,
                 '2 · ' + -data.a * 2,

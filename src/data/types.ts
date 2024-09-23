@@ -2,6 +2,7 @@ import { Rng } from '../helper/rng'
 
 export interface Exercise<T = unknown> {
   title: string
+  source?: string
   useCalculator: boolean
   duration: number
   points?: number | number[]
