@@ -40,12 +40,12 @@ export const exercise23: Exercise<DATA> = {
       data.m_2 != data.m_3 &&
       data.m_3 != 0 &&
       data.m_3 != data.m_1 &&
-      data.m_1 * -5 + data.b_1 < 5 &&
-      data.m_2 * -5 + data.b_2 < 5 &&
-      data.m_3 * -5 + data.b_3 < 5 &&
-      data.m_1 * -5 + data.b_1 > -2 &&
-      data.m_2 * -5 + data.b_2 > -2 &&
-      data.m_3 * -5 + data.b_3 > -2
+      data.m_1 * -4 + data.b_1 < 5.5 &&
+      data.m_2 * -4 + data.b_2 < 5.5 &&
+      data.m_3 * -4 + data.b_3 < 5.5 &&
+      data.m_1 * -4 + data.b_1 > -2.5 &&
+      data.m_2 * -4 + data.b_2 > -2.5 &&
+      data.m_3 * -4 + data.b_3 > -2.5
     )
   },
   subtasks: {
@@ -235,7 +235,7 @@ export const exercise23: Exercise<DATA> = {
           )
         },
         solution({ data }) {
-          const y_2 = pp(1 * data.m_b + data.b_b)
+          const y_2 = 1 * data.m_b + data.b_b
           return (
             <>
               <p>Der Funktionsterm hat allgemein die Form y = mx + b. </p>
@@ -245,17 +245,21 @@ export const exercise23: Exercise<DATA> = {
               </p>
               <p>
                 <br></br>Aus der Wertetabelle kannst du den Wert des
-                y-Achsenabschnitts bei x = 0 ablesen: b = {data.b_b}
+                y-Achsenabschnitts bei x = 0 ablesen: b = {pp(data.b_b)}
               </p>
               <p>
-                Aus den Punkten {'(0|' + data.b_b + ')'} und{' '}
-                {'(1|' + pp(1 * data.m_b + data.b_b) + ')'} folgt, dass die
-                Gerade eine Steigung von m = {pp(data.m_b)} haben muss. Das
-                kannst du auch mit der Punkt-Steigungs-Formel berechnen:
+                Aus den Punkten {'(0|' + pp(data.b_b) + ')'} und{' '}
+                {'(1|' + pp(y_2) + ')'} folgt, dass die Gerade eine Steigung von
+                m = {pp(data.m_b)} haben muss. Das kannst du auch mit der
+                Punkt-Steigungs-Formel berechnen:
               </p>
               <p>
-                m = {buildInlineFrac(y_2 + ' − ' + data.b_b, '1 − 0')} ={' '}
-                {pp(data.m_b)}
+                m ={' '}
+                {buildInlineFrac(
+                  pp(y_2, 'embrace_neg') + ' − ' + pp(data.b_b, 'embrace_neg'),
+                  '1 − 0',
+                )}{' '}
+                = {pp(data.m_b)}
               </p>
             </>
           )

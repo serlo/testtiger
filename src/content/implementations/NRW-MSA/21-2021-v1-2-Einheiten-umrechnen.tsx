@@ -47,17 +47,17 @@ export const exercise21: Exercise<DATA> = {
             <>
               <p>
                 <strong>Stunden (h) in Sekunden (s)</strong>
-                <p>
-                  1 Stunde entspricht 60 Minuten. 1 Minute entspricht 60
-                  Sekunden. Damit entspricht 1 Stunde 60 · 60 = 3600 Sekunden.
-                  <br></br>
-                  <br></br>
-                  Damit sind:
-                </p>{' '}
-                {pp(data.hours)} h = {pp(data.hours)} · 3600 s
-                <p>
-                  {pp(data.hours)} h = {pp(data.hours * 3600)} s
-                </p>
+              </p>
+              <p>
+                1 Stunde entspricht 60 Minuten. 1 Minute entspricht 60 Sekunden.
+                Damit entspricht 1 Stunde 60 · 60 = 3600 Sekunden.
+                <br></br>
+                <br></br>
+                Damit sind:
+              </p>{' '}
+              {pp(data.hours)} h = {pp(data.hours)} · 3600 s
+              <p>
+                {pp(data.hours)} h = {pp(data.hours * 3600)} s
               </p>
             </>
           )
@@ -77,18 +77,17 @@ export const exercise21: Exercise<DATA> = {
             <>
               <p>
                 <strong>Zentimeter (cm) in Meter (m)</strong>
-                <p>
-                  1 Zentimeter entspricht {buildInlineFrac(1, 100)} Meter.
-                  <br></br>
-                  <br></br>
-                  Damit sind:
-                </p>
-                {pp(data.centimeters)} cm = {pp(data.centimeters)} ·{' '}
-                {buildInlineFrac(1, 100)} m
-                <p>
-                  {pp(data.centimeters)} cm = {pp((data.centimeters * 1) / 100)}{' '}
-                  m
-                </p>
+              </p>
+              <p>
+                1 Zentimeter entspricht {buildInlineFrac(1, 100)} Meter.
+                <br></br>
+                <br></br>
+                Damit sind:
+              </p>
+              {pp(data.centimeters)} cm = {pp(data.centimeters)} ·{' '}
+              {buildInlineFrac(1, 100)} m
+              <p>
+                {pp(data.centimeters)} cm = {pp((data.centimeters * 1) / 100)} m
               </p>
             </>
           )
@@ -108,17 +107,17 @@ export const exercise21: Exercise<DATA> = {
             <>
               <p>
                 <strong> Gramm (g) in Kilogramm (kg)</strong>
-                <p>
-                  1 Gramm entspricht {buildInlineFrac(1, 1000)} Kilogramm.
-                  <br></br>
-                  <br></br>
-                  Damit sind:
-                </p>
-                {pp(data.gramms)} g = {pp(data.gramms)} ·{' '}
-                {buildInlineFrac(1, 1000)} kg
-                <p>
-                  {pp(data.gramms)} cm = {pp((data.gramms * 1) / 1000)} kg
-                </p>
+              </p>
+              <p>
+                1 Gramm entspricht {buildInlineFrac(1, 1000)} Kilogramm.
+                <br></br>
+                <br></br>
+                Damit sind:
+              </p>
+              {pp(data.gramms)} g = {pp(data.gramms)} ·{' '}
+              {buildInlineFrac(1, 1000)} kg
+              <p>
+                {pp(data.gramms)} cm = {pp((data.gramms * 1) / 1000)} kg
               </p>
             </>
           )
