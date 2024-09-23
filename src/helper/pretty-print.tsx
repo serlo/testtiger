@@ -79,51 +79,65 @@ export function ppPolynom(polynom: [number, string, number][]): JSX.Element {
   )
 }
 
-export function ppFrac(n: number, mode: Mode = 'normal'): JSX.Element {
-  if (Number.isInteger(n)) {
-    return <>{pp(n, mode)}</>
+export function ppFrac(
+  n: number | [number, number],
+  mode: Mode = 'normal',
+): JSX.Element {
+  let decimal: number = NaN
+  let frac: [number, number] = [NaN, NaN]
+  if (!Array.isArray(n)) {
+    decimal = n
+    // Eingabe ist eine Zahl
+    if (Number.isInteger(n)) {
+      return <>{pp(n, mode)}</>
+    }
+    let bestDenom = -1
+    let error = Infinity
+    for (let i = 2; i <= 100; i++) {
+      const e = Math.abs(n) * i - Math.floor(Math.abs(n) * i)
+      if (e < error) {
+        error = e
+        bestDenom = i
+      }
+    }
+    if (error > 0.00000001) {
+      return <>{pp(n, mode)}</>
+    }
+    frac = [Math.round(Math.abs(n) * bestDenom), bestDenom]
+  } else {
+    frac = n
+    decimal = n[0] / n[1]
   }
-  let bestDenom = -1
-  let error = Infinity
-  for (let i = 2; i <= 100; i++) {
-    const e = Math.abs(n) * i - Math.floor(Math.abs(n) * i)
-    if (e < error) {
-      error = e
-      bestDenom = i
-    }
+  const f = buildInlineFrac(frac[0], frac[1])
+  if (mode === 'normal') {
+    return (
+      <>
+        {decimal < 0 ? '−' : ''}
+        {f}
+      </>
+    )
   }
-  if (error < 0.00000001) {
-    const f = buildInlineFrac(Math.round(Math.abs(n) * bestDenom), bestDenom)
-    if (mode === 'normal') {
-      return (
-        <>
-          {n < 0 ? '−' : ''}
-          {f}
-        </>
-      )
-    }
-    if (mode === 'embrace_neg') {
-      if (n >= 0) return f
-      return <>(−{f})</>
-    }
-    if (mode === 'merge_op') {
-      if (n >= 0) {
-        return <>+ {f}</>
-      }
-      return <>− {f}</>
-    }
-    if (mode === 'koeff') {
-      if (n == 1) {
-        return <>+ </>
-      }
-      if (n == -1) {
-        return <>− </>
-      }
-      if (n >= 0) {
-        return <>+ {f}</>
-      }
-      return <>− {f}</>
-    }
+  if (mode === 'embrace_neg') {
+    if (decimal >= 0) return f
+    return <>(−{f})</>
   }
-  return <>{pp(n, mode)}</>
+  if (mode === 'merge_op') {
+    if (decimal >= 0) {
+      return <>+ {f}</>
+    }
+    return <>− {f}</>
+  }
+  if (mode === 'koeff') {
+    if (decimal == 1) {
+      return <>+ </>
+    }
+    if (decimal == -1) {
+      return <>− </>
+    }
+    if (decimal >= 0) {
+      return <>+ {f}</>
+    }
+    return <>− {f}</>
+  }
+  return <>?unbekannter Modus?</>
 }
