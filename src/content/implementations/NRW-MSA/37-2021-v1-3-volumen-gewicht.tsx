@@ -33,7 +33,7 @@ export const exercise37: Exercise<DATA> = {
         </p>
         <p>
           Berechne das Volumen und das Gewicht der Pyramide, wenn 1 cm³ Holz{' '}
-          {data.d} g wiegt.{' '}
+          {pp(data.d)} g wiegt.{' '}
         </p>
       </>
     )
