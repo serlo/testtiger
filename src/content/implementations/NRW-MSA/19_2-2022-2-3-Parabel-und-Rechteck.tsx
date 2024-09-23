@@ -4,8 +4,7 @@ import {
   buildInlineFrac,
   buildSqrt,
 } from '@/helper/math-builder'
-import { pp, ppPolynom } from '@/helper/pretty-print'
-import Fraction from 'fraction.js'
+import { pp, ppFrac, ppPolynom } from '@/helper/pretty-print'
 
 interface DATA {
   a: number
@@ -446,23 +445,6 @@ export const exercise192: Exercise<DATA> = {
           const b = data.y + data.x * data.x * Math.abs(data.a)
           const c = 3.75
           const zahl = 2 * b + 2 * Math.abs(data.a) * c
-          function convertToFractionArray(value: number): [number, number] {
-            if (value % 1 !== 0) {
-              // Wenn der Wert eine Dezimalzahl ist
-              const fraction = new Fraction(value)
-              return [fraction.n, fraction.d] // Gibt den Zähler und Nenner als Array zurück
-            }
-            return [value, 1] // Falls keine Dezimalzahl, als Bruch x/1 darstellen
-          }
-          function convertToFractionString(
-            value: number,
-          ): JSX.Element | number {
-            if (value % 1 !== 0) {
-              const [zaehler, nenner] = convertToFractionArray(value)
-              return buildInlineFrac(zaehler, nenner)
-            }
-            return value
-          }
 
           const k_b = 4 / (2 * data.a)
           const k_c = (2 * b - zahl) / (2 * data.a)
@@ -478,11 +460,11 @@ export const exercise192: Exercise<DATA> = {
                 {pp(zahl)}
               </p>
               <p>
-                {ppPolynom([[data.a * 2, 'x', 2]])} + 4x {pp(2 * b - zahl)} = 0
+                {ppPolynom([[data.a * 2, 'x', 2]])} + 4x{' '}
+                {pp(2 * b - zahl, 'merge_op')} = 0
               </p>
               <p>
-                x<sup>2</sup> {/* TODO: make this less confusing */}-{' '}
-                {convertToFractionString(k_b)}x + {pp(k_c)} = 0
+                x<sup>2</sup> {ppFrac(k_b, 'koeff')}x + {pp(k_c)} = 0
               </p>
               <p>
                 Das ist eine quadratische Gleichung. Zur Lösung verwende die
@@ -491,63 +473,56 @@ export const exercise192: Exercise<DATA> = {
               <p>
                 <p>
                   x<sub>1/2</sub> ={' '}
-                  {buildInlineFrac(<>−b ± {buildSqrt('b² − 4ac')}</>, '2 · a')}
+                  {buildInlineFrac(
+                    <>
+                      <span style={{ verticalAlign: 'middle' }}>−b ± </span>
+                      {buildSqrt('b² − 4ac')}
+                    </>,
+                    '2 · a',
+                  )}
                 </p>
               </p>
               <p>
                 x<sub>1/2</sub> ={' '}
                 {buildInlineFrac(
                   <>
-                    {convertToFractionString(k_b)} {' ± '}
+                    {ppFrac(k_b)} {' ± '}
                     {buildSqrt(
-                      '(-' +
-                        convertToFractionString(k_b) +
-                        ')²' +
-                        ' - 4 · ' +
-                        pp(-data.a * 2) +
-                        ' · ' +
-                        pp(k_c),
+                      <>
+                        {ppFrac(k_b, 'embrace_neg')}² - 4 · {pp(-data.a * 2)} ·{' '}
+                        {pp(k_c)}
+                      </>,
                     )}
                   </>,
                   '2 · ' + -data.a * 2,
                 )}
               </p>
-              <p>
-                {' '}
-                Die Gleichung besitzt{' '}
-                {data.a * 2 == -1
-                  ? 'die Lösungen:'
-                  : 'keine Lösungen, da der Wert unter der Wurzel negativ ist. Das bedeutet, dass es kein Rechteck mit dem Umfang ' +
-                    pp(zahl) +
-                    ' geben kann.'}
-              </p>
 
-              {data.a * 2 == -1 && (
+              {data.a * 2 == -1 ? (
                 <>
+                  <p>Die Gleichung besitzt die Lösungen:</p>
                   <p>
                     x<sub>1</sub> ={' '}
-                    {convertToFractionString(
-                      (4 / (2 * Math.abs(data.a)) + 1) / 2,
-                    )}
+                    {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)}
                   </p>
                   <p>
                     x<sub>2</sub> ={' '}
-                    {convertToFractionString(
-                      (4 / (2 * Math.abs(data.a)) - 1) / 2,
-                    )}
+                    {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}
                   </p>
                   <p>
                     Das bedeutet, dass für die Werte x<sub>1</sub> ={' '}
-                    {convertToFractionString(
-                      (4 / (2 * Math.abs(data.a)) + 1) / 2,
-                    )}{' '}
-                    und x<sub>2</sub> ={' '}
-                    {convertToFractionString(
-                      (4 / (2 * Math.abs(data.a)) - 1) / 2,
-                    )}{' '}
-                    ein Rechteck mit dem Umfang {pp(zahl)} existiert.
+                    {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
+                    <sub>2</sub> ={' '}
+                    {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)} ein Rechteck
+                    mit dem Umfang {pp(zahl)} existiert.
                   </p>
                 </>
+              ) : (
+                <p>
+                  Die Gleichung besitzt keine Lösungen, da der Wert unter der
+                  Wurzel negativ ist. Das bedeutet, dass es kein Rechteck mit
+                  dem Umfang {pp(zahl)} geben kann.
+                </p>
               )}
             </>
           )
