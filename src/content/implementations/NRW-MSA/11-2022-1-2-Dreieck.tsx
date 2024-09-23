@@ -23,125 +23,127 @@ export const exercise11: Exercise<DATA> = {
   constraint({ data }) {
     return data.a != data.c
   },
-  task({ data }) {
-    return <></>
-  },
-  solution({ data }) {
-    return <></>
-  },
   subtasks: {
     intro: ({ data }) => {
       return <></>
     },
-    tasks: [
-      ({ data }) => {
-        return (
-          <>
-            <svg viewBox="0 0 720 480">
-              <image
-                href="/content/NRW_MSA_Dreieck.jpg"
-                height="500"
-                width="700"
-              />
-            </svg>
-            <p>
-              In dem abgebildeten Dreieck gilt: a = {pp(data.a)} cm und c ={' '}
-              {data.c} cm.
-            </p>
-            <p>a) Berechne die Länge der Seite b.</p>
-          </>
-        )
+    main: [
+      {
+        task({ data }) {
+          return (
+            <>
+              <svg viewBox="0 0 720 480">
+                <image
+                  href="/content/NRW_MSA_Dreieck.jpg"
+                  height="500"
+                  width="700"
+                />
+              </svg>
+              <p>
+                In dem abgebildeten Dreieck gilt: a = {pp(data.a)} cm und c ={' '}
+                {data.c} cm.
+              </p>
+              <p>a) Berechne die Länge der Seite b.</p>
+            </>
+          )
+        },
+        solution({ data }) {
+          return (
+            <>
+              <p>
+                In diesem rechtwinkligen Dreieck sind zwei Seitenlängen gegeben.
+                Verwende den Satz des Pythagoras:
+              </p>
+              <p>a² + b² = c²</p>
+
+              <p>
+                Forme die Gleichung um, da die Seitenlänge von b berechnet wird:
+              </p>
+              <p>b² = c² − a²</p>
+
+              <p>Setze die gegebenen Seitenlängen ein:</p>
+              <p>
+                b² = {data.c}² − {pp(data.a)}²
+              </p>
+
+              <p>Ziehe die Quadratwurzel und bestimme b:</p>
+              <p>b = {buildSqrt(data.c + '² − ' + pp(data.a) + '²')}</p>
+              <p>
+                b ={' '}
+                {pp(
+                  roundToDigits(
+                    Math.sqrt(data.c * data.c - data.a * data.a),
+                    2,
+                  ),
+                )}
+              </p>
+              <p>
+                Die Seite b ist ungefähr{' '}
+                {pp(
+                  roundToDigits(
+                    Math.sqrt(data.c * data.c - data.a * data.a),
+                    2,
+                  ),
+                )}{' '}
+                cm lang.
+              </p>
+            </>
+          )
+        },
       },
-      ({ data }) => {
-        return (
-          <>
-            <p>b) Berechne die Größe des Winkels α.</p>
-          </>
-        )
-      },
-    ],
-    solutions: [
-      ({ data }) => {
-        return (
-          <>
-            <p>
-              In diesem rechtwinkligen Dreieck sind zwei Seitenlängen gegeben.
-              Verwende den Satz des Pythagoras:
-            </p>
-            <p>a² + b² = c²</p>
+      {
+        task({ data }) {
+          return (
+            <>
+              <p>b) Berechne die Größe des Winkels α.</p>
+            </>
+          )
+        },
+        solution({ data }) {
+          return (
+            <>
+              <p>In einem rechtwinkligen Dreieck gilt:</p>
+              <p>sin(α) = {buildInlineFrac('Gegenkathete', 'Hypotenuse')}</p>
 
-            <p>
-              Forme die Gleichung um, da die Seitenlänge von b berechnet wird:
-            </p>
-            <p>b² = c² − a²</p>
-
-            <p>Setze die gegebenen Seitenlängen ein:</p>
-            <p>
-              b² = {data.c}² − {pp(data.a)}²
-            </p>
-
-            <p>Ziehe die Quadratwurzel und bestimme b:</p>
-            <p>b = {buildSqrt(data.c + '² − ' + pp(data.a) + '²')}</p>
-            <p>
-              b ={' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.c * data.c - data.a * data.a), 2),
-              )}
-            </p>
-            <p>
-              Die Seite b ist ungefähr{' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.c * data.c - data.a * data.a), 2),
-              )}{' '}
-              cm lang.
-            </p>
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p>In einem rechtwinkligen Dreieck gilt:</p>
-            <p>sin(α) = {buildInlineFrac('Gegenkathete', 'Hypotenuse')}</p>
-
-            <p>
-              Diese Seiten entsprechen im rechtwinkligen Dreieck oben den Seiten
-              a und c:
-            </p>
-            <p>sin(α) = {buildInlineFrac('a', 'c')}</p>
-            <p>Setze die Seitenlängen ein:</p>
-            <p>sin(α) = {buildInlineFrac(pp(data.a), data.c)}</p>
-            <p>
-              Verwende die Umkehrfunktion sin<sup>-1</sup>() und berechne α:
-            </p>
-            <p>
-              α = sin<sup>-1</sup>
-              <span className="inline-block  scale-y-[2.6]">(</span>
-              {buildInlineFrac(pp(data.a), data.c)}
-              <span className="inline-block  scale-y-[2.6]">)</span>
-            </p>
-            <p>
-              α ={' '}
-              {pp(
-                roundToDigits(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
-                  2,
-                ),
-              )}
-              °
-            </p>
-            <p>
-              Der Winkel α ist ungefähr{' '}
-              {pp(
-                roundToDigits(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
-                  2,
-                ),
-              )}
-              ° groß.
-            </p>
-          </>
-        )
+              <p>
+                Diese Seiten entsprechen im rechtwinkligen Dreieck oben den
+                Seiten a und c:
+              </p>
+              <p>sin(α) = {buildInlineFrac('a', 'c')}</p>
+              <p>Setze die Seitenlängen ein:</p>
+              <p>sin(α) = {buildInlineFrac(pp(data.a), data.c)}</p>
+              <p>
+                Verwende die Umkehrfunktion sin<sup>-1</sup>() und berechne α:
+              </p>
+              <p>
+                α = sin<sup>-1</sup>
+                <span className="inline-block  scale-y-[2.6]">(</span>
+                {buildInlineFrac(pp(data.a), data.c)}
+                <span className="inline-block  scale-y-[2.6]">)</span>
+              </p>
+              <p>
+                α ={' '}
+                {pp(
+                  roundToDigits(
+                    (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
+                    2,
+                  ),
+                )}
+                °
+              </p>
+              <p>
+                Der Winkel α ist ungefähr{' '}
+                {pp(
+                  roundToDigits(
+                    (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
+                    2,
+                  ),
+                )}
+                ° groß.
+              </p>
+            </>
+          )
+        },
       },
     ],
   },

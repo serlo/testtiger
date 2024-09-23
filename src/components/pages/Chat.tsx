@@ -19,6 +19,7 @@ import { generateData } from '@/data/generate-data'
 import { navigationData } from '@/content/navigations'
 import { constrainedGeneration } from '@/helper/constrained-generation'
 import { isDeepEqual } from '@/helper/is-deep-equal'
+import { isExerciseWithSubtasks, isSingleExercise } from '@/data/is-x-exercise'
 
 interface ChatProps {
   id: number
@@ -34,10 +35,15 @@ export function Chat({ id }: ChatProps) {
   const [exampleSeed, setExampleSeed] = useState(generateSeed())
   const [showSolution, setShowSolution] = useState(false)
 
-  const withSubtasks = !!content.subtasks
+  const withSubtasks = 'subtasks' in content
+  if (withSubtasks) {
+    isExerciseWithSubtasks(content)
+  } else {
+    isSingleExercise(content)
+  }
 
   const [subShow, setSubShow] = useState<boolean[]>(
-    Array.from({ length: content.subtasks?.tasks.length || 0 }),
+    Array.from({ length: withSubtasks ? content.subtasks.main.length : 0 }),
   )
 
   const color =
@@ -93,7 +99,7 @@ export function Chat({ id }: ChatProps) {
             {/* Chat Message */}
             {withSubtasks ? (
               <>
-                {content.subtasks!.tasks.map((t, i) => {
+                {content.subtasks.main.map((t, i) => {
                   return (
                     <Fragment key={i}>
                       <div className="mb-4">
@@ -101,7 +107,7 @@ export function Chat({ id }: ChatProps) {
                           {i == 0 && (
                             <>
                               {proseWrapper(
-                                content.subtasks!.intro({
+                                content.subtasks.intro({
                                   data: generateData(id, seed, content),
                                 }),
                               )}
@@ -109,13 +115,13 @@ export function Chat({ id }: ChatProps) {
                             </>
                           )}
                           {proseWrapper(
-                            t({
+                            t.task({
                               data: generateData(id, seed, content),
                             }),
                           )}
                         </div>
                       </div>
-                      {content.subtasks!.solutions[i] && (
+                      {
                         <>
                           <div className="flex justify-between self-end gap-4 -mt-2 mb-2">
                             <button
@@ -135,7 +141,7 @@ export function Chat({ id }: ChatProps) {
                             <div className="mb-4 -mt-3">
                               <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
                                 {proseWrapper(
-                                  content.subtasks!.solutions[i]({
+                                  content.subtasks.main[i].solution({
                                     data: generateData(id, seed, content),
                                   }),
                                 )}
@@ -143,7 +149,7 @@ export function Chat({ id }: ChatProps) {
                             </div>
                           )}
                         </>
-                      )}
+                      }
                     </Fragment>
                   )
                 })}

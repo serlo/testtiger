@@ -24,116 +24,112 @@ export const exercise6: Exercise<DATA> = {
   constraint({ data }) {
     return data.breite > data.länge
   },
-  task({ data }) {
-    return <></>
-  },
-  solution({ data }) {
-    return <></>
-  },
   subtasks: {
     intro: ({ data }) => {
       return <></>
     },
-    tasks: [
-      ({ data }) => {
-        return (
-          <>
-            <svg viewBox="0 0 790 480">
-              <image
-                href="/content/NRW_MSA_Parallelogramm.PNG"
-                height="500"
-                width="700"
-              />
+    main: [
+      {
+        task({ data }) {
+          return (
+            <>
+              <svg viewBox="0 0 790 480">
+                <image
+                  href="/content/NRW_MSA_Parallelogramm.PNG"
+                  height="500"
+                  width="700"
+                />
 
-              <text
-                x={260}
-                y={420}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
-              >
-                a = {data.breite} cm
-              </text>
-              <text
-                x={630}
-                y={230}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
-              >
-                b = {data.länge} cm
-              </text>
-              <text
-                x={75}
-                y={340}
-                fontSize={50}
-                textAnchor="right"
-                stroke="black"
-              >
-                α
-              </text>
-            </svg>
-            <p>
-              a) Gegeben ist ein Parallelogramm mit den Seitenlängen{' '}
-              {data.breite} cm und {data.länge} cm, sowie α = {data.alpha}°.
-            </p>
-            <p>Gib die Größe des Winkels β an.</p>
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p>
-              b) Max behauptet: „Das Parallelogramm hat einen Flächeninhalt von{' '}
-              {data.breite * data.länge} cm².“
-            </p>
+                <text
+                  x={260}
+                  y={420}
+                  fontSize={40}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  a = {data.breite} cm
+                </text>
+                <text
+                  x={630}
+                  y={230}
+                  fontSize={40}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  b = {data.länge} cm
+                </text>
+                <text
+                  x={75}
+                  y={340}
+                  fontSize={50}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  α
+                </text>
+              </svg>
+              <p>
+                a) Gegeben ist ein Parallelogramm mit den Seitenlängen{' '}
+                {data.breite} cm und {data.länge} cm, sowie α = {data.alpha}°.
+              </p>
+              <p>Gib die Größe des Winkels β an.</p>
+            </>
+          )
+        },
+        solution({ data }) {
+          return (
+            <>
+              <p>In einem Parallelogramm gilt: α + β = 180°</p>
 
-            <p>Begründe, dass diese Aussage nicht stimmen kann.</p>
-          </>
-        )
+              <p>Setze den Wert für α ein und löse nach dem Wert von β:</p>
+              <p>β = 180° - {data.alpha}° </p>
+              <p>β = {180 - data.alpha}° </p>
+            </>
+          )
+        },
       },
-    ],
-    solutions: [
-      ({ data }) => {
-        return (
-          <>
-            <p>In einem Parallelogramm gilt: α + β = 180°</p>
+      {
+        task({ data }) {
+          return (
+            <>
+              <p>
+                b) Max behauptet: „Das Parallelogramm hat einen Flächeninhalt
+                von {data.breite * data.länge} cm².“
+              </p>
 
-            <p>Setze den Wert für α ein und löse nach dem Wert von β:</p>
-            <p>β = 180° - {data.alpha}° </p>
-            <p>β = {180 - data.alpha}° </p>
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p>
-              Der Flächeninhalt eines Parallelogramms wird berechnet mit der
-              Formel:
-            </p>
-            <p>A = a · h</p>
-            <p>
-              Dabei steht a für die Länge der Grundseite und h für die Höhe des
-              Parallelogramms, die senkrecht auf a steht. Diese ist aber immer
-              kleiner, als die Seite b.
-            </p>
-            <p>
-              h {'<'} {data.länge} cm{' '}
-            </p>
-            <p>
-              Damit ist auch die Fläche kleiner als das Produkt der beiden
-              Seitenlängen:
-            </p>
-            <p>A = a · h </p>
-            <p>A {'<'} a · b </p>
-            <p>
-              A {'<'} {data.breite * data.länge} cm²{' '}
-            </p>
-            <p> Max kann daher nicht recht haben.</p>
-          </>
-        )
+              <p>Begründe, dass diese Aussage nicht stimmen kann.</p>
+            </>
+          )
+        },
+        solution({ data }) {
+          return (
+            <>
+              <p>
+                Der Flächeninhalt eines Parallelogramms wird berechnet mit der
+                Formel:
+              </p>
+              <p>A = a · h</p>
+              <p>
+                Dabei steht a für die Länge der Grundseite und h für die Höhe
+                des Parallelogramms, die senkrecht auf a steht. Diese ist aber
+                immer kleiner, als die Seite b.
+              </p>
+              <p>
+                h {'<'} {data.länge} cm{' '}
+              </p>
+              <p>
+                Damit ist auch die Fläche kleiner als das Produkt der beiden
+                Seitenlängen:
+              </p>
+              <p>A = a · h </p>
+              <p>A {'<'} a · b </p>
+              <p>
+                A {'<'} {data.breite * data.länge} cm²{' '}
+              </p>
+              <p> Max kann daher nicht recht haben.</p>
+            </>
+          )
+        },
       },
     ],
   },
