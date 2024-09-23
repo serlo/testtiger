@@ -1,20 +1,38 @@
 import { Rng } from '../helper/rng'
 
-export interface Exercise<T = unknown> {
+interface Subtasks {}
+
+export interface SingleExercise<T = unknown> {
   title: string
+  source?: string
   useCalculator: boolean
   duration: number
-  points?: number | number[]
+  points?: number
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
   solution: (props: { data: T }) => JSX.Element
-  subtasks?: {
+}
+
+export interface ExerciseWithSubtasks<T = unknown> {
+  title: string
+  source?: string
+  useCalculator: boolean
+  duration: number
+  points?: number[]
+  generator: (rng: Rng) => T
+  constraint?: (props: { data: T; rng: Rng }) => boolean
+  subtasks: {
     intro: (props: { data: T }) => JSX.Element
-    tasks: ((props: { data: T }) => JSX.Element)[]
-    solutions: ((props: { data: T }) => JSX.Element)[]
+    main: {
+      points?: number
+      task: (props: { data: T }) => JSX.Element
+      solution: (props: { data: T }) => JSX.Element
+    }[]
   }
 }
+
+export type Exercise<T = unknown> = SingleExercise<T> | ExerciseWithSubtasks<T>
 
 export interface Navigation {
   topics: {

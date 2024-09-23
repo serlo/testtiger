@@ -7,7 +7,8 @@ interface DATA {
 }
 
 export const exercise2: Exercise<DATA> = {
-  title: '2023 /2) Volumen berechnen',
+  title: 'Volumen berechnen',
+  source: '2023 / 2',
   useCalculator: false,
   duration: 2,
   generator(rng) {

@@ -31,6 +31,10 @@ import { exercise21 } from './implementations/NRW-MSA/21-2021-v1-2-Einheiten-umr
 import { exercise37 } from './implementations/NRW-MSA/37-2021-v1-3-volumen-gewicht'
 import { exercise38 } from './implementations/NRW-MSA/38-2019-2-2-Pool'
 import { exercise46 } from './implementations/NRW-MSA/46-2018-2-2-Kaffee'
+import { exercise45 } from './implementations/NRW-MSA/45-2018-2-1-Brücke'
+import { exercise47 } from './implementations/NRW-MSA/47-2018-2-3-Dreieckmuster'
+import { exercise26 } from './implementations/NRW-MSA/26-2021-v2-3-volumen-preis'
+import { exercise32 } from './implementations/NRW-MSA/32-2019-1-2-Rechteck'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -55,16 +59,20 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   21: exercise21,
   23: exercise23,
   24: exercise24,
+  26: exercise26,
   27: exercise27,
   28: exercise28,
   29: exercise29,
+  32: exercise32,
   34: exercise34,
   35: exercise35,
   36: exercise36,
   37: exercise37,
   38: exercise38,
   192: exercise192,
+  45: exercise45,
   46: exercise46,
+  47: exercise47,
 }
 
 // symbols:

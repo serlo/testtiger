@@ -79,6 +79,11 @@ export function Home() {
                   }}
                 >
                   <div>
+                    {content.source && (
+                      <span className="text-fuchsia-900">
+                        [{content.source}]{' '}
+                      </span>
+                    )}
                     {content.title}{' '}
                     <small className="text-gray-400">({id})</small>
                   </div>
@@ -89,8 +94,8 @@ export function Home() {
                         e.exercises.includes(parseInt(id)),
                       )?.title
                     }
-                    {content.subtasks ? (
-                      <>, {content.subtasks.tasks.length} Teilaufgaben</>
+                    {'subtasks' in content ? (
+                      <>, {content.subtasks.main.length} Teilaufgaben</>
                     ) : null}
                   </div>
                 </div>

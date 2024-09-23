@@ -1,7 +1,8 @@
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { generateData } from './generate-data'
-import { Exercise } from './types'
+import { Exercise, SingleExercise } from './types'
 import { Fragment } from 'react'
+import { isExerciseWithSubtasks, isSingleExercise } from './is-x-exercise'
 
 export function renderExample(
   id: number,
@@ -11,7 +12,8 @@ export function renderExample(
 ) {
   const data = generateData(id, seed, exercise)
 
-  if (exercise.subtasks) {
+  if ('subtasks' in exercise) {
+    isExerciseWithSubtasks(exercise)
     return (
       <>
         {proseWrapper(
@@ -19,35 +21,37 @@ export function renderExample(
             data,
           }),
         )}
-        {exercise.subtasks.tasks.map((t, i) => {
+        {exercise.subtasks.main.map((t, i) => {
           return (
             <Fragment key={i}>
               <div className="mt-2 pt-2 pb-6">
                 {proseWrapper(
-                  t({
+                  t.task({
                     data,
                   }),
                 )}
               </div>
-              {exercise.subtasks!.solutions[i] && (
+              {
                 <details className="mb-4">
                   <summary className="cursor-pointer text-secondary">
                     Lösung
                   </summary>
                   <div className="border pt-5 pb-3 px-4">
                     {proseWrapper(
-                      exercise.subtasks!.solutions[i]({
+                      exercise.subtasks!.main[i].solution({
                         data,
                       }),
                     )}
                   </div>
                 </details>
-              )}
+              }
             </Fragment>
           )
         })}
       </>
     )
+  } else {
+    isSingleExercise(exercise)
   }
 
   return (

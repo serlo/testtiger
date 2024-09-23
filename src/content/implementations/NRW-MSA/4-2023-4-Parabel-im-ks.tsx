@@ -11,7 +11,8 @@ interface DATA {
 }
 
 export const exercise4: Exercise<DATA> = {
-  title: '2023 /4) Parabel im Koordinatensystem',
+  title: 'Parabel im Koordinatensystem',
+  source: '2023 / 4',
   useCalculator: false,
   duration: 2,
 
@@ -27,12 +28,6 @@ export const exercise4: Exercise<DATA> = {
   },
   constraint({ data }) {
     return data.x_s != 0 && data.y_s != 0
-  },
-  task({ data }) {
-    return <></>
-  },
-  solution({ data }) {
-    return <></>
   },
   subtasks: {
     intro: ({ data }) => {
@@ -79,15 +74,15 @@ export const exercise4: Exercise<DATA> = {
         </>
       )
     },
-    tasks: [
-      ({ data }) => {
-        return (
-          <>
-            <p>
-              a) Wähle, welche der angegebenen Funktionsgleichungen zu dem
-              Graphen von f passt.
-            </p>
-            <p>
+    main: [
+      {
+        task({ data }) {
+          return (
+            <>
+              <p>
+                a) Wähle, welche der angegebenen Funktionsgleichungen zu dem
+                Graphen von f passt.
+              </p>
               <ul>
                 <li>
                   f(x) = {data.correct_random == 1 && data.a == 1 ? '' : '−'}(x{' '}
@@ -114,67 +109,69 @@ export const exercise4: Exercise<DATA> = {
                   {Math.abs(data.y_s)}
                 </li>
               </ul>
-            </p>
-          </>
-        )
+            </>
+          )
+        },
+        solution({ data }) {
+          return (
+            <>
+              <p>
+                Der Funktionsterm lautet: f(x) = {data.a == 1 ? '' : '−'} (x{' '}
+                {pp(data.x_s, 'merge_op')})<sup>2</sup>{' '}
+                {pp(data.y_s, 'merge_op')}
+              </p>
+            </>
+          )
+        },
       },
-      ({ data }) => {
-        return (
-          <>
-            <p>b) Begründe deine Auswahl.</p>
-          </>
-        )
-      },
-    ],
-    solutions: [
-      ({ data }) => {
-        return (
-          <>
-            Der Funktionsterm lautet: f(x) = {data.a == 1 ? '' : '−'} (x{' '}
-            {data.x_s > 0 ? '−' : '+'} {Math.abs(data.x_s)})²{' '}
-            {data.y_s > 0 ? '+' : '−'} {Math.abs(data.y_s)}
-          </>
-        )
-      },
-      ({ data }) => {
-        return (
-          <>
-            <p>
-              Der Scheitel der Parabel liegt im Punkt S({data.x_s}|{data.y_s}).
-              Dieser ist damit um {Math.abs(data.x_s)}{' '}
-              {Math.abs(data.x_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
-              {data.x_s > 0 ? 'rechts' : 'links'} und {data.y_s}{' '}
-              {Math.abs(data.y_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
-              {data.y_s > 0 ? 'oben' : 'unten'} verschoben.
-            </p>
-            <ul>
-              <li>
-                Verschiebung um {Math.abs(data.x_s)}{' '}
+      {
+        task({ data }) {
+          return (
+            <>
+              <p>b) Begründe deine Auswahl.</p>
+            </>
+          )
+        },
+        solution({ data }) {
+          return (
+            <>
+              <p>
+                Der Scheitel der Parabel liegt im Punkt S({data.x_s}|{data.y_s}
+                ). Dieser ist damit um {Math.abs(data.x_s)}{' '}
                 {Math.abs(data.x_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
-                {data.x_s > 0 ? 'rechts' : 'links'}:<br></br> (x
-                <strong> {pp(-data.x_s, 'merge_op')}</strong>)² im Funktionsterm{' '}
-              </li>
-              <li>
-                Verschiebung um {Math.abs(data.y_s)}{' '}
+                {data.x_s > 0 ? 'rechts' : 'links'} und {data.y_s}{' '}
                 {Math.abs(data.y_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
-                {data.y_s > 0 ? 'oben' : 'unten'}:<br></br> (x{' '}
-                {pp(-data.x_s, 'merge_op')})²{' '}
-                <strong>{pp(data.y_s, 'merge_op')}</strong> im Funktionsterm{' '}
-              </li>
-            </ul>
-            <p>
-              Zudem ist die Parabel nach {data.a == 1 ? 'oben' : 'unten'}{' '}
-              geöffnet, weil das Vorzeichen{' '}
-              {data.a == 1 ? 'positiv' : 'negativ'} ist.
-            </p>
-            <p>
-              Das entspricht dem Funktionsterm <br></br>f(x) ={' '}
-              {data.a == 1 ? '' : '−'} (x {data.x_s > 0 ? '−' : '+'}{' '}
-              {Math.abs(data.x_s)})² {data.y_s > 0 ? '+' : '−'}{' '}
-              {Math.abs(data.y_s)}
-            </p>
-          </>
-        )
+                {data.y_s > 0 ? 'oben' : 'unten'} verschoben.
+              </p>
+              <ul>
+                <li>
+                  Verschiebung um {Math.abs(data.x_s)}{' '}
+                  {Math.abs(data.x_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
+                  {data.x_s > 0 ? 'rechts' : 'links'}:<br></br> (x
+                  <strong> {pp(-data.x_s, 'merge_op')}</strong>)² im
+                  Funktionsterm{' '}
+                </li>
+                <li>
+                  Verschiebung um {Math.abs(data.y_s)}{' '}
+                  {Math.abs(data.y_s) == 1 ? 'Einheit' : 'Einheiten'} nach{' '}
+                  {data.y_s > 0 ? 'oben' : 'unten'}:<br></br> (x{' '}
+                  {pp(-data.x_s, 'merge_op')})²{' '}
+                  <strong>{pp(data.y_s, 'merge_op')}</strong> im Funktionsterm{' '}
+                </li>
+              </ul>
+              <p>
+                Zudem ist die Parabel nach {data.a == 1 ? 'oben' : 'unten'}{' '}
+                geöffnet, weil das Vorzeichen{' '}
+                {data.a == 1 ? 'positiv' : 'negativ'} ist.
+              </p>
+              <p>
+                Das entspricht dem Funktionsterm <br></br>f(x) ={' '}
+                {data.a == 1 ? '' : '−'} (x {pp(-data.x_s, 'merge_op')})²{' '}
+                {pp(data.y_s, 'merge_op')}
+              </p>
+            </>
+          )
+        },
       },
     ],
   },

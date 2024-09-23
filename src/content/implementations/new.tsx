@@ -4,6 +4,7 @@ interface DATA {}
 
 export const exerciseXXX: Exercise<DATA> = {
   title: 'NEU',
+  source: '',
   useCalculator: false,
   duration: 42,
   points: 42,
