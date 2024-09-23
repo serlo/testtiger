@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   l: number
@@ -63,7 +64,7 @@ export const exercise37: Exercise<DATA> = {
               </>,
               3,
             )}{' '}
-            = {pp(Math.round(((data.l * data.l * data.h) / 3) * 100) / 100)} cm³
+            = {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³
           </strong>
         </p>
         <p>
@@ -73,12 +74,9 @@ export const exercise37: Exercise<DATA> = {
         <p>
           Setze ein: <br />
           <strong>
-            m = {pp(Math.round((data.l * data.l * data.h) / 3))} cm³ ·{' '}
+            m = {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³ ·{' '}
             {pp(data.d)} {buildInlineFrac('g', 'cm³')} ={' '}
-            {pp(
-              Math.round(((data.l * data.l * data.h) / 3) * data.d * 100) / 100,
-            )}{' '}
-            g
+            {pp(roundToDigits(((data.l * data.l * data.h) / 3) * data.d, 2))} g
           </strong>
         </p>
       </>

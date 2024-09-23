@@ -20,14 +20,17 @@ export const exercise1: Exercise<DATA> = {
     return {
       a: rng.randomIntBetween(1, 100) / -100,
       b: rng.randomIntBetween(1, 100) / 100,
-      c: rng.randomIntBetween(1, 8),
+      c: rng.randomIntBetween(-8, 8),
       d: rng.randomItemFromArray([1, 2, 4, 5, 10]),
       e: rng.randomIntBetween(5, 99),
     }
   },
   constraint({ data }) {
     return (
-      data.c != data.d && data.d != 1 && !Number.isInteger(Math.sqrt(data.e))
+      data.c != data.d &&
+      data.d != 1 &&
+      data.c != 0 &&
+      !Number.isInteger(Math.sqrt(data.e))
     )
   },
   subtasks: {
@@ -45,19 +48,19 @@ export const exercise1: Exercise<DATA> = {
               </p>
               <p>
                 {pp(data.a)} &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
-                &nbsp;&nbsp;&nbsp;&nbsp; −{buildInlineFrac(data.c, data.d)}
+                &nbsp;&nbsp;&nbsp;&nbsp; {buildInlineFrac(data.c, data.d)}
               </p>
             </>
           )
         },
         solution({ data }) {
-          const array = [data.a, data.b, -data.c / data.d].sort((a, b) => a - b)
+          const array = [data.a, data.b, data.c / data.d].sort((a, b) => a - b)
           return (
             <>
               <p>Wandle den Bruch zuerst in eine Dezimalzahl um:</p>
 
               <p>
-                −{buildInlineFrac(data.c, data.d)} = − {pp(data.c / data.d)}
+                {buildInlineFrac(data.c, data.d)} = {pp(data.c / data.d)}
               </p>
 
               <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
