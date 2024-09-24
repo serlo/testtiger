@@ -1,5 +1,9 @@
 import { IMessage } from '@/data/types'
 import clsx from 'clsx'
+import { FC, memo } from 'react'
+import ReactMarkdown, { Options } from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 
 export function Message({ message }: { message: IMessage }) {
   const renderContent = (content: any) => {
@@ -68,8 +72,7 @@ export function BotMessage({
 }) {
   const renderContent = (content: IMessage['content']) => {
     if (typeof content === 'string') {
-      return <>{content}</>
-      /*return (
+      return (
         <MemoizedReactMarkdown
           className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 text-gray-900"
           remarkPlugins={[remarkGfm, remarkMath]}
@@ -82,12 +85,11 @@ export function BotMessage({
         >
           {content}
         </MemoizedReactMarkdown>
-      )*/
+      )
     } else if (Array.isArray(content)) {
       return content.map((part, index) => {
         if (part.type === 'text') {
-          return <>{part.text}</>
-          /*return (
+          return (
             <MemoizedReactMarkdown
               key={index}
               className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 text-gray-900"
@@ -100,7 +102,7 @@ export function BotMessage({
             >
               {part.text}
             </MemoizedReactMarkdown>
-          )*/
+          )
         } else if (part.type === 'image') {
           let imageUrl
 
@@ -151,3 +153,38 @@ export function BotMessage({
     </div>
   )
 }
+
+export function SpinnerMessage() {
+  return (
+    <div className="group relative flex items-start">
+      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border bg-primary text-primary-foreground shadow-sm">
+        <img src="/img/birdie.svg" alt="Birdie" width={24} height={24} />
+      </div>
+      <div className="ml-4 h-[24px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
+        {spinner}
+      </div>
+    </div>
+  )
+}
+
+export const spinner = (
+  <svg
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    viewBox="0 0 24 24"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
+    className="size-5 animate-spin stroke-zinc-400"
+  >
+    <path d="M12 3v3m6.366-.366-2.12 2.12M21 12h-3m.366 6.366-2.12-2.12M12 21v-3m-6.366.366 2.12-2.12M3 12h3m-.366-6.366 2.12 2.12"></path>
+  </svg>
+)
+
+export const MemoizedReactMarkdown: FC<Options> = memo(
+  ReactMarkdown,
+  (prevProps, nextProps) =>
+    prevProps.children === nextProps.children &&
+    prevProps.className === nextProps.className,
+)

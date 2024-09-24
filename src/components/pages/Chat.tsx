@@ -22,7 +22,7 @@ import { isExerciseWithSubtasks, isSingleExercise } from '@/data/is-x-exercise'
 import { IMessage } from '@/data/types'
 import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
-import { Message } from '../ui/Message'
+import { Message, SpinnerMessage } from '../ui/Message'
 import { flushSync } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 
@@ -331,7 +331,7 @@ export function Chat({ id }: ChatProps) {
               {messages.map(message => (
                 <Message key={message.id} message={message} />
               ))}
-              {isLoading && <span className="ml-8">wird geladen ...</span>}
+              {isLoading && <SpinnerMessage />}
             </div>
 
             {/* User Input */}
