@@ -1,6 +1,7 @@
 import { IMessage } from '@/data/types'
 import clsx from 'clsx'
 import { FC, memo } from 'react'
+import { proseWrapper } from '@/helper/prose-wrapper'
 import ReactMarkdown, { Options } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -35,13 +36,13 @@ export function Message({ message }: { message: IMessage }) {
   }
 
   if (message.role === 'user') {
-    return (
+    return proseWrapper(
       <UserMessage key={message.id}>
         {renderContent(message.content)}
-      </UserMessage>
+      </UserMessage>,
     )
   } else if (message.role === 'assistant') {
-    return <BotMessage key={message.id} message={message} />
+    return proseWrapper(<BotMessage key={message.id} message={message} />)
   } else if (message.role === 'system') {
     return null
   }
