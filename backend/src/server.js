@@ -1,29 +1,42 @@
 import { createOpenAI } from '@ai-sdk/openai'
-import { StreamData, streamText } from 'ai'
+import { generateText } from 'ai'
 import 'dotenv/config'
 import express from 'express'
 
 const app = express()
 
-app.all('/va89kjds', async (req, res) => {
-  // use stream data (optional):
-  const data = new StreamData()
-  data.append('initialized call')
+app.use(express.json())
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// manage CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, Content-Length, X-Requested-With',
+  )
+
+  //intercepts OPTIONS method
+  if ('OPTIONS' === req.method) {
+    res.sendStatus(200)
+  } else {
+    next()
+  }
+})
+
+app.post('/va89kjds', async (req, res) => {
+  const messages = req.body
   const openai = createOpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   })
 
-  const result = await streamText({
+  const { text } = await generateText({
     model: openai('gpt-4o'),
-    prompt: 'Invent a new holiday and describe its traditions.',
-    onFinish() {
-      data.append('call completed')
-      data.close()
-    },
+    messages,
   })
 
-  result.pipeDataStreamToResponse(res, { data })
+  res.json({ text })
 })
 
 app.listen(8080, () => {

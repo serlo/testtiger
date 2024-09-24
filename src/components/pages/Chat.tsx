@@ -20,6 +20,9 @@ import { navigationData } from '@/content/navigations'
 import { constrainedGeneration } from '@/helper/constrained-generation'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { isExerciseWithSubtasks, isSingleExercise } from '@/data/is-x-exercise'
+import { IMessage } from '@/data/types'
+import { getSystemPrompt } from '@/ai/get-system-prompt'
+import { makePost } from '@/helper/make-post'
 
 interface ChatProps {
   id: number
@@ -34,6 +37,66 @@ export function Chat({ id }: ChatProps) {
 
   const [exampleSeed, setExampleSeed] = useState(generateSeed())
   const [showSolution, setShowSolution] = useState(false)
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [messages, setMessages] = useState<IMessage[]>([
+    {
+      id: Math.random().toString(), // poor people's id
+      role: 'system',
+      // TODO Pass extra context of the student in here and integrate it into the system-prompt
+      content: getSystemPrompt(),
+    },
+  ])
+  const [userInput, setUserInput] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    const value = userInput.trim()
+    if (!value) return
+
+    setUserInput('')
+
+    const userMessage: IMessage = {
+      id: Math.random().toString(), // poor people's id
+      role: 'user',
+      content: value,
+    }
+    const messageWithUserMessage = [...messages, userMessage]
+    setMessages(currentMessages => [...currentMessages, userMessage])
+
+    setIsLoading(true)
+
+    const aiResponse = await submitUserMessage({
+      messages: messageWithUserMessage,
+    })
+
+    setMessages(currentMessages => [...currentMessages, aiResponse])
+    setIsLoading(false)
+  }
+
+  const submitUserMessage = async ({
+    messages,
+  }: {
+    messages: IMessage[]
+  }): Promise<IMessage> => {
+    try {
+      const { text } = await makePost('/va89kjds', messages)
+
+      return {
+        id: Math.random().toString(), // poor people's id
+        role: 'assistant',
+        content: text,
+      }
+    } catch (error) {
+      console.error('Error fetching AI response:', error)
+      return {
+        id: Math.random().toString(), // poor people's id
+        role: 'assistant',
+        content: 'Error: Unable to get a response from the AI',
+      }
+    }
+  }
 
   const withSubtasks = 'subtasks' in content
   if (withSubtasks) {
@@ -198,6 +261,29 @@ export function Chat({ id }: ChatProps) {
                 )}
               </>
             )}
+            {/* AI Chat Messages */}
+            <div className="w-full flex flex-col space-y-12 mt-4">
+              {messages.map(message => (
+                <Fragment key={message.id}>{JSON.stringify(message)}</Fragment>
+              ))}
+              {isLoading && <>wird geladen ...</>}
+            </div>
+
+            {/* User Input */}
+            <form onSubmit={handleSubmit} className="w-full mt-4">
+              <textarea
+                value={userInput}
+                onChange={e => setUserInput(e.target.value)}
+                placeholder="Schreibe deine Nachricht..."
+                className="w-full p-2 border rounded-md resize-none"
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mt-2"
+              >
+                Senden
+              </button>
+            </form>
           </div>
         </div>
         <IonModal ref={modal} trigger="open-modal">

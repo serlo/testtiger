@@ -27,6 +27,7 @@
     "@ionic/react": "7.7.4",
     "@ionic/react-router": "7.7.4",
     "@tailwindcss/typography": "0.5.15",
+    "ai": "3.4.1",
     "classnames": "2.5.1",
     "clsx": "2.1.1",
     "esm-seedrandom": "3.0.5",
