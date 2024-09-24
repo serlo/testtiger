@@ -49,46 +49,64 @@ export function Chat({ id }: ChatProps) {
 
   useEffect(() => {
     setTimeout(() => {
-      const div = document.createElement('div')
-      const root = createRoot(div)
-      flushSync(() => {
-        root.render(
-          <div>
-            54
-            {!withSubtasks &&
-              content.task({ data: generateData(id, seed, content) })}
-          </div>,
-        )
-      })
-      const task = div.innerHTML
-      const div2 = document.createElement('div')
-      const root2 = createRoot(div2)
-      flushSync(() => {
-        root2.render(
-          <div>
-            54
-            {!withSubtasks &&
-              content.solution({ data: generateData(id, seed, content) })}
-          </div>,
-        )
-      })
-      const solution = div2.innerHTML
-      setMessages(currentMessages => [
-        ...currentMessages,
-        {
-          id: Math.random().toString(), // poor people's id
-          role: 'system',
-          content: `
-        Das HTML der Aufgabenstellung ist das:
-        
-        ${task}
+      const data = generateData(id, seed, content)
 
-        Das HTML der Lösung ist das:
+      function toHtml(el: JSX.Element) {
+        const div = document.createElement('div')
+        const root = createRoot(div)
+        flushSync(() => {
+          root.render(<>{el}</>)
+        })
+        return div.innerHTML
+      }
 
-        ${solution}
+      if (withSubtasks) {
+        setMessages(currentMessages => [
+          ...currentMessages,
+          {
+            id: Math.random().toString(), // poor people's id
+            role: 'system',
+            content: `
+              Das ist eine Aufgabe mit Teilaufgaben.
+
+              Das gemeinsame Intro:
+
+              ${toHtml(content.subtasks.intro({ data }))}
+
+              ${content.subtasks.main.map(
+                t => `
+                
+                Das ist eine Teilaufgabe.
+
+                Aufgabenstellung:
+                ${toHtml(t.task({ data }))}
+
+                Lösung:
+                ${toHtml(t.solution({ data }))}
+                
+                `,
+              )}
         `,
-        },
-      ])
+          },
+        ])
+      } else {
+        setMessages(currentMessages => [
+          ...currentMessages,
+          {
+            id: Math.random().toString(), // poor people's id
+            role: 'system',
+            content: `
+              Das HTML der Aufgabenstellung ist das:
+              
+              ${toHtml(content.task({ data }))}
+
+              Das HTML der Lösung ist das:
+
+              ${toHtml(content.solution({ data }))}
+        `,
+          },
+        ])
+      }
     })
   }, [content, id, seed, withSubtasks])
 
