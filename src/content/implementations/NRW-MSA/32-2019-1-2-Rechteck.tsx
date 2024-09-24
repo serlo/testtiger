@@ -25,7 +25,7 @@ export const exercise32: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.a != data.b && data.a * data.b != data.r
+    return data.a > data.b && data.a * data.b != data.r
   },
   subtasks: {
     intro: ({ data }) => {
