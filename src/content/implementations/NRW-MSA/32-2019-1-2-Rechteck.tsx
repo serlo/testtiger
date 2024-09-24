@@ -179,7 +179,7 @@ export const exercise32: Exercise<DATA> = {
                   <p>lang sein.</p>
                 </>
               )}
-              {data.r == 6 && (
+              {data.r == 12 && (
                 <>
                   <p>Die Seiten des Rechtecks können z.B.</p>
                   <p>
