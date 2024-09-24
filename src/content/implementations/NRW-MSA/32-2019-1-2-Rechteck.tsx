@@ -13,7 +13,7 @@ interface DATA {
 
 export const exercise32: Exercise<DATA> = {
   title: 'Berechnungen am Rechteck',
-  source: '2019 Teil 1 /4',
+  source: '2019 Teil 1 /2',
   useCalculator: false,
   duration: 42,
   generator(rng) {
@@ -34,7 +34,7 @@ export const exercise32: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 164 90">
               <image
-                href="/content/NRW_MSA_2019_1_3_rechteck.svg"
+                href="/content/NRW_MSA_2019_1_2_rechteck.svg"
                 height="90"
                 width="164"
               />
