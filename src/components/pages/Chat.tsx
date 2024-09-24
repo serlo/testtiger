@@ -89,12 +89,18 @@ export function Chat({ id }: ChatProps) {
             <p className="text-gray-400 text-xs mb-2 ml-2">
               Aufgabe {content.useCalculator ? 'mit' : 'ohne'} Taschenrechner -{' '}
               {content.duration} min
-              {content.points &&
-                (Array.isArray(content.points) ? (
-                  <> - {content.points.join(' + ')} BE</>
-                ) : (
-                  <> - {content.points} BE</>
-                ))}
+              {withSubtasks ? (
+                <>
+                  {' '}
+                  -{' '}
+                  {content.subtasks.main
+                    .map(m => m.points || '?')
+                    .join(' + ')}{' '}
+                  BE
+                </>
+              ) : (
+                <> - {content.points ?? '?'} BE</>
+              )}
             </p>
             {/* Chat Message */}
             {withSubtasks ? (

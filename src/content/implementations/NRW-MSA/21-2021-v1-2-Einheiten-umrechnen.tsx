@@ -13,7 +13,6 @@ export const exercise21: Exercise<DATA> = {
   source: '2021 Variante 1 / 2',
   useCalculator: false,
   duration: 2,
-  points: [3],
   generator(rng) {
     return {
       hours: (rng.randomIntBetween(30, 60) * 5) / 100,

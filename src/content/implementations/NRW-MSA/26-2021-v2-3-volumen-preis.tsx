@@ -7,7 +7,6 @@ export const exercise26: Exercise<DATA> = {
   source: '2021 Variante 2 / 3',
   useCalculator: false,
   duration: 5,
-  points: [4],
   generator(rng) {
     return {}
   },

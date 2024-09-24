@@ -7,7 +7,6 @@ export const exerciseXXX: Exercise<DATA> = {
   source: '',
   useCalculator: false,
   duration: 42,
-  points: [42],
   generator(rng) {
     return {}
   },
@@ -20,6 +19,7 @@ export const exerciseXXX: Exercise<DATA> = {
     },
     main: [
       {
+        points: 42,
         task({ data }) {
           return <></>
         },
@@ -28,6 +28,7 @@ export const exerciseXXX: Exercise<DATA> = {
         },
       },
       {
+        points: 42,
         task({ data }) {
           return <></>
         },

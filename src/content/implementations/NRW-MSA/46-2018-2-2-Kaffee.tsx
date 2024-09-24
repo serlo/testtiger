@@ -28,7 +28,6 @@ export const exercise46: Exercise<DATA> = {
   source: '2018 Prüfungsteil 2 / 2',
   useCalculator: true,
   duration: 10,
-  points: [42],
   generator(rng) {
     return {
       liter: rng.randomIntBetween(140, 200),

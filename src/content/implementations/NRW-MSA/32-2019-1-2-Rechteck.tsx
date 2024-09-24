@@ -12,7 +12,6 @@ export const exercise32: Exercise<DATA> = {
   source: '2019 Teil 1 /4',
   useCalculator: false,
   duration: 42,
-  points: [42],
   generator(rng) {
     return {
       a: rng.randomIntBetween(3, 7),

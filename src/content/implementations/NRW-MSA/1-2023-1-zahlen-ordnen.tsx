@@ -15,7 +15,6 @@ export const exercise1: Exercise<DATA> = {
   source: '2023 / 1',
   useCalculator: false,
   duration: 2,
-  points: [1, 1],
   generator(rng) {
     return {
       a: rng.randomIntBetween(1, 100) / -100,
@@ -39,6 +38,7 @@ export const exercise1: Exercise<DATA> = {
     },
     main: [
       {
+        points: 1,
         task({ data }) {
           return (
             <>
@@ -73,6 +73,7 @@ export const exercise1: Exercise<DATA> = {
         },
       },
       {
+        points: 1,
         task({ data }) {
           return (
             <>
