@@ -1,4 +1,4 @@
-const localDev = true
+const localDev = false
 
 const host = localDev
   ? 'http://localhost:8080'

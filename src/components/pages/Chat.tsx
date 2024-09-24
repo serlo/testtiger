@@ -9,8 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { Fragment, useRef, useState } from 'react'
-import { Store } from '../../../store'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { exercisesData } from '@/content/exercises'
 import { renderExample } from '@/data/render-example'
 import { generateSeed } from '@/data/generate-seed'
@@ -23,6 +22,9 @@ import { isExerciseWithSubtasks, isSingleExercise } from '@/data/is-x-exercise'
 import { IMessage } from '@/data/types'
 import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
+import { Message } from '../ui/Message'
+import { flushSync } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 interface ChatProps {
   id: number
@@ -37,6 +39,58 @@ export function Chat({ id }: ChatProps) {
 
   const [exampleSeed, setExampleSeed] = useState(generateSeed())
   const [showSolution, setShowSolution] = useState(false)
+
+  const withSubtasks = 'subtasks' in content
+  if (withSubtasks) {
+    isExerciseWithSubtasks(content)
+  } else {
+    isSingleExercise(content)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      const div = document.createElement('div')
+      const root = createRoot(div)
+      flushSync(() => {
+        root.render(
+          <div>
+            54
+            {!withSubtasks &&
+              content.task({ data: generateData(id, seed, content) })}
+          </div>,
+        )
+      })
+      const task = div.innerHTML
+      const div2 = document.createElement('div')
+      const root2 = createRoot(div2)
+      flushSync(() => {
+        root2.render(
+          <div>
+            54
+            {!withSubtasks &&
+              content.solution({ data: generateData(id, seed, content) })}
+          </div>,
+        )
+      })
+      const solution = div2.innerHTML
+      setMessages(currentMessages => [
+        ...currentMessages,
+        {
+          id: Math.random().toString(), // poor people's id
+          role: 'system',
+          content: `
+        Das HTML der Aufgabenstellung ist das:
+        
+        ${task}
+
+        Das HTML der Lösung ist das:
+
+        ${solution}
+        `,
+        },
+      ])
+    })
+  }, [content, id, seed, withSubtasks])
 
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState<IMessage[]>([
@@ -96,13 +150,6 @@ export function Chat({ id }: ChatProps) {
         content: 'Error: Unable to get a response from the AI',
       }
     }
-  }
-
-  const withSubtasks = 'subtasks' in content
-  if (withSubtasks) {
-    isExerciseWithSubtasks(content)
-  } else {
-    isSingleExercise(content)
   }
 
   const [subShow, setSubShow] = useState<boolean[]>(
@@ -264,9 +311,9 @@ export function Chat({ id }: ChatProps) {
             {/* AI Chat Messages */}
             <div className="w-full flex flex-col space-y-12 mt-4">
               {messages.map(message => (
-                <Fragment key={message.id}>{JSON.stringify(message)}</Fragment>
+                <Message key={message.id} message={message} />
               ))}
-              {isLoading && <>wird geladen ...</>}
+              {isLoading && <span className="ml-8">wird geladen ...</span>}
             </div>
 
             {/* User Input */}
