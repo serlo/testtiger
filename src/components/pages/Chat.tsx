@@ -308,10 +308,10 @@ export function Chat({ id }: ChatProps) {
                   <button
                     className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600"
                     onClick={() => {
-                      setShowSolution(true)
+                      setShowSolution(!showSolution)
                     }}
                   >
-                    Lösung anzeigen
+                    {showSolution ? 'Lösung ausblenden' : 'Lösung anzeigen'}
                   </button>
                 </div>
                 {showSolution && (
