@@ -158,10 +158,13 @@ export const exercise32: Exercise<DATA> = {
                 ergeben.
               </p>
               {data.r == 6 && (
-                <p>
-                  Die Seiten des Rechtecks können z.B. 1 cm und 6 cm oder 3 cm
-                  und 2 cm lang sein.
-                </p>
+                <>
+                  <p>Die Seiten des Rechtecks können z.B.</p>
+                  <p> 1 cm und 6 </p>
+                  <p> oder </p>
+                  <p> 3 cm und 2 cm </p>
+                  <p>lang sein.</p>
+                </>
               )}
             </>
           )
