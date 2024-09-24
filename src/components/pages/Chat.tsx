@@ -48,7 +48,7 @@ export function Chat({ id }: ChatProps) {
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    queueMicrotask(() => {
       const data = generateData(id, seed, content)
 
       function toHtml(el: JSX.Element) {
@@ -57,7 +57,8 @@ export function Chat({ id }: ChatProps) {
         flushSync(() => {
           root.render(<>{el}</>)
         })
-        return div.innerHTML
+        const text = div.innerHTML
+        return text
       }
 
       if (withSubtasks) {
