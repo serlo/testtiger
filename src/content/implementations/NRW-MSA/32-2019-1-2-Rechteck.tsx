@@ -32,11 +32,11 @@ export const exercise32: Exercise<DATA> = {
       return (
         <>
           <>
-            <svg viewBox="0 0 328 180">
+            <svg viewBox="0 0 164 90">
               <image
                 href="/content/NRW_MSA_2019_1_3_rechteck.svg"
-                height="180"
-                width="328"
+                height="90"
+                width="164"
               />
             </svg>
             <p>
