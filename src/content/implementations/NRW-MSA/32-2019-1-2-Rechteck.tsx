@@ -157,13 +157,12 @@ export const exercise32: Exercise<DATA> = {
                 Suche zwei Zahlenpaare, die miteinander multipliziert {data.r}{' '}
                 ergeben.
               </p>
-              if (data.r == 6){' '}
-              {
+              {data.r == 6 && (
                 <p>
                   Die Seiten des Rechtecks können z.B. 1 cm und 6 cm oder 3 cm
                   und 2 cm lang sein.
                 </p>
-              }
+              )}
             </>
           )
         },
