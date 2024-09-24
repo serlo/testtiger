@@ -32,6 +32,13 @@ export const exercise32: Exercise<DATA> = {
       return (
         <>
           <>
+            <svg viewBox="0 0 328 180">
+              <image
+                href="/content/NRW_MSA_2019_1_3_rechteck.svg"
+                height="180"
+                width="328"
+              />
+            </svg>
             <p>
               Ein Rechteck hat die Seitenlängen a = {data.a} cm und b = {data.b}{' '}
               cm.
