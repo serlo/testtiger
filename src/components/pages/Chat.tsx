@@ -9,7 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { exercisesData } from '@/content/exercises'
 import { renderExample } from '@/data/render-example'
 import { generateSeed } from '@/data/generate-seed'
@@ -40,7 +40,7 @@ export function Chat({ id }: ChatProps) {
   const [exampleSeed, setExampleSeed] = useState(generateSeed())
   const [showSolution, setShowSolution] = useState(false)
 
-  const withSubtasks = 'subtasks' in content
+  const withSubtasks = 'tasks' in content
   if (withSubtasks) {
     isExerciseWithSubtasks(content)
   } else {
@@ -72,9 +72,9 @@ export function Chat({ id }: ChatProps) {
 
               Das gemeinsame Intro:
 
-              ${toHtml(content.subtasks.intro({ data }))}
+              ${toHtml(content.intro({ data }))}
 
-              ${content.subtasks.main.map(
+              ${content.tasks.map(
                 t => `
                 
                 Das ist eine Teilaufgabe.
@@ -172,7 +172,12 @@ export function Chat({ id }: ChatProps) {
   }
 
   const [subShow, setSubShow] = useState<boolean[]>(
-    Array.from({ length: withSubtasks ? content.subtasks.main.length : 0 }),
+    Array.from({ length: withSubtasks ? content.tasks.length : 0 }),
+  )
+
+  const data = useMemo(
+    () => generateData(id, seed, content, true /*warn*/),
+    [id, seed, content],
   )
 
   const color =
@@ -219,14 +224,7 @@ export function Chat({ id }: ChatProps) {
               Aufgabe {content.useCalculator ? 'mit' : 'ohne'} Taschenrechner -{' '}
               {content.duration} min
               {withSubtasks ? (
-                <>
-                  {' '}
-                  -{' '}
-                  {content.subtasks.main
-                    .map(m => m.points || '?')
-                    .join(' + ')}{' '}
-                  BE
-                </>
+                <> - {content.tasks.map(m => m.points || '?').join(' + ')} BE</>
               ) : (
                 <> - {content.points ?? '?'} BE</>
               )}
@@ -234,7 +232,7 @@ export function Chat({ id }: ChatProps) {
             {/* Chat Message */}
             {withSubtasks ? (
               <>
-                {content.subtasks.main.map((t, i) => {
+                {content.tasks.map((t, i) => {
                   return (
                     <Fragment key={i}>
                       <div className="mb-4">
@@ -242,8 +240,8 @@ export function Chat({ id }: ChatProps) {
                           {i == 0 && (
                             <>
                               {proseWrapper(
-                                content.subtasks.intro({
-                                  data: generateData(id, seed, content),
+                                content.intro({
+                                  data,
                                 }),
                               )}
                               <div className="h-4"></div>
@@ -251,7 +249,7 @@ export function Chat({ id }: ChatProps) {
                           )}
                           {proseWrapper(
                             t.task({
-                              data: generateData(id, seed, content),
+                              data,
                             }),
                           )}
                         </div>
@@ -276,8 +274,8 @@ export function Chat({ id }: ChatProps) {
                             <div className="mb-4 -mt-3">
                               <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
                                 {proseWrapper(
-                                  content.subtasks.main[i].solution({
-                                    data: generateData(id, seed, content),
+                                  content.tasks[i].solution({
+                                    data,
                                   }),
                                 )}
                               </div>
@@ -296,9 +294,7 @@ export function Chat({ id }: ChatProps) {
               <>
                 <div className="mb-4">
                   <div className="bg-white p-2 rounded-lg text-sm">
-                    {proseWrapper(
-                      content.task({ data: generateData(id, seed, content) }),
-                    )}
+                    {proseWrapper(content.task({ data }))}
                   </div>
                 </div>
 
@@ -319,7 +315,7 @@ export function Chat({ id }: ChatProps) {
                     <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
                       {proseWrapper(
                         content.solution({
-                          data: generateData(id, seed, content),
+                          data,
                         }),
                       )}
                     </div>

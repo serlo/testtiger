@@ -21,14 +21,12 @@ export interface ExerciseWithSubtasks<T = unknown> {
   points?: number[]
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
-  subtasks: {
-    intro: (props: { data: T }) => JSX.Element
-    main: {
-      points?: number
-      task: (props: { data: T }) => JSX.Element
-      solution: (props: { data: T }) => JSX.Element
-    }[]
-  }
+  intro: (props: { data: T }) => JSX.Element
+  tasks: {
+    points?: number
+    task: (props: { data: T }) => JSX.Element
+    solution: (props: { data: T }) => JSX.Element
+  }[]
 }
 
 export type Exercise<T = unknown> = SingleExercise<T> | ExerciseWithSubtasks<T>

@@ -12,16 +12,16 @@ export function renderExample(
 ) {
   const data = generateData(id, seed, exercise)
 
-  if ('subtasks' in exercise) {
+  if ('tasks' in exercise) {
     isExerciseWithSubtasks(exercise)
     return (
       <>
         {proseWrapper(
-          exercise.subtasks.intro({
+          exercise.intro({
             data,
           }),
         )}
-        {exercise.subtasks.main.map((t, i) => {
+        {exercise.tasks.map((t, i) => {
           return (
             <Fragment key={i}>
               <div className="mt-2 pt-2 pb-6">
@@ -38,7 +38,7 @@ export function renderExample(
                   </summary>
                   <div className="border pt-5 pb-3 px-4">
                     {proseWrapper(
-                      exercise.subtasks!.main[i].solution({
+                      exercise.tasks[i].solution({
                         data,
                       }),
                     )}

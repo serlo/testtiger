@@ -13,66 +13,64 @@ export const exercise26: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
-  subtasks: {
-    intro: ({ data }) => {
-      return <></>
-    },
-    main: [
-      {
-        task({ data }) {
-          return (
-            <>
-              <p> Herr Celik hat einen alten LKW gekauft.</p>
-
-              <svg viewBox="0 0 537 520">
-                <image
-                  href="/content/NRW_MSA_2021_v2_3.PNG"
-                  width="537"
-                  height="520"
-                />
-                <text
-                  x={70}
-                  y={300}
-                  fontSize={30}
-                  textAnchor="right"
-                  stroke="black"
-                >
-                  {2} cm
-                </text>
-                <text
-                  x={370}
-                  y={390}
-                  fontSize={30}
-                  textAnchor="right"
-                  stroke="black"
-                >
-                  {1} cm
-                </text>
-                <text
-                  x={520}
-                  y={450}
-                  fontSize={30}
-                  textAnchor="right"
-                  stroke="black"
-                >
-                  {0} cm
-                </text>
-              </svg>
-            </>
-          )
-        },
-        solution({ data }) {
-          return <></>
-        },
-      },
-      {
-        task({ data }) {
-          return <></>
-        },
-        solution({ data }) {
-          return <></>
-        },
-      },
-    ],
+  intro({ data }) {
+    return <></>
   },
+  tasks: [
+    {
+      task({ data }) {
+        return (
+          <>
+            <p> Herr Celik hat einen alten LKW gekauft.</p>
+
+            <svg viewBox="0 0 537 520">
+              <image
+                href="/content/NRW_MSA_2021_v2_3.PNG"
+                width="537"
+                height="520"
+              />
+              <text
+                x={70}
+                y={300}
+                fontSize={30}
+                textAnchor="right"
+                stroke="black"
+              >
+                {2} cm
+              </text>
+              <text
+                x={370}
+                y={390}
+                fontSize={30}
+                textAnchor="right"
+                stroke="black"
+              >
+                {1} cm
+              </text>
+              <text
+                x={520}
+                y={450}
+                fontSize={30}
+                textAnchor="right"
+                stroke="black"
+              >
+                {0} cm
+              </text>
+            </svg>
+          </>
+        )
+      },
+      solution({ data }) {
+        return <></>
+      },
+    },
+    {
+      task({ data }) {
+        return <></>
+      },
+      solution({ data }) {
+        return <></>
+      },
+    },
+  ],
 }
