@@ -235,7 +235,8 @@ export const exercise23: Exercise<DATA> = {
         const y_2 = 1 * data.m_b + data.b_b
         return (
           <>
-            <p>Der Funktionsterm hat allgemein die Form y = mx + b. </p>
+            <p>Der Funktionsterm hat allgemein die Form </p>
+            <p>y = mx + b. </p>
             <p>
               Dabei steht m für die Steigung der Geraden und b für den
               y-Achsenabschnitt.
