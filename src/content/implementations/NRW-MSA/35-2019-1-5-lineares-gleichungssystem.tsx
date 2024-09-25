@@ -44,12 +44,10 @@ export const exercise35: Exercise<DATA> = {
         <p>Löse das lineare Gleichungssystem. Notiere deinen Lösungsweg.</p>
 
         <p>
-          I &nbsp;&nbsp; {data.b}x − {data.a}y = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c}
+          I &nbsp;&nbsp; {data.b}x − {data.a}y = {pp(c)}
         </p>
         <p>
-          II &nbsp; {data.d}x + {data.faktor * data.a}y = {e < 0 ? '−' : false}
-          {e < 0 ? -e : e}
+          II &nbsp; {data.d}x + {data.faktor * data.a}y = {pp(e)}
         </p>
       </>
     )
@@ -62,43 +60,40 @@ export const exercise35: Exercise<DATA> = {
         <p>Multipliziere die erste Gleichung mit dem Faktor {data.faktor}:</p>
         <p>
           {data.faktor} · I: &nbsp;&nbsp; {data.faktor * data.b}x −{' '}
-          {data.faktor * data.a}y = {c < 0 ? '−' : false}
-          {c < 0 ? -data.faktor * c : data.faktor * c}
+          {data.faktor * data.a}y = {pp(data.faktor * c)}
         </p>
         <p>
-          II: &nbsp; {data.d}x + {data.faktor * data.a}y = {e < 0 ? '−' : false}
-          {e < 0 ? -e : e}
+          II: &nbsp;&nbsp;&nbsp;&nbsp; {data.d}x + {data.faktor * data.a}y ={' '}
+          {pp(e)}
         </p>
         <p>Addiere die Gleichungen 4I+II:</p>
         <p>
-          {data.faktor * data.b}x + {data.d}x = {c < 0 ? '−' : false}
-          {c < 0 ? -data.faktor * c : data.faktor * c} + {e < 0 ? '(− ' : false}
-          {e < 0 ? -e : e}
-          {e < 0 ? ')' : false}
+          {data.faktor * data.b}x + {data.d}x = {pp(data.faktor * c)} +{' '}
+          {pp(e, 'embrace_neg')}
         </p>
         <p>Fasse die Terme zusammen:</p>
         <p>
           {data.faktor * data.b + data.d}x = {pp(data.faktor * c + e)}
         </p>
-        <p>{data.x != 1 ? 'Löse die Gleichung nach x:' : false}</p>
-        <p>{data.x != 1 ? 'x = ' + data.x : false}</p>
+        {data.x !== 1 && (
+          <>
+            <p>Löse die Gleichung nach x:</p>
+            <p>x = {data.x}</p>
+          </>
+        )}
         <p>
           Setze den Wert für x in eine der Gleichungen ein. x in I eingesetzt
           liefert:
         </p>
         <p>
-          {data.b} · {data.x} − {data.a} · y = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c}
+          {data.b} · {data.x} − {data.a} · y = {pp(c)}
         </p>
         <p>Vereinfache die Gleichung und löse nach y.</p>
         <p>
-          {data.b} · {data.x} = {c < 0 ? '−' : false}
-          {c < 0 ? -c : c} + {data.a} · y
+          {data.b} · {data.x} = {pp(c)} + {data.a} · y
         </p>
         <p>
-          {data.b} · {data.x} {c < 0 ? '+ ' : false}
-          {c > 0 ? '− ' : false}
-          {Math.abs(c)} = {data.a} · y
+          {data.b} · {data.x} {pp(-c, 'merge_op')} = {data.a} · y
         </p>
         <p>
           {data.a * data.y} = {data.a} · y
