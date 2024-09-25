@@ -77,10 +77,10 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   192: exercise192,
   41: exercise41,
   43: exercise43,
+  44: exercise44,
   45: exercise45,
   46: exercise46,
   47: exercise47,
-  44: exercise44,
 }
 
 // symbols:
