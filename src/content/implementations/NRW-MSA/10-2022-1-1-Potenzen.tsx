@@ -52,7 +52,8 @@ export const exercise10: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bei gleicher Basis kannst du direkt die Exponenten vergleichen:
+              Bei gleicher Basis ist die Zahl größer, die den größeren
+              Exponenten hat. Vergleiche die Exponenten miteinander:
             </p>
             <p>
               {pp(data.potenz_1)}{' '}
@@ -96,7 +97,7 @@ export const exercise10: Exercise<DATA> = {
               <li>
                 Bei ungeraden Exponenten bleibt das Ergebnis negativ. Beispiel:
                 ({pp(data.basis)})<sup>3</sup> = − {Math.abs(data.basis)}
-                <sup>2</sup>
+                <sup>3</sup>
               </li>
             </ul>{' '}
             <p>

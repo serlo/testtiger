@@ -63,10 +63,10 @@ export const exercise35: Exercise<DATA> = {
           {data.faktor * data.a}y = {pp(data.faktor * c)}
         </p>
         <p>
-          II: &nbsp;&nbsp;&nbsp;&nbsp; {data.d}x + {data.faktor * data.a}y ={' '}
-          {pp(e)}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;II: &nbsp;&nbsp;&nbsp; {data.d}x +{' '}
+          {data.faktor * data.a}y = {pp(e)}
         </p>
-        <p>Addiere die Gleichungen 4I+II:</p>
+        <p>Addiere die Gleichungen {data.faktor} · I + II:</p>
         <p>
           {data.faktor * data.b}x + {data.d}x = {pp(data.faktor * c)} +{' '}
           {pp(e, 'embrace_neg')}
@@ -90,10 +90,10 @@ export const exercise35: Exercise<DATA> = {
         </p>
         <p>Vereinfache die Gleichung und löse nach y.</p>
         <p>
-          {data.b} · {data.x} = {pp(c)} + {data.a} · y
+          {data.b * data.x} = {pp(c)} + {data.a} · y
         </p>
         <p>
-          {data.b} · {data.x} {pp(-c, 'merge_op')} = {data.a} · y
+          {data.b * data.x} {pp(-c, 'merge_op')} = {data.a} · y
         </p>
         <p>
           {data.a * data.y} = {data.a} · y
