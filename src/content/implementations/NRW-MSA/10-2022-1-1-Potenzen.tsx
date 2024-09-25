@@ -72,26 +72,9 @@ export const exercise10: Exercise<DATA> = {
         return (
           <>
             <p>
-              c) {data.basis_3}
-              <sup>
-                {data.case == 1 && '2'}
-                {data.case == 2 && '2'}
-                {data.case == 3 && '3'}
-              </sup>{' '}
-              ist
-              {data.basis_3 == 2 && data.bool == true && ' die Hälfte '}
-              {data.basis_3 == 2 && data.bool == false && ' das Doppelte '}
-              {data.basis_3 == 3 && data.bool == true && ' ein Drittel '}
-              {data.basis_3 == 3 && data.bool == false && ' das Dreifache '}
-              {data.basis_3 == 4 && data.bool == true && ' ein Viertel '}
-              {data.basis_3 == 4 && data.bool == false && ' das Vierfache '}
-              von {data.basis_3}
-              <sup>
-                {data.case == 1 && '3'}
-                {data.case == 2 && '4'}
-                {data.case == 3 && '4'}
-              </sup>
-              .
+              b) {pp(data.basis)}
+              <sup>{data.exponent}</sup> {'='} ({pp(data.basis)})
+              <sup>{data.exponent}</sup>
             </p>
           </>
         )
@@ -115,8 +98,7 @@ export const exercise10: Exercise<DATA> = {
                 ({pp(data.basis)})<sup>3</sup> = − {Math.abs(data.basis)}
                 <sup>2</sup>
               </li>
-            </ul>
-
+            </ul>{' '}
             <p>
               In diesem Fall ist die Aussage{' '}
               {data.exponent % 2 == 1 ? 'richtig.' : 'falsch.'}
