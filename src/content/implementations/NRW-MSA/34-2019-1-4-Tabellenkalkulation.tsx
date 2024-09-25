@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   preis: number
@@ -9,7 +10,22 @@ interface DATA {
   item_1: number
   item_2: number
   item_3: number
+  order: number[]
 }
+
+const richtig = [
+  '= B8 * B2',
+  '= C10 - (C5 + C6 + C7)',
+  '= C5 * 0,05',
+  '= B5 * B2 * 0,05',
+]
+
+const falsch = [
+  '= B5/3',
+  '= C10 * 0,05',
+  '= (C5 + C6 + C7) * 0,05',
+  '= B8 * C4',
+]
 
 export const exercise34: Exercise<DATA> = {
   title: 'Tabellenkalkulation',
@@ -24,6 +40,7 @@ export const exercise34: Exercise<DATA> = {
       item_1: rng.randomIntBetween(0, 3),
       item_2: rng.randomIntBetween(0, 3),
       item_3: rng.randomIntBetween(0, 3),
+      order: rng.shuffleArray([0, 1, 2]),
     }
   },
   constraint({ data }) {
@@ -35,33 +52,12 @@ export const exercise34: Exercise<DATA> = {
   tasks: [
     {
       task({ data }) {
-        // Funktion zum Mischen des Arrays
-        function shuffleArray(array: any[]) {
-          for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1))
-            ;[array[i], array[j]] = [array[j], array[i]]
-          }
-          return array
-        }
-        const richtig = [
-          '= B8 * B2',
-          '= C10 - (C5 + C6 + C7)',
-          '= C5 * 0,05',
-          '= B5 * B2 * 0,05',
-        ]
-
-        const falsch = [
-          '= B5/3',
-          '= C10 * 0,05',
-          '= (C5 + C6 + C7) * 0,05',
-          '= B8 * C4',
-        ]
         const listItems = [
           <li key="1">{richtig[data.item_1]}</li>,
           <li key="2">{richtig[data.item_2]}</li>,
           <li key="3">{falsch[data.item_3]}</li>,
         ]
-        const shuffledItems = shuffleArray(listItems)
+        const shuffledItems = data.order.map(i => listItems[i])
         return (
           <>
             <p>
@@ -176,19 +172,6 @@ export const exercise34: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const richtig = [
-          '= B8 * B2',
-          '= C10 - (C5 + C6 + C7)',
-          '= C5 * 0,05',
-          '= B5 * B2 * 0,05',
-        ]
-
-        const falsch = [
-          '= B5/3',
-          '= C10 * 0,05',
-          '= (C5 + C6 + C7) * 0,05',
-          '= B8 * C4',
-        ]
         return (
           <>
             <p>Die Formeln </p>
@@ -230,6 +213,12 @@ export const exercise34: Exercise<DATA> = {
         const nenner = pp(
           (data.preis + data.breakfast + data.dinner + data.preis * 0.05) * 7,
         )
+        const p = roundToDigits(
+          (data.dinner * 7) /
+            ((data.dinner + data.preis + data.breakfast + data.preis * 0.05) *
+              7),
+          4,
+        )
         return (
           <>
             <p>
@@ -238,34 +227,9 @@ export const exercise34: Exercise<DATA> = {
             </p>
             <p>
               {buildFrac('Abendessen', 'Gesamtkosten')} ={' '}
-              {buildFrac(zaehler, nenner)} ={' '}
-              {pp(
-                Math.round(
-                  ((data.dinner * 7) /
-                    ((data.dinner +
-                      data.preis +
-                      data.breakfast +
-                      data.preis * 0.05) *
-                      7)) *
-                    10000,
-                ) / 10000,
-              )}
+              {buildFrac(zaehler, nenner)} = {pp(p)}
             </p>
-            <p>
-              Tarek würde{' '}
-              {pp(
-                Math.round(
-                  ((data.dinner * 7) /
-                    ((data.dinner +
-                      data.preis +
-                      data.breakfast +
-                      data.preis * 0.05) *
-                      7)) *
-                    10000,
-                ) / 100,
-              )}{' '}
-              % der Kosten sparen.
-            </p>
+            <p>Tarek würde {pp(p * 100)} % der Kosten sparen.</p>
             <p>
               Alternativ kann man auch mit den Kosten für eine Nacht rechnen.
               Das Ergebnis ist gleich, da das Abendessen den gleichen Anteil
