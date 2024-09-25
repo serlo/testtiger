@@ -57,12 +57,10 @@ export const exercise27: Exercise<DATA> = {
             <p>Notiere deinen Lösungsweg.</p>
 
             <p>
-              I &nbsp;&nbsp; {data.b}x − {data.a}y = {c < 0 ? '−' : false}
-              {c < 0 ? -c : c}
+              I &nbsp;&nbsp; {data.b}x − {data.a}y = {pp(c)}
             </p>
             <p>
-              II &nbsp; {data.d}x + {data.a}y = {e < 0 ? '−' : false}
-              {e < 0 ? -e : e}
+              II &nbsp; {data.d}x + {data.a}y = {pp(e)}
             </p>
           </>
         )
@@ -75,34 +73,31 @@ export const exercise27: Exercise<DATA> = {
             <p>
               <p>Addiere die Gleichungen I+II:</p>
               <p>
-                {data.b}x + {data.d}x = {c < 0 ? '−' : false}
-                {c < 0 ? -c : c} + {e < 0 ? '(− ' : false}
-                {e < 0 ? -e : e}
-                {e < 0 ? ')' : false}
+                {data.b}x + {data.d}x = {pp(c)} + {pp(e, 'embrace_neg')}
               </p>
               <p>Fasse die Terme zusammen:</p>
               <p>
                 {data.b + data.d}x = {pp(c + e)}
               </p>
-              <p>{data.x != 1 ? 'Löse die Gleichung nach x:' : false}</p>
-              <p>{data.x != 1 ? 'x = ' + data.x : false}</p>
+              {data.x !== 1 && (
+                <>
+                  <p>Löse die Gleichung nach x:</p>
+                  <p>x = {data.x}</p>
+                </>
+              )}
               <p>
                 Setze den Wert für x in eine der Gleichungen ein. x in I
                 eingesetzt liefert:
               </p>
               <p>
-                {data.b} · {data.x} − {data.a} · y = {c < 0 ? '−' : false}
-                {c < 0 ? -c : c}
+                {data.b} · {data.x} − {data.a} · y = {pp(c)}
               </p>
               <p>Vereinfache die Gleichung und löse nach y.</p>
               <p>
-                {data.b} · {data.x} = {c < 0 ? '−' : false}
-                {c < 0 ? -c : c} + {data.a} · y
+                {data.b} · {data.x} = {pp(c)} + {data.a} · y
               </p>
               <p>
-                {data.b} · {data.x} {c < 0 ? '+ ' : false}
-                {c > 0 ? '− ' : false}
-                {Math.abs(c)} = {data.a} · y
+                {data.b} · {data.x} {pp(-c, 'merge_op')} = {data.a} · y
               </p>
               <p>
                 {data.a * data.y} = {data.a} · y
@@ -128,10 +123,9 @@ export const exercise27: Exercise<DATA> = {
               Gleichungssystem keine Lösung hat. Begründe deine Entscheidung.{' '}
             </p>
             <p>
-              <br></br>I:&nbsp;&nbsp;y = ___ x{' '}
-              {data.b_b < 0 ? pp(data.b_b) : '+ ' + data.b_b}
+              <br></br>I:&nbsp;&nbsp;y = ___ x {pp(data.b_b, 'merge_op')}
               <br></br>II:&nbsp;&nbsp;y = {data.m_b}x{' '}
-              {data.b_2_b < 0 ? pp(data.b_2_b) : '+ ' + data.b_2_b}
+              {pp(data.b_2_b, 'merge_op')}
             </p>
           </>
         )
