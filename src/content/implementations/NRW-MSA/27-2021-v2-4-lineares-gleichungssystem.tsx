@@ -94,10 +94,10 @@ export const exercise27: Exercise<DATA> = {
               </p>
               <p>Vereinfache die Gleichung und löse nach y.</p>
               <p>
-                {data.b} · {data.x} = {pp(c)} + {data.a} · y
+                {data.b * data.x} = {pp(c)} + {data.a} · y
               </p>
               <p>
-                {data.b} · {data.x} {pp(-c, 'merge_op')} = {data.a} · y
+                {data.b * data.x} {pp(-c, 'merge_op')} = {data.a} · y
               </p>
               <p>
                 {data.a * data.y} = {data.a} · y

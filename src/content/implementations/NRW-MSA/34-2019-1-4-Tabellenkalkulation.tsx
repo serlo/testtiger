@@ -29,7 +29,7 @@ const falsch = [
 
 export const exercise34: Exercise<DATA> = {
   title: 'Tabellenkalkulation',
-  source: '2019 / 1',
+  source: '2019 Teil 1 /4',
   useCalculator: false,
   duration: 1,
   generator(rng) {

@@ -66,7 +66,7 @@ export const exercise19: Exercise<DATA> = {
                   -2,
                 ),
               )}{' '}
-              cm³{' '}
+              cm³ hat.
             </p>
           </>
         )
