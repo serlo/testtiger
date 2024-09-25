@@ -13,29 +13,27 @@ export const exerciseXXX: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
-  subtasks: {
-    intro: ({ data }) => {
-      return <></>
-    },
-    main: [
-      {
-        points: 42,
-        task({ data }) {
-          return <></>
-        },
-        solution({ data }) {
-          return <></>
-        },
-      },
-      {
-        points: 42,
-        task({ data }) {
-          return <></>
-        },
-        solution({ data }) {
-          return <></>
-        },
-      },
-    ],
+  intro({ data }) {
+    return <></>
   },
+  tasks: [
+    {
+      points: 42,
+      task({ data }) {
+        return <></>
+      },
+      solution({ data }) {
+        return <></>
+      },
+    },
+    {
+      points: 42,
+      task({ data }) {
+        return <></>
+      },
+      solution({ data }) {
+        return <></>
+      },
+    },
+  ],
 }

@@ -1,6 +1,7 @@
 export function constrainedGeneration<T>(
   gen: () => T,
   constraint: (data: T) => boolean,
+  warn?: boolean,
 ) {
   let limit = 1000
   for (;;) {
@@ -11,7 +12,9 @@ export function constrainedGeneration<T>(
     }
 
     if (--limit == 0) {
-      alert('Contraint konnte nach 1000 Versuchen nicht erfüllt werden')
+      if (warn) {
+        alert('Contraint konnte nach 1000 Versuchen nicht erfüllt werden')
+      }
       console.log('generator exhausted')
       break
     }

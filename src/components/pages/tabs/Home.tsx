@@ -85,8 +85,8 @@ export function Home() {
                         e.exercises.includes(parseInt(id)),
                       )?.title
                     }
-                    {'subtasks' in content ? (
-                      <>, {content.subtasks.main.length} Teilaufgaben</>
+                    {'tasks' in content ? (
+                      <>, {content.tasks.length} Teilaufgaben</>
                     ) : null}
                   </div>
                 </div>
