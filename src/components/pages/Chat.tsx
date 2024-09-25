@@ -9,7 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { Fragment, memo, useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { exercisesData } from '@/content/exercises'
 import { renderExample } from '@/data/render-example'
 import { generateSeed } from '@/data/generate-seed'
@@ -23,8 +23,7 @@ import { IMessage } from '@/data/types'
 import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
 import { Message, SpinnerMessage } from '../ui/Message'
-import { flushSync } from 'react-dom'
-import { createRoot } from 'react-dom/client'
+import { renderToStaticMarkup } from 'react-dom/server'
 
 interface ChatProps {
   id: number
@@ -52,13 +51,7 @@ export function Chat({ id }: ChatProps) {
       const data = generateData(id, seed, content)
 
       function toHtml(el: JSX.Element) {
-        const div = document.createElement('div')
-        const root = createRoot(div)
-        flushSync(() => {
-          root.render(<>{el}</>)
-        })
-        const text = div.innerHTML
-        return text
+        return renderToStaticMarkup(el)
       }
 
       if (withSubtasks) {
