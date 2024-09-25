@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   dia: number
@@ -34,13 +35,7 @@ export const exercise28: Exercise<DATA> = {
       <>
         <p>Ein Unternehmen stellt lackierte Glaskugeln her (Abbildung 1).</p>
         <p>Die Glaskugeln haben einen Durchmesser von {data.dia} cm.</p>
-        <svg viewBox="0 0 700 500">
-          <image
-            href="/content/NRW_MSA_Glaskugeln.jpg"
-            height="500"
-            width="700"
-          />
-        </svg>
+        <img src="/content/NRW_MSA_Glaskugeln.jpg" alt="" />
         <p>Abbildung 1: Glaskugel</p>
       </>
     )
@@ -60,19 +55,17 @@ export const exercise28: Exercise<DATA> = {
             <p>Berechne das Volumen der Kugel mit der Formel:</p>
             <p>V = {buildInlineFrac(4, 3)} · π · r³</p>
             <p>
-              Der Radius beträgt: r = {buildInlineFrac('d', 2)} = {data.dia / 2}{' '}
-              cm
+              Der Radius beträgt: r = {buildInlineFrac('d', 2)} ={' '}
+              {pp(data.dia / 2)} cm
             </p>
             <p>Setze die Werte ein und runde das Ergebnis:</p>
             <p>
-              V = {buildInlineFrac(4, 3)} · π · {data.dia / 2}³
+              V = {buildInlineFrac(4, 3)} · π · {pp(data.dia / 2)}³
             </p>
             <p>
               V ≈{' '}
               {pp(
-                Math.round(
-                  (4 / 3) * Math.PI * Math.pow(data.dia / 2, 3) * 100,
-                ) / 100,
+                roundToDigits((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3), 2),
               )}{' '}
               cm³
             </p>
@@ -97,18 +90,13 @@ export const exercise28: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const O = roundToDigits(4 * Math.PI * Math.pow(data.dia / 2, 2), 2)
         return (
           <>
             <p>Berechne zuerst die Oberfläche der Kugel mit der Formel:</p>
             <p>O = 4 · π · r²</p>
             <p>O = 4 · π · {data.dia / 2}²</p>
-            <p>
-              O ={' '}
-              {pp(
-                Math.round(4 * Math.PI * Math.pow(data.dia / 2, 2) * 100) / 100,
-              )}{' '}
-              cm²
-            </p>
+            <p>O = {pp(O)} cm²</p>
             <p>
               Die Farbe reicht für {data.paint} m². Rechne die Fläche in cm² um:
             </p>
@@ -118,36 +106,13 @@ export const exercise28: Exercise<DATA> = {
             </p>
             <p>Berechne die Anzahl der Kugeln:</p>
             <p>
-              {data.paint * 10000} :{' '}
-              {pp(
-                Math.round(4 * Math.PI * Math.pow(data.dia / 2, 2) * 100) / 100,
-              )}{' '}
-              ={' '}
-              {pp(
-                Math.round(
-                  ((data.paint * 10000) /
-                    (4 * Math.PI * Math.pow(data.dia / 2, 2))) *
-                    100,
-                ) / 100,
-              )}{' '}
-              ≈{' '}
-              {pp(
-                Math.floor(
-                  (data.paint * 10000) /
-                    (4 * Math.PI * Math.pow(data.dia / 2, 2)),
-                ),
-              )}
+              {data.paint * 10000} : {pp(O)} ={' '}
+              {pp(roundToDigits((data.paint * 10000) / O, 2))} ≈{' '}
+              {pp(Math.floor((data.paint * 10000) / O))}
             </p>
             <p>
-              {' '}
-              Es können etwa{' '}
-              {pp(
-                Math.floor(
-                  (data.paint * 10000) /
-                    (4 * Math.PI * Math.pow(data.dia / 2, 2)),
-                ),
-              )}{' '}
-              ganze Kugeln lackiert werden.
+              Es können etwa {pp(Math.floor((data.paint * 10000) / O))} ganze
+              Kugeln lackiert werden.
             </p>
           </>
         )
@@ -173,7 +138,6 @@ export const exercise28: Exercise<DATA> = {
         return (
           <>
             <p>
-              {' '}
               {data.case == 1 ||
                 (data.case == 3 &&
                   'Bei einer Verdoppelung des Durchmessers verdoppelt sich auch der Radius.')}
