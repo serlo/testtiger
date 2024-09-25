@@ -484,6 +484,84 @@ export const exercise7: Exercise<DATA> = {
                 {buildFrac(bruch4.zähler, bruch4.nenner)}
               </foreignObject>
               <foreignObject x="240" y="90" width={30} height={60}>
+      {
+        task({ data }) {
+          return (
+            <>
+              <p>
+                g) Gesucht ist die Wahrscheinlichkeit, dass zwei
+                verschiedenfarbige Herzen gezogen werden.
+              </p>
+              <ol>
+                <li>
+                  Ergänze im Baumdiagramm die dafür notwendigen
+                  Wahrscheinlichkeiten.
+                </li>
+                <li>Berechne die gesuchte Wahrscheinlichkeit.</li>
+              </ol>
+            </>
+          )
+        },
+        solution({ data }) {
+          const gesamt = data.red / (data.zaehler / data.nenner)
+          const bruch = kürzeBruch(data.zaehler, data.nenner)
+          const bruch2 = kürzeBruch(data.nenner - data.zaehler, data.nenner)
+          const bruch3 = kürzeBruch(data.red - 1, gesamt - 1)
+          const bruch4 = kürzeBruch(gesamt - data.red, gesamt - 1)
+          const bruch5 = kürzeBruch(data.red, gesamt - 1)
+          const bruch6 = kürzeBruch(gesamt - data.red - 1, gesamt - 1)
+          return (
+            <>
+              <p>
+                (1) Berechne zuerst die Wahrscheinlichkeit, ein weißes Herz zu
+                ziehen (p(w)). Beide Wahrscheinlichkeiten müssen in Summe 1
+                ergeben:
+              </p>
+              <p>
+                p(w) = 1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
+                {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
+              </p>
+              <p>
+                Beim zweiten Ziehen enthält der Karton ein Herz der gezogenen
+                Farbe weniger. Das muss für die Wahrscheinlichkeiten
+                berücksichtigt werden. Das Baumdiagramm ist:
+              </p>
+              <svg viewBox="0 0 328 220">
+                <image
+                  href="/content/NRW_MSA-Baumdiagramm.PNG"
+                  height="220"
+                  width="328"
+                />
+                <foreignObject x="50" y="20" width={20} height={60}>
+                  {buildFrac(bruch.zähler, bruch.nenner)}
+                </foreignObject>
+                <foreignObject x="50" y="120" width={20} height={60}>
+                  {buildFrac(bruch2.zähler, bruch2.nenner)}
+                </foreignObject>
+                <foreignObject x="220" y="0" width={30} height={60}>
+                  {buildFrac(bruch3.zähler, bruch3.nenner)}
+                </foreignObject>
+                <foreignObject x="210" y="60" width={30} height={60}>
+                  {buildFrac(bruch4.zähler, bruch4.nenner)}
+                </foreignObject>
+                <foreignObject x="240" y="90" width={30} height={60}>
+                  {buildFrac(bruch5.zähler, bruch5.nenner)}
+                </foreignObject>
+                <foreignObject x="220" y="150" width={30} height={60}>
+                  {buildFrac(bruch6.zähler, bruch6.nenner)}
+                </foreignObject>
+              </svg>
+              <p>
+                (2) Für die Wahrscheinlichkeit betrachte die beiden Pfade, die
+                zum Ereignis {'"'}Unterschiedliche Farben{'"'} passen.
+              </p>
+              <p>
+                Verwende die Pfadregeln, um die Wahrscheinlichkeit zu berechnen:
+              </p>
+              <p>
+                p(rw;wr) = {buildFrac(bruch.zähler, bruch.nenner)} ·{' '}
+                {buildFrac(bruch4.zähler, bruch4.nenner)} +{' '}
+                {buildFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
                 {buildFrac(bruch5.zähler, bruch5.nenner)}
               </foreignObject>
               <foreignObject x="220" y="150" width={30} height={60}>
