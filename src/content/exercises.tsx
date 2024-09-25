@@ -37,6 +37,7 @@ import { exercise26 } from './implementations/NRW-MSA/26-2021-v2-3-volumen-preis
 import { exercise32 } from './implementations/NRW-MSA/32-2019-1-2-Berechnungen-am-Rechteck'
 import { exercise33 } from './implementations/NRW-MSA/33-2019-1-3-Schieberegler'
 import { exercise41 } from './implementations/NRW-MSA/41-2018-1-2-Kugeln-ziehen'
+import { exercise43 } from './implementations/NRW-MSA/43-2018-1-4-lineares-gleichungssystem'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -74,6 +75,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   38: exercise38,
   192: exercise192,
   41: exercise41,
+  43: exercise43,
   45: exercise45,
   46: exercise46,
   47: exercise47,
