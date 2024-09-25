@@ -198,13 +198,13 @@ export const exercise38: Exercise<DATA> = {
                 Bestimme den Durchmesser aus der kreisförmigen Grundfläche:{' '}
                 {pp(data.surface)} m²
               </p>
-              {buildEquation([['A', '=', 'π · r²']])}
+              {buildEquation([['G', '=', 'π · r²']])}
               <p>
                 Setze den Wert der Grundfläche ein und berechne den Radius
                 mithilfe der Quadratwurzel:
               </p>
               {buildEquation([
-                ['A', '=', 'π · r²'],
+                ['G', '=', 'π · r²'],
                 [pp(data.surface), '=', 'π · r²', '|: π'],
                 ['r', '=', buildSqrt(pp(data.surface) + ' : π')],
                 [
@@ -248,7 +248,7 @@ export const exercise38: Exercise<DATA> = {
                 bedecken die Algen schon ca.{' '}
                 {pp(roundToDigits(data.surface / 20, 2))} m² der
                 Wasseroberfläche und vermehren sich täglich um {data.growth} %.
-                Das Wachstum der Alegen auf der Wasseroberfläche kann mit der
+                Das Wachstum der Algen auf der Wasseroberfläche kann mit der
                 folgenden Exponentialfunktion f beschrieben werden:{' '}
               </p>
               <p>
