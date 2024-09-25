@@ -31,13 +31,11 @@ export const exercise32: Exercise<DATA> = {
     return (
       <>
         <>
-          <svg viewBox="0 0 164 90">
-            <image
-              href="/content/NRW_MSA_2019_1_2_rechteck.svg"
-              height="90"
-              width="164"
-            />
-          </svg>
+          <img
+            src="/content/NRW_MSA_2019_1_2_rechteck.svg"
+            alt="Rechteck mit Diagonale"
+            className="w-[250px] mx-auto"
+          />
           <p>
             Ein Rechteck hat die Seitenlängen a = {data.a} cm und b = {data.b}{' '}
             cm.
