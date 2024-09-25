@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   x_s: number
@@ -36,16 +37,13 @@ export const exercise29: Exercise<DATA> = {
     )
   },
   intro({ data }) {
+    function getDuration(t: number) {
+      return roundToDigits(Math.pow((2 * t) / data.g, 0.5), 2)
+    }
     return (
       <>
         <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
-        <svg viewBox="0 0 700 500">
-          <image
-            href="/content/NRW_MSA_Blobbing.jpg"
-            height="500"
-            width="700"
-          />
-        </svg>
+        <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
         <p>
           Abbildung 1: Ablauf eines Blobbingsprunges als überlagerte Aufnahme
         </p>
@@ -63,27 +61,16 @@ export const exercise29: Exercise<DATA> = {
           (3) Der Blobber wird in die Luft geschleudert und landet dann im
           Wasser.
         </p>
-        <svg viewBox="0 0 700 200">
-          <image
-            href="/content/NRW_MSA_Blobbing_2.png"
-            height="200"
-            width="700"
-          />
-        </svg>
+        <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
         <p>
           Abbildung 2: Vereinfachte Darstellung des Blobbing-Ablaufs (nicht
           maßstabsgetreu)
         </p>
         <p>
           Der Jumper kann zwischen verschiedenen Absprunghöhen wählen. Ein
-          Sprung aus fünf Meter Höhe dauert ca.{' '}
-          {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)}{' '}
-          {Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100 == 1
-            ? 'Sekunde'
-            : 'Sekunden'}
-          . Ein Sprung aus zehn Meter Höhe dauert ca.{' '}
-          {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)}{' '}
-          Sekunden.
+          Sprung aus fünf Meter Höhe dauert ca. {pp(getDuration(5))}{' '}
+          {getDuration(5) == 1 ? 'Sekunde' : 'Sekunden'}. Ein Sprung aus zehn
+          Meter Höhe dauert ca. {pp(getDuration(10))} Sekunden.
         </p>
         <svg viewBox="0 0 700 500">
           <image
@@ -92,26 +79,20 @@ export const exercise29: Exercise<DATA> = {
             width="700"
           />
           <text x={420} y={250} fontSize={30} textAnchor="right" stroke="black">
-            {pp(Math.round(Math.pow((2 * 3) / data.g, 0.5) * 100) / 100)} s
+            {pp(getDuration(3))} s
           </text>
           <text x={410} y={320} fontSize={30} textAnchor="right" stroke="black">
-            {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)} s
+            {pp(getDuration(5))} s
           </text>
           <text x={410} y={395} fontSize={30} textAnchor="right" stroke="black">
-            {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)} s
+            {pp(getDuration(10))} s
           </text>
           <text x={410} y={465} fontSize={30} textAnchor="right" stroke="black">
-            {pp(Math.round(Math.pow((2 * 15) / data.g, 0.5) * 100) / 100)} s
+            {pp(getDuration(15))} s
           </text>
         </svg>
         <p>Tabelle 1: Sprungdauer in Abhängigkeit von der Absprunghöhe</p>
-        <svg viewBox="0 0 700 500">
-          <image
-            href="/content/NRW_MSA_Blobbing_4.jpg"
-            height="500"
-            width="700"
-          />
-        </svg>
+        <img src="/content/NRW_MSA_Blobbing_4.jpg" alt="" />
       </>
     )
   },
@@ -219,6 +200,9 @@ export const exercise29: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        function getDuration(t: number) {
+          return roundToDigits(Math.pow((2 * t) / data.g, 0.5), 2)
+        }
         return (
           <>
             <p>
@@ -228,30 +212,21 @@ export const exercise29: Exercise<DATA> = {
             <ul>
               <li>
                 Punkt 1: (5|
-                {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)})
+                {pp(getDuration(5))})
               </li>
               <li>
                 Punkt 1: (10|
-                {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)})
+                {pp(getDuration(10))})
               </li>
             </ul>
             <p>
               Zwischen 0 und 5 Metern nimmt die Sprungdauer um{' '}
-              {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)}{' '}
-              Sekunden zu.
+              {pp(getDuration(5))} Sekunden zu.
             </p>
             <p>
               Zwischen 5 und 10 Metern nimmt die Sprungdauer um{' '}
-              {pp(Math.round(Math.pow((2 * 10) / data.g, 0.5) * 100) / 100)} −{' '}
-              {pp(Math.round(Math.pow((2 * 5) / data.g, 0.5) * 100) / 100)} ={' '}
-              {pp(
-                Math.round(
-                  (Math.pow((2 * 10) / data.g, 0.5) -
-                    Math.pow((2 * 5) / data.g, 0.5)) *
-                    100,
-                ) / 100,
-              )}{' '}
-              Sekunden zu.
+              {pp(getDuration(10))} − {pp(getDuration(5))} ={' '}
+              {pp(getDuration(10) - getDuration(5))} Sekunden zu.
             </p>
             <p>Damit ist der Zusammenhang nicht linear.</p>
           </>
@@ -463,7 +438,15 @@ export const exercise29: Exercise<DATA> = {
       },
       solution({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
-        const string = (pp(a * 2 * data.x_s) + '±') as unknown as JSX.Element
+        const D = roundToDigits(
+          Math.pow(
+            a * 2 * data.x_s * a * 2 * data.x_s +
+              4 * a * a * data.x_s * data.x_s +
+              data.y_s,
+            0.5,
+          ),
+          2,
+        )
         return (
           <>
             <p>Setze die Funktionsgleichung 0:</p>
@@ -476,24 +459,27 @@ export const exercise29: Exercise<DATA> = {
               x<sub>1/2</sub> ={' '}
               {buildInlineFrac(
                 <>
-                  {'-b'} {' ± '}
-                  {buildSqrt('b² - 4ac')}
+                  <span className="align-middle">−b ± </span>
+                  {buildSqrt(<>b² − 4ac</>)}
                 </>,
-                '2 · a',
+                <>2 · a</>,
               )}
             </p>
             <p>
               x<sub>1/2</sub> ={' '}
               {buildInlineFrac(
                 <>
-                  {pp(a * 2 * data.x_s)} {' ± '}
+                  <span className="align-middle">
+                    {pp(a * 2 * data.x_s)} ±{' '}
+                  </span>
                   {buildSqrt(
-                    pp(a * 2 * data.x_s * a * 2 * data.x_s) +
-                      ' ' +
-                      pp(
+                    <>
+                      {pp(a * 2 * data.x_s * a * 2 * data.x_s)}{' '}
+                      {pp(
                         4 * a * a * data.x_s * data.x_s + data.y_s,
                         'merge_op',
-                      ),
+                      )}
+                    </>,
                   )}
                 </>,
                 pp(2 * a),
@@ -504,51 +490,19 @@ export const exercise29: Exercise<DATA> = {
               {buildInlineFrac(
                 <>
                   {pp(a * 2 * data.x_s)} {' ± '}
-                  {pp(
-                    Math.round(
-                      100 *
-                        Math.pow(
-                          a * 2 * data.x_s * a * 2 * data.x_s +
-                            4 * a * a * data.x_s * data.x_s +
-                            data.y_s,
-                          0.5,
-                        ),
-                    ) / 100,
-                  )}
+                  {pp(D)}
                 </>,
                 pp(2 * a),
               )}
             </p>
             <p>
               x<sub>1</sub> ≈{' '}
-              {pp(
-                Math.round(
-                  ((a * 2 * data.x_s +
-                    Math.pow(
-                      a * 2 * data.x_s * a * 2 * data.x_s -
-                        4 * a * (a * data.x_s * data.x_s + data.y_s),
-                      0.5,
-                    )) /
-                    (2 * a)) *
-                    100,
-                ) / 100,
-              )}
+              {pp(roundToDigits((a * 2 * data.x_s + D) / (2 * a), 2))}
             </p>
             <p>
               {' '}
               x<sub>2</sub> ≈{' '}
-              {pp(
-                Math.round(
-                  ((a * 2 * data.x_s -
-                    Math.pow(
-                      a * 2 * data.x_s * a * 2 * data.x_s -
-                        4 * a * (a * data.x_s * data.x_s + data.y_s),
-                      0.5,
-                    )) /
-                    (2 * a)) *
-                    100,
-                ) / 100,
-              )}
+              {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))}
             </p>
           </>
         )
