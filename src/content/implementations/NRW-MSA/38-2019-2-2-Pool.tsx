@@ -19,7 +19,7 @@ export const exercise38: Exercise<DATA> = {
   duration: 10,
   generator(rng) {
     return {
-      höhe: rng.randomIntBetween(12, 18) / 10,
+      höhe: rng.randomIntBetween(9, 16) / 10,
       surface: rng.randomIntBetween(800, 1200) / 100,
       water: rng.randomIntBetween(1, 5) * 5,
       terra: rng.randomIntBetween(60, 90),
@@ -121,7 +121,7 @@ export const exercise38: Exercise<DATA> = {
                 {pp(data.höhe - data.water / 100)} m
               </p>
               <p>Achte bei der Rechnung auf die Einheiten.</p>
-              <p>Das Volumen, das das Wasser einnimmt, beträgt:</p>
+              <p>Das Volumen des Wassers beträgt:</p>
               {buildEquation([
                 ['V', '=', 'G · h'],
                 [
