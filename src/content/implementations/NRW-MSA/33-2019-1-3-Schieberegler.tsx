@@ -20,6 +20,11 @@ export const exercise33: Exercise<DATA> = {
     return true
   },
   intro({ data }) {
+    const c = data.c // Wert von c, der dynamisch aus den Daten kommt
+    const generatePathData = (cValue: number): string => {
+      // Berechnung für den Pfad basierend auf dem c-Wert
+      return `M 100 ${0 - data.c * 40} C 220 ${541 - data.c * 40}, 240 ${541 - data.c * 40}, 360 ${0 - data.c * 40}`
+    }
     return (
       <>
         <p>
@@ -27,7 +32,22 @@ export const exercise33: Exercise<DATA> = {
           quadratischen Funktion mit: f(x)=x²+c. Sie erstellt einen
           Schieberegler, mit dem sie den Wert für c verändern kann.
         </p>
-        <p>TODO: Graphik siehe Aufgabe</p>
+
+        <svg viewBox="0 0 500 450">
+          <image
+            href="/content/NRW_MSA_2019_1_3_koordinatensystem.svg"
+            height="450"
+            width="500"
+          />
+
+          {/* Dynamischer Pfad mit dem Wert für c */}
+          <path
+            d={generatePathData(c)}
+            stroke="blue"
+            strokeWidth={4}
+            fill="transparent"
+          />
+        </svg>
       </>
     )
   },
