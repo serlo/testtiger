@@ -19,7 +19,7 @@ export const exercise44: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.n != 0
+    return data.n != 0 && data.n + data.b != 9 && data.n + data.b != 10
   },
   intro({ data }) {
     return (
