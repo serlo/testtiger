@@ -39,9 +39,9 @@ export const exercise44: Exercise<DATA> = {
           />
           <line
             x1={0}
-            y1={365 + 12 * data.b - (380 / 7.5) * (2 * -5 + data.b)}
+            y1={365 + 10.5 * data.b - (380 / 7.5) * (2 * -5 + data.b)}
             x2={500}
-            y2={365 + 12 * data.b - (380 / 7.5) * (2 * 5 + data.b)}
+            y2={365 + 10.5 * data.b - (380 / 7.5) * (2 * 5 + data.b)}
             stroke="blue"
             strokeWidth={4}
           />
@@ -100,13 +100,13 @@ export const exercise44: Exercise<DATA> = {
                 x1={0}
                 y1={
                   365 +
-                  12 * (data.b + data.n) -
+                  10.5 * (data.b + data.n) -
                   (380 / 7.5) * (2 * -5 + (data.b + data.n))
                 }
                 x2={500}
                 y2={
                   365 +
-                  12 * (data.b + data.n) -
+                  10.5 * (data.b + data.n) -
                   (380 / 7.5) * (2 * 5 + (data.b + data.n))
                 }
                 stroke="blue"
