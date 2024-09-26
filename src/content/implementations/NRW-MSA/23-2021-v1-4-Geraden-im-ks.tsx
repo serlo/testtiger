@@ -115,51 +115,51 @@ export const exercise23: Exercise<DATA> = {
                 strokeWidth={4}
               />
               <rect
-                x={50 - 15} // x-Position leicht nach links verschoben, um Platz für den Text zu schaffen
-                y={338 - (380 / 7.6) * (data.m_1 * -3 + data.b_1) - 25} // y-Position angepasst, um den Text zu umschließen
-                width={40} // Breite des Rechtecks, angepasst an die Textgröße
-                height={30} // Höhe des Rechtecks, angepasst an die Textgröße
+                x={70 - 7} // x-Position leicht nach links verschoben, um Platz für den Text zu schaffen
+                y={338 - (380 / 7.6) * (data.m_1 * -3.6 + data.b_1) - 16} // y-Position angepasst, um den Text zu umschließen
+                width={20} // Breite des Rechtecks, angepasst an die Textgröße
+                height={20} // Höhe des Rechtecks, angepasst an die Textgröße
                 fill="#DDEAF0" // Hellblauer Hintergrund
                 rx={6} // Abgerundete Ecken mit einem Radius von 8px
               />
               <text
-                x={50}
-                y={338 - (380 / 7.6) * (data.m_1 * -3 + data.b_1)}
-                fontSize={25}
+                x={70}
+                y={338 - (380 / 7.6) * (data.m_1 * -3.6 + data.b_1)}
+                fontSize={14}
                 textAnchor="right"
                 fill="blue"
               >
                 f
               </text>
               <rect
-                x={150 - 13} // x-Position leicht nach links verschoben, um Platz für den Text zu schaffen
-                y={338 - (380 / 7.6) * (data.m_2 * -2.4 + data.b_2) - 20} // y-Position angepasst, um den Text zu umschließen
-                width={40} // Breite des Rechtecks, angepasst an die Textgröße
-                height={30} // Höhe des Rechtecks, angepasst an die Textgröße
+                x={40 - 6} // x-Position leicht nach links verschoben, um Platz für den Text zu schaffen
+                y={338 - (380 / 7.6) * (data.m_2 * -4 + data.b_2) - 13} // y-Position angepasst, um den Text zu umschließen
+                width={20} // Breite des Rechtecks, angepasst an die Textgröße
+                height={20} // Höhe des Rechtecks, angepasst an die Textgröße
                 fill="#C6DEC7" // Hellgrüner Hintergrund
                 rx={6} // Abgerundete Ecken mit einem Radius von 8px
               />
               <text
-                x={150}
-                y={338 - (380 / 7.6) * (data.m_2 * -2.4 + data.b_2)}
-                fontSize={25}
+                x={40}
+                y={338 - (380 / 7.6) * (data.m_2 * -4 + data.b_2)}
+                fontSize={14}
                 textAnchor="right"
                 fill="green" // Textfarbe Grün
               >
                 g
               </text>
               <rect
-                x={250 - 13} // x-Position leicht nach links verschoben, um Platz für den Text zu schaffen
-                y={350 - (380 / 7.6) * (data.m_3 * 0 + data.b_3) - 25} // y-Position angepasst, um den Text zu umschließen
-                width={40} // Breite des Rechtecks, angepasst an die Textgröße
-                height={30} // Höhe des Rechtecks, angepasst an die Textgröße
+                x={60 - 7} // x-Position leicht nach links verschoben, um Platz für den Text zu schaffen
+                y={350 - (380 / 7.6) * (data.m_3 * -3.8 + data.b_3) - 15} // y-Position angepasst, um den Text zu umschließen
+                width={20} // Breite des Rechtecks, angepasst an die Textgröße
+                height={20} // Höhe des Rechtecks, angepasst an die Textgröße
                 fill="#F7E5CB" // Hellgelber Hintergrund
                 rx={6} // Abgerundete Ecken mit einem Radius von 8px
               />
               <text
-                x={250}
-                y={350 - (380 / 7.6) * (data.m_3 * 0 + data.b_3)}
-                fontSize={25}
+                x={60}
+                y={350 - (380 / 7.6) * (data.m_3 * -3.8 + data.b_3)}
+                fontSize={14}
                 textAnchor="right"
                 fill="orange"
               >
