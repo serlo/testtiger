@@ -165,6 +165,7 @@ export function Chat({ id }: ChatProps) {
       } as IMessage,
     ]
     const messageWithUserMessage = [...messages, ...newUserMessages]
+    setBase64Image(null)
     setMessages(currentMessages => [...currentMessages, ...newUserMessages])
 
     setIsLoading(true)
@@ -213,7 +214,7 @@ export function Chat({ id }: ChatProps) {
     navigationData[1].topics.find(t => t.exercises.includes(id))?.twColor ??
     'bg-gray-600'
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault()
       handleSubmit(event, base64Image)
