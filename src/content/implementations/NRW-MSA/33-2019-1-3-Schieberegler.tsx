@@ -23,7 +23,7 @@ export const exercise33: Exercise<DATA> = {
     const c = data.c // Wert von c, der dynamisch aus den Daten kommt
     const generatePathData = (cValue: number): string => {
       // Berechnung für den Pfad basierend auf dem c-Wert
-      return `M 100 ${0 - data.c * 40} C 220 ${541 - data.c * 40}, 240 ${541 - data.c * 40}, 360 ${0 - data.c * 40}`
+      return `M 100 ${0 - data.c * 40.3} C 220 ${541 - data.c * 40.3}, 240 ${541 - data.c * 40.3}, 360 ${0 - data.c * 40.3}`
     }
     return (
       <>
