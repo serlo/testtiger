@@ -1,12 +1,12 @@
 import { Exercise } from '@/data/types'
+import { kürzeBruch } from '@/helper/kuerze-bruch'
 import {
   buildEquation,
   buildFrac,
   buildInlineFrac,
 } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
-import Fraction from 'fraction.js'
 
 interface DATA {
   dia: number
@@ -59,10 +59,10 @@ export const exercise36: Exercise<DATA> = {
               Bestätige durch eine Rechnung, dass das Volumen einer
               Kaugummikugel ca.{' '}
               {pp(
-                Math.round(
-                  (((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000) *
-                    100,
-                ) / 100,
+                roundToDigits(
+                  ((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000,
+                  2,
+                ),
               )}{' '}
               cm³ beträgt.
             </p>
@@ -70,6 +70,7 @@ export const exercise36: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const V = (4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)
         return (
           <>
             <p>Berechne das Volumen der Kugel mit der Formel:</p>
@@ -78,26 +79,11 @@ export const exercise36: Exercise<DATA> = {
               Bestimme den Wert des Radius und setze ein: r ={' '}
               {buildInlineFrac('d', 2)} = {pp(data.dia / 2)} cm
             </p>
-            <p>
-              V ≈{' '}
-              {pp(
-                roundToDigits((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3), 2),
-              )}{' '}
-              mm³
-            </p>
+            <p>V ≈ {pp(roundToDigits(V, 2))} mm³</p>
             Rechne das Volumen in cm³ um.
             <p>
-              {pp(
-                roundToDigits((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3), 2),
-              )}{' '}
-              : 1000 ≈{' '}
-              {pp(
-                roundToDigits(
-                  ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
-                  2,
-                ),
-              )}{' '}
-              cm³
+              {pp(roundToDigits(V, 2))} : 1000 ≈{' '}
+              {pp(roundToDigits(V / 1000, 2))} cm³
             </p>
           </>
         )
@@ -115,76 +101,23 @@ export const exercise36: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const V = roundToDigits(
+          ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
+          2,
+        )
+        const solution = roundToDigits(300 / (data.weight * V), 0)
         return (
           <>
+            <p>Eine Kugel hat das Volumen von etwa {pp(V)} cm³.</p>
             <p>
-              Eine Kugel hat das Volumen von etwa{' '}
-              {pp(
-                roundToDigits(
-                  ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
-                  2,
-                ),
-              )}{' '}
-              cm³.
-            </p>
-            <p>
-              Damit hat sie ein Gewicht von:<br></br>{' '}
-              {pp(
-                roundToDigits(
-                  ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
-                  2,
-                ),
-              )}{' '}
-              · {pp(data.weight)} ≈{' '}
-              {pp(
-                roundToDigits(
-                  (data.weight *
-                    (4 / 3) *
-                    Math.PI *
-                    Math.pow(data.dia / 2, 3)) /
-                    1000,
-                  2,
-                ),
-              )}{' '}
-              g{' '}
+              Damit hat sie ein Gewicht von:<br></br> {pp(V)} ·{' '}
+              {pp(data.weight)} ≈ {pp(roundToDigits(data.weight * V, 2))} g{' '}
             </p>
             <p>
               {' '}
               In einer 300 g - Packung sind demnach:<br></br> 300 :{' '}
-              {pp(
-                roundToDigits(
-                  (data.weight *
-                    (4 / 3) *
-                    Math.PI *
-                    Math.pow(data.dia / 2, 3)) /
-                    1000,
-                  2,
-                ),
-              )}{' '}
-              {(300 /
-                roundToDigits(
-                  (data.weight *
-                    (4 / 3) *
-                    Math.PI *
-                    Math.pow(data.dia / 2, 3)) /
-                    1000,
-                  2,
-                )) %
-                1 ==
-              0
-                ? '='
-                : '≈'}{' '}
-              {Math.round(
-                300 /
-                  roundToDigits(
-                    (data.weight *
-                      (4 / 3) *
-                      Math.PI *
-                      Math.pow(data.dia / 2, 3)) /
-                      1000,
-                    2,
-                  ),
-              )}
+              {pp(roundToDigits(data.weight * V, 2))}{' '}
+              {Number.isInteger(solution) ? '=' : '≈'} {solution}
             </p>
           </>
         )
@@ -192,6 +125,10 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       task({ data }) {
+        const V = roundToDigits(
+          ((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000,
+          2,
+        )
         return (
           <>
             <p>
@@ -199,20 +136,9 @@ export const exercise36: Exercise<DATA> = {
               breit, {pp(data.length)} cm tief und {pp(data.height)} cm hoch.
               Steffi möchte wissen, wie viele Kaugummikugeln in den Behälter
               passen und rechnet <br></br>({pp(data.length)} · {pp(data.length)}{' '}
-              · {pp(data.height)}) :{' '}
+              · {pp(data.height)}) : {pp(V)} ≈{' '}
               {pp(
-                Math.round(
-                  (((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000) *
-                    100,
-                ) / 100,
-              )}{' '}
-              ≈{' '}
-              {pp(
-                Math.round(
-                  ((data.length * data.length * data.height) /
-                    (((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000)) *
-                    100,
-                ) / 100,
+                roundToDigits((data.length * data.length * data.height) / V, 2),
               )}
             </p>
             <p>
@@ -246,21 +172,6 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       task({ data }) {
-        function convertToFractionArray(value: number): [number, number] {
-          if (value % 1 !== 0) {
-            // Wenn der Wert eine Dezimalzahl ist
-            const fraction = new Fraction(value)
-            return [fraction.n, fraction.d] // Gibt den Zähler und Nenner als Array zurück
-          }
-          return [value, 1] // Falls keine Dezimalzahl, als Bruch x/1 darstellen
-        }
-        function convertToFractionString(value: number): JSX.Element | number {
-          if (value % 1 !== 0) {
-            const [zaehler, nenner] = convertToFractionArray(value)
-            return buildInlineFrac(zaehler, nenner)
-          }
-          return value
-        }
         return (
           <>
             <p>
@@ -271,26 +182,12 @@ export const exercise36: Exercise<DATA> = {
             <p>
               d) Begründe, dass die Wahrscheinlichkeit, beim ersten Drehen eine
               rote Kaugummikugel zu erhalten,{' '}
-              {convertToFractionString(data.red / (data.red + data.white))}{' '}
-              beträgt.
+              {ppFrac(data.red / (data.red + data.white))} beträgt.
             </p>
           </>
         )
       },
       solution({ data }) {
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.red, data.red + data.white)
         return (
           <>
@@ -318,35 +215,6 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       task({ data }) {
-        function convertToFractionArray(value: number): [number, number] {
-          if (value % 1 !== 0) {
-            // Wenn der Wert eine Dezimalzahl ist
-            const fraction = new Fraction(value)
-            return [fraction.n, fraction.d] // Gibt den Zähler und Nenner als Array zurück
-          }
-          return [value, 1] // Falls keine Dezimalzahl, als Bruch x/1 darstellen
-        }
-        function convertToFractionString(value: number): JSX.Element | number {
-          if (value % 1 !== 0) {
-            const [zaehler, nenner] = convertToFractionArray(value)
-            return buildInlineFrac(zaehler, nenner)
-          }
-          return value
-        }
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.red, data.red + data.white)
         const bruch_2 = kürzeBruch(data.red, data.red + data.white - 1)
         return (
@@ -374,19 +242,6 @@ export const exercise36: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.red, data.red + data.white)
         const bruch2 = kürzeBruch(data.white, data.red + data.white)
         const bruch3 = kürzeBruch(data.red - 1, data.red + data.white - 1)
@@ -456,25 +311,10 @@ export const exercise36: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        function gcd(a: number, b: number): number {
-          return b === 0 ? a : gcd(b, a % b)
-        }
-        function kürzeBruch(
-          zähler: number,
-          nenner: number,
-        ): { zähler: number; nenner: number } {
-          const teiler = gcd(zähler, nenner)
-          return {
-            zähler: zähler / teiler,
-            nenner: nenner / teiler,
-          }
-        }
         const bruch = kürzeBruch(data.red, data.red + data.white)
         const bruch2 = kürzeBruch(data.white, data.red + data.white)
-        const bruch3 = kürzeBruch(data.red - 1, data.red + data.white - 1)
         const bruch4 = kürzeBruch(data.white, data.red + data.white - 1)
         const bruch5 = kürzeBruch(data.red, data.red + data.white - 1)
-        const bruch6 = kürzeBruch(data.white - 1, data.red + data.white - 1)
         return (
           <>
             <p>
