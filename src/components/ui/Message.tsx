@@ -155,8 +155,14 @@ export function BotMessage({
 
   return (
     <div className={clsx('group relative flex items-start', className)}>
-      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md">
-        <img src="/img/birdie.svg" alt="Bot" width={24} height={24} />
+      <div className="flex shrink-0 select-none items-center justify-center rounded-md self-start">
+        <img
+          src="/img/birdie.svg"
+          alt="Bot"
+          width={24}
+          height={24}
+          className="my-0"
+        />
       </div>
       <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1 text-gray-600">
         {renderContent(message.content)}
