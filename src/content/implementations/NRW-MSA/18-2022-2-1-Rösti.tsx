@@ -77,7 +77,7 @@ export const exercise18: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bestimme, wie viel der Teig eines Rezepts wiegt, indem du die
+              Bestimme, wie viel der Teig eines Rezeptes wiegt, indem du die
               Masse aller einzelner Zutaten addierst:
             </p>
             <p>
@@ -192,7 +192,7 @@ export const exercise18: Exercise<DATA> = {
               Volumen haben. Ein Mitarbeiter behauptet: „Für ein Mini-Rösti
               brauchen wir eine Form mit {data.case == 1 && 'halbem'}
               {data.case == 2 && 'viertel'}
-              {data.case == 2 && 'doppeltem'} Durchmesser!“ Hat er recht?{' '}
+              {data.case == 3 && 'doppeltem'} Durchmesser!“ Hat er recht?{' '}
             </p>
             <p>Begründe deine Entscheidung.</p>
           </>
