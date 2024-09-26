@@ -9,11 +9,15 @@ import remarkMath from 'remark-math'
 export function Message({ message }: { message: IMessage }) {
   const renderContent = (content: any) => {
     if (typeof content === 'string') {
-      return <p>{content}</p>
+      return <p className="py-0">{content}</p>
     } else if (Array.isArray(content)) {
       return content.map((part, index) => {
         if (part.type === 'text') {
-          return <p key={index}>{part.text}</p>
+          return (
+            <p key={index} className="py-0 my-0 leading-none">
+              {part.text}
+            </p>
+          )
         } else if (part.type === 'image') {
           return (
             <img
@@ -24,7 +28,7 @@ export function Message({ message }: { message: IMessage }) {
                   : URL.createObjectURL(part.image)
               }
               alt="User content"
-              className="rounded-md"
+              className="rounded-md my-0"
             />
           )
         }
@@ -54,8 +58,14 @@ export function Message({ message }: { message: IMessage }) {
 export function UserMessage({ children }: { children: React.ReactNode }) {
   return (
     <div className="group relative flex items-start ">
-      <div className="flex size-[25px] shrink-0 select-none items-center justify-center rounded-md border bg-background shadow-sm">
-        <img src="/img/student.jpg" alt="User" width={25} height={25} />
+      <div className="flex shrink-0 select-none items-start justify-start rounded-md bg-background self-start">
+        <img
+          src="/img/student.jpg"
+          alt="User"
+          width={25}
+          height={25}
+          className="my-0"
+        />
       </div>
       <div className="ml-4 flex-1 space-y-2 overflow-hidden pl-2">
         {children}
@@ -145,7 +155,7 @@ export function BotMessage({
 
   return (
     <div className={clsx('group relative flex items-start', className)}>
-      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border">
+      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md">
         <img src="/img/birdie.svg" alt="Bot" width={24} height={24} />
       </div>
       <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1 text-gray-600">
@@ -158,7 +168,7 @@ export function BotMessage({
 export function SpinnerMessage() {
   return (
     <div className="group relative flex items-start">
-      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border bg-primary text-primary-foreground shadow-sm">
+      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border bg-primary text-primary-foreground">
         <img src="/img/birdie.svg" alt="Birdie" width={24} height={24} />
       </div>
       <div className="ml-4 h-[24px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
