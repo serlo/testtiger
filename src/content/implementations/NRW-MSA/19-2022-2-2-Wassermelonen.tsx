@@ -246,40 +246,157 @@ export const exercise19: Exercise<DATA> = {
               {data.gewicht} g schweren Wassermelone unter idealen Bedingungen
               voraussichtlich entwickelt. Sie erstellt dazu eine Tabelle.
             </p>
-            <svg viewBox="0 0 550 120">
-              <image
-                href="/content/NRW_MSA_Melone_Tabelle.PNG"
-                height="120"
-                width="550"
+            <svg width="320" height="100" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="60"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                stroke-width="1"
               />
+
+              <line
+                x1="10"
+                y1="40"
+                x2="310"
+                y2="40"
+                stroke="#007EC1"
+                stroke-width="1"
+              />
+
+              <line
+                x1="130"
+                y1="10"
+                x2="130"
+                y2="70"
+                stroke="#007EC1"
+                stroke-width="1"
+              />
+              <line
+                x1="180"
+                y1="10"
+                x2="180"
+                y2="70"
+                stroke="#007EC1"
+                stroke-width="1"
+              />
+              <line
+                x1="230"
+                y1="10"
+                x2="230"
+                y2="70"
+                stroke="#007EC1"
+                stroke-width="1"
+              />
+              <line
+                x1="280"
+                y1="10"
+                x2="280"
+                y2="70"
+                stroke="#007EC1"
+                stroke-width="1"
+              />
+
               <text
-                x={175}
-                y={80}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
+                x="15"
+                y="30"
+                font-size="10"
+                text-anchor="start"
+                fill="black"
+              >
+                Beobachtungswoche
+              </text>
+              <text
+                x="155"
+                y="30"
+                font-size="10"
+                text-anchor="middle"
+                fill="black"
+              >
+                0
+              </text>
+              <text
+                x="205"
+                y="30"
+                font-size="10"
+                text-anchor="middle"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="255"
+                y="30"
+                font-size="10"
+                text-anchor="middle"
+                fill="black"
+              >
+                2
+              </text>
+              <text
+                x="295"
+                y="30"
+                font-size="10"
+                text-anchor="middle"
+                fill="black"
+              >
+                ...
+              </text>
+
+              <text
+                x="15"
+                y="60"
+                font-size="10"
+                text-anchor="start"
+                fill="black"
+              >
+                Gewicht in g
+              </text>
+              <text
+                x="155"
+                y="60"
+                font-size="10"
+                font-weight="bold"
+                text-anchor="middle"
+                fill="black"
               >
                 {data.gewicht}
               </text>
               <text
-                x={275}
-                y={80}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
+                x="205"
+                y="60"
+                font-size="10"
+                font-weight="bold"
+                text-anchor="middle"
+                fill="black"
               >
                 {data.gewicht * 2}
               </text>
               <text
-                x={375}
-                y={80}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
+                x="255"
+                y="60"
+                font-size="10"
+                font-weight="bold"
+                text-anchor="middle"
+                fill="black"
               >
                 {data.gewicht * 4}
               </text>
+              <text
+                x="295"
+                y="60"
+                font-size="10"
+                text-anchor="middle"
+                fill="black"
+              >
+                ...
+              </text>
             </svg>
+
             <p>Berechne das Gewicht der Wassermelone nach 4 Wochen.</p>
           </>
         )
