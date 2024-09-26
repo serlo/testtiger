@@ -163,7 +163,7 @@ export const exercise36: Exercise<DATA> = {
             <p>
               Das Volumen des Behälters wird aber nicht vollständig von den
               Kugeln ausgefüllt. Zwischen den Kugeln bleibt Platz frei, der
-              nicht bestzt werden kann. Damit ist Steffis Ansatz{' '}
+              nicht besetzt werden kann. Damit ist Steffis Ansatz{' '}
               <strong>nicht geeignet</strong>.
             </p>
           </>
@@ -191,14 +191,7 @@ export const exercise36: Exercise<DATA> = {
         const bruch = kürzeBruch(data.red, data.red + data.white)
         return (
           <>
-            <p>
-              Eine Kaugummikugel zufällig aus dem Behälter zu ziehen entspricht
-              einem Laplace-Zufallsexperiment.
-            </p>
-            <p>
-              Da jede Kugel gleich beschaffen ist, ist die Wahrscheinlichkeit
-              für das Ziehen einer Kugel gleich. Mit der Laplace-Formel gilt:
-            </p>
+            <p>Mit der Laplace-Formel gilt:</p>
 
             {buildEquation([
               [
