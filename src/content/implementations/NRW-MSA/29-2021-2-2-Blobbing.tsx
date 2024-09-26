@@ -215,7 +215,7 @@ export const exercise29: Exercise<DATA> = {
                 {pp(getDuration(5))})
               </li>
               <li>
-                Punkt 1: (10|
+                Punkt 2: (10|
                 {pp(getDuration(10))})
               </li>
             </ul>
@@ -389,10 +389,11 @@ export const exercise29: Exercise<DATA> = {
             <p>
               f(x) = {pp(a)} · (x − {data.x_s})² + {data.y_s}
             </p>
+            <p>beschrieben werden. Die Funktionsgleichung g mit </p>
             <p>
-              beschrieben werden. Die Funktionsgleichung g mit g(x) = {pp(a)} x²{' '}
-              {pp(-a * 2 * data.x_s, 'merge_op')}x + 1
+              g(x) = {pp(a)} x² {pp(-a * 2 * data.x_s, 'merge_op')}x + 1
             </p>
+            <p>beschreibt dieselbe Flugbahn.</p>
             <p>
               Zeige durch Termumformungen, dass die Funktionsgleichungen von f
               und g dieselbe Parabel beschreiben.
@@ -408,6 +409,7 @@ export const exercise29: Exercise<DATA> = {
             <p>
               f(x) = {pp(a)} · (x − {data.x_s})² + {data.y_s}
             </p>
+            <p>Verwende die 2. binomische Formel:</p>
             <p>
               f(x) = {pp(a)} · (x² − 2 · x · {data.x_s} + {data.x_s}²) +{' '}
               {data.y_s}
@@ -416,6 +418,7 @@ export const exercise29: Exercise<DATA> = {
               f(x) = {pp(a)} · (x² − {2 * data.x_s}x + {data.x_s * data.x_s}) +{' '}
               {data.y_s}
             </p>
+            <p>Ausmultiplizieren:</p>
             <p>
               f(x) = {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
               {pp(a * data.x_s * data.x_s)} + {data.y_s}
@@ -522,6 +525,7 @@ export const exercise29: Exercise<DATA> = {
               {data.coin == true ? data.fake_x : data.x_s})² +{' '}
               {data.coin == true ? data.y_s : data.fake_y}
             </p>
+            <p>beschrieben.</p>
             <p>
               Nenne eine Gemeinsamkeit und einen Unterschied der Flugbahn des
               zweiten Blobbers B im Vergleich zur Flugbahn von Blobber A.
