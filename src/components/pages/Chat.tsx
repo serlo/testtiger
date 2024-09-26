@@ -370,38 +370,49 @@ export function Chat({ id }: ChatProps) {
             {/* User Input */}
             <form
               onSubmit={event => handleSubmit(event, base64Image)}
-              className="w-full mt-4 flex items-end space-x-2"
+              className="w-full mt-4 flex flex-col space-y-2"
             >
-              <label htmlFor="file-upload" className="flex-shrink-0">
-                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300">
-                  <IonIcon
-                    icon={addOutline}
-                    className="text-gray-600 w-6 h-6"
+              {base64Image && (
+                <div className="w-full rounded-lg overflow-hidden mb-2">
+                  <img
+                    src={base64Image}
+                    alt="Uploaded"
+                    className="w-full h-auto"
                   />
                 </div>
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="sr-only"
+              )}
+              <div className="flex items-end space-x-2">
+                <label htmlFor="file-upload" className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300">
+                    <IonIcon
+                      icon={addOutline}
+                      className="text-gray-600 w-6 h-6"
+                    />
+                  </div>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="sr-only"
+                  />
+                </label>
+                <TextareaAutosize
+                  value={userInput}
+                  onChange={e => setUserInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Nachricht..."
+                  minRows={1}
+                  maxRows={5}
+                  className="flex-grow p-2 border rounded-md resize-none"
                 />
-              </label>
-              <TextareaAutosize
-                value={userInput}
-                onChange={e => setUserInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Nachricht..."
-                minRows={1}
-                maxRows={5}
-                className="flex-grow p-2 border rounded-md resize-none"
-              />
-              <button
-                type="submit"
-                className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
-              >
-                <IonIcon icon={sendOutline} className="w-5 h-5" />
-              </button>
+                <button
+                  type="submit"
+                  className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
+                >
+                  <IonIcon icon={sendOutline} className="w-5 h-5" />
+                </button>
+              </div>
             </form>
           </div>
         </div>
