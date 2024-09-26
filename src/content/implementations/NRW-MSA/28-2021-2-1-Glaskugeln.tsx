@@ -123,10 +123,10 @@ export const exercise28: Exercise<DATA> = {
         return (
           <>
             <p>
-              c) Ein Praktikant behauptet: „Für eine Glaskugel mit doppeltem
+              c) Ein Praktikant behauptet: „Für eine Glaskugel mit doppeltem{' '}
               {data.case == 1 && 'Durchmesser'} {data.case == 2 && 'Radius'}{' '}
-              {data.case == 3 && 'Durchmesser'} benötigt man auch{' '}
-              {data.case == 1 && 'doppelt'}
+              {data.case == 3 && 'Durchmesser'} benötigt man{' '}
+              {data.case == 1 && 'auch doppelt'}
               {data.case == 2 && 'dreimal'}
               {data.case == 3 && 'viermal'} so viel Farbe.“
             </p>
@@ -209,8 +209,8 @@ export const exercise28: Exercise<DATA> = {
           <>
             <p>{100 - data.error_1} % der Kugeln haben eine Form mit Fehler.</p>
             <p>
-              {100 - data.error_2} % der Kugeln haben eine Form ohne Fehler,
-              aber eine Lackierung mit Fehler.
+              {100 - data.error_2} % der richtig geformten Kugeln haben eine
+              Lackierung mit Fehler.
             </p>
             <svg viewBox="0 0 700 500">
               <image
@@ -273,8 +273,8 @@ export const exercise28: Exercise<DATA> = {
         return (
           <>
             <p>
-              Begründe, warum der untere Ast des Baumdiagramms nicht fortgeführt
-              ist.
+              e) Begründe, warum der untere Ast des Baumdiagramms nicht
+              fortgeführt ist.
             </p>
           </>
         )
