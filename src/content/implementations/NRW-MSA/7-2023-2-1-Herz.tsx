@@ -376,8 +376,10 @@ export const exercise7: Exercise<DATA> = {
                 height="150"
                 width="328"
               />
-              <foreignObject x="50" y="-10" width={70} height={70}>
-                {buildFrac(bruch.zähler, bruch.nenner)}
+              <foreignObject x="50" y="15" width={70} height={70}>
+                <div style={{ fontSize: '8px' }}>
+                  {buildFrac(bruch.zähler, bruch.nenner)}
+                </div>
               </foreignObject>
             </svg>
             <p>
