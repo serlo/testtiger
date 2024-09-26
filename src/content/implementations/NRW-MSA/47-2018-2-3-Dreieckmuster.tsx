@@ -18,7 +18,7 @@ export const exercise47: Exercise<DATA> = {
   generator(rng) {
     return {
       seite: rng.randomIntBetween(6, 12),
-      lower: rng.randomIntBetween(3, 8),
+      lower: rng.randomIntBetween(3, 7),
       case: rng.randomIntBetween(1, 3),
       show: rng.randomItemFromArray([
         [0, 1, 2, 3, 4, 5],
@@ -175,11 +175,10 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Durch Anwenden der Konstruktionsregeln des Sierpinskis-Dreiecks
-              entstehen in jedem schwarzen Dreieck vier kleinere, gleichseitige
-              Dreiecke. Eines davon ist weiß und drei schwarz, sodass die Fläche
-              der schwarzen Dreiecke in der neuen Stufe {buildInlineFrac(3, 4)}{' '}
-              der ursprünglichen Fläche beträgt.{' '}
+              In jedem Schritt entstehen in jedem schwarzen Dreieck vier
+              kleinere, gleich große Dreiecke. Eines davon ist weiß und drei
+              schwarz, sodass die Fläche der schwarzen Dreiecke in der neuen
+              Stufe {buildInlineFrac(3, 4)} der ursprünglichen Fläche beträgt.{' '}
             </p>
           </>
         )
@@ -228,10 +227,10 @@ export const exercise47: Exercise<DATA> = {
         )
         return (
           <>
+            <p>Hier gibt es viele unterschiedliche Rechenwege. </p>
             <p>
-              Hier gibt es viele unterschiedliche Rechenwege. Setze ganzzahlige
-              Werte für n in den Taschenrechner ein und überprüfe das Ergebnis.
-              Notiere diese Ergebnisse.
+              Setze zum Beispiel ganzzahlige Werte für n in den Taschenrechner
+              ein und überprüfe das Ergebnis. Notiere diese Ergebnisse.
               <br></br>
               <br></br>
               {pp(
@@ -313,7 +312,7 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Vera berechnet mit einer Tabellenkalkulation die Flächeninhalte
+              d) Vera berechnet mit einer Tabellenkalkulation die Flächeninhalte
               der schwarzen Dreiecke.
             </p>
             <svg viewBox="0 0 328 200">
@@ -654,9 +653,21 @@ export const exercise47: Exercise<DATA> = {
           <>
             <p>
               f) Die Summe der Flächeninhalte der schwarzen und der weiße
-              Dreiecke ergibt in jeder Figur zusammen {calculateValue(0)} cm².{' '}
-              <br></br>Wie entwickeln sich die Flächeninhalte der schwarzen und
-              weißen Flächen, wenn man die Figuren immer weiter fortsetzt?
+              Dreiecke ergibt in jeder Figur zusammen{' '}
+              {pp(
+                roundToDigits(
+                  (Math.pow(
+                    data.seite * data.seite -
+                      (data.seite / 2) * (data.seite / 2),
+                    0.5,
+                  ) *
+                    data.seite) /
+                    2,
+                  2,
+                ),
+              )}{' '}
+              cm². <br></br>Wie entwickeln sich die Flächeninhalte der schwarzen
+              und weißen Flächen, wenn man die Figuren immer weiter fortsetzt?
               Beschreibe.
             </p>
           </>
@@ -667,9 +678,12 @@ export const exercise47: Exercise<DATA> = {
           <>
             <p>
               Die Fläche der schwarzen Dreiecke wird zunehmend geringer und geht
-              gegen 0 cm². Die weißen Flächen entsprechen genau dem Gegenstück
-              der schwarzen Flächen und nehmen den Rest des Dreiecks ein. Ihre
-              Fläche geht demnach gegen{' '}
+              gegen 0 cm².{' '}
+            </p>
+            <p>
+              Die weißen Flächen entsprechen genau dem Gegenstück der schwarzen
+              Flächen und nehmen den Rest des Dreiecks ein. Ihre Fläche geht
+              demnach gegen{' '}
               {pp(
                 roundToDigits(
                   (Math.pow(
