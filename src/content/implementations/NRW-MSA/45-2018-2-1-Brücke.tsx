@@ -253,17 +253,17 @@ export const exercise45: Exercise<DATA> = {
             <p>Hat Max recht? Begründe mit einer Rechnung.</p>
             <svg viewBox="0 0 328 300">
               <image
-                href="/content/NRW_Zug_Dreieck.PNG"
+                href="/content/NRW_MSA_2018_2_1_Zuggrafik.svg"
                 height="300"
                 width="328"
               />
               <text
-                x={150}
-                y={225}
+                x={160}
+                y={277}
                 fontSize={10}
                 textAnchor="right"
                 stroke="black"
-                transform="rotate(-10, 150, 225)"
+                transform="rotate(-14, 150, 225)"
               >
                 {data.width} mm
               </text>
