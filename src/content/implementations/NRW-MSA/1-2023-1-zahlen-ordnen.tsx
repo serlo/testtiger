@@ -29,6 +29,7 @@ export const exercise1: Exercise<DATA> = {
       data.c != data.d &&
       data.d != 1 &&
       data.c != 0 &&
+      !Number.isInteger(data.c / data.d) &&
       !Number.isInteger(Math.sqrt(data.e))
     )
   },
