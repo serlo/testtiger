@@ -41,9 +41,7 @@ export const exercise38: Exercise<DATA> = {
           Schwimmbecken ist {pp(data.höhe)} m hoch und hat ein Volumen von{' '}
           {pp(roundToDigits(data.surface * data.höhe, 2))} m².
         </p>
-        <svg viewBox="0 0 328 180">
-          <image href="/content/NRW_MSA_Pool_2.jpg" height="180" width="328" />
-        </svg>
+        <img src="/content/NRW_MSA_Pool_2.jpg" width={328} alt="" />
         <p>Abbildung 1: Schwimmbecken (nicht maßstabsgetreu)</p>
       </>
     )
@@ -78,17 +76,18 @@ export const exercise38: Exercise<DATA> = {
               [
                 pp(roundToDigits(data.surface * data.höhe, 2)),
                 '=',
-                'G · ' + pp(data.höhe),
-                '| :' + pp(data.höhe),
+                <>G · {pp(data.höhe)}</>,
+                <>| : {pp(data.höhe)}</>,
               ],
               [
                 'G',
                 '=',
-                pp(roundToDigits(data.surface * data.höhe, 2)) +
-                  ' : ' +
-                  pp(data.höhe),
+                <>
+                  {pp(roundToDigits(data.surface * data.höhe, 2))} :{' '}
+                  {pp(data.höhe)}
+                </>,
               ],
-              ['G', '≈', pp(data.surface) + ' m²'],
+              ['G', '≈', <>{pp(data.surface)} m²</>],
             ])}
           </>
         )
@@ -121,20 +120,24 @@ export const exercise38: Exercise<DATA> = {
               [
                 '',
                 '=',
-                pp(data.surface) + ' · ' + pp(data.höhe - data.water / 100),
+                <>
+                  {pp(data.surface)} · {pp(data.höhe - data.water / 100)}
+                </>,
               ],
               [
                 '',
                 '≈',
-                pp(
-                  roundToDigits(
-                    data.surface * (data.höhe - data.water / 100),
-                    2,
-                  ),
-                ),
+                <>
+                  {pp(
+                    roundToDigits(
+                      data.surface * (data.höhe - data.water / 100),
+                      2,
+                    ),
+                  )}{' '}
+                  m³
+                </>,
               ],
-            ])}{' '}
-            m³
+            ])}
           </>
         )
       },
@@ -181,6 +184,7 @@ export const exercise38: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const r = roundToDigits(Math.pow(data.surface / Math.PI, 0.5), 2)
         return (
           <>
             <p>
@@ -201,28 +205,17 @@ export const exercise38: Exercise<DATA> = {
               ['G', '=', 'π · r²'],
               [pp(data.surface), '=', 'π · r²', '|: π'],
               ['r', '=', buildSqrt(pp(data.surface) + ' : π')],
-              [
-                'r',
-                '≈',
-                pp(roundToDigits(Math.pow(data.surface / Math.PI, 0.5), 2)),
-              ],
+              ['r', '≈', pp(r)],
             ])}{' '}
             m
             <p>
-              Der Durchmesser beträgt damit:<br></br> d = 2r ={' '}
-              {pp(2 * roundToDigits(Math.pow(data.surface / Math.PI, 0.5), 2))}{' '}
-              m
+              Der Durchmesser beträgt damit:<br></br> d = 2r = {pp(2 * r)} m
             </p>
             <p>
               {' '}
               Die quadratische Terrasse hat damit eine Kantelänge von{' '}
-              {pp(2 * roundToDigits(Math.pow(data.surface / Math.PI, 0.5), 2))}+{' '}
-              {pp(data.terra / 100)} ={' '}
-              {pp(
-                2 * roundToDigits(Math.pow(data.surface / Math.PI, 0.5), 2) +
-                  data.terra / 100,
-              )}{' '}
-              m
+              {pp(2 * r)}+ {pp(data.terra / 100)} ={' '}
+              {pp(2 * r + data.terra / 100)} m
             </p>
           </>
         )

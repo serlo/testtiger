@@ -8,11 +8,13 @@ interface DATA {
   percent: number
   usage: number
   trash: number
-  bool: boolean
+  becher: number
+  karinHatRecht: boolean
   dia: number
   width: number
   length: number
   höhe: number
+  Vstumpf: number
   start: number
   decay: number
   order: number[]
@@ -29,16 +31,25 @@ export const exercise46: Exercise<DATA> = {
   useCalculator: true,
   duration: 10,
   generator(rng) {
+    const usage = rng.randomIntBetween(20, 40)
+    const dia = rng.randomIntBetween(7, 10)
+    const höhe = rng.randomIntBetween(15, 23) / 2
     return {
       liter: rng.randomIntBetween(140, 200),
       percent: rng.randomIntBetween(2, 8),
-      usage: rng.randomIntBetween(20, 40),
       trash: rng.randomIntBetween(20, 35) * 10000,
-      bool: rng.randomBoolean(),
-      dia: rng.randomIntBetween(7, 10),
+      usage,
+      becher: Math.round((usage * 83000000) / (365 * 24)),
+      karinHatRecht: rng.randomBoolean(),
+      dia,
       width: rng.randomIntBetween(22, 30),
       length: rng.randomIntBetween(42, 50),
-      höhe: rng.randomIntBetween(15, 23) / 2,
+      höhe,
+      Vstumpf:
+        (((dia - 1) / 2) * ((dia - 1) / 2) +
+          ((dia - 1) / 2) * (dia / 2) +
+          (dia / 2) * (dia / 2)) *
+        ((Math.PI * höhe) / 3),
       start: rng.randomIntBetween(65, 90),
       decay: rng.randomIntBetween(85, 95) / 100,
       order: rng.shuffleArray([0, 1, 2]),
@@ -51,10 +62,9 @@ export const exercise46: Exercise<DATA> = {
   },
   constraint({ data }) {
     return (
-      data.trash !=
-        Math.round((data.usage * 83000000) / (365 * 24) / 10000) * 10000 &&
+      data.trash != roundToDigits(data.becher, -4) &&
       (data.length * data.width) / ((data.dia * data.dia) / 10000) <
-        Math.round((data.usage * 83000000) / (365 * 24) / 10000)
+        Math.round(data.becher)
     )
   },
   intro({ data }) {
@@ -106,12 +116,11 @@ export const exercise46: Exercise<DATA> = {
           <>
             <p>
               b) Pro Jahr benutzt jede Person durchschnittlich {data.usage}{' '}
-              Pappbecher. In Deutschland leben derzeit ca. 82 Millionen
+              Pappbecher. In Deutschland leben derzeit ca. 83 Millionen
               Menschen. Karin behauptet: {'"'}Jede Stunde werden in Deutschland
               ungefähr{' '}
-              {data.bool == true
-                ? Math.round((data.usage * 83000000) / (365 * 24) / 10000) *
-                  10000
+              {data.karinHatRecht == true
+                ? roundToDigits(data.becher, -4)
                 : data.trash}{' '}
               Pappbecher in den Müll geworfen.{'"'}
             </p>
@@ -133,15 +142,12 @@ export const exercise46: Exercise<DATA> = {
             <p>365 · 24 = {365 * 24}</p>
             <p>Teile die Anzahl der Becher durch die Anzahl der Stunden:</p>
             <p>
-              {data.usage * 83000000} : {365 * 24} ≈{' '}
-              {Math.round((data.usage * 83000000) / (365 * 24))} Becher
+              {data.usage * 83000000} : {365 * 24} ≈ {data.becher} Becher
             </p>
             <p>
-              {Math.round((data.usage * 83000000) / (365 * 24))} entsprechen
-              ungefähr{' '}
-              {Math.round((data.usage * 83000000) / (365 * 24) / 10000) * 10000}{' '}
-              Bechern. Damit hat Karin{' '}
-              {data.bool == true ? 'recht.' : 'nicht recht.'}
+              {data.becher} entsprechen ungefähr{' '}
+              {roundToDigits(data.becher, -4)} Bechern. Damit hat Karin{' '}
+              {data.karinHatRecht == true ? 'recht.' : 'nicht recht.'}
             </p>
           </>
         )
@@ -158,8 +164,8 @@ export const exercise46: Exercise<DATA> = {
             <p>
               c) Der Boden eines Sporthalle mit {data.width} m Breite und{' '}
               {data.length} m Länge reicht nicht aus, um{' '}
-              {Math.round((data.usage * 83000000) / (365 * 24) / 10000) * 10000}{' '}
-              so wie in Abbildung 1 nebeneinander aufzustellen.
+              {roundToDigits(data.becher, -4)} so wie in Abbildung 1
+              nebeneinander aufzustellen.
             </p>
             <svg viewBox="0 0 328 120">
               <image
@@ -201,8 +207,7 @@ export const exercise46: Exercise<DATA> = {
             </p>
             <p>
               Damit reicht der Boden nicht aus, um die{' '}
-              {Math.round((data.usage * 83000000) / (365 * 24) / 10000) * 10000}{' '}
-              Becher aufzustellen.
+              {roundToDigits(data.becher, -4)} Becher aufzustellen.
             </p>
           </>
         )
@@ -224,13 +229,7 @@ export const exercise46: Exercise<DATA> = {
               <sup>2</sup> + r<sub>1</sub> · r<sub>2</sub> + r<sub>2</sub>
               <sup>2</sup>) · {buildInlineFrac('π · h', 3)}
             </p>
-            <svg viewBox="0 0 328 240">
-              <image
-                href="/content/NRW_MSA_Kegelstumpf.PNG"
-                height="240"
-                width="328"
-              />
-            </svg>
+            <img src="/content/NRW_MSA_Kegelstumpf.PNG" width={328} alt="" />
             <p>Abbildung 2: Kegelstumpf</p>
             <p>
               d) Der Pappbecher hat folgende Maße: r<sub>1</sub> ={' '}
@@ -239,15 +238,7 @@ export const exercise46: Exercise<DATA> = {
             </p>
             <p>
               Bestätige mithilfe der Formel, dass das Volumen eines solchen
-              Bechers ca.{' '}
-              {Math.round(
-                ((((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                  ((data.dia - 1) / 2) * (data.dia / 2) +
-                  (data.dia / 2) * (data.dia / 2)) *
-                  ((Math.PI * data.höhe) / 3)) /
-                  10,
-              ) * 10}{' '}
-              ml beträgt.
+              Bechers ca. {roundToDigits(data.Vstumpf, -1)} ml beträgt.
             </p>
           </>
         )
@@ -263,27 +254,11 @@ export const exercise46: Exercise<DATA> = {
               {buildInlineFrac('π · h', '3')}
             </p>
             <p>
-              V ≈{' '}
-              {pp(
-                roundToDigits(
-                  (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                    ((data.dia - 1) / 2) * (data.dia / 2) +
-                    (data.dia / 2) * (data.dia / 2)) *
-                    ((Math.PI * data.höhe) / 3),
-                  2,
-                ),
-              )}
+              V ≈ {pp(roundToDigits(data.Vstumpf, 2))}
               cm³
             </p>
             <p>
-              Damit fasst der Becher ungefähr{' '}
-              {Math.round(
-                ((((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                  ((data.dia - 1) / 2) * (data.dia / 2) +
-                  (data.dia / 2) * (data.dia / 2)) *
-                  ((Math.PI * data.höhe) / 3)) /
-                  10,
-              ) * 10}{' '}
+              Damit fasst der Becher ungefähr {roundToDigits(data.Vstumpf, -1)}{' '}
               ml.
             </p>
           </>
@@ -306,6 +281,14 @@ export const exercise46: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const V =
+          Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
+          Math.PI *
+          data.höhe
+        const diff = roundToDigits(
+          roundToDigits(data.Vstumpf, 2) - roundToDigits(V, 2),
+          2,
+        )
         return (
           <>
             <p>Der Durchschnitt der Radien beträgt:</p>
@@ -325,150 +308,27 @@ export const exercise46: Exercise<DATA> = {
               [
                 '',
                 '=',
-                'π · ' +
-                  pp(((data.dia - 1) / 2 + data.dia / 2) / 2) +
-                  '² · ' +
-                  pp(data.höhe),
+                <>
+                  π · {pp(((data.dia - 1) / 2 + data.dia / 2) / 2)}² ·{' '}
+                  {pp(data.höhe)}
+                </>,
               ],
-              [
-                '',
-                '≈',
-
-                pp(
-                  roundToDigits(
-                    Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
-                      Math.PI *
-                      data.höhe,
-                    2,
-                  ),
-                ) + ' cm³',
-              ],
+              ['', '≈', <>{pp(roundToDigits(V, 2))} cm³</>],
             ])}{' '}
             <p>Die Abweichung zum Ergebnis des Kegelstumpfes beträgt:</p>
             <p>
-              {pp(
-                roundToDigits(
-                  (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                    ((data.dia - 1) / 2) * (data.dia / 2) +
-                    (data.dia / 2) * (data.dia / 2)) *
-                    ((Math.PI * data.höhe) / 3),
-                  2,
-                ),
-              )}{' '}
-              −{' '}
-              {pp(
-                roundToDigits(
-                  Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
-                    Math.PI *
-                    data.höhe,
-                  2,
-                ),
-              )}{' '}
-              ={' '}
-              {pp(
-                roundToDigits(
-                  roundToDigits(
-                    (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                      ((data.dia - 1) / 2) * (data.dia / 2) +
-                      (data.dia / 2) * (data.dia / 2)) *
-                      ((Math.PI * data.höhe) / 3),
-                    2,
-                  ) -
-                    roundToDigits(
-                      Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
-                        Math.PI *
-                        data.höhe,
-                      2,
-                    ),
-                  2,
-                ),
-              )}{' '}
-              cm³
+              {pp(roundToDigits(data.Vstumpf, 2))} − {pp(roundToDigits(V, 2))} ={' '}
+              {pp(diff)} cm³
             </p>
             <p>
               Teile die Abweichung durch das Volumen des Kegelstumpfes um die
               prozentuale Abweichung zu erhalten:
             </p>
             <p>
+              {pp(diff)} : {pp(roundToDigits(data.Vstumpf, 2))} ≈{' '}
+              {pp(roundToDigits(diff / roundToDigits(data.Vstumpf, 2), 4))} ≙{' '}
               {pp(
-                roundToDigits(
-                  roundToDigits(
-                    (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                      ((data.dia - 1) / 2) * (data.dia / 2) +
-                      (data.dia / 2) * (data.dia / 2)) *
-                      ((Math.PI * data.höhe) / 3),
-                    2,
-                  ) -
-                    roundToDigits(
-                      Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
-                        Math.PI *
-                        data.höhe,
-                      2,
-                    ),
-                  2,
-                ),
-              )}{' '}
-              :{' '}
-              {pp(
-                roundToDigits(
-                  (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                    ((data.dia - 1) / 2) * (data.dia / 2) +
-                    (data.dia / 2) * (data.dia / 2)) *
-                    ((Math.PI * data.höhe) / 3),
-                  2,
-                ),
-              )}{' '}
-              ≈{' '}
-              {pp(
-                roundToDigits(
-                  (roundToDigits(
-                    (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                      ((data.dia - 1) / 2) * (data.dia / 2) +
-                      (data.dia / 2) * (data.dia / 2)) *
-                      ((Math.PI * data.höhe) / 3),
-                    2,
-                  ) -
-                    roundToDigits(
-                      Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
-                        Math.PI *
-                        data.höhe,
-                      2,
-                    )) /
-                    roundToDigits(
-                      (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                        ((data.dia - 1) / 2) * (data.dia / 2) +
-                        (data.dia / 2) * (data.dia / 2)) *
-                        ((Math.PI * data.höhe) / 3),
-                      2,
-                    ),
-                  4,
-                ),
-              )}{' '}
-              ≙{' '}
-              {pp(
-                roundToDigits(
-                  (roundToDigits(
-                    (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                      ((data.dia - 1) / 2) * (data.dia / 2) +
-                      (data.dia / 2) * (data.dia / 2)) *
-                      ((Math.PI * data.höhe) / 3),
-                    2,
-                  ) -
-                    roundToDigits(
-                      Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
-                        Math.PI *
-                        data.höhe,
-                      2,
-                    )) /
-                    roundToDigits(
-                      (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
-                        ((data.dia - 1) / 2) * (data.dia / 2) +
-                        (data.dia / 2) * (data.dia / 2)) *
-                        ((Math.PI * data.höhe) / 3),
-                      2,
-                    ),
-                  4,
-                ) * 100,
+                roundToDigits((diff / roundToDigits(data.Vstumpf, 2)) * 100, 2),
               )}{' '}
               % {' < '} 1 %
             </p>

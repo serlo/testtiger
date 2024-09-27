@@ -221,7 +221,6 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            {' '}
             <p></p>
           </>
         )
@@ -398,7 +397,6 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            {' '}
             <p></p>
           </>
         )
@@ -419,7 +417,6 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            {' '}
             <p></p>
           </>
         )
