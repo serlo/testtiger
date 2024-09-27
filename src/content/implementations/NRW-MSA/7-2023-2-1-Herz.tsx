@@ -376,7 +376,16 @@ export const exercise7: Exercise<DATA> = {
                 height="150"
                 width="328"
               />
-              <foreignObject x="50" y="15" width={70} height={70}>
+              <rect
+                x="45"
+                y="30"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <foreignObject x="50" y="30" width={70} height={70}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch.zähler, bruch.nenner)}
                 </div>
@@ -471,32 +480,86 @@ export const exercise7: Exercise<DATA> = {
                 height="220"
                 width="328"
               />
-              <foreignObject x="50" y="50" width={20} height={60}>
+              <rect
+                x="65"
+                y="65"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <foreignObject x="70" y="65" width={20} height={60}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch.zähler, bruch.nenner)}
                 </div>
               </foreignObject>
-              <foreignObject x="50" y="130" width={20} height={60}>
+              <rect
+                x="65"
+                y="110"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F3FBFF"
+              />
+              <foreignObject x="70" y="110" width={20} height={60}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch2.zähler, bruch2.nenner)}
                 </div>
               </foreignObject>
-              <foreignObject x="200" y="25" width={30} height={60}>
+              <rect
+                x="197.5"
+                y="35.5"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <foreignObject x="200" y="35" width={30} height={60}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch3.zähler, bruch3.nenner)}
                 </div>
               </foreignObject>
-              <foreignObject x="200" y="85" width={30} height={60}>
+              <rect
+                x="197.5"
+                y="75.5"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F3FBFF"
+              />
+              <foreignObject x="200" y="75" width={30} height={60}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch4.zähler, bruch4.nenner)}
                 </div>
               </foreignObject>
-              <foreignObject x="240" y="95" width={30} height={60}>
+              <rect
+                x="237"
+                y="105"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <foreignObject x="240" y="105" width={30} height={60}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch5.zähler, bruch5.nenner)}
                 </div>
               </foreignObject>
-              <foreignObject x="240" y="160" width={30} height={60}>
+              <rect
+                x="237"
+                y="154"
+                width="24"
+                height="35"
+                rx="4"
+                ry="4"
+                fill="#F3FBFF"
+              />
+              <foreignObject x="240" y="154" width={30} height={60}>
                 <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
                   {buildFrac(bruch6.zähler, bruch6.nenner)}
                 </div>
