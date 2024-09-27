@@ -64,7 +64,14 @@ export const exercise42: Exercise<DATA> = {
         return (
           <>
             <p>
-              b) Sina überlegt: Wenn ich den Radius {text1[data.case]}, <p />
+              b) Sina überlegt: Wenn ich den Radius {text1[data.case]},{' '}
+              {data.right == 1 && (
+                <>dann {text2korrekt[data.case]} sich die Oberfläche. </>
+              )}
+              {data.right == 0 && (
+                <>dann {text2[data.case]} sich auch die Oberfläche. </>
+              )}
+              <p />
               <p>Hat Sina recht? Begründe deine Entscheidung.</p>
             </p>
           </>
