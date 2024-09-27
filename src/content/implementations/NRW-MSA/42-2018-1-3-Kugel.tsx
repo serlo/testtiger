@@ -81,7 +81,8 @@ export const exercise42: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const text2_case = ['doppelt', 'dreifach', 'vierfach', 'halb']
+        const text2_case = ['doppelt', 'dreifach', 'halb']
+        const text3_case = ['vervierfacht', 'verneunfacht', 'viertelt']
         const faktor = [2, 3, 0.5]
         return (
           <>
@@ -101,6 +102,7 @@ export const exercise42: Exercise<DATA> = {
               <Color1>{faktor[data.case] * faktor[data.case]}</Color1> ·{' '}
               {data.r}²
             </p>
+            <p>Die Oberfläche </p>
             <p>
               Die Aussage von Sina ist also{' '}
               <strong>
