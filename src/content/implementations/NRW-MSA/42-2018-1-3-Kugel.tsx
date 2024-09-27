@@ -64,6 +64,7 @@ export const exercise42: Exercise<DATA> = {
         return (
           <>
             <p>
+              {data.right}
               b) Sina überlegt: Wenn ich den Radius {text1[data.case]},{' '}
               {data.right == 1 && (
                 <>dann {text2korrekt[data.case]} sich die Oberfläche. </>
