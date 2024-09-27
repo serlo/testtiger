@@ -1,4 +1,6 @@
 import { Exercise } from '@/data/types'
+import { kürzeBruch } from '@/helper/kuerze-bruch'
+import { buildFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -79,7 +81,7 @@ export const exercise42: Exercise<DATA> = {
       },
       solution({ data }) {
         const text2_case = ['doppelt', 'dreifach', 'vierfach', 'halb']
-        const faktor = [2, 3, 4, 0.5]
+        const faktor = [2, 3, 0.5]
         return (
           <>
             <p>
