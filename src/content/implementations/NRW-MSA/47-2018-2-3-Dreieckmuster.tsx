@@ -2,9 +2,12 @@ import { Exercise } from '@/data/types'
 import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
+import { Fragment } from 'react'
 
 interface DATA {
   seite: number
+  h: number
+  f0: number
   lower: number
   show: Array<number>
   case: number
@@ -16,8 +19,15 @@ export const exercise47: Exercise<DATA> = {
   useCalculator: true,
   duration: 10,
   generator(rng) {
+    const seite = rng.randomIntBetween(6, 12)
+    const h = roundToDigits(
+      Math.pow(seite * seite - (seite / 2) * (seite / 2), 0.5),
+      2,
+    )
     return {
-      seite: rng.randomIntBetween(6, 12),
+      seite,
+      h,
+      f0: roundToDigits((h * seite) / 2, 2),
       lower: rng.randomIntBetween(3, 7),
       case: rng.randomIntBetween(1, 3),
       show: rng.randomItemFromArray([
@@ -49,13 +59,7 @@ export const exercise47: Exercise<DATA> = {
             2,3,4, ...).
           </li>
         </ul>
-        <svg viewBox="0 0 328 100">
-          <image
-            href="/content/NRW_MSA_Sierpinski.PNG"
-            height="100"
-            width="328"
-          />
-        </svg>
+        <img src="/content/NRW_MSA_Sierpinski.PNG" width={328} alt="" />
         <p>Abbildung 1: Sierpinski-Dreiecke, Figur 0 bis Figur 4</p>
         <p>Jede Seitenlänge des Dreiecks in Figur 0 beträgt {data.seite} cm.</p>
       </>
@@ -68,20 +72,8 @@ export const exercise47: Exercise<DATA> = {
           <>
             <p>
               Bestätige durch eine Rechnung, dass der Flächeninhalt des Dreiecks
-              in Figur 0 <br></br>A<sub>0</sub> ={' '}
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              cm² beträgt (Abbildung 2).
+              in Figur 0 <br></br>A<sub>0</sub> = {pp(data.f0)} cm² beträgt
+              (Abbildung 2).
             </p>
             <svg viewBox="0 0 328 170">
               <image
@@ -119,18 +111,7 @@ export const exercise47: Exercise<DATA> = {
               {buildSqrt(
                 data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
               )}{' '}
-              ≈{' '}
-              {pp(
-                roundToDigits(
-                  Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ),
-                  2,
-                ),
-              )}{' '}
-              cm
+              ≈ {pp(data.h)} cm
             </p>
             <p>Um die Dreiecksfläche zu berechnen, verwende die Formel:</p>
             <p>A = {buildInlineFrac('g · h', 2)}</p>
@@ -138,22 +119,7 @@ export const exercise47: Exercise<DATA> = {
               Hierbei ist g die Grundlinie mit der Länge {data.seite} cm und h
               die Höhe. Setze ein und berechne:
             </p>
-            <p>
-              A ={' '}
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              cm²
-            </p>
+            <p>A = {pp(data.f0)} cm²</p>
           </>
         )
       },
@@ -191,80 +157,31 @@ export const exercise47: Exercise<DATA> = {
             <p>
               c) Der Flächeninhalt A<sub>n</sub> aller schwarzen Dreiecke in
               Figur n kann mit folgendem Term berechnet werden:<br></br>
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              · 0,75<sup>n</sup> (in cm²).<br></br>Bei welcher Figur n beträgt
-              der Flächeninhalt aller schwarzen Dreiecke zum ersten Mal weniger
-              als {data.lower} cm²? Notiere dein Vorgehen.
+              {pp(data.f0)} · 0,75<sup>n</sup> (in cm²).<br></br>Bei welcher
+              Figur n beträgt der Flächeninhalt aller schwarzen Dreiecke zum
+              ersten Mal weniger als {data.lower} cm²? Notiere dein Vorgehen.
             </p>
           </>
         )
       },
       solution({ data }) {
-        const tries = Math.ceil(
-          Math.log(
-            data.lower /
-              roundToDigits(
-                (Math.pow(
-                  data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
-                  0.5,
-                ) *
-                  data.seite) /
-                  2,
-                2,
-              ),
-          ) / Math.log(0.75),
-        )
+        const tries = Math.ceil(Math.log(data.lower / data.f0) / Math.log(0.75))
         return (
           <>
             <p>Hier gibt es viele unterschiedliche Rechenwege. </p>
             <p>
               Setze zum Beispiel ganzzahlige Werte für n in den Taschenrechner
               ein und überprüfe das Ergebnis. Notiere diese Ergebnisse.
-              <br></br>
-              <br></br>
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              · 0,75<sup>{tries - 1}</sup> {'>'} {data.lower}
-              <br></br>
-              <p>
-                Nach {tries - 1} Figuren ist der Flächeninhalt immer noch größer
-                als {data.lower} cm².
-              </p>
-              <br></br>
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              · 0,75<sup>{tries}</sup> {'<'} {data.lower}
+            </p>
+            <p>
+              {pp(data.f0)} · 0,75<sup>{tries - 1}</sup> {'>'} {data.lower}
+            </p>
+            <p>
+              Nach {tries - 1} Figuren ist der Flächeninhalt immer noch größer
+              als {data.lower} cm².
+            </p>
+            <p>
+              {pp(data.f0)} · 0,75<sup>{tries}</sup> {'<'} {data.lower}
             </p>
             <p>
               Es braucht {tries} Figuren, damit der Flächeninhalt der schwarzen
@@ -277,32 +194,11 @@ export const exercise47: Exercise<DATA> = {
     {
       task({ data }) {
         function calculateValue(x: number): string {
-          return pp(
-            roundToDigits(
-              Math.pow(3 / 12, x) *
-                ((Math.pow(
-                  data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
-                  0.5,
-                ) *
-                  data.seite) /
-                  2),
-              3,
-            ),
-          )
+          return pp(roundToDigits(Math.pow(3 / 12, x) * data.f0, 3))
         }
         function calculateValue2(x: number): string {
           return pp(
-            roundToDigits(
-              Math.pow(3, x) *
-                Math.pow(3 / 12, x) *
-                ((Math.pow(
-                  data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
-                  0.5,
-                ) *
-                  data.seite) /
-                  2),
-              3,
-            ),
+            roundToDigits(Math.pow(3, x) * Math.pow(3 / 12, x) * data.f0, 3),
           )
         }
         function calculateValue3(x: number): string {
@@ -321,251 +217,50 @@ export const exercise47: Exercise<DATA> = {
                 height="200"
                 width="328"
               />
+              {data.show.map(i => (
+                <text
+                  key={i}
+                  x={280}
+                  y={90 + 16 * i}
+                  fontSize={10}
+                  textAnchor="right"
+                  stroke="black"
+                >
+                  {calculateValue3(i)}
+                </text>
+              ))}
 
-              <text
-                x={280}
-                y={90 + 16 * data.show[0]}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue3(data.show[0])}
-              </text>
-              <text
-                x={280}
-                y={90 + 16 * data.show[1]}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue3(data.show[1])}
-              </text>
-              <text
-                x={280}
-                y={90 + 16 * data.show[2]}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue3(data.show[2])}
-              </text>
-
-              <text
-                x={280}
-                y={90 + 16 * data.show[3]}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue3(data.show[3])}
-              </text>
-              <text
-                x={280}
-                y={90 + 16 * data.show[4]}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue3(data.show[4])}
-              </text>
-              <text
-                x={280}
-                y={90 + 16 * data.show[5]}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue3(data.show[5])}
-              </text>
-              <text
-                x={220}
-                y={90}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(0)}
-              </text>
-              <text
-                x={220}
-                y={105}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(1)}
-              </text>
-              <text
-                x={220}
-                y={121}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(2)}
-              </text>
-              <text
-                x={220}
-                y={137}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(3)}
-              </text>
-              <text
-                x={220}
-                y={153}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(4)}
-              </text>
-              <text
-                x={220}
-                y={169}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(5)}
-              </text>
-              <text
-                x={220}
-                y={187}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue2(6)}
-              </text>
-              <text
-                x={165}
-                y={90}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(0)}
-              </text>
-              <text
-                x={165}
-                y={105}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(1)}
-              </text>
-              <text
-                x={165}
-                y={121}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(2)}
-              </text>
-              <text
-                x={165}
-                y={137}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(3)}
-              </text>
-              <text
-                x={165}
-                y={153}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(4)}
-              </text>
-              <text
-                x={165}
-                y={169}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(5)}
-              </text>
-              <text
-                x={165}
-                y={187}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                {calculateValue(6)}
-              </text>
-              <text
-                x={115}
-                y={90}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                1
-              </text>
-              <text
-                x={115}
-                y={105}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                3
-              </text>
-              <text
-                x={115}
-                y={120}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                9
-              </text>
-              <text
-                x={115}
-                y={137}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                27
-              </text>
-              <text
-                x={115}
-                y={154}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                81
-              </text>
-              <text
-                x={110}
-                y={170}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                243
-              </text>
-              <text
-                x={110}
-                y={186}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
-                729
-              </text>
+              {[0, 1, 2, 3, 4, 5, 6].map(i => (
+                <Fragment key={i}>
+                  <text
+                    x={165}
+                    y={90 + 16 * i}
+                    fontSize={10}
+                    textAnchor="right"
+                    stroke="black"
+                  >
+                    {calculateValue(i)}
+                  </text>
+                  <text
+                    x={220}
+                    y={90 + 16 * i}
+                    fontSize={10}
+                    textAnchor="right"
+                    stroke="black"
+                  >
+                    {calculateValue2(i)}
+                  </text>
+                  <text
+                    x={127}
+                    y={90 + i * 16}
+                    fontSize={10}
+                    textAnchor="end"
+                    stroke="black"
+                  >
+                    {Math.pow(3, i)}
+                  </text>
+                </Fragment>
+              ))}
             </svg>
             <p>
               Berechne den fehlenden Wert in Spalte E. Runde auf drei
@@ -588,15 +283,15 @@ export const exercise47: Exercise<DATA> = {
             <p>
               Der fehlende Wert ist:{' '}
               {calculateValue3(
-                [0, 1, 2, 3, 4, 5, 6].filter(
+                [0, 1, 2, 3, 4, 5, 6].find(
                   value => !data.show.includes(value),
-                )[0] - 1,
+                )! - 1,
               )}{' '}
               · {buildInlineFrac(3, 4)} ={' '}
               {calculateValue3(
-                [0, 1, 2, 3, 4, 5, 6].filter(
+                [0, 1, 2, 3, 4, 5, 6].find(
                   value => !data.show.includes(value),
-                )[0],
+                )!,
               )}
             </p>
           </>
@@ -635,39 +330,13 @@ export const exercise47: Exercise<DATA> = {
     },
     {
       task({ data }) {
-        function calculateValue(x: number): string {
-          return pp(
-            roundToDigits(
-              Math.pow(3 / 12, x) *
-                ((Math.pow(
-                  data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
-                  0.5,
-                ) *
-                  data.seite) /
-                  2),
-              3,
-            ),
-          )
-        }
         return (
           <>
             <p>
               f) Die Summe der Flächeninhalte der schwarzen und der weiße
-              Dreiecke ergibt in jeder Figur zusammen{' '}
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              cm². <br></br>Wie entwickeln sich die Flächeninhalte der schwarzen
-              und weißen Flächen, wenn man die Figuren immer weiter fortsetzt?
+              Dreiecke ergibt in jeder Figur zusammen {pp(data.f0)} cm².{' '}
+              <br></br>Wie entwickeln sich die Flächeninhalte der schwarzen und
+              weißen Flächen, wenn man die Figuren immer weiter fortsetzt?
               Beschreibe.
             </p>
           </>
@@ -683,20 +352,7 @@ export const exercise47: Exercise<DATA> = {
             <p>
               Die weißen Flächen entsprechen genau dem Gegenstück der schwarzen
               Flächen und nehmen den Rest des Dreiecks ein. Ihre Fläche geht
-              demnach gegen{' '}
-              {pp(
-                roundToDigits(
-                  (Math.pow(
-                    data.seite * data.seite -
-                      (data.seite / 2) * (data.seite / 2),
-                    0.5,
-                  ) *
-                    data.seite) /
-                    2,
-                  2,
-                ),
-              )}{' '}
-              cm².
+              demnach gegen {pp(data.f0)} cm².
             </p>
           </>
         )
