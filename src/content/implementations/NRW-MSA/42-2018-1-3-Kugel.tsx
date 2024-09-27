@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1 } from '@/helper/colors'
 import { kürzeBruch } from '@/helper/kuerze-bruch'
 import { buildFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
@@ -85,22 +86,28 @@ export const exercise42: Exercise<DATA> = {
         return (
           <>
             <p>
-              Setze den {text2_case[data.case]}en Radius in die Formel für die
-              Oberfläche ein:
+              Setze den <Color1>{text2_case[data.case]}en</Color1> Radius in die
+              Formel für die Oberfläche ein:
             </p>
             <p>O = 4 · π · r²</p>
             <p>
-              O = 4 · π · ({faktor[data.case]} · {data.r})²
+              O = 4 · π · (<Color1>{faktor[data.case]}</Color1> · {data.r})²
             </p>
             <p>
-              O = 4 · π · {faktor[data.case]}² · {data.r}²
+              O = 4 · π · <Color1>{faktor[data.case]}</Color1>² · {data.r}²
             </p>
             <p>
-              O = 4 · π · {faktor[data.case] * faktor[data.case]} · {data.r}²
+              O = 4 · π ·{' '}
+              <Color1>{faktor[data.case] * faktor[data.case]}</Color1> ·{' '}
+              {data.r}²
             </p>
             <p>
-              Die Aussage von Sina ist also {data.right == 0 && 'falsch'}
-              {data.right == 1 && 'richtig'}.
+              Die Aussage von Sina ist also{' '}
+              <strong>
+                {data.right == 0 && 'falsch'}
+                {data.right == 1 && 'richtig'}
+              </strong>
+              .
             </p>
           </>
         )
