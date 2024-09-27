@@ -27,9 +27,61 @@ export const exercise42: Exercise<DATA> = {
     return true
   },
   intro({ data }) {
+    const rad = data.r * 16
     return (
       <>
-        <p>TODO: Abbildung Kugel</p>
+        <svg
+          width="300"
+          height="300"
+          viewBox="0 0 300 300"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="150"
+            cy="150"
+            r={rad}
+            stroke="#007EC1"
+            stroke-width="3"
+            fill="transparent"
+          />
+          <ellipse
+            cx="150"
+            cy="150"
+            rx={rad}
+            ry={rad / 2.5}
+            stroke="#007Ec1"
+            stroke-dasharray="4 4"
+            fill="transparent"
+          />
+          <circle cx="150" cy="150" r="3" fill="black" />
+          <line
+            x1="150"
+            y1="150"
+            x2={150 + rad * 0.6}
+            y2={150 + rad * 0.3}
+            stroke="#007Ec1"
+            stroke-dasharray="4 4"
+          />
+          <rect
+            x={147 + rad * 0.5}
+            y={137 + rad * 0.35}
+            width="16"
+            height="18"
+            rx="4"
+            ry="4"
+            fill="#C4DDEB"
+            stroke-width="2"
+          />
+          <text
+            x={152 + rad * 0.5}
+            y={150 + rad * 0.35}
+            font-size="14"
+            fill="black"
+          >
+            r
+          </text>
+        </svg>
+
         <p>Eine Kugel hat einen Radius von {data.r} cm.</p>
       </>
     )
