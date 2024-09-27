@@ -218,36 +218,105 @@ export const exercise23: Exercise<DATA> = {
               b) Gib eine lineare Gleichung an, die zu folgender Wertetabelle
               passt:{' '}
             </p>
-            <svg viewBox="0 0 700 500" className="h-[170px]">
-              <image
-                href="/content/NRW_MSA_Wertetabelle_2.png"
-                height="500"
-                width="700"
+            <svg width="300" height="100" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="10"
+                y="10"
+                width="280"
+                height="80"
+                rx="10"
+                ry="10"
+                stroke="#007Ec1"
+                fill="transparent"
+                stroke-width="2"
               />
+
+              <line
+                x1="80"
+                y1="10"
+                x2="80"
+                y2="90"
+                stroke="#007EC1"
+                stroke-width="2"
+              />
+              <line
+                x1="150"
+                y1="10"
+                x2="150"
+                y2="90"
+                stroke="#007EC1"
+                stroke-width="2"
+              />
+              <line
+                x1="220"
+                y1="10"
+                x2="220"
+                y2="90"
+                stroke="#007EC1"
+                stroke-width="2"
+              />
+              <line
+                x1="10"
+                y1="50"
+                x2="290"
+                y2="50"
+                stroke="#007EC1"
+                stroke-width="2"
+              />
+
               <text
-                x={230}
-                y={320}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
+                x="45"
+                y="35"
+                font-size="16"
+                text-anchor="middle"
+                font-weight="bold"
+              >
+                x
+              </text>
+              <text x="115" y="35" font-size="16" text-anchor="middle">
+                0
+              </text>
+              <text x="185" y="35" font-size="16" text-anchor="middle">
+                1
+              </text>
+              <text x="255" y="35" font-size="16" text-anchor="middle">
+                2
+              </text>
+
+              <text
+                x="45"
+                y="75"
+                font-size="16"
+                text-anchor="middle"
+                fill="black"
+                font-weight="bold"
+              >
+                y
+              </text>
+              <text
+                x="115"
+                y="75"
+                font-size="16"
+                text-anchor="middle"
+                fill="black"
               >
                 {pp(0 * data.m_b + data.b_b)}
               </text>
               <text
-                x={420}
-                y={320}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
+                x="185"
+                y="75"
+                font-size="16"
+                text-anchor="middle"
+                fill="#black"
               >
                 {pp(1 * data.m_b + data.b_b)}
               </text>
               <text
-                x={590}
-                y={320}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
+                x="255"
+                y="75"
+                font-size="16"
+                text-anchor="middle"
+                fill="black"
               >
                 {pp(2 * data.m_b + data.b_b)}
               </text>
