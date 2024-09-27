@@ -13,7 +13,7 @@ interface DATA {
 
 export const exercise35: Exercise<DATA> = {
   title: 'Lineares Gleichungssystem',
-  source: '2019 / 5',
+  source: '2019 Teil 1 Aufgabe 5',
   useCalculator: false,
   duration: 3,
   generator(rng) {

@@ -12,7 +12,7 @@ interface DATA {
 
 export const exercise19: Exercise<DATA> = {
   title: 'Wassermelonen',
-  source: '2022 Prüfungsteil 2 / 2',
+  source: '2022 Teil 2 Aufgabe 2',
   useCalculator: false,
   duration: 10,
   generator(rng) {

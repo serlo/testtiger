@@ -10,7 +10,7 @@ interface DATA {
 
 export const exercise11: Exercise<DATA> = {
   title: 'Dreieck',
-  source: '2022 Variante 1 / 2',
+  source: '2022 Teil 1 Aufgabe 2',
   useCalculator: true,
   duration: 3,
 

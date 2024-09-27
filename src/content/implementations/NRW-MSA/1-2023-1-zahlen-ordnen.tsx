@@ -12,7 +12,7 @@ interface DATA {
 
 export const exercise1: Exercise<DATA> = {
   title: 'Zahlen ordnen',
-  source: '2023 / 1',
+  source: '2023 Teil 1 Aufgabe 1',
   useCalculator: false,
   duration: 2,
   generator(rng) {

@@ -14,7 +14,7 @@ interface DATA {
 
 export const exercise13: Exercise<DATA> = {
   title: 'Binom ergänzen',
-  source: '2022 Variante 1 / 4',
+  source: '2022 Teil 1 Aufgabe 4',
   useCalculator: false,
   duration: 2,
   generator(rng) {

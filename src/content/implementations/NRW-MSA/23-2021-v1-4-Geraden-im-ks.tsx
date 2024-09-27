@@ -16,7 +16,7 @@ interface DATA {
 
 export const exercise23: Exercise<DATA> = {
   title: 'Gerade im Koordinatensystem',
-  source: '2021 Variante 1 / 4',
+  source: '2021 Teil 1 Aufgabe 4',
   useCalculator: false,
   duration: 2,
   generator(rng) {

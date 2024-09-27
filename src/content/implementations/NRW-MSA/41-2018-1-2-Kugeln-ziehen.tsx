@@ -10,7 +10,7 @@ interface DATA {
 
 export const exercise41: Exercise<DATA> = {
   title: 'Kugeln ziehen',
-  source: '2018 Teil 1 /2',
+  source: '2018 Teil 1 Aufgabe 2',
   useCalculator: false,
   duration: 42,
   generator(rng) {

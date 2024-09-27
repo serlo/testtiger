@@ -17,7 +17,7 @@ interface DATA {
 
 export const exercise45: Exercise<DATA> = {
   title: 'Brücke',
-  source: '2018 Prüfungsteil 2 / 1',
+  source: '2018 Teil 2 Aufgabe 1',
   useCalculator: true,
   duration: 10,
   generator(rng) {

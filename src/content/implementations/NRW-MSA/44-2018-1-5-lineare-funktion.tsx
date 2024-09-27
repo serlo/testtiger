@@ -9,7 +9,7 @@ interface DATA {
 
 export const exercise44: Exercise<DATA> = {
   title: 'Lineare Funktion',
-  source: '2018 Prüfungsteil 1 / 5',
+  source: '2018 Teil 1 Aufgabe 5',
   useCalculator: false,
   duration: 42,
   generator(rng) {

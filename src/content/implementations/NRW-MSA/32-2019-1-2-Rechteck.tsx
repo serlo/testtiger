@@ -12,8 +12,8 @@ interface DATA {
 }
 
 export const exercise32: Exercise<DATA> = {
-  title: 'Berechnungen am Rechteck',
-  source: '2019 Teil 1 /2',
+  title: 'Rechteck',
+  source: '2019 Teil 1 Aufgabe 2',
   useCalculator: false,
   duration: 42,
   generator(rng) {

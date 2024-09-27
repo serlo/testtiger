@@ -9,7 +9,7 @@ interface DATA {
 
 export const exercise17: Exercise<DATA> = {
   title: 'Gerade im Koordinatensystem',
-  source: '2022 Variante 2 / 2',
+  source: '2022 Teil 1 Aufgabe 2 (Variante 2)',
   useCalculator: false,
   duration: 3,
   generator(rng) {

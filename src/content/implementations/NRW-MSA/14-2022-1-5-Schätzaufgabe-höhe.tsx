@@ -7,7 +7,7 @@ interface DATA {
 
 export const exercise14: Exercise<DATA> = {
   title: 'Höhe schätzen',
-  source: '2022 Variante 1 / 5',
+  source: '2022 Teil 1 Aufgabe 5',
   useCalculator: false,
   duration: 1,
   generator(rng) {

@@ -11,7 +11,7 @@ interface DATA {
 
 export const exercise37: Exercise<DATA> = {
   title: 'Volumen und Gewicht',
-  source: '2021 Teil 1 Variante 1 / 3',
+  source: '2021 Teil 1 Aufgabe 3',
   useCalculator: false,
   duration: 4,
   points: 3,

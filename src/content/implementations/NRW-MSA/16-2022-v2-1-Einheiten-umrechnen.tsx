@@ -11,7 +11,7 @@ interface DATA {
 
 export const exercise16: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
-  source: '2022 Variante 2 /1',
+  source: '2022 Teil 1 Aufgabe 1 (Variante 2)',
   useCalculator: false,
   duration: 1,
   generator(rng) {

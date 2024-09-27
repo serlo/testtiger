@@ -19,7 +19,7 @@ interface DATA {
 
 export const exercise36: Exercise<DATA> = {
   title: 'Kaugummis',
-  source: '2019 Prüfungsteil 2 / 1',
+  source: '2019 Teil 2 Aufgabe 1',
   useCalculator: true,
   duration: 10,
   generator(rng) {

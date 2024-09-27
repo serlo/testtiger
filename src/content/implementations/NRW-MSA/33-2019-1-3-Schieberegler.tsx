@@ -7,7 +7,7 @@ interface DATA {
 
 export const exercise33: Exercise<DATA> = {
   title: 'Schieberegler',
-  source: '2019 Teil 1 /3',
+  source: '2019 Teil 1 Aufgabe 3',
   useCalculator: false,
   duration: 42,
   generator(rng) {
