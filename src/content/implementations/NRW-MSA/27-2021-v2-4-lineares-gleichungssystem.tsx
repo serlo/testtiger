@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1 } from '@/helper/colors'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -52,7 +53,7 @@ export const exercise27: Exercise<DATA> = {
         const e = data.d * data.x + data.a * data.y
         return (
           <>
-            <p>Löse das lineare Gleichungssystem.</p>
+            <p>a) Löse das lineare Gleichungssystem.</p>
 
             <p>Notiere deinen Lösungsweg.</p>
 
@@ -119,11 +120,12 @@ export const exercise27: Exercise<DATA> = {
         return (
           <>
             <p>
-              Ergänze den fehlenden Wert in Gleichung I so, dass das angegebene
-              Gleichungssystem keine Lösung hat. Begründe deine Entscheidung.{' '}
+              b) Ergänze den fehlenden Wert in Gleichung I so, dass das
+              angegebene Gleichungssystem keine Lösung hat. Begründe deine
+              Entscheidung.{' '}
             </p>
             <p>
-              <br></br>I:&nbsp;&nbsp;y = ___ x {pp(data.b_b, 'merge_op')}
+              <br></br>I:&nbsp;&nbsp;&nbsp;y = ___ x {pp(data.b_b, 'merge_op')}
               <br></br>II:&nbsp;&nbsp;y = {data.m_b}x{' '}
               {pp(data.b_2_b, 'merge_op')}
             </p>
@@ -133,7 +135,22 @@ export const exercise27: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p></p>
+            <p>
+              {' '}
+              Die Gleichungen I und II sind zwei Geradengleichungen. Wenn die
+              Geraden parallel verlaufen, gibt es keinen Schnittpunkt und damit
+              keine Lösung des Gleichungssystems:
+            </p>
+            <p>
+              I:&nbsp;&nbsp;&nbsp;y = <Color1>{data.m_b}</Color1>x{' '}
+              {pp(data.b_b, 'merge_op')}
+              <br></br>II:&nbsp;&nbsp;y = {data.m_b}x{' '}
+              {pp(data.b_2_b, 'merge_op')}
+            </p>
+            <p>
+              Das Gleichungssystem hat also keine Lösung, wenn du als fehlenden
+              Wert <Color1>{data.m_b}</Color1> einsetzt.
+            </p>
           </>
         )
       },
