@@ -57,20 +57,19 @@ export const exercise42: Exercise<DATA> = {
     {
       points: 42,
       task({ data }) {
-        const text1 = ['verdopple', 'verdreifache', 'halbiere']
-        const text2 = ['verdoppelt', 'verdreifacht', 'halbiert']
-        const text2korrekt = ['vervierfacht', 'verneunfacht', 'viertelt']
+        const text1_case = ['verdopple', 'verdreifache', 'halbiere']
+        const text_falsch = ['verdoppelt', 'verdreifacht', 'halbiert']
+        const text_korrekt = ['vervierfacht', 'verneunfacht', 'viertelt']
 
         return (
           <>
             <p>
-              {data.right}
-              b) Sina überlegt: Wenn ich den Radius {text1[data.case]},{' '}
+              b) Sina überlegt: Wenn ich den Radius {text1_case[data.case]},{' '}
               {data.right == 1 && (
-                <>dann {text2korrekt[data.case]} sich die Oberfläche. </>
+                <>dann {text_korrekt[data.case]} sich die Oberfläche. </>
               )}
               {data.right == 0 && (
-                <>dann {text2[data.case]} sich auch die Oberfläche. </>
+                <>dann {text_falsch[data.case]} sich auch die Oberfläche. </>
               )}
               <p />
               <p>Hat Sina recht? Begründe deine Entscheidung.</p>
@@ -79,12 +78,12 @@ export const exercise42: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const text3 = ['doppelt', 'dreifach', 'vierfach', 'halb']
+        const text2_case = ['doppelt', 'dreifach', 'vierfach', 'halb']
         const faktor = [2, 3, 4, 0.5]
         return (
           <>
             <p>
-              Setze den {text3[data.case]}en Radius in die Formel für die
+              Setze den {text2_case[data.case]}en Radius in die Formel für die
               Oberfläche ein:
             </p>
             <p>O = 4 · π · r²</p>
@@ -96,6 +95,10 @@ export const exercise42: Exercise<DATA> = {
             </p>
             <p>
               O = 4 · π · {faktor[data.case] * faktor[data.case]} · {data.r}²
+            </p>
+            <p>
+              Die Aussage von Sina ist also {data.right == 0 && 'falsch'}
+              {data.right == 1 && 'richtig'}.
             </p>
           </>
         )
