@@ -102,7 +102,10 @@ export const exercise42: Exercise<DATA> = {
               <Color1>{faktor[data.case] * faktor[data.case]}</Color1> ·{' '}
               {data.r}²
             </p>
-            <p>Die Oberfläche </p>
+            <p>
+              Die Oberfläche <Color1>{text3_case[data.case]}</Color1> sich bei{' '}
+              <Color1>{text2_case[data.case]}em</Color1> Radius.
+            </p>
             <p>
               Die Aussage von Sina ist also{' '}
               <strong>
