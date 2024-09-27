@@ -39,6 +39,7 @@ import { exercise33 } from './implementations/NRW-MSA/33-2019-1-3-Schieberegler'
 import { exercise41 } from './implementations/NRW-MSA/41-2018-1-2-Kugeln-ziehen'
 import { exercise43 } from './implementations/NRW-MSA/43-2018-1-4-lineares-gleichungssystem'
 import { exercise44 } from './implementations/NRW-MSA/44-2018-1-5-lineare-funktion'
+import { exercise42 } from './implementations/NRW-MSA/42-2018-1-3-Kugel'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -76,6 +77,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   38: exercise38,
   192: exercise192,
   41: exercise41,
+  42: exercise42,
   43: exercise43,
   44: exercise44,
   45: exercise45,
