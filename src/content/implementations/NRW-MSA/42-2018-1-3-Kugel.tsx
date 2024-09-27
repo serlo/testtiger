@@ -2,7 +2,7 @@ import { Exercise } from '@/data/types'
 import { Color1 } from '@/helper/colors'
 import { kürzeBruch } from '@/helper/kuerze-bruch'
 import { buildFrac } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
@@ -92,14 +92,17 @@ export const exercise42: Exercise<DATA> = {
             </p>
             <p>O = 4 · π · r²</p>
             <p>
-              O = 4 · π · (<Color1>{faktor[data.case]}</Color1> · {data.r})²
+              O = 4 · π · (<Color1>{ppFrac(faktor[data.case])}</Color1> ·{' '}
+              {data.r})²
             </p>
             <p>
-              O = 4 · π · <Color1>{faktor[data.case]}</Color1>² · {data.r}²
+              O = 4 · π · {data.case == 2 && '('}
+              <Color1>{ppFrac(faktor[data.case])}</Color1>
+              {data.case == 2 && ')'}² · {data.r}²
             </p>
             <p>
               O = 4 · π ·{' '}
-              <Color1>{faktor[data.case] * faktor[data.case]}</Color1> ·{' '}
+              <Color1>{ppFrac(faktor[data.case] * faktor[data.case])}</Color1> ·{' '}
               {data.r}²
             </p>
             <p>
