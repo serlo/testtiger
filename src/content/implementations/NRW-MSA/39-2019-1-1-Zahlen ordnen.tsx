@@ -2,7 +2,7 @@ import { Exercise } from '@/data/types'
 
 interface DATA {}
 
-export const exerciseXXX: Exercise<DATA> = {
+export const exercise39: Exercise<DATA> = {
   title: 'Zahlen ordnen',
   source: '2019 Teil 1 Aufgabe 1',
   useCalculator: false,
