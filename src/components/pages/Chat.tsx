@@ -24,6 +24,9 @@ import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
 import { Message, SpinnerMessage } from '../ui/Message'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { IonIcon } from '@ionic/react'
+import { addOutline, sendOutline } from 'ionicons/icons'
+import TextareaAutosize from 'react-textarea-autosize'
 
 interface ChatProps {
   id: number
@@ -38,6 +41,19 @@ export function Chat({ id }: ChatProps) {
 
   const [exampleSeed, setExampleSeed] = useState(generateSeed())
   const [showSolution, setShowSolution] = useState(false)
+  const [base64Image, setBase64Image] = useState<string | null>(null)
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setBase64Image(reader.result as string)
+      }
+      // Convert file to base64
+      reader.readAsDataURL(file)
+    }
+  }
 
   const withSubtasks = 'tasks' in content
   if (withSubtasks) {
@@ -69,7 +85,7 @@ export function Chat({ id }: ChatProps) {
 
               ${content.tasks.map(
                 t => `
-                
+
                 Das ist eine Teilaufgabe.
 
                 Aufgabenstellung:
@@ -77,7 +93,7 @@ export function Chat({ id }: ChatProps) {
 
                 Lösung:
                 ${toHtml(t.solution({ data }))}
-                
+
                 `,
               )}
         `,
@@ -91,7 +107,7 @@ export function Chat({ id }: ChatProps) {
             role: 'system',
             content: `
               Das HTML der Aufgabenstellung ist das:
-              
+
               ${toHtml(content.task({ data }))}
 
               Das HTML der Lösung ist das:
@@ -115,7 +131,10 @@ export function Chat({ id }: ChatProps) {
   ])
   const [userInput, setUserInput] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (
+    e: React.FormEvent,
+    base64Image: string | null,
+  ) => {
     e.preventDefault()
 
     const value = userInput.trim()
@@ -123,13 +142,31 @@ export function Chat({ id }: ChatProps) {
 
     setUserInput('')
 
-    const userMessage: IMessage = {
-      id: Math.random().toString(), // poor people's id
-      role: 'user',
-      content: value,
-    }
-    const messageWithUserMessage = [...messages, userMessage]
-    setMessages(currentMessages => [...currentMessages, userMessage])
+    const hasImage = !!base64Image
+
+    const newUserMessages: IMessage[] = [
+      ...((hasImage
+        ? [
+            {
+              id: Math.random().toString(),
+              role: 'system',
+              content:
+                'Der Schüler oder die Schülerin hat ein Bild hochgeladen. Es enthält vielleicht die Antwort zu deiner Frage. Analysiere das Bild und gib dem Schüler Feedback!',
+            },
+          ]
+        : []) as IMessage[]),
+      {
+        id: Math.random().toString(),
+        role: 'user',
+        content: [
+          { type: 'text', text: value },
+          ...(hasImage ? [{ type: 'image', image: base64Image }] : []),
+        ],
+      } as IMessage,
+    ]
+    const messageWithUserMessage = [...messages, ...newUserMessages]
+    setBase64Image(null)
+    setMessages(currentMessages => [...currentMessages, ...newUserMessages])
 
     setIsLoading(true)
 
@@ -176,6 +213,13 @@ export function Chat({ id }: ChatProps) {
   const color =
     navigationData[1].topics.find(t => t.exercises.includes(id))?.twColor ??
     'bg-gray-600'
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault()
+      handleSubmit(event, base64Image)
+    }
+  }
 
   return (
     <IonPage>
@@ -325,19 +369,51 @@ export function Chat({ id }: ChatProps) {
             </div>
 
             {/* User Input */}
-            <form onSubmit={handleSubmit} className="w-full mt-4">
-              <textarea
-                value={userInput}
-                onChange={e => setUserInput(e.target.value)}
-                placeholder="Schreibe deine Nachricht..."
-                className="w-full p-2 border rounded-md resize-none"
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mt-2"
-              >
-                Senden
-              </button>
+            <form
+              onSubmit={event => handleSubmit(event, base64Image)}
+              className="w-full mt-4 flex flex-col space-y-2"
+            >
+              {base64Image && (
+                <div className="w-full rounded-lg overflow-hidden mb-2">
+                  <img
+                    src={base64Image}
+                    alt="Uploaded"
+                    className="w-full h-auto"
+                  />
+                </div>
+              )}
+              <div className="flex items-end space-x-2">
+                <label htmlFor="file-upload" className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300">
+                    <IonIcon
+                      icon={addOutline}
+                      className="text-gray-600 w-6 h-6"
+                    />
+                  </div>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="sr-only"
+                  />
+                </label>
+                <TextareaAutosize
+                  value={userInput}
+                  onChange={e => setUserInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Nachricht..."
+                  minRows={1}
+                  maxRows={5}
+                  className="flex-grow p-2 border rounded-md resize-none"
+                />
+                <button
+                  type="submit"
+                  className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
+                >
+                  <IonIcon icon={sendOutline} className="w-5 h-5" />
+                </button>
+              </div>
             </form>
           </div>
         </div>
