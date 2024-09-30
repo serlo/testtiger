@@ -3,6 +3,7 @@ import {
   IonButton,
   IonButtons,
   IonContent,
+  IonFooter,
   IonHeader,
   IonModal,
   IonPage,
@@ -44,6 +45,7 @@ export function Chat({ id }: ChatProps) {
   const [base64Image, setBase64Image] = useState<string | null>(null)
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShowChat(true)
     const file = event.target.files?.[0]
     if (file) {
       const reader = new FileReader()
@@ -136,6 +138,7 @@ export function Chat({ id }: ChatProps) {
     base64Image: string | null,
   ) => {
     e.preventDefault()
+    setShowChat(true)
 
     const value = userInput.trim()
     if (!value) return
@@ -177,6 +180,8 @@ export function Chat({ id }: ChatProps) {
     setMessages(currentMessages => [...currentMessages, aiResponse])
     setIsLoading(false)
   }
+
+  const [showChat, setShowChat] = useState(false)
 
   const submitUserMessage = async ({
     messages,
@@ -360,61 +365,6 @@ export function Chat({ id }: ChatProps) {
                 )}
               </>
             )}
-            {/* AI Chat Messages */}
-            <div className="w-full flex flex-col space-y-12 mt-4">
-              {messages.map(message => (
-                <Message key={message.id} message={message} />
-              ))}
-              {isLoading && <SpinnerMessage />}
-            </div>
-
-            {/* User Input */}
-            <form
-              onSubmit={event => handleSubmit(event, base64Image)}
-              className="w-full mt-4 flex flex-col space-y-2"
-            >
-              {base64Image && (
-                <div className="w-full rounded-lg overflow-hidden mb-2">
-                  <img
-                    src={base64Image}
-                    alt="Uploaded"
-                    className="w-full h-auto"
-                  />
-                </div>
-              )}
-              <div className="flex items-end space-x-2">
-                <label htmlFor="file-upload" className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300">
-                    <IonIcon
-                      icon={addOutline}
-                      className="text-gray-600 w-6 h-6"
-                    />
-                  </div>
-                  <input
-                    id="file-upload"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="sr-only"
-                  />
-                </label>
-                <TextareaAutosize
-                  value={userInput}
-                  onChange={e => setUserInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Nachricht..."
-                  minRows={1}
-                  maxRows={5}
-                  className="flex-grow p-2 border rounded-md resize-none"
-                />
-                <button
-                  type="submit"
-                  className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
-                >
-                  <IonIcon icon={sendOutline} className="w-5 h-5" />
-                </button>
-              </div>
-            </form>
           </div>
         </div>
         <IonModal ref={modal} trigger="open-modal">
@@ -455,6 +405,79 @@ export function Chat({ id }: ChatProps) {
           </IonContent>
         </IonModal>
       </IonContent>
+      <IonFooter>
+        {showChat && (
+          <>
+            {/* User Input */}
+            {/* AI Chat Messages */}
+            <div className="">
+              <div className="flex justify-center">
+                <button
+                  onClick={() => {
+                    setShowChat(false)
+                  }}
+                  className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded mt-1"
+                >
+                  Schließen
+                </button>
+              </div>
+              <div className="w-full flex flex-col space-y-12 mt-4 overflow-auto max-h-[40vh]">
+                {messages.map(message => (
+                  <Message key={message.id} message={message} />
+                ))}
+                {isLoading && <SpinnerMessage />}
+              </div>
+            </div>
+          </>
+        )}
+
+        <form
+          onSubmit={event => handleSubmit(event, base64Image)}
+          className="w-full mt-4 flex flex-col space-y-2 mb-4"
+        >
+          {base64Image && (
+            <div className="rounded-lg overflow-hidden mb-2 h-[150px]">
+              <img
+                src={base64Image}
+                alt="Uploaded"
+                className="max-h-full max-w-full mx-auto"
+              />
+            </div>
+          )}
+          <div className="flex items-end space-x-2">
+            <label htmlFor="file-upload" className="flex-shrink-0">
+              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300">
+                <IonIcon icon={addOutline} className="text-gray-600 w-6 h-6" />
+              </div>
+              <input
+                id="file-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="sr-only"
+              />
+            </label>
+            <TextareaAutosize
+              value={userInput}
+              onChange={e => setUserInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Nachricht..."
+              minRows={1}
+              maxRows={5}
+              className="flex-grow p-2 border rounded-md resize-none"
+              onFocus={() => {
+                setShowChat(true)
+              }}
+            />
+            <button
+              type="submit"
+              className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
+            >
+              <IonIcon icon={sendOutline} className="w-5 h-5" />
+            </button>
+          </div>
+        </form>
+      </IonFooter>
     </IonPage>
   )
 }
