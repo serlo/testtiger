@@ -40,6 +40,7 @@ import { exercise41 } from './implementations/NRW-MSA/41-2018-1-2-Kugeln-ziehen'
 import { exercise43 } from './implementations/NRW-MSA/43-2018-1-4-lineares-gleichungssystem'
 import { exercise44 } from './implementations/NRW-MSA/44-2018-1-5-lineare-funktion'
 import { exercise42 } from './implementations/NRW-MSA/42-2018-1-3-Kugel'
+import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -64,6 +65,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   21: exercise21,
   23: exercise23,
   24: exercise24,
+  25: exercise25,
   26: exercise26,
   27: exercise27,
   28: exercise28,
