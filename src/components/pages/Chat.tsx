@@ -10,6 +10,7 @@ import {
   IonTitle,
   IonToolbar,
   IonIcon,
+  createGesture,
 } from '@ionic/react'
 import { addOutline, sendOutline } from 'ionicons/icons'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -224,51 +225,44 @@ export function Chat({ id }: ChatProps) {
   // State für die Chat-Höhe
   const [chatHeight, setChatHeight] = useState(40) // Anfangshöhe in vh
 
-  // State für Swipe-Detection
-  const [startY, setStartY] = useState(0)
-  const [startTime, setStartTime] = useState(0)
+  // Referenz für das Drag-Element
+  const dragElementRef = useRef<HTMLDivElement>(null)
 
-  // Funktionen für das Ziehen
-  const startResizeTouch = (e: React.TouchEvent<HTMLDivElement>) => {
-    const touch = e.touches[0]
-    setStartY(touch.clientY)
-    setStartTime(e.timeStamp)
-    window.addEventListener('touchmove', resizeChatTouch)
-    window.addEventListener('touchend', stopResizeTouch)
-  }
+  // Verwendung der Ionic Gesture API für Touch-Interaktionen
+  useEffect(() => {
+    if (!dragElementRef.current) return
 
-  const resizeChatTouch = (e: TouchEvent) => {
-    const windowHeight = window.innerHeight
-    const touch = e.touches[0]
-    const newHeight = ((windowHeight - touch.clientY) / windowHeight) * 100
-    if (newHeight > 20 && newHeight < 80) {
-      setChatHeight(newHeight)
+    const gesture = createGesture({
+      el: dragElementRef.current,
+      gestureName: 'chat-swipe',
+      onMove: ev => {
+        const windowHeight = window.innerHeight
+        const newHeight = ((windowHeight - ev.currentY) / windowHeight) * 100
+        if (newHeight > 20 && newHeight < 80) {
+          setChatHeight(newHeight)
+        }
+      },
+      onEnd: ev => {
+        // Wenn der Nutzer weit genug nach unten geswiped hat, Chat schließen
+        if (chatHeight < 25) {
+          setShowChat(false)
+        }
+      },
+    })
+    gesture.enable()
+    return () => {
+      gesture.destroy()
     }
-  }
+  }, [chatHeight])
 
-  const stopResizeTouch = (e: TouchEvent) => {
-    window.removeEventListener('touchmove', resizeChatTouch)
-    window.removeEventListener('touchend', stopResizeTouch)
+  // Mausereignisse für Desktop
+  const startYRef = useRef(0)
+  const startTimeRef = useRef(0)
 
-    const touch = e.changedTouches[0]
-    const endY = touch.clientY
-    const deltaY = endY - startY
-    const deltaTime = e.timeStamp - startTime
-
-    const velocity = deltaY / deltaTime
-
-    const velocityThreshold = 0.1 // Anpassbar
-
-    if (deltaY > 10 && velocity > velocityThreshold) {
-      // Schnelles Nach-unten-Swipen erkannt
-      setShowChat(false)
-    }
-  }
-  // Funktionen für das Ziehen mit der Maus
   const startResize = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    setStartY(e.clientY)
-    setStartTime(e.timeStamp)
+    startYRef.current = e.clientY
+    startTimeRef.current = e.timeStamp
     window.addEventListener('mousemove', resizeChat)
     window.addEventListener('mouseup', stopResize)
   }
@@ -285,15 +279,14 @@ export function Chat({ id }: ChatProps) {
     window.removeEventListener('mousemove', resizeChat)
     window.removeEventListener('mouseup', stopResize)
 
-    const endY = e.clientY
-    const deltaY = endY - startY
-    const deltaTime = e.timeStamp - startTime
+    const deltaY = e.clientY - startYRef.current
+    const deltaTime = e.timeStamp - startTimeRef.current
 
     const velocity = deltaY / deltaTime
 
-    const velocityThreshold = 0.0001 // Angepasster Wert
+    const velocityThreshold = 0.5 // Angepasster Wert
 
-    if (deltaY > 10 && velocity > velocityThreshold) {
+    if (deltaY > 50 && velocity > velocityThreshold) {
       // Leichte Bewegung nach unten erkannt
       setShowChat(false)
     }
@@ -468,15 +461,14 @@ export function Chat({ id }: ChatProps) {
           </IonContent>
         </IonModal>
       </IonContent>
-      <IonFooter>
+      <IonFooter className="shadow-lg">
         {showChat && (
           <>
             {/* Draggable Linie */}
             <div
+              ref={dragElementRef}
               className="w-1/4 h-[4px] mx-auto my-4 rounded-lg bg-blue-500 cursor-row-resize"
-              style={{ backgroundColor: '#007EC1' }}
               onMouseDown={startResize}
-              onTouchStart={startResizeTouch}
             ></div>
 
             {/* Chat-Bereich mit dynamischer Höhe und abgerundeten Ecken */}
