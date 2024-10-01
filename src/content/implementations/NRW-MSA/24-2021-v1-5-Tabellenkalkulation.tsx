@@ -24,7 +24,15 @@ export const exercise24: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return true
+    return (
+      roundToDigits(
+        roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2) /
+          data.preis_p,
+        4,
+      ) *
+        100 !=
+      3
+    )
   },
   intro({ data }) {
     return <></>
@@ -179,25 +187,103 @@ export const exercise24: Exercise<DATA> = {
               {pp(Math.round(data.preis * 1.16 * 100) / 100)} €
             </p>
             <p>Damit ist die ausgefüllte Tabelle:</p>
-            <svg viewBox="0 0 600 120">
+            <svg viewBox="0 0 328 66">
               <image
                 href="/content/NRW_MSA_Tabellenkalk.png"
-                height="120"
-                width="600"
+                height="66"
+                width="328"
               />
               <text
-                x={223}
-                y={102}
-                fontSize={15}
+                x={115}
+                y={61}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
                 {pp(data.preis)}
               </text>
               <text
-                x={568}
-                y={102}
-                fontSize={15}
+                x={305}
+                y={37}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(
+                  roundToDigits(data.preis_t * 1.19, 2) -
+                    roundToDigits(data.preis_t * 1.16, 2),
+                )}
+              </text>
+              <text
+                x={305}
+                y={49}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(
+                  roundToDigits(data.preis_p * 1.19, 2) -
+                    roundToDigits(data.preis_p * 1.16, 2),
+                )}
+              </text>
+              <text
+                x={120}
+                y={37}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(data.preis_t)}
+              </text>
+              <text
+                x={188}
+                y={37}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_t * 1.19, 2))}
+              </text>
+              <text
+                x={188}
+                y={49}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_p * 1.19, 2))}
+              </text>
+              <text
+                x={258}
+                y={49}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_p * 1.16, 2))}
+              </text>
+              <text
+                x={259}
+                y={37}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(roundToDigits(data.preis_t * 1.16, 2))}
+              </text>
+              <text
+                x={117}
+                y={49}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                {pp(data.preis_p)}
+              </text>
+              <text
+                x={305}
+                y={61}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
@@ -206,19 +292,20 @@ export const exercise24: Exercise<DATA> = {
                     100,
                 )}
               </text>
+
               <text
-                x={349}
-                y={102}
-                fontSize={15}
+                x={185}
+                y={61}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
                 {pp(Math.round(data.preis * 1.19 * 100) / 100)}
               </text>
               <text
-                x={476}
-                y={102}
-                fontSize={15}
+                x={255}
+                y={61}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
@@ -287,13 +374,27 @@ export const exercise24: Exercise<DATA> = {
           <>
             <p>Für die Beispielrechnung wählen wir den Pullover aus.</p>
 
-            <p>Preis des Pullovers vor der Absenkung: 13,95 €</p>
+            <p>Preis des Pullovers vor der Absenkung: {pp(data.preis_p)} €</p>
             <p>
-              Ersparnis nach der Absenkung der MwSt.: 0,35 €<br></br>
+              Ersparnis nach der Absenkung der MwSt.:{' '}
+              {pp(roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2))}{' '}
+              €<br></br>
             </p>
             <p>
               Die Erparnis beträgt in Prozent:
-              {buildInlineFrac('0,35', '13,95')} · 100 % = 2,51 %
+              {buildInlineFrac(
+                pp(roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2)),
+                pp(data.preis_p),
+              )}{' '}
+              · 100 % ={' '}
+              {pp(
+                roundToDigits(
+                  roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2) /
+                    data.preis_p,
+                  4,
+                ) * 100,
+              )}{' '}
+              %
             </p>
             <p>Damit trifft die Aussage von Herr Meyer zu.</p>
           </>
