@@ -1,5 +1,9 @@
 import { Exercise } from '@/data/types'
-import { buildFrac } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildFrac,
+  buildInlineFrac,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -71,7 +75,10 @@ export const exercise45: Exercise<DATA> = {
               Ergebnis in Minuten zu erhalten:
             </p>
             <p>
-              {pp(data.pace)} : 60 = {pp(roundToDigits(data.pace / 60, 4))}
+              {pp(data.pace)}
+              {buildInlineFrac('km', 'h')} : 60 {buildInlineFrac('min', 'h')}={' '}
+              {pp(roundToDigits(data.pace / 60, 4))}
+              {buildInlineFrac('km', 'min')}
             </p>
             <p>
               Weg, Geschwindigkeit und Zeit hängen über dieses Gesetz zusammen:
@@ -98,8 +105,8 @@ export const exercise45: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Freunde fahren mit dem Zug um 7:30 Uhr in Frankfurt los und
-              kommen 12:00 Uhr in Baunatal an. Der abgebildete Graph stellt
+              Die Freunde fahren mit dem Zug um 7:45 Uhr in Frankfurt los und
+              kommen 11:45 Uhr in Baunatal an. Der abgebildete Graph stellt
               vereinfacht den Verlauf ihrer Zugfahrt dar (Abbildung 2).
             </p>
             <svg viewBox="0 0 328 180">
@@ -136,7 +143,7 @@ export const exercise45: Exercise<DATA> = {
                 x
               </text>
               <line
-                x1={84}
+                x1={87}
                 y1={144}
                 x2={data.x_1}
                 y2={102}
@@ -160,7 +167,7 @@ export const exercise45: Exercise<DATA> = {
                 strokeWidth={2}
               />
               <line
-                x2={304}
+                x2={306}
                 y2={25}
                 x1={data.x_3}
                 y1={54}
@@ -221,7 +228,95 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p></p>
+            <svg viewBox="0 0 328 181">
+              <image
+                href="/content/NRW_MSA_Zug_KS.PNG"
+                height="181"
+                width="328"
+              />
+              <text
+                x={data.x_1 - 3}
+                y={104}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                x
+              </text>
+              <text
+                x={data.x_2 - 3}
+                y={88}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                x
+              </text>
+
+              <text
+                x={data.x_3 - 3}
+                y={56}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                x
+              </text>
+              <line
+                x1={84 + 3}
+                y1={144}
+                x2={data.x_1}
+                y2={102}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x2={data.x_2}
+                y2={85}
+                x1={data.x_1}
+                y1={102}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={data.x_2}
+                y1={85}
+                x2={data.x_3}
+                y2={54}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x2={306}
+                y2={25}
+                x1={data.x_3}
+                y1={54}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x2={134 + ((187.5 / data.pace_2) * 60 * 15.8) / 15}
+                y2={146}
+                x1={134}
+                y1={25}
+                stroke="orange"
+                strokeWidth={2}
+              />
+            </svg>
+            <p>
+              Die orange Gerade stellt die Fahrt des Güterzugs dar. Hierbei ist
+              wichtig, dass die Gerade fällt, da der Güterzug entgegengesetzt
+              fährt.
+            </p>
+            <p>
+              Die Züge begegnen sich in
+              {(62 * ((187.5 * 60 * 15.8) / (data.pace_2 * 15))) / 121 >
+              data.x_2 - 134
+                ? ' Streckenabschnitt 3. '
+                : ' Streckenabschnitt 2. '}
+              Bestimme den Schnittpunkt der Geraden und lies die Uhrzeit am
+              Koordinatensystem ab.{' '}
+            </p>
           </>
         )
       },
@@ -276,7 +371,40 @@ export const exercise45: Exercise<DATA> = {
         return (
           <>
             {' '}
-            <p></p>
+            <p>
+              Im rechtwinkligen Dreieck in Abbildung 3 sind die Gegenkathete von
+              α und die Hypotenuse gegeben. Das Verhältnis dieser Seiten wird
+              durch den Sinus beschrieben:
+            </p>
+            <p>
+              sin(α) = {buildFrac('Gegenkathete', 'Hypotenuse')} ={' '}
+              {buildFrac('u', data.width + ' mm')}
+            </p>
+            <p>
+              Stelle die Gleichung um, um den Höhenunterschied u zu berechnen:
+            </p>
+            <p>
+              u = sin({data.alpha_max}°) · {data.width + ' mm'} ≈{' '}
+              {pp(
+                roundToDigits(
+                  Math.sin((data.alpha_max / 360) * 2 * Math.PI) * data.width,
+                  2,
+                ),
+              )}{' '}
+              mm
+            </p>
+            <p>
+              Damit entspricht der Höhenunterschied etwa{' '}
+              {pp(
+                roundToDigits(
+                  (Math.sin((data.alpha_max / 360) * 2 * Math.PI) *
+                    data.width) /
+                    10,
+                  2,
+                ),
+              )}{' '}
+              cm. Max hat recht.
+            </p>
           </>
         )
       },
@@ -397,7 +525,59 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p></p>
+            <p>
+              Der Scheitel S({pp(data.scale * 2.5)}|{pp(data.scale)}) kann aus
+              der Skizze abgelesen und in die allgemeine Scheitelform der
+              Parabel eingesetzt werden:
+            </p>
+
+            {buildEquation([
+              ['g(x)', '=', 'd · (x − e)² + f'],
+              [
+                '',
+                '=',
+                'd · (x − ' + pp(data.scale * 2.5) + ')² + ' + pp(data.scale),
+              ],
+            ])}
+
+            <p>
+              Der Öffnungsfaktor d muss noch bestimmt werden. Dazu können wir
+              den Punkt (0|0) in die Funktionsgleichung einsetzen, da sich
+              dieser auf der Parabel befinden muss.
+            </p>
+
+            {buildEquation([
+              [
+                '0',
+                '=',
+                'd · (0 − ' + pp(data.scale * 2.5) + ')² + ' + pp(data.scale),
+              ],
+              [
+                '0',
+                '=',
+                pp(Math.pow(data.scale * 2.5, 2)) + ' · d + ' + pp(data.scale),
+              ],
+              [
+                pp(-data.scale),
+                '=',
+                pp(Math.pow(data.scale * 2.5, 2)) + ' · d',
+              ],
+              [
+                'd',
+                '=',
+                pp(
+                  roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
+                ),
+              ],
+            ])}
+            <p>Damit ist die vollständige Funktionsgleichung wie angegeben: </p>
+            <p>
+              g(x) ={' '}
+              {pp(
+                roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
+              )}{' '}
+              · (x − {pp(data.scale * 2.5)})² + {pp(data.scale)}
+            </p>
           </>
         )
       },
@@ -417,7 +597,31 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p></p>
+            <p>
+              Der Wert für d verändert sich nicht, denn die Form der Parabel
+              bleibt gleich unabhängig von der Position des Ursprungs.
+            </p>
+            <p>
+              Der neue Scheitelpunkt liegt im Urpsrung (0|0), welcher in die
+              Scheitelform eingesetzt werden könnte:
+            </p>
+
+            <p>
+              g(x) ={' '}
+              {pp(
+                roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
+              )}{' '}
+              · (x − 0)² + 0
+            </p>
+            <p>Damit sind die Werte e = 0 und f = 0.</p>
+            <p>Der Term vereinfacht sich zu:</p>
+            <p>
+              g(x) ={' '}
+              {pp(
+                roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
+              )}{' '}
+              x²
+            </p>
           </>
         )
       },

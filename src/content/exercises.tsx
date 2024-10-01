@@ -43,6 +43,7 @@ import { exercise42 } from './implementations/NRW-MSA/42-2018-1-3-Kugel'
 import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
 import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
 import { exercise40 } from './implementations/NRW-MSA/40-2018-1-1-Zahlen ordnen'
+import { exercise9 } from './implementations/NRW-MSA/9-2023-2-3-Zahlenpaare'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -53,6 +54,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   6: exercise6,
   7: exercise7,
   8: exercise8,
+  9: exercise9,
   10: exercise10,
   11: exercise11,
   12: exercise12,
