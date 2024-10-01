@@ -11,6 +11,7 @@ import {
   IonToolbar,
   IonIcon,
   createGesture,
+  Gesture,
 } from '@ionic/react'
 import { addOutline, sendOutline } from 'ionicons/icons'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -222,19 +223,20 @@ export function Chat({ id }: ChatProps) {
     }
   }
 
-  // State für die Chat-Höhe
-  const [chatHeight, setChatHeight] = useState(40) // Anfangshöhe in vh
+  // State for chat height
+  const [chatHeight, setChatHeight] = useState(40) // Initial height in vh
 
-  // Referenz für das Drag-Element
+  // Ref for draggable element
   const dragElementRef = useRef<HTMLDivElement>(null)
 
-  // Verwendung der Ionic Gesture API für Touch-Interaktionen
   useEffect(() => {
-    if (!dragElementRef.current) return
+    if (!showChat || !dragElementRef.current) return
 
     const gesture = createGesture({
-      el: dragElementRef.current,
+      el: dragElementRef.current!,
       gestureName: 'chat-swipe',
+      threshold: 0,
+      gesturePriority: 40, // Higher priority to avoid conflicts
       onMove: ev => {
         const windowHeight = window.innerHeight
         const newHeight = ((windowHeight - ev.currentY) / windowHeight) * 100
@@ -243,54 +245,20 @@ export function Chat({ id }: ChatProps) {
         }
       },
       onEnd: ev => {
-        // Wenn der Nutzer weit genug nach unten geswiped hat, Chat schließen
-        if (chatHeight < 25) {
+        const windowHeight = window.innerHeight
+        const endHeight = ((windowHeight - ev.currentY) / windowHeight) * 100
+        if (endHeight < 25) {
           setShowChat(false)
         }
       },
     })
+
     gesture.enable()
+
     return () => {
       gesture.destroy()
     }
-  }, [chatHeight])
-
-  // Mausereignisse für Desktop
-  const startYRef = useRef(0)
-  const startTimeRef = useRef(0)
-
-  const startResize = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    startYRef.current = e.clientY
-    startTimeRef.current = e.timeStamp
-    window.addEventListener('mousemove', resizeChat)
-    window.addEventListener('mouseup', stopResize)
-  }
-
-  const resizeChat = (e: MouseEvent) => {
-    const windowHeight = window.innerHeight
-    const newHeight = ((windowHeight - e.clientY) / windowHeight) * 100
-    if (newHeight > 20 && newHeight < 80) {
-      setChatHeight(newHeight)
-    }
-  }
-
-  const stopResize = (e: MouseEvent) => {
-    window.removeEventListener('mousemove', resizeChat)
-    window.removeEventListener('mouseup', stopResize)
-
-    const deltaY = e.clientY - startYRef.current
-    const deltaTime = e.timeStamp - startTimeRef.current
-
-    const velocity = deltaY / deltaTime
-
-    const velocityThreshold = 0.5 // Angepasster Wert
-
-    if (deltaY > 50 && velocity > velocityThreshold) {
-      // Leichte Bewegung nach unten erkannt
-      setShowChat(false)
-    }
-  }
+  }, [showChat]) // Depend on showChat
 
   return (
     <IonPage>
@@ -464,14 +432,14 @@ export function Chat({ id }: ChatProps) {
       <IonFooter className="shadow-lg">
         {showChat && (
           <>
-            {/* Draggable Linie */}
+            {/* Draggable Line */}
             <div
               ref={dragElementRef}
               className="w-1/4 h-[4px] mx-auto my-4 rounded-lg bg-blue-500 cursor-row-resize"
-              onMouseDown={startResize}
+              style={{ touchAction: 'none' }}
             ></div>
 
-            {/* Chat-Bereich mit dynamischer Höhe und abgerundeten Ecken */}
+            {/* Chat area with dynamic height and rounded corners */}
             <div
               className="w-full flex flex-col space-y-4 mt-4 overflow-auto bg-white rounded-t-lg px-4"
               style={{ maxHeight: `${chatHeight}vh` }}
