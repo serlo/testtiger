@@ -62,12 +62,12 @@ export function UserMessage({ children }: { children: React.ReactNode }) {
         <img
           src="/img/student.jpg"
           alt="User"
-          width={26}
-          height={26}
+          width={34}
+          height={34}
           className="my-0"
         />
       </div>
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden pl-2">
+      <div className="ml-2 flex-1 space-y-2 overflow-hidden pl-2">
         {children}
       </div>
     </div>
@@ -159,12 +159,12 @@ export function BotMessage({
         <img
           src="/img/newbirdie.svg"
           alt="Bot"
-          width={26}
-          height={26}
+          width={34}
+          height={34}
           className="my-0"
         />
       </div>
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1 text-gray-600">
+      <div className="ml-2 flex-1 space-y-2 overflow-hidden px-1 text-gray-600">
         {renderContent(message.content)}
       </div>
     </div>
@@ -174,15 +174,15 @@ export function BotMessage({
 export function SpinnerMessage() {
   return (
     <div className="group relative flex items-start">
-      <div className="flex size-[52px] shrink-0 select-none items-center justify-center rounded-md  bg-primary text-primary-foreground">
+      <div className="flex size-[65px] shrink-0 select-none items-center justify-center rounded-md  bg-primary text-primary-foreground">
         <img
           src="/img/animatedbirdie.svg"
           alt="Birdie"
-          width={52}
-          height={52}
+          width={65}
+          height={65}
         />
       </div>
-      <div className="ml-4 h-[52px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
+      <div className="ml-4 h-[65px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
         {spinner}
       </div>
     </div>
