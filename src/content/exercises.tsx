@@ -42,6 +42,7 @@ import { exercise44 } from './implementations/NRW-MSA/44-2018-1-5-lineare-funkti
 import { exercise42 } from './implementations/NRW-MSA/42-2018-1-3-Kugel'
 import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
 import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
+import { exercise40 } from './implementations/NRW-MSA/40-2018-1-1-Zahlen ordnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -79,6 +80,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   37: exercise37,
   38: exercise38,
   192: exercise192,
+  40: exercise40,
   41: exercise41,
   42: exercise42,
   43: exercise43,
