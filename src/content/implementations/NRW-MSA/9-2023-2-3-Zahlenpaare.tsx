@@ -42,7 +42,7 @@ export const exercise9: Exercise<DATA> = {
         <p>
           {'„'}Die beiden Zahlen 1 und 10 ergeben zusammen 11, ebenso wie die
           beiden Zahlen 2 und 9, die Zahlen 3 und 8 usw. Da ich so fünf
-          Zahlenpaare jeweils mit dem Wert 11 bilden kann, muss ich nur 5⋅11
+          Zahlenpaare jeweils mit dem Wert 11 bilden kann, muss ich nur 5 ⋅ 11
           rechnen und erhalte das Ergebnis 55.{'“'} (Abbildung 1)
         </p>
         <svg viewBox="0 0 328 140">
