@@ -41,6 +41,7 @@ import { exercise43 } from './implementations/NRW-MSA/43-2018-1-4-lineares-gleic
 import { exercise44 } from './implementations/NRW-MSA/44-2018-1-5-lineare-funktion'
 import { exercise42 } from './implementations/NRW-MSA/42-2018-1-3-Kugel'
 import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
+import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -85,6 +86,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   45: exercise45,
   46: exercise46,
   47: exercise47,
+  31: exercise31,
 }
 
 // symbols:
