@@ -229,6 +229,16 @@ export function Chat({ id }: ChatProps) {
   // Ref for draggable element
   const dragElementRef = useRef<HTMLDivElement>(null)
 
+  // Ref for autoscroll
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Autoscroll effect
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages, isLoading])
+
   useEffect(() => {
     if (!showChat || !dragElementRef.current) return
 
@@ -439,6 +449,8 @@ export function Chat({ id }: ChatProps) {
               style={{ touchAction: 'none' }}
             ></div>
 
+            <div className="w-full h-[2px] bg-gray-100"></div>
+
             {/* Chat area with dynamic height and rounded corners */}
             <div
               className="w-full flex flex-col space-y-4 mt-4 overflow-auto bg-white rounded-t-lg px-4"
@@ -448,6 +460,8 @@ export function Chat({ id }: ChatProps) {
                 <Message key={message.id} message={message} />
               ))}
               {isLoading && <SpinnerMessage />}
+              {/* Dummy div for autoscroll */}
+              <div ref={messagesEndRef}></div>
             </div>
           </>
         )}

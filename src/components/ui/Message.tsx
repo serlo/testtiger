@@ -62,8 +62,8 @@ export function UserMessage({ children }: { children: React.ReactNode }) {
         <img
           src="/img/student.jpg"
           alt="User"
-          width={25}
-          height={25}
+          width={26}
+          height={26}
           className="my-0"
         />
       </div>
@@ -157,10 +157,10 @@ export function BotMessage({
     <div className={clsx('group relative flex items-start', className)}>
       <div className="flex shrink-0 select-none items-center justify-center rounded-md self-start">
         <img
-          src="/img/birdie.svg"
+          src="/img/newbirdie.svg"
           alt="Bot"
-          width={24}
-          height={24}
+          width={26}
+          height={26}
           className="my-0"
         />
       </div>
@@ -174,10 +174,15 @@ export function BotMessage({
 export function SpinnerMessage() {
   return (
     <div className="group relative flex items-start">
-      <div className="flex size-[24px] shrink-0 select-none items-center justify-center rounded-md border bg-primary text-primary-foreground">
-        <img src="/img/birdie.svg" alt="Birdie" width={24} height={24} />
+      <div className="flex size-[52px] shrink-0 select-none items-center justify-center rounded-md  bg-primary text-primary-foreground">
+        <img
+          src="/img/animatedbirdie.svg"
+          alt="Birdie"
+          width={52}
+          height={52}
+        />
       </div>
-      <div className="ml-4 h-[24px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
+      <div className="ml-4 h-[52px] flex flex-row items-center flex-1 space-y-2 overflow-hidden px-1">
         {spinner}
       </div>
     </div>
