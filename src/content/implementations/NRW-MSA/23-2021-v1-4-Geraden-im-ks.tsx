@@ -39,13 +39,28 @@ export const exercise23: Exercise<DATA> = {
       data.m_2 != 0 &&
       data.m_2 != data.m_3 &&
       data.m_3 != 0 &&
-      data.m_3 != data.m_1 &&
+      data.m_3 != data.m_1 && // Damit die Geraden unterschiedliche Steigungen haben, die nicht 0 sind
       data.m_1 * -4 + data.b_1 < 5.5 &&
       data.m_2 * -4 + data.b_2 < 5.5 &&
       data.m_3 * -4 + data.b_3 < 5.5 &&
       data.m_1 * -4 + data.b_1 > -2.5 &&
       data.m_2 * -4 + data.b_2 > -2.5 &&
-      data.m_3 * -4 + data.b_3 > -2.5
+      data.m_3 * -4 + data.b_3 > -2.5 && // Damit die Geraden inkl Beschriftung auch im Bild sind
+      Math.abs(
+        338 -
+          (380 / 7.6) * (data.m_1 * -4 + data.b_1) -
+          (338 - (380 / 7.6) * (data.m_2 * -4 + data.b_2)),
+      ) > 30 &&
+      Math.abs(
+        338 -
+          (380 / 7.6) * (data.m_3 * -4 + data.b_3) -
+          (338 - (380 / 7.6) * (data.m_2 * -4 + data.b_2)),
+      ) > 30 &&
+      Math.abs(
+        338 -
+          (380 / 7.6) * (data.m_1 * -4 + data.b_1) -
+          (338 - (380 / 7.6) * (data.m_3 * -4 + data.b_3)),
+      ) > 30
     )
   },
   intro({ data }) {
