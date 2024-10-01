@@ -23,7 +23,7 @@ export const exercise29: Exercise<DATA> = {
       x_s: rng.randomIntBetween(4, 7),
       y_s: rng.randomIntBetween(5, 8),
       coin: rng.randomBoolean(),
-      fake_a: rng.randomIntBetween(16, 25) / 100,
+      fake_a: -rng.randomIntBetween(16, 25) / 100,
       fake_x: rng.randomIntBetween(3, 8),
       fake_y: rng.randomIntBetween(3, 8),
       g: rng.randomIntBetween(900, 1100) / 100,
@@ -33,7 +33,8 @@ export const exercise29: Exercise<DATA> = {
     return (
       (((1 - data.y_s) / (data.x_s * data.x_s)) * 100) % 1 == 0 &&
       data.fake_x != data.x_s &&
-      data.fake_y != data.y_s
+      data.fake_y != data.y_s &&
+      (1 - data.y_s) / (data.x_s * data.x_s) != data.fake_a
     )
   },
   intro({ data }) {
@@ -443,9 +444,8 @@ export const exercise29: Exercise<DATA> = {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         const D = roundToDigits(
           Math.pow(
-            a * 2 * data.x_s * a * 2 * data.x_s +
-              4 * a * a * data.x_s * data.x_s +
-              data.y_s,
+            a * 2 * data.x_s * a * 2 * data.x_s -
+              4 * a * (a * data.x_s * data.x_s + data.y_s),
             0.5,
           ),
           2,
@@ -479,7 +479,7 @@ export const exercise29: Exercise<DATA> = {
                     <>
                       {pp(a * 2 * data.x_s * a * 2 * data.x_s)}{' '}
                       {pp(
-                        4 * a * a * data.x_s * data.x_s + data.y_s,
+                        -4 * a * (a * data.x_s * data.x_s + data.y_s),
                         'merge_op',
                       )}
                     </>,
