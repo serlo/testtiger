@@ -62,9 +62,8 @@ export const exercise46: Exercise<DATA> = {
   },
   constraint({ data }) {
     return (
-      data.trash != roundToDigits(data.becher, -4) &&
       (data.length * data.width) / ((data.dia * data.dia) / 10000) <
-        Math.round(data.becher)
+      Math.round(data.becher)
     )
   },
   intro({ data }) {
