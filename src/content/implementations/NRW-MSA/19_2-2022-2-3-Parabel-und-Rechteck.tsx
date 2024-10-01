@@ -323,24 +323,17 @@ export const exercise192: Exercise<DATA> = {
               {ppPolynom([[data.a, 'x', 2]])} + {pp(b)}){' '}
             </p>
             <p>
-              U<sub>Rechteck </sub> = 2 · 2 · {data.x} + 2 · ({pp(data.a)} ·{' '}
-              {data.x}
+              U<sub>Rechteck </sub> = 2 · 2 · 1 + 2 · ({pp(data.a)} · 1
               <sup>2</sup> + {pp(b)}){' '}
             </p>
 
             <p>
-              U<sub>Rechteck </sub> = {4 * data.x} + 2 · (
-              {data.a == -1 ? '−' : pp(data.a) + ' · '}
-              {data.x * data.x} + {pp(b)}){' '}
+              U<sub>Rechteck </sub> = 4 + 2 · ({pp(data.a)} + {pp(b)}){' '}
             </p>
             <p>
-              U<sub>Rechteck </sub> ={' '}
-              {pp(4 * data.x + 2 * (data.a * data.x * data.x + b))}{' '}
+              U<sub>Rechteck </sub> = {pp(4 + 2 * (data.a + b))}{' '}
             </p>
-            <p>
-              Der Umfang beträgt{' '}
-              {pp(4 * data.x + 2 * (data.a * data.x * data.x + b))} cm.
-            </p>
+            <p>Der Umfang beträgt {pp(4 + 2 * (data.a + b))} cm.</p>
           </>
         )
       },

@@ -302,9 +302,7 @@ export const exercise8: Exercise<DATA> = {
             </p>
             <p>
               Der Wert von {data.goal} wird nach etwa{' '}
-              {pp(
-                Math.floor(Math.log(data.goal / data.count) / Math.log(1.19)),
-              )}{' '}
+              {pp(Math.ceil(Math.log(data.goal / data.count) / Math.log(1.19)))}{' '}
               ganzen Wochen überschritten.
             </p>
           </>
