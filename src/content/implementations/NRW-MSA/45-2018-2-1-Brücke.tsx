@@ -613,6 +613,7 @@ export const exercise45: Exercise<DATA> = {
               )}{' '}
               · (x − 0)² + 0
             </p>
+            <p>Damit sind die Werte e = 0 und f = 0.</p>
             <p>Der Term vereinfacht sich zu:</p>
             <p>
               g(x) ={' '}
