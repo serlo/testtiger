@@ -199,7 +199,7 @@ export const exercise18: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const d = Math.sqrt(data.volumen / (data.dicke * Math.PI))
+        const d = Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 2
         return (
           <>
             <p>Berechne zuerst das Volumen des Mini-Röstis:</p>
@@ -208,29 +208,54 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <p>
               Das Mini-Rösti hat ein Volumen von {pp(data.volumen / 2)} cm³.
-              <br></br>Vergleiche mit dem Volumen eines Zylinders mit halbem
-              Durchmesser d = {pp(roundToDigits(d, 2))} cm:
+              <br></br>Vergleiche mit dem Volumen eines Zylinders mit{' '}
+              {data.case == 1 && 'halbem '}
+              {data.case == 2 && 'viertel '}
+              {data.case == 3 && 'doppeltem '}
+              Durchmesser d = {data.case == 1 && pp(roundToDigits(d / 2, 2))}
+              {data.case == 2 && pp(roundToDigits(d / 4, 2))}
+              {data.case == 3 && pp(roundToDigits(2 * d, 2))} cm:
             </p>
 
             <p>
               V<sub>Zylinder</sub> = r² · π · h
             </p>
             <p>
-              V<sub>Zylinder</sub> = {pp(roundToDigits(d / 2, 2))}² · π ·{' '}
-              {data.dicke}
+              V<sub>Zylinder</sub> ={' '}
+              {data.case == 1 && pp(roundToDigits(d / 4, 2))}
+              {data.case == 2 && pp(roundToDigits(d / 8, 2))}
+              {data.case == 3 && pp(roundToDigits(d, 2))}² · π · {data.dicke}
             </p>
             <p>
               V<sub>Zylinder</sub> ={' '}
-              {pp(roundToDigits(Math.pow(d / 2, 2) * Math.PI * data.dicke, 2))}
+              {data.case == 1 &&
+                pp(roundToDigits(Math.pow(d / 4, 2) * Math.PI * data.dicke, 2))}
+              {data.case == 2 &&
+                pp(roundToDigits(Math.pow(d / 8, 2) * Math.PI * data.dicke, 2))}
+              {data.case == 3 &&
+                pp(
+                  roundToDigits(Math.pow(d, 2) * Math.PI * data.dicke, 2),
+                )}{' '}
             </p>
             <p>
-              Das Volumen eines Zylinders mit halbem Durchmesser beträgt{' '}
-              {pp(roundToDigits(Math.pow(d / 2, 2) * Math.PI * data.dicke, 2))}{' '}
-              cm³. Das ist ein Viertel des Volumens des normalen Röstis. Also
-              ist die Aussage{' '}
+              Das Volumen eines Zylinders mit {data.case == 1 && 'halbem '}
+              {data.case == 2 && 'viertel '}
+              {data.case == 3 && 'doppeltem '} Durchmesser beträgt{' '}
+              {data.case == 1 &&
+                pp(roundToDigits(Math.pow(d / 4, 2) * Math.PI * data.dicke, 2))}
+              {data.case == 2 &&
+                pp(roundToDigits(Math.pow(d / 8, 2) * Math.PI * data.dicke, 2))}
+              {data.case == 3 &&
+                pp(
+                  roundToDigits(Math.pow(d, 2) * Math.PI * data.dicke, 2),
+                )}{' '}
+              cm³. Das ist ein {data.case == 1 && 'Viertel '}
+              {data.case == 2 && 'Sechzehntel '}
+              {data.case == 3 && 'Vierfaches '} des Volumens des normalen
+              Röstis. Also ist die Aussage{' '}
               <strong>
                 {data.case == 1 && 'falsch'}
-                {data.case == 2 && 'richtig'}
+                {data.case == 2 && 'falsch'}
                 {data.case == 3 && 'falsch'}
               </strong>
               .
