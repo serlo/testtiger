@@ -9,7 +9,10 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonIcon,
 } from '@ionic/react'
+import { addOutline, sendOutline } from 'ionicons/icons'
+import TextareaAutosize from 'react-textarea-autosize'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { exercisesData } from '@/content/exercises'
 import { renderExample } from '@/data/render-example'
@@ -25,9 +28,6 @@ import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
 import { Message, SpinnerMessage } from '../ui/Message'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { IonIcon } from '@ionic/react'
-import { addOutline, sendOutline } from 'ionicons/icons'
-import TextareaAutosize from 'react-textarea-autosize'
 
 interface ChatProps {
   id: number
@@ -52,10 +52,11 @@ export function Chat({ id }: ChatProps) {
       reader.onloadend = () => {
         setBase64Image(reader.result as string)
       }
-      // Convert file to base64
       reader.readAsDataURL(file)
     }
   }
+
+  const [showChat, setShowChat] = useState(false)
 
   const withSubtasks = 'tasks' in content
   if (withSubtasks) {
@@ -65,69 +66,66 @@ export function Chat({ id }: ChatProps) {
   }
 
   useEffect(() => {
-    queueMicrotask(() => {
-      const data = generateData(id, seed, content)
+    const data = generateData(id, seed, content)
 
-      function toHtml(el: JSX.Element) {
-        return renderToStaticMarkup(el)
-      }
+    function toHtml(el: JSX.Element) {
+      return renderToStaticMarkup(el)
+    }
 
-      if (withSubtasks) {
-        setMessages(currentMessages => [
-          ...currentMessages,
-          {
-            id: Math.random().toString(), // poor people's id
-            role: 'system',
-            content: `
-              Das ist eine Aufgabe mit Teilaufgaben.
+    if (withSubtasks) {
+      setMessages(currentMessages => [
+        ...currentMessages,
+        {
+          id: Math.random().toString(),
+          role: 'system',
+          content: `
+            Das ist eine Aufgabe mit Teilaufgaben.
 
-              Das gemeinsame Intro:
+            Das gemeinsame Intro:
 
-              ${toHtml(content.intro({ data }))}
+            ${toHtml(content.intro({ data }))}
 
-              ${content.tasks.map(
+            ${content.tasks
+              .map(
                 t => `
+                  Das ist eine Teilaufgabe.
 
-                Das ist eine Teilaufgabe.
+                  Aufgabenstellung:
+                  ${toHtml(t.task({ data }))}
 
-                Aufgabenstellung:
-                ${toHtml(t.task({ data }))}
-
-                Lösung:
-                ${toHtml(t.solution({ data }))}
-
+                  Lösung:
+                  ${toHtml(t.solution({ data }))}
                 `,
-              )}
-        `,
-          },
-        ])
-      } else {
-        setMessages(currentMessages => [
-          ...currentMessages,
-          {
-            id: Math.random().toString(), // poor people's id
-            role: 'system',
-            content: `
-              Das HTML der Aufgabenstellung ist das:
+              )
+              .join('')}
+          `,
+        },
+      ])
+    } else {
+      setMessages(currentMessages => [
+        ...currentMessages,
+        {
+          id: Math.random().toString(),
+          role: 'system',
+          content: `
+            Das HTML der Aufgabenstellung ist das:
 
-              ${toHtml(content.task({ data }))}
+            ${toHtml(content.task({ data }))}
 
-              Das HTML der Lösung ist das:
+            Das HTML der Lösung ist das:
 
-              ${toHtml(content.solution({ data }))}
-        `,
-          },
-        ])
-      }
-    })
+            ${toHtml(content.solution({ data }))}
+          `,
+        },
+      ])
+    }
   }, [content, id, seed, withSubtasks])
 
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState<IMessage[]>([
     {
-      id: Math.random().toString(), // poor people's id
+      id: Math.random().toString(),
       role: 'system',
-      // TODO Pass extra context of the student in here and integrate it into the system-prompt
       content: getSystemPrompt(),
     },
   ])
@@ -141,10 +139,9 @@ export function Chat({ id }: ChatProps) {
     setShowChat(true)
 
     const value = userInput.trim()
-    if (!value) return
+    if (!value && !base64Image) return
 
     setUserInput('')
-
     const hasImage = !!base64Image
 
     const newUserMessages: IMessage[] = [
@@ -181,8 +178,6 @@ export function Chat({ id }: ChatProps) {
     setIsLoading(false)
   }
 
-  const [showChat, setShowChat] = useState(false)
-
   const submitUserMessage = async ({
     messages,
   }: {
@@ -192,14 +187,14 @@ export function Chat({ id }: ChatProps) {
       const { text } = await makePost('/va89kjds', messages)
 
       return {
-        id: Math.random().toString(), // poor people's id
+        id: Math.random().toString(),
         role: 'assistant',
         content: text,
       }
     } catch (error) {
       console.error('Error fetching AI response:', error)
       return {
-        id: Math.random().toString(), // poor people's id
+        id: Math.random().toString(),
         role: 'assistant',
         content: 'Error: Unable to get a response from the AI',
       }
@@ -223,6 +218,84 @@ export function Chat({ id }: ChatProps) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault()
       handleSubmit(event, base64Image)
+    }
+  }
+
+  // State für die Chat-Höhe
+  const [chatHeight, setChatHeight] = useState(40) // Anfangshöhe in vh
+
+  // State für Swipe-Detection
+  const [startY, setStartY] = useState(0)
+  const [startTime, setStartTime] = useState(0)
+
+  // Funktionen für das Ziehen
+  const startResizeTouch = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0]
+    setStartY(touch.clientY)
+    setStartTime(e.timeStamp)
+    window.addEventListener('touchmove', resizeChatTouch)
+    window.addEventListener('touchend', stopResizeTouch)
+  }
+
+  const resizeChatTouch = (e: TouchEvent) => {
+    const windowHeight = window.innerHeight
+    const touch = e.touches[0]
+    const newHeight = ((windowHeight - touch.clientY) / windowHeight) * 100
+    if (newHeight > 20 && newHeight < 80) {
+      setChatHeight(newHeight)
+    }
+  }
+
+  const stopResizeTouch = (e: TouchEvent) => {
+    window.removeEventListener('touchmove', resizeChatTouch)
+    window.removeEventListener('touchend', stopResizeTouch)
+
+    const touch = e.changedTouches[0]
+    const endY = touch.clientY
+    const deltaY = endY - startY
+    const deltaTime = e.timeStamp - startTime
+
+    const velocity = deltaY / deltaTime
+
+    const velocityThreshold = 0.1 // Anpassbar
+
+    if (deltaY > 10 && velocity > velocityThreshold) {
+      // Schnelles Nach-unten-Swipen erkannt
+      setShowChat(false)
+    }
+  }
+  // Funktionen für das Ziehen mit der Maus
+  const startResize = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setStartY(e.clientY)
+    setStartTime(e.timeStamp)
+    window.addEventListener('mousemove', resizeChat)
+    window.addEventListener('mouseup', stopResize)
+  }
+
+  const resizeChat = (e: MouseEvent) => {
+    const windowHeight = window.innerHeight
+    const newHeight = ((windowHeight - e.clientY) / windowHeight) * 100
+    if (newHeight > 20 && newHeight < 80) {
+      setChatHeight(newHeight)
+    }
+  }
+
+  const stopResize = (e: MouseEvent) => {
+    window.removeEventListener('mousemove', resizeChat)
+    window.removeEventListener('mouseup', stopResize)
+
+    const endY = e.clientY
+    const deltaY = endY - startY
+    const deltaTime = e.timeStamp - startTime
+
+    const velocity = deltaY / deltaTime
+
+    const velocityThreshold = 0.0001 // Angepasster Wert
+
+    if (deltaY > 10 && velocity > velocityThreshold) {
+      // Leichte Bewegung nach unten erkannt
+      setShowChat(false)
     }
   }
 
@@ -274,60 +347,52 @@ export function Chat({ id }: ChatProps) {
             {/* Chat Message */}
             {withSubtasks ? (
               <>
-                {content.tasks.map((t, i) => {
-                  return (
-                    <Fragment key={i}>
-                      <div className="mb-4">
-                        <div className="bg-white p-2 rounded-lg text-sm">
-                          {i == 0 && (
-                            <>
-                              {proseWrapper(
-                                content.intro({
-                                  data,
-                                }),
-                              )}
-                              <div className="h-4"></div>
-                            </>
-                          )}
+                {content.tasks.map((t, i) => (
+                  <Fragment key={i}>
+                    <div className="mb-4">
+                      <div className="bg-white p-2 rounded-lg text-sm">
+                        {i === 0 && (
+                          <>
+                            {proseWrapper(
+                              content.intro({
+                                data,
+                              }),
+                            )}
+                            <div className="h-4"></div>
+                          </>
+                        )}
+                        {proseWrapper(
+                          t.task({
+                            data,
+                          }),
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex justify-between self-end gap-4 -mt-2 mb-2">
+                      <button
+                        className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mb-3"
+                        onClick={() => {
+                          const newArr = subShow.slice()
+                          newArr[i] = !newArr[i]
+                          setSubShow(newArr)
+                        }}
+                      >
+                        {subShow[i] ? 'Lösung ausblenden' : 'Lösung anzeigen'}
+                      </button>
+                    </div>
+                    {subShow[i] && (
+                      <div className="mb-4 -mt-3">
+                        <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
                           {proseWrapper(
-                            t.task({
+                            content.tasks[i].solution({
                               data,
                             }),
                           )}
                         </div>
                       </div>
-                      {
-                        <>
-                          <div className="flex justify-between self-end gap-4 -mt-2 mb-2">
-                            <button
-                              className="bg-blue-500 text-white py-2 px-4 rounded-full text-sm hover:bg-blue-600 mb-3"
-                              onClick={() => {
-                                const newArr = subShow.slice()
-                                newArr[i] = !newArr[i]
-                                setSubShow(newArr)
-                              }}
-                            >
-                              {subShow[i]
-                                ? 'Lösung ausblenden'
-                                : 'Lösung anzeigen'}
-                            </button>
-                          </div>
-                          {subShow[i] && (
-                            <div className="mb-4 -mt-3">
-                              <div className="bg-white p-2 rounded-lg text-sm border-fuchsia-500 border-2 -mx-0.5">
-                                {proseWrapper(
-                                  content.tasks[i].solution({
-                                    data,
-                                  }),
-                                )}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      }
-                    </Fragment>
-                  )
-                })}
+                    )}
+                  </Fragment>
+                ))}
                 <div className="flex justify-between mt-4 self-end gap-4">
                   <IonButton id="open-modal">Beispiele anzeigen</IonButton>
                 </div>
@@ -339,8 +404,6 @@ export function Chat({ id }: ChatProps) {
                     {proseWrapper(content.task({ data }))}
                   </div>
                 </div>
-
-                {/* Buttons */}
                 <div className="flex justify-between mt-4 self-end gap-4">
                   <IonButton id="open-modal">Beispiele anzeigen</IonButton>
                   <button
@@ -408,32 +471,30 @@ export function Chat({ id }: ChatProps) {
       <IonFooter>
         {showChat && (
           <>
-            {/* User Input */}
-            {/* AI Chat Messages */}
-            <div className="">
-              <div className="flex justify-center">
-                <button
-                  onClick={() => {
-                    setShowChat(false)
-                  }}
-                  className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded mt-1"
-                >
-                  Schließen
-                </button>
-              </div>
-              <div className="w-full flex flex-col space-y-12 mt-4 overflow-auto max-h-[40vh]">
-                {messages.map(message => (
-                  <Message key={message.id} message={message} />
-                ))}
-                {isLoading && <SpinnerMessage />}
-              </div>
+            {/* Draggable Linie */}
+            <div
+              className="w-1/4 h-[4px] mx-auto my-4 rounded-lg bg-blue-500 cursor-row-resize"
+              style={{ backgroundColor: '#007EC1' }}
+              onMouseDown={startResize}
+              onTouchStart={startResizeTouch}
+            ></div>
+
+            {/* Chat-Bereich mit dynamischer Höhe und abgerundeten Ecken */}
+            <div
+              className="w-full flex flex-col space-y-4 mt-4 overflow-auto bg-white rounded-t-lg px-4"
+              style={{ maxHeight: `${chatHeight}vh` }}
+            >
+              {messages.map(message => (
+                <Message key={message.id} message={message} />
+              ))}
+              {isLoading && <SpinnerMessage />}
             </div>
           </>
         )}
 
         <form
           onSubmit={event => handleSubmit(event, base64Image)}
-          className="w-full mt-4 flex flex-col space-y-2 mb-4"
+          className="w-full mt-4 flex flex-col space-y-2 mb-4 px-4 md:px-8 lg:px-16"
         >
           {base64Image && (
             <div className="rounded-lg overflow-hidden mb-2 h-[150px]">
