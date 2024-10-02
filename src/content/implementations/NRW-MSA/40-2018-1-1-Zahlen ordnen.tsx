@@ -17,17 +17,12 @@ export const exercise40: Exercise<DATA> = {
   duration: 4,
   generator(rng) {
     return {
-      a: rng.randomItemFromArray([-0.1, -0.3, -0.7, -0.9]),
-      b: rng.randomIntBetween(1, 10) * 2 - 1,
+      a: rng.randomIntBetween(1, 9) / 10,
+      b: rng.randomIntBetween(1, 9),
       c: rng.randomItemFromArray([10, 20, 100]),
-      d: rng.randomItemFromArray([-1, -2, -4, -5, -8]),
-      e: rng.randomItemFromArray([3, 7, 9]),
-      f:
-        rng.randomItemFromArray([
-          1, 3, 7, 9, 11, 13, 17, 19, 21, 23, 27, 31, 33, 37, 39, 41, 43, 47,
-          49, 51, 53, 59, 61, 63, 67, 69, 71, 73, 77, 79, 81, 83, 87, 89, 91,
-          93, 97, 99, 29, 57,
-        ]) / 100,
+      d: rng.randomIntBetween(1, 9),
+      e: rng.randomItemFromArray([3, 6, 7, 9]),
+      f: rng.randomIntBetween(1, 99) / 100,
     }
   },
   constraint({ data }) {
@@ -43,40 +38,46 @@ export const exercise40: Exercise<DATA> = {
         return (
           <>
             <p>
-              a) Ordne der Größe nach. Beginne mit der kleinsten Zahl.
-              <br></br>
-              {pp(data.a)} &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.b / data.c)}{' '}
-              &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.d / data.e)}{' '}
-              &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.f)}
+              Ordne die Zahlen der Größe nach. Beginne mit der kleinsten Zahl.
+              <br></br>-{pp(data.a)} &nbsp;&nbsp;&nbsp;&nbsp;{' '}
+              {ppFrac([data.b, data.c])} &nbsp;&nbsp;&nbsp;&nbsp; -
+              {ppFrac([data.d, data.e])} &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.f)}
             </p>
           </>
         )
       },
       solution({ data }) {
+        const array = [-data.a, -data.d / data.e].sort((a, b) => a - b)
         return (
           <>
             <p>
               Es sind zwei positive und zwei negative Zahlen gegeben. Du musst
               also die negativen Zahlen miteinander vergleichen, und die
-              positiven Zahlen miteinander.
+              positiven miteinander.
               <br></br>
               <br></br>
-              Fangen wir mit den negativen Zahlen an: Hier bietet es sich an,{' '}
+              Fangen wir mit den negativen Zahlen an: Hier bietet es sich an, -
               {pp(data.a)} in einen Bruch umzuwandeln:
-              <br></br>
-              {pp(data.a)} = {ppFrac((data.a * 10) / 10)}
+              <br></br>-{pp(data.a)} = -{ppFrac([data.a * 10, 10])}
               <br></br>
               Jetzt musst du die beiden Brüche auf einen gemeinsamen Nenner
-              bringen. Der gemeinsame Nenner ist {data.e * 100}.<br></br>
-              {ppFrac((data.a * 10) / 10)} ={' '}
-              {ppFrac((data.a * 10 * data.e * 10) / (data.e * 100))}
+              bringen. Der gemeinsame Nenner ist {data.e * 10}.<br></br>
+              <li>
+                -{ppFrac([data.a * 10, 10])} = -
+                {ppFrac([data.a * 10 * data.e, 10 * data.e])}
+              </li>
+              <li>
+                -{ppFrac([data.d, data.e])} = -
+                {ppFrac([data.d * 10, data.e * 10])}
+              </li>
+              Es ist also {pp(array[0])} {' < '} {pp(array[1])}
             </p>
           </>
         )
       },
     },
     {
-      points: 2,
+      points: 42,
       task({ data }) {
         return <></>
       },
