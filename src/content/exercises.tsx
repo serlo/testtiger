@@ -44,6 +44,7 @@ import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen
 import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
 import { exercise40 } from './implementations/NRW-MSA/40-2018-1-1-Zahlen ordnen'
 import { exercise9 } from './implementations/NRW-MSA/9-2023-2-3-Zahlenpaare'
+import { exercise30 } from './implementations/NRW-MSA/30-2021-2-3-Muster'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -91,6 +92,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   46: exercise46,
   47: exercise47,
   31: exercise31,
+  30: exercise30,
 }
 
 // symbols:
