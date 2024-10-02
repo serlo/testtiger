@@ -105,7 +105,7 @@ export function ppFrac(
     }
     frac = [Math.round(Math.abs(n) * bestDenom), bestDenom]
   } else {
-    frac = n
+    frac = [Math.abs(n[0]), Math.abs(n[1])]
     decimal = n[0] / n[1]
   }
   const f = buildInlineFrac(frac[0], frac[1])
