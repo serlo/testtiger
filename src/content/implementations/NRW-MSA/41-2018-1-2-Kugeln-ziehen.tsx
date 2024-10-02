@@ -99,10 +99,11 @@ export const exercise41: Exercise<DATA> = {
         return (
           <>
             <p>
-              b) Bestimme die Wahrscheinlichkeit für das Ereignis: Es wird eine{' '}
-              {data.case == 'rot' && <>blaue oder eine grüne</>}
+              b) Bestimme die Wahrscheinlichkeit für das Ereignis: {'"'}Es wird
+              eine {data.case == 'rot' && <>blaue oder eine grüne</>}
               {data.case == 'blau' && <>rote oder eine grüne</>}
               {data.case == 'grün' && <>blaue oder eine rote</>} Kugel gezogen.
+              {'"'}
             </p>
           </>
         )
@@ -111,11 +112,11 @@ export const exercise41: Exercise<DATA> = {
         return (
           <>
             <p>
-              Berechne dies über die Gegenwahrscheinlichkeit zu: Es wird eine{' '}
-              {data.case}e Kugel gezogen.
+              Das Gegenereignis wäre in diesem Fall eine {data.case}e Kugel zu
+              ziehen. Diese Wahrscheinlichkeit beträgt:
             </p>
             <p>
-              1 -{' '}
+              p({data.case}) =
               {buildInlineFrac(
                 <>
                   {data.case == 'rot' && data.r}
@@ -124,16 +125,31 @@ export const exercise41: Exercise<DATA> = {
                 </>,
                 data.r + data.b + data.g,
               )}{' '}
-              ={' '}
-              {buildInlineFrac(
-                <>
-                  {data.case == 'rot' && data.b + data.g}
-                  {data.case == 'blau' && data.r + data.g}
-                  {data.case == 'grün' && data.r + data.b}
-                </>,
-                data.r + data.b + data.g,
-              )}
             </p>
+            <p>
+              Damit lässt sich die Wahrscheinlichkeit des Ereignisses mithilfe
+              der Gegenwahrscheinlichkeit bestimmen:
+            </p>
+            p({data.case == 'rot' && <>blau oder grün</>}
+            {data.case == 'blau' && <>rot oder grün</>}
+            {data.case == 'grün' && <>blau oder rot</>}) = 1 −{' '}
+            {buildInlineFrac(
+              <>
+                {data.case == 'rot' && data.r}
+                {data.case == 'blau' && data.b}
+                {data.case == 'grün' && data.g}
+              </>,
+              data.r + data.b + data.g,
+            )}{' '}
+            ={' '}
+            {buildInlineFrac(
+              <>
+                {data.case == 'rot' && 19 - data.r}
+                {data.case == 'blau' && 19 - data.b}
+                {data.case == 'grün' && 19 - data.g}
+              </>,
+              data.r + data.b + data.g,
+            )}
           </>
         )
       },
