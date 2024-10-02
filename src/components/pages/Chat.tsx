@@ -30,6 +30,8 @@ import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
 import { Message, SpinnerMessage } from '../ui/Message'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { Camera, CameraResultType } from '@capacitor/camera'
+import { ImageMenu } from '../ui/ImageMenu'
 
 interface ChatProps {
   id: number
@@ -44,6 +46,7 @@ export function Chat({ id }: ChatProps) {
 
   const [exampleSeed, setExampleSeed] = useState(generateSeed())
   const [showSolution, setShowSolution] = useState(false)
+  const [showImageMenu, setShowImageMenu] = useState(false)
   const [base64Image, setBase64Image] = useState<string | null>(null)
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -178,6 +181,30 @@ export function Chat({ id }: ChatProps) {
 
     setMessages(currentMessages => [...currentMessages, aiResponse])
     setIsLoading(false)
+  }
+
+  const takePhoto = async () => {
+    try {
+      const image = await Camera.getPhoto({
+        // If we want to save some money on tokens, we can probably get away
+        // with choosing a lower quality
+        quality: 100,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+      })
+
+      setBase64Image(`data:image/jpeg;base64,${image.base64String}`)
+      setShowImageMenu(false)
+      setShowChat(true)
+    } catch (error) {
+      console.error('Error taking photo:', error)
+    }
+  }
+
+  const choosePhoto = () => {
+    const fileInput = document.getElementById('file-upload') as HTMLInputElement
+    fileInput.click()
+    setShowImageMenu(false)
   }
 
   const submitUserMessage = async ({
@@ -480,10 +507,19 @@ export function Chat({ id }: ChatProps) {
             </div>
           )}
           <div className="flex items-end space-x-2">
-            <label htmlFor="file-upload" className="flex-shrink-0">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300">
+            <div className="relative flex-shrink-0">
+              <div
+                className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300"
+                onClick={() => setShowImageMenu(!showImageMenu)}
+              >
                 <IonIcon icon={addOutline} className="text-gray-600 w-6 h-6" />
               </div>
+              {showImageMenu && (
+                <ImageMenu
+                  onTakePhoto={takePhoto}
+                  onChoosePhoto={choosePhoto}
+                />
+              )}
               <input
                 id="file-upload"
                 type="file"
@@ -491,7 +527,7 @@ export function Chat({ id }: ChatProps) {
                 onChange={handleImageUpload}
                 className="sr-only"
               />
-            </label>
+            </div>
             <TextareaAutosize
               value={userInput}
               onChange={e => setUserInput(e.target.value)}
