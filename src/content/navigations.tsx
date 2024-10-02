@@ -13,13 +13,13 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Terme und Gleichungen',
         headerColor: 'danger',
         twColor: 'bg-red-500',
-        exercises: [3, 9, 12, 13, 27, 35],
+        exercises: [3, 9, 12, 13, 27, 35, 39],
       },
       {
         title: 'Körper und Figuren',
         headerColor: 'warning',
         twColor: 'bg-yellow-400',
-        exercises: [2, 6, 7, 11, 18, 19, 28, 36, 38, 46],
+        exercises: [2, 6, 7, 11, 18, 19, 28, 36, 38, 46, 30],
       },
       {
         title: 'Funktionen und Graphen',

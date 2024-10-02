@@ -45,6 +45,7 @@ import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
 import { exercise40 } from './implementations/NRW-MSA/40-2018-1-1-Zahlen ordnen'
 import { exercise9 } from './implementations/NRW-MSA/9-2023-2-3-Zahlenpaare'
 import { exercise30 } from './implementations/NRW-MSA/30-2021-2-3-Muster'
+import { exercise39 } from './implementations/NRW-MSA/39-2019-2-3-Würfel'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -93,6 +94,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   47: exercise47,
   31: exercise31,
   30: exercise30,
+  39: exercise39,
 }
 
 // symbols:
@@ -106,4 +108,4 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 // ⊕
 // ≙ ≠ ⇒ ∈ ∉
 
-// π ≈
+// π ≈ √
