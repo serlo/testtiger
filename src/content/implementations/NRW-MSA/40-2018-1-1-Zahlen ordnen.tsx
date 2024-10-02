@@ -20,7 +20,7 @@ export const exercise40: Exercise<DATA> = {
       a: rng.randomIntBetween(1, 9) / 10,
       b: rng.randomIntBetween(1, 9),
       c: rng.randomItemFromArray([10, 20, 100]),
-      d: rng.randomIntBetween(1, 9),
+      d: rng.randomItemFromArray([1, 2, 4, 5, 8]),
       e: rng.randomItemFromArray([3, 6, 7, 9]),
       f: rng.randomIntBetween(1, 99) / 100,
     }
