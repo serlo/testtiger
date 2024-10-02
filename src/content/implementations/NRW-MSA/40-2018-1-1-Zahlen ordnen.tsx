@@ -72,7 +72,7 @@ export const exercise40: Exercise<DATA> = {
                 -{ppFrac([data.d, data.e])} = -
                 {ppFrac([data.d * 10, data.e * 10])}
               </li>
-              Es ist also {pp(array[0])} {' < '} {pp(array[1])} {' < '}{' '}
+              Es ist also {ppFrac(array[0])} {' < '} {pp(array[1])} {' < '}{' '}
               {pp(array[2])} {' < '} {pp(array[3])}
             </p>
           </>
