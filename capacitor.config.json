@@ -1,7 +1,6 @@
 {
   "appId": "com.example.app",
   "appName": "TestTiger",
-  "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "out",
   "plugins": {
