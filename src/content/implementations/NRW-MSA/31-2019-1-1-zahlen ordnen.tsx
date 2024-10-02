@@ -18,8 +18,8 @@ export const exercise31: Exercise<DATA> = {
   duration: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(1, 100) / -100,
-      b: rng.randomIntBetween(1, 100) / 100,
+      a: rng.randomIntBetween(1, 1000) / -1000,
+      b: rng.randomIntBetween(1, 100) / 10,
       c: rng.randomIntBetween(-8, 8),
       d: rng.randomItemFromArray([1, 2, 4, 5, 10]),
       e: rng.randomIntBetween(-8, 8),
