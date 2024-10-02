@@ -47,7 +47,9 @@ export const exercise40: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const array = [-data.a, -data.d / data.e].sort((a, b) => a - b)
+        const array = [-data.a, -data.d / data.e, data.b / data.c, data.f].sort(
+          (a, b) => a - b,
+        )
         return (
           <>
             <p>
@@ -70,7 +72,8 @@ export const exercise40: Exercise<DATA> = {
                 -{ppFrac([data.d, data.e])} = -
                 {ppFrac([data.d * 10, data.e * 10])}
               </li>
-              Es ist also {pp(array[0])} {' < '} {pp(array[1])}
+              Es ist also {pp(array[0])} {' < '} {pp(array[1])} {' < '}{' '}
+              {pp(array[2])} {' < '} {pp(array[3])}
             </p>
           </>
         )
