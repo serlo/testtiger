@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -166,9 +167,19 @@ export const exercise39: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const wert = data.startwert - 1
         return (
           <>
             <p>Setze den Wert in den Term ein und fasse zusammen:</p>
+            {buildEquation([
+              ['', 'n · (n + ' + wert + ')', ''],
+              ['=', data.random + ' · (' + data.random + ' + ' + wert + ')'],
+              ['=', data.random * (data.random + wert)],
+            ])}
+            <p>
+              Für Figur {data.random} benötigen sie{' '}
+              {data.random * (data.random + wert)} Würfel.
+            </p>
           </>
         )
       },
@@ -186,7 +197,27 @@ export const exercise39: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>Beschreibe die den Term anhand der Figuren:</p>
+            <ul>
+              <li>
+                Jede Figur wird um eine weitere Reihe Würfel nach oben gebaut.
+                Die Anzahl aufeinanderliegender Reihen beträgt also n.
+              </li>
+              <li>
+                (n + {data.startwert - 1}) beschreibt die Anzahl von Würfeln in
+                einer Reihe. Da in Figur 1 bereits mehrere Würfel vorhanden
+                sind, muss der Startwert angepasst werden.
+              </li>
+            </ul>
+            <p>
+              Multipliziert man diese Terme ergibt sich die im Rechteck
+              angeordnete Anzahl von Würfeln durch den Term:
+              <br></br> (I) n · (n + {data.startwert - 1})
+            </p>
+          </>
+        )
       },
     },
     {
@@ -196,13 +227,34 @@ export const exercise39: Exercise<DATA> = {
           <>
             <p>
               d) Berechne mit dem Term, welche Figur aus genau{' '}
-              {data.random2 * (data.random2 + data.random - 1)} Würfeln besteht.
+              {data.random2 * (data.random2 + data.startwert - 1)} Würfeln
+              besteht.
             </p>
           </>
         )
       },
       solution({ data }) {
-        return <></>
+        const wert = data.startwert - 1
+        return (
+          <>
+            <p>
+              Der Term n · (n + {data.startwert - 1}) beschreibt die Anzahl der
+              Würfel in Figur n.{' '}
+            </p>
+            <p>
+              Setze systematisch einige Werte für n ein und bestimme die Lösung:
+            </p>
+            {buildEquation([
+              ['', 'n · (n + ' + wert + ')', ''],
+              ['=', data.random2 + ' · (' + data.random2 + ' + ' + wert + ')'],
+              ['=', data.random2 * (data.random2 + wert)],
+            ])}
+            <p>
+              Figur {data.random2} besteht aus{' '}
+              {data.random2 * (data.random2 + wert)} Würfeln.
+            </p>
+          </>
+        )
       },
     },
     {
@@ -216,8 +268,8 @@ export const exercise39: Exercise<DATA> = {
             </p>
             <p>(I) n · (n + {data.startwert - 1})</p>
             <p>
-              (II) (n + {pp(data.startwert / 2)})² −{' '}
-              {pp((data.startwert * data.startwert) / 4)}
+              (II) (n + {pp((data.startwert - 1) / 2)})² −{' '}
+              {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
             </p>
             <p>
               {' '}
@@ -228,7 +280,31 @@ export const exercise39: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>Löse die Klammern der Terme auf, um sie zu vergleichen:</p>
+            <ul>
+              <li>
+                n · (n + {data.startwert - 1}) = n² +{' '}
+                {data.startwert - 1 != 1 && data.startwert - 1}n
+              </li>
+              <li>
+                {' '}
+                (n + {pp((data.startwert - 1) / 2)})² −{' '}
+                {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
+                <br></br>= n² + 2 · n · {pp((data.startwert - 1) / 2)} +{' '}
+                {pp((data.startwert - 1) / 2)}² −{' '}
+                {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
+                <br></br> = n² + {data.startwert - 1 != 1 && data.startwert - 1}
+                n
+              </li>
+            </ul>
+            <p>
+              Nach einer Termumformung zeigt sich, dass die Terme identisch sind
+              und damit gleichwertig die Anzahl der Würfel beschreiben.
+            </p>
+          </>
+        )
       },
     },
     {
@@ -245,7 +321,39 @@ export const exercise39: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const anzahl = Math.floor(
+          -(data.startwert - 1) / 2 +
+            Math.sqrt(((data.startwert - 1) * (data.startwert - 1)) / 4 + 500),
+        )
+        return (
+          <>
+            <p>
+              Setze einige Werte für n und bestimme die größtmögliche Anzahl der
+              Würfel unter 500:
+            </p>
+            <ul>
+              <li>
+                {anzahl} · ({anzahl} + {data.startwert - 1}) ={' '}
+                <strong>
+                  {anzahl * anzahl + anzahl * (data.startwert - 1)}{' '}
+                </strong>
+              </li>
+              <li>
+                {anzahl + 1} · ({anzahl + 1} + {data.startwert - 1}) ={' '}
+                {(anzahl + 1) * (anzahl + 1) +
+                  (anzahl + 1) * (data.startwert - 1)}
+              </li>
+            </ul>
+            <p>
+              Die größtmögliche Figur ist Figur {anzahl}. Für den Bau von Figur{' '}
+              {anzahl + 1} fehlen{' '}
+              {(anzahl + 1) * (anzahl + 1) +
+                (anzahl + 1) * (data.startwert - 1) -
+                500}{' '}
+              Würfel.
+            </p>
+          </>
+        )
       },
     },
   ],
