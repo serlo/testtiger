@@ -24,6 +24,74 @@ export const exercise39: Exercise<DATA> = {
     return true
   },
   intro({ data }) {
+    const numberOfCubes = data.startwert
+    const numberOfCubes1 = data.startwert + 1
+    const numberOfCubes2 = data.startwert + 2
+    const cubeWidth = 25 // Breite eines Würfels
+    const cubeHeight = 25 // Höhe eines Würfels
+    const cubeDepth = 12.5 // "Tiefe" der Würfel für die 3D-Optik
+    const spacing = 0 // Abstand zwischen den Würfeln
+
+    const svgWidth = numberOfCubes * (cubeWidth + spacing) + 100 // Dynamische Breite
+    const svgHeight = 2 * (cubeHeight + cubeDepth) + 20 // Höhe des SVG
+
+    // Funktion zum Rendern eines Würfels
+    const renderCube = (index: number, yOffset: number) => {
+      const xOffset = index * (cubeWidth + spacing) + 25
+
+      return (
+        <g
+          key={`${index}-${yOffset}`}
+          transform={`translate(${xOffset}, ${yOffset})`}
+        >
+          {/* Vorderseite */}
+          <rect
+            x={0}
+            y={cubeDepth}
+            width={cubeWidth}
+            height={cubeHeight}
+            fill="#DDEAF0" // Füllung der Vorderseite
+            stroke="black"
+            strokeWidth="0.5"
+          />
+          {/* Oberseite */}
+          <polygon
+            points={`0,${cubeDepth} ${cubeWidth},${cubeDepth} ${cubeWidth + cubeDepth},0 ${cubeDepth},0`}
+            fill="#DDEAF0" // Füllung der Oberseite
+            stroke="black"
+            strokeWidth="0.5"
+          />
+          {/* Seitenfläche nur für den letzten Würfel */}
+          {index === numberOfCubes - 1 && (
+            <polygon
+              points={`${cubeWidth},${cubeDepth} ${cubeWidth},${cubeDepth + cubeHeight} ${cubeWidth + cubeDepth},${cubeDepth + cubeHeight - cubeDepth} ${cubeWidth + cubeDepth},${cubeDepth - cubeDepth}`}
+              fill="#DDEAF0" // Füllung der Seite
+              stroke="black"
+              strokeWidth="0.5"
+            />
+          )}
+          {/* Seitenfläche nur für den zweiten letzten Würfel */}
+          {index === numberOfCubes && (
+            <polygon
+              points={`${cubeWidth},${cubeDepth} ${cubeWidth},${cubeDepth + cubeHeight} ${cubeWidth + cubeDepth},${cubeDepth + cubeHeight - cubeDepth} ${cubeWidth + cubeDepth},${cubeDepth - cubeDepth}`}
+              fill="#DDEAF0" // Füllung der Seite
+              stroke="black"
+              strokeWidth="0.5"
+            />
+          )}
+          {/* Seitenfläche nur für den zweiten letzten Würfel */}
+          {index === numberOfCubes + 1 && (
+            <polygon
+              points={`${cubeWidth},${cubeDepth} ${cubeWidth},${cubeDepth + cubeHeight} ${cubeWidth + cubeDepth},${cubeDepth + cubeHeight - cubeDepth} ${cubeWidth + cubeDepth},${cubeDepth - cubeDepth}`}
+              fill="#DDEAF0" // Füllung der Seite
+              stroke="black"
+              strokeWidth="0.5"
+            />
+          )}
+        </g>
+      )
+    }
+
     return (
       <>
         <p>
@@ -31,9 +99,86 @@ export const exercise39: Exercise<DATA> = {
           {data.startwert} Würfeln legen sie Figur 1 und erweitern diese Figur
           schrittweise (Abbildung 1).
         </p>
+
+        {/* Figur 1 */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <svg width="40" height={svgHeight} xmlns="http://www.w3.org/2000/svg">
+            <text x="10" y="50" fontSize="10" fill="black">
+              Figur 1
+            </text>
+          </svg>
+          <svg
+            width={svgWidth + 20}
+            height={svgHeight}
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginBottom: '-15px' }}
+          >
+            {/* Erste Würfelreihe */}
+            {Array.from({ length: numberOfCubes }, (_, index) =>
+              renderCube(index, 25),
+            )}
+          </svg>
+        </div>
+
+        {/* Figur 2 */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <svg width="60" height={svgHeight} xmlns="http://www.w3.org/2000/svg">
+            <text x="10" y="50" fontSize="10" fill="black">
+              Figur 2
+            </text>
+          </svg>
+          <svg
+            width={svgWidth}
+            height={svgHeight}
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginLeft: '-25px', marginBottom: '-25px' }}
+          >
+            {/* Erste Würfelreihe */}
+            {Array.from({ length: numberOfCubes1 }, (_, index) =>
+              renderCube(index, 25),
+            )}
+            {/* Zweite Würfelreihe */}
+            {Array.from(
+              { length: numberOfCubes1 },
+              (_, index) => renderCube(index, -42 + cubeHeight + cubeDepth + 5), // Zweite Reihe unter der ersten
+            )}
+          </svg>
+        </div>
+
+        {/* Figur 3 */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <svg width="60" height={svgHeight} xmlns="http://www.w3.org/2000/svg">
+            <text x="10" y="50" fontSize="10" fill="black">
+              Figur 3
+            </text>
+          </svg>
+          <svg
+            width={svgWidth}
+            height={svgHeight + 10}
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginLeft: '-25px' }}
+          >
+            {/* Erste Würfelreihe */}
+            {Array.from({ length: numberOfCubes2 }, (_, index) =>
+              renderCube(index, 65),
+            )}
+            {/* Zweite Würfelreihe */}
+            {Array.from(
+              { length: numberOfCubes2 },
+              (_, index) => renderCube(index, -2 + cubeHeight + cubeDepth + 5), // Zweite Reihe unter der ersten
+            )}
+            {/* Dritte Würfelreihe */}
+            {Array.from(
+              { length: numberOfCubes2 },
+              (_, index) =>
+                renderCube(index, -41 + cubeHeight + cubeDepth + 20), // Dritte Reihe unter der ersten
+            )}
+          </svg>
+        </div>
       </>
     )
   },
+
   tasks: [
     {
       points: 42,
