@@ -69,7 +69,7 @@ export const exercise40: Exercise<DATA> = {
               Jetzt musst du die beiden Brüche auf einen gemeinsamen Nenner
               bringen. Der gemeinsame Nenner ist {data.e * 100}.<br></br>
               {ppFrac((data.a * 10) / 10)} ={' '}
-              {ppFrac((data.a * 10 * data.e * 10) / (10 * 30))}
+              {ppFrac((data.a * 10 * data.e * 10) / (data.e * 100))}
             </p>
           </>
         )
