@@ -10,6 +10,7 @@
 	},
 	"cordova": {},
 	"packageClassList": [
+		"CAPCameraPlugin",
 		"StatusBarPlugin"
 	]
 }

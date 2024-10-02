@@ -30,8 +30,20 @@ import { getSystemPrompt } from '@/ai/get-system-prompt'
 import { makePost } from '@/helper/make-post'
 import { Message, SpinnerMessage } from '../ui/Message'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { Camera, CameraResultType } from '@capacitor/camera'
+import {
+  Camera,
+  CameraDirection,
+  CameraResultType,
+  CameraSource,
+} from '@capacitor/camera'
 import { ImageMenu } from '../ui/ImageMenu'
+
+// Registers custom elements/web components to enable toasts/camera plugins in
+// web, see https://capacitorjs.com/docs/web/pwa-elements
+// pwaElementsLoader.ts
+import { defineCustomElements } from '@ionic/pwa-elements/loader'
+
+defineCustomElements(window)
 
 interface ChatProps {
   id: number
@@ -191,6 +203,10 @@ export function Chat({ id }: ChatProps) {
         quality: 100,
         allowEditing: false,
         resultType: CameraResultType.Base64,
+        source: CameraSource.Camera,
+        direction: CameraDirection.Rear,
+        presentationStyle: 'fullscreen',
+        webUseInput: false,
       })
 
       setBase64Image(`data:image/jpeg;base64,${image.base64String}`)
@@ -258,6 +274,35 @@ export function Chat({ id }: ChatProps) {
 
   // Ref for autoscroll
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const closeImageMenu = () => {
+    setShowImageMenu(false)
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        showImageMenu &&
+        !(event.target as Element)?.closest('.image-menu-container')
+      ) {
+        closeImageMenu()
+      }
+    }
+
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeImageMenu()
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscKey)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscKey)
+    }
+  }, [showImageMenu])
 
   // Autoscroll effect
   useEffect(() => {
@@ -507,7 +552,7 @@ export function Chat({ id }: ChatProps) {
             </div>
           )}
           <div className="flex items-end space-x-2">
-            <div className="relative flex-shrink-0">
+            <div className="relative flex-shrink-0 image-menu-container">
               <div
                 className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300"
                 onClick={() => setShowImageMenu(!showImageMenu)}
@@ -518,6 +563,7 @@ export function Chat({ id }: ChatProps) {
                 <ImageMenu
                   onTakePhoto={takePhoto}
                   onChoosePhoto={choosePhoto}
+                  onClose={closeImageMenu}
                 />
               )}
               <input
