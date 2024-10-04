@@ -60,7 +60,7 @@ export const exercise9: Exercise<DATA> = {
     {
       points: 2,
       task({ data }) {
-        const hrefs = '/content/NRW_Zahlenpaare' + data.task_2 + '.png'
+        const hrefs = '/content/NRW_Zahlenpaare' + data.task_2 + '.PNG'
 
         return (
           <>
@@ -76,7 +76,7 @@ export const exercise9: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const hrefs2 = '/content/NRW_Zahlenpaare_sol' + data.task_2 + '.png'
+        const hrefs2 = '/content/NRW_Zahlenpaare_sol' + data.task_2 + '.PNG'
         return (
           <>
             <p>Fülle die Kästchen und Lücken der Abbildung aus:</p>
