@@ -17,8 +17,8 @@ export const exercise1: Exercise<DATA> = {
   duration: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(1, 100) / -100,
-      b: rng.randomIntBetween(1, 100) / 100,
+      a: rng.randomIntBetween(-100, 100) / 100,
+      b: rng.randomIntBetween(-100, 100) / 100,
       c: rng.randomIntBetween(-8, 8),
       d: rng.randomItemFromArray([1, 2, 4, 5, 10]),
       e: rng.randomIntBetween(5, 99),
@@ -29,6 +29,11 @@ export const exercise1: Exercise<DATA> = {
       data.c != data.d &&
       data.d != 1 &&
       data.c != 0 &&
+      data.b != 0 &&
+      data.a != 0 &&
+      data.a != data.b &&
+      data.a != data.c / data.d &&
+      data.b != data.c / data.d &&
       !Number.isInteger(data.c / data.d) &&
       !Number.isInteger(Math.sqrt(data.e))
     )
@@ -103,11 +108,11 @@ export const exercise1: Exercise<DATA> = {
             </p>
             <p>
               <br></br>
-              {buildSqrt(data.e)} liegt damit zwischen den Quadratwurzeln:
+              {buildSqrt(data.e)} liegt damit auch zwischen den Quadratwurzeln:
             </p>
             <p>
               {buildSqrt(lower * lower)} {' < '} {buildSqrt(data.e)} {' < '}{' '}
-              {buildSqrt(upper * upper)}, oder vereinfacht {lower}
+              {buildSqrt(upper * upper)}, <br></br>oder vereinfacht {lower}
               {' < '}
               {buildSqrt(data.e)}
               {' < '}
@@ -116,8 +121,11 @@ export const exercise1: Exercise<DATA> = {
 
             <p>
               <br></br>
-              {buildSqrt(data.e)} liegt also zwischen den Zahlen {lower} und{' '}
-              {upper}.
+              {buildSqrt(data.e)} liegt zwischen den Zahlen{' '}
+              <strong>
+                {lower} und {upper}
+              </strong>
+              .
             </p>
           </>
         )
