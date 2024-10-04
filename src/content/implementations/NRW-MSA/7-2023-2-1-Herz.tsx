@@ -185,12 +185,12 @@ export const exercise7: Exercise<DATA> = {
               Die beiden Halbkreise ergeben eine Gesamtfläche eines Kreises:
             </p>
             <p>
-              A<sub>Kreis</sub> = π · r² = π · {pp(data.kante / 2)}² ≈{' '}
+              A<sub>Kreis</sub> = π · r² = π · ({pp(data.kante / 2)} cm)² ≈{' '}
               {pp(roundToDigits(A, 2))} cm²{' '}
             </p>
             <p>
               Damit ist die Gesamtfläche: <br></br>A<sub>ges</sub> ={' '}
-              {data.kante * data.kante} + {pp(roundToDigits(A, 2))} ={' '}
+              {data.kante * data.kante} cm² + {pp(roundToDigits(A, 2))} cm² ={' '}
               {pp(roundToDigits(data.kante * data.kante + A, 2))} cm²
             </p>
           </>
@@ -222,7 +222,8 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <p>1 dm² wiegt {data.dichte} g. Ein Herz wiegt damit:</p>
             <p>
-              {pp(roundToDigits(A / 100, 2))} · {data.dichte} ={' '}
+              {pp(roundToDigits(A / 100, 2))} dm² · {data.dichte}{' '}
+              {buildInlineFrac('g', 'dm²')}={' '}
               {pp(roundToDigits((A / 100) * data.dichte, 2))} g
             </p>
           </>
@@ -281,8 +282,8 @@ export const exercise7: Exercise<DATA> = {
               Mit dem Satz des Pythagoras kannst du eine fehlende Seite im
               rechtwinkligen Dreieck berechnen:
             </p>
+            <p>{buildOverline('M1M2')}² = r² + r²</p>
             {buildEquation([
-              ['M1M2²', '=', 'r² + r²', 'Einsetzen der Werte'],
               [
                 '',
                 '=',
@@ -296,8 +297,12 @@ export const exercise7: Exercise<DATA> = {
               auf beiden Seiten anwendest:
             </p>
             <p>
-              M1M2 = {buildSqrt(pp(m1m2))} ={' '}
-              {pp(roundToDigits(Math.pow(m1m2, 0.5), 2))} cm
+              {buildOverline('M1M2')} = {buildSqrt(pp(m1m2))} ={' '}
+              {pp(roundToDigits(Math.pow(m1m2, 0.5), 2))}
+            </p>
+            <p>
+              Die Strecke {buildOverline('M1M2')} ist{' '}
+              {pp(roundToDigits(Math.pow(m1m2, 0.5), 2))} cm lang.
             </p>
           </>
         )
@@ -318,8 +323,8 @@ export const exercise7: Exercise<DATA> = {
               Die Breite b setzt sich aus verschiedenen Teilstrecken zusammen,
               die bekannte Streckenlängen haben.
             </p>
+            <p>b = r + {buildOverline('M1M2')} + r</p>
             {buildEquation([
-              ['b', '=', 'r + M1M2 + r'],
               [
                 'b',
                 '=',
@@ -339,7 +344,7 @@ export const exercise7: Exercise<DATA> = {
                   pp(data.kante / 2),
               ],
               [
-                'b',
+                '',
                 '=',
                 pp(
                   2 * (data.kante / 2) +
@@ -351,9 +356,24 @@ export const exercise7: Exercise<DATA> = {
                       ),
                       2,
                     ),
-                ) + ' cm',
+                ),
               ],
             ])}
+            <p>
+              Die Breite des Herzes beträgt{' '}
+              {pp(
+                2 * (data.kante / 2) +
+                  roundToDigits(
+                    Math.pow(
+                      (data.kante / 2) * (data.kante / 2) +
+                        (data.kante / 2) * (data.kante / 2),
+                      0.5,
+                    ),
+                    2,
+                  ),
+              )}{' '}
+              cm
+            </p>
           </>
         )
       },
@@ -414,6 +434,7 @@ export const exercise7: Exercise<DATA> = {
                 pp(data.red) + ' Herzen',
                 '≙',
                 (data.zaehler / data.nenner) * 100 + ' %',
+                '|: ' + data.red,
               ],
               [
                 '1 Herz',
