@@ -12,29 +12,34 @@ interface DATA {
 
 export const exercise25: Exercise<DATA> = {
   title: 'Zahlen ordnen',
-  source: '2023 Teil 1 Aufgabe 1',
+  source: '2021 Teil 1 Aufgabe 2 (Variante 2)',
   useCalculator: false,
   duration: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(1, 100) / -100,
-      b: rng.randomIntBetween(1, 100) / 100,
+      a: rng.randomIntBetween(-100, 100) / -100,
+      b: rng.randomIntBetween(-100, 100) / -100,
       c: rng.randomIntBetween(-8, 8),
       d: rng.randomItemFromArray([1, 2, 4, 5, 10]),
-      e: rng.randomIntBetween(1, 10),
+      e: rng.randomItemFromArray([2, 4, 5, 8, 10]),
     }
   },
   constraint({ data }) {
+    const potenz = Math.pow(data.e, -1)
+    const array = [data.a, data.b, data.c / data.d, potenz].sort(
+      (a, b) => a - b,
+    )
     return (
       data.c != data.d &&
       data.d != 1 &&
+      data.a != 0 &&
+      data.b != 0 &&
       data.c != 0 &&
-      data.e != 3 &&
-      data.e != 6 &&
-      data.e != 7 &&
-      data.e != 9 &&
       !Number.isInteger(data.c / data.d) &&
-      !Number.isInteger(Math.sqrt(data.e))
+      !Number.isInteger(Math.sqrt(data.e)) &&
+      array[0] != array[1] &&
+      array[1] != array[2] &&
+      array[2] != array[3]
     )
   },
   intro({ data }) {
@@ -42,7 +47,7 @@ export const exercise25: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 1,
+      points: 2,
       task({ data }) {
         return (
           <>
