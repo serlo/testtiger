@@ -52,7 +52,11 @@ export const exercise43: Exercise<DATA> = {
     const e = data.d * data.x + data.a * data.y
     return (
       <>
-        <p>Addiere die Gleichungen I+II:</p>
+        <p>
+          Die Terme {'"'}− {data.a}y{'"'} und {'"'}
+          {data.a}y{'"'} haben entgegengesetzte Vorzeichen. Addiere die
+          Gleichungen I+II, um diesen Term aus den Gleichungen zu eliminieren:
+        </p>
         <p>
           {data.b}x + {data.d}x = {pp(c)} + {pp(e, 'embrace_neg')}
         </p>
@@ -60,7 +64,7 @@ export const exercise43: Exercise<DATA> = {
         <p>
           {data.b + data.d}x = {pp(c + e)}
         </p>
-        {data.x !== 1 && (
+        {data.b + data.d !== 1 && (
           <>
             <p>Löse die Gleichung nach x:</p>
             <p>x = {data.x}</p>
