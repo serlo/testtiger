@@ -72,7 +72,12 @@ export const exercise27: Exercise<DATA> = {
         return (
           <>
             <p>
-              <p>Addiere die Gleichungen I+II:</p>
+              <p>
+                Die Terme {'"'}− {data.a}y{'"'} und {'"'}
+                {data.a}y{'"'} haben entgegengesetzte Vorzeichen. Addiere die
+                Gleichungen I+II, um diesen Term aus den Gleichungen zu
+                eliminieren:
+              </p>
               <p>
                 {data.b}x + {data.d}x = {pp(c)} + {pp(e, 'embrace_neg')}
               </p>
@@ -80,7 +85,7 @@ export const exercise27: Exercise<DATA> = {
               <p>
                 {data.b + data.d}x = {pp(c + e)}
               </p>
-              {data.x !== 1 && (
+              {data.b + data.d !== 1 && (
                 <>
                   <p>Löse die Gleichung nach x:</p>
                   <p>x = {data.x}</p>
@@ -139,7 +144,8 @@ export const exercise27: Exercise<DATA> = {
               {' '}
               Die Gleichungen I und II sind zwei Geradengleichungen. Wenn die
               Geraden parallel verlaufen, gibt es keinen Schnittpunkt und damit
-              keine Lösung des Gleichungssystems:
+              keine Lösung des Gleichungssystems. Setze für Gerade I die gleiche
+              Steigung wie in Gerade II ein:
             </p>
             <p>
               I:&nbsp;&nbsp;&nbsp;y = <Color1>{data.m_b}</Color1>x{' '}
