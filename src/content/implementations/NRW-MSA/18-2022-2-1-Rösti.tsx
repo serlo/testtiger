@@ -15,8 +15,8 @@ interface DATA {
 export const exercise18: Exercise<DATA> = {
   title: 'Rösti',
   source: '2022 Teil 2 Aufgabe 1',
-  useCalculator: false,
-  duration: 10,
+  useCalculator: true,
+  duration: 30,
   generator(rng) {
     return {
       gewicht: rng.randomIntBetween(60, 100),
@@ -35,6 +35,7 @@ export const exercise18: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -101,6 +102,7 @@ export const exercise18: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -129,6 +131,7 @@ export const exercise18: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -183,6 +186,7 @@ export const exercise18: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -267,6 +271,7 @@ export const exercise18: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -361,6 +366,7 @@ export const exercise18: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -397,6 +403,7 @@ export const exercise18: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>

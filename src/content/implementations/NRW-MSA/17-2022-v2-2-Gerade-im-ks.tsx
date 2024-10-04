@@ -11,7 +11,7 @@ export const exercise17: Exercise<DATA> = {
   title: 'Gerade im Koordinatensystem',
   source: '2022 Teil 1 Aufgabe 2 (Variante 2)',
   useCalculator: false,
-  duration: 3,
+  duration: 5,
   generator(rng) {
     return {
       m: rng.randomIntBetween(-5, 5) / 2,
@@ -32,6 +32,7 @@ export const exercise17: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -114,6 +115,7 @@ export const exercise17: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -166,6 +168,7 @@ export const exercise17: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

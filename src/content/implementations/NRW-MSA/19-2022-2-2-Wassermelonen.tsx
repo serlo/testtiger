@@ -13,8 +13,8 @@ interface DATA {
 export const exercise19: Exercise<DATA> = {
   title: 'Wassermelonen',
   source: '2022 Teil 2 Aufgabe 2',
-  useCalculator: false,
-  duration: 10,
+  useCalculator: true,
+  duration: 30,
   generator(rng) {
     return {
       durchmesser: rng.randomIntBetween(20, 30),
@@ -31,6 +31,7 @@ export const exercise19: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -92,6 +93,7 @@ export const exercise19: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -135,6 +137,7 @@ export const exercise19: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         const V = roundToDigits(
           (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
@@ -189,6 +192,7 @@ export const exercise19: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -237,6 +241,7 @@ export const exercise19: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -416,6 +421,7 @@ export const exercise19: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         function toX(n: number) {
           return 73 + n * (450 / 12)

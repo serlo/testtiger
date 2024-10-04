@@ -12,7 +12,7 @@ export const exercise11: Exercise<DATA> = {
   title: 'Dreieck',
   source: '2022 Teil 1 Aufgabe 2',
   useCalculator: true,
-  duration: 3,
+  duration: 4,
 
   generator(rng) {
     return {
@@ -28,6 +28,7 @@ export const exercise11: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -85,6 +86,7 @@ export const exercise11: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

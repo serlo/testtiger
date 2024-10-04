@@ -16,7 +16,7 @@ export const exercise192: Exercise<DATA> = {
   title: 'Parabel und Rechteck',
   source: '2022 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     return {
       a: rng.randomIntBetween(-4, -1) / 2,
@@ -79,6 +79,7 @@ export const exercise192: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -112,6 +113,7 @@ export const exercise192: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -137,6 +139,7 @@ export const exercise192: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -171,6 +174,7 @@ export const exercise192: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
@@ -286,6 +290,7 @@ export const exercise192: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
@@ -339,6 +344,7 @@ export const exercise192: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
@@ -405,6 +411,7 @@ export const exercise192: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         const c = 3.75

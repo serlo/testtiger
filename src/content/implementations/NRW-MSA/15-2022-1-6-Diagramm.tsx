@@ -22,7 +22,7 @@ export const exercise15: Exercise<DATA> = {
   title: 'Diagramm auswerten',
   source: '2022 Teil 1 Aufgabe 6',
   useCalculator: true,
-  duration: 3,
+  duration: 4,
   generator(rng) {
     return {
       maenner_1: rng.randomIntBetween(30, 42),
@@ -56,6 +56,7 @@ export const exercise15: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -327,6 +328,7 @@ export const exercise15: Exercise<DATA> = {
       },
     },
     {
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -366,6 +368,7 @@ export const exercise15: Exercise<DATA> = {
       },
     },
     {
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -408,6 +411,7 @@ export const exercise15: Exercise<DATA> = {
       },
     },
     {
+      points: 1,
       task({ data }) {
         return (
           <>

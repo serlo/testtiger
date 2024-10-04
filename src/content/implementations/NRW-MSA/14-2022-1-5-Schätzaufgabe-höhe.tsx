@@ -9,7 +9,7 @@ export const exercise14: Exercise<DATA> = {
   title: 'Höhe schätzen',
   source: '2022 Teil 1 Aufgabe 5',
   useCalculator: false,
-  duration: 1,
+  duration: 2,
   generator(rng) {
     const task = rng.randomItemFromArray([1, 2, 3, 4, 5])
     return { task }
@@ -17,6 +17,7 @@ export const exercise14: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  points: 3,
   task({ data }) {
     return (
       <>

@@ -27,6 +27,7 @@ export const exercise13: Exercise<DATA> = {
   constraint({ data }) {
     return data.a != 0 && data.a != -1
   },
+  points: 2,
   task({ data }) {
     return (
       <>

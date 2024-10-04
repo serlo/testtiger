@@ -13,7 +13,7 @@ export const exercise16: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
   source: '2022 Teil 1 Aufgabe 1 (Variante 2)',
   useCalculator: false,
-  duration: 1,
+  duration: 3,
   generator(rng) {
     return {
       hours: (rng.randomIntBetween(30, 60) * 5) / 100,
@@ -24,6 +24,7 @@ export const exercise16: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  points: 3,
   task({ data }) {
     return (
       <>
