@@ -80,7 +80,7 @@ export const exercise40: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return <></>
       },

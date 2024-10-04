@@ -16,7 +16,7 @@ export const exercise38: Exercise<DATA> = {
   title: 'Pool',
   source: '2019 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     return {
       höhe: rng.randomIntBetween(9, 16) / 10,
@@ -48,6 +48,7 @@ export const exercise38: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -94,6 +95,7 @@ export const exercise38: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -143,6 +145,7 @@ export const exercise38: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -222,6 +225,7 @@ export const exercise38: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -273,6 +277,7 @@ export const exercise38: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -308,6 +313,7 @@ export const exercise38: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

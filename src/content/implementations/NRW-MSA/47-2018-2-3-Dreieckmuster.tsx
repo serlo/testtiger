@@ -15,9 +15,9 @@ interface DATA {
 
 export const exercise47: Exercise<DATA> = {
   title: 'Dreieckmuster',
-  source: '2018 Teil 2 Aufgabe 2',
+  source: '2018 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     const seite = rng.randomIntBetween(6, 12)
     const h = roundToDigits(
@@ -67,6 +67,7 @@ export const exercise47: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -125,6 +126,7 @@ export const exercise47: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -151,6 +153,7 @@ export const exercise47: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -192,6 +195,7 @@ export const exercise47: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         function calculateValue(x: number): string {
           return pp(roundToDigits(Math.pow(3 / 12, x) * data.f0, 3))
@@ -299,6 +303,7 @@ export const exercise47: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -329,6 +334,7 @@ export const exercise47: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>

@@ -23,7 +23,7 @@ export const exercise45: Exercise<DATA> = {
   title: 'Brücke',
   source: '2018 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     return {
       weg: rng.randomIntBetween(20, 30) / 10,
@@ -57,6 +57,7 @@ export const exercise45: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -101,6 +102,7 @@ export const exercise45: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -209,6 +211,7 @@ export const exercise45: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -322,6 +325,7 @@ export const exercise45: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -410,6 +414,7 @@ export const exercise45: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -583,6 +588,7 @@ export const exercise45: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>

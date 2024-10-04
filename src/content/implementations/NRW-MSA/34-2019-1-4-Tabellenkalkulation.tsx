@@ -31,7 +31,7 @@ export const exercise34: Exercise<DATA> = {
   title: 'Tabellenkalkulation',
   source: '2019 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 1,
+  duration: 5,
   generator(rng) {
     return {
       preis: rng.randomIntBetween(12, 19),
@@ -51,6 +51,7 @@ export const exercise34: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         const listItems = [
           <li key="1">{richtig[data.item_1]}</li>,
@@ -198,6 +199,7 @@ export const exercise34: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

@@ -10,7 +10,7 @@ export const exercise33: Exercise<DATA> = {
   title: 'Schieberegler',
   source: '2019 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 42,
+  duration: 2,
   generator(rng) {
     return {
       c: rng.randomIntBetween(1, 7),
@@ -54,7 +54,7 @@ export const exercise33: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -75,7 +75,7 @@ export const exercise33: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 1,
       task({ data }) {
         return (
           <>

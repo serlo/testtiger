@@ -29,7 +29,7 @@ export const exercise46: Exercise<DATA> = {
   title: 'Kaffee',
   source: '2018 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     const usage = rng.randomIntBetween(20, 40)
     const dia = rng.randomIntBetween(7, 10)
@@ -79,6 +79,7 @@ export const exercise46: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -110,6 +111,7 @@ export const exercise46: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -153,6 +155,7 @@ export const exercise46: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -213,6 +216,7 @@ export const exercise46: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -265,6 +269,7 @@ export const exercise46: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -337,6 +342,7 @@ export const exercise46: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         function toX(n: number) {
           return 56 + (n / 10) * (221 / 5)

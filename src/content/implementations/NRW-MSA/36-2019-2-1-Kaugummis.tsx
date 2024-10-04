@@ -21,7 +21,7 @@ export const exercise36: Exercise<DATA> = {
   title: 'Kaugummis',
   source: '2019 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     return {
       dia: rng.randomIntBetween(10, 16),
@@ -47,6 +47,7 @@ export const exercise36: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -90,6 +91,7 @@ export const exercise36: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -105,7 +107,7 @@ export const exercise36: Exercise<DATA> = {
           ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
           2,
         )
-        const solution = roundToDigits(300 / (data.weight * V), 0)
+        const solution = roundToDigits(300 / (data.weight * V), 2)
         return (
           <>
             <p>Eine Kugel hat das Volumen von etwa {pp(V)} cm³.</p>
@@ -117,13 +119,15 @@ export const exercise36: Exercise<DATA> = {
               {' '}
               In einer 300 g - Packung sind demnach:<br></br> 300 :{' '}
               {pp(roundToDigits(data.weight * V, 2))}{' '}
-              {Number.isInteger(solution) ? '=' : '≈'} {solution}
+              {Number.isInteger(solution) ? '=' : '≈'} {Math.round(solution)}{' '}
+              Kaugummikugeln
             </p>
           </>
         )
       },
     },
     {
+      points: 2,
       task({ data }) {
         const V = roundToDigits(
           ((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000,
@@ -171,6 +175,7 @@ export const exercise36: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -207,6 +212,7 @@ export const exercise36: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         const bruch = kürzeBruch(data.red, data.red + data.white)
         const bruch_2 = kürzeBruch(data.red, data.red + data.white - 1)
@@ -291,6 +297,7 @@ export const exercise36: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>

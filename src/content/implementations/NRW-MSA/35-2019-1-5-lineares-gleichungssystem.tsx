@@ -15,7 +15,7 @@ export const exercise35: Exercise<DATA> = {
   title: 'Lineares Gleichungssystem',
   source: '2019 Teil 1 Aufgabe 5',
   useCalculator: false,
-  duration: 3,
+  duration: 4,
   generator(rng) {
     return {
       x: rng.randomIntBetween(1, 6),
@@ -36,6 +36,7 @@ export const exercise35: Exercise<DATA> = {
         data.d * data.x + data.faktor * data.a * data.y
     )
   },
+  points: 4,
   task({ data }) {
     const c = data.b * data.x - data.a * data.y
     const e = data.d * data.x + data.faktor * data.a * data.y

@@ -12,7 +12,7 @@ export const exercise39: Exercise<DATA> = {
   title: 'Würfel',
   source: '2019 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 42,
+  duration: 30,
   generator(rng) {
     return {
       startwert: rng.randomIntBetween(2, 5),
@@ -181,7 +181,7 @@ export const exercise39: Exercise<DATA> = {
 
   tasks: [
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -296,7 +296,7 @@ export const exercise39: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -330,7 +330,7 @@ export const exercise39: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -366,7 +366,7 @@ export const exercise39: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -403,7 +403,7 @@ export const exercise39: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -453,7 +453,7 @@ export const exercise39: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         return (
           <>

@@ -15,7 +15,7 @@ export const exercise42: Exercise<DATA> = {
   title: 'Kugel',
   source: '2018 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 42,
+  duration: 4,
   generator(rng) {
     return {
       r: rng.randomIntBetween(3, 8),
@@ -88,7 +88,7 @@ export const exercise42: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -110,7 +110,7 @@ export const exercise42: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         const text1_case = ['verdopple', 'verdreifache', 'halbiere']
         const text_falsch = ['verdoppelt', 'verdreifacht', 'halbiert']

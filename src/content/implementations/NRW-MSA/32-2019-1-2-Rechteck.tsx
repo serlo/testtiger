@@ -15,7 +15,7 @@ export const exercise32: Exercise<DATA> = {
   title: 'Rechteck',
   source: '2019 Teil 1 Aufgabe 2',
   useCalculator: false,
-  duration: 42,
+  duration: 4,
   generator(rng) {
     return {
       a: rng.randomIntBetween(3, 12),
@@ -46,6 +46,7 @@ export const exercise32: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return <>a) Berechne die Länge der Diagonale d.</>
       },
@@ -88,6 +89,7 @@ export const exercise32: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         const text = ['verdoppelt', 'verdreifacht', 'vervierfacht', 'halbiert']
         return (
@@ -137,6 +139,7 @@ export const exercise32: Exercise<DATA> = {
       },
     },
     {
+      points: 1,
       task({ data }) {
         return (
           <>
