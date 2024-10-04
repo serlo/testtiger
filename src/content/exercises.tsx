@@ -28,7 +28,7 @@ import { exercise28 } from './implementations/NRW-MSA/28-2021-2-1-Glaskugeln'
 import { exercise29 } from './implementations/NRW-MSA/29-2021-2-2-Blobbing'
 import { exercise36 } from './implementations/NRW-MSA/36-2019-2-1-Kaugummis'
 import { exercise21 } from './implementations/NRW-MSA/21-2021-v1-2-Einheiten-umrechnen'
-import { exercise37 } from './implementations/NRW-MSA/37-2021-v1-3-volumen-gewicht'
+
 import { exercise38 } from './implementations/NRW-MSA/38-2019-2-2-Pool'
 import { exercise46 } from './implementations/NRW-MSA/46-2018-2-2-Kaffee'
 import { exercise45 } from './implementations/NRW-MSA/45-2018-2-1-Brücke'
@@ -46,6 +46,7 @@ import { exercise40 } from './implementations/NRW-MSA/40-2018-1-1-Zahlen ordnen'
 import { exercise9 } from './implementations/NRW-MSA/9-2023-2-3-Zahlenpaare'
 import { exercise30 } from './implementations/NRW-MSA/30-2021-2-3-Muster'
 import { exercise39 } from './implementations/NRW-MSA/39-2019-2-3-Würfel'
+import { exercise22 } from './implementations/NRW-MSA/22-2021-v1-3-volumen-gewicht'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -81,7 +82,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   34: exercise34,
   35: exercise35,
   36: exercise36,
-  37: exercise37,
+
   38: exercise38,
   192: exercise192,
   40: exercise40,
@@ -95,6 +96,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   31: exercise31,
   30: exercise30,
   39: exercise39,
+  22: exercise22,
 }
 
 // symbols:

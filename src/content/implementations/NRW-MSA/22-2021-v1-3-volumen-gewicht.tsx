@@ -9,7 +9,7 @@ interface DATA {
   d: number
 }
 
-export const exercise37: Exercise<DATA> = {
+export const exercise22: Exercise<DATA> = {
   title: 'Volumen und Gewicht',
   source: '2021 Teil 1 Aufgabe 3',
   useCalculator: false,
