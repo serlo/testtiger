@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   c: number
@@ -29,7 +30,7 @@ export const exercise33: Exercise<DATA> = {
       <>
         <p>
           Isabelle zeichnet mit einer Geometriesoftware den Graphen einer
-          quadratischen Funktion mit: f(x)=x²+c. Sie erstellt einen
+          quadratischen Funktion mit: f(x) = x² + c. Sie erstellt einen
           Schieberegler, mit dem sie den Wert für c verändern kann.
         </p>
 
@@ -104,7 +105,7 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Der Graph verläuft für positive Werte von c oberhalb der
-                  x-Achse.{' '}
+                  x-Achse:<br></br> c {' > '}0
                 </p>
               </>
             )}
@@ -112,7 +113,7 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Der Graph verläuft für negative Werte von c auch unterhalb der
-                  x-Achse.{' '}
+                  x-Achse.<br></br> c {' < '}0
                 </p>
               </>
             )}
@@ -120,7 +121,7 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Wenn c größer als 2 ist, sind alle Funktionswerte von f größer
-                  als 2.{' '}
+                  als 2.<br></br> c {' > '}2
                 </p>
               </>
             )}
@@ -128,7 +129,8 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Wenn c größer als -1 ist, sind alle Funktionswerte von f
-                  größer als -1.{' '}
+                  größer als -1.<br></br> c {' > '}
+                  {pp(-1)}
                 </p>
               </>
             )}
