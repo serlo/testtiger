@@ -6,7 +6,7 @@ interface DATA {
 }
 
 export const exercise14: Exercise<DATA> = {
-  title: 'Höhe schätzen',
+  title: 'Schätzen',
   source: '2022 Teil 1 Aufgabe 5',
   useCalculator: false,
   duration: 2,
