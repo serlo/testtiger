@@ -18,8 +18,8 @@ export const exercise32: Exercise<DATA> = {
   duration: 42,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(3, 7),
-      b: rng.randomIntBetween(2, 5),
+      a: rng.randomIntBetween(3, 12),
+      b: rng.randomIntBetween(2, 10),
       case: rng.randomIntBetween(0, 3),
       r: rng.randomIntBetween(1, 6) * 6,
     }
@@ -65,13 +65,19 @@ export const exercise32: Exercise<DATA> = {
 
             <p>Ziehe die Quadratwurzel und bestimme d:</p>
             <p>
-              d = {buildSqrt(data.a + '² + ' + data.b + '²')} ={' '}
+              d = {buildSqrt(data.a + '² + ' + data.b + '²')}{' '}
+              {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
+                ? '='
+                : '≈'}{' '}
               {pp(
                 roundToDigits(Math.sqrt(data.a * data.a + data.b * data.b), 2),
               )}
             </p>
             <p>
-              Die Diagonale d ist ungefähr{' '}
+              Die Diagonale d ist{' '}
+              {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
+                ? ''
+                : 'ungefähr'}{' '}
               {pp(
                 roundToDigits(Math.sqrt(data.a * data.a + data.b * data.b), 2),
               )}{' '}
@@ -115,11 +121,14 @@ export const exercise32: Exercise<DATA> = {
               {data.a} cm · {data.b} cm{' '}
             </p>
             <p>
-              Wenn man die Seitenlängen {text[data.case]}, berechnet sich der
-              neue Flächeninhalt mit{' '}
+              Wenn man die Seitenlängen {text[data.case]}, beträgt der neue
+              Flächeninhalt{' '}
               <strong>
-                {ppFrac(zahl[data.case] * zahl[data.case])} mal dem
-                ursprünglichen Flächeninhalt
+                {(data.case == 1 || data.case == 2 || data.case == 0) && 'das '}
+                {ppFrac(zahl[data.case] * zahl[data.case])}
+                {(data.case == 1 || data.case == 2 || data.case == 0) &&
+                  '-fache'}{' '}
+                des ursprünglichen Flächeninhalts
               </strong>
               .
             </p>
