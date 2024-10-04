@@ -121,15 +121,17 @@ export const exercise40: Exercise<DATA> = {
               {data.g}% = {ppFrac([data.g, 100])}
               <br></br>
               Bringe die beiden Brüche jetzt auf einen gemeinsamen Nenner. Der
-              gemeinsame Nenner ist {data.i * 5}.<br></br>
+              gemeinsame Nenner ist {data.i * 10}.<br></br>
               <li>
-                {ppFrac([data.h, data.i])} = {ppFrac([data.h * 5, data.i * 5])}
+                {ppFrac([data.h, data.i])} ={' '}
+                {ppFrac([data.h * 10, data.i * 10])}
               </li>
               <li>
                 {ppFrac([data.g, 100])} ={' '}
-                {ppFrac([data.g * data.i * 0.05, data.i * 5])}
+                {ppFrac([data.g * data.i * 0.1, data.i * 10])}
               </li>
-              Es ist also {pp(array[0])} {' < '} {pp(array[1])}.
+              <b>Antwort:</b> Damit hat Miriam{' '}
+              {data.g > data.h / data.i ? 'recht.' : 'nicht recht.'}
             </p>
           </>
         )
