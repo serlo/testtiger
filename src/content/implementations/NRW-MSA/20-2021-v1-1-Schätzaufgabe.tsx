@@ -9,7 +9,7 @@ export const exercise20: Exercise<DATA> = {
   title: 'Schätzaufgabe',
   source: '2021 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 1,
+  duration: 2,
   generator(rng) {
     // Entfernen von Duplikaten passiert automatisch beim Generieren
     const task = rng.randomItemFromArray([1, 2, 3, 4, 5])
@@ -18,6 +18,7 @@ export const exercise20: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  points: 2,
   task({ data }) {
     return (
       <>

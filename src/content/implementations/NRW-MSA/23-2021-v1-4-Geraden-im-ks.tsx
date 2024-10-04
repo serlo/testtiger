@@ -18,7 +18,7 @@ export const exercise23: Exercise<DATA> = {
   title: 'Gerade im Koordinatensystem',
   source: '2021 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 2,
+  duration: 4,
   generator(rng) {
     return {
       m_1: rng.randomIntBetween(-4, 3) / 2,
@@ -68,6 +68,7 @@ export const exercise23: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         // Liste der Elemente
         const listItems = [
@@ -226,6 +227,7 @@ export const exercise23: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>

@@ -14,7 +14,7 @@ export const exercise24: Exercise<DATA> = {
   title: 'Tabellenkalkulation',
   source: '2021 Teil 1 Aufgabe 5',
   useCalculator: false,
-  duration: 3,
+  duration: 5,
   generator(rng) {
     return {
       preis_t: rng.randomIntBetween(500, 1000) / 100,
@@ -39,6 +39,7 @@ export const exercise24: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -317,6 +318,7 @@ export const exercise24: Exercise<DATA> = {
       },
     },
     {
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -357,6 +359,7 @@ export const exercise24: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

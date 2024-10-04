@@ -48,6 +48,7 @@ export const exercise27: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         const c = data.b * data.x - data.a * data.y
         const e = data.d * data.x + data.a * data.y
@@ -121,6 +122,7 @@ export const exercise27: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

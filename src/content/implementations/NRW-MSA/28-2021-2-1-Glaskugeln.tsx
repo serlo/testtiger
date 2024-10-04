@@ -16,7 +16,7 @@ export const exercise28: Exercise<DATA> = {
   title: 'Glaskugeln',
   source: '2021 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     return {
       dia: rng.randomIntBetween(6, 10),
@@ -42,6 +42,7 @@ export const exercise28: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -74,6 +75,7 @@ export const exercise28: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -119,6 +121,7 @@ export const exercise28: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -164,6 +167,7 @@ export const exercise28: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -269,6 +273,7 @@ export const exercise28: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -292,6 +297,7 @@ export const exercise28: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>

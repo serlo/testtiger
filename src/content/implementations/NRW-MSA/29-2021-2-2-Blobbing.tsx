@@ -17,7 +17,7 @@ export const exercise29: Exercise<DATA> = {
   title: 'Blobbing',
   source: '2021 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 10,
+  duration: 30,
   generator(rng) {
     return {
       x_s: rng.randomIntBetween(4, 7),
@@ -99,6 +99,7 @@ export const exercise29: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -190,6 +191,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -235,6 +237,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         function toX(n: number) {
@@ -347,6 +350,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         return (
@@ -380,6 +384,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         return (
@@ -433,6 +438,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -512,6 +518,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         return (

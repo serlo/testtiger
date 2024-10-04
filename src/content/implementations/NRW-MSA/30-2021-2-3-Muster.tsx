@@ -15,8 +15,8 @@ interface DATA {
 export const exercise30: Exercise<DATA> = {
   title: 'Muster',
   source: '2021 Teil 2 Aufgabe 3',
-  useCalculator: false,
-  duration: 10,
+  useCalculator: true,
+  duration: 30,
   generator(rng) {
     return {
       d1: rng.randomIntBetween(2, 6),
@@ -55,7 +55,7 @@ export const exercise30: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         const hypo = roundToDigits(Math.sqrt(data.d1 * data.d1 * 2), 2)
         return (
@@ -87,7 +87,7 @@ export const exercise30: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -172,7 +172,7 @@ export const exercise30: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -204,7 +204,7 @@ export const exercise30: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -262,7 +262,7 @@ export const exercise30: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         const surface = data.d1 * data.d1 * 0.5
         return (
@@ -356,7 +356,7 @@ export const exercise30: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         return (
           <>
