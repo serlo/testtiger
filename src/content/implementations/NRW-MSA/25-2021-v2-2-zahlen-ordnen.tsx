@@ -36,7 +36,6 @@ export const exercise25: Exercise<DATA> = {
       data.b != 0 &&
       data.c != 0 &&
       !Number.isInteger(data.c / data.d) &&
-      !Number.isInteger(Math.sqrt(data.e)) &&
       array[0] != array[1] &&
       array[1] != array[2] &&
       array[2] != array[3]
