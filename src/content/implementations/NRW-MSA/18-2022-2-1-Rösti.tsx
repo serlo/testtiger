@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { buildSqrt } from '@/helper/math-builder'
+import { buildFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -114,10 +114,10 @@ export const exercise18: Exercise<DATA> = {
           <>
             <p>{data.volumen} cm³ entsprechen 100 g Teig.</p>
             <p>
-              Berechne mit dem Dreisatz, wie viel 1 cm³ wiegt:<br></br>
+              Berechne wie viel 1 cm³ wiegt:<br></br>
             </p>
             <p>
-              1 cm³ = 100 : {data.volumen} g ={' '}
+              1 cm³ · {buildFrac('100 g', data.volumen + ' cm³')} ={' '}
               {pp(roundToDigits(100 / data.volumen, 2))} g
             </p>
             <p>
@@ -173,10 +173,10 @@ export const exercise18: Exercise<DATA> = {
             <p>
               {data.volumen} : {data.dicke}π = r²{' '}
             </p>
-            <p>r = {buildSqrt(data.volumen + ': ' + data.dicke + 'π')}</p>
-            <p>r = {pp(r)}</p>
+            <p>r = {buildSqrt(data.volumen + 'cm² : ' + data.dicke + 'π')}</p>
+            <p>r = {pp(r)} cm</p>
             <p>Berechne den Durchmesser, in dem du den Radius verdoppelst:</p>
-            <p>d = 2 · r = {pp(2 * r)}</p>
+            <p>d = 2 · r = {pp(2 * r)} cm</p>
             <p>Der Durchmesser beträgt {pp(2 * r)} cm.</p>
           </>
         )
@@ -204,7 +204,7 @@ export const exercise18: Exercise<DATA> = {
           <>
             <p>Berechne zuerst das Volumen des Mini-Röstis:</p>
             <p>
-              {data.volumen} : 2 = {pp(data.volumen / 2)}
+              {data.volumen} cm³ : 2 = {pp(data.volumen / 2)} cm³
             </p>
             <p>
               Das Mini-Rösti hat ein Volumen von {pp(data.volumen / 2)} cm³.
@@ -221,10 +221,11 @@ export const exercise18: Exercise<DATA> = {
               V<sub>Zylinder</sub> = r² · π · h
             </p>
             <p>
-              V<sub>Zylinder</sub> ={' '}
+              V<sub>Zylinder</sub> = (
               {data.case == 1 && pp(roundToDigits(d / 4, 2))}
               {data.case == 2 && pp(roundToDigits(d / 8, 2))}
-              {data.case == 3 && pp(roundToDigits(d, 2))}² · π · {data.dicke}
+              {data.case == 3 && pp(roundToDigits(d, 2))} cm)² · π ·{' '}
+              {data.dicke} cm
             </p>
             <p>
               V<sub>Zylinder</sub> ={' '}
@@ -236,6 +237,7 @@ export const exercise18: Exercise<DATA> = {
                 pp(
                   roundToDigits(Math.pow(d, 2) * Math.PI * data.dicke, 2),
                 )}{' '}
+              cm³
             </p>
             <p>
               Das Volumen eines Zylinders mit {data.case == 1 && 'halbem '}
