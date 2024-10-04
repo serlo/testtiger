@@ -68,7 +68,7 @@ export const exercise33: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Lies in der Graphik den Funktionswert an der Stelle x=0 ab.</p>
+            <p>Lies in der Grafik den Funktionswert an der Stelle x = 0 ab.</p>
             <p>Der Wert von c beträgt {data.c}.</p>
           </>
         )
