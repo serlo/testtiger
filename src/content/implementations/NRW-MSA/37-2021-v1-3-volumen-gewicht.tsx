@@ -17,7 +17,7 @@ export const exercise37: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      d: rng.randomIntBetween(6, 9) / 10,
+      d: (rng.randomIntBetween(12, 19) * 5) / 100,
       l: rng.randomIntBetween(4, 15),
       h: rng.randomIntBetween(2, 9) * 3,
     }
@@ -43,10 +43,10 @@ export const exercise37: Exercise<DATA> = {
     return (
       <>
         <p>
-          Die Formel zur Berechnung des <strong>Volumens</strong> einer Pyramide
-          lautet:
-          <br /> {'  '}
-          <strong>V = {buildInlineFrac('G · h', 3)}</strong>
+          Berechne zuerst das Volumen der Pyramide, um mithilfe der Dichte das
+          Gewicht zu bestimmen. <br></br>
+          <br></br>Die Formel zur Berechnung des Volumens einer Pyramide lautet:
+          <br /> {'  '}V = {buildInlineFrac('G · h', 3)}
         </p>
         <p>
           Die Grundfläche der Pyramide ist ein Quadrat mit der Seitenlänge{' '}
@@ -55,21 +55,21 @@ export const exercise37: Exercise<DATA> = {
         </p>
         <p>
           Setze G und h in die Volumenformel ein:
-          <br />
+          <br />V ={' '}
+          {buildInlineFrac(
+            <>
+              {data.l * data.l} cm² · {data.h} cm
+            </>,
+            3,
+          )}{' '}
+          ={' '}
           <strong>
-            V ={' '}
-            {buildInlineFrac(
-              <>
-                {data.l * data.l} cm² · {data.h} cm
-              </>,
-              3,
-            )}{' '}
-            = {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³
+            {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³
           </strong>
         </p>
         <p>
-          Die Formel zur Berechnung des <strong>Gewichts m</strong> lautet:{' '}
-          <br /> <strong>m = V · Dichte </strong>
+          Die Formel zur Berechnung des Gewichts <strong>m</strong> lautet:{' '}
+          <br /> m = V · Dichte
         </p>
         <p>
           Setze ein: <br />
