@@ -49,7 +49,7 @@ export const exercise13: Exercise<DATA> = {
         {buildEquation([
           [
             <>
-              ( <Color1>a</Color1> &nbsp; + &nbsp; b &nbsp; )²
+              (<Color1>a</Color1>&nbsp; + &nbsp; b &nbsp; )²
             </>,
             '=',
             <>
@@ -76,12 +76,14 @@ export const exercise13: Exercise<DATA> = {
           b² = {data.b * data.b}
           {data.c}
         </p>
-        <p>Wende die Quadratwurzel an und bestimme den positiven Wert von b:</p>
+        <p>Wende die Quadratwurzel an und bestimme den Term für b:</p>
         <p>
           b = {buildSqrt(data.b * data.b + '' + data.c)} = {data.b}
           {data.c == '' ? '' : 'y'}
         </p>
-        <p>Berechne den Mischterm 2ab:</p>
+        <p>
+          Bestimme den Mischterm 2ab, indem du die Terme für a und b einsetzt:
+        </p>
         <p>
           2ab = 2 · {data.a}x · {data.b}
           {data.c == '' ? '' : 'y'} = {2 * data.a * data.b}x
