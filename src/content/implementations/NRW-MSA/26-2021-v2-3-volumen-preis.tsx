@@ -79,7 +79,7 @@ export const exercise26: Exercise<DATA> = {
             )}{' '}
             m³
             <p>
-              <b>Antwort:</b> Das Volumen des quaderförmigen Laderaums beträgt{' '}
+              Das Volumen des quaderförmigen Laderaums beträgt{' '}
               {pp(
                 roundToDigits(
                   data.length * data.outerWidth * data.outerHeight,
@@ -98,7 +98,7 @@ export const exercise26: Exercise<DATA> = {
         return (
           <>
             <p>
-              Der Boden und die inneren Seitenwände des Laderaums müssen neu
+              b) Der Boden und die inneren Seitenwände des Laderaums müssen neu
               lackiert werden. Die Kosten für das Lackieren betragen{' '}
               {data.price} € pro angefangenen Quadratmeter (m<sup>2</sup>).
               Berechne den Preis der neuen Lackierung.
@@ -110,23 +110,21 @@ export const exercise26: Exercise<DATA> = {
         return (
           <>
             <p>
-              <b>Gegeben:</b>
-              <br></br>
-              zu lackierende Flächen:
-              <br></br>1 x Boden
-              <br></br>2 x lange Seitenwand
-              <br></br>2 x kurze Seitenwand
-              <br></br>
-              <br></br>
-              <b>Lösungsweg:</b>
-              <br></br>
-              Berechne nun den Flächeninhalt der einzelnen Flächen:
+              Bestimme die zu lackierenden Flächen:
+              <ul>
+                <li>1 x Boden</li>
+                <li>2 x lange Seitenwand</li>
+                <li>2 x kurze Seitenwand</li>
+              </ul>
+              Berechne nun den Flächeninhalt der einzelnen Flächen:<br></br>
               <br></br>A<sub>Boden</sub> = l · b = {pp(data.length)} m ·{' '}
               {pp(data.outerWidth)} m<br></br>={' '}
               {pp(data.length * data.outerWidth)} m<sup>2</sup>
+              <br></br>
               <br></br>A<sub>lange Seitenwand</sub> = b · h ={' '}
               {pp(data.outerWidth)} m · {pp(data.outerHeight)} m <br></br> ={' '}
               {pp(data.outerWidth * data.outerHeight)} m<sup>2</sup>
+              <br></br>
               <br></br>A<sub>kurze Seitenwand</sub> = l · h = {pp(data.length)}{' '}
               m · {pp(data.outerHeight)} m <br></br> ={' '}
               {pp(data.length * data.outerHeight)} m<sup>2</sup>
@@ -136,10 +134,19 @@ export const exercise26: Exercise<DATA> = {
               brauchst die Seitenwände zweimal):
               <br></br>
               <br></br>A<sub>gesamt</sub> = A<sub>Boden</sub> + 2 · A
-              <sub>lange Seitenwand</sub> + 2 · A<sub>kurze Seitenwand</sub> ={' '}
-              {pp(data.length * data.outerWidth)} m<sup>2</sup> + 2 ·{' '}
-              {pp(data.outerWidth * data.outerHeight)} m<sup>2</sup> + 2 ·{' '}
-              {pp(data.length * data.outerHeight)} m<sup>2</sup> ≈{' '}
+              <sub>lange Seitenwand</sub> <br></br>{' '}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
+              2 · A
+              <sub>
+                kurze Seitenwand
+                <br></br>
+                <br></br>
+              </sub>
+              A<sub>gesamt</sub>= {pp(data.length * data.outerWidth)} m
+              <sup>2</sup> + 2 · {pp(data.outerWidth * data.outerHeight)} m
+              <sup>2</sup> <br></br>{' '}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
+              2 · {pp(data.length * data.outerHeight)} m<sup>2</sup> ≈{' '}
               {pp(
                 roundToDigits(
                   data.length * data.outerWidth +
@@ -170,7 +177,7 @@ export const exercise26: Exercise<DATA> = {
                   0,
                 ),
               )}
-              . Quadratmeter ist angefangen. Wir rechnen also{' '}
+              . Quadratmeter ist angefangen. <br></br>Berechne{' '}
               {pp(
                 roundToDigits(
                   data.length * data.outerWidth +
@@ -191,7 +198,7 @@ export const exercise26: Exercise<DATA> = {
               €.
               <br></br>
               <br></br>
-              <b>Antwort:</b> Die neue Lackierung kostet{' '}
+              Die neue Lackierung kostet{' '}
               {pp(
                 roundToDigits(
                   data.length * data.outerWidth +
