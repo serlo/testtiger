@@ -101,7 +101,7 @@ export const exercise42: Exercise<DATA> = {
           <>
             <p>Berechne die Oberfläche der Kugel mit der Formel:</p>
             <p>O = 4 · π · r²</p>
-            <p>O = 4 · π · {data.r}²</p>
+            <p>O = 4 · π · ({data.r} cm)²</p>
             <p>
               O = {pp(roundToDigits(4 * Math.PI * Math.pow(data.r, 2), 2))} cm²
             </p>
@@ -140,25 +140,26 @@ export const exercise42: Exercise<DATA> = {
           <>
             <p>
               Setze den <Color1>{text2_case[data.case]}en</Color1> Radius in die
-              Formel für die Oberfläche ein:
+              Formel für die veränderte Oberfläche O&apos; ein:
             </p>
-            <p>O = 4 · π · r²</p>
+            <p>O&apos; = 4 · π · r&apos;²</p>
             <p>
-              O = 4 · π · (<Color1>{ppFrac(faktor[data.case])}</Color1> ·{' '}
+              O&apos; = 4 · π · (<Color1>{ppFrac(faktor[data.case])}</Color1> ·{' '}
               {data.r})²
             </p>
             <p>
-              O = 4 · π · {data.case == 2 && '('}
+              O&apos; = 4 · π · {data.case == 2 && '('}
               <Color1>{ppFrac(faktor[data.case])}</Color1>
               {data.case == 2 && ')'}² · {data.r}²
             </p>
             <p>
-              O = 4 · π ·{' '}
-              <Color1>{ppFrac(faktor[data.case] * faktor[data.case])}</Color1> ·{' '}
-              {data.r}²
+              O&apos; ={' '}
+              <Color1>{ppFrac(faktor[data.case] * faktor[data.case])}</Color1> ·
+              4 · π · {data.r}² = 4 · O
             </p>
             <p>
-              Die Oberfläche <Color1>{text3_case[data.case]}</Color1> sich bei{' '}
+              Die ursrpüngliche Oberfläche{' '}
+              <Color1>{text3_case[data.case]}</Color1> sich bei{' '}
               <Color1>{text2_case[data.case]}em</Color1> Radius.
             </p>
             <p>
