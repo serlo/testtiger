@@ -119,7 +119,7 @@ export const exercise192: Exercise<DATA> = {
           <>
             <p>
               b) Begründe mit den Eigenschaften dieser Parabel, dass der Punkt B
-              <sub>2</sub>({pp(-data.x)}|{data.y}) ebenfalls auf dem Graphen von
+              <sub>1</sub>({pp(-data.x)}|{data.y}) ebenfalls auf dem Graphen von
               f liegt.
             </p>
           </>
