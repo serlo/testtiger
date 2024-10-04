@@ -44,6 +44,7 @@ export const exercise7: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -151,6 +152,7 @@ export const exercise7: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -198,6 +200,7 @@ export const exercise7: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -231,6 +234,7 @@ export const exercise7: Exercise<DATA> = {
       },
     },
     {
+      points: 3,
       task({ data }) {
         return (
           <>
@@ -309,6 +313,7 @@ export const exercise7: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -379,6 +384,7 @@ export const exercise7: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         const bruch = kürzeBruch(data.zaehler, data.nenner)
         return (
@@ -454,6 +460,7 @@ export const exercise7: Exercise<DATA> = {
       },
     },
     {
+      points: 4,
       task({ data }) {
         return (
           <>

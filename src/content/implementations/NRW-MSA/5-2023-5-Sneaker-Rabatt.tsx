@@ -23,6 +23,7 @@ export const exercise5: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  points: 3,
   task({ data }) {
     return (
       <>

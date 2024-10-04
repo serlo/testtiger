@@ -18,7 +18,7 @@ export const exercise9: Exercise<DATA> = {
   title: 'Zahlenpaare',
   source: '2023 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 15,
+  duration: 30,
   generator(rng) {
     return {
       task_2: rng.randomItemFromArray([6, 8, 10, 12]),
@@ -58,7 +58,7 @@ export const exercise9: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         const hrefs = '/content/NRW_Zahlenpaare' + data.task_2 + '.png'
 
@@ -88,7 +88,7 @@ export const exercise9: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -171,7 +171,7 @@ export const exercise9: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 4,
       task({ data }) {
         return (
           <>
@@ -214,7 +214,7 @@ export const exercise9: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
       task({ data }) {
         return (
           <>
@@ -249,7 +249,7 @@ export const exercise9: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 6,
       task({ data }) {
         return (
           <>
@@ -333,7 +333,7 @@ export const exercise9: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
       task({ data }) {
         return (
           <>

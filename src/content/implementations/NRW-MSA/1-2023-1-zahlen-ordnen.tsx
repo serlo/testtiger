@@ -14,7 +14,7 @@ export const exercise1: Exercise<DATA> = {
   title: 'Zahlen ordnen',
   source: '2023 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 2,
+  duration: 3,
   generator(rng) {
     return {
       a: rng.randomIntBetween(-100, 100) / 100,
@@ -43,7 +43,7 @@ export const exercise1: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 1,
+      points: 2,
       task({ data }) {
         return (
           <>

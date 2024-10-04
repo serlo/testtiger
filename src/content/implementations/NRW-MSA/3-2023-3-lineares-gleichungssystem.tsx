@@ -32,6 +32,7 @@ export const exercise3: Exercise<DATA> = {
       data.a * data.x - data.d * data.y != data.a * data.x - data.b * data.y
     )
   },
+  points: 3,
   task({ data }) {
     const c = data.a * data.x - data.b * data.y
     const e = data.a * data.x - data.d * data.y

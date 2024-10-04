@@ -12,7 +12,7 @@ export const exercise6: Exercise<DATA> = {
   title: 'Parallelogramm',
   source: '2023 Teil 1 Aufgabe 6',
   useCalculator: false,
-  duration: 2,
+  duration: 3,
 
   generator(rng) {
     return {
@@ -29,6 +29,7 @@ export const exercise6: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -88,6 +89,7 @@ export const exercise6: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>

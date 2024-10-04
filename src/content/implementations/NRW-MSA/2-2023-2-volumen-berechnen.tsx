@@ -21,6 +21,7 @@ export const exercise2: Exercise<DATA> = {
   constraint({ data }) {
     return data.a * data.b * data.c < 200000
   },
+  points: 3,
   task({ data }) {
     const array = [data.a, data.b, data.c].sort((a, b) => a - b)
     return (

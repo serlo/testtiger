@@ -71,6 +71,7 @@ export const exercise4: Exercise<DATA> = {
   },
   tasks: [
     {
+      points: 1,
       task({ data }) {
         return (
           <>
@@ -119,6 +120,7 @@ export const exercise4: Exercise<DATA> = {
       },
     },
     {
+      points: 2,
       task({ data }) {
         return (
           <>
