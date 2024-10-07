@@ -50,7 +50,7 @@ export const exercise45: Exercise<DATA> = {
         <p>
           Die Freunde gehen zu Fuß zum Bahnhof in Frankfurt. Der Fußweg hat eine
           Länge von {pp(data.weg)} km. Sie gehen mit einer durchschnittlichen
-          Geschwindigkeit von {pp(data.pace)}.
+          Geschwindigkeit von {pp(data.pace)} Kilometern pro Stunde [km/h].
         </p>
       </>
     )
@@ -336,7 +336,7 @@ export const exercise45: Exercise<DATA> = {
               {pp(data.alpha_max)}° betragen.
             </p>
             <p>
-              Max behauptet: {'"'}Wenn der Neigungswinkel α ={' '}
+              d) Max behauptet: {'"'}Wenn der Neigungswinkel α ={' '}
               {pp(data.alpha_max)}° beträgt, dann beträgt der Höhenunterschied
               der Gleise{' '}
               {pp(
@@ -517,7 +517,7 @@ export const exercise45: Exercise<DATA> = {
               Alle Angaben sind in Metern.
             </p>
             <p>
-              Begründe, dass die Funktionsgleichung g(x) ={' '}
+              e) Begründe, dass die Funktionsgleichung g(x) ={' '}
               {pp(
                 roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
               )}{' '}
@@ -608,8 +608,8 @@ export const exercise45: Exercise<DATA> = {
               bleibt gleich unabhängig von der Position des Ursprungs.
             </p>
             <p>
-              Der neue Scheitelpunkt liegt im Urpsrung (0|0), welcher in die
-              Scheitelform eingesetzt werden könnte:
+              Der neue Scheitelpunkt liegt im Ursprung (0|0), welcher in die
+              Scheitelform eingesetzt werden kann:
             </p>
 
             <p>
