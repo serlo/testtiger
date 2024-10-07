@@ -49,6 +49,7 @@ import { exercise39 } from './implementations/NRW-MSA/39-2019-2-3-Würfel'
 import { exercise22 } from './implementations/NRW-MSA/22-2021-v1-3-volumen-gewicht'
 import { exercise48 } from './implementations/NRW-MSA/48-2024-1-zahlen-ordnen'
 import { exercise49 } from './implementations/NRW-MSA/49-2024-1-2-Tabellenkalkulation'
+import { exercise50 } from './implementations/NRW-MSA/50-2024-1-3-Rechenaufgaben'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -101,6 +102,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   22: exercise22,
   48: exercise48,
   49: exercise49,
+  50: exercise50,
 }
 
 // symbols:
