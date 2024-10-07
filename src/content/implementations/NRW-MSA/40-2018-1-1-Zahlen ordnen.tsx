@@ -103,8 +103,8 @@ export const exercise40: Exercise<DATA> = {
         return (
           <>
             <p>
-              b) Miriam behauptet: "{data.g}% sind mehr als{' '}
-              {ppFrac([data.h, data.i])}." Hat Miriam recht? Überprüfe die
+              b) Miriam behauptet: &quot;{data.g}% sind mehr als{' '}
+              {ppFrac([data.h, data.i])}.&quot; Hat Miriam recht? Überprüfe die
               Behauptung durch eine Rechnung.
             </p>
           </>
