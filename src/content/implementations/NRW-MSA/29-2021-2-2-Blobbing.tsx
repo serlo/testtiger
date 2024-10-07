@@ -458,7 +458,7 @@ export const exercise29: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Setze die Funktionsgleichung 0:</p>
+            <p>Setze die Funktionsgleichung gleich 0:</p>
             <p>
               0 = {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
               {pp(a * data.x_s * data.x_s + data.y_s, 'merge_op')}
@@ -513,6 +513,11 @@ export const exercise29: Exercise<DATA> = {
               x<sub>2</sub> ≈{' '}
               {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))}
             </p>
+            <p>
+              Die positive Lösung x<sub>2</sub> gibt an, wie weit der Blobber
+              geflogen ist:{' '}
+              {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))} m{' '}
+            </p>
           </>
         )
       },
@@ -524,7 +529,7 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>
-              h) Die Flugbahn eines zweiten Blobbers B wird mit der Funktion h
+              g) Die Flugbahn eines zweiten Blobbers B wird mit der Funktion h
               mit{' '}
             </p>
             <p>
@@ -548,7 +553,7 @@ export const exercise29: Exercise<DATA> = {
                 Mögliche Gemeinsamkeit: Die Funktionen besitzen den gleichen
                 Öffnungsfaktor a. Die Flugbahnen haben damit ein ähnliches
                 Profil. <br></br>
-                <br></br> Mögliche Unterschied: Die Funktionen haben
+                <br></br> Möglicher Unterschied: Die Funktionen haben
                 unterschiedliche Scheitelpunktkoordinaten. Der höchste Punkt der
                 Flugbahn ist daher unterschiedlich.
               </p>
@@ -558,7 +563,7 @@ export const exercise29: Exercise<DATA> = {
                 Scheitelpunktkoordinate x<sub>s</sub>. Damit erreichen die
                 Flugbahnen beide ihren Höhepunkt nach x<sub>s</sub> = {data.x_s}{' '}
                 Metern. <br></br>
-                <br></br> Mögliche Unterschied: Die Funktionen haben
+                <br></br> Möglicher Unterschied: Die Funktionen haben
                 unterschiedliche Öffnungsfaktoren. Sie besitzen eine
                 unterschiedliche Form.
               </p>
