@@ -85,7 +85,7 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   E2 bezeichnet den Gewinn pro Stück, also dem Verkaufspreis
-                  abzüglich dem Einkaufspreis. Die Formel lautet: {'"'}= C2 * D2
+                  abzüglich dem Einkaufspreis. Die Formel lautet: {'"'}= C2 - D2
                   {'"'}
                 </p>
               </>
@@ -94,7 +94,7 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   E3 bezeichnet den Gewinn pro Stück, also dem Verkaufspreis
-                  abzüglich dem Einkaufspreis. Die Formel lautet: {'"'}= C3 * D3
+                  abzüglich dem Einkaufspreis. Die Formel lautet: {'"'}= C3 - D3
                   {'"'}
                 </p>
               </>
@@ -130,7 +130,7 @@ export const exercise49: Exercise<DATA> = {
               )}
               {data.case_2 == 5 && (
                 <>
-                  Von den Blumen werden beim nächsten Verkauftag mehr verkauft.
+                  Von den Blumen werden beim nächsten Verkaufstag mehr verkauft.
                 </>
               )}{' '}
               Gib an, welche Zellen sich dadurch verändern.
@@ -144,15 +144,15 @@ export const exercise49: Exercise<DATA> = {
             {data.case_2 == 1 && (
               <>
                 Ändert sich der Einkaufspreis der Schokoladenherzen, ändern sich
-                Gewinn (E3), Gesamtgewinn durch die Herzen (F3) und somit auch
-                der Gesamtgewinn der Verkaufsaktion (F4).
+                Gewinn pro Stück (E3), der Gesamtgewinn durch die Herzen (F3)
+                und somit auch der Gesamtgewinn der Verkaufsaktion (F4).
               </>
             )}
             {data.case_2 == 2 && (
               <>
-                Ändert sich der Einkaufspreis der Blumen, ändern sich Gewinn
-                (E2), Gesamtgewinn durch die Blumen (F2) und somit auch der
-                Gesamtgewinn der Verkaufsaktion (F4).
+                Ändert sich der Einkaufspreis der Blumen, ändern sich Gewinn pro
+                Stück (E2), der Gesamtgewinn durch die Blumen (F2) und somit
+                auch der Gesamtgewinn der Verkaufsaktion (F4).
               </>
             )}
             {data.case_2 == 3 && (
