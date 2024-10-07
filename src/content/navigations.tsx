@@ -39,7 +39,7 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Digitale Werkzeuge',
         headerColor: 'medium',
         twColor: 'bg-fuchsia-500',
-        exercises: [24, 34],
+        exercises: [24, 34, 49],
       },
     ],
   },
