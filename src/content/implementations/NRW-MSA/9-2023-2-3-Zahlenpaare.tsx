@@ -177,7 +177,7 @@ export const exercise9: Exercise<DATA> = {
           <>
             <p>
               c) Merle findet einen allgemeinen Term, um die Summe der Zahlen
-              von 1 bisn zu berechnen. Sie notiert {buildInlineFrac(1, 2)} ​n ⋅
+              von 1 bis n zu berechnen. Sie notiert {buildInlineFrac(1, 2)} ​n ⋅
               (n + 1).
             </p>
             <ol>
