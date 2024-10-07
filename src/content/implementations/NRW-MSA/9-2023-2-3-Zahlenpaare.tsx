@@ -21,7 +21,7 @@ export const exercise9: Exercise<DATA> = {
   duration: 30,
   generator(rng) {
     return {
-      task_2: rng.randomItemFromArray([6, 8, 10, 12]),
+      task_2: rng.randomItemFromArray([6, 8, 12, 14]),
       task_3: rng.randomIntBetween(10, 30) * 2,
       task_4: rng.randomIntBetween(2, 8) * 10,
       task_5: rng.randomIntBetween(1, 10) * 10,
