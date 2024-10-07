@@ -21,7 +21,7 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Körper und Figuren',
         headerColor: 'warning',
         twColor: 'bg-yellow-400',
-        exercises: [2, 6, 7, 11, 18, 19, 28, 36, 38, 46, 30, 36, 42],
+        exercises: [2, 6, 7, 11, 18, 19, 28, 36, 38, 46, 30, 36, 42, 52],
       },
       {
         title: 'Funktionen und Graphen',

@@ -50,6 +50,7 @@ import { exercise22 } from './implementations/NRW-MSA/22-2021-v1-3-volumen-gewic
 import { exercise48 } from './implementations/NRW-MSA/48-2024-1-1-zahlen-ordnen'
 import { exercise49 } from './implementations/NRW-MSA/49-2024-1-2-Tabellenkalkulation'
 import { exercise50 } from './implementations/NRW-MSA/50-2024-1-3-Rechenaufgaben'
+import { exercise52 } from './implementations/NRW-MSA/52-2024-1-5-Quadratische-Funktion'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -103,6 +104,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   48: exercise48,
   49: exercise49,
   50: exercise50,
+  52: exercise52,
 }
 
 // symbols:
