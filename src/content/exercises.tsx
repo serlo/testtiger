@@ -47,7 +47,7 @@ import { exercise9 } from './implementations/NRW-MSA/9-2023-2-3-Zahlenpaare'
 import { exercise30 } from './implementations/NRW-MSA/30-2021-2-3-Muster'
 import { exercise39 } from './implementations/NRW-MSA/39-2019-2-3-Würfel'
 import { exercise22 } from './implementations/NRW-MSA/22-2021-v1-3-volumen-gewicht'
-import { exercise48 } from './implementations/NRW-MSA/48-2024-1-zahlen-ordnen'
+import { exercise48 } from './implementations/NRW-MSA/48-2024-1-1-zahlen-ordnen'
 import { exercise49 } from './implementations/NRW-MSA/49-2024-1-2-Tabellenkalkulation'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
@@ -72,6 +72,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   19: exercise19,
   20: exercise20,
   21: exercise21,
+  22: exercise22,
   23: exercise23,
   24: exercise24,
   25: exercise25,
@@ -79,6 +80,8 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   27: exercise27,
   28: exercise28,
   29: exercise29,
+  30: exercise30,
+  31: exercise31,
   32: exercise32,
   33: exercise33,
   34: exercise34,
@@ -86,6 +89,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   36: exercise36,
 
   38: exercise38,
+  39: exercise39,
   192: exercise192,
   40: exercise40,
   41: exercise41,
@@ -95,10 +99,6 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   45: exercise45,
   46: exercise46,
   47: exercise47,
-  31: exercise31,
-  30: exercise30,
-  39: exercise39,
-  22: exercise22,
   48: exercise48,
   49: exercise49,
 }
