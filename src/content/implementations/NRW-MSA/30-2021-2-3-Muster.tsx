@@ -281,7 +281,7 @@ export const exercise30: Exercise<DATA> = {
               <text
                 x={121}
                 y={41}
-                fontSize={15}
+                fontSize={14}
                 textAnchor="right"
                 stroke="black"
               >
@@ -290,7 +290,7 @@ export const exercise30: Exercise<DATA> = {
               <text
                 x={161}
                 y={41}
-                fontSize={15}
+                fontSize={14}
                 textAnchor="right"
                 stroke="black"
               >
@@ -299,7 +299,7 @@ export const exercise30: Exercise<DATA> = {
               <text
                 x={195}
                 y={41}
-                fontSize={15}
+                fontSize={14}
                 textAnchor="right"
                 stroke="black"
               >
@@ -308,7 +308,7 @@ export const exercise30: Exercise<DATA> = {
               <text
                 x={225}
                 y={41}
-                fontSize={15}
+                fontSize={14}
                 textAnchor="right"
                 stroke="black"
               >
@@ -317,7 +317,7 @@ export const exercise30: Exercise<DATA> = {
               <text
                 x={257}
                 y={41}
-                fontSize={15}
+                fontSize={14}
                 textAnchor="right"
                 stroke="black"
               >
