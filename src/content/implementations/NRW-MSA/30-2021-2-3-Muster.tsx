@@ -380,7 +380,7 @@ export const exercise30: Exercise<DATA> = {
             <p>Ein DIN-A4-Blatt hat die Seitenlängen 29,7 cm und 21 cm.</p>
             <p>
               Das Dreieck D<sub>8</sub> hat eine Fläche von: <br></br>A
-              <sub>8</sub> = {pp(surface)} cm² · 2<sup>6</sup> = {pp(werte)} cm²
+              <sub>8</sub> = {pp(surface)} cm² · 2<sup>7</sup> = {pp(werte)} cm²
             </p>
             <p>
               Aus dieser Fläche lässt sich die Länge einer Kathete berechnen.
