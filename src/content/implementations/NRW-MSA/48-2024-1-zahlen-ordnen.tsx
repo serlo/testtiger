@@ -25,7 +25,7 @@ export const exercise48: Exercise<DATA> = {
       c: rng.randomIntBetween(-8, 8),
       d: rng.randomItemFromArray([2, 4, 5, 6, 10]),
       e: rng.randomIntBetween(1, 8),
-      f: rng.randomItemFromArray([2, 4, 5, 6, 10]),
+      f: rng.randomItemFromArray([2, 4, 5, 10]),
       g: rng.randomIntBetween(-3, 3),
       h: rng.randomIntBetween(-100, 100) / 100,
     }
@@ -73,7 +73,7 @@ export const exercise48: Exercise<DATA> = {
       data.g + data.e / data.f,
       data.h,
     ].sort((a, b) => a - b)
-
+    const ungemischt = data.g - data.e / data.f
     return (
       <>
         <p>
@@ -85,13 +85,25 @@ export const exercise48: Exercise<DATA> = {
           {ppFrac(data.e / data.f)} ={' '}
           {data.g > 0
             ? ppFrac(data.e / data.f + data.g)
-            : ppFrac(data.g * data.f - data.e / data.f)}
+            : ppFrac(data.g - data.e / data.f)}
         </p>
-
+        <p>Eine Zahl ist als Dezimalzahl dargestellt: {pp(data.h)}</p>
+        <p>
+          Falls du diese nicht direkt mit den anderen Zahlen sortieren kannst,
+          kannst du sie als Bruch darstellen: {ppFrac(data.h)}
+        </p>
+        <p>
+          Sortiere die Brüche der Größe nach. Wenn die Größe der Brüche schwer
+          vorstellbar ist, kannst du sie auf den gleichen Nenner bringen, um sie
+          zu vergleichen.
+        </p>
         <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
         <p>
-          {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}
+          {array[0] == data.h ? pp(array[0]) : ppFrac(array[0])} {' < '}{' '}
+          {array[1] == data.h ? pp(array[1]) : ppFrac(array[1])} {' < '}{' '}
+          {array[2] == data.h ? pp(array[2]) : ppFrac(array[2])} {' < '}{' '}
+          {array[3] == data.h ? pp(array[3]) : ppFrac(array[3])}
         </p>
       </>
     )
