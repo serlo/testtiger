@@ -32,13 +32,114 @@ export const exercise49: Exercise<DATA> = {
               Eine Schülerfirma führt eine Tabellenkalkulation über ihre
               Verkaufsaktion zum Valentinstag (Abbildung 1).
             </p>
-            <svg viewBox="0 0 328 70">
-              <image
-                href="/content/NRW_MSA_Tabellenkalkulation24.PNG"
-                height="70"
-                width="328"
-              />
-            </svg>
+            <div
+              className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto"
+              style={{
+                transform: 'scale(1)',
+                transformOrigin: 'top left',
+              }}
+            >
+              <table className="table-auto rounded-lg shadow-md w-full text-left text-[9px]">
+                <thead
+                  className="uppercase bg-[#D2ECF6] text-[#404040]"
+                  style={{ backgroundColor: '#D2ECF6', color: '#404040' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1">A</td>
+                    <td className="py-1 border text-center font-bold p-1">B</td>
+                    <td className="py-1 border text-center font-bold p-1">C</td>
+                    <td className="py-1 border text-center font-bold p-1">D</td>
+                    <td className="py-1 border text-center font-bold p-1">E</td>
+                    <td className="py-1 border text-center font-bold p-1">F</td>
+                  </tr>
+                </thead>
+                <tbody
+                  className="bg-white text-gray-500"
+                  style={{ backgroundColor: '#FFFFFF', color: '#6b7280' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1">1</td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Verkaufte Stücke
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Verkaufs-Preis (€)
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Einkaufs-Preis (€)
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Gewinn pro Stück (€)
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Gesamt-
+                      <br />
+                      gewinn in (€)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1">2</td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Blumen
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      90
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      2,00
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      1,40
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      0,60
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      54,00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1">3</td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Schoko-
+                      <br />
+                      herzen
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      140
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      1,50
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      0,99
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      0,51
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      71,40
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1">4</td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      Summe:
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      125,40
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <p>Abbildung 1: Tabellenkalkulation über die Verkaufsaktion</p>
             <p>
               a) Gib eine Formel an, mit der der Wert in Zelle{' '}
