@@ -17,7 +17,7 @@ export const exercise53: Exercise<DATA> = {
     return {
       prozent: rng.randomIntBetween(1, 9) / 10 + 1,
       days: rng.randomIntBetween(20, 60),
-      fliegen: rng.randomIntBetween(74, 87),
+      fliegen: rng.randomIntBetween(74, 120),
     }
   },
   constraint({ data }) {
