@@ -47,6 +47,13 @@ export const exercise45: Exercise<DATA> = {
           Max und Justus machen einen Ausflug von Frankfurt zur Brücke in
           Baunatal (Abbildung 1).
         </p>
+        <svg viewBox="0 0 328 180">
+          <image
+            href="/content/NRW_MSA_Cotterbridge.PNG"
+            height="180"
+            width="328"
+          />
+        </svg>
         <p>
           Die Freunde gehen zu Fuß zum Bahnhof in Frankfurt. Der Fußweg hat eine
           Länge von {pp(data.weg)} km. Sie gehen mit einer durchschnittlichen
