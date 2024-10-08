@@ -52,6 +52,7 @@ import { exercise49 } from './implementations/NRW-MSA/49-2024-1-2-Tabellenkalkul
 import { exercise50 } from './implementations/NRW-MSA/50-2024-1-3-Rechenaufgaben'
 import { exercise52 } from './implementations/NRW-MSA/52-2024-1-5-Quadratische-Funktion'
 import { exercise51 } from './implementations/NRW-MSA/51-2024-1-4-Einwohner'
+import { exercise54 } from './implementations/NRW-MSA/54-2024-2-3-Dreieck'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -107,6 +108,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   50: exercise50,
   51: exercise51,
   52: exercise52,
+  54: exercise54,
 }
 
 // symbols:
