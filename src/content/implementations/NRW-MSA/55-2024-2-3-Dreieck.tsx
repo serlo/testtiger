@@ -14,7 +14,7 @@ interface DATA {
   case: number
 }
 
-export const exercise54: Exercise<DATA> = {
+export const exercise55: Exercise<DATA> = {
   title: 'Dreieck',
   source: '2024 Teil 2 Aufgabe 3',
   useCalculator: true,
