@@ -1,13 +1,16 @@
 {
-  "appId": "com.example.app",
-  "appName": "TestTiger",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "out",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
-  "cordova": {}
+	"appId": "com.example.app",
+	"appName": "TestTiger",
+	"npmClient": "npm",
+	"webDir": "out",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {},
+	"packageClassList": [
+		"CAPCameraPlugin",
+		"StatusBarPlugin"
+	]
 }
