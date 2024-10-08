@@ -49,112 +49,130 @@ export const exercise24: Exercise<DATA> = {
               Bekleidung und hat die Senkung der Mehrwertsteuer an seine Kunden
               weitergegeben. Dafür hat er eine Excel-Tabelle angelegt:
             </p>
-            <svg viewBox="0 0 600 120">
-              <image
-                href="/content/NRW_MSA_Tabellenkalk.PNG"
-                height="120"
-                width="600"
-              />
-              <text
-                x={210}
-                y={110}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(data.preis)}
-              </text>
-              <text
-                x={210}
-                y={66}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(data.preis_t)}
-              </text>
-              <text
-                x={330}
-                y={66}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(roundToDigits(data.preis_t * 1.19, 2))}
-              </text>
-              <text
-                x={330}
-                y={88}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(roundToDigits(data.preis_p * 1.19, 2))}
-              </text>
-              <text
-                x={450}
-                y={88}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(roundToDigits(data.preis_p * 1.16, 2))}
-              </text>
-              <text
-                x={450}
-                y={66}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(roundToDigits(data.preis_t * 1.16, 2))}
-              </text>
-              <text
-                x={210}
-                y={88}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(data.preis_p)}
-              </text>
-              <text
-                x={558}
-                y={110}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(
-                  roundToDigits(data.preis * 1.19, 2) -
-                    roundToDigits(data.preis * 1.16, 2),
-                )}
-              </text>
-              <text
-                x={558}
-                y={66}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(
-                  roundToDigits(data.preis_t * 1.19, 2) -
-                    roundToDigits(data.preis_t * 1.16, 2),
-                )}
-              </text>
-              <text
-                x={558}
-                y={88}
-                fontSize={15}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(
-                  roundToDigits(data.preis_p * 1.19, 2) -
-                    roundToDigits(data.preis_p * 1.16, 2),
-                )}
-              </text>
-            </svg>
+            <div
+              className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto "
+              style={{
+                transform: 'scale(1)',
+                transformOrigin: 'top left',
+              }}
+            >
+              <table className="table-auto rounded-lg shadow-md w-full text-left text-[9px] ">
+                <thead
+                  className="uppercase bg-[#D2ECF6] text-[#404040]"
+                  style={{ backgroundColor: '#D2ECF6', color: '#404040' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]"></td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      A
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      B
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      C
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      D
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      E
+                    </td>
+                  </tr>
+                </thead>
+                <tbody
+                  className="bg-white text-gray-500"
+                  style={{ backgroundColor: '#FFFFFF', color: '#6b7280' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      1
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black ">
+                      Produkt
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Preis ohne MwSt.
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Preis mit 19% MwSt.
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Preis mit 16% MwSt.
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Ersparnis in €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      2
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      T-Shirt
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(data.preis_t)}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(roundToDigits(data.preis_t * 1.19, 2))}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(roundToDigits(data.preis_t * 1.16, 2))}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(
+                        roundToDigits(data.preis_t * 1.19, 2) -
+                          roundToDigits(data.preis_t * 1.16, 2),
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      3
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Pullover
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(data.preis_p)}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(roundToDigits(data.preis_p * 1.19, 2))}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(roundToDigits(data.preis_p * 1.16, 2))}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(
+                        roundToDigits(data.preis_p * 1.19, 2) -
+                          roundToDigits(data.preis_p * 1.16, 2),
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      4
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Kapuzen- pullover
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(data.preis)}
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1"></td>
+                    <td className="py-1 border text-center font-bold p-1">
+                      {pp(
+                        roundToDigits(data.preis * 1.19, 2) -
+                          roundToDigits(data.preis * 1.16, 2),
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <p>
               a) Ergänze die fehlenden Werte in Zeile 4 für den Kapuzenpullover.
             </p>
