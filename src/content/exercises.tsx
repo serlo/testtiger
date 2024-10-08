@@ -51,6 +51,7 @@ import { exercise48 } from './implementations/NRW-MSA/48-2024-1-1-zahlen-ordnen'
 import { exercise49 } from './implementations/NRW-MSA/49-2024-1-2-Tabellenkalkulation'
 import { exercise50 } from './implementations/NRW-MSA/50-2024-1-3-Rechenaufgaben'
 import { exercise52 } from './implementations/NRW-MSA/52-2024-1-5-Quadratische-Funktion'
+import { exercise51 } from './implementations/NRW-MSA/51-2024-1-4-Einwohner'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -104,6 +105,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   48: exercise48,
   49: exercise49,
   50: exercise50,
+  51: exercise51,
   52: exercise52,
 }
 

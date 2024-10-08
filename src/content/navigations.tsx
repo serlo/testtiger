@@ -8,7 +8,7 @@ export const navigationData: { [key: number]: Navigation } = {
         headerColor: 'primary',
         twColor: 'bg-blue-300',
         exercises: [
-          1, 5, 8, 14, 16, 20, 10, 21, 47, 22, 25, 26, 31, 32, 40, 48, 50,
+          1, 5, 8, 14, 16, 20, 10, 21, 47, 22, 25, 26, 31, 32, 40, 48, 50, 51,
         ],
       },
       {
