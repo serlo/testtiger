@@ -21,7 +21,7 @@ export const exercise53: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.prozent != 1.7
+    return data.prozent != 1.7 && data.prozent != 1.1
   },
   intro({ data }) {
     const day1 = Math.round(10 * data.prozent)
