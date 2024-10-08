@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { buildFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -84,13 +85,14 @@ export const exercise51: Exercise<DATA> = {
         return (
           <>
             <p>
-              Der Median ist der mittlere Wert in der geordneten Datenliste.
+              Der <strong>Median</strong> ist der mittlere Wert in der
+              geordneten Datenliste.
               <br></br>Hier ist der mittlere Wert {median} Mio., denn es liegen
               2 Werte darüber und 2 darunter.
             </p>
             <p>
-              Die Spannweite ist die Differenz des größten Wertes und des
-              kleinsten Wertes.<br></br>
+              Die <strong>Spannweite</strong> ist die Differenz des größten
+              Wertes und des kleinsten Wertes.<br></br>
               {pp(array[4])} Mio. − {pp(array[0])} Mio. ={' '}
               {pp(array[4] - array[0])} Mio.
             </p>
@@ -120,7 +122,48 @@ export const exercise51: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const mittel =
+          (data.berlin +
+            data.frankfurt +
+            data.hamburg +
+            data.köln +
+            data.münchen) /
+          5
+        return (
+          <>
+            <p>Berechne das arithmetische Mittel:</p>
+            <p>
+              {buildFrac(
+                pp(data.berlin) +
+                  ' + ' +
+                  pp(data.hamburg) +
+                  ' + ' +
+                  pp(data.münchen) +
+                  ' + ' +
+                  pp(data.köln) +
+                  ' + ' +
+                  pp(data.frankfurt),
+                5,
+              )}{' '}
+              ={' '}
+              {buildFrac(
+                pp(
+                  data.berlin +
+                    data.frankfurt +
+                    data.hamburg +
+                    data.köln +
+                    data.münchen,
+                ),
+                5,
+              )}{' '}
+              = {pp(mittel)}
+            </p>
+            <p>
+              Der Durchschnitt beträgt etwa {pp(roundToDigits(mittel, 1))} Mio.
+              Einwohner.
+            </p>
+          </>
+        )
       },
     },
     {
@@ -128,17 +171,107 @@ export const exercise51: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>
-              c) Stuttgart hat weniger Einwohner als rankfurt am Main und liegt
-              auf Platz sechs dieser Rangliste. <br></br> Erläutere, wie sich
-              die Spannweite verändert, wenn zusätzlich Stuttgart berücksichtigt
-              wird.
-            </p>
+            <p>c) </p>
+            {data.case == 1 && (
+              <>
+                <p>
+                  Stuttgart hat weniger Einwohner als Frankfurt am Main und
+                  liegt auf Platz sechs dieser Rangliste. <br></br> Erläutere,
+                  wie sich die Spannweite verändert, wenn zusätzlich Stuttgart
+                  berücksichtigt wird.
+                </p>
+              </>
+            )}
+            {data.case == 2 && (
+              <>
+                <p>
+                  Erläutere, wie sich die Spannweite verändert, wenn Hamburg
+                  genau so viele Einwohner hätte wie Berlin.
+                </p>
+              </>
+            )}
+            {data.case == 3 && (
+              <>
+                <p>
+                  Erläutere, wie sich der Durchschnitt verändert, wenn alle
+                  Städte Einhunderttausend Einwohner mehr hätten.
+                </p>
+              </>
+            )}
+            {data.case == 4 && (
+              <>
+                <p>
+                  Erläutere, wie sich der Median verändert, wenn Berlin 1 Mio.
+                  Einwohner mehr hätte.
+                </p>
+              </>
+            )}
+            {data.case == 5 && (
+              <>
+                <p>
+                  Erläutere, wie sich der Durchschnitt verändert, wenn Berlin 1
+                  Mio. Einwohner mehr hätte.
+                </p>
+              </>
+            )}
           </>
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            {data.case == 1 && (
+              <>
+                <p>
+                  Die Spannweite ist die Differenz des höchsten Wertes und des
+                  niedrigsten Wertes. Da nun Stuttgart die niedrigste
+                  Einwohnerzahl hat, wird die Spannweite größer. <br></br>Der
+                  Wert der Spannweite wird um die Zahl größer, die Stuttgart
+                  weniger Einwohner hat als Frankfurt.
+                </p>
+              </>
+            )}
+            {data.case == 2 && (
+              <>
+                <p>
+                  Die Spannweite ist die Differenz des höchsten Wertes und des
+                  niedrigsten Wertes. Der Wert wird nicht verändert wenn er
+                  mehrmals auftaucht, weshalb die Spannweite gleich bleibt.
+                </p>
+              </>
+            )}
+            {data.case == 3 && (
+              <>
+                <p>
+                  Der Durchschnitt ist der Mittelwert aller Einwohnerzahlen.
+                  Wenn die Einwohnerzahl in jeder Stadt im Mittel um
+                  Einhunderttausend Einwohner zunimmt, ist der Durchschnitt
+                  ebenso um Einhunderttausend größer.
+                </p>
+              </>
+            )}
+            {data.case == 4 && (
+              <>
+                <p>
+                  Der Median ist der Wert in der Mitte der sortierten Liste. Die
+                  Höhe des ersten Wertes (Berlin) hat keinen Einfluss auf den
+                  Median. Er verändert sich also nicht.
+                </p>
+              </>
+            )}
+            {data.case == 5 && (
+              <>
+                <p>
+                  Wenn Berlin 1 Mio. Einwohner mehr hätte, nimmt die
+                  Einwohnerzahl im Mittel um
+                  <br></br> 1 000 000 : 5 = 200 000 zu.<br></br>
+                  <br></br>
+                  Der Durchschnitt wird also um 0,2 Mio. größer.
+                </p>
+              </>
+            )}
+          </>
+        )
       },
     },
   ],
