@@ -235,7 +235,7 @@ export const exercise51: Exercise<DATA> = {
               <>
                 <p>
                   Die Spannweite ist die Differenz des höchsten Wertes und des
-                  niedrigsten Wertes. Der Wert wird nicht verändert wenn er
+                  niedrigsten Wertes. Der Wert wird nicht verändert, wenn er
                   mehrmals auftaucht, weshalb die Spannweite gleich bleibt.
                 </p>
               </>
