@@ -256,7 +256,7 @@ export const exercise54: Exercise<DATA> = {
     {
       points: 2,
       task({ data }) {
-        const zoe = 10 - data.mark + data.ed
+        const zoe = 10 - data.mark - data.ed
         const ed_array = [
           'Ed Sheeran - Perfect',
           'Ed Sheeran - Photograph',
@@ -312,7 +312,8 @@ export const exercise54: Exercise<DATA> = {
             <p>
               Chris hat sich das Modell Dot gekauft und erstellt eine Playlist
               mit Liedern seiner drei Lieblingskünstler (Abbildung 3). Die
-              Lieder der Playlist lässt er in zufälliger Reihenfolge abspielen.
+              Lieder der Playlist lässt er in zufälliger Reihenfolge abspielen.{' '}
+              {data.ed}; {data.mark}; {zoe}
             </p>
             <svg viewBox="0 0 328 360">
               <rect
