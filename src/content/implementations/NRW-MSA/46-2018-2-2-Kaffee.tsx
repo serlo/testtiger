@@ -63,7 +63,7 @@ export const exercise46: Exercise<DATA> = {
   constraint({ data }) {
     return (
       (data.length * data.width) / ((data.dia * data.dia) / 10000) <
-      Math.round(data.becher)
+        Math.round(data.becher) && data.trash != roundToDigits(data.becher, -4)
     )
   },
   intro({ data }) {
@@ -146,8 +146,12 @@ export const exercise46: Exercise<DATA> = {
               {data.usage * 83000000} : {365 * 24} ≈ {data.becher} Becher
             </p>
             <p>
-              {data.becher} entsprechen ungefähr{' '}
-              {roundToDigits(data.becher, -4)} Bechern. Damit hat Karin{' '}
+              {data.becher} entsprechen{' '}
+              {data.karinHatRecht == true ? 'ungefähr' : 'nicht'}{' '}
+              {data.karinHatRecht == true
+                ? roundToDigits(data.becher, -4)
+                : data.trash}{' '}
+              Bechern. Damit hat Karin{' '}
               {data.karinHatRecht == true ? 'recht.' : 'nicht recht.'}
             </p>
           </>
