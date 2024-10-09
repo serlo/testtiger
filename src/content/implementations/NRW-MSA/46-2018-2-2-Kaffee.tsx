@@ -392,7 +392,7 @@ export const exercise46: Exercise<DATA> = {
               f) Entscheide, welche Funktionsgleichung zu dem Graphen gehört.
               Begründe deine Entscheidung.
             </p>
-            <svg viewBox="0 0 328 440">
+            <svg viewBox="0 0 328 460">
               <image
                 href="/content/NRW_MSA_Kaffee_Plot.PNG"
                 height="440"
@@ -404,6 +404,24 @@ export const exercise46: Exercise<DATA> = {
                 strokeWidth="2"
                 fill="none"
               />
+              <text
+                x={65}
+                y={15}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                Temperatur in °C
+              </text>
+              <text
+                x={225}
+                y={455}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+              >
+                Zeit in min
+              </text>
               <text
                 x={73}
                 y={toY(data.start * Math.pow(data.decay, 5)) + data.error_1 * 4}
