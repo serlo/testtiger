@@ -411,7 +411,7 @@ export const exercise46: Exercise<DATA> = {
                 textAnchor="right"
                 stroke="black"
               >
-                Temperatur in °C
+                Temperatur T in °C
               </text>
               <text
                 x={225}
@@ -420,7 +420,7 @@ export const exercise46: Exercise<DATA> = {
                 textAnchor="right"
                 stroke="black"
               >
-                Zeit in min
+                Zeit t in min
               </text>
               <text
                 x={73}
