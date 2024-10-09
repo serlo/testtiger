@@ -344,7 +344,7 @@ export const exercise39: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Beschreibe die den Term anhand der Figuren:</p>
+            <p>Beschreibe den Term anhand der Figuren:</p>
             <ul>
               <li>
                 Jede Figur wird um eine weitere Reihe Würfel nach oben gebaut.
@@ -440,6 +440,9 @@ export const exercise39: Exercise<DATA> = {
                 <br></br>= n² + 2 · n · {pp((data.startwert - 1) / 2)} +{' '}
                 {pp((data.startwert - 1) / 2)}² −{' '}
                 {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
+                <br></br>= n² + {pp(data.startwert - 1)} · n +{' '}
+                {pp((((data.startwert - 1) / 2) * (data.startwert - 1)) / 2)} −{' '}
+                {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
                 <br></br> = n² + {data.startwert - 1 != 1 && data.startwert - 1}
                 n
               </li>
@@ -479,9 +482,7 @@ export const exercise39: Exercise<DATA> = {
             <ul>
               <li>
                 {anzahl} · ({anzahl} + {data.startwert - 1}) ={' '}
-                <strong>
-                  {anzahl * anzahl + anzahl * (data.startwert - 1)}{' '}
-                </strong>
+                {anzahl * anzahl + anzahl * (data.startwert - 1)}{' '}
               </li>
               <li>
                 {anzahl + 1} · ({anzahl + 1} + {data.startwert - 1}) ={' '}
