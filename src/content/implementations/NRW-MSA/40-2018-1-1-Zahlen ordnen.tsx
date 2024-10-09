@@ -35,7 +35,14 @@ export const exercise40: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.f != 0 && data.a != 0 && data.b != 0
+    return (
+      data.f != 0 &&
+      data.a != 0 &&
+      data.b != 0 &&
+      data.a != data.b / data.c &&
+      data.b / data.c != data.d / data.e &&
+      data.d / data.e != data.f
+    )
   },
   intro({ data }) {
     return <></>
@@ -85,11 +92,27 @@ export const exercise40: Exercise<DATA> = {
               )}{' '}
               = {pp(data.b / data.c)}
               <br></br>
+              <p>
+                Vergleiche die Dezimalzahlen miteinander. Ordne die
+                ursprünglichen Zahlen dann mit dem Operator {'"<"'}:
+              </p>
               <b>Antwort:</b>{' '}
-              {pp(array[0] == data.d / data.e ? gerundet : array[0])} {' < '}{' '}
-              {pp(array[1] == data.d / data.e ? gerundet : array[1])} {' < '}{' '}
-              {pp(array[2] == data.d / data.e ? gerundet : array[2])} {' < '}{' '}
-              {pp(array[3] == data.d / data.e ? gerundet : array[3])}
+              {array[0] == data.d / data.e && ppFrac([data.d, data.e])}
+              {array[0] == data.a && data.a}
+              {array[0] == data.b / data.c && ppFrac([data.b, data.c])}
+              {array[0] == data.f && pp(data.f)} {' < '}{' '}
+              {array[1] == data.d / data.e && ppFrac([data.d, data.e])}
+              {array[1] == data.a && pp(array[1])}
+              {array[1] == data.b / data.c && ppFrac([data.b, data.c])}
+              {array[1] == data.f && pp(data.f)} {' < '}{' '}
+              {array[2] == data.d / data.e && ppFrac([data.d, data.e])}
+              {array[2] == data.a && pp(array[2])}
+              {array[2] == data.b / data.c && ppFrac([data.b, data.c])}
+              {array[2] == data.f && pp(data.f)} {' < '}{' '}
+              {array[3] == data.d / data.e && ppFrac([data.d, data.e])}
+              {array[3] == data.a && pp(array[3])}
+              {array[3] == data.b / data.c && ppFrac([data.b, data.c])}
+              {array[3] == data.f && pp(data.f)}
             </p>
           </>
         )
@@ -110,6 +133,7 @@ export const exercise40: Exercise<DATA> = {
       },
       solution({ data }) {
         const array = [data.g / 100, data.h / data.i].sort((g, h) => g - h)
+        const hauptnenner = (data.i * 100) / getGcd(data.i, 100)
         return (
           <>
             <p>
@@ -119,14 +143,14 @@ export const exercise40: Exercise<DATA> = {
               {data.g}% = {ppFrac([data.g, 100])}
               <br></br>
               Bringe die beiden Brüche jetzt auf einen gemeinsamen Nenner. Der
-              gemeinsame Nenner ist {data.i * 10}.<br></br>
+              gemeinsame Nenner ist {hauptnenner}.<br></br>
               <li>
                 {ppFrac([data.h, data.i])} ={' '}
-                {ppFrac([data.h * 10, data.i * 10])}
+                {ppFrac([(data.h * hauptnenner) / data.i, hauptnenner])}
               </li>
               <li>
                 {ppFrac([data.g, 100])} ={' '}
-                {ppFrac([data.g * data.i * 0.1, data.i * 10])}
+                {ppFrac([(data.g * hauptnenner) / 100, hauptnenner])}
               </li>
               <b>Antwort:</b> Damit hat Miriam{' '}
               {data.g > data.h / data.i ? 'recht.' : 'nicht recht.'}
