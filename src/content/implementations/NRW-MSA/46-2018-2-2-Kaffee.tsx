@@ -164,7 +164,7 @@ export const exercise46: Exercise<DATA> = {
               Durchmesser von {data.dia} cm.
             </p>
             <p>
-              c) Der Boden eines Sporthalle mit {data.width} m Breite und{' '}
+              c) Der Boden einer Sporthalle mit {data.width} m Breite und{' '}
               {data.length} m Länge reicht nicht aus, um{' '}
               {roundToDigits(data.becher, -4)} so wie in Abbildung 1
               nebeneinander aufzustellen.
@@ -236,7 +236,7 @@ export const exercise46: Exercise<DATA> = {
             <p>Abbildung 2: Kegelstumpf</p>
             <p>
               d) Der Pappbecher hat folgende Maße: r<sub>1</sub> ={' '}
-              {pp((data.dia - 1) / 2)} cm, r<sub>2</sub> = {pp(data.dia / 2)}{' '}
+              {pp((data.dia - 1) / 2)} cm, r<sub>2</sub> = {pp(data.dia / 2)} cm
               und h = {pp(data.höhe)} cm.
             </p>
             <p>
@@ -295,7 +295,7 @@ export const exercise46: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Der Durchschnitt der Radien beträgt:</p>
+            <p>Der Mittelwert der Radien beträgt:</p>
             <p>
               {buildInlineFrac(
                 pp((data.dia - 1) / 2) + ' + ' + pp(data.dia / 2),
@@ -325,7 +325,7 @@ export const exercise46: Exercise<DATA> = {
               {pp(diff)} cm³
             </p>
             <p>
-              Teile die Abweichung durch das Volumen des Kegelstumpfes um die
+              Teile die Abweichung durch das Volumen des Kegelstumpfes, um die
               prozentuale Abweichung zu erhalten:
             </p>
             <p>
@@ -473,9 +473,7 @@ export const exercise46: Exercise<DATA> = {
                 sonst wachsen die Temperaturwerte an.
               </li>
               <li>
-                Der Anfangswert {data.start} wird mit der Potenz multipliziert,
-                da der Graph sonst die Temperatur {data.start}
-                °C anstrebt.
+                Der Anfangswert {data.start} wird mit der Potenz multipliziert.
               </li>
             </ul>
             <p>

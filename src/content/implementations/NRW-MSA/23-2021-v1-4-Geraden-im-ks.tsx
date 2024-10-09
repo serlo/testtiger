@@ -369,6 +369,13 @@ export const exercise23: Exercise<DATA> = {
               )}{' '}
               = {pp(data.m_b)}
             </p>
+            <p>
+              Damit passt die Gleichung{' '}
+              <strong>
+                y = {pp(data.m_b)}x + {pp(data.b_b)}
+              </strong>{' '}
+              zu der Wertetabelle.
+            </p>
           </>
         )
       },
