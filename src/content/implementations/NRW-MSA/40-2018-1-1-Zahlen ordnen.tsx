@@ -79,6 +79,7 @@ export const exercise40: Exercise<DATA> = {
               <br></br>
               {ppFrac([data.d, data.e])} = {data.d} : {data.e} ≈ {pp(gerundet)}
               <br></br>
+<<<<<<< Updated upstream
               <p>
                 Oder verwenden, dass Brüche mit 10 oder 100 als Nenner direkt
                 als Dezimalzahlen übersetzt werden können:
@@ -113,6 +114,35 @@ export const exercise40: Exercise<DATA> = {
               {array[3] == data.a && pp(array[3])}
               {array[3] == data.b / data.c && ppFrac([data.b, data.c])}
               {array[3] == data.f && pp(data.f)}
+=======
+              <strong>Vergleich negative Zahlen:</strong> Hier bietet es sich
+              an, -{pp(data.a)} in einen Bruch umzuwandeln:
+              <br></br>
+              {pp(-data.a)} = {ppFrac([-data.a * 10, 10])}
+              <br></br>
+              Jetzt musst du die beiden Brüche auf einen gemeinsamen Nenner
+              bringen. Der gemeinsame Nenner ist {data.e * 10}.<br></br>
+              <li>
+                {ppFrac([-data.a * 10, 10])} =
+                {ppFrac([-data.a * 10 * data.e, 10 * data.e])}
+              </li>
+              <li>
+                {ppFrac([-data.d, data.e])} =
+                {ppFrac([-data.d * 10, data.e * 10])}
+              </li>
+              Es ist also {ppFrac(array[0])} {' < '} {ppFrac(array[1])}.
+              <br></br>
+              <br></br>
+              <strong>Vergleich positive Zahlen:</strong> Hier bietet es sich
+              an, {ppFrac([data.b, data.c])} in eine Dezimalzahl umzuwandeln:
+              <br></br>
+              {ppFrac([data.b, data.c])} = {pp(data.b / data.c)}
+              <br></br>
+              Es ist also: {pp(array[2])} {' < '} {pp(array[3])}.<br></br>
+              <br></br>
+              <b>Antwort:</b> {ppFrac(array[0])} {' < '} {ppFrac(array[1])}{' '}
+              {' < '} {pp(array[2])} {' < '} {pp(array[3])}
+>>>>>>> Stashed changes
             </p>
           </>
         )

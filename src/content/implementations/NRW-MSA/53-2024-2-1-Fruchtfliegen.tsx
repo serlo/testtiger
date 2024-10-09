@@ -15,8 +15,8 @@ export const exercise53: Exercise<DATA> = {
   duration: 42,
   generator(rng) {
     return {
-      prozent: rng.randomIntBetween(1, 9) / 10 + 1,
-      days: rng.randomIntBetween(20, 60),
+      prozent: rng.randomIntBetween(1, 5) / 10 + 1,
+      days: rng.randomIntBetween(20, 35),
       fliegen: rng.randomIntBetween(74, 120),
     }
   },
@@ -222,7 +222,7 @@ export const exercise53: Exercise<DATA> = {
               <strong>Tag 0:</strong> Die Fruchtfliegenpopulation startet mit 10
               Fliegen. <br />
               <br />
-              <strong>Wachstumsrate:</strong>Es wird angegeben, dass die
+              <strong>Wachstumsrate: </strong>Es wird angegeben, dass die
               Population täglich um ca. {prozentanzeige}% wächst. <br /> <br />
               <strong>Berechnung für Tag 1:</strong> Für den Übergang von Tag 0
               zu Tag 1 ({prozentanzeige}% Zuwachs): <br />

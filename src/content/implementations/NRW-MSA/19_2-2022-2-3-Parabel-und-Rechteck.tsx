@@ -349,8 +349,8 @@ export const exercise192: Exercise<DATA> = {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
           <>
+            <p>f) Julia vereinfacht den Term (I) zu (II):</p>
             <p>
-              f) Julia vereinfacht den Term (I) zu (II){' '}
               {ppPolynom([
                 [data.a * 2, 'x', 2],
                 [4, 'x', 1],
@@ -502,17 +502,19 @@ export const exercise192: Exercise<DATA> = {
                   x<sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}
                 </p>
                 <p>
-                  Das bedeutet, dass für die Werte x<sub>1</sub> ={' '}
-                  {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
-                  <sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}{' '}
-                  ein Rechteck mit dem Umfang {pp(zahl)} existiert.
+                  <strong>Erklärung:</strong> Das bedeutet, dass für die Werte x
+                  <sub>1</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)}{' '}
+                  und x<sub>2</sub> ={' '}
+                  {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)} ein Rechteck
+                  mit dem Umfang {pp(zahl)} existiert.
                 </p>
               </>
             ) : (
               <p>
-                Die Gleichung besitzt keine Lösungen, da der Wert unter der
-                Wurzel negativ ist. Das bedeutet, dass es kein Rechteck mit dem
-                Umfang {pp(zahl)} geben kann.
+                <strong>Erklärung:</strong> Die Gleichung besitzt keine
+                Lösungen, da der Wert unter der Wurzel negativ ist. Das
+                bedeutet, dass es kein Rechteck mit dem Umfang {pp(zahl)} geben
+                kann.
               </p>
             )}
           </>

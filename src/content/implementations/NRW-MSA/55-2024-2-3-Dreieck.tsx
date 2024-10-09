@@ -169,8 +169,7 @@ export const exercise55: Exercise<DATA> = {
               </li>
               <li>
                 Die rechte Seite beschreibt allgemein den Flächeninhalt eines
-                rechtwinkligen Dreiecks mit der Grundseite c und Höhe h
-                <sub>c</sub>.
+                Dreiecks mit der Grundseite c und Höhe h<sub>c</sub>.
               </li>
             </ul>
             <p>
