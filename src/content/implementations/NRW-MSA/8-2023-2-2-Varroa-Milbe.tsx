@@ -284,9 +284,12 @@ export const exercise8: Exercise<DATA> = {
             <p>
               Mithilfe der Funktionsgleichung <br></br>f(x) = {data.count} ⋅
               1,19
-              <sup>x</sup> kannst du die Anzahl der Wochen bestimmen.{' '}
+              <sup>x</sup> kannst du die Anzahl der Milben bestimmen.{' '}
             </p>
-            <p>Setze systematisch Werte für x ein und überprüfe:</p>
+            <p>
+              Setze systematisch Werte für x ein und überprüfe wann der Wert{' '}
+              {data.goal} überschritten wird:
+            </p>
             <p>
               f({wochen - 1}) = {data.count} ⋅ 1,19<sup>{wochen - 1}</sup> ≈{' '}
               {pp(Math.round(Math.pow(1.19, wochen - 1) * data.count))}
