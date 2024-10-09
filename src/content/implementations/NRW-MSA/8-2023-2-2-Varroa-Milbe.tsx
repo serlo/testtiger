@@ -276,35 +276,30 @@ export const exercise8: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const wochen = Math.ceil(
+          roundToDigits(Math.log(data.goal / data.count) / Math.log(1.19), 2),
+        )
         return (
           <>
             <p>
-              Mithilfe der Funktionsgleichung f(x) = {data.count} ⋅ 1,19
-              <sup>x</sup> kannst du die Anzahl der Wochen bestimmen.{' '}
+              Mithilfe der Funktionsgleichung <br></br>f(x) = {data.count} ⋅
+              1,19
+              <sup>x</sup> kannst du die Anzahl der Milben bestimmen.{' '}
             </p>
             <p>
-              Setze die Anzahl der Milben ein und löse die Gleichung nach x.
+              Setze systematisch Werte für x ein und überprüfe wann der Wert{' '}
+              {data.goal} überschritten wird:
             </p>
             <p>
-              {data.goal} = {data.count} ⋅ 1,19
-              <sup>x</sup>
+              f({wochen - 1}) = {data.count} ⋅ 1,19<sup>{wochen - 1}</sup> ≈{' '}
+              {pp(Math.round(Math.pow(1.19, wochen - 1) * data.count))}
             </p>
-            <p> Teile beide Seiten durch {data.count}.</p>
+
             <p>
-              {pp(roundToDigits(data.goal / data.count, 2))} = 1,19
-              <sup>x</sup>
+              f({wochen}) = {data.count} ⋅ 1,19<sup>{wochen}</sup> ≈{' '}
+              {pp(Math.round(Math.pow(1.19, wochen) * data.count))}
             </p>
-            <p>Wende den Logarithmus zur Basis 1,19 an:</p>
-            <p>
-              x = log<sub>1,19</sub>(
-              {pp(roundToDigits(data.goal / data.count, 2))}) ≈{' '}
-              {pp(
-                roundToDigits(
-                  Math.log(data.goal / data.count) / Math.log(1.19),
-                  2,
-                ),
-              )}
-            </p>
+
             <p>
               Der Wert von {data.goal} wird nach etwa{' '}
               {pp(Math.ceil(Math.log(data.goal / data.count) / Math.log(1.19)))}{' '}
