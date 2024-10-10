@@ -14,6 +14,7 @@ interface DATA {
   b: number
   ed: number
   mark: number
+  playlist: string[]
 }
 
 export const exercise54: Exercise<DATA> = {
@@ -22,13 +23,49 @@ export const exercise54: Exercise<DATA> = {
   useCalculator: true,
   duration: 30,
   generator(rng) {
+    const echo = rng.randomIntBetween(60, 100) / 10
+    const dot = rng.randomIntBetween(70, 110) / 10
+    const ed = rng.randomIntBetween(2, 5)
+    const mark = rng.randomIntBetween(2, 4)
+    const hoehe = rng.randomIntBetween(7, 12)
+    const b = rng.randomIntBetween(8, 20) / 10
+
+    const zoe = 10 - mark - ed
+    const ed_array = [
+      'Ed Sheeran - Perfect',
+      'Ed Sheeran - Photograph',
+      'Ed Sheeran - Shivers',
+      'Ed Sheeran - Shape Of You',
+      'Ed Sheeran - Bad Habits',
+    ].slice(0, ed)
+    const mark_array = [
+      'Mark Forster - Chöre',
+      'Mark Forster - Sowieso',
+      'Mark Forster - Übermorgen',
+      'Mark Forster - Au Revoir',
+    ].slice(0, mark)
+    const zoe_array = [
+      'Zoe Wees - Control',
+      'Zoe Wees - Mountains',
+      'Zoe Wees - Never Be Lonely',
+      'Zoe Wees - At Your Worst',
+      'Zoe Wees - Lightning',
+      'Zoe Wees - Overthinking',
+    ].slice(0, zoe)
+
+    // Die Playlist wird einmalig im Generator gemischt
+    const playlist = [...ed_array, ...mark_array, ...zoe_array].sort(
+      () => 0.5 - Math.random(),
+    )
+
     return {
-      echo: rng.randomIntBetween(60, 100) / 10,
-      dot: rng.randomIntBetween(70, 110) / 10,
-      ed: rng.randomIntBetween(2, 5),
-      mark: rng.randomIntBetween(2, 4),
-      hoehe: rng.randomIntBetween(7, 12),
-      b: rng.randomIntBetween(8, 20) / 10,
+      echo,
+      dot,
+      ed,
+      mark,
+      hoehe,
+      b,
+      playlist, // Die gemischte Playlist wird gespeichert
     }
   },
   constraint({ data }) {
@@ -256,72 +293,21 @@ export const exercise54: Exercise<DATA> = {
     {
       points: 2,
       task({ data }) {
-        const zoe = 10 - data.mark - data.ed
-        const ed_array = [
-          'Ed Sheeran - Perfect',
-          'Ed Sheeran - Photograph',
-          'Ed Sheeran - Shivers',
-          'Ed Sheeran - Shape Of You',
-          'Ed Sheeran - Bad Habits',
-        ].slice(0, data.ed)
-        const mark_array = [
-          'Mark Forster - Chöre',
-          'Mark Forster - Sowieso',
-          'Mark Forster - Übermorgen',
-          'Mark Forster - Au Revoir',
-        ].slice(0, data.mark)
-        const zoe_array = [
-          'Zoe Wees - Control',
-          'Zoe Wees - Mountains',
-          'Zoe Wees - Never Be Lonely',
-          'Zoe Wees - At Your Worst',
-          'Zoe Wees - Lightning',
-          'Zoe Wees - Overthinking',
-        ].slice(0, zoe)
-
-        const playlist = [...ed_array, ...mark_array, ...zoe_array].slice(0, 10)
-        function shuffleArray<T>(array: T[]): T[] {
-          for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1)) // Zufälligen Index wählen
-            ;[array[i], array[j]] = [array[j], array[i]] // Elemente tauschen
-          }
-          return array
-        }
-
-        // Mischen und sicherstellen, dass maximal 10 Songs vorhanden sind
-        const shuffledPlaylist = shuffleArray([
-          ...ed_array,
-          ...mark_array,
-          ...zoe_array,
-        ]).slice(0, 10)
-
-        const playlistItems = shuffledPlaylist.map((song, index) => (
-          <text
-            key={index}
-            x={40}
-            y={80 + index * 25} // Start y at 50, with a gap of 25 per song
-            fontSize={20}
-            textAnchor="left"
-            stroke="black"
-          >
-            {song}
-          </text>
-        ))
         return (
           <>
             <p>
               Chris hat sich das Modell Dot gekauft und erstellt eine Playlist
               mit Liedern seiner drei Lieblingskünstler (Abbildung 3). Die
               Lieder der Playlist lässt er in zufälliger Reihenfolge abspielen.{' '}
-              {data.ed}; {data.mark}; {zoe}
+              {data.ed}; {data.mark}; {10 - data.ed - data.mark}
             </p>
             <svg viewBox="0 0 328 360">
               <rect
                 x={0}
-                y={0} // obere linke Ecke
-                width={328} // Breite des Rechtecks
-                height={360} // Höhe des Rechtecks
-                fill="none" // Farbe des Rechtecks
+                y={0}
+                width={328}
+                height={360}
+                fill="none"
                 stroke="black"
                 strokeWidth={2}
               />
@@ -334,7 +320,18 @@ export const exercise54: Exercise<DATA> = {
               >
                 Playlist
               </text>
-              {playlistItems} {/* Render the playlist here */}
+              {data.playlist.map((song, index) => (
+                <text
+                  key={index}
+                  x={40}
+                  y={80 + index * 25} // Start y at 80, with a gap of 25 per song
+                  fontSize={20}
+                  textAnchor="left"
+                  stroke="black"
+                >
+                  {song}
+                </text>
+              ))}
             </svg>
             <p>Abbildung 3: Playlist mit Künstlern und Liedern</p>
             <p>
