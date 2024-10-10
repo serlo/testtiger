@@ -299,7 +299,6 @@ export const exercise54: Exercise<DATA> = {
               Chris hat sich das Modell Dot gekauft und erstellt eine Playlist
               mit Liedern seiner drei Lieblingskünstler (Abbildung 3). Die
               Lieder der Playlist lässt er in zufälliger Reihenfolge abspielen.{' '}
-              {data.ed}; {data.mark}; {10 - data.ed - data.mark}
             </p>
             <svg viewBox="0 0 328 360">
               <rect
