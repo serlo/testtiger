@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildFrac, buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildFrac,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -265,7 +270,8 @@ export const exercise53: Exercise<DATA> = {
               <br />
               f({data.days}) = 10 · {pp(data.prozent)} <sup>{data.days}</sup>{' '}
               <br />
-              f({data.days}) ={' '}
+              f({data.days}){' '}
+              {(10 * Math.pow(data.prozent, data.days)) % 1 == 0 ? '=' : '≈'}{' '}
               {pp(Math.round(10 * Math.pow(data.prozent, data.days)))} <br />{' '}
               <br />
               Nach {data.days} Tagen gibt es voraussichtlich etwa{' '}
@@ -289,27 +295,36 @@ export const exercise53: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const text = 'log(' + pp(data.prozent) + ')'
-        const bruch = ppFrac(
-          Math.round(Math.log10(10000) / Math.log10(data.prozent)),
-        )
-
+        const tage = Math.log(10000) / Math.log(data.prozent)
         return (
           <>
             <p>
-              <strong>Gegebene Funktion:</strong> f(x) = 10 · {pp(data.prozent)}
-              <sup>x</sup> <br />
-              <strong>Bedingung:</strong> f(x) &gt; 100 000 <br />
-              <strong>Ausrechnen der Ungleichung:</strong> <br />
-              10 · {pp(data.prozent)}
-              <sup>x</sup> &gt; 100 000 | : 10 <br />
-              {pp(data.prozent)}
-              <sup>x</sup> &gt; 10 000
-              <br />
-              <strong>Logarithmus anwenden:</strong> <br />x &gt;
-              {buildInlineFrac('log(10 000)', text)}
-              <br />x = {bruch}
-            </p>{' '}
+              Setze für die Anzahl der Tage x systematisch Werte ein und
+              überprüfe, wann die Population 100 000 erreicht.
+            </p>
+
+            <ul>
+              <li>
+                f({Math.floor(tage)}) = 10 · {pp(data.prozent)}{' '}
+                <sup>{Math.floor(tage)}</sup>{' '}
+                {(10 * Math.pow(data.prozent, Math.floor(tage))) % 1 == 0
+                  ? '='
+                  : '≈'}{' '}
+                {pp(Math.round(10 * Math.pow(data.prozent, Math.floor(tage))))}{' '}
+              </li>
+              <li>
+                f({Math.ceil(tage)}) = 10 · {pp(data.prozent)}{' '}
+                <sup>{Math.ceil(tage)}</sup>{' '}
+                {(10 * Math.pow(data.prozent, Math.ceil(tage))) % 1 == 0
+                  ? '='
+                  : '≈'}{' '}
+                {pp(Math.round(10 * Math.pow(data.prozent, Math.ceil(tage))))}{' '}
+              </li>
+            </ul>
+            <p>
+              Die Population überschreitet 100 000 Fruchtfliegen nach{' '}
+              {Math.ceil(tage)} vollen Tagen.
+            </p>
           </>
         )
       },
@@ -346,9 +361,27 @@ export const exercise53: Exercise<DATA> = {
             <p>
               <strong>Aufstellen der Gleichung:</strong>
               <br />
-              {data.fliegen} = 20 · q<sup>11</sup> | · q<sup>11</sup> :{' '}
-              {data.fliegen} <br />q = <sup>11</sup>
-              {buildSqrt(buildFrac(data.fliegen, 20))} <br />q = {q}
+              <br />
+              {buildEquation([
+                [
+                  data.fliegen,
+                  '=',
+                  <>
+                    20 · q<sup>11</sup>
+                  </>,
+                  '| : 20',
+                ],
+                [
+                  pp(data.fliegen / 20),
+                  '=',
+                  <>
+                    q<sup>11</sup>
+                  </>,
+                  <>| {buildSqrt('', 11)}</>,
+                ],
+                ['q', '=', <>{buildSqrt(pp(data.fliegen / 20), 11)}</>],
+                ['q', '≈', q],
+              ])}
             </p>
           </>
         )
@@ -374,17 +407,37 @@ export const exercise53: Exercise<DATA> = {
         return (
           <>
             <p>
-              <strong>Erste Woche berechnen:</strong>
-              <br /> g(x) = 20 · {pp(q)}
-              <sup>7</sup> <br />
-              g(x) = {lös1} <br /> <br />
-              <strong>Zweite Woche berechnen:</strong>
-              <br /> g(x) = 20 · {pp(q)}
-              <sup>14</sup> - 47
+              Verwende die Funktion g(x), um die Anzahl der Fliegen nach 7 Tagen
+              und anschließend nach 14 Tagen zu berechnen:<br></br>
               <br />
-              g(x) = {lös2 - lös1} <br /> <br />
-              Jasmins Vermutung stimmt nicht. <br />2 · {pp(lös1)} ≯ &nbsp;{' '}
-              {pp(lös2 - lös1)}
+              <strong>Erste Woche:</strong>
+              <br /> g(7) = 20 · {pp(q)}
+              <sup>7</sup> <br />
+              g(7) ≈ {lös1} <br />
+              <p>
+                Damit kommen in der ersten Woche:<br></br> {lös1} - 20 ={' '}
+                {lös1 - 20} Fruchtfliegen dazu.
+              </p>
+              <strong>Zweite Woche:</strong>
+              <br /> g(14) = 20 · {pp(q)}
+              <sup>14</sup>
+              <br />
+              g(14) ≈ {lös2} <br />
+              <p>
+                Damit kommen in der zweiten Woche:<br></br> {lös2} - {lös1} ={' '}
+                {lös2 - lös1} Fruchtfliegen dazu.
+              </p>
+              {lös2 - lös1 > 2 * (lös1 - 20) ? (
+                <>
+                  Jasmins Vermutung stimmt, denn <br></br> {lös2 - lös1} {'>'} 2
+                  · {lös1 - 20} = {2 * (lös1 - 20)}
+                </>
+              ) : (
+                <>
+                  Jasmins Vermutung stimmt nicht, denn <br></br>
+                  {lös2 - lös1} {'>'} 2 · {lös1 - 20} = {2 * (lös1 - 20)}
+                </>
+              )}
             </p>
           </>
         )
