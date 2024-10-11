@@ -204,7 +204,7 @@ export const exercise34: Exercise<DATA> = {
         return (
           <>
             <p>
-              Tarek möchte Geld sparen und deshalb kein Abendessen buchen.
+              b) Tarek möchte Geld sparen und deshalb kein Abendessen buchen.
               Berechne, wie viel Prozent von den Gesamtkosten er dann spart.
             </p>
           </>
