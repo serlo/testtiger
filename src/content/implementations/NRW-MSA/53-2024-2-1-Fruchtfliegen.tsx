@@ -397,6 +397,7 @@ export const exercise53: Exercise<DATA> = {
               mehr als doppelt so viele Fruchtfliegen hinzu, als in der ersten
               Woche hinzugekommen sind.“
             </p>
+            <p>Überprüfe ihre Vermutung mit einer Rechnung.</p>
           </>
         )
       },
