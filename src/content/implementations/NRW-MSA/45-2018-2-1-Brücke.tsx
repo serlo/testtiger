@@ -17,6 +17,8 @@ interface DATA {
   x_1: number
   x_2: number
   x_3: number
+  max: boolean
+  max_mm: number
 }
 
 export const exercise45: Exercise<DATA> = {
@@ -35,6 +37,8 @@ export const exercise45: Exercise<DATA> = {
       x_1: rng.randomIntBetween(110, 160),
       x_2: rng.randomIntBetween(180, 220),
       x_3: rng.randomIntBetween(240, 280),
+      max: rng.randomBoolean(),
+      max_mm: rng.randomIntBetween(1501, 1999) / 100,
     }
   },
   constraint({ data }) {
@@ -334,6 +338,10 @@ export const exercise45: Exercise<DATA> = {
     {
       points: 4,
       task({ data }) {
+        const ergebnis = roundToDigits(
+          (Math.sin((data.alpha_max / 360) * 2 * Math.PI) * data.width) / 10,
+          2,
+        )
         return (
           <>
             <p>
@@ -345,16 +353,7 @@ export const exercise45: Exercise<DATA> = {
             <p>
               d) Max behauptet: {'"'}Wenn der Neigungswinkel α ={' '}
               {pp(data.alpha_max)}° beträgt, dann beträgt der Höhenunterschied
-              der Gleise{' '}
-              {pp(
-                roundToDigits(
-                  (Math.sin((data.alpha_max / 360) * 2 * Math.PI) *
-                    data.width) /
-                    10,
-                  2,
-                ),
-              )}{' '}
-              cm.{'"'}
+              der Gleise {data.max ? pp(ergebnis) : pp(data.max_mm)} cm.{'"'}
             </p>
             <p>Hat Max recht? Begründe mit einer Rechnung.</p>
             <svg viewBox="0 0 328 300">
@@ -379,6 +378,10 @@ export const exercise45: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const ergebnis = roundToDigits(
+          (Math.sin((data.alpha_max / 360) * 2 * Math.PI) * data.width) / 10,
+          2,
+        )
         return (
           <>
             {' '}
@@ -406,15 +409,10 @@ export const exercise45: Exercise<DATA> = {
             </p>
             <p>
               Damit entspricht der Höhenunterschied etwa{' '}
-              {pp(
-                roundToDigits(
-                  (Math.sin((data.alpha_max / 360) * 2 * Math.PI) *
-                    data.width) /
-                    10,
-                  2,
-                ),
-              )}{' '}
-              cm. Max hat recht.
+              {Math.abs(ergebnis - data.max_mm) < 0.1
+                ? pp(data.max_mm)
+                : pp(ergebnis)}{' '}
+              cm. Max hat {!data.max && 'nicht'} recht.
             </p>
           </>
         )
