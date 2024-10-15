@@ -618,7 +618,9 @@ export const exercise45: Exercise<DATA> = {
                 ),
               ],
             ])}
-            <p>Damit ist die vollständige Funktionsgleichung wie angegeben: </p>
+            <p>
+              Damit ist die vollständige Funktionsgleichung, wie angegeben:{' '}
+            </p>
             <p>
               g(x) ={' '}
               {pp(
@@ -648,7 +650,7 @@ export const exercise45: Exercise<DATA> = {
           <>
             <p>
               Der Wert für d verändert sich nicht, denn die Form der Parabel
-              bleibt gleich unabhängig von der Position des Ursprungs.
+              bleibt gleich, unabhängig von der Position des Ursprungs.
             </p>
             <p>
               Der neue Scheitelpunkt liegt im Ursprung (0|0), welcher in die
