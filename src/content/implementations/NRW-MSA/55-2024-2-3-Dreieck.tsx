@@ -270,8 +270,8 @@ export const exercise55: Exercise<DATA> = {
         return (
           <>
             <p>
-              In einem rechtwinkligen Dreieck gelten mithilfe der
-              Winkelfunktionen bspw. folgende Gleichung:
+              In einem rechtwinkligen Dreieck gilt mithilfe der Winkelfunktionen
+              bspw. folgende Gleichung:
             </p>
             <p>sin(α) = {buildFrac('Gegenkathete', 'Hypotenuse')}</p>
             <p>
