@@ -118,14 +118,14 @@ export function Chatv2({ id }: Chatv2Props) {
             <TextareaAutosize
               value={userInput}
               onChange={e => setUserInput(e.target.value)}
-              placeholder="Nachricht..."
+              placeholder="Schreibe mit mir ..."
               minRows={1}
               maxRows={5}
               className="flex-grow p-2 border rounded-md resize-none"
             />
             <button
               type="submit"
-              className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
+              className="flex-shrink-0 w-10 h-10 bg-gray-500 text-white rounded-full flex items-center justify-center hover:bg-gray-600"
             >
               <IonIcon icon={sendOutline} className="w-5 h-5" />
             </button>
