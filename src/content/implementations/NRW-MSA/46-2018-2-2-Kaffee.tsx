@@ -199,7 +199,7 @@ export const exercise46: Exercise<DATA> = {
               Das entspricht einer Fläche von {data.dia * data.dia} cm² ≙{' '}
               {pp((data.dia * data.dia) / 10000)} m²
             </p>
-            <p>Die Spothalle hat eine Grundfläche von </p>
+            <p>Die Sporthalle hat eine Grundfläche von </p>
             <p>
               A = {data.length} · {data.width} = {data.length * data.width} m².
             </p>
