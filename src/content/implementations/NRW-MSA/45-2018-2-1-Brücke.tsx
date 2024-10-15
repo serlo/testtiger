@@ -421,7 +421,7 @@ export const exercise45: Exercise<DATA> = {
     {
       points: 3,
       task({ data }) {
-        const a = roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4)
+        const a = roundToDigits(-30 / Math.pow(30 * 2.5, 2), 4)
         function toX(n: number) {
           return 10 + n * 2
         }
@@ -435,9 +435,7 @@ export const exercise45: Exercise<DATA> = {
         ): string {
           let points = ''
           for (let x = 0; x <= 150; x += step) {
-            const y =
-              a * 0.95 * (x - data.scale * 2.5) * (x - data.scale * 2.5) +
-              data.scale
+            const y = a * 0.95 * (x - 30 * 2.5) * (x - 30 * 2.5) + 30
             points += `${toX(x)},${toY(y)} `
           }
           return points.trim()
@@ -464,15 +462,7 @@ export const exercise45: Exercise<DATA> = {
                 fill="none"
                 transform="rotate(-1.3)"
               />
-              <text
-                x={210}
-                y={114}
-                fontSize={20}
-                textAnchor="right"
-                stroke="white"
-              >
-                x
-              </text>
+
               <text
                 x={158}
                 y={55}
