@@ -177,7 +177,7 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   F4 bezeichnet den Gesamtgewinn durch die Verkaufsaktion.
-                  Dieser berechnet sich aus den einzelnen Gewinne, also {'"'}=
+                  Dieser berechnet sich aus den einzelnen Gewinnen, also {'"'}=
                   F2 + F3{'"'}.
                 </p>
               </>
@@ -185,8 +185,9 @@ export const exercise49: Exercise<DATA> = {
             {data.case == 4 && (
               <>
                 <p>
-                  E2 bezeichnet den Gewinn pro Stück, also dem Verkaufspreis
-                  abzüglich dem Einkaufspreis. Die Formel lautet: {'"'}= C2 - D2
+                  E2 bezeichnet den Gewinn pro Stück, also den Verkaufspreis
+                  abzüglich des Einkaufspreises. Die Formel lautet: {'"'}= C2 -
+                  D2
                   {'"'}
                 </p>
               </>
