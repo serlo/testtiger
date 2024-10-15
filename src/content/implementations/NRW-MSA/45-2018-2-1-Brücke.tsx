@@ -421,6 +421,28 @@ export const exercise45: Exercise<DATA> = {
     {
       points: 3,
       task({ data }) {
+        const a = roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4)
+        function toX(n: number) {
+          return 10 + n * 2
+        }
+        function toY(n: number) {
+          return 116 - n * 2.1
+        }
+        function generateParabolaPoints(
+          a: number,
+
+          step: number,
+        ): string {
+          let points = ''
+          for (let x = 0; x <= 150; x += step) {
+            const y =
+              a * 0.95 * (x - data.scale * 2.5) * (x - data.scale * 2.5) +
+              data.scale
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints(a, 0.1)
         return (
           <>
             <p>
@@ -435,6 +457,22 @@ export const exercise45: Exercise<DATA> = {
                 height="150"
                 width="328"
               />
+              <polyline
+                points={parabolaPoints}
+                stroke="blue"
+                strokeWidth="2.5"
+                fill="none"
+                transform="rotate(-1.3)"
+              />
+              <text
+                x={210}
+                y={114}
+                fontSize={20}
+                textAnchor="right"
+                stroke="white"
+              >
+                x
+              </text>
               <text
                 x={158}
                 y={55}
