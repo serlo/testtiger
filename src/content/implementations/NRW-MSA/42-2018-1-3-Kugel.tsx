@@ -158,7 +158,7 @@ export const exercise42: Exercise<DATA> = {
               4 · π · {data.r}² = 4 · O
             </p>
             <p>
-              Die ursrpüngliche Oberfläche{' '}
+              Die ursprüngliche Oberfläche{' '}
               <Color1>{text3_case[data.case]}</Color1> sich bei{' '}
               <Color1>{text2_case[data.case]}em</Color1> Radius.
             </p>
