@@ -149,8 +149,8 @@ export const exercise46: Exercise<DATA> = {
               {data.becher} entsprechen{' '}
               {data.karinHatRecht == true ? 'ungefähr' : 'nicht'}{' '}
               {data.karinHatRecht == true
-                ? roundToDigits(data.becher, -4)
-                : data.trash}{' '}
+                ? pp(roundToDigits(data.becher, -4))
+                : pp(data.trash)}{' '}
               Bechern. Damit hat Karin{' '}
               {data.karinHatRecht == true ? 'recht.' : 'nicht recht.'}
             </p>
