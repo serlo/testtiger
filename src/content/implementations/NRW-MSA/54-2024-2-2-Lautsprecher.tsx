@@ -334,7 +334,7 @@ export const exercise54: Exercise<DATA> = {
             </svg>
             <p>Abbildung 3: Playlist mit Künstlern und Liedern</p>
             <p>
-              d) Erläutere, dass die Wahrscheinlichkeit, als erstes ein Lied des
+              d) Erläutere, dass die Wahrscheinlichkeit, als Erstes ein Lied des
               Sängers Ed Sheeran zu hören, p = {ppFrac(data.ed / 10)} beträgt.
             </p>
           </>
