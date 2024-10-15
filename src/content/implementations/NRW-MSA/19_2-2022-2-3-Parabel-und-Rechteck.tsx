@@ -507,7 +507,7 @@ export const exercise192: Exercise<DATA> = {
                 </p>
                 <p>
                   <strong>Erklärung:</strong> Die Lösung bedeutet, dass für die
-                  Werte x<sub>1</sub> ={' '}
+                  x-Werte x<sub>1</sub> ={' '}
                   {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
                   <sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}{' '}
                   ein Rechteck mit dem Umfang {pp(zahl)} existiert.
