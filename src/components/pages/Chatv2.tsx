@@ -48,12 +48,12 @@ export function Chatv2({ id }: Chatv2Props) {
           >
             ← {content.source}: {content.title}
           </div>
-          <div className="flex overflow-x-scroll snap-x snap-mandatory snap-always gap-1 pb-6 items-stretch w-full">
+          <div className="flex overflow-x-scroll snap-x snap-mandatory gap-1 pb-6 items-stretch w-full">
             <div className="flex-shrink-0 w-[20%] snap-none"></div>
             {withSubtasks &&
               content.tasks.map((t, i) => (
                 <div
-                  className="w-[calc(100%-16px)] flex-shrink-0 bg-white snap-center border border-black rounded-xl h-[70vh] overflow-y-auto"
+                  className="w-[calc(100%-16px)] flex-shrink-0 bg-white snap-always snap-center border border-black rounded-xl h-[70vh] overflow-y-auto"
                   key={i}
                 >
                   <div className="flex flex-col justify-end min-h-[69vh]">
