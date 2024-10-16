@@ -170,7 +170,7 @@ export const exercise46: Exercise<DATA> = {
             <p>
               c) Der Boden einer Sporthalle mit {data.width} m Breite und{' '}
               {data.length} m Länge reicht nicht aus, um{' '}
-              {roundToDigits(data.becher, -4)} so wie in Abbildung 1
+              {pp(roundToDigits(data.becher, -4))} so wie in Abbildung 1
               nebeneinander aufzustellen.
             </p>
             <svg viewBox="0 0 328 120">
@@ -213,7 +213,7 @@ export const exercise46: Exercise<DATA> = {
             </p>
             <p>
               Damit reicht der Boden nicht aus, um die{' '}
-              {roundToDigits(data.becher, -4)} Becher aufzustellen.
+              {pp(roundToDigits(data.becher, -4))} Becher aufzustellen.
             </p>
           </>
         )
