@@ -11,3 +11,7 @@ export function Color2({ children }: { children: ReactNode }) {
 export function Color3({ children }: { children: ReactNode }) {
   return <span className="text-orange-600">{children}</span>
 }
+
+export function Color4({ children }: { children: ReactNode }) {
+  return <span className="text-gray-500">{children}</span>
+}
