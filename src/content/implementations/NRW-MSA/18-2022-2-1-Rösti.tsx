@@ -430,7 +430,7 @@ export const exercise18: Exercise<DATA> = {
               {10000 - Math.round(p * 10000)}
             </p>
             <p>
-              {10000 - Math.round(p * 10000)} Röstis werden erwartungsgemäßg
+              {10000 - Math.round(p * 10000)} Röstis werden erwartungsgemäß
               aussortiert, weil sie den Vorgaben nicht entsprechen.
             </p>
           </>

@@ -198,7 +198,7 @@ export const exercise8: Exercise<DATA> = {
             <p>
               c) Um die Entwicklung der Milben pro Woche vorauszusagen,
               beschreiben sie die Anzahl der Milben mit der folgenden
-              Exponentialfunktion f :
+              Exponentialfunktion f:
             </p>
             <p>
               f(x) = {data.count} ⋅ 1,19<sup>x</sup>
@@ -287,7 +287,7 @@ export const exercise8: Exercise<DATA> = {
               <sup>x</sup> kannst du die Anzahl der Milben bestimmen.{' '}
             </p>
             <p>
-              Setze systematisch Werte für x ein und überprüfe wann der Wert{' '}
+              Setze systematisch Werte für x ein und überprüfe, wann der Wert{' '}
               {data.goal} überschritten wird:
             </p>
             <p>
@@ -318,7 +318,7 @@ export const exercise8: Exercise<DATA> = {
               f) Damit das Bienenvolk überlebt, wird nach 12 Wochen Ameisensäure
               eingesetzt. Dadurch wird die Anzahl von ca.{' '}
               {pp(roundToDigits(Math.pow(1.19, 12) * data.count, -2))} Milben
-              einmalig um 90% reduziert.
+              einmalig um 90 % reduziert.
             </p>
             <p>
               Weise nach, dass durch die Behandlung mit der Ameisensäure die
@@ -349,7 +349,7 @@ export const exercise8: Exercise<DATA> = {
             </p>
             <p>
               verwenden. Berechne den Wert nach 21 Wochen. Da 12 Wochen bereits
-              vergangen sind bleiben 21 − 12 = 9 Wochen der Beobachtung übrig.
+              vergangen sind, bleiben 21 − 12 = 9 Wochen der Beobachtung übrig.
               Setze diesen Wert in die neue Funktionsgleichung ein:
             </p>
             <p>
