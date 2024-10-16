@@ -6,11 +6,13 @@ import { constrainedGeneration } from '@/helper/constrained-generation'
 import { countLetter } from '@/helper/count-letter'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { proseWrapper } from '@/helper/prose-wrapper'
+import { faMagicWandSparkles } from '@fortawesome/free-solid-svg-icons'
 import { IonContent, IonFooter, IonIcon, IonPage } from '@ionic/react'
 import { sendOutline } from 'ionicons/icons'
 import { Fragment, useMemo, useState } from 'react'
 import { useHistory } from 'react-router'
 import TextareaAutosize from 'react-textarea-autosize'
+import { FaIcon } from '../ui/FaIcon'
 
 interface Chatv2Props {
   id: number
@@ -51,55 +53,65 @@ export function Chatv2({ id }: Chatv2Props) {
             {withSubtasks &&
               content.tasks.map((t, i) => (
                 <div
-                  className="w-[calc(100%-16px)] flex-shrink-0 bg-white snap-center border border-black rounded-xl flex flex-col justify-end"
+                  className="w-[calc(100%-16px)] flex-shrink-0 bg-white snap-center border border-black rounded-xl h-[70vh] overflow-y-auto"
                   key={i}
                 >
-                  <div className="p-[3px]">
-                    {i == 0 &&
-                      proseWrapper(
-                        content.intro({
-                          data,
-                        }),
-                      )}
-                  </div>
-                  <div className="flex justify-between p-[3px]">
-                    <div>
-                      Aufgabe {countLetter('a', i) + ')'}{' '}
-                      <button
-                        onClick={() => {
-                          setSeed(seed => {
-                            const currentData = generateData(id, seed, content)
-                            const newSeed = constrainedGeneration(
-                              () => generateSeed(),
-                              seed => {
-                                const newData = generateData(id, seed, content)
-                                return !isDeepEqual(currentData, newData)
-                              },
-                            )
-                            return newSeed
-                          })
-                        }}
-                      >
-                        NEU
-                      </button>
+                  <div className="flex flex-col justify-end min-h-[69vh]">
+                    <div className="p-[3px]">
+                      {i == 0 &&
+                        proseWrapper(
+                          content.intro({
+                            data,
+                          }),
+                        )}
                     </div>
-                    <div>{t.points} BE</div>
-                  </div>
-                  <div className="p-[3px] bg-gray-300 rounded">
-                    {proseWrapper(t.task({ data }))}
-                  </div>
-                  <div className="text-center py-3">
-                    {content.tasks.map((_, j) => {
-                      return (
-                        <Fragment key={j}>
-                          {i == j ? (
-                            <span className="bg-black inline-block w-12 h-3 mx-1 rounded-full"></span>
-                          ) : (
-                            <span className="border-black border inline-block w-3 h-3 mx-2 rounded-full"></span>
-                          )}
-                        </Fragment>
-                      )
-                    })}
+                    <div className="flex justify-between p-[3px]">
+                      <div>
+                        Aufgabe {countLetter('a', i) + ')'}{' '}
+                        <button
+                          onClick={() => {
+                            setSeed(seed => {
+                              const currentData = generateData(
+                                id,
+                                seed,
+                                content,
+                              )
+                              const newSeed = constrainedGeneration(
+                                () => generateSeed(),
+                                seed => {
+                                  const newData = generateData(
+                                    id,
+                                    seed,
+                                    content,
+                                  )
+                                  return !isDeepEqual(currentData, newData)
+                                },
+                              )
+                              return newSeed
+                            })
+                          }}
+                        >
+                          <FaIcon icon={faMagicWandSparkles} />
+                        </button>
+                      </div>
+                      <div>{t.points} BE</div>
+                    </div>
+                    <div className="p-[3px] bg-gray-300 rounded">
+                      {proseWrapper(t.task({ data }))}
+                    </div>
+                    <div className="text-center py-3">
+                      {content.tasks.map((_, j) => {
+                        return (
+                          <Fragment key={j}>
+                            {i == j ? (
+                              <span className="bg-black inline-block w-12 h-3 mx-1 rounded-full"></span>
+                            ) : (
+                              <span className="border-black border inline-block w-3 h-3 mx-2 rounded-full"></span>
+                            )}
+                          </Fragment>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
               ))}
