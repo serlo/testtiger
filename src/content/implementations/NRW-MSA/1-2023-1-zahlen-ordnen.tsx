@@ -110,24 +110,24 @@ export const exercise1: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die nächstkleinere Quadratzahl von {data.e} ist: {lower * lower}
+              Bestimme zuerst die nächstkleinere und die nächstgrößere
+              Quadratzahl von {data.e}:
             </p>
-            <p>
-              Die nächstgrößere Quadratzahl von {data.e} ist: {upper * upper}
-            </p>
-            <p>
-              <br></br>Geordnet kannst du schreiben:
-            </p>
+            <ul>
+              <li>Nächstkleinere Quadratzahl: {lower * lower}</li>
+              <li>Nächstgrößere Quadratzahl: {upper * upper}</li>
+            </ul>
+            <p>{data.e} befindet sich zwischen diesen Zahlen:</p>
             <p>
               {lower * lower} {' < '} {data.e} {' < '} {upper * upper}
             </p>
             <p>
-              <br></br>
               {buildSqrt(data.e)} liegt damit auch zwischen den Quadratwurzeln:
             </p>
             <p>
               {buildSqrt(lower * lower)} {' < '} {buildSqrt(data.e)} {' < '}{' '}
-              {buildSqrt(upper * upper)}, <br></br>oder vereinfacht {lower}
+              {buildSqrt(upper * upper)} <br></br>oder vereinfacht<br></br>{' '}
+              {lower}
               {' < '}
               {buildSqrt(data.e)}
               {' < '}

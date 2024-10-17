@@ -55,7 +55,7 @@ export const exercise25: Exercise<DATA> = {
             </p>
 
             <p>
-              {ppFrac(data.c / data.d)}&nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
+              {ppFrac([data.c, data.d])}&nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
               &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.e)}
               <sup>-1</sup>
               &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.a)}
@@ -70,13 +70,16 @@ export const exercise25: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Wandle den Bruch zuerst in eine Dezimalzahl um:</p>
-
             <p>
-              {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
+              Wandle den Bruch zuerst in eine Dezimalzahl um, um ihn mit den
+              anderen Zahlen vergleichen zu können:
             </p>
 
-            <p>Wandle nun die Potenz in eine Dezimalzahl um:</p>
+            <p>
+              {ppFrac([data.c, data.d])} = {pp(data.c / data.d)}
+            </p>
+
+            <p>Forme auch die Potenz in eine Dezimalzahl um:</p>
 
             <p>
               {pp(data.e)}
@@ -86,8 +89,10 @@ export const exercise25: Exercise<DATA> = {
             <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
             <p>
-              {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}{' '}
-              {' < '} {pp(array[3])}
+              <strong>
+                {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}{' '}
+                {' < '} {pp(array[3])}
+              </strong>
             </p>
           </>
         )
