@@ -202,20 +202,38 @@ export const exercise9: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>1. Setze den Wert in den Term ein und fasse zusammen:</p>
-            <p>{buildInlineFrac(1, 2)} ​n ⋅ (n + 1)</p>
-            <p>
-              = {buildInlineFrac(1, 2)} ⋅ {data.task_4} ⋅ {data.task_4 + 1}
-            </p>
-            <p>= {0.5 * data.task_4 * (data.task_4 + 1)}</p>
-            <p>
-              2. Der Term {buildInlineFrac(1, 2)} ​n beschreibt die Anzahl der
-              Zahlenpaare in der Summe. Diese beträgt immer die Hälfte des
-              höchsten Wertes. <br></br>
-              <br></br>(n + 1) ist die Summe der einzelnen Zahlenpaare, was zum
-              Beispiel aus der Summe {'"'}1 + höchste Zahl{'"'} ersichtlich
-              wird.
-            </p>
+            <ol>
+              <li>
+                Setze den Wert in den Term ein und fasse zusammen:
+                {buildEquation([
+                  ['', <>{buildInlineFrac(1, 2)} ​n ⋅ (n + 1)</>],
+                  [
+                    '=',
+                    <>
+                      {buildInlineFrac(1, 2)} ⋅ {data.task_4} ⋅{' '}
+                      {data.task_4 + 1}
+                    </>,
+                  ],
+                  [
+                    '=',
+                    <>
+                      <strong>{0.5 * data.task_4 * (data.task_4 + 1)}</strong>
+                    </>,
+                  ],
+                ])}
+              </li>
+              <li>
+                <p>
+                  Der Term <strong>{buildInlineFrac(1, 2)} ​n</strong>{' '}
+                  beschreibt die Anzahl der Zahlenpaare in der Summe. Diese
+                  beträgt immer die Hälfte des höchsten Wertes.
+                </p>
+                <p>
+                  <strong>(n + 1)</strong> ist die Summe der einzelnen
+                  Zahlenpaare.
+                </p>
+              </li>
+            </ol>
           </>
         )
       },
