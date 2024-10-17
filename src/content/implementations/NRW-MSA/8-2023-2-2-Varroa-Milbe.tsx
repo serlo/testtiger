@@ -284,7 +284,7 @@ export const exercise8: Exercise<DATA> = {
             <p>
               Mithilfe der Funktionsgleichung <br></br>f(x) = {data.count} ⋅
               1,19
-              <sup>x</sup> kannst du die Anzahl der Milben bestimmen.{' '}
+              <sup>x</sup> kannst du die Anzahl der Milben in Woche x bestimmen.{' '}
             </p>
             <p>
               Setze systematisch Werte für x ein und überprüfe, wann der Wert{' '}
@@ -301,9 +301,14 @@ export const exercise8: Exercise<DATA> = {
             </p>
 
             <p>
-              Der Wert von {data.goal} wird nach etwa{' '}
-              {pp(Math.ceil(Math.log(data.goal / data.count) / Math.log(1.19)))}{' '}
-              ganzen Wochen überschritten.
+              Der Wert von {data.goal} wird erst nach{' '}
+              <strong>
+                {pp(
+                  Math.ceil(Math.log(data.goal / data.count) / Math.log(1.19)),
+                )}{' '}
+                ganzen Wochen{' '}
+              </strong>{' '}
+              überschritten.
             </p>
           </>
         )

@@ -299,8 +299,13 @@ export const exercise53: Exercise<DATA> = {
         return (
           <>
             <p>
-              Setze für die Anzahl der Tage x systematisch Werte ein und
-              überprüfe, wann die Population 100 000 erreicht.
+              Mithilfe der Funktionsgleichung <br></br>f(x) = 10 ·{' '}
+              {pp(data.prozent)}
+              <sup>x</sup> kannst du die Anzahl der Fliegen am Tag x bestimmen.
+            </p>
+            <p>
+              Setze für x systematisch Werte ein und überprüfe, wann die
+              Population 100 000 erreicht.
             </p>
 
             <ul>
@@ -323,7 +328,7 @@ export const exercise53: Exercise<DATA> = {
             </ul>
             <p>
               Die Population überschreitet 100 000 Fruchtfliegen nach{' '}
-              {Math.ceil(tage)} vollen Tagen.
+              <strong>{Math.ceil(tage)} vollen Tagen</strong>.
             </p>
           </>
         )

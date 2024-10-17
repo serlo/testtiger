@@ -171,24 +171,28 @@ export const exercise47: Exercise<DATA> = {
         const tries = Math.ceil(Math.log(data.lower / data.f0) / Math.log(0.75))
         return (
           <>
-            <p>Hier gibt es viele unterschiedliche Rechenwege. </p>
+            <p>Hier gibt es viele unterschiedliche Lösungswege. </p>
             <p>
               Setze zum Beispiel ganzzahlige Werte für n in den Taschenrechner
               ein und überprüfe das Ergebnis. Notiere diese Ergebnisse.
             </p>
             <p>
-              {pp(data.f0)} · 0,75<sup>{tries - 1}</sup> {'>'} {data.lower}
+              {pp(data.f0)} · 0,75<sup>{tries - 1}</sup> ={' '}
+              {pp(roundToDigits(data.f0 * Math.pow(0.75, tries - 1), 2))}{' '}
+              <strong>{'>'}</strong> {data.lower}
             </p>
             <p>
               Nach {tries - 1} Figuren ist der Flächeninhalt immer noch größer
               als {data.lower} cm².
             </p>
             <p>
-              {pp(data.f0)} · 0,75<sup>{tries}</sup> {'<'} {data.lower}
+              {pp(data.f0)} · 0,75<sup>{tries}</sup> ={' '}
+              {pp(roundToDigits(data.f0 * Math.pow(0.75, tries), 2))}{' '}
+              <strong>{'<'}</strong> {data.lower}
             </p>
             <p>
-              Es braucht {tries} Figuren, damit der Flächeninhalt der schwarzen
-              Dreiecke unter {data.lower} cm² fällt.
+              Es braucht <strong>{tries} Figuren</strong>, damit der
+              Flächeninhalt der schwarzen Dreiecke unter {data.lower} cm² fällt.
             </p>
           </>
         )
