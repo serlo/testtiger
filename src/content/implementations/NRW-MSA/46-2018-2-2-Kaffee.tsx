@@ -116,13 +116,13 @@ export const exercise46: Exercise<DATA> = {
         return (
           <>
             <p>
-              b) Pro Jahr benutzt jede Person durchschnittlich {data.usage}{' '}
+              b) Pro Jahr benutzt jede Person durchschnittlich {pp(data.usage)}{' '}
               Pappbecher. In Deutschland leben derzeit ca. 83 Millionen
               Menschen. Karin behauptet: {'"'}Jede Stunde werden in Deutschland
               ungefähr{' '}
               {data.karinHatRecht == true
-                ? roundToDigits(data.becher, -4)
-                : data.trash}{' '}
+                ? pp(roundToDigits(data.becher, -4))
+                : pp(data.trash)}{' '}
               Pappbecher in den Müll geworfen.{'"'}
             </p>
             <p>Hat Karin recht? Begründe.</p>
@@ -143,7 +143,7 @@ export const exercise46: Exercise<DATA> = {
             <p>365 · 24 = {365 * 24}</p>
             <p>Teile die Anzahl der Becher durch die Anzahl der Stunden:</p>
             <p>
-              {data.usage * 83000000} : {365 * 24} ≈ {data.becher} Becher
+              {data.usage * 83000000} : {365 * 24} ≈ {pp(data.becher)} Becher
             </p>
             <p>
               {data.becher} entsprechen{' '}
