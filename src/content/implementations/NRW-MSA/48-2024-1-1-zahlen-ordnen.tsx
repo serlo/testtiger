@@ -77,7 +77,8 @@ export const exercise48: Exercise<DATA> = {
     return (
       <>
         <p>
-          Wandle den gemischten Bruch zuerst in einen ungemischten Bruch um:
+          Wandle den gemischten Bruch zuerst in einen ungemischten Bruch um, um
+          ihn besser mit den anderen vergleichen zu können:
         </p>
 
         <p>
@@ -87,10 +88,13 @@ export const exercise48: Exercise<DATA> = {
             ? ppFrac(data.e / data.f + data.g)
             : ppFrac(data.g - data.e / data.f)}
         </p>
-        <p>Eine Zahl ist als Dezimalzahl dargestellt: {pp(data.h)}</p>
+        <p>Nur eine Zahl ist als Dezimalzahl dargestellt: {pp(data.h)}</p>
         <p>
-          Falls du diese nicht direkt mit den anderen Zahlen sortieren kannst,
-          kannst du sie als Bruch darstellen: {ppFrac(data.h)}
+          Falls du diese nicht direkt mit den anderen Zahlen vergleichen kannst,
+          kannst du sie als Bruch darstellen:
+        </p>
+        <p>
+          {pp(data.h)} = {ppFrac([data.h * 100, 100])} = {ppFrac(data.h)}
         </p>
         <p>
           Sortiere die Brüche der Größe nach. Wenn die Größe der Brüche schwer
@@ -100,10 +104,12 @@ export const exercise48: Exercise<DATA> = {
         <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
         <p>
-          {array[0] == data.h ? pp(array[0]) : ppFrac(array[0])} {' < '}{' '}
-          {array[1] == data.h ? pp(array[1]) : ppFrac(array[1])} {' < '}{' '}
-          {array[2] == data.h ? pp(array[2]) : ppFrac(array[2])} {' < '}{' '}
-          {array[3] == data.h ? pp(array[3]) : ppFrac(array[3])}
+          <strong>
+            {array[0] == data.h ? pp(array[0]) : ppFrac(array[0])} {' < '}{' '}
+            {array[1] == data.h ? pp(array[1]) : ppFrac(array[1])} {' < '}{' '}
+            {array[2] == data.h ? pp(array[2]) : ppFrac(array[2])} {' < '}{' '}
+            {array[3] == data.h ? pp(array[3]) : ppFrac(array[3])}
+          </strong>
         </p>
       </>
     )
