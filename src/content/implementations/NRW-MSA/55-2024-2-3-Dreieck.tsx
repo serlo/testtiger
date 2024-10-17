@@ -443,7 +443,7 @@ export const exercise55: Exercise<DATA> = {
             {data.case == 1 && (
               <>
                 <p>
-                  Ein Dreieck in dem alle Seiten gleich lang sind, heißt
+                  Ein Dreieck, in dem alle Seiten gleich lang sind, heißt
                   gleichseitig. Darin müssen auch alle Winkel gleich sein und
                   jeweils 60° betragen. Einen rechten Winkel kann es nicht
                   geben, womit Kais Behauptung nicht stimmt.
