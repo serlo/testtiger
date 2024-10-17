@@ -42,12 +42,14 @@ export const exercise16: Exercise<DATA> = {
         <p>
           <strong>Stunden (h) in Minuten (min)</strong>
         </p>
-        <p>1 Stunde entspricht 60 Minuten. Damit sind:</p>
+        <p>
+          1 Stunde entspricht 60 Minuten. <br></br>Damit sind:
+        </p>
         <p>
           {pp(data.hours)} h = {pp(data.hours)} · 60 min
         </p>
         <p>
-          {pp(data.hours)} h = {pp(data.hours * 60)} min
+          {pp(data.hours)} h = <strong>{pp(data.hours * 60)} min</strong>
         </p>
         <p>
           <br></br>
@@ -59,7 +61,7 @@ export const exercise16: Exercise<DATA> = {
           kg
         </p>
         <p>
-          {pp(data.gramms)} g = {pp(data.gramms / 1000)} kg
+          {pp(data.gramms)} g = <strong>{pp(data.gramms / 1000)} kg</strong>
         </p>
         <p>
           <br></br>
@@ -70,7 +72,7 @@ export const exercise16: Exercise<DATA> = {
           {pp(data.cubics)} m³ = {pp(data.cubics)} · 1000 ℓ
         </p>
         <p>
-          {pp(data.cubics)} m³ = {pp(data.cubics * 1000)} ℓ
+          {pp(data.cubics)} m³ = <strong>{pp(data.cubics * 1000)} ℓ</strong>
         </p>
       </>
     )

@@ -51,7 +51,7 @@ export const exercise21: Exercise<DATA> = {
         </p>{' '}
         {pp(data.hours)} h = {pp(data.hours)} · 3600 s
         <p>
-          {pp(data.hours)} h = {pp(data.hours * 3600)} s
+          {pp(data.hours)} h = <strong>{pp(data.hours * 3600)} s</strong>
         </p>
         <p>
           <strong>Zentimeter (cm) in Meter (m)</strong>
@@ -65,7 +65,8 @@ export const exercise21: Exercise<DATA> = {
         {pp(data.centimeters)} cm = {pp(data.centimeters)} ·{' '}
         {buildInlineFrac(1, 100)} m
         <p>
-          {pp(data.centimeters)} cm = {pp((data.centimeters * 1) / 100)} m
+          {pp(data.centimeters)} cm ={' '}
+          <strong>{pp((data.centimeters * 1) / 100)} m</strong>
         </p>
         <p>
           <strong> Gramm (g) in Kilogramm (kg)</strong>
@@ -78,7 +79,8 @@ export const exercise21: Exercise<DATA> = {
         </p>
         {pp(data.gramms)} g = {pp(data.gramms)} · {buildInlineFrac(1, 1000)} kg
         <p>
-          {pp(data.gramms)} cm = {pp((data.gramms * 1) / 1000)} kg
+          {pp(data.gramms)} g ={' '}
+          <strong>{pp((data.gramms * 1) / 1000)} kg</strong>
         </p>
       </>
     )
