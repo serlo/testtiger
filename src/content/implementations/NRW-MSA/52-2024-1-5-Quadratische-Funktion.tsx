@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp, ppPolynom } from '@/helper/pretty-print'
 
@@ -112,13 +113,52 @@ export const exercise52: Exercise<DATA> = {
               [data.coeff + 'x²', '=', pp(-y_offset), '| : ' + string],
               ['x²', '=', pp(-y_offset / data.coeff), '| ±√ '],
             ])}
-            <p>Die Lösungen sind:</p>
-            <p>
-              x<sub>1</sub> = {data.x_sol}
-            </p>
-            <p>
-              x<sub>2</sub> = {pp(-data.x_sol)}
-            </p>
+            {buildEquation([
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Berechne die Quadratwurzel.
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>
+                    x<sub>1</sub>
+                  </strong>
+                </>,
+                <>
+                  <strong>=</strong>
+                </>,
+                <>
+                  <strong>{data.x_sol}</strong>
+                </>,
+              ],
+              [
+                <>
+                  <strong>
+                    x<sub>2</sub>
+                  </strong>
+                </>,
+                <>
+                  <strong>=</strong>
+                </>,
+                <>
+                  {' '}
+                  <strong>{pp(-data.x_sol)}</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
