@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -361,14 +362,59 @@ export const exercise9: Exercise<DATA> = {
         return (
           <>
             <p>Multipliziere den Term mit der Klammer aus und vereinfache:</p>
-            <p>{buildInlineFrac(1, 2)}​(n − 1) ⋅ n + n</p>
-            <p>= {buildInlineFrac(1, 2)}(n² − n) + n</p>
-            <p>
-              = {buildInlineFrac(1, 2)} n² − {buildInlineFrac(1, 2)} n + n
-            </p>
-            <p>
-              = {buildInlineFrac(1, 2)} n² + {buildInlineFrac(1, 2)} n
-            </p>
+            {buildEquation([
+              [
+                '',
+                <>
+                  <Color1>{buildInlineFrac(1, 2)}​</Color1>(n − 1) ⋅ n + n
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  <span className="inline-block  scale-y-[2.6]">(</span>
+                  <Color1>{buildInlineFrac(1, 2)}</Color1>n −{' '}
+                  <Color1>{buildInlineFrac(1, 2)}</Color1>
+                  <span className="inline-block  scale-y-[2.6]">)</span> ⋅ n + n
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  <span className="inline-block  scale-y-[2.6]">(</span>
+                  {buildInlineFrac(1, 2)}n − {buildInlineFrac(1, 2)}
+                  <span className="inline-block  scale-y-[2.6]">)</span> ⋅{' '}
+                  <Color2>n</Color2> + n
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {buildInlineFrac(1, 2)} <Color2>n²</Color2> −{' '}
+                  {buildInlineFrac(1, 2)} <Color2>n</Color2> + n
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {buildInlineFrac(1, 2)} n² + {buildInlineFrac(1, 2)} n
+                </>,
+              ],
+            ])}
+
             <p>
               Die Terme sind gleichwertig, da sie ineinander umgeformt werden
               können.
