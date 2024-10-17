@@ -144,13 +144,14 @@ export const exercise8: Exercise<DATA> = {
           <>
             <p>
               Die Anzahl der Milben verdoppelt sich alle 4 Wochen. Nach 4 Wochen
-              ist die Anzahl der Milben das doppelte des Ausgangswertes, also:{' '}
-              {data.count} ⋅ 2 = {data.count * 2} Milben.
+              ist die Anzahl der Milben das doppelte des Ausgangswertes, also:
+              <br></br>
+              {data.count} ⋅ 2 = <strong>{data.count * 2} Milben</strong>
             </p>
             <p>
               Die Anzahl Milben nach 8 Wochen ist doppelt so groß, wie die
-              Anzahl nach 4 Wochen. Der Wert nach 8 Wochen ist somit:{' '}
-              {data.count * 2} ⋅ 2 = {data.count * 4} Milben
+              Anzahl nach 4 Wochen. Der Wert nach 8 Wochen ist somit:<br></br>
+              {data.count * 2} ⋅ 2 = <strong>{data.count * 4} Milben</strong>
             </p>
             <svg viewBox="0 0 700 200">
               <image

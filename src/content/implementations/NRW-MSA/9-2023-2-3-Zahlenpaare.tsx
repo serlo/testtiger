@@ -80,7 +80,10 @@ export const exercise9: Exercise<DATA> = {
         const hrefs2 = '/content/NRW_Zahlenpaare_sol' + data.task_2 + '.PNG'
         return (
           <>
-            <p>Fülle die Kästchen und Lücken der Abbildung aus:</p>
+            <p>
+              Die Kästchen enthalten die Summe eines Zahlenpaares:{' '}
+              {data.task_2 + 1}
+            </p>
             <svg viewBox="0 0 328 140">
               <image href={hrefs2} height="140" width="328" />
             </svg>
@@ -158,12 +161,15 @@ export const exercise9: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Wende die gleiche Vorgehensweise wie in Abbildung 2 an.</p>
+            <p>Wende die gleiche Vorgehensweise wie in Abbildung 2 an:</p>
             <ul>
-              <li>Bestimme die Anzahl der Zahlenpaare: {data.task_3 / 2}</li>
               <li>
-                Bestimme die Summe der ersten und letzten Zahl:{' '}
-                {data.task_3 + 1}
+                Bestimme die <Color2>Summe eines Zahlenpaars:</Color2>{' '}
+                <Color2>{data.task_3 + 1}</Color2>
+              </li>
+              <li>
+                Bestimme die <Color1>Anzahl der Zahlenpaare:</Color1>{' '}
+                <Color1>{data.task_3 / 2}</Color1>
               </li>
             </ul>
             <p>Diese Zahlen müssen in den Kästchen stehen.</p>
