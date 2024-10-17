@@ -90,8 +90,41 @@ export const exercise25: Exercise<DATA> = {
 
             <p>
               <strong>
-                {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}{' '}
-                {' < '} {pp(array[3])}
+                {(array[0] == data.c / data.d && ppFrac(array[0])) ||
+                  (array[0] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[0])}{' '}
+                {' < '}{' '}
+                {(array[1] == data.c / data.d && ppFrac(array[1])) ||
+                  (array[1] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[1])}{' '}
+                {' < '}{' '}
+                {(array[2] == data.c / data.d && ppFrac(array[2])) ||
+                  (array[2] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[2])}{' '}
+                {' < '}{' '}
+                {(array[3] == data.c / data.d && ppFrac(array[3])) ||
+                  (array[3] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[3])}
               </strong>
             </p>
           </>
