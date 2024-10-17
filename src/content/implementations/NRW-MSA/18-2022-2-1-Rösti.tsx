@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { buildFrac, buildSqrt } from '@/helper/math-builder'
+import { buildEquation, buildFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -395,8 +395,10 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <p>
               Damit beträgt die Wahrscheinlichkeit{' '}
-              {pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4))}{' '}
-              %, dass beide Vorgaben eingehalten werden.
+              <strong>
+                {pp(roundToDigits((data.prob_1 / 100) * data.prob_2, 4))} %
+              </strong>
+              , dass beide Vorgaben eingehalten werden.
             </p>
           </>
         )
@@ -407,9 +409,11 @@ export const exercise18: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            g) Das Unternehmen kontrolliert an einem Tag 10000 Rösti. Wie viele
-            Rösti werden vermutlich aussortiert, weil sie nicht den Vorgaben
-            entsprechen? Notiere deine Rechnung.
+            <p>
+              g) Das Unternehmen kontrolliert an einem Tag 10000 Rösti. Wie
+              viele Rösti werden vermutlich aussortiert, weil sie nicht den
+              Vorgaben entsprechen? Notiere deine Rechnung.
+            </p>
           </>
         )
       },
@@ -418,11 +422,19 @@ export const exercise18: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bei {pp(roundToDigits(p * 100, 2))} % der Röstis werden die
-              Vorgaben eingehalten. Die Anzahl beträgt:
+              <strong>Röstis, die den Vorgaben entsprechen</strong>
             </p>
             <p>
-              10000 · {pp(roundToDigits(p, 4))} = {pp(Math.round(p * 10000))}
+              Bei {pp(roundToDigits(p * 100, 2))} % der Röstis werden die
+              Vorgaben eingehalten. Der Anzahl unter allen Röstis ist damit:
+            </p>
+            {buildEquation([
+              ['W', '=', 'G · p'],
+              ['', '=', <>10000 · {pp(roundToDigits(p, 4))}</>],
+              ['', '=', <>{pp(Math.round(p * 10000))}</>],
+            ])}
+            <p>
+              <strong>Aussortierte Röstis</strong>
             </p>
             <p>Die aussortierten Röstis betragen demnach:</p>
             <p>
@@ -430,8 +442,9 @@ export const exercise18: Exercise<DATA> = {
               {10000 - Math.round(p * 10000)}
             </p>
             <p>
-              {10000 - Math.round(p * 10000)} Röstis werden erwartungsgemäß
-              aussortiert, weil sie den Vorgaben nicht entsprechen.
+              <strong>{10000 - Math.round(p * 10000)} Röstis</strong> werden
+              erwartungsgemäß aussortiert, weil sie den Vorgaben nicht
+              entsprechen.
             </p>
           </>
         )

@@ -274,6 +274,9 @@ export const exercise54: Exercise<DATA> = {
         return (
           <>
             <p>
+              <strong>Volumen des Kugelsegments</strong>
+            </p>
+            <p>
               Das Volumen der ganzen Kugel beträgt wie berechnet: V
               <sub>Kugel</sub> = {pp(roundToDigits(volume, 2))} cm³
             </p>
@@ -302,31 +305,55 @@ export const exercise54: Exercise<DATA> = {
               ],
               ['', '≈', <>{pp(roundToDigits(volume_s, 2))} cm³</>],
             ])}
+            <br></br>
+            <strong>Prozentualer Anteil</strong>
 
-            <p>Berechne den prozentualen Anteil:</p>
-            <p>
-              {buildFrac(
+            <p>Rechne mit der Formel für den Prozentsatz:</p>
+            {buildEquation([
+              ['p', '=', <>{buildFrac('W', 'G')}</>],
+              [
+                '',
+                '=',
                 <>
-                  V<sub>Segment</sub>
+                  {buildFrac(
+                    <>
+                      V<sub>Segment</sub>
+                    </>,
+                    <>
+                      V<sub>Kugel</sub>
+                    </>,
+                  )}
                 </>,
+              ],
+              [
+                '',
+                '=',
                 <>
-                  V<sub>Kugel</sub>
+                  {buildFrac(
+                    pp(roundToDigits(volume_s, 2)),
+                    pp(roundToDigits(volume, 2)),
+                  )}
                 </>,
-              )}{' '}
-              ={' '}
-              {buildFrac(
-                pp(roundToDigits(volume_s, 2)),
-                pp(roundToDigits(volume, 2)),
-              )}{' '}
-              ≈{' '}
-              {pp(
-                roundToDigits(
-                  100 * (roundToDigits(volume_s, 2) / roundToDigits(volume, 2)),
-                  2,
-                ),
-              )}{' '}
-              %
-            </p>
+              ],
+              [
+                '',
+                '≈',
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        100 *
+                          (roundToDigits(volume_s, 2) /
+                            roundToDigits(volume, 2)),
+                        2,
+                      ),
+                    )}{' '}
+                    %
+                  </strong>
+                </>,
+              ],
+            ])}
+
             <p>
               Das entspricht etwa {Math.round((volume_s / volume) * 100)} %.
             </p>

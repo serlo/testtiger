@@ -224,18 +224,18 @@ export const exercise53: Exercise<DATA> = {
         return (
           <>
             <p>
-              <strong>Tag 0:</strong> Die Fruchtfliegenpopulation startet mit 10
-              Fliegen. <br />
-              <br />
-              <strong>Wachstumsrate: </strong>Es wird angegeben, dass die
-              Population täglich um ca. {prozentanzeige}% wächst. <br /> <br />
-              <strong>Berechnung für Tag 1:</strong> Für den Übergang von Tag 0
-              zu Tag 1 ({prozentanzeige}% Zuwachs): <br />
-              <i>
-                Anzahl an Tag 1 = 10 · {pp(data.prozent)} = {day1}
-              </i>{' '}
-              <br />
-              Dies stimmt mit der Tabelle überein.
+              Die Fruchtfliegenpopulation startet mit dem Grundwert von 10
+              Fliegen und wächst auf den Wert von {day1} Fliegen.
+            </p>
+            <p>Mit der Formel für den Prozentsatz gilt:</p>
+            {buildEquation([
+              ['p', '=', <>{buildInlineFrac('W', 'G')}</>],
+              ['', '=', <>{buildInlineFrac(<>{day1}</>, 10)}</>],
+              ['', '=', pp(day1 / 10)],
+            ])}
+            <p>
+              Ein Faktor von {pp(day1 / 10)} entspricht einem Wachstum von{' '}
+              <strong>{prozentanzeige} %</strong>.
             </p>
           </>
         )

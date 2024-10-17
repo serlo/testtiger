@@ -2,6 +2,7 @@ import { Exercise } from '@/data/types'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
+import build from 'next/dist/build'
 
 interface DATA {
   liter: number
@@ -95,16 +96,30 @@ export const exercise46: Exercise<DATA> = {
           <>
             <p>
               Jede Person trinkt {data.liter} Liter Kaffee, davon {data.percent}{' '}
-              % aus Pappbechern. Berechne den Anteil:
+              % aus Pappbechern. Setze in die Formel für den Prozentwert ein:
             </p>
-            <p>
-              {data.liter} · {pp(data.percent / 100)} ={' '}
-              {pp((data.liter * data.percent) / 100)} Liter
-            </p>
+            {buildEquation([
+              ['W', '=', 'G · p'],
+              [
+                '',
+                '=',
+                <>
+                  {data.liter} · {pp(data.percent / 100)}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{pp((data.liter * data.percent) / 100)} Liter</strong>
+                </>,
+              ],
+            ])}
+
             <p>
               Jedes Jahr trinkt eine Person im Durchschnitt{' '}
-              {pp((data.liter * data.percent) / 100)} Liter Kaffee aus
-              Pappbechern.
+              <strong>{pp((data.liter * data.percent) / 100)} Liter </strong>
+              Kaffee aus Pappbechern.
             </p>
           </>
         )

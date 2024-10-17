@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -75,7 +76,7 @@ export const exercise15: Exercise<DATA> = {
 
               <text
                 x={60}
-                y={40}
+                y={20}
                 fontSize={20}
                 textAnchor="right"
                 stroke="black"
@@ -430,23 +431,42 @@ export const exercise15: Exercise<DATA> = {
         return (
           <>
             <p>
-              {data.umfrage} Männer aus der Umfrage entsprechen {data.maenner_1}{' '}
-              % der Grundgesamtheit.
+              {data.umfrage} Männer aus der Umfrage entsprechen laut dem
+              Diagramm {data.maenner_1} % der Grundgesamtheit.
             </p>
             <p>
-              Mit der Formel für den Prozentwert lässt sich diese Rechnung mit
-              dem Grundwert G schreiben als:
+              Mit der Formel für den Prozentwert lässt sich diese Rechnung
+              schreiben als:
             </p>
+            {buildEquation([
+              [<>W</>, '=', <>G · p</>],
+              [
+                <>{data.umfrage}</>,
+                '=',
+                <>G · {pp(data.maenner_1 / 100)}</>,
+                <>| : {pp(data.maenner_1 / 100)}</>,
+              ],
+              [
+                <>
+                  {data.umfrage} : {pp(data.maenner_1 / 100)}
+                </>,
+                '=',
+                'G',
+              ],
+              [
+                'G',
+                '=',
+                <>
+                  {pp(roundToDigits(data.umfrage / (data.maenner_1 / 100), 2))}
+                </>,
+              ],
+            ])}
+
             <p>
-              G · {pp(data.maenner_1 / 100)} = {data.umfrage}
-            </p>
-            <p>Stelle die Formel um und bestimme den Grundwert G.</p>
-            <p>
-              G = {data.umfrage} : {pp(data.maenner_1 / 100)} ={' '}
-              {pp(roundToDigits(data.umfrage / (data.maenner_1 / 100), 2))}
-            </p>
-            <p>
-              Es wurden etwa {Math.round(data.umfrage / (data.maenner_1 / 100))}{' '}
+              Es wurden etwa{' '}
+              <strong>
+                {Math.round(data.umfrage / (data.maenner_1 / 100))}
+              </strong>{' '}
               Männer befragt.
             </p>
           </>

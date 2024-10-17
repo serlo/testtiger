@@ -1,6 +1,7 @@
 /** change 12-09-24 Added Euro symbol in solution */
 import { Exercise } from '@/data/types'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -48,25 +49,48 @@ export const exercise5: Exercise<DATA> = {
   solution({ data }) {
     return (
       <>
-        <p>Wir berechnen zuerst den Rabatt mit der Formel des Prozentwerts:</p>
-        <p>W = G · p</p>
-
         <p>
-          Setze die gegebenen Werte in die Formel ein. Wandle dazu den
-          Prozentsatz in eine Dezimalzahl um: {data.rabatt} % ≙{' '}
+          <strong>Rabatt berechnen</strong>
+        </p>
+        <p>
+          Wir berechnen zuerst den Rabatt mit der Formel des Prozentwerts.
+          Wandle dazu den Prozentwert in eine Dezimalzahl um: {data.rabatt} % ≙{' '}
           {pp(data.rabatt / 100)}
         </p>
-        <p>
-          W = {data.preis} · {pp(data.rabatt / 100)}
-        </p>
+        {buildEquation([
+          ['W', '=', 'G · p'],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>Einsetzen der Werte</span>
+              </Color4>
+            </>,
+          ],
+          [
+            '',
+            '=',
+            <>
+              {data.preis} · {pp(data.rabatt / 100)}
+            </>,
+          ],
+          ['', '=', <>{pp((data.preis * data.rabatt) / 100)} €</>],
+        ])}
         <p>W = {pp((data.preis * data.rabatt) / 100)}</p>
-        <p>Der Rabatt beträgt {pp((data.preis * data.rabatt) / 100)} € </p>
+        <p>Der Rabatt beträgt {pp((data.preis * data.rabatt) / 100)} €.</p>
         <p>
-          <br></br>Damit beträgt der neue Verkaufspreis:
+          <strong>Verkaufspreis berechnen</strong>
         </p>
+        Abzüglich des Rabatts beträgt der neue Verkaufspreis:
         <p>
           {data.preis} € − {pp((data.preis * data.rabatt) / 100)} € ={' '}
-          {pp(data.preis - (data.preis * data.rabatt) / 100)} €
+          <strong>{pp(data.preis - (data.preis * data.rabatt) / 100)} €</strong>
         </p>
       </>
     )
