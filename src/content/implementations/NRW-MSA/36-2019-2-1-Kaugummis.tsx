@@ -39,7 +39,7 @@ export const exercise36: Exercise<DATA> = {
     return (
       <>
         <p>
-          Steffi hat zum Geburtstag einen Kaugummiautomten und eine Tüte mit
+          Steffi hat zum Geburtstag einen Kaugummiautomaten und eine Tüte mit
           Kaugummikugeln bekommen.
         </p>
       </>
@@ -110,7 +110,7 @@ export const exercise36: Exercise<DATA> = {
         const solution = roundToDigits(300 / (data.weight * V), 2)
         return (
           <>
-            <p>Eine Kugel hat das Volumen von etwa {pp(V)} cm³.</p>
+            <p>Eine Kugel hat ein Volumen von etwa {pp(V)} cm³.</p>
             <p>
               Damit hat sie ein Gewicht von:<br></br> {pp(V)} ·{' '}
               {pp(data.weight)} ≈ {pp(roundToDigits(data.weight * V, 2))} g{' '}
@@ -161,7 +161,7 @@ export const exercise36: Exercise<DATA> = {
               quaderförmigen Behälters berechnet.
             </p>
             <p>
-              Geteilt durch das Volumen einer Kugel hat sie versucht die Anzahl
+              Geteilt durch das Volumen einer Kugel hat sie versucht, die Anzahl
               der Kaugummis zu bestimmen, die in den Behälter passen.
             </p>
             <p>

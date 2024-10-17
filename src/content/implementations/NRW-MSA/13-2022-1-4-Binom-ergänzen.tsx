@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color3 } from '@/helper/colors'
+import { Color1, Color2, Color3, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,

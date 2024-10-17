@@ -119,7 +119,7 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <p>
               Bestimme die Mittelpunkte der oberen Kanten. Stich mit dem Zirkel
-              ein und zeichne jeweils einen Halbkreise mit dem Radius{' '}
+              ein und zeichne jeweils einen Halbkreis mit dem Radius{' '}
               {pp(data.kante / 2)} cm.
             </p>
             <svg viewBox="0 0 328 200" className="min-w-[328px]">

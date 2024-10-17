@@ -96,7 +96,11 @@ export const exercise192: Exercise<DATA> = {
           <>
             <p>Setze die Werte für x und y in die Funktionsgleichung ein:</p>
             <p>
-              f(x) = {pp(data.a)} x² + {pp(b)}
+              f(x) =
+              {ppPolynom([
+                [data.a, 'x', 2],
+                [b, 'x', 0],
+              ])}
             </p>
             <p>
               f({data.x}) = {pp(data.a)} · {data.x}² + {pp(b)}
@@ -313,7 +317,7 @@ export const exercise192: Exercise<DATA> = {
             </p>
             <p>
               Berechne mit dem Term (I) den Umfang des Rechtecks, das durch den
-              Punkt A<sub>2</sub>(1|{pp(b + data.a)}) festgelegt ist.
+              Punkt <br></br>A<sub>2</sub>(1|{pp(b + data.a)}) festgelegt ist.
             </p>
           </>
         )
@@ -502,17 +506,17 @@ export const exercise192: Exercise<DATA> = {
                   x<sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}
                 </p>
                 <p>
-                  <strong>Erklärung:</strong> Das bedeutet, dass für die Werte x
-                  <sub>1</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)}{' '}
-                  und x<sub>2</sub> ={' '}
-                  {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)} ein Rechteck
-                  mit dem Umfang {pp(zahl)} existiert.
+                  <strong>Erklärung:</strong> Die Lösung bedeutet, dass für die
+                  x-Werte x<sub>1</sub> ={' '}
+                  {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
+                  <sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}{' '}
+                  ein Rechteck mit dem Umfang {pp(zahl)} existiert.
                 </p>
               </>
             ) : (
               <p>
                 <strong>Erklärung:</strong> Die Gleichung besitzt keine
-                Lösungen, da der Wert unter der Wurzel negativ ist. Das
+                Lösungen, da der Wert unter der Wurzel negativ ist. <br></br>Das
                 bedeutet, dass es kein Rechteck mit dem Umfang {pp(zahl)} geben
                 kann.
               </p>

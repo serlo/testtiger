@@ -421,7 +421,7 @@ export const exercise15: Exercise<DATA> = {
               aktiv sind.
             </p>
             <p>
-              Berechne, wieviele Männer in dieser Altersgruppe befragt wurden.
+              Berechne, wie viele Männer in dieser Altersgruppe befragt wurden.
             </p>{' '}
           </>
         )

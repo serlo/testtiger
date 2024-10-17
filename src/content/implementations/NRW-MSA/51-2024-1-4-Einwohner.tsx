@@ -35,7 +35,7 @@ export const exercise51: Exercise<DATA> = {
       <>
         <p>
           In der Tabelle (Abbildung 2) sind die Einwohnerzahlen der fünf
-          bevölkerungsreichsten Städte Deutschlands angebildet (Stand: 2021, auf
+          bevölkerungsreichsten Städte Deutschlands abgebildet (Stand: 2021, auf
           Hunderttausend Einwohner gerundet).
         </p>
         <svg viewBox="0 0 328 35">
@@ -194,7 +194,7 @@ export const exercise51: Exercise<DATA> = {
               <>
                 <p>
                   Erläutere, wie sich der Durchschnitt verändert, wenn alle
-                  Städte Einhunderttausend Einwohner mehr hätten.
+                  Städte einhunderttausend Einwohner mehr hätten.
                 </p>
               </>
             )}
@@ -245,8 +245,8 @@ export const exercise51: Exercise<DATA> = {
                 <p>
                   Der Durchschnitt ist der Mittelwert aller Einwohnerzahlen.
                   Wenn die Einwohnerzahl in jeder Stadt im Mittel um
-                  Einhunderttausend Einwohner zunimmt, ist der Durchschnitt
-                  ebenso um Einhunderttausend größer.
+                  einhunderttausend Einwohner zunimmt, ist der Durchschnitt
+                  ebenso um einhunderttausend größer.
                 </p>
               </>
             )}

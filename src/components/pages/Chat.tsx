@@ -42,6 +42,7 @@ import { ImageMenu } from '../ui/ImageMenu'
 // web, see https://capacitorjs.com/docs/web/pwa-elements
 // pwaElementsLoader.ts
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
+import clsx from 'clsx'
 
 defineCustomElements(window)
 
@@ -376,7 +377,7 @@ export function Chat({ id }: ChatProps) {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <div className={color}>
+        <div className={clsx(color, 'select-text')}>
           <div className="flex flex-col items-start justify-start min-h-screen bg-gray-50 p-4 px-2 max-w-[360px] mx-auto">
             <p className="text-gray-400 text-xs mb-2 ml-2">
               Aufgabe {content.useCalculator ? 'mit' : 'ohne'} Taschenrechner -{' '}

@@ -113,7 +113,7 @@ export const exercise6: Exercise<DATA> = {
             <p>
               Dabei steht a für die Länge der Grundseite und h für die Höhe des
               Parallelogramms, die senkrecht auf a steht. Diese ist aber immer
-              kleiner, als die Seite b.
+              kleiner als die Seite b.
             </p>
             <p>
               h {'<'} {data.länge} cm{' '}

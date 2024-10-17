@@ -275,7 +275,7 @@ export const exercise39: Exercise<DATA> = {
             </svg>
             <p>
               Um den fehlenden Wert zu bestimmen kannst du die Anzahl der Würfel
-              bestimmen, die in jeder Figur hinzukommt:
+              bestimmen, die in jeder Figur hinzu kommt:
             </p>
             <ul>
               <li>

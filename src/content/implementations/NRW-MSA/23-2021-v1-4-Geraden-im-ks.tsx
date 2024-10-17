@@ -374,7 +374,7 @@ export const exercise23: Exercise<DATA> = {
               <strong>
                 y = {pp(data.m_b)}x + {pp(data.b_b)}
               </strong>{' '}
-              zu der Wertetabelle.
+              zur Wertetabelle.
             </p>
           </>
         )

@@ -216,7 +216,7 @@ export const exercise38: Exercise<DATA> = {
             </p>
             <p>
               {' '}
-              Die quadratische Terrasse hat damit eine Kantelänge von{' '}
+              Die quadratische Terrasse hat damit eine Kantenlänge von{' '}
               {pp(2 * r)}+ {pp(data.terra / 100)} ={' '}
               {pp(2 * r + data.terra / 100)} m
             </p>

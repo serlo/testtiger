@@ -45,9 +45,9 @@ export const exercise24: Exercise<DATA> = {
           <>
             <p>
               Am 1. Juli 2020 wurde in Deutschland befristet die Mehrwertsteuer
-              (= MwSt.) von 19% auf 16% gesenkt. Herr Meyer hat ein Geschäft für
-              Bekleidung und hat die Senkung der Mehrwertsteuer an seine Kunden
-              weitergegeben. Dafür hat er eine Excel-Tabelle angelegt:
+              (= MwSt.) von 19 % auf 16 % gesenkt. Herr Meyer hat ein Geschäft
+              für Bekleidung und hat die Senkung der Mehrwertsteuer an seine
+              Kunden weitergegeben. Dafür hat er eine Excel-Tabelle angelegt:
             </p>
             <div
               className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto "
@@ -95,10 +95,10 @@ export const exercise24: Exercise<DATA> = {
                       Preis ohne MwSt.
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      Preis mit 19% MwSt.
+                      Preis mit 19 % MwSt.
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      Preis mit 16% MwSt.
+                      Preis mit 16 % MwSt.
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
                       Ersparnis in €
