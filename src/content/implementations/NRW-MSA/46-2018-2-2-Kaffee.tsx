@@ -254,19 +254,37 @@ export const exercise46: Exercise<DATA> = {
         return (
           <>
             <p>Setze die Angaben in die Formel ein und berechne das Volumen:</p>
+            {buildEquation([
+              [
+                'V',
+                '=',
+                <>
+                  (r<sub>1</sub>
+                  <sup>2</sup> + r<sub>1</sub> · r<sub>2</sub> + r<sub>2</sub>
+                  <sup>2</sup>) · {buildInlineFrac('π · h', 3)}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  ({pp((data.dia - 1) / 2)}² + {pp((data.dia - 1) / 2)} ·{' '}
+                  {pp(data.dia / 2)} + {pp(data.dia / 2)}²) ·{' '}
+                  {buildInlineFrac('π · h', '3')}
+                </>,
+              ],
+              [
+                '',
+                '≈',
+                <>
+                  <strong>{pp(roundToDigits(data.Vstumpf, 2))} cm³</strong>
+                </>,
+              ],
+            ])}
 
             <p>
-              V = ({pp((data.dia - 1) / 2)}² + {pp((data.dia - 1) / 2)} ·
-              {pp(data.dia / 2)} + {pp(data.dia / 2)}²) ·{' '}
-              {buildInlineFrac('π · h', '3')}
-            </p>
-            <p>
-              V ≈ {pp(roundToDigits(data.Vstumpf, 2))}
-              cm³
-            </p>
-            <p>
-              Damit fasst der Becher ungefähr {roundToDigits(data.Vstumpf, -1)}{' '}
-              ml.
+              Ein cm³ entspricht einem ml. <br></br>Damit fasst der Becher
+              ungefähr {roundToDigits(data.Vstumpf, -1)} ml.
             </p>
           </>
         )

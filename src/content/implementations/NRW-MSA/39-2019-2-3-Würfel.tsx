@@ -330,7 +330,7 @@ export const exercise39: Exercise<DATA> = {
             ])}
             <p>
               Für Figur {data.random} benötigen sie{' '}
-              {data.random * (data.random + wert)} Würfel.
+              <strong>{data.random * (data.random + wert)} Würfel</strong>.
             </p>
           </>
         )
