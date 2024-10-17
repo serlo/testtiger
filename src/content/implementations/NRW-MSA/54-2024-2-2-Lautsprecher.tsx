@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -162,18 +163,45 @@ export const exercise54: Exercise<DATA> = {
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
         return (
           <>
-            <p>
-              Das Volumen einer Kugel wird mit der Formel<br></br>V ={' '}
-              {ppFrac(4 / 3)} · π · r³<br></br>berechnet. Setze ein und
-              berechne:
-            </p>
-            <p>
-              V = {ppFrac(4 / 3)} · π · {pp(data.dot / 2)}³ ≈{' '}
-              {pp(roundToDigits(volume, 2))}
-            </p>
+            <p>Verwende die Formel und berechne das Volumen der Kugel:</p>
+            {buildEquation([
+              ['V', '=', <>{ppFrac(4 / 3)} · π · r³</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Setze den Wert des{' '}
+                      <span className="text-gray-800">Radius</span> ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  {ppFrac(4 / 3)} · π · {pp(data.dot / 2)}³
+                </>,
+              ],
+              [
+                '',
+                '≈',
+                <>
+                  <strong>{pp(roundToDigits(volume, 2))}</strong>
+                </>,
+              ],
+            ])}
+
             <p>
               Damit entspricht das Volumen etwa <br></br>
-              {Math.round(volume)} cm³.
+              <strong>{Math.round(volume)} cm³</strong>.
             </p>
           </>
         )
@@ -246,19 +274,35 @@ export const exercise54: Exercise<DATA> = {
         return (
           <>
             <p>
-              Das Volumen der ganzen Kugel beträgt wie berechnet:<br></br>V
+              Das Volumen der ganzen Kugel beträgt wie berechnet: V
               <sub>Kugel</sub> = {pp(roundToDigits(volume, 2))} cm³
             </p>
             <p>Das Volumen des Kugelsegments beträgt:</p>
-            <p>
-              V<sub>Segment</sub> = π · ({pp(data.b)} cm)² ·{' '}
-              <span className="inline-block scale-y-[2.6]">(</span>
-              {pp(data.dot / 2)} cm − {buildInlineFrac(pp(data.b) + ' cm', 3)}
-              <span className="inline-block scale-y-[2.6]">)</span>
-            </p>
-            <p>
-              V<sub>Segment</sub> = {pp(roundToDigits(volume_s, 2))} cm³
-            </p>
+            {buildEquation([
+              [
+                <>
+                  V<sub>Segment</sub>
+                </>,
+                '=',
+                <>
+                  π · b² · <span className="inline-block scale-y-[2.6]">(</span>
+                  r − {buildFrac('b', 3)}
+                  <span className="inline-block scale-y-[2.6]">)</span>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  π · {pp(data.b)}² ·{' '}
+                  <span className="inline-block scale-y-[2.6]">(</span>
+                  {pp(data.dot / 2)} − {buildInlineFrac(pp(data.b), 3)}
+                  <span className="inline-block scale-y-[2.6]">)</span>
+                </>,
+              ],
+              ['', '≈', <>{pp(roundToDigits(volume_s, 2))} cm³</>],
+            ])}
+
             <p>Berechne den prozentualen Anteil:</p>
             <p>
               {buildFrac(

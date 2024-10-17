@@ -327,23 +327,58 @@ export const exercise192: Exercise<DATA> = {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
           <>
-            <p>Setze die x-Koordinate in den Term ein und fasse zusammen:</p>
-            <p>
-              U<sub>Rechteck </sub> = 2 · 2x + 2 · (
-              {ppPolynom([[data.a, 'x', 2]])} + {pp(b)}){' '}
-            </p>
-            <p>
-              U<sub>Rechteck </sub> = 2 · 2 · 1 + 2 · ({pp(data.a)} · 1
-              <sup>2</sup> + {pp(b)}){' '}
-            </p>
+            <p>Setze die x-Koordinate in den Term ein:</p>
+            {buildEquation([
+              [
+                <>
+                  {' '}
+                  U<sub>Rechteck </sub>
+                </>,
+                '=',
+                <>
+                  2 · 2x + 2 · ({ppPolynom([[data.a, 'x', 2]])} + {pp(b)})
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  2 · 2 · 1 + 2 · ({pp(data.a)} · 1<sup>2</sup> + {pp(b)})
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  4 + 2 · ({pp(data.a)} + {pp(b)})
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{pp(4 + 2 * (data.a + b))}</strong>
+                </>,
+              ],
+            ])}
 
             <p>
-              U<sub>Rechteck </sub> = 4 + 2 · ({pp(data.a)} + {pp(b)}){' '}
+              Der Umfang beträgt <strong>{pp(4 + 2 * (data.a + b))} cm</strong>.
             </p>
-            <p>
-              U<sub>Rechteck </sub> = {pp(4 + 2 * (data.a + b))}{' '}
-            </p>
-            <p>Der Umfang beträgt {pp(4 + 2 * (data.a + b))} cm.</p>
           </>
         )
       },

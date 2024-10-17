@@ -257,18 +257,49 @@ export const exercise9: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Setze den Wert in den Term ein und fasse zusammen:</p>
-            <p>
-              {buildInlineFrac(1, 2)} ​n² + {buildInlineFrac(1, 2)} ​n
-            </p>
-            <p>
-              = {buildInlineFrac(1, 2)} ⋅ {data.task_5}² +{' '}
-              {buildInlineFrac(1, 2)} ⋅ {data.task_5}
-            </p>
-            <p>
-              = {0.5 * data.task_5 * data.task_5} + {0.5 * data.task_5}
-            </p>
-            <p>= {0.5 * data.task_5 * data.task_5 + 0.5 * data.task_5}</p>
+            <p>Setze {data.task_5} für n in den Term ein:</p>
+            {buildEquation([
+              [
+                '',
+                <>
+                  {buildInlineFrac(1, 2)} ​n² + {buildInlineFrac(1, 2)} ​n
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {buildInlineFrac(1, 2)} ⋅ {data.task_5}² +{' '}
+                  {buildInlineFrac(1, 2)} ⋅ {data.task_5}
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {0.5 * data.task_5 * data.task_5} + {0.5 * data.task_5}
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  <strong>
+                    {0.5 * data.task_5 * data.task_5 + 0.5 * data.task_5}
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
