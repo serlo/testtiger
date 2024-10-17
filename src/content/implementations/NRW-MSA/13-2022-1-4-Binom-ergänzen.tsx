@@ -44,13 +44,13 @@ export const exercise13: Exercise<DATA> = {
     return (
       <>
         <p>
-          Verwende die 1. binomische Formel und vergleiche die Terme mit der
-          Aufgabe:
+          Verwende die 1. binomische Formel und vergleiche die Terme mit den
+          Termen in der Aufgabe:
         </p>
         {buildEquation([
           [
             <>
-              (<Color1>a</Color1>&nbsp; + &nbsp; b &nbsp; )²
+              ( <Color1>a</Color1>&nbsp; + &nbsp; b &nbsp; )²
             </>,
             '=',
             <>
@@ -90,9 +90,7 @@ export const exercise13: Exercise<DATA> = {
           {data.c == '' ? '' : 'y'} = {2 * data.a * data.b}x
           {data.c == '' ? '' : 'y'}
         </p>
-        <p>
-          <br></br>Setze die Terme in die Lücken ein:
-        </p>
+        <p>Setze die Terme in die Lücken ein:</p>
         <p>
           ({data.a}x +{' '}
           <strong>
