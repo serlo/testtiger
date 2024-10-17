@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
 import { getGcd } from '@/helper/get-gcd'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildFrac, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -76,43 +76,47 @@ export const exercise40: Exercise<DATA> = {
               Wandle {ppFrac([data.b, data.c])} und {ppFrac([data.d, data.e])}{' '}
               jeweils in eine Dezimalzahl um. Dazu kannst du einen Bruch
               beispielsweise als Division auffassen:
-              <br></br>
-              {ppFrac([data.d, data.e])} = {data.d} : {data.e} ≈ {pp(gerundet)}
-              <br></br>
               <p>
-                Oder verwenden, dass Brüche mit 10 oder 100 als Nenner direkt
-                als Dezimalzahlen übersetzt werden können:
+                {ppFrac([data.d, data.e])} = {data.d} : {data.e} ≈{' '}
+                {pp(gerundet)}
               </p>
-              {ppFrac([data.b, data.c])}{' '}
-              {data.c == 20 && (
-                <>
-                  = {buildInlineFrac(data.b + ' · 5', data.c + ' · 5')} ={' '}
-                  {ppFrac([data.b * 5, data.c * 5])}
-                </>
-              )}{' '}
-              = {pp(data.b / data.c)}
-              <br></br>
+              <p>
+                Oder verwende, dass ein Bruch mit 10 oder 100 als Nenner direkt
+                als Dezimalzahlen übersetzt werden kann:
+              </p>
+              <p>
+                {ppFrac([data.b, data.c])}{' '}
+                {data.c == 20 && (
+                  <>
+                    = {buildInlineFrac(data.b + ' · 5', data.c + ' · 5')} ={' '}
+                    {ppFrac([data.b * 5, data.c * 5])}
+                  </>
+                )}{' '}
+                = {pp(data.b / data.c)}
+              </p>
               <p>
                 Vergleiche die Dezimalzahlen miteinander. Ordne die
                 ursprünglichen Zahlen dann mit dem Operator {'"<"'}:
               </p>
-              <b>Antwort:</b>{' '}
-              {array[0] == data.d / data.e && ppFrac([data.d, data.e])}
-              {array[0] == data.a && data.a}
-              {array[0] == data.b / data.c && ppFrac([data.b, data.c])}
-              {array[0] == data.f && pp(data.f)} {' < '}{' '}
-              {array[1] == data.d / data.e && ppFrac([data.d, data.e])}
-              {array[1] == data.a && pp(array[1])}
-              {array[1] == data.b / data.c && ppFrac([data.b, data.c])}
-              {array[1] == data.f && pp(data.f)} {' < '}{' '}
-              {array[2] == data.d / data.e && ppFrac([data.d, data.e])}
-              {array[2] == data.a && pp(array[2])}
-              {array[2] == data.b / data.c && ppFrac([data.b, data.c])}
-              {array[2] == data.f && pp(data.f)} {' < '}{' '}
-              {array[3] == data.d / data.e && ppFrac([data.d, data.e])}
-              {array[3] == data.a && pp(array[3])}
-              {array[3] == data.b / data.c && ppFrac([data.b, data.c])}
-              {array[3] == data.f && pp(data.f)}
+              <strong>
+                {' '}
+                {array[0] == data.d / data.e && ppFrac([data.d, data.e])}
+                {array[0] == data.a && data.a}
+                {array[0] == data.b / data.c && ppFrac([data.b, data.c])}
+                {array[0] == data.f && pp(data.f)} {' < '}{' '}
+                {array[1] == data.d / data.e && ppFrac([data.d, data.e])}
+                {array[1] == data.a && pp(array[1])}
+                {array[1] == data.b / data.c && ppFrac([data.b, data.c])}
+                {array[1] == data.f && pp(data.f)} {' < '}{' '}
+                {array[2] == data.d / data.e && ppFrac([data.d, data.e])}
+                {array[2] == data.a && pp(array[2])}
+                {array[2] == data.b / data.c && ppFrac([data.b, data.c])}
+                {array[2] == data.f && pp(data.f)} {' < '}{' '}
+                {array[3] == data.d / data.e && ppFrac([data.d, data.e])}
+                {array[3] == data.a && pp(array[3])}
+                {array[3] == data.b / data.c && ppFrac([data.b, data.c])}
+                {array[3] == data.f && pp(data.f)}
+              </strong>
             </p>
           </>
         )
@@ -142,18 +146,38 @@ export const exercise40: Exercise<DATA> = {
               <br></br>
               {data.g}% = {ppFrac([data.g, 100])}
               <br></br>
-              Bringe die beiden Brüche jetzt auf einen gemeinsamen Nenner. Der
-              gemeinsame Nenner ist {hauptnenner}.<br></br>
-              <li>
-                {ppFrac([data.h, data.i])} ={' '}
-                {ppFrac([(data.h * hauptnenner) / data.i, hauptnenner])}
-              </li>
-              <li>
-                {ppFrac([data.g, 100])} ={' '}
-                {ppFrac([(data.g * hauptnenner) / 100, hauptnenner])}
-              </li>
-              <b>Antwort:</b> Damit hat Miriam{' '}
-              {data.g > data.h / data.i ? 'recht.' : 'nicht recht.'}
+              Bringe die beiden Brüche jetzt auf einen gemeinsamen Nenner. Ihr
+              Hauptnenner ist {hauptnenner}.<br></br>
+              <ul>
+                <li>
+                  {ppFrac([data.h, data.i])} ={' '}
+                  {buildInlineFrac(
+                    <>
+                      {data.h} · {hauptnenner / data.i}
+                    </>,
+                    <>
+                      {data.i} · {hauptnenner / data.i}
+                    </>,
+                  )}{' '}
+                  = {ppFrac([(data.h * hauptnenner) / data.i, hauptnenner])}
+                </li>
+                <li>
+                  {ppFrac([data.g, 100])} ={' '}
+                  {buildInlineFrac(
+                    <>
+                      {data.g} · {hauptnenner / 100}
+                    </>,
+                    <>
+                      {data.h} · {hauptnenner / 100}
+                    </>,
+                  )}{' '}
+                  = {ppFrac([(data.g * hauptnenner) / 100, hauptnenner])}
+                </li>
+              </ul>
+              <strong>
+                Damit hat Miriam{' '}
+                {data.g > data.h / data.i ? 'recht.' : 'nicht recht.'}
+              </strong>
             </p>
           </>
         )
