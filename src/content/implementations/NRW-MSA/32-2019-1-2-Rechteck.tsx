@@ -152,98 +152,89 @@ export const exercise32: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              Suche zwei Zahlenpaare, die miteinander multipliziert {data.r}{' '}
-              ergeben.
-            </p>
+            <p>Gesucht sind Zahlenpaare deren Produkt {data.r} ergibt.</p>
             {data.r == 6 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 1 cm und 6 cm </strong>
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 2 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 1 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 2 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 12 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 2 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 4 cm </strong>
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 2 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 4 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 18 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 2 cm und 9 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 3 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 2 cm und 9 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 24 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 4 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 8 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 4 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 8 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 30 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 5 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 10 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 5 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 10 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 36 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 6 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 9 cm und 4 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 6 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 9 cm und 4 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
           </>
