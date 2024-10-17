@@ -12,9 +12,9 @@ import { Focus } from './pages/Focus'
 import { Ready } from './pages/Ready'
 import { App } from './pages/App'
 import { Topic } from './pages/Topic'
-import { Chat } from './pages/Chat'
 import { navigationData } from '@/content/navigations'
 import { exercisesData } from '@/content/exercises'
+import { Chatv2 } from './pages/Chatv2'
 
 setupIonicReact({})
 
@@ -64,7 +64,7 @@ const AppShell = () => {
               <Route
                 path={`/exercise/${id}`}
                 key={id}
-                render={() => <Chat id={id} />}
+                render={() => <Chatv2 id={id} />}
               />
             ))}
         </IonRouterOutlet>

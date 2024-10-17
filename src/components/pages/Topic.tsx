@@ -9,7 +9,6 @@ import {
 } from '@ionic/react'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
-import { generateSeed } from '@/data/generate-seed'
 
 interface TopicProps {
   title: string
