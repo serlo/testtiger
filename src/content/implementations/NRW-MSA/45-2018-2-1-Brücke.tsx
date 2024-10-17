@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -82,31 +83,72 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <strong>Umrechnung der Geschwindigkeit</strong>
+
             <p>
-              Rechne die Geschwindigkeit in Kilometer pro Minute um, um das
-              Ergebnis in Minuten zu erhalten:
+              Rechne die Geschwindigkeit um in Kilometer pro Minute, um die Zeit
+              in Minuten zu berechnen.
             </p>
+
             <p>
               {pp(data.pace)}
               {buildInlineFrac('km', 'h')} : 60 {buildInlineFrac('min', 'h')}={' '}
               {pp(roundToDigits(data.pace / 60, 4))}
               {buildInlineFrac('km', 'min')}
             </p>
+            <strong>Zeit bis zum Bahnhof</strong>
             <p>
               Weg, Geschwindigkeit und Zeit hängen über dieses Gesetz zusammen:
             </p>
-            <p>Zeit = {buildFrac('Strecke', 'Geschwindigkeit')}</p>
-            <p>Setze ein und berechne die Zeit für den Fußweg:</p>
+            {buildEquation([
+              [<>Zeit</>, '=', <>{buildFrac('Strecke', 'Geschwindigkeit')}</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Einsetzen der Werte
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  {buildFrac(
+                    pp(data.weg) + ' km',
+                    <>
+                      {pp(roundToDigits(data.pace / 60, 4))}{' '}
+                      {buildInlineFrac('km', 'min')}
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                '',
+                <>{(data.weg / (data.pace / 60)) % 1 == 0 ? '=' : '≈'}</>,
+                <>
+                  <strong>
+                    {pp(Math.round(data.weg / (data.pace / 60)))} min
+                  </strong>
+                </>,
+              ],
+            ])}
+
             <p>
-              Zeit ={' '}
-              {buildFrac(pp(data.weg), pp(roundToDigits(data.pace / 60, 4)))} ={' '}
-              {pp(roundToDigits(data.weg / (data.pace / 60), 2))} ≈{' '}
-              {pp(Math.round(data.weg / (data.pace / 60)))}
-            </p>
-            <p>
-              Die Freunde brauchen etwa{' '}
-              {pp(Math.round(data.weg / (data.pace / 60)))} Minuten für den
-              Fußweg.
+              Die Freunde brauchen{' '}
+              {(data.weg / (data.pace / 60)) % 1 == 0 && 'etwa'}{' '}
+              <strong>
+                {pp(Math.round(data.weg / (data.pace / 60)))} Minuten
+              </strong>{' '}
+              für den Fußweg.
             </p>
           </>
         )
