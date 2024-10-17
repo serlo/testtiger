@@ -160,7 +160,7 @@ export const exercise55: Exercise<DATA> = {
           <>
             <p>
               Eine Rechnung wird hier nicht benötigt. Beide Terme beschreiben
-              den Flächeninhalt des rechtwinkligen Dreiecks:
+              den <strong>Flächeninhalt</strong> des rechtwinkligen Dreiecks:
             </p>
             <ul>
               <li>
@@ -174,7 +174,7 @@ export const exercise55: Exercise<DATA> = {
             </ul>
             <p>
               Da beide Terme den Flächeninhalt des gleichen Dreiecks
-              beschreiben, sind sie gleich und die Gleichung gilt.
+              beschreiben, gilt die Gleichung.
             </p>
           </>
         )

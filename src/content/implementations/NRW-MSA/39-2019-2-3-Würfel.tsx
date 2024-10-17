@@ -355,12 +355,13 @@ export const exercise39: Exercise<DATA> = {
             <ul>
               <li>
                 Jede Figur wird um eine weitere Reihe Würfel nach oben gebaut.
-                Die Anzahl aufeinanderliegender Reihen beträgt also n.
+                Die Anzahl aufeinanderliegender Reihen beträgt also{' '}
+                <strong>n</strong>.
               </li>
               <li>
-                (n + {data.startwert - 1}) beschreibt die Anzahl von Würfeln in
-                einer Reihe. Da in Figur 1 bereits mehrere Würfel vorhanden
-                sind, muss der Startwert angepasst werden.
+                <strong>(n + {data.startwert - 1})</strong> beschreibt die
+                Anzahl von Würfeln in einer Reihe. Da in Figur 1 bereits mehrere
+                Würfel vorhanden sind, muss der Startwert angepasst werden.
               </li>
             </ul>
             <p>
