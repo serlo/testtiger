@@ -356,13 +356,14 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Fläche der schwarzen Dreiecke wird zunehmend geringer und geht
-              gegen 0 cm².{' '}
+              Die Fläche der schwarzen Dreiecke wird in weniger Stufe um 25 %
+              geringer und geht damit gegen <strong>0 cm²</strong>.{' '}
             </p>
             <p>
               Die weißen Flächen entsprechen genau dem Gegenstück der schwarzen
               Flächen und nehmen den Rest des Dreiecks ein. Ihre Fläche geht
-              demnach gegen {pp(data.f0)} cm².
+              demnach gegen <br></br>
+              <strong>{pp(data.f0)} cm²</strong>.
             </p>
           </>
         )

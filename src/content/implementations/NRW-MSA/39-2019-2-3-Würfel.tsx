@@ -534,27 +534,35 @@ export const exercise39: Exercise<DATA> = {
         return (
           <>
             <p>
-              Setze einige Werte für n und bestimme die größtmögliche Anzahl der
-              Würfel unter 500:
+              Setze systematisch Werte für n ein und bestimme die größtmögliche
+              Anzahl der Würfel unter 500:
             </p>
             <ul>
               <li>
                 {anzahl} · ({anzahl} + {data.startwert - 1}) ={' '}
-                {anzahl * anzahl + anzahl * (data.startwert - 1)}{' '}
+                <strong>
+                  {anzahl * anzahl + anzahl * (data.startwert - 1)}
+                </strong>{' '}
               </li>
               <li>
                 {anzahl + 1} · ({anzahl + 1} + {data.startwert - 1}) ={' '}
-                {(anzahl + 1) * (anzahl + 1) +
-                  (anzahl + 1) * (data.startwert - 1)}
+                <strong>
+                  {(anzahl + 1) * (anzahl + 1) +
+                    (anzahl + 1) * (data.startwert - 1)}
+                </strong>
               </li>
             </ul>
             <p>
-              Die größtmögliche Figur ist Figur {anzahl}. Für den Bau von Figur{' '}
-              {anzahl + 1} fehlen{' '}
-              {(anzahl + 1) * (anzahl + 1) +
-                (anzahl + 1) * (data.startwert - 1) -
-                500}{' '}
-              Würfel.
+              Die größtmögliche Figur ist <strong>Figur {anzahl}</strong>. Für
+              den Bau von Figur {anzahl + 1} fehlen
+              <strong>
+                {' '}
+                {(anzahl + 1) * (anzahl + 1) +
+                  (anzahl + 1) * (data.startwert - 1) -
+                  500}{' '}
+                Würfel
+              </strong>
+              .
             </p>
           </>
         )
