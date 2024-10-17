@@ -53,7 +53,7 @@ export const exercise1: Exercise<DATA> = {
             </p>
             <p>
               {pp(data.a)} &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
-              &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.c / data.d)}
+              &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac([data.c, data.d])}
             </p>
           </>
         )
@@ -62,16 +62,31 @@ export const exercise1: Exercise<DATA> = {
         const array = [data.a, data.b, data.c / data.d].sort((a, b) => a - b)
         return (
           <>
-            <p>Wandle den Bruch zuerst in eine Dezimalzahl um:</p>
+            <p>
+              Wandle den Bruch zuerst in eine Dezimalzahl um, um ihn mit den
+              anderen Zahlen zu vergleichen:
+            </p>
 
             <p>
-              {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
+              {ppFrac([data.c, data.d])} = {pp(data.c / data.d)}
             </p>
 
             <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
             <p>
-              {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}
+              <strong>
+                {array[0] == data.c / data.d
+                  ? ppFrac([data.c, data.d])
+                  : pp(array[0])}{' '}
+                {' < '}{' '}
+                {array[1] == data.c / data.d
+                  ? ppFrac([data.c, data.d])
+                  : pp(array[1])}{' '}
+                {' < '}{' '}
+                {array[2] == data.c / data.d
+                  ? ppFrac([data.c, data.d])
+                  : pp(array[2])}
+              </strong>
             </p>
           </>
         )
