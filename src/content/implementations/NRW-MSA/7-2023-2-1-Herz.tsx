@@ -279,34 +279,34 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <p>
               Die Seitenlängen sind bereits gegeben, denn sie entsprechen dem
-              Radius der Halbkreise.
+              Radius r der Halbkreise.
             </p>
 
             <p>
-              Mit dem Satz des Pythagoras kannst du eine fehlende Seite im
-              rechtwinkligen Dreieck berechnen:
+              Mit dem Satz des Pythagoras kannst du die Länge der Hypotenuse
+              berechnen:
             </p>
-            <p>{buildOverline('M1M2')}² = r² + r²</p>
+
             {buildEquation([
+              [<>{buildOverline(<>M1M2</>)}²</>, '=', <>r² + r²</>],
               [
                 '',
                 '=',
                 pp(data.kante / 2) + '² + ' + pp(data.kante / 2) + '²',
                 '',
               ],
-              ['', '=', pp(m1m2), ''],
+              ['', '=', pp(m1m2), '| √'],
+              [
+                <>{buildOverline('M1M2')}</>,
+                '≈',
+                <>{pp(roundToDigits(Math.pow(m1m2, 0.5), 2))} [cm]</>,
+              ],
             ])}
-            <p>
-              Berechne die Streckenlänge von M1M2, indem du die Quadratwurzel
-              auf beiden Seiten anwendest:
-            </p>
-            <p>
-              {buildOverline('M1M2')} = {buildSqrt(pp(m1m2))} ={' '}
-              {pp(roundToDigits(Math.pow(m1m2, 0.5), 2))}
-            </p>
+
             <p>
               Die Strecke {buildOverline('M1M2')} ist{' '}
-              {pp(roundToDigits(Math.pow(m1m2, 0.5), 2))} cm lang.
+              <strong>{pp(roundToDigits(Math.pow(m1m2, 0.5), 2))} cm</strong>{' '}
+              lang.
             </p>
           </>
         )
@@ -326,12 +326,14 @@ export const exercise7: Exercise<DATA> = {
           <>
             <p>
               Die Breite b setzt sich aus verschiedenen Teilstrecken zusammen,
-              die bekannte Streckenlängen haben.
+              die bekannte Streckenlängen haben. r ist hierbei der Radius der
+              Halbkreise.
             </p>
-            <p>b = r + {buildOverline('M1M2')} + r</p>
+
             {buildEquation([
+              [<>b</>, '=', <>r + {buildOverline('M1M2')} + r</>],
               [
-                'b',
+                '',
                 '=',
                 pp(data.kante / 2) +
                   ' + ' +
@@ -351,7 +353,26 @@ export const exercise7: Exercise<DATA> = {
               [
                 '',
                 '=',
-                pp(
+                <>
+                  {pp(
+                    2 * (data.kante / 2) +
+                      roundToDigits(
+                        Math.pow(
+                          (data.kante / 2) * (data.kante / 2) +
+                            (data.kante / 2) * (data.kante / 2),
+                          0.5,
+                        ),
+                        2,
+                      ),
+                  )}{' '}
+                  [cm]
+                </>,
+              ],
+            ])}
+            <p>
+              Die Breite des Herzes beträgt{' '}
+              <strong>
+                {pp(
                   2 * (data.kante / 2) +
                     roundToDigits(
                       Math.pow(
@@ -361,23 +382,10 @@ export const exercise7: Exercise<DATA> = {
                       ),
                       2,
                     ),
-                ),
-              ],
-            ])}
-            <p>
-              Die Breite des Herzes beträgt{' '}
-              {pp(
-                2 * (data.kante / 2) +
-                  roundToDigits(
-                    Math.pow(
-                      (data.kante / 2) * (data.kante / 2) +
-                        (data.kante / 2) * (data.kante / 2),
-                      0.5,
-                    ),
-                    2,
-                  ),
-              )}{' '}
-              cm
+                )}{' '}
+                cm
+              </strong>
+              .
             </p>
           </>
         )

@@ -57,32 +57,65 @@ export const exercise32: Exercise<DATA> = {
               Verwende den Satz des Pythagoras. Zwei Seiten des Rechtecks bilden
               mit der Diagonale ein rechtwinkliges Dreieck. In diesem gilt:
             </p>
-            <p>a² + b² = d²</p>
+            {buildEquation([
+              [<>a² + b²</>, '=', <>d²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  {data.a}² + {pp(data.b)}²
+                </>,
+                '=',
+                <>d²</>,
+                <>| √</>,
+              ],
+              ['d', '=', <>{buildSqrt(data.a + '² + ' + data.b + '²')}</>],
+              [
+                '',
+                <>
+                  {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
+                    ? '='
+                    : '≈'}
+                </>,
+                <>
+                  {pp(
+                    roundToDigits(
+                      Math.sqrt(data.a * data.a + data.b * data.b),
+                      2,
+                    ),
+                  )}{' '}
+                  [cm]
+                </>,
+              ],
+            ])}
 
-            <p>Setze die gegebenen Seitenlängen ein:</p>
-            <p>
-              {data.a}² + {pp(data.b)}² = d²
-            </p>
-
-            <p>Ziehe die Quadratwurzel und bestimme d:</p>
-            <p>
-              d = {buildSqrt(data.a + '² + ' + data.b + '²')}{' '}
-              {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
-                ? '='
-                : '≈'}{' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.a * data.a + data.b * data.b), 2),
-              )}
-            </p>
             <p>
               Die Diagonale d ist{' '}
               {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
                 ? ''
                 : 'ungefähr'}{' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.a * data.a + data.b * data.b), 2),
-              )}{' '}
-              cm lang.
+              <strong>
+                {pp(
+                  roundToDigits(
+                    Math.sqrt(data.a * data.a + data.b * data.b),
+                    2,
+                  ),
+                )}{' '}
+                cm
+              </strong>{' '}
+              lang.
             </p>
           </>
         )
@@ -94,8 +127,10 @@ export const exercise32: Exercise<DATA> = {
         const text = ['verdoppelt', 'verdreifacht', 'vervierfacht', 'halbiert']
         return (
           <>
-            b) Wie verändert sich der Flächeninhalt dieses Rechtecks, wenn man
-            jede Seitenlänge {text[data.case]}? Begründe.
+            <p>
+              b) Wie verändert sich der Flächeninhalt dieses Rechtecks, wenn man
+              jede Seitenlänge {text[data.case]}? Begründe.
+            </p>
           </>
         )
       },

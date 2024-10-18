@@ -59,32 +59,79 @@ export const exercise11: Exercise<DATA> = {
               Im rechtwinkligen Dreieck sind zwei Seitenlängen gegeben. Verwende
               den Satz des Pythagoras:
             </p>
-            <p>a² + b² = c²</p>
+            {buildEquation([
+              [<>a² + b²</>, '=', <>c²</>, <>| − a²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Nach b umstellen</span>
+                  </Color4>
+                </>,
+              ],
+              [<>b²</>, '=', <>c² − a²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Einsetzen und rechnen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>b²</>,
+                '=',
+                <>
+                  {data.c}² − {pp(data.a)}²
+                </>,
+                <>| √</>,
+              ],
+              [
+                <>b</>,
+                '=',
+                <>{buildSqrt(data.c + '² − ' + pp(data.a) + '²')}</>,
+              ],
+              [
+                <>b</>,
+                '≈',
+                <>
+                  {pp(
+                    roundToDigits(
+                      Math.sqrt(data.c * data.c - data.a * data.a),
+                      2,
+                    ),
+                  )}{' '}
+                  [cm]
+                </>,
+              ],
+            ])}
 
-            <p>
-              Forme die Gleichung um, da die Seitenlänge von b berechnet wird:
-            </p>
-            <p>b² = c² − a²</p>
-
-            <p>Setze die gegebenen Seitenlängen ein:</p>
-            <p>
-              b² = {data.c}² − {pp(data.a)}²
-            </p>
-
-            <p>Ziehe die Quadratwurzel und bestimme b:</p>
-            <p>b = {buildSqrt(data.c + '² − ' + pp(data.a) + '²')}</p>
-            <p>
-              b ={' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.c * data.c - data.a * data.a), 2),
-              )}
-            </p>
             <p>
               Die Seite b ist ungefähr{' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.c * data.c - data.a * data.a), 2),
-              )}{' '}
-              cm lang.
+              <strong>
+                {pp(
+                  roundToDigits(
+                    Math.sqrt(data.c * data.c - data.a * data.a),
+                    2,
+                  ),
+                )}{' '}
+                cm
+              </strong>{' '}
+              lang.
             </p>
           </>
         )

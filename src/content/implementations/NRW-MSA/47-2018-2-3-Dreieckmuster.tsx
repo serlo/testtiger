@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 import { Fragment } from 'react'
@@ -72,9 +77,9 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bestätige durch eine Rechnung, dass der Flächeninhalt des Dreiecks
-              in Figur 0 <br></br>A<sub>0</sub> = {pp(data.f0)} cm² beträgt
-              (Abbildung 2).
+              a) Bestätige durch eine Rechnung, dass der Flächeninhalt des
+              Dreiecks in Figur 0 <br></br>A<sub>0</sub> = {pp(data.f0)} cm²
+              beträgt (Abbildung 2).
             </p>
             <svg viewBox="0 0 328 170">
               <image
@@ -100,19 +105,56 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
+              <strong>Höhe berechnen</strong>
+            </p>
+            <p>
               Verwende den Satz des Pythagoras im rechtwinkligen Dreieck, um die
-              Höhe h zu berechnen.{' '}
+              Höhe h zu berechnen. Es gilt:{' '}
             </p>
+            {buildEquation([
+              [
+                <>h² + {pp(data.seite / 2)}²</>,
+                '=',
+                <>{data.seite}²</>,
+                <>| − {pp(data.seite / 2)}²</>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Nach h umstellen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>h²</>,
+                '=',
+                <>
+                  {data.seite}² − {pp(data.seite / 2)}²
+                </>,
+                <>| √</>,
+              ],
+              [
+                <>h</>,
+                '=',
+                <>
+                  {buildSqrt(
+                    <>
+                      {data.seite}² − {pp(data.seite / 2)}²
+                    </>,
+                  )}
+                </>,
+              ],
+              [<>h</>, '≈', <>{pp(data.h)} [cm]</>],
+            ])}
             <p>
-              Es gilt: h² + {pp(data.seite / 2)}² = {data.seite}²
-            </p>
-            <p>Forme die Gleichung um und berechne h mit der Quadratwurzel.</p>
-            <p>
-              h ={' '}
-              {buildSqrt(
-                data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
-              )}{' '}
-              ≈ {pp(data.h)} cm
+              <strong>Flächeninhalt berechnen</strong>
             </p>
             <p>Um die Dreiecksfläche zu berechnen, verwende die Formel:</p>
             <p>A = {buildInlineFrac('g · h', 2)}</p>
@@ -120,7 +162,28 @@ export const exercise47: Exercise<DATA> = {
               Hierbei ist g die Grundlinie mit der Länge {data.seite} cm und h
               die Höhe. Setze ein und berechne:
             </p>
-            <p>A = {pp(data.f0)} cm²</p>
+            {buildEquation([
+              ['A', '=', <>{buildInlineFrac('g · h', 2)}</>],
+              [
+                '',
+                '=',
+                <>
+                  {buildInlineFrac(
+                    <>
+                      {data.seite} · {pp(data.h)}
+                    </>,
+                    2,
+                  )}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{pp(data.f0)} [cm²]</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },

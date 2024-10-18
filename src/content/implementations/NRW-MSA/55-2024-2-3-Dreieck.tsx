@@ -79,7 +79,7 @@ export const exercise55: Exercise<DATA> = {
             <p>a² + b² = c²</p>
             <p>
               Dabei muss c die Seitenlänge der Hypotenuse sein. <br></br>
-              <br></br>Ist diese Gleichung nicht erfüllt, kann das Dreieck nicht
+              <br></br>Ist diese Gleichung erfüllt, muss das Dreieck wiederum
               rechtwinklig sein. Überprüfe, indem du die Seitenlängen einsetzt:
             </p>
             {buildEquation([
@@ -90,9 +90,30 @@ export const exercise55: Exercise<DATA> = {
                 data.seiten[2] + '²',
               ],
               [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Ausrechnen und zusammenfassen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
                 data.seiten[0] * data.seiten[0] +
                   ' + ' +
                   data.seiten[1] * data.seiten[1],
+                '=',
+                data.seiten[2] * data.seiten[2],
+              ],
+              [
+                data.seiten[2] * data.seiten[2],
                 '=',
                 data.seiten[2] * data.seiten[2],
               ],
@@ -402,32 +423,61 @@ export const exercise55: Exercise<DATA> = {
               </li>
               <li>
                 In diesem Dreieck gilt mit dem Satz des Pythagoras:
-                <p>{data.seiten[2]}² = a² + b²</p>
-                <p>Da die Katheten gleich lang sind, gilt:</p>
-                <p>{data.seiten[2]}² = 2a²</p>
-                <p>Stelle die Gleichung um und berechne a:</p>
-                <p>
-                  a = {buildSqrt(pp((data.seiten[2] * data.seiten[2]) / 2))}
-                </p>
-                <p>
-                  a ={' '}
-                  {pp(
-                    roundToDigits(
-                      Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
-                      2,
-                    ),
-                  )}
-                </p>
-                <p>
-                  Die Katheten sind jeweils{' '}
+                {buildEquation([
+                  [<>{data.seiten[2]}²</>, '=', <>a² + b²</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          a und b sind gleich lang
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<>{data.seiten[2]}²</>, '=', <>2a²</>, <>| : 2</>],
+                  [
+                    <>{buildInlineFrac(<>{data.seiten[2]}²</>, 2)}</>,
+                    '=',
+                    <>a²</>,
+                    <>| √</>,
+                  ],
+                  [
+                    <>a</>,
+                    '=',
+                    <>{buildSqrt(pp((data.seiten[2] * data.seiten[2]) / 2))}</>,
+                  ],
+                  [
+                    <></>,
+                    '≈',
+                    <>
+                      {pp(
+                        roundToDigits(
+                          Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
+                          2,
+                        ),
+                      )}{' '}
+                      [cm]
+                    </>,
+                  ],
+                ])}{' '}
+                <br></br>Die Katheten sind jeweils{' '}
+                <strong>
                   {pp(
                     roundToDigits(
                       Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
                       2,
                     ),
                   )}{' '}
-                  cm lang.
-                </p>
+                  cm
+                </strong>{' '}
+                lang.
               </li>
             </ol>
           </>
