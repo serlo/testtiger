@@ -421,29 +421,72 @@ export const exercise45: Exercise<DATA> = {
               α und die Hypotenuse gegeben. Das Verhältnis dieser Seiten wird
               durch den Sinus beschrieben:
             </p>
-            <p>
-              sin(α) = {buildFrac('Gegenkathete', 'Hypotenuse')} ={' '}
-              {buildFrac('u', data.width + ' mm')}
-            </p>
-            <p>
-              Stelle die Gleichung um, um den Höhenunterschied u zu berechnen:
-            </p>
-            <p>
-              u = sin({data.alpha_max}°) · {data.width + ' mm'} ≈{' '}
-              {pp(
-                roundToDigits(
-                  Math.sin((data.alpha_max / 360) * 2 * Math.PI) * data.width,
-                  2,
-                ),
-              )}{' '}
-              mm
-            </p>
+            {buildEquation([
+              [
+                <>&nbsp;&nbsp;&nbsp;&nbsp;sin(α)</>,
+                '=',
+                <>{buildInlineFrac('Gegenkathete', 'Hypotenuse')}</>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Werte aus Abbildung 3 einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>sin({pp(data.alpha_max)}°)</>,
+                '=',
+                <>{buildInlineFrac('u', data.width + ' mm')}</>,
+                <>| · {data.width + ' mm'}</>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u
+                </>,
+                '=',
+                <>
+                  sin({pp(data.alpha_max)}°) · {data.width + ' mm'}
+                </>,
+              ],
+              [
+                <>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </>,
+                '=',
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        Math.sin((data.alpha_max / 360) * 2 * Math.PI) *
+                          data.width,
+                        2,
+                      ),
+                    )}{' '}
+                    mm
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
               Damit entspricht der Höhenunterschied etwa{' '}
               {Math.abs(ergebnis - data.max_mm) < 0.1
                 ? pp(data.max_mm)
                 : pp(ergebnis)}{' '}
-              cm. Max hat {!data.max && 'nicht'} recht.
+              cm. <strong>Max hat {!data.max && 'nicht'} recht.</strong>
             </p>
           </>
         )

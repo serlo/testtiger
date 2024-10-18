@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -51,8 +56,8 @@ export const exercise11: Exercise<DATA> = {
         return (
           <>
             <p>
-              In diesem rechtwinkligen Dreieck sind zwei Seitenlängen gegeben.
-              Verwende den Satz des Pythagoras:
+              Im rechtwinkligen Dreieck sind zwei Seitenlängen gegeben. Verwende
+              den Satz des Pythagoras:
             </p>
             <p>a² + b² = c²</p>
 
@@ -97,45 +102,88 @@ export const exercise11: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>In einem rechtwinkligen Dreieck gilt:</p>
-            <p>sin(α) = {buildInlineFrac('Gegenkathete', 'Hypotenuse')}</p>
+            <p>
+              Im rechtwinkligen Dreieck gilt mithilfe des Sinus die Gleichung:
+            </p>
 
-            <p>
-              Diese Seiten entsprechen im rechtwinkligen Dreieck oben den Seiten
-              a und c:
-            </p>
-            <p>sin(α) = {buildInlineFrac('a', 'c')}</p>
-            <p>Setze die Seitenlängen ein:</p>
-            <p>sin(α) = {buildInlineFrac(pp(data.a), data.c)}</p>
-            <p>
-              Verwende die Umkehrfunktion sin<sup>-1</sup>() und berechne α:
-            </p>
-            <p>
-              α = sin<sup>-1</sup>
-              <span className="inline-block  scale-y-[2.6]">(</span>
-              {buildInlineFrac(pp(data.a), data.c)}
-              <span className="inline-block  scale-y-[2.6]">)</span>
-            </p>
-            <p>
-              α ={' '}
-              {pp(
-                roundToDigits(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
-                  2,
-                ),
-              )}
-              °
-            </p>
-            <p>
-              Der Winkel α ist ungefähr{' '}
-              {pp(
-                roundToDigits(
-                  (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
-                  2,
-                ),
-              )}
-              ° groß.
-            </p>
+            {buildEquation([
+              [
+                'sin(α)',
+                '=',
+                <>{buildInlineFrac('Gegenkathete', 'Hypotenuse')}</>,
+              ],
+
+              ['sin(α)', '=', <>{buildInlineFrac('a', 'c')}</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                'sin(α)',
+                '=',
+                <>{buildInlineFrac(pp(data.a), data.c)}</>,
+                <>
+                  | sin<sup>-1</sup>()
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Mit sin<sup>-1</sup> nach α lösen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                'α',
+                '=',
+                <>
+                  <>
+                    sin<sup>-1</sup>{' '}
+                    <span className="inline-block scale-y-[2.6]">(</span>
+                    {buildInlineFrac(pp(data.a), data.c)}
+                    <span className="inline-block scale-y-[2.6]">)</span>
+                  </>
+                </>,
+              ],
+              [
+                <>
+                  <strong>α</strong>
+                </>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (Math.asin(data.a / data.c) / (2 * Math.PI)) * 360,
+                        2,
+                      ),
+                    )}
+                    °
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },

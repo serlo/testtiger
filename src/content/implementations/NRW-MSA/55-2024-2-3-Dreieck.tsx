@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -270,57 +271,89 @@ export const exercise55: Exercise<DATA> = {
         return (
           <>
             <p>
-              In einem rechtwinkligen Dreieck gilt mithilfe der Winkelfunktionen
-              bspw. folgende Gleichung:
-            </p>
-            <p>sin(α) = {buildFrac('Gegenkathete', 'Hypotenuse')}</p>
-            <p>
-              Setze die Seitenlängen ein und verwende die Umkehrfunktion sin
-              <sup>-1</sup>, um die Größe von α zu bestimmen.
+              Im rechtwinkligen Dreieck gilt mithilfe des Sinus folgende
+              Gleichung:
             </p>
             {buildEquation([
-              ['sin(α)', '=', buildFrac('Gegenkathete', 'Hypotenuse')],
-              ['sin(α)', '=', buildFrac('a', 'c')],
               [
                 'sin(α)',
                 '=',
-                buildFrac(data.seiten[0], data.seiten[2]),
+                <>{buildInlineFrac('Gegenkathete', 'Hypotenuse')}</>,
+              ],
+
+              ['sin(α)', '=', <>{buildInlineFrac('a', 'c')}</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                'sin(α)',
+                '=',
+                <>{buildInlineFrac(data.seiten[0], data.seiten[2])}</>,
                 <>
                   | sin<sup>-1</sup>()
                 </>,
               ],
               [
-                'α',
-                '=',
+                '',
                 <>
-                  sin<sup>-1</sup>{' '}
-                  <span className="inline-block scale-y-[2.6]">(</span>
-                  {buildFrac(data.seiten[0], data.seiten[2])}
-                  <span className="inline-block scale-y-[2.6]">)</span>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Mit sin<sup>-1</sup> nach α lösen
+                    </span>
+                  </Color4>
                 </>,
               ],
               [
                 'α',
-                '≈',
-                pp(
-                  roundToDigits(
-                    (Math.asin(data.seiten[0] / data.seiten[2]) /
-                      (2 * Math.PI)) *
-                      360,
-                    2,
-                  ),
-                ),
+                '=',
+                <>
+                  <>
+                    sin<sup>-1</sup>{' '}
+                    <span className="inline-block scale-y-[2.6]">(</span>
+                    {buildInlineFrac(data.seiten[0], data.seiten[2])}
+                    <span className="inline-block scale-y-[2.6]">)</span>
+                  </>
+                </>,
               ],
-            ])}{' '}
-            <br></br>Die Größe des Winkels α beträgt{' '}
-            {pp(
-              roundToDigits(
-                (Math.asin(data.seiten[0] / data.seiten[2]) / (2 * Math.PI)) *
-                  360,
-                2,
-              ),
-            )}
-            °.
+              [
+                <>
+                  <strong>α</strong>
+                </>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (Math.asin(data.seiten[0] / data.seiten[2]) /
+                          (2 * Math.PI)) *
+                          360,
+                        2,
+                      ),
+                    )}
+                    °
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
