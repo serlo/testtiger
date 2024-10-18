@@ -284,24 +284,23 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Der Anteil an der Gesamtfläche beginnt mit 1 (100 %) und beträgt
-              in der darauffolgenden Stufe immer {buildInlineFrac(3, 4)} vom
-              vorherigen Wert, so wie die Fläche der schwarzen Dreiecke.
+              Der Anteil der Gesamtfläche beträgt in der darauffolgenden Stufe
+              immer {buildInlineFrac(3, 4)} vom vorherigen Wert, so wie die
+              Fläche der schwarzen Dreiecke.
             </p>
-            <p>
-              Der fehlende Wert ist:{' '}
-              {calculateValue3(
-                [0, 1, 2, 3, 4, 5, 6].find(
-                  value => !data.show.includes(value),
-                )! - 1,
-              )}{' '}
-              · {buildInlineFrac(3, 4)} ={' '}
+            <p>Der fehlende Wert ist:</p>{' '}
+            {calculateValue3(
+              [0, 1, 2, 3, 4, 5, 6].find(value => !data.show.includes(value))! -
+                1,
+            )}{' '}
+            · {buildInlineFrac(3, 4)} ={' '}
+            <strong>
               {calculateValue3(
                 [0, 1, 2, 3, 4, 5, 6].find(
                   value => !data.show.includes(value),
                 )!,
               )}
-            </p>
+            </strong>
           </>
         )
       },
