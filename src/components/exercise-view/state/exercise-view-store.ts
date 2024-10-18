@@ -26,12 +26,12 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
 })
 
 export function setupExercise(id: number) {
+  const content = exercisesData[id]
   ExerciseViewStore.update(s => {
     s.id = id
     s.seed = generateSeed()
-    s.data = generateData(id, s.seed, exercisesData[id], true) as object
-    s.navIndicatorLength =
-      'tasks' in exercisesData[id] ? exercisesData[id].tasks.length : 0
+    s.data = generateData(id, s.seed, content, true) as object
+    s.navIndicatorLength = 'tasks' in content ? content.tasks.length : 0
     s.navIndicatorPosition = 0
     s.navIndicatorExternalUpdate = 0
   })
