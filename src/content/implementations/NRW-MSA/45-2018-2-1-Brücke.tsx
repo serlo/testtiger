@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color2, Color3, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -233,12 +233,14 @@ export const exercise45: Exercise<DATA> = {
         return (
           <>
             <p>
-              Auf der Teilstrecke{' '}
-              {züge[0] == (data.x_1 - 84) / (144 - 102) && '1'}
-              {züge[0] == (data.x_2 - data.x_1) / (102 - 85) && '2'}
-              {züge[0] == (data.x_3 - data.x_2) / (85 - 54) && '3'}
-              {züge[0] == (304 - data.x_3) / (54 - 25) && '4'} fährt der Zug mit
-              der höchsten Geschwindigkeit.
+              Auf der{' '}
+              <strong>
+                Teilstrecke {züge[0] == (data.x_1 - 84) / (144 - 102) && '1'}
+                {züge[0] == (data.x_2 - data.x_1) / (102 - 85) && '2'}
+                {züge[0] == (data.x_3 - data.x_2) / (85 - 54) && '3'}
+                {züge[0] == (304 - data.x_3) / (54 - 25) && '4'}
+              </strong>{' '}
+              fährt der Zug mit der höchsten Geschwindigkeit.
             </p>
             <p>
               Dort verläuft die Gerade am steilsten, was bedeutet, dass die
@@ -345,16 +347,18 @@ export const exercise45: Exercise<DATA> = {
               />
             </svg>
             <p>
-              Die orange Gerade stellt die Fahrt des Güterzugs dar. Hierbei ist
-              wichtig, dass die Gerade fällt, da der Güterzug entgegengesetzt
-              fährt.
+              Die <Color3>orange Gerade</Color3> stellt die Fahrt des Güterzugs
+              dar. Hierbei ist wichtig, dass die Gerade fällt, da der Güterzug
+              in die entgegengesetzte Richtung fährt.
             </p>
             <p>
               Die Züge begegnen sich in
-              {(62 * ((187.5 * 60 * 15.8) / (data.pace_2 * 15))) / 121 >
-              data.x_2 - 134
-                ? ' Streckenabschnitt 3. '
-                : ' Streckenabschnitt 2. '}
+              <strong>
+                {(62 * ((187.5 * 60 * 15.8) / (data.pace_2 * 15))) / 121 >
+                data.x_2 - 134
+                  ? ' Streckenabschnitt 3. '
+                  : ' Streckenabschnitt 2. '}
+              </strong>
               Bestimme den Schnittpunkt der Geraden und lies die Uhrzeit am
               Koordinatensystem ab.{' '}
             </p>
