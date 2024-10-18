@@ -15,6 +15,7 @@ import { Topic } from './pages/Topic'
 import { navigationData } from '@/content/navigations'
 import { exercisesData } from '@/content/exercises'
 import { Chatv2 } from './pages/Chatv2'
+import { ExerciseView } from './exercise-view/ExerciseView'
 
 setupIonicReact({})
 
@@ -64,7 +65,7 @@ const AppShell = () => {
               <Route
                 path={`/exercise/${id}`}
                 key={id}
-                render={() => <Chatv2 id={id} />}
+                render={() => <ExerciseView id={id} />}
               />
             ))}
         </IonRouterOutlet>

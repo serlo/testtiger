@@ -7,12 +7,19 @@ import { countLetter } from '@/helper/count-letter'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { faMagicWandSparkles } from '@fortawesome/free-solid-svg-icons'
-import { IonContent, IonFooter, IonIcon, IonPage } from '@ionic/react'
+import {
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonPage,
+} from '@ionic/react'
 import { sendOutline } from 'ionicons/icons'
 import { Fragment, useMemo, useState } from 'react'
 import { useHistory } from 'react-router'
 import TextareaAutosize from 'react-textarea-autosize'
 import { FaIcon } from '../ui/FaIcon'
+import clsx from 'clsx'
 
 interface Chatv2Props {
   id: number
@@ -39,7 +46,7 @@ export function Chatv2({ id }: Chatv2Props) {
   return (
     <>
       <IonPage className="max-w-[375px] mx-auto">
-        <IonContent fullscreen className="bg-gray-50">
+        <IonHeader>
           <div
             className="my-4 mx-2 text-sm overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
             onClick={() => {
@@ -48,77 +55,84 @@ export function Chatv2({ id }: Chatv2Props) {
           >
             ← {content.source}: {content.title}
           </div>
-          <div className="flex overflow-x-scroll snap-x snap-mandatory gap-1 pb-6 items-stretch w-full">
-            <div className="flex-shrink-0 w-[20%] snap-none"></div>
-            {withSubtasks &&
-              content.tasks.map((t, i) => (
-                <div
-                  className="w-[calc(100%-16px)] flex-shrink-0 bg-white snap-always snap-center border border-black rounded-xl h-[70vh] overflow-y-auto"
-                  key={i}
-                >
-                  <div className="flex flex-col justify-end min-h-[69vh]">
-                    <div className="p-[3px]">
-                      {i == 0 &&
-                        proseWrapper(
-                          content.intro({
-                            data,
-                          }),
-                        )}
+        </IonHeader>
+        <IonContent className="">
+          <div
+            className={clsx(
+              'flex overflow-x-scroll snap-x snap-mandatory gap-1 items-stretch w-full h-full overflow-visible',
+              !withSubtasks && 'justify-center',
+            )}
+          >
+            {withSubtasks && (
+              <div className="flex-shrink-0 w-[20%] snap-none"></div>
+            )}
+            {(withSubtasks ? content.tasks : [content]).map((t, i) => (
+              <div
+                className="w-[calc(100%-16px)] flex-shrink-0 bg-white snap-always snap-center overflow-y-auto h-full"
+                key={i}
+              >
+                <div className="flex flex-col justify-start pt-2 border border-black rounded-xl shadow-lg min-h-[calc(100%-24px)] mb-4 mt-2">
+                  <div className="flex justify-between p-[3px]">
+                    <div>
+                      Aufgabe{withSubtasks && <> {countLetter('a', i) + ')'}</>}{' '}
+                      <button
+                        onClick={() => {
+                          setSeed(seed => {
+                            const currentData = generateData(id, seed, content)
+                            const newSeed = constrainedGeneration(
+                              () => generateSeed(),
+                              seed => {
+                                const newData = generateData(id, seed, content)
+                                return !isDeepEqual(currentData, newData)
+                              },
+                            )
+                            return newSeed
+                          })
+                        }}
+                      >
+                        <FaIcon icon={faMagicWandSparkles} />
+                      </button>
                     </div>
-                    <div className="flex justify-between p-[3px]">
-                      <div>
-                        Aufgabe {countLetter('a', i) + ')'}{' '}
-                        <button
-                          onClick={() => {
-                            setSeed(seed => {
-                              const currentData = generateData(
-                                id,
-                                seed,
-                                content,
-                              )
-                              const newSeed = constrainedGeneration(
-                                () => generateSeed(),
-                                seed => {
-                                  const newData = generateData(
-                                    id,
-                                    seed,
-                                    content,
-                                  )
-                                  return !isDeepEqual(currentData, newData)
-                                },
-                              )
-                              return newSeed
-                            })
-                          }}
-                        >
-                          <FaIcon icon={faMagicWandSparkles} />
-                        </button>
-                      </div>
-                      <div>{t.points} BE</div>
-                    </div>
-                    <div className="p-[3px] bg-gray-300 rounded">
-                      {proseWrapper(t.task({ data }))}
-                    </div>
-                    <div className="text-center py-3">
-                      {content.tasks.map((_, j) => {
-                        return (
-                          <Fragment key={j}>
-                            {i == j ? (
-                              <span className="bg-black inline-block w-12 h-3 mx-1 rounded-full"></span>
-                            ) : (
-                              <span className="border-black border inline-block w-3 h-3 mx-2 rounded-full"></span>
-                            )}
-                          </Fragment>
-                        )
-                      })}
-                    </div>
+                    <div>{t.points} BE</div>
+                  </div>
+                  <div className="p-[3px]">
+                    {i == 0 &&
+                      withSubtasks &&
+                      proseWrapper(
+                        content.intro({
+                          data,
+                        }),
+                      )}
+                  </div>
+                  <div className="p-[3px] bg-gray-300 rounded-xl mt-3">
+                    {proseWrapper(t.task({ data }))}
                   </div>
                 </div>
-              ))}
-            <div className="flex-shrink-0 w-[5%] snap-none"></div>
+              </div>
+            ))}
+            {withSubtasks && (
+              <div className="flex-shrink-0 w-[5%] snap-none"></div>
+            )}
           </div>
         </IonContent>
-        <IonFooter class="bg-white pt-5 rounded-tl-2xl rounded-tr-2xl shadow-lg shadow-black whitespace-nowrap">
+        <IonFooter class="bg-white pt-5 rounded-tl-2xl rounded-tr-2xl shadow-lg whitespace-nowrap relative">
+          {withSubtasks && (
+            <div className="text-center py-3 absolute -top-6 pointer-events-none left-0 right-0 flex justify-center">
+              <div className="bg-white pointer-events-auto rounded-full">
+                {content.tasks.map((_, j) => {
+                  return (
+                    <Fragment key={j}>
+                      {0 == j ? (
+                        <span className="bg-black inline-block w-12 h-3 mx-1 rounded-full"></span>
+                      ) : (
+                        <span className="border-black border inline-block w-3 h-3 mx-2 rounded-full"></span>
+                      )}
+                    </Fragment>
+                  )
+                })}
+              </div>
+            </div>
+          )}
           <div className="overflow-x-scroll flex gap-2 px-3 py-2">
             <button className="bg-gray-300 px-2 py-0.5 rounded">Fokus</button>
             <button className="bg-gray-300 px-2 py-0.5 rounded">Lösung</button>

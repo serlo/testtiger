@@ -9,6 +9,10 @@ import {
 } from '@ionic/react'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
+import {
+  ExerciseViewStore,
+  setupExercise,
+} from '../exercise-view/state/exercise-view-store'
 
 interface TopicProps {
   title: string
@@ -41,6 +45,7 @@ export function Topic({ title, color, exercises }: TopicProps) {
                   key={i}
                   className="m-2 border p-3 hover:bg-gray-200 block rounded-lg"
                   onClick={() => {
+                    setupExercise(ex)
                     history.push('/exercise/' + ex)
                   }}
                 >

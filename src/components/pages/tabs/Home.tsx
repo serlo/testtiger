@@ -6,6 +6,7 @@ import { navigationData } from '@/content/navigations'
 import { useEffect } from 'react'
 import { setName } from '../../../../store/actions'
 import { exercisesData } from '@/content/exercises'
+import { setupExercise } from '@/components/exercise-view/state/exercise-view-store'
 
 export function Home() {
   const name = Store.useState(s => s.name)
@@ -66,6 +67,7 @@ export function Home() {
                   key={id}
                   className="my-3 cursor-pointer hover:bg-gray-100 rounded-lg p-1"
                   onClick={() => {
+                    setupExercise(parseInt(id))
                     history.push('/exercise/' + id)
                   }}
                 >
