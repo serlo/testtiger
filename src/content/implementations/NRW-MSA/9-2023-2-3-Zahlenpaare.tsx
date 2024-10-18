@@ -421,7 +421,8 @@ export const exercise9: Exercise<DATA> = {
               [
                 '',
                 <>
-                  <Color1>{buildInlineFrac(1, 2)}​</Color1>(n − 1) ⋅ n + n
+                  <Color1>{buildInlineFrac(1, 2)}​</Color1>(n − 1) ⋅{' '}
+                  <Color2>n</Color2> + n
                 </>,
               ],
               [
@@ -430,18 +431,11 @@ export const exercise9: Exercise<DATA> = {
                   <span className="inline-block  scale-y-[2.6]">(</span>
                   <Color1>{buildInlineFrac(1, 2)}</Color1>n −{' '}
                   <Color1>{buildInlineFrac(1, 2)}</Color1>
-                  <span className="inline-block  scale-y-[2.6]">)</span> ⋅ n + n
-                </>,
-              ],
-              [
-                '=',
-                <>
-                  <span className="inline-block  scale-y-[2.6]">(</span>
-                  {buildInlineFrac(1, 2)}n − {buildInlineFrac(1, 2)}
                   <span className="inline-block  scale-y-[2.6]">)</span> ⋅{' '}
                   <Color2>n</Color2> + n
                 </>,
               ],
+
               [
                 '=',
                 <>
