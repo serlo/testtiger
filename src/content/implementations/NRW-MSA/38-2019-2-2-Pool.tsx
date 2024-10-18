@@ -350,9 +350,10 @@ export const exercise38: Exercise<DATA> = {
           <>
             <p>
               Wenn die Fläche des Schwimmbeckens vollständig mit Algen bewachsen
-              ist, stoppt das Wachstum. <br></br>Die Funktion kann das Wachstum
-              also nur bis zu dem Zeitpunkt beschreiben, bis der Funktionswert{' '}
-              {pp(data.surface)} m² erreicht wird.
+              ist, stoppt das Wachstum. <br></br>
+              <br></br>Die Funktion kann das Wachstum also nur bis zu dem
+              Zeitpunkt beschreiben, bis der Funktionswert {pp(data.surface)} m²
+              erreicht wird.
             </p>
           </>
         )

@@ -214,8 +214,10 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>
-              Wähle zwei Punkte und überprüfe ob die Zunahme der Sprungdauer
-              linear ist:
+              Ein linearer Zusammenhang bedeutet, dass die Sprungdauer
+              gleichmäßig mit der Sprunghöhe steigt.<br></br>
+              <br></br> Wähle zwei Punkte und überprüfe ob die Zunahme der
+              Sprungdauer gleichmäßig ist:
             </p>
             <ul>
               <li>
@@ -228,15 +230,18 @@ export const exercise29: Exercise<DATA> = {
               </li>
             </ul>
             <p>
-              Zwischen 0 und 5 Metern nimmt die Sprungdauer um{' '}
-              {pp(getDuration(5))} Sekunden zu.
+              Bei einer Höhe von 5 Metern beträgt die Sprungdauer{' '}
+              <strong>{pp(getDuration(5))} Sekunden</strong> zu.
             </p>
             <p>
-              Zwischen 5 und 10 Metern nimmt die Sprungdauer um{' '}
+              Geht man auf eine Höhe von 10 Metern, nimmt die Sprungdauer um{' '}
               {pp(getDuration(10))} − {pp(getDuration(5))} ={' '}
-              {pp(getDuration(10) - getDuration(5))} Sekunden zu.
+              <strong>{pp(getDuration(10) - getDuration(5))} Sekunden</strong>{' '}
+              zu, anstatt um weitere {pp(getDuration(5))} Sekunden.
             </p>
-            <p>Damit ist der Zusammenhang nicht linear.</p>
+            <p>
+              Damit ist der Zusammenhang <strong>nicht linear</strong>.
+            </p>
           </>
         )
       },
