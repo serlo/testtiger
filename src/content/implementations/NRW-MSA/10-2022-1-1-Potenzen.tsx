@@ -63,7 +63,7 @@ export const exercise10: Exercise<DATA> = {
             </p>
             <p>
               Damit ist die Aussage{' '}
-              {data.potenz_1 > data.potenz_2 ? 'richtig.' : 'falsch.'}
+              <b>{data.potenz_1 > data.potenz_2 ? 'richtig.' : 'falsch.'}</b>
             </p>
           </>
         )
@@ -103,7 +103,7 @@ export const exercise10: Exercise<DATA> = {
             </ul>{' '}
             <p>
               In diesem Fall ist die Aussage{' '}
-              {data.exponent % 2 == 1 ? 'richtig.' : 'falsch.'}
+              <b>{data.exponent % 2 == 1 ? 'richtig.' : 'falsch.'}</b>
             </p>
           </>
         )
@@ -166,9 +166,11 @@ export const exercise10: Exercise<DATA> = {
             </p>
             <p>
               Damit ist die Aussage{' '}
-              {data.bool == true && (data.case == 1 || data.case == 3)
-                ? 'richtig.'
-                : 'falsch.'}
+              <b>
+                {data.bool == true && (data.case == 1 || data.case == 3)
+                  ? 'richtig.'
+                  : 'falsch.'}
+              </b>
             </p>
           </>
         )
