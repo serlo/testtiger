@@ -95,26 +95,26 @@ export const exercise26: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  <b>
-                    {roundToDigits(
-                      data.length * data.outerWidth * data.outerHeight,
-                      2,
-                    )}{' '}
-                    [m³]
-                  </b>
+                  {roundToDigits(
+                    data.length * data.outerWidth * data.outerHeight,
+                    2,
+                  )}{' '}
+                  [m³]
                 </>,
               ],
             ])}
             <p>
               {' '}
               Das Volumen des quaderförmigen Laderaums beträgt{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth * data.outerHeight,
-                  2,
-                ),
-              )}{' '}
-              m³
+              <b>
+                {pp(
+                  roundToDigits(
+                    data.length * data.outerWidth * data.outerHeight,
+                    2,
+                  ),
+                )}{' '}
+                m³
+              </b>
             </p>
           </>
         )
