@@ -119,8 +119,8 @@ export const exercise36: Exercise<DATA> = {
               {' '}
               In einer 300 g - Packung sind demnach:<br></br> 300 :{' '}
               {pp(roundToDigits(data.weight * V, 2))}{' '}
-              {Number.isInteger(solution) ? '=' : '≈'} {Math.round(solution)}{' '}
-              Kaugummikugeln
+              {Number.isInteger(solution) ? '=' : '≈'}{' '}
+              <b>{Math.round(solution)} Kaugummikugeln</b>
             </p>
           </>
         )
