@@ -69,15 +69,14 @@ export const exercise26: Exercise<DATA> = {
             <br></br>
             <br></br>
             Setze nun die Werte aus der Abbildung ein: V<sub>Quader</sub> ={' '}
-            {pp(data.length)} m · {pp(data.outerWidth)} m ·{' '}
-            {pp(data.outerHeight)} m ={' '}
+            {pp(data.length)} · {pp(data.outerWidth)} · {pp(data.outerHeight)} ={' '}
             {pp(
               roundToDigits(
                 data.length * data.outerWidth * data.outerHeight,
                 2,
               ),
             )}{' '}
-            m³
+            [m³]
             <p>
               Das Volumen des quaderförmigen Laderaums beträgt{' '}
               {pp(
