@@ -80,9 +80,9 @@ export const exercise5: Exercise<DATA> = {
               {data.preis} · {pp(data.rabatt / 100)}
             </>,
           ],
-          ['', '=', <>{pp((data.preis * data.rabatt) / 100)} €</>],
+          ['', '=', <>{pp((data.preis * data.rabatt) / 100)}</>],
+          ['W', '=', <>{pp((data.preis * data.rabatt) / 100)} [€]</>],
         ])}
-        <p>W = {pp((data.preis * data.rabatt) / 100)}</p>
         <p>Der Rabatt beträgt {pp((data.preis * data.rabatt) / 100)} €.</p>
         <p>
           <strong>Verkaufspreis berechnen</strong>

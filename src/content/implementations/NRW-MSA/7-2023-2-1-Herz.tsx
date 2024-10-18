@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { kürzeBruch } from '@/helper/kuerze-bruch'
 import {
   buildEquation,
@@ -218,16 +219,39 @@ export const exercise7: Exercise<DATA> = {
           Math.PI * (data.kante / 2) * (data.kante / 2)
         return (
           <>
-            <p>Rechne die Fläches eines Herzes um in dm²:</p>
+            <p>Rechne zuerst die Fläche eines Herzens in dm² um:</p>
             <p>
               {pp(roundToDigits(A, 2))} cm² ≈ {pp(roundToDigits(A / 100, 2))}{' '}
               dm²
             </p>
-            <p>1 dm² wiegt {data.dichte} g. Ein Herz wiegt damit:</p>
+            <p>1 dm² des Metallsblechs wiegt {data.dichte} g:</p>
+            {buildEquation([
+              [<>1 dm³</>, '≙', <>{data.dichte} g</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      · {pp(roundToDigits(A / 100, 2))} (Fläche von 1 Herz)
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>{pp(roundToDigits(A / 100, 2))} dm³</>,
+                '≙',
+                <>{pp(roundToDigits((data.dichte * A) / 100, 2))} g</>,
+              ],
+            ])}
             <p>
-              {pp(roundToDigits(A / 100, 2))} dm² · {data.dichte}{' '}
-              {buildInlineFrac('g', 'dm²')}={' '}
-              {pp(roundToDigits((A / 100) * data.dichte, 2))} g
+              Ein Herz wiegt damit{' '}
+              <b>{pp(roundToDigits((A / 100) * data.dichte, 2))} g</b>.
             </p>
           </>
         )

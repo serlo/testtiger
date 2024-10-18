@@ -439,7 +439,8 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <p>
               Bei {pp(roundToDigits(p * 100, 2))} % der Röstis werden die
-              Vorgaben eingehalten. Der Anzahl unter allen Röstis ist damit:
+              Vorgaben eingehalten. Berechne die Anzahl der Röstis, die den
+              Vorgaben entsprechen, mit der Formel für den Prozentwert:
             </p>
             {buildEquation([
               ['W', '=', 'G · p'],
