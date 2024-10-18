@@ -73,15 +73,54 @@ export const exercise13: Exercise<DATA> = {
           ],
         ])}
         <p>Im Vergleich siehst du:</p>
-        <p>
-          b² = {data.b * data.b}
-          {data.c}
-        </p>
-        <p>Wende die Quadratwurzel an und bestimme den Term für b:</p>
-        <p>
-          b = {buildSqrt(data.b * data.b + '' + data.c)} = {data.b}
-          {data.c == '' ? '' : 'y'}
-        </p>
+        {buildEquation([
+          [
+            <>
+              <Color1>a</Color1>
+            </>,
+            '=',
+            <>
+              <Color1>{data.a}x</Color1>
+            </>,
+          ],
+          [
+            <>
+              <Color3>b²</Color3>
+            </>,
+            '=',
+            <>
+              <Color3>
+                {data.b * data.b}
+                {data.c}
+              </Color3>
+            </>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>
+                  ziehe die Quadratwurzel
+                </span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>b</>,
+            '=',
+            <>
+              {data.b}
+              {data.c == '' ? '' : 'y'}
+            </>,
+          ],
+        ])}
+
         <p>
           Bestimme den Mischterm 2ab, indem du die Terme für a und b einsetzt:
         </p>
