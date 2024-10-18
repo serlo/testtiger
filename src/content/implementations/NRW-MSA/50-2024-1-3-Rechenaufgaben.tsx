@@ -127,7 +127,7 @@ export const exercise50: Exercise<DATA> = {
             <p>
               {data.d} % = {pp(data.d / 100)}
             </p>
-            <p>Multipliziere die Zahlen, um den Anteil zu bestimmen.</p>
+            <p>Multipliziere die Zahlen, um den Anteil zu bestimmen:</p>
 
             <p>
               {data.e} · {pp(data.d / 100)} ={' '}
