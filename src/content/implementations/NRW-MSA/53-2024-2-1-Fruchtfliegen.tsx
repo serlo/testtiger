@@ -232,10 +232,12 @@ export const exercise53: Exercise<DATA> = {
               ['p', '=', <>{buildInlineFrac('W', 'G')}</>],
               ['', '=', <>{buildInlineFrac(<>{day1}</>, 10)}</>],
               ['', '=', pp(day1 / 10)],
+              ['', '=', <>{pp((day1 / 10) * 100)} %</>],
             ])}
             <p>
-              Ein Faktor von {pp(day1 / 10)} entspricht einem Wachstum von{' '}
-              <strong>{prozentanzeige} %</strong>.
+              Die Anzahl der Fliegen ist also um{' '}
+              <strong>{prozentanzeige} %</strong> auf {pp((day1 / 10) * 100)} %
+              angewachsen.
             </p>
           </>
         )

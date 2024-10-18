@@ -111,7 +111,9 @@ export const exercise46: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  <strong>{pp((data.liter * data.percent) / 100)} Liter</strong>
+                  <strong>
+                    {pp((data.liter * data.percent) / 100)} [Liter]
+                  </strong>
                 </>,
               ],
             ])}
