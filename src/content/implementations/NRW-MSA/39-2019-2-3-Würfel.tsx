@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color1, Color3, Color4 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
@@ -435,76 +435,86 @@ export const exercise39: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Löse die Klammern beider Terme auf, um sie zu vergleichen:</p>
-            <ul>
-              <li>
-                n · (n + {data.startwert - 1}) = n² +{' '}
-                {data.startwert - 1 != 1 && data.startwert - 1}n
-              </li>
-              <li>
-                {buildEquation([
-                  [
-                    '',
-                    <>
-                      (n + {pp((data.startwert - 1) / 2)})² −{' '}
-                      {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
-                    </>,
-                  ],
-                  [
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>
-                          1. Binomische Formel
-                        </span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    '=',
-                    <>
-                      n² + 2 · n · {pp((data.startwert - 1) / 2)} +{' '}
-                      {pp((data.startwert - 1) / 2)}² −{' '}
-                      {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
-                    </>,
-                  ],
-                  [
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>
-                          1² = 1, dann zusammenfassen
-                        </span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    '=',
-                    <>
-                      n² + {pp(data.startwert - 1)} · n +{' '}
-                      {pp(
-                        (((data.startwert - 1) / 2) * (data.startwert - 1)) / 2,
-                      )}{' '}
-                      − {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
-                    </>,
-                  ],
-                  [
-                    '=',
-                    <>n² + {data.startwert - 1 != 1 && data.startwert - 1}n</>,
-                  ],
-                ])}
-              </li>
-            </ul>
+            <p>Löse die Klammern beider Terme auf, um sie zu vergleichen.</p>
+            {buildEquation([
+              [<>Term I:</>, '', <>n · (n + {data.startwert - 1})</>],
+              [
+                '',
+                '=',
+                <>
+                  <b>n² + {data.startwert - 1 != 1 && data.startwert - 1}n</b>
+                </>,
+              ],
+            ])}
+            <p></p>
+            {buildEquation([
+              [
+                'Term II:',
+                '',
+                <>
+                  (n + {pp((data.startwert - 1) / 2)})² −{' '}
+                  {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      1. Binomische Formel
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  n² + 2 · n · {pp((data.startwert - 1) / 2)} +{' '}
+                  {pp((data.startwert - 1) / 2)}² −{' '}
+                  {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {pp((data.startwert - 1) / 2)}² ={' '}
+                      {pp((data.startwert - 1) / 2)}, dann zusammenfassen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  n² + {pp(data.startwert - 1)} · n +{' '}
+                  {pp((((data.startwert - 1) / 2) * (data.startwert - 1)) / 2)}{' '}
+                  − {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <b>n² + {data.startwert - 1 != 1 && data.startwert - 1}n</b>
+                </>,
+              ],
+            ])}
             <p>
               Nach einer Termumformung zeigt sich, dass die Terme identisch sind
               und sie damit gleichwertig die Anzahl der Würfel beschreiben.
