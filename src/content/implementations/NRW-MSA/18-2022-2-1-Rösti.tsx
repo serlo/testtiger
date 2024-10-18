@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { buildEquation, buildFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -114,17 +115,32 @@ export const exercise18: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>{data.volumen} cm³ entsprechen 100 g Teig.</p>
-            <p>
-              Berechne wie viel 1 cm³ wiegt:<br></br>
-            </p>
-            <p>
-              1 cm³ · {buildFrac('100 g', data.volumen + ' cm³')} ={' '}
-              {pp(roundToDigits(100 / data.volumen, 2))} g
-            </p>
+            <p>{data.volumen} cm³ entsprechen 100 g Teig:</p>
+            {buildEquation([
+              [<>{pp(data.volumen)} cm³</>, '≙', '100 g'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      teile durch {data.volumen} um das Gewicht von 1 cm³ zu
+                      berechnen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              ['1 cm³', '≙', <>{pp(roundToDigits(100 / data.volumen, 2))} g</>],
+            ])}
+
             <p>
               Ein Kubikzentimeter wiegt also{' '}
-              {pp(roundToDigits(100 / data.volumen, 2))} g.
+              <b>{pp(roundToDigits(100 / data.volumen, 2))} g</b>.
             </p>
           </>
         )

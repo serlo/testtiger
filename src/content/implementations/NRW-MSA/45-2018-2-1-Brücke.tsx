@@ -83,25 +83,14 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <strong>Umrechnung der Geschwindigkeit</strong>
-
+            <p>Du kannst das zum Beispiel mit dem Dreisatz berechnen. </p>
             <p>
-              Rechne die Geschwindigkeit um in Kilometer pro Minute, um die Zeit
-              in Minuten zu berechnen.
+              Die Freunde brauchen für {pp(data.pace)} km eine Stunde, also 60
+              Minuten:
             </p>
 
-            <p>
-              {pp(data.pace)}
-              {buildInlineFrac('km', 'h')} : 60 {buildInlineFrac('min', 'h')}={' '}
-              {pp(roundToDigits(data.pace / 60, 4))}
-              {buildInlineFrac('km', 'min')}
-            </p>
-            <strong>Zeit bis zum Bahnhof</strong>
-            <p>
-              Weg, Geschwindigkeit und Zeit hängen über dieses Gesetz zusammen:
-            </p>
             {buildEquation([
-              [<>Zeit</>, '=', <>{buildFrac('Strecke', 'Geschwindigkeit')}</>],
+              [<>{pp(data.pace)} km</>, '≙', '60 min'],
               [
                 '',
                 <>
@@ -112,33 +101,29 @@ export const exercise45: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}>
-                      Einsetzen der Werte
-                    </span>
+                    <span style={{ fontSize: 'small' }}>: {pp(data.pace)}</span>
+                  </Color4>
+                </>,
+              ],
+              ['1 km', '≙', <>{pp(Math.round(60 / data.pace))} min</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· {pp(data.weg)}</span>
                   </Color4>
                 </>,
               ],
               [
-                '',
-                '=',
-                <>
-                  {buildFrac(
-                    pp(data.weg) + ' km',
-                    <>
-                      {pp(roundToDigits(data.pace / 60, 4))}{' '}
-                      {buildInlineFrac('km', 'min')}
-                    </>,
-                  )}
-                </>,
-              ],
-              [
-                '',
-                <>{(data.weg / (data.pace / 60)) % 1 == 0 ? '=' : '≈'}</>,
-                <>
-                  <strong>
-                    {pp(Math.round(data.weg / (data.pace / 60)))} min
-                  </strong>
-                </>,
+                <>{pp(data.weg)} km</>,
+                '≙',
+                <>{pp(Math.round((data.weg * 60) / data.pace))} min</>,
               ],
             ])}
 
