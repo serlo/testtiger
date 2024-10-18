@@ -110,13 +110,22 @@ export const exercise38: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              Die Höhe des Wassers beträgt: <br></br>
-              {pp(data.höhe)} − {pp(data.water / 100)} ={' '}
-              {pp(data.höhe - data.water / 100)} m
-            </p>
-            <p>Achte bei der Rechnung auf die Einheiten.</p>
-            <p>Das Volumen des Wassers beträgt:</p>
+            <p>Berechne das Volmen des zylinderförmigen Pool mit der Formel:</p>
+            <p>V = G · h</p>
+            <ul>
+              <li>
+                Die Grundfläche G wurde bereits bestimmt und beträgt{' '}
+                {pp(data.surface)} m².
+              </li>
+              <li>
+                Die Höhe h des Wassers beträgt: <br></br>
+                {pp(data.höhe)} − {pp(data.water / 100)} ={' '}
+                {pp(data.höhe - data.water / 100)} m
+              </li>
+            </ul>
+
+            <p>Setze ein und berechne:</p>
+
             {buildEquation([
               ['V', '=', 'G · h'],
               [
@@ -130,16 +139,31 @@ export const exercise38: Exercise<DATA> = {
                 '',
                 '≈',
                 <>
-                  {pp(
-                    roundToDigits(
-                      data.surface * (data.höhe - data.water / 100),
-                      2,
-                    ),
-                  )}{' '}
-                  m³
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        data.surface * (data.höhe - data.water / 100),
+                        2,
+                      ),
+                    )}{' '}
+                    m³
+                  </strong>
                 </>,
               ],
             ])}
+            <p>
+              Das Volumen beträgt{' '}
+              <strong>
+                {pp(
+                  roundToDigits(
+                    data.surface * (data.höhe - data.water / 100),
+                    2,
+                  ),
+                )}{' '}
+                m³
+              </strong>
+              .
+            </p>
           </>
         )
       },

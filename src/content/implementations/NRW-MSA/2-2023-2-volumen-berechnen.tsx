@@ -1,4 +1,6 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
+import { buildEquation } from '@/helper/math-builder'
 
 interface DATA {
   a: number
@@ -54,25 +56,50 @@ export const exercise2: Exercise<DATA> = {
     return (
       <>
         <p>
+          <strong>Volumen berechnen</strong>
+        </p>
+        <p>
           Der Karton hat die Form eines Quaders. Das Volumen berechnest du mit
           der Formel:
         </p>
-        <p>V = l · b · h</p>
-        <p>Setze die Seitenlängen ein und berechne das Volumen.</p>
+        {buildEquation([
+          ['V', '=', 'l · b · h'],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>Einsetzen der Werte</span>
+              </Color4>
+            </>,
+          ],
+          [
+            '',
+            '=',
+            <>
+              {array[2]} · {array[1]} · {array[0]}
+            </>,
+          ],
+          ['', '=', <>{array[2] * array[1] * array[0]} cm³</>],
+        ])}
         <p>
-          V = {array[2]} · {array[1]} · {array[0]} ={' '}
-          {array[2] * array[1] * array[0]} cm³
+          <strong>In Liter umrechnen</strong>
         </p>
         <p>
-          <br></br>Rechne das Volumen in Liter um. 1ℓ entspricht 1000 cm³.{' '}
+          Rechne das Volumen des Kartons in Liter um. 1000 cm³ entsprechen 1ℓ.{' '}
         </p>
         <p>
-          {array[2] * array[1] * array[0]} cm³ ={' '}
+          {array[2] * array[1] * array[0]} cm³ : 1000 ={' '}
           {(array[2] * array[1] * array[0]) / 1000} ℓ
         </p>
         <p>
-          <br></br>Das Volumen des Kartons beträgt{' '}
-          {(array[2] * array[1] * array[0]) / 1000} ℓ.
+          Das Volumen des Kartons beträgt{' '}
+          <strong>{(array[2] * array[1] * array[0]) / 1000} ℓ</strong>.
         </p>
       </>
     )
