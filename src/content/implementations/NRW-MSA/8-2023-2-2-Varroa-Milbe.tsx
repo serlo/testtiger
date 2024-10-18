@@ -66,11 +66,13 @@ export const exercise8: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Bestimme zuerst den Maßstab:</p>
-            <p> 15 mm am Mikroskop ≙ {pp(data.mass)} mm</p>
             <p>
-              Teile beide Seiten durch 15. Dann erhältst du das tatsächliche
-              Maß, wenn am Mikroskop 1 mm gemessen wird:
+              <strong>Maßstab bestimmen</strong>
+            </p>
+            <p> 15 mm am Mikroskop ≙ {pp(data.mass)} mm Zeichnung</p>
+            <p>
+              Teile beide Seiten durch 15. Dann erhältst du echte Länge, wenn am
+              Mikroskop 1 mm gemessen wird:
             </p>
             <p>
               1 mm am Mikroskop ≙ {buildInlineFrac(pp(data.mass), 15)}{' '}
@@ -80,26 +82,39 @@ export const exercise8: Exercise<DATA> = {
                 : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
               mm in echt
             </p>
-            <p>Berechne damit die Länge und Breite der Milbe in echt:</p>
             <p>
-              Länge: {data.length} mm ≙ {data.length} ·{' '}
-              {data.mass == 1 || data.mass == 2
-                ? buildInlineFrac(pp(data.mass), 15)
-                : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
-              mm = {pp(roundToDigits((data.length * data.mass) / 15, 2))} mm
+              <strong>Länge und Breite der Milbe</strong>
             </p>
+            <p>Multipliziere die Länge und Breite mit dem Maßstab:</p>
+            <ul>
+              <li>
+                Länge: {data.length} ·{' '}
+                {data.mass == 1 || data.mass == 2
+                  ? buildInlineFrac(pp(data.mass), 15)
+                  : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
+                = {pp(roundToDigits((data.length * data.mass) / 15, 2))} [mm]
+              </li>
+              <li>
+                Breite: {data.width} ·{' '}
+                {data.mass == 1 || data.mass == 2
+                  ? buildInlineFrac(pp(data.mass), 15)
+                  : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
+                = {pp(roundToDigits((data.width * data.mass) / 15, 2))} [mm]
+              </li>
+            </ul>
+
             <p>
-              Breite: {data.width} mm ≙ {data.width} ·{' '}
-              {data.mass == 1 || data.mass == 2
-                ? buildInlineFrac(pp(data.mass), 15)
-                : buildInlineFrac(pp(data.mass * 2), 15 * 2)}{' '}
-              mm = {pp(roundToDigits((data.width * data.mass) / 15, 2))} mm
-            </p>
-            <p>
-              Die Milbe hat in echt eine Länge von etwa{' '}
-              {pp(roundToDigits((data.length * data.mass) / 15, 2))} mm und eine
-              Breite von etwa{' '}
-              {pp(roundToDigits((data.width * data.mass) / 15, 2))} mm.
+              Die Milbe hat in echt eine{' '}
+              <strong>
+                Länge von etwa{' '}
+                {pp(roundToDigits((data.length * data.mass) / 15, 2))} mm
+              </strong>{' '}
+              und eine{' '}
+              <strong>
+                Breite von etwa{' '}
+                {pp(roundToDigits((data.width * data.mass) / 15, 2))} mm
+              </strong>
+              .
             </p>
           </>
         )
