@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color1 } from '@/helper/colors'
-import { buildSqrt } from '@/helper/math-builder'
+import { Color1, Color4 } from '@/helper/colors'
+import { buildEquation, buildSqrt } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -104,24 +104,79 @@ export const exercise32: Exercise<DATA> = {
         const zahl = [2, 3, 4, 0.5]
         return (
           <>
-            <p>Den Flächeninhalt eines Rechtecks berechnest du mit:</p>
-            <p>A = Länge · Breite</p>
             <p>
-              Setze die <Color1>{text[data.case]}en</Color1> Seitenlängen ein:
+              Den Flächeninhalt des veränderten Rechtecks berechnest du mit:
             </p>
-            <p>
-              A = <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} cm ·{' '}
-              <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.b} cm{' '}
-            </p>
-            <p>
-              A = <Color1>{ppFrac(zahl[data.case])}</Color1> ·
-              <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} cm ·{' '}
-              {data.b} cm{' '}
-            </p>
-            <p>
-              A = <Color1>{ppFrac(zahl[data.case] * zahl[data.case])}</Color1> ·{' '}
-              {data.a} cm · {data.b} cm{' '}
-            </p>
+
+            {buildEquation([
+              [<>A&apos;</>, '=', <>Länge · Breite</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      <Color1>{text[data.case]}e</Color1> Seitenlängen einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} ·{' '}
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.b}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> ·{' '}
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} ·{' '}
+                  {data.b}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case] * zahl[data.case])}</Color1> ·{' '}
+                  {data.a} · {data.b}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {data.a} · {data.b} ist die ursprüngliche Fläche A
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case] * zahl[data.case])}</Color1> ·
+                  A
+                </>,
+              ],
+            ])}
+
             <p>
               Wenn man die Seitenlängen {text[data.case]}, beträgt der neue
               Flächeninhalt{' '}
