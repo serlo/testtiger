@@ -66,17 +66,7 @@ export const exercise26: Exercise<DATA> = {
           <>
             <p>Das Volumen eines Quaders berechnest du mit der Formel:</p>
             {buildEquation([
-              [
-                <>
-                  <b>V</b>
-                </>,
-                <>
-                  <b>=</b>
-                </>,
-                <>
-                  <b>l · b · h</b>
-                </>,
-              ],
+              ['V', '=', 'l · b · h'],
               [
                 '',
                 <>
@@ -118,16 +108,13 @@ export const exercise26: Exercise<DATA> = {
             <p>
               {' '}
               Das Volumen des quaderförmigen Laderaums beträgt{' '}
-              <b>
-                {pp(
-                  roundToDigits(
-                    data.length * data.outerWidth * data.outerHeight,
-                    2,
-                  ),
-                )}{' '}
-                m³
-              </b>
-              .
+              {pp(
+                roundToDigits(
+                  data.length * data.outerWidth * data.outerHeight,
+                  2,
+                ),
+              )}{' '}
+              m³
             </p>
           </>
         )

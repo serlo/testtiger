@@ -85,7 +85,7 @@ export const exercise2: Exercise<DATA> = {
               {array[2]} · {array[1]} · {array[0]}
             </>,
           ],
-          ['', '=', <>{array[2] * array[1] * array[0]} cm³</>],
+          ['', '=', <>{array[2] * array[1] * array[0]} [cm³]</>],
         ])}
         <p>
           <strong>In Liter umrechnen</strong>

@@ -110,13 +110,12 @@ export const exercise38: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Berechne das Volmen des zylinderförmigen Pool mit der Formel:</p>
+            <p>
+              Berechne das Volumen des zylinderförmigen Pools mit der Formel:
+            </p>
             <p>V = G · h</p>
             <ul>
-              <li>
-                Die Grundfläche G wurde bereits bestimmt und beträgt{' '}
-                {pp(data.surface)} m².
-              </li>
+              <li>Die Grundfläche G beträgt {pp(data.surface)} m².</li>
               <li>
                 Die Höhe h des Wassers beträgt: <br></br>
                 {pp(data.höhe)} − {pp(data.water / 100)} ={' '}
@@ -139,15 +138,13 @@ export const exercise38: Exercise<DATA> = {
                 '',
                 '≈',
                 <>
-                  <strong>
-                    {pp(
-                      roundToDigits(
-                        data.surface * (data.höhe - data.water / 100),
-                        2,
-                      ),
-                    )}{' '}
-                    m³
-                  </strong>
+                  {pp(
+                    roundToDigits(
+                      data.surface * (data.höhe - data.water / 100),
+                      2,
+                    ),
+                  )}{' '}
+                  [m³]
                 </>,
               ],
             ])}
