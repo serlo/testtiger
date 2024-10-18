@@ -15,6 +15,7 @@ import { useEffect, useRef } from 'react'
 export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)
   const data = ExerciseViewStore.useState(s => s.data)
+  const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
     s => s.navIndicatorExternalUpdate,
   )
@@ -24,6 +25,7 @@ export function ExerciseViewContent() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // todo: Dedupe
     if (
       navIndicatorExternalUpdate >= 0 &&
       navIndicatorPosition != navIndicatorExternalUpdate &&
@@ -48,7 +50,16 @@ export function ExerciseViewContent() {
   const content = exercisesData[id]
   const withSubtasks = 'tasks' in content
   return (
-    <div className="w-full h-full bg-gray-50">
+    <div
+      className="w-full h-full bg-gray-50"
+      onClick={() => {
+        if (chatOverlay) {
+          ExerciseViewStore.update(s => {
+            s.chatOverlay = null
+          })
+        }
+      }}
+    >
       <div
         ref={ref}
         className={clsx(
@@ -69,6 +80,9 @@ export function ExerciseViewContent() {
           const base = scrollLeft - offset
           const index = Math.round(base / distance)
           ExerciseViewStore.update(s => {
+            if (index != s.navIndicatorPosition && s.chatOverlay) {
+              s.chatOverlay = null
+            }
             s.navIndicatorPosition = index
           })
         }}
@@ -130,7 +144,7 @@ export function ExerciseViewContent() {
                   </button>
                 </div>
               </div>
-              <div className="p-[3px]">
+              <div className="p-[3px] mt-3">
                 {i == 0 &&
                   withSubtasks &&
                   proseWrapper(

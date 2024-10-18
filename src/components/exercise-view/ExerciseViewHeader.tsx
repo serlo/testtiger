@@ -10,7 +10,7 @@ export function ExerciseViewHeader() {
   const history = useHistory()
 
   return (
-    <div className="my-3 text-sm mx-3">
+    <div className="mt-3 mb-1 text-sm mx-3">
       <button
         className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block"
         onClick={() => {

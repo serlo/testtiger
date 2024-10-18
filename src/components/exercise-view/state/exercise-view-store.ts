@@ -12,6 +12,7 @@ export type IExerciseViewStore = {
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
+  chatOverlay: null | 'solution'
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -21,6 +22,7 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   navIndicatorLength: 0,
   navIndicatorPosition: 0,
   navIndicatorExternalUpdate: -1,
+  chatOverlay: null,
 })
 
 export function setupExercise(id: number) {
@@ -31,7 +33,7 @@ export function setupExercise(id: number) {
     s.navIndicatorLength =
       'tasks' in exercisesData[id] ? exercisesData[id].tasks.length : 0
     s.navIndicatorPosition = 0
-    s.navIndicatorExternalUpdate = -1
+    s.navIndicatorExternalUpdate = 0
   })
 }
 

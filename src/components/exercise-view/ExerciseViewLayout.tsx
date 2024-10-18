@@ -1,9 +1,8 @@
 import { IonContent, IonFooter, IonHeader, IonPage } from '@ionic/react'
-import { FaIcon } from '../ui/FaIcon'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { ExerciseViewHeader } from './ExerciseViewHeader'
 import { ExerciseViewContent } from './ExerciseViewContent'
 import { ExerciseViewFooter } from './ExerciseViewFooter'
+import { ChatOverlay } from './ChatOverlay'
 
 export function ExerciseViewLayout() {
   return (
@@ -17,6 +16,7 @@ export function ExerciseViewLayout() {
       <IonFooter className="ion-no-border">
         <ExerciseViewFooter />
       </IonFooter>
+      <ChatOverlay />
     </IonPage>
   )
 }
