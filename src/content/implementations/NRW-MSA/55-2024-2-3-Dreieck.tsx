@@ -528,8 +528,9 @@ export const exercise55: Exercise<DATA> = {
                 <p>
                   Ein Dreieck, in dem alle Seiten gleich lang sind, heißt
                   gleichseitig. Darin müssen auch alle Winkel gleich sein und
-                  jeweils 60° betragen. Einen rechten Winkel kann es nicht
-                  geben, womit Kais Behauptung nicht stimmt.
+                  jeweils 60° betragen.<br></br>
+                  <br></br> Einen rechten Winkel kann es nicht geben, womit Kais
+                  Behauptung <strong>nicht stimmt</strong>.
                 </p>
               </>
             )}
@@ -538,17 +539,18 @@ export const exercise55: Exercise<DATA> = {
                 <p>
                   Die Winkelsumme in einem Dreieck beträgt immer 180°. Da zwei
                   rechte Winkel diese 180° bereits ergeben, kann es keinen
-                  dritten Winkel im Dreieck geben. Damit ist Kais Behauptung
-                  falsch.
+                  dritten Winkel im Dreieck geben. <br></br>
+                  <br></br>Damit ist Kais Behauptung <strong>falsch</strong>.
                 </p>
               </>
             )}
             {data.case == 3 && (
               <>
                 <p>
-                  Diese Behauptung stimmt. Ein gleichschenkliges Dreieck bei dem
-                  nicht nur die zwei Schenkel gleich sind, sondern alle drei
-                  Seiten, heißt gleichseitig.
+                  <strong>Diese Behauptung stimmt.</strong> Bei einem
+                  gleichschenkligen Dreieck sind nicht nur die zwei Schenkel
+                  gleich, sondern alle drei Seiten. So ein Dreieck heißt
+                  gleichseitig.
                 </p>
               </>
             )}
@@ -564,8 +566,8 @@ export const exercise55: Exercise<DATA> = {
                 </p>
                 <p>
                   Die Gleichung wäre nur erfüllt, wenn die Seite a die Länge 0
-                  cm besitzt. Das ist nicht möglich, womit Kais Behauptung
-                  falsch ist.
+                  cm besitzt. Das ist nicht möglich, womit Kais Behauptung{' '}
+                  <strong>falsch</strong> ist.
                 </p>
               </>
             )}

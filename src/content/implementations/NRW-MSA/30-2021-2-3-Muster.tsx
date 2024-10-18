@@ -214,10 +214,13 @@ export const exercise30: Exercise<DATA> = {
               />
             </svg>
             <p>
-              Die Dreiecke sind gleichschenklig-rechtwinklig, das bedeutet die
-              Basiswinkel betragen 45∘. Ein Vollkreis hat 360∘. <br></br>Die
-              Anzahl der Dreiecke ist dann: {buildInlineFrac(360, 45)}​=8. Siehe
-              Skizze.
+              Die Dreiecke sind gleichschenklig und rechtwinklig. Das bedeutet
+              die spitzen Winkel betragen 45°. <br></br>
+              <br></br>Ein Vollkreis hat 360°. <br></br>
+              Die Anzahl der Dreiecke ist dann {buildInlineFrac(
+                360,
+                45,
+              )} ​= <strong>8</strong>, bis der Vollkreis ausgefüllt ist.
             </p>
           </>
         )
