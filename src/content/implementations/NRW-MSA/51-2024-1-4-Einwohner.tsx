@@ -134,7 +134,10 @@ export const exercise51: Exercise<DATA> = {
           5
         return (
           <>
-            <p>Berechne das arithmetische Mittel:</p>
+            <p>
+              Um das arithmetische Mittel zu berechnen, addierst du alle Werte
+              und teilst das Ergebnis durch die Anzahl der Werte:
+            </p>
             <p>
               {buildFrac(
                 pp(data.berlin) +

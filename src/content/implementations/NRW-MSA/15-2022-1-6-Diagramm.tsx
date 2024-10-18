@@ -447,10 +447,7 @@ export const exercise15: Exercise<DATA> = {
               {data.umfrage} Männer aus der Umfrage entsprechen laut dem
               Diagramm {data.maenner_1} % der Grundgesamtheit.
             </p>
-            <p>
-              Mit der Formel für den Prozentwert lässt sich diese Rechnung
-              schreiben als:
-            </p>
+            <p>Setze diese Werte in die Formel für den Prozentwert ein:</p>
             {buildEquation([
               [<>W</>, '=', <>G · p</>],
               [
