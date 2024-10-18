@@ -128,10 +128,7 @@ export const exercise18: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}>
-                      teile durch {data.volumen} um das Gewicht von 1 cm³ zu
-                      berechnen
-                    </span>
+                    <span style={{ fontSize: 'small' }}>: {data.volumen}</span>
                   </Color4>
                 </>,
               ],
