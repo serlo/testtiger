@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -194,17 +194,36 @@ export const exercise24: Exercise<DATA> = {
               können 119 % ≙ 1,19 eingesetzt werden, da es sich um eine 19 % -
               ige Erhöhung des Grundwerts handelt:
             </p>
-            <p>
-              W = G · p = {pp(data.preis)} · 1,19 ={' '}
-              {pp(Math.round(data.preis * 1.19 * 100) / 100)} €<br></br>
-            </p>
+            {buildEquation([
+              ['W', '=', 'G · p'],
+              ['', '=', <>{pp(data.preis)} · 1,19</>],
+              [
+                '',
+                '=',
+                <>
+                  <strong>
+                    {pp(Math.round(data.preis * 1.19 * 100) / 100)} €
+                  </strong>
+                </>,
+              ],
+            ])}
+
             <p>
               Mit der gleichen Rechnung wird der Preis für 16 % MwSt. berechnet:
             </p>
-            <p>
-              W = G · p = {pp(data.preis)} · 1,16 ={' '}
-              {pp(Math.round(data.preis * 1.16 * 100) / 100)} €
-            </p>
+            {buildEquation([
+              ['W', '=', 'G · p'],
+              ['', '=', <>{pp(data.preis)} · 1,16</>],
+              [
+                '',
+                '=',
+                <>
+                  <strong>
+                    {pp(Math.round(data.preis * 1.16 * 100) / 100)} €
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>Damit ist die ausgefüllte Tabelle:</p>
             <svg viewBox="0 0 328 66">
               <image
@@ -362,15 +381,72 @@ export const exercise24: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Formel berechnet den Wert in Zelle: {data.coin == 1 && 'E3'}
-              {data.coin == 2 && 'E4'}
-              {data.coin == 3 && 'E2'}
-              {data.coin == 4 && 'C3'}
-              {data.coin == 5 && 'D2'}
-              {data.coin == 6 && 'C4'}
-              {data.coin == 7 && 'E2'}
-              {data.coin == 8 && 'E3'}
-              {data.coin == 9 && 'E4'}
+              {data.coin == 1 && (
+                <>
+                  Berechnet wird die Differenz des Preises mit 19 % MwSt. und
+                  des Preises mit 16 % MwSt. <br></br>
+                  <br></br>Das entspricht der Ersparnis in <strong>E3</strong>.
+                </>
+              )}
+              {data.coin == 2 && (
+                <>
+                  Berechnet wird die Differenz des Preises mit 19 % MwSt. und
+                  des Preises mit 16 % MwSt. <br></br>
+                  <br></br>Das entspricht der Ersparnis in <strong>E4</strong>.
+                </>
+              )}
+              {data.coin == 3 && (
+                <>
+                  Berechnet wird die Differenz des Preises mit 19 % MwSt. und
+                  des Preises mit 16 % MwSt. <br></br>
+                  <br></br>Das entspricht der Ersparnis in <strong>E2</strong>.
+                </>
+              )}
+              {data.coin == 4 && (
+                <>
+                  B3 ist der Preis ohne MwSt. Multipliziert mit dem Faktor 1,19
+                  werden 19 % MwSt. hinzugerechnet. <br></br>
+                  <br></br>
+                  Die Formel berechnet den Wert von: <strong>C3</strong>
+                </>
+              )}
+              {data.coin == 5 && (
+                <>
+                  B2 ist der Preis ohne MwSt. Multipliziert mit dem Faktor 1,16
+                  werden 16 % MwSt. hinzugerechnet. <br></br>
+                  <br></br>
+                  Die Formel berechnet den Wert von: <strong>D2</strong>
+                </>
+              )}
+              {data.coin == 6 && (
+                <>
+                  B4 ist der Preis ohne MwSt. Multipliziert mit dem Faktor 1,19
+                  werden 19 % MwSt. hinzugerechnet. <br></br>
+                  <br></br>
+                  Die Formel berechnet den Wert von: <strong>C4</strong>
+                </>
+              )}
+              {data.coin == 7 && (
+                <>
+                  Berechnet wird die Differenz des Preises mit 19 % MwSt. und
+                  des Preises mit 16 % MwSt. <br></br>
+                  <br></br>Das entspricht der Ersparnis in <strong>E2</strong>.
+                </>
+              )}
+              {data.coin == 8 && (
+                <>
+                  Berechnet wird die Differenz des Preises mit 19 % MwSt. und
+                  des Preises mit 16 % MwSt. <br></br>
+                  <br></br>Das entspricht der Ersparnis in <strong>E3</strong>.
+                </>
+              )}
+              {data.coin == 9 && (
+                <>
+                  Berechnet wird die Differenz des Preises mit 19 % MwSt. und
+                  des Preises mit 16 % MwSt. <br></br>
+                  <br></br>Das entspricht der Ersparnis in <strong>E4</strong>.
+                </>
+              )}
             </p>
           </>
         )
@@ -394,30 +470,42 @@ export const exercise24: Exercise<DATA> = {
         return (
           <>
             <p>Für die Beispielrechnung wählen wir den Pullover aus.</p>
+            <ul>
+              <li>
+                Preis des Pullovers vor der Absenkung: {pp(data.preis_p)} €
+              </li>
+              <li>
+                Ersparnis nach der Absenkung der MwSt.:{' '}
+                {pp(
+                  roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2),
+                )}{' '}
+                €
+              </li>
+            </ul>
 
-            <p>Preis des Pullovers vor der Absenkung: {pp(data.preis_p)} €</p>
             <p>
-              Ersparnis nach der Absenkung der MwSt.:{' '}
-              {pp(roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2))}{' '}
-              €<br></br>
-            </p>
-            <p>
-              Die Erparnis beträgt in Prozent:
+              Die Erparnis beträgt in Prozent:<br></br>
               {buildInlineFrac(
                 pp(roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2)),
                 pp(data.preis_p),
               )}{' '}
               · 100 % ={' '}
-              {pp(
-                roundToDigits(
-                  roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2) /
-                    data.preis_p,
-                  4,
-                ) * 100,
-              )}{' '}
-              %
+              <strong>
+                {pp(
+                  roundToDigits(
+                    roundToDigits(
+                      data.preis_p * 0.19 - data.preis_p * 0.16,
+                      2,
+                    ) / data.preis_p,
+                    4,
+                  ) * 100,
+                )}{' '}
+                %
+              </strong>
             </p>
-            <p>Damit trifft die Aussage von Herr Meyer zu.</p>
+            <p>
+              <strong>Damit trifft die Aussage von Herr Meyer zu</strong>.
+            </p>
           </>
         )
       },
