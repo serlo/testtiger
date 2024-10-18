@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color2, Color3 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -304,66 +305,125 @@ export const exercise15: Exercise<DATA> = {
               a) Entscheide mithilfe des Diagramms ob die Aussage zutrifft oder
               nicht.
             </p>
+            <ol>
+              <li>
+                Bei den 30-39-Jährigen ist der Anteil der Männer, die mindestens
+                2,5 Stunden/Woche körperlich aktiv sind, mehr als doppelt so
+                groß wie bei den Frauen.
+              </li>
+              <li>
+                Der Anteil der Männer, die mindestens 2,5 Stunden/Woche
+                körperlich aktiv sind, ist in jeder Altersgruppe höher als der
+                Anteil der Frauen der gleichen Altersgruppe.{' '}
+              </li>
+              <li>
+                Je älter Frauen werden, desto weniger entspricht ihre
+                körperliche Aktivität der Empfehlung der WHO.
+              </li>
+            </ol>
+          </>
+        )
+      },
+      solution({ data }) {
+        return (
+          <>
+            <ol>
+              <li>
+                <p>
+                  Unter den 30 - bis 39 - jährigen Personen sind die Anteile:{' '}
+                </p>
+                <ul>
+                  <li>{data.maenner_2} % unter den Männern</li>
+                  <li>{data.frauen_2} % unter den Frauen</li>
+                </ul>
+                <p>
+                  {data.maenner_2 > 2 * data.frauen_2 ? (
+                    <>
+                      Der Anteil der Männer ist damit mehr als doppelt so hoch,
+                      als der Anteil der Frauen. Die{' '}
+                      <Color2>Aussage trifft zu</Color2>.
+                    </>
+                  ) : (
+                    <>
+                      Damit ist Anteil der Männer nicht mehr als doppelt so
+                      hoch, als der Anteil der Frauen. Die{' '}
+                      <Color3>Aussage trifft nicht zu</Color3>.
+                    </>
+                  )}
+                </p>
+              </li>
+              <li>
+                <p>
+                  {data.maenner_1 > data.frauen_1 &&
+                  data.maenner_2 > data.frauen_2 &&
+                  data.maenner_3 > data.frauen_3 &&
+                  data.maenner_4 > data.frauen_4 &&
+                  data.maenner_5 > data.frauen_5 &&
+                  data.maenner_6 > data.frauen_6 ? (
+                    <>
+                      In allen Kategorien ist der Anteil der körperlich aktiven
+                      Männer höher als der der Frauen. Damit{' '}
+                      <Color2>trifft die Aussage zu</Color2>.
+                    </>
+                  ) : (
+                    <>
+                      Der Anteil der köperlich aktiven Frauen ist im Bereich der{' '}
+                    </>
+                  )}
+                  {data.maenner_4 < data.frauen_4 && (
+                    <>
+                      50 - bis 59 -jährigen Frauen höher. Damit{' '}
+                      <Color3>trifft die Aussage nicht zu</Color3>.
+                    </>
+                  )}
+                  {data.maenner_5 < data.frauen_5 && (
+                    <>
+                      60 - bis 69 -jährigen Frauen höher. Damit{' '}
+                      <Color3>trifft die Aussage nicht zu</Color3>.
+                    </>
+                  )}{' '}
+                </p>
+              </li>
 
-            <p>
-              Bei den 30-39-Jährigen ist der Anteil der Männer, die mindestens
-              2,5 Stunden/Woche körperlich aktiv sind, mehr als doppelt so groß
-              wie bei den Frauen.{' '}
-            </p>
-          </>
-        )
-      },
-      solution({ data }) {
-        return (
-          <>
-            <p>Unter den 30 - bis 39 - jährigen Personen sind die Anteile: </p>
-            <p>{data.maenner_2} % unter den Männern</p>
-            <p>{data.frauen_2} % unter den Frauen</p>
-            <p>
-              {data.maenner_2 > 2 * data.frauen_2
-                ? 'Der Anteil der Männer ist damit mehr als doppelt so hoch, als der Anteil der Frauen.'
-                : 'Damit ist Anteil der Männer nicht mehr als doppelt so hoch, als der Anteil der Frauen.'}
-            </p>
-          </>
-        )
-      },
-    },
-    {
-      points: 1,
-      task({ data }) {
-        return (
-          <>
-            <p>
-              b) Entscheide mithilfe des Diagramms ob die Aussage zutrifft oder
-              nicht.
-            </p>
-            <p>
-              Der Anteil der Männer, die mindestens 2,5 Stunden/Woche körperlich
-              aktiv sind, ist in jeder Altersgruppe höher als der Anteil der
-              Frauen der gleichen Altersgruppe.{' '}
-            </p>
-          </>
-        )
-      },
-      solution({ data }) {
-        return (
-          <>
-            <p>
-              {data.maenner_1 > data.frauen_1 &&
-              data.maenner_2 > data.frauen_2 &&
-              data.maenner_3 > data.frauen_3 &&
-              data.maenner_4 > data.frauen_4 &&
-              data.maenner_5 > data.frauen_5 &&
-              data.maenner_6 > data.frauen_6
-                ? 'In allen Kategorien ist der Anteil der körperlich aktiven Männer höher als der der Frauen.'
-                : 'Der Anteil der köperlich aktiven Frauen ist im Bereich der '}
-              {data.maenner_4 < data.frauen_4
-                ? '50 - bis 59 -jährigen Frauen höher.'
-                : false}
-              {data.maenner_5 < data.frauen_5
-                ? '60 - bis 69 -jährigen Frauen höher.'
-                : false}{' '}
-            </p>
+              <li>
+                {data.frauen_1 > data.frauen_2 &&
+                data.frauen_2 > data.frauen_3 &&
+                data.frauen_3 > data.frauen_4 &&
+                data.frauen_4 > data.frauen_5 &&
+                data.frauen_5 > data.frauen_6 ? (
+                  <>
+                    Diese <Color2>Aussage trifft zu</Color2>, der Anteil der
+                    körperlich aktiven Frauen wird mit steigendem Alter immer
+                    geringer.{' '}
+                  </>
+                ) : (
+                  <>
+                    Diese <Color3>Aussage trifft nicht zu. </Color3>
+                  </>
+                )}
+                {data.frauen_3 < data.frauen_4 && (
+                  <>
+                    Der Anteil der körperlich aktiven Frauen nimmt von 40-49 bis
+                    50-59 beispielsweise zu.
+                  </>
+                )}
+                {data.frauen_3 > data.frauen_4 &&
+                  data.frauen_4 < data.frauen_5 && (
+                    <>
+                      Von 50-59 bis 60-69 steigt dieser Anteil beispielsweise
+                      an.
+                    </>
+                  )}
+                {data.frauen_3 > data.frauen_4 &&
+                  data.frauen_4 > data.frauen_5 &&
+                  data.frauen_5 < data.frauen_6 && (
+                    <>
+                      Von 60-69 bis 70-79 steigt dieser Anteil beispielsweise
+                      an.
+                    </>
+                  )}
+              </li>
+            </ol>
           </>
         )
       },
@@ -374,56 +434,9 @@ export const exercise15: Exercise<DATA> = {
         return (
           <>
             <p>
-              c) Entscheide mithilfe des Diagramms ob die Aussage zutrifft oder
-              nicht.
+              b) Berechne, wie viele Männer in dieser Altersgruppe befragt
+              wurden.
             </p>
-            <p>
-              Je älter Frauen werden, desto weniger entspricht ihre körperliche
-              Aktivität der Empfehlung der WHO.
-            </p>
-          </>
-        )
-      },
-      solution({ data }) {
-        return (
-          <>
-            <p>
-              {data.frauen_1 > data.frauen_2 &&
-              data.frauen_2 > data.frauen_3 &&
-              data.frauen_3 > data.frauen_4 &&
-              data.frauen_4 > data.frauen_5 &&
-              data.frauen_5 > data.frauen_6
-                ? 'Diese Aussage trifft zu, der Anteil der körperlich aktiven Frauen wird mit steigendem Alter immer geringer.'
-                : 'Diese Aussage trifft nicht zu. '}
-              {data.frauen_3 < data.frauen_4
-                ? 'Der Anteil der körperlich aktiven Frauen nimmt von 40-49 bis 50-59 beispielsweise zu.'
-                : false}
-              {data.frauen_3 > data.frauen_4 && data.frauen_4 < data.frauen_5
-                ? 'Von 50-59 bis 60-69 steigt dieser Anteil beispielsweise an.'
-                : false}
-              {data.frauen_3 > data.frauen_4 &&
-              data.frauen_4 > data.frauen_5 &&
-              data.frauen_5 < data.frauen_6
-                ? 'Von 60-69 bis 70-79 steigt dieser Anteil beispielsweise an.'
-                : false}
-            </p>
-          </>
-        )
-      },
-    },
-    {
-      points: 1,
-      task({ data }) {
-        return (
-          <>
-            <p>
-              d) In der Gruppe der 18- bis 29-Jährigen gaben {data.umfrage}{' '}
-              Männer an, dass sie mindestens 2,5 Stunden pro Woche körperlich
-              aktiv sind.
-            </p>
-            <p>
-              Berechne, wie viele Männer in dieser Altersgruppe befragt wurden.
-            </p>{' '}
           </>
         )
       },

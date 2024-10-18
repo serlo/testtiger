@@ -84,18 +84,21 @@ export const exercise51: Exercise<DATA> = {
         const median = array[2]
         return (
           <>
-            <p>
-              Der <strong>Median</strong> ist der mittlere Wert in der
-              geordneten Datenliste.
-              <br></br>Hier ist der mittlere Wert {median} Mio., denn es liegen
-              2 Werte darüber und 2 darunter.
-            </p>
-            <p>
-              Die <strong>Spannweite</strong> ist die Differenz des größten
-              Wertes und des kleinsten Wertes.<br></br>
-              {pp(array[4])} Mio. − {pp(array[0])} Mio. ={' '}
-              {pp(array[4] - array[0])} Mio.
-            </p>
+            <ol>
+              <li>
+                Der <strong>Median</strong> ist der mittlere Wert in der
+                geordneten Datenliste. <br></br>
+                <br></br>Hier ist der mittlere Wert{' '}
+                <strong>{pp(median)} Mio.</strong>, denn es liegen 2 Werte
+                darüber und 2 darunter.
+              </li>
+              <li>
+                Die <strong>Spannweite</strong> ist die Differenz des größten
+                Wertes und des kleinsten Wertes.<br></br> <br></br>
+                {pp(array[4])} Mio. − {pp(array[0])} Mio. ={' '}
+                <strong>{pp(array[4] - array[0])} Mio</strong>.
+              </li>
+            </ol>
           </>
         )
       },
@@ -159,8 +162,8 @@ export const exercise51: Exercise<DATA> = {
               = {pp(mittel)}
             </p>
             <p>
-              Der Durchschnitt beträgt etwa {pp(roundToDigits(mittel, 1))} Mio.
-              Einwohner.
+              Der Durchschnitt beträgt etwa{' '}
+              <strong>{pp(roundToDigits(mittel, 1))} Mio</strong>. Einwohner.
             </p>
           </>
         )
@@ -226,8 +229,12 @@ export const exercise51: Exercise<DATA> = {
                   Die Spannweite ist die Differenz des höchsten Wertes und des
                   niedrigsten Wertes. Da nun Stuttgart die niedrigste
                   Einwohnerzahl hat, wird die Spannweite größer. <br></br>Der
-                  Wert der Spannweite wird um die Zahl größer, die Stuttgart
-                  weniger Einwohner hat als Frankfurt.
+                  Wert der{' '}
+                  <strong>
+                    Spannweite wird um die Zahl größer, die Stuttgart weniger
+                    Einwohner hat als Frankfurt
+                  </strong>
+                  .
                 </p>
               </>
             )}
@@ -236,7 +243,8 @@ export const exercise51: Exercise<DATA> = {
                 <p>
                   Die Spannweite ist die Differenz des höchsten Wertes und des
                   niedrigsten Wertes. Der Wert wird nicht verändert, wenn er
-                  mehrmals auftaucht, weshalb die Spannweite gleich bleibt.
+                  mehrmals auftaucht, weshalb die{' '}
+                  <strong>Spannweite gleich bleibt</strong>.
                 </p>
               </>
             )}
@@ -245,8 +253,11 @@ export const exercise51: Exercise<DATA> = {
                 <p>
                   Der Durchschnitt ist der Mittelwert aller Einwohnerzahlen.
                   Wenn die Einwohnerzahl in jeder Stadt im Mittel um
-                  einhunderttausend Einwohner zunimmt, ist der Durchschnitt
-                  ebenso um einhunderttausend größer.
+                  einhunderttausend Einwohner zunimmt, ist der{' '}
+                  <strong>
+                    Durchschnitt ebenso um einhunderttausend größer
+                  </strong>
+                  .
                 </p>
               </>
             )}
@@ -255,7 +266,7 @@ export const exercise51: Exercise<DATA> = {
                 <p>
                   Der Median ist der Wert in der Mitte der sortierten Liste. Die
                   Höhe des ersten Wertes (Berlin) hat keinen Einfluss auf den
-                  Median. Er verändert sich also nicht.
+                  Median. <strong>Er verändert sich also nicht.</strong>
                 </p>
               </>
             )}
@@ -266,7 +277,8 @@ export const exercise51: Exercise<DATA> = {
                   Einwohnerzahl im Mittel um
                   <br></br> 1 000 000 : 5 = 200 000 zu.<br></br>
                   <br></br>
-                  Der Durchschnitt wird also um 0,2 Mio. größer.
+                  Der Durchschnitt wird also um <strong>0,2 Mio.</strong>{' '}
+                  größer.
                 </p>
               </>
             )}
