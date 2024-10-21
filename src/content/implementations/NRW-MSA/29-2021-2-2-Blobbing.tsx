@@ -133,6 +133,11 @@ export const exercise29: Exercise<DATA> = {
         const parabolaPoints = generateParabolaPoints(0.1)
         return (
           <>
+            <p>
+              Skizziere zuerst die Punkte in ein Koordinatensystem. Der Graph
+              verläuft glatt durch den Ursprung und die Punkte, ohne Kanten oder
+              Sprünge.
+            </p>
             <svg viewBox="0 0 700 500">
               <image
                 href="/content/NRW_MSA_Blobbing_4.jpg"
