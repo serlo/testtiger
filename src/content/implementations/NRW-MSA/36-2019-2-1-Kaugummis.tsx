@@ -292,24 +292,6 @@ export const exercise36: Exercise<DATA> = {
         const bruch6 = kürzeBruch(data.white - 1, data.red + data.white - 1)
         return (
           <>
-            <p>
-              Die Wahrscheinlichkeit im ersten Zug einen weißen Kaugummi zu
-              ziehen beträgt:
-            </p>
-            <p>
-              1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
-              {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
-            </p>
-            <p>
-              Da bekannt ist, dass {data.red} rote, {data.white} weiße und
-              insgesamt {data.red + data.white} Kaugummis vorhanden sind, kann
-              die 2. Ebene des Baumdiagramms vollständig ausgefüllt werden.
-            </p>
-            <p>
-              {' '}
-              Achte dabei darauf, dass beim zweiten Zug eine Kugel der gezogenen
-              Farbe weniger vorhanden ist.
-            </p>
             <svg viewBox="0 0 400 382">
               <image
                 href="/content/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
@@ -335,6 +317,27 @@ export const exercise36: Exercise<DATA> = {
                 {buildFrac(bruch6.zähler, bruch6.nenner)}
               </foreignObject>
             </svg>
+            <p>
+              <b>Erklärung</b>
+            </p>
+            <p>
+              Die Wahrscheinlichkeit im ersten Zug einen weißen Kaugummi zu
+              ziehen beträgt:
+            </p>
+            <p>
+              1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
+              {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
+            </p>
+            <p>
+              Da bekannt ist, dass {data.red} rote, {data.white} weiße und
+              insgesamt {data.red + data.white} Kaugummis vorhanden sind, kann
+              die 2. Ebene des Baumdiagramms vollständig ausgefüllt werden.
+            </p>
+            <p>
+              {' '}
+              Achte dabei darauf, dass beim zweiten Zug eine Kugel der gezogenen
+              Farbe weniger vorhanden ist.
+            </p>
           </>
         )
       },
