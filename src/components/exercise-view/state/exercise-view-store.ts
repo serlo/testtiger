@@ -10,7 +10,6 @@ export type IExerciseViewStore = {
   chatOverlay: null | 'solution'
 }
 
-console.log('create store')
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
   id: -1,
   seed: '',
