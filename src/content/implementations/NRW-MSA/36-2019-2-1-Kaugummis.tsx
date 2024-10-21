@@ -242,7 +242,13 @@ export const exercise36: Exercise<DATA> = {
                 buildFrac('Anzahl roter Kugeln', 'Anzahl aller Kugeln'),
               ],
               ['', '=', buildFrac(data.red, data.red + data.white)],
-              ['', '=', buildFrac(bruch.zähler, bruch.nenner)],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{buildFrac(bruch.zähler, bruch.nenner)}</strong>
+                </>,
+              ],
             ])}
           </>
         )
