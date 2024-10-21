@@ -105,7 +105,7 @@ export const exercise45: Exercise<DATA> = {
                   </Color4>
                 </>,
               ],
-              ['1 km', '≙', <>{pp(Math.round(60 / data.pace))} min</>],
+              ['1 km', '≙', <>{pp(roundToDigits(60 / data.pace, 2))} min</>],
               [
                 '',
                 <>
@@ -123,7 +123,7 @@ export const exercise45: Exercise<DATA> = {
               [
                 <>{pp(data.weg)} km</>,
                 '≙',
-                <>{pp(Math.round((data.weg * 60) / data.pace))} min</>,
+                <>{pp(roundToDigits((data.weg * 60) / data.pace, 2))} min</>,
               ],
             ])}
 
@@ -131,7 +131,7 @@ export const exercise45: Exercise<DATA> = {
               Die Freunde brauchen{' '}
               {(data.weg / (data.pace / 60)) % 1 == 0 && 'etwa'}{' '}
               <strong>
-                {pp(Math.round(data.weg / (data.pace / 60)))} Minuten
+                {pp(roundToDigits(data.weg / (data.pace / 60), 2))} Minuten
               </strong>{' '}
               für den Fußweg.
             </p>
