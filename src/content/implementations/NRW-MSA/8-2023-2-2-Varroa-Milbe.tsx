@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
 import { Color1, Color2 } from '@/helper/colors'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -260,16 +260,32 @@ export const exercise8: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <p>Verwende die Funktionsgleichung und setze die Werte ein:</p>
+            {buildEquation([
+              [
+                <>f(x)</>,
+                <> =</>,
+                <>
+                  {' '}
+                  {data.count} · 1,19<sup>x</sup>
+                </>,
+              ],
+              [
+                <>f(12)</>,
+                <>=</>,
+                <>
+                  {data.count} ⋅ 1,19<sup>12</sup>
+                </>,
+              ],
+              [
+                <>f(12)</>,
+                <>≈</>,
+                <>{pp(Math.round(Math.pow(1.19, 12) * data.count))}</>,
+              ],
+            ])}
+
             <p>
-              Da in der Funktionsgleichung das x für die Anzahl an Wochen steht,
-              musst du für das x die 12 einsetzen und erhältst:{' '}
-            </p>
-            <p>
-              f(12) = {data.count} ⋅ 1,19<sup>12</sup> ≈{' '}
-              {pp(Math.round(Math.pow(1.19, 12) * data.count))}
-            </p>
-            <p>
-              Nach 12 Wochen beträgt die Anzahl{' '}
+              Nach 12 Wochen beträgt die Anzahl der Milben{' '}
               {pp(Math.round(Math.pow(1.19, 12) * data.count))} ≈{' '}
               {pp(roundToDigits(Math.pow(1.19, 12) * data.count, -2))}.
             </p>

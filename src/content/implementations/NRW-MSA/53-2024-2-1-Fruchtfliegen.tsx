@@ -226,20 +226,50 @@ export const exercise53: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <p>Setze {data.days} für x ein und berechne:</p>
+            {buildEquation([
+              [
+                <>f(x)</>,
+                <>=</>,
+                <>
+                  10 · {pp(data.prozent)}
+                  <sup>x</sup>
+                </>,
+              ],
+              [
+                <> f({data.days})</>,
+                <>=</>,
+                <>
+                  10 · {pp(data.prozent)}
+                  <sup>{data.days}</sup>
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <strong>f({data.days})</strong>
+                </>,
+                <>
+                  <strong>
+                    {(10 * Math.pow(data.prozent, data.days)) % 1 == 0
+                      ? '='
+                      : '≈'}
+                  </strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(Math.round(10 * Math.pow(data.prozent, data.days)))}
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
-              <strong>
-                Einsetzen von {data.days}&nbsp;Tagen in die Funktion:
-              </strong>{' '}
-              <br />
-              f({data.days}) = 10 · {pp(data.prozent)} <sup>{data.days}</sup>{' '}
-              <br />
-              f({data.days}){' '}
-              {(10 * Math.pow(data.prozent, data.days)) % 1 == 0 ? '=' : '≈'}{' '}
-              {pp(Math.round(10 * Math.pow(data.prozent, data.days)))} <br />{' '}
-              <br />
               Nach {data.days} Tagen gibt es voraussichtlich etwa{' '}
-              {pp(Math.round(10 * Math.pow(data.prozent, data.days)))}{' '}
-              Fruchtfliegen.
+              <strong>
+                {pp(Math.round(10 * Math.pow(data.prozent, data.days)))}{' '}
+                Fruchtfliegen
+              </strong>
+              .
             </p>
           </>
         )

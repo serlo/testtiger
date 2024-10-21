@@ -348,18 +348,57 @@ export const exercise38: Exercise<DATA> = {
               Das Wachstum der Algen wird mit der Funktion f beschrieben. Setze
               x = {data.day} ein und berechne die Fläche.
             </p>
+            {buildEquation([
+              [
+                <>f(x)</>,
+                <>=</>,
+                <>
+                  {pp(roundToDigits(data.surface / 20, 2))} ·{' '}
+                  {pp(data.growth / 100 + 1)}
+                  <sup>x</sup>
+                </>,
+              ],
+              [
+                <>f({data.day})</>,
+                <>=</>,
+                <>
+                  {pp(roundToDigits(data.surface / 20, 2))} ·{' '}
+                  {pp(data.growth / 100 + 1)}
+                  <sup>{data.day}</sup>
+                </>,
+              ],
+              [
+                <>
+                  <strong>f({data.day})</strong>
+                </>,
+                <>≈</>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (data.surface / 20) *
+                          Math.pow(data.growth / 100 + 1, data.day),
+                        2,
+                      ),
+                    )}{' '}
+                    [m²]
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
-              f({data.day}) = {pp(roundToDigits(data.surface / 20, 2))} ·{' '}
-              {pp(data.growth / 100 + 1)}
-              <sup>{data.day}</sup> ≈{' '}
-              {pp(
-                roundToDigits(
-                  (data.surface / 20, 2) *
-                    Math.pow(data.growth / 100 + 1, data.day),
-                  2,
-                ),
-              )}{' '}
-              m²
+              Nach {data.day} Tagen sind{' '}
+              <strong>
+                {pp(
+                  roundToDigits(
+                    (data.surface / 20) *
+                      Math.pow(data.growth / 100 + 1, data.day),
+                    2,
+                  ),
+                )}{' '}
+                m²
+              </strong>{' '}
+              der Wasseroberfläche bedeckt.
             </p>
           </>
         )
