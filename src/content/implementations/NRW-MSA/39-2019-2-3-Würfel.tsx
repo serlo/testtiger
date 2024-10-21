@@ -231,28 +231,21 @@ export const exercise39: Exercise<DATA> = {
         return (
           <>
             <p>
-              Um den fehlenden Wert zu bestimmen kannst du die Anzahl der Würfel
-              bestimmen, die in jeder Figur hinzu kommen:
+              Um den fehlenden Wert zu bestimmen, überlege dir, wie die Figuren
+              aufgebaut werden:
             </p>
             <ul>
-              <li>
-                Von Figur 1 zu Figur 2:{' '}
-                {2 * (2 + data.startwert - 1) - 1 * (1 + data.startwert - 1)}
-              </li>
-              <li>
-                Von Figur 2 zu Figur 3:{' '}
-                {3 * (3 + data.startwert - 1) - 2 * (2 + data.startwert - 1)}
-              </li>
-              <li>
-                Von Figur 3 zu Figur 4 sind es also:{' '}
-                {4 * (4 + data.startwert - 1) - 3 * (3 + data.startwert - 1)}
-              </li>
+              <li>Figur 1: 1 Reihe mit {data.startwert} Würfeln</li>
+              <li>Figur 2: 2 Reihen mit {data.startwert + 1} Würfeln</li>
+              <li>Figur 3: 3 Reihen mit {data.startwert + 2} Würfeln</li>
             </ul>
             <p>
-              Zu den {3 * (3 + data.startwert - 1)} Würfeln kommen{' '}
-              {4 * (4 + data.startwert - 1) - 3 * (3 + data.startwert - 1)}{' '}
-              hinzu, womit die 4. Figur{' '}
-              <strong>{4 * (4 + data.startwert - 1)}</strong> Würfel besitzt:
+              Bei Figur 4 werden es also 4 Reihen mit {data.startwert + 3}{' '}
+              Würfeln.
+            </p>
+            <p>
+              Damit hat die 4. Figur 4 · {data.startwert + 3} ={' '}
+              <strong>{4 * (4 + data.startwert - 1)}</strong> Würfel.
             </p>
 
             <svg viewBox="0 0 328 110">
