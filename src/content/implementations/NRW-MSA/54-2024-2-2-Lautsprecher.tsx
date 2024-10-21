@@ -117,13 +117,25 @@ export const exercise54: Exercise<DATA> = {
         const volume = (data.hoehe * Math.PI * data.echo * data.echo) / 4
         return (
           <>
-            <p>
-              Das Volumen eines Zylinders wird mit der Formel <br></br> V = π ·
-              r² · h<br></br>berechnet. Setze die bekannten Werte ein und forme
-              nach der Höhe h um.
-            </p>
+            <p>Das Volumen eines Zylinders ist gegeben durch:</p>
             {buildEquation([
               ['V', '=', 'π · r² · h'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Setze ein und löse nach h
+                    </span>
+                  </Color4>
+                </>,
+              ],
               [
                 Math.round(volume),
                 '=',
@@ -133,11 +145,18 @@ export const exercise54: Exercise<DATA> = {
               [
                 'h',
                 '=',
-                buildFrac(Math.round(volume), 'π · ' + pp(data.echo / 2)),
+                <>
+                  {buildFrac(
+                    Math.round(volume),
+                    <> π · {pp(data.echo / 2)}²</>,
+                  )}
+                </>,
               ],
-              ['h', '≈', data.hoehe],
+              ['h', '≈', <>{data.hoehe} [cm]</>],
             ])}
-            <p>Die Höhe beträgt ungefähr h = {data.hoehe} cm.</p>
+            <p>
+              Die Höhe beträgt ungefähr <strong>h = {data.hoehe} cm</strong>.
+            </p>
           </>
         )
       },
