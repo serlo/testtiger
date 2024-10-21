@@ -88,8 +88,7 @@ export const exercise7: Exercise<DATA> = {
         return (
           <>
             <p>
-              {' '}
-              zeichne ein Quadrat mit der Seitenlänge {data.kante} cm. Achte
+              Zeichne ein Quadrat mit der Seitenlänge {data.kante} cm. Achte
               darauf, dass der Winkel, in dem das Quadrat zur Horizontalen
               steht, 45° beträgt.
               <svg viewBox="0 0 328 200" className="min-w-[328px]">
