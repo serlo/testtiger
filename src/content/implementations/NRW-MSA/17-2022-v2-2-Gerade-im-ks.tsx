@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
 import { buildInlineFrac } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppPolynom } from '@/helper/pretty-print'
 
 interface DATA {
   m: number
@@ -141,27 +141,34 @@ export const exercise17: Exercise<DATA> = {
             <p>
               Der Funktionsterm hat allgemein die Form <br /> y = mx + b.{' '}
             </p>
+            <ul>
+              <li>
+                Aus der Wertetabelle kannst du den Wert des y-Achsenabschnitts
+                bei x = 0 ablesen: <strong>b = {pp(data.b)}</strong>
+              </li>
+              <li>
+                Aus den Punkten {'(0|' + pp(data.b) + ')'} und{' '}
+                {'(1|' + pp(1 * data.m + data.b) + ')'} folgt, dass die Gerade
+                eine Steigung von m = {pp(data.m)} haben muss. Das kannst du
+                auch mit der Punkt-Steigungs-Formel berechnen:
+                <p>
+                  <strong>
+                    m = {buildInlineFrac(y_2 + ' − ' + pp(data.b), '1 − 0')} ={' '}
+                    {pp(data.m)}
+                  </strong>
+                </p>
+              </li>
+            </ul>
+
             <p>
-              Dabei steht m für die Steigung der Geraden und b für den
-              y-Achsenabschnitt.
-            </p>
-            <p>
-              <br></br>Aus der Wertetabelle kannst du den Wert des
-              y-Achsenabschnitts bei x = 0 ablesen: b = {pp(data.b)}
-            </p>
-            <p>
-              Aus den Punkten {'(0|' + pp(data.b) + ')'} und{' '}
-              {'(1|' + pp(1 * data.m + data.b) + ')'} folgt, dass die Gerade
-              eine Steigung von m = {pp(data.m)} haben muss. Das kannst du auch
-              mit der Punkt-Steigungs-Formel berechnen:
-            </p>
-            <p>
-              m = {buildInlineFrac(y_2 + ' − ' + pp(data.b), '1 − 0')} ={' '}
-              {pp(data.m)}
-            </p>
-            <p>
-              Die Funktionsgleichung ist also <br /> y=
-              {m_print + 'x' + b_print}.
+              Die Funktionsgleichung ist also: <br />
+              <strong>
+                y ={' '}
+                {ppPolynom([
+                  [data.m, 'x', 1],
+                  [data.b, 'x', 0],
+                ])}
+              </strong>
             </p>
           </>
         )

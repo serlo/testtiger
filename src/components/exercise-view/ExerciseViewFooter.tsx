@@ -31,13 +31,24 @@ export function ExerciseViewFooter() {
           el: target,
           direction: 'y',
           threshold: 50,
-          onEnd: () => {
-            console.log('gesture detected')
+          canStart: () => {
+            return target.scrollTop < 5 && chatOverlay == 'solution'
+          },
+          onEnd: e => {
+            if (e.deltaY > 80) {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+            }
           },
           gestureName: 'close-on-down-pull',
         })
 
         gesture.enable()
+
+        return () => {
+          gesture.destroy()
+        }
       }
     }
   }, [solutionDiv])
