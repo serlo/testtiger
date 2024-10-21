@@ -541,16 +541,14 @@ export const exercise192: Exercise<DATA> = {
               Mitternachtsformel und setze die Werte ein.{' '}
             </p>
             <p>
-              <p>
-                x<sub>1/2</sub> ={' '}
-                {buildInlineFrac(
-                  <>
-                    <span style={{ verticalAlign: 'middle' }}>−b ± </span>
-                    {buildSqrt('b² − 4ac')}
-                  </>,
-                  '2 · a',
-                )}
-              </p>
+              x<sub>1/2</sub> ={' '}
+              {buildInlineFrac(
+                <>
+                  <span style={{ verticalAlign: 'middle' }}>−b ± </span>
+                  {buildSqrt('b² − 4ac')}
+                </>,
+                '2 · a',
+              )}
             </p>
             <p>
               x<sub>1/2</sub> ={' '}
