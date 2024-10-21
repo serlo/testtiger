@@ -6,6 +6,8 @@ import {
   buildSqrt,
 } from '@/helper/math-builder'
 import { pp, ppFrac, ppPolynom } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
+import { isNumberObject } from 'util/types'
 
 interface DATA {
   a: number
@@ -541,70 +543,119 @@ export const exercise192: Exercise<DATA> = {
               Forme die Gleichung zuerst um, damit du die pq-Formel anwenden
               kannst:
             </p>
-            <p>
-              {ppPolynom([[data.a * 2, 'x', 2]])} + 4x + {pp(2 * b)} ={' '}
-              {pp(zahl)}
-            </p>
-            <p>
-              {ppPolynom([[data.a * 2, 'x', 2]])} + 4x{' '}
-              {pp(2 * b - zahl, 'merge_op')} = 0
-            </p>
-            <p>
-              x<sup>2</sup> {ppFrac(k_b, 'koeff')}x + {pp(k_c)} = 0
-            </p>
+            {buildEquation([
+              [
+                <>
+                  {ppPolynom([[data.a * 2, 'x', 2]])} + 4x + {pp(2 * b)}
+                </>,
+                <>=</>,
+                <>{pp(zahl)}</>,
+                <>| {pp(-zahl)} </>,
+              ],
+              [
+                <>
+                  {' '}
+                  {ppPolynom([[data.a * 2, 'x', 2]])} + 4x{' '}
+                  {pp(2 * b - zahl, 'merge_op')}
+                </>,
+                <>=</>,
+                <>0</>,
+                <>| : ({pp(data.a * 2)})</>,
+              ],
+              [
+                <>
+                  x<sup>2</sup> {ppFrac(k_b, 'koeff')}x + {pp(k_c)}
+                </>,
+                <>=</>,
+                <>0</>,
+              ],
+            ])}
+
             <p>
               Das ist eine quadratische Gleichung. Zur Lösung verwende die
-              Mitternachtsformel und setze die Werte ein.{' '}
+              pq-Formel und setze die Werte ein.{' '}
             </p>
-            <p>
-              x<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+            {buildEquation([
+              [
                 <>
-                  <span style={{ verticalAlign: 'middle' }}>−b ± </span>
-                  {buildSqrt('b² − 4ac')}
+                  x<sub>1/2</sub>
                 </>,
-                '2 · a',
-              )}
-            </p>
-            <p>
-              x<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+                <>=</>,
                 <>
-                  {ppFrac(k_b)} {' ± '}
+                  {buildInlineFrac('p', 2)} ±{' '}
                   {buildSqrt(
                     <>
-                      {ppFrac(k_b, 'embrace_neg')}² - 4 · {pp(-data.a * 2)} ·{' '}
-                      {pp(k_c)}
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac('p', 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      q
                     </>,
                   )}
                 </>,
-                '2 · ' + -data.a * 2,
-              )}
-            </p>
+              ],
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  {ppFrac(k_b / 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      {!Number.isInteger(k_b / 2) ? (
+                        <span className="inline-block  scale-y-[2.6]">(</span>
+                      ) : (
+                        '('
+                      )}
+                      {ppFrac(k_b / 2)}
+                      {!Number.isInteger(k_b / 2) ? (
+                        <span className="inline-block  scale-y-[2.6]">)</span>
+                      ) : (
+                        ')'
+                      )}
+                      ² −{pp(k_c)}
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  {ppFrac(k_b / 2)} ±{' '}
+                  {buildSqrt(
+                    <>{pp(roundToDigits((k_b / 2) * (k_b / 2) - k_c, 2))}</>,
+                  )}
+                </>,
+              ],
+            ])}
 
             {data.a * 2 == -1 ? (
               <>
                 <p>Die Gleichung besitzt die Lösungen:</p>
                 <p>
-                  x<sub>1</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)}
-                </p>
-                <p>
-                  x<sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}
+                  <strong>
+                    x<sub>1</sub> ={' '}
+                    {ppFrac((-4 / (2 * Math.abs(data.a)) + 1) / 2)}
+                    <br></br>x<sub>2</sub> ={' '}
+                    {ppFrac((-4 / (2 * Math.abs(data.a)) - 1) / 2)}
+                  </strong>
                 </p>
                 <p>
                   <strong>Erklärung:</strong> Die Lösung bedeutet, dass für die
                   x-Werte x<sub>1</sub> ={' '}
-                  {ppFrac((4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
-                  <sub>2</sub> = {ppFrac((4 / (2 * Math.abs(data.a)) - 1) / 2)}{' '}
+                  {ppFrac((-4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
+                  <sub>2</sub> = {ppFrac((-4 / (2 * Math.abs(data.a)) - 1) / 2)}{' '}
                   ein Rechteck mit dem Umfang {pp(zahl)} existiert.
                 </p>
               </>
             ) : (
               <p>
-                <strong>Erklärung:</strong> Die Gleichung besitzt keine
-                Lösungen, da der Wert unter der Wurzel negativ ist. <br></br>Das
-                bedeutet, dass es kein Rechteck mit dem Umfang {pp(zahl)} geben
-                kann.
+                <strong>Erklärung:</strong> Die Gleichung besitzt keine Lösung,
+                da der Wert unter der Wurzel negativ ist. <br></br>Das bedeutet,
+                dass es kein Rechteck mit dem Umfang {pp(zahl)} geben kann.
               </p>
             )}
           </>

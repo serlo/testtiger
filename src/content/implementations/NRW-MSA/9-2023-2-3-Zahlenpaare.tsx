@@ -329,61 +329,92 @@ export const exercise9: Exercise<DATA> = {
         return (
           <>
             <p>
-              1. Das ist eine quadratische Gleichung. Bringe alle Terme auf eine
-              Seite der Gleichung, um sie mit der Mitternachtsformel lösen zu
-              können:
+              1. Das ist eine quadratische Gleichung. Bringe sie in die richtige
+              Form, um sie mit der pq-Formel lösen zu können:
             </p>
-            <p>
-              {buildInlineFrac(1, 2)} ​n² + {buildInlineFrac(1, 2)} ​n - {c} = 0
-            </p>
-            <p>
-              Setze die Parameter a = {buildInlineFrac(1, 2)}, b ={' '}
-              {buildInlineFrac(1, 2)} und <br></br>c = {pp(-c)} in die
-              Mitternachtsformel ein und berechne die Lösungen.
-            </p>
-            <p>
-              n<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+            {buildEquation([
+              [
                 <>
-                  <span style={{ verticalAlign: 'middle' }}>−b ± </span>
-                  {buildSqrt('b² − 4ac')}
+                  {buildInlineFrac(1, 2)} ​n² + {buildInlineFrac(1, 2)} ​n - {c}
                 </>,
-                '2 · a',
-              )}
-            </p>
+                <>=</>,
+                <>0</>,
+                <>| · 2</>,
+              ],
+              [<>​n² + ​n - {2 * c}</>, <>=</>, <>0</>],
+            ])}
+
             <p>
-              n<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+              Setze die Parameter p = 1 und q = {pp(-2 * c)} in die Formel ein
+              und berechne die Lösungen.
+            </p>
+            {buildEquation([
+              [
                 <>
-                  <span style={{ verticalAlign: 'middle' }}>− 0,5 ± </span>
-                  {buildSqrt('0,25' + ' − 4 · 0,5 · (' + pp(-c) + ')')}
+                  n<sub>1/2</sub>
                 </>,
-                '1',
-              )}
-            </p>
-            <p>
-              n<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+                <>=</>,
                 <>
-                  <span style={{ verticalAlign: 'middle' }}>− 0,5 ± </span>
-                  {buildSqrt(pp(4 * c * 0.5 + 0.25))}
+                  −{buildInlineFrac('p', 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac('p', 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      q
+                    </>,
+                  )}
                 </>,
-                '1',
-              )}
-            </p>
-            <p>
-              n<sub>1</sub> = − 0,5 + {pp(Math.pow(4 * c * 0.5 + 0.25, 0.5))} ={' '}
-              {Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5}
-            </p>
-            <p>
-              n<sub>2</sub> = − 0,5 − {pp(Math.pow(4 * c * 0.5 + 0.25, 0.5))} ={' '}
-              {pp(-Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5)}
-            </p>
+              ],
+              [
+                <>
+                  n<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  −{buildInlineFrac(1, 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac(1, 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      ({pp(-2 * c)})
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <>
+                  n<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  <>
+                    <span style={{ verticalAlign: 'middle' }}>− 0,5 ± </span>
+                    {buildSqrt(pp(4 * c * 0.5 + 0.25))}
+                  </>
+                </>,
+              ],
+            ])}
+
+            <strong>
+              <p>
+                n<sub>1</sub> = − 0,5 + {pp(Math.pow(4 * c * 0.5 + 0.25, 0.5))}{' '}
+                = {Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5}
+              </p>
+              <p>
+                n<sub>2</sub> = − 0,5 − {pp(Math.pow(4 * c * 0.5 + 0.25, 0.5))}{' '}
+                = {pp(-Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5)}
+              </p>
+            </strong>
             <p>
               Die beiden Lösungen der Gleichung sind n<sub>1</sub> und n
               <sub>2</sub>, wobei in unserem Kontext n keine negative Zahl sein
-              kann. Damit ist die einzige sinnvolle Lösung n<sub>1</sub> ={' '}
-              {Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5}.
+              kann. Damit ist die einzige sinnvolle Lösung{' '}
+              <strong>
+                n<sub>1</sub> = {Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5}
+              </strong>
+              .
             </p>
           </>
         )
