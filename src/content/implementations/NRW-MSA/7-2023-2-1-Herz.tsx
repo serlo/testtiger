@@ -472,13 +472,13 @@ export const exercise7: Exercise<DATA> = {
                 pp(data.red) + ' Herzen',
                 '≙',
                 (data.zaehler / data.nenner) * 100 + ' %',
-                '|: ' + data.red,
+                '|: ' + (data.zaehler / data.nenner) * 100,
               ],
               [
-                '1 Herz',
+                pp(data.red / ((data.zaehler / data.nenner) * 100)) + ' Herz',
                 '≙',
-                pp(data.zaehler / data.nenner / data.red) + ' %',
-                '|: ' + pp(data.zaehler / data.nenner / data.red),
+                '1 %',
+                '|· 100',
               ],
               [
                 <>
