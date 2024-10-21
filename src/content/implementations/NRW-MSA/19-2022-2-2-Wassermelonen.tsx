@@ -536,9 +536,15 @@ export const exercise19: Exercise<DATA> = {
               Ausgehend von Woche 2 in der Tabelle verdoppelt sich das Gewicht
               noch 2 mal:
             </p>
-            <p>Woche 3: {data.gewicht * 8} g</p>
-            <p>Woche 4: {data.gewicht * 16} g</p>
-            <p>In Woche 4 beträgt das Gewicht {data.gewicht * 16} g.</p>
+            <p>
+              Woche 3: 2 · {data.gewicht * 4} = {data.gewicht * 8} [g]
+            </p>
+            <p>
+              Woche 4: 2 · {data.gewicht * 8} = {data.gewicht * 16} [g]
+            </p>
+            <p>
+              In Woche 4 beträgt das Gewicht <b>{data.gewicht * 16} g.</b>
+            </p>
           </>
         )
       },
