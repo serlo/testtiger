@@ -451,13 +451,26 @@ export const exercise54: Exercise<DATA> = {
           <>
             <p>
               Die Songs werden zufällig wiedergegeben. Es sind {data.ed} Songs
-              von Ed Sheeran vorhanden und insgesamt 10 Songs. Der Anteil der Ed
-              Sheeran Songs beträgt damit p = {buildInlineFrac(data.ed, 10)}
+              von Ed Sheeran vorhanden und insgesamt 10 Songs.
             </p>
-            <p>
-              Damit ist auch die Wahrscheinlichkeit beim zufälligen Abspielen p
-              = {ppFrac(data.ed / 10)}.
-            </p>
+            <p>Mit der Laplace - Formel gilt: </p>
+            {buildEquation([
+              [
+                <>p</>,
+                '=',
+                <>
+                  {buildFrac('Anzahl Ed Sheeran Songs', 'Anzahl aller Songs')}
+                </>,
+              ],
+              [<></>, '=', <>{buildInlineFrac(data.ed, 10)}</>],
+              [
+                <></>,
+                '=',
+                <>
+                  <strong>{ppFrac(data.ed / 10)}</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
