@@ -164,11 +164,12 @@ export const exercise9: Exercise<DATA> = {
             <p>Wende die gleiche Vorgehensweise wie in Abbildung 2 an:</p>
             <ul>
               <li>
-                Bestimme die <Color2>Summe eines Zahlenpaars:</Color2>{' '}
-                <Color2>{data.task_3 + 1}</Color2>
+                Bestimme die <Color2>Summe eines Zahlenpaars</Color2>, indem du
+                zur höchsten Zahl 1 addierst: <Color2>{data.task_3 + 1}</Color2>
               </li>
               <li>
-                Bestimme die <Color1>Anzahl der Zahlenpaare:</Color1>{' '}
+                Bestimme die <Color1>Anzahl der Zahlenpaare</Color1>, indem du
+                die höchste Zahl durch zwei teilst:{' '}
                 <Color1>{data.task_3 / 2}</Color1>
               </li>
             </ul>

@@ -206,10 +206,11 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              In jedem Schritt entstehen in jedem schwarzen Dreieck vier
-              kleinere, gleich große Dreiecke. Eines davon ist weiß und drei
-              schwarz, sodass die Fläche der schwarzen Dreiecke in der neuen
-              Stufe {buildInlineFrac(3, 4)} der ursprünglichen Fläche beträgt.{' '}
+              In jedem Schritt entstehen in jedem schwarzen Dreieck <b>vier</b>{' '}
+              kleinere, gleich große Dreiecke. Eines davon ist weiß und{' '}
+              <b>drei</b> schwarz, sodass die Fläche der schwarzen Dreiecke in
+              der neuen Stufe <b>{buildInlineFrac(3, 4)}</b> der ursprünglichen
+              Fläche beträgt.{' '}
             </p>
           </>
         )
@@ -418,8 +419,9 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Fläche der schwarzen Dreiecke wird in weniger Stufe um 25 %
-              geringer und geht damit gegen <strong>0 cm²</strong>.{' '}
+              Die Fläche der schwarzen Dreiecke wird mit jeder Stufe um 25 %
+              geringer. Der schwarze Anteil wird also immer kleiner und geht
+              gegen <strong>0 cm²</strong>.{' '}
             </p>
             <p>
               Die weißen Flächen entsprechen genau dem Gegenstück der schwarzen
