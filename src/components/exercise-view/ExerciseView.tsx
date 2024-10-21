@@ -1,9 +1,7 @@
-import { generateSeed } from '@/data/generate-seed'
-import { ExerciseViewStore, setupExercise } from './state/exercise-view-store'
-import { generateData } from '@/data/generate-data'
-import { exercisesData } from '@/content/exercises'
+import { ExerciseViewStore } from './state/exercise-view-store'
 import { ExerciseViewLayout } from './ExerciseViewLayout'
 import { useEffect } from 'react'
+import { setupExercise } from './state/actions'
 
 interface ExerciseViewProps {
   id: number

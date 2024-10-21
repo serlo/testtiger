@@ -1,5 +1,5 @@
 import { exercisesData } from '@/content/exercises'
-import { ExerciseViewStore, reseed } from './state/exercise-view-store'
+import { ExerciseViewStore } from './state/exercise-view-store'
 import clsx from 'clsx'
 import {
   faCalculator,
@@ -11,6 +11,7 @@ import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef } from 'react'
+import { reseed } from './state/actions'
 
 export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)

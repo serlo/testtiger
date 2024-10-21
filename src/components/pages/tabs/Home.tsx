@@ -6,7 +6,7 @@ import { navigationData } from '@/content/navigations'
 import { useEffect } from 'react'
 import { setName } from '../../../../store/actions'
 import { exercisesData } from '@/content/exercises'
-import { setupExercise } from '@/components/exercise-view/state/exercise-view-store'
+import { setupExercise } from '@/components/exercise-view/state/actions'
 
 export function Home() {
   const name = Store.useState(s => s.name)

@@ -9,10 +9,7 @@ import {
 } from '@ionic/react'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
-import {
-  ExerciseViewStore,
-  setupExercise,
-} from '../exercise-view/state/exercise-view-store'
+import { setupExercise } from '../exercise-view/state/actions'
 
 interface TopicProps {
   title: string
