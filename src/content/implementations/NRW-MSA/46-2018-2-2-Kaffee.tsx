@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 import build from 'next/dist/build'
 
@@ -283,18 +284,32 @@ export const exercise46: Exercise<DATA> = {
               ],
               [
                 '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
                 '=',
                 <>
                   ({pp((data.dia - 1) / 2)}² + {pp((data.dia - 1) / 2)} ·{' '}
                   {pp(data.dia / 2)} + {pp(data.dia / 2)}²) ·{' '}
-                  {buildInlineFrac('π · h', '3')}
+                  {buildInlineFrac(<>π · {data.höhe}</>, '3')}
                 </>,
               ],
               [
                 '',
                 '≈',
                 <>
-                  <strong>{pp(roundToDigits(data.Vstumpf, 2))} cm³</strong>
+                  <strong>{pp(roundToDigits(data.Vstumpf, 2))} [cm³]</strong>
                 </>,
               ],
             ])}
@@ -334,13 +349,16 @@ export const exercise46: Exercise<DATA> = {
         )
         return (
           <>
+            <p>
+              <strong>Volumen mit mittlerem Radius</strong>
+            </p>
             <p>Der Mittelwert der Radien beträgt:</p>
             <p>
               {buildInlineFrac(
                 pp((data.dia - 1) / 2) + ' + ' + pp(data.dia / 2),
                 2,
               )}{' '}
-              = {pp(((data.dia - 1) / 2 + data.dia / 2) / 2)} cm
+              = {pp(((data.dia - 1) / 2 + data.dia / 2) / 2)} [cm]
             </p>
             <p>
               Berechne das Volumen des Zylinders mit Radius{' '}
@@ -356,26 +374,39 @@ export const exercise46: Exercise<DATA> = {
                   {pp(data.höhe)}
                 </>,
               ],
-              ['', '≈', <>{pp(roundToDigits(V, 2))} cm³</>],
+              ['', '≈', <>{pp(roundToDigits(V, 2))} [cm³]</>],
             ])}{' '}
-            <p>Die Abweichung zum Ergebnis des Kegelstumpfes beträgt:</p>
+            <p>
+              <strong>Prozentuale Abweichung</strong>
+            </p>
+            <p>
+              Die Abweichung zum Ergebnis des Kegelstumpfes aus (d) beträgt:
+            </p>
             <p>
               {pp(roundToDigits(data.Vstumpf, 2))} − {pp(roundToDigits(V, 2))} ={' '}
-              {pp(diff)} cm³
+              {pp(diff)} [cm³]
             </p>
             <p>
               Teile die Abweichung durch das Volumen des Kegelstumpfes, um die
               prozentuale Abweichung zu erhalten:
             </p>
             <p>
-              {pp(diff)} : {pp(roundToDigits(data.Vstumpf, 2))} ≈{' '}
+              {buildInlineFrac(pp(diff), pp(roundToDigits(data.Vstumpf, 2)))} ≈{' '}
               {pp(roundToDigits(diff / roundToDigits(data.Vstumpf, 2), 4))} ≙{' '}
-              {pp(
-                roundToDigits((diff / roundToDigits(data.Vstumpf, 2)) * 100, 2),
-              )}{' '}
-              % {' < '} 1 %
+              <strong>
+                {pp(
+                  roundToDigits(
+                    (diff / roundToDigits(data.Vstumpf, 2)) * 100,
+                    2,
+                  ),
+                )}{' '}
+                %
+              </strong>{' '}
+              {' < '} 1 %
             </p>
-            <p>Karin hat recht.</p>
+            <p>
+              <strong>Karin hat recht.</strong>
+            </p>
           </>
         )
       },

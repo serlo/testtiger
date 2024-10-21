@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color3, Color4 } from '@/helper/colors'
 import { buildEquation, buildFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -183,18 +183,63 @@ export const exercise18: Exercise<DATA> = {
             <p>
               Dabei sind r der Radius und h die Höhe des Zylinders.<br></br>
             </p>
-            <p>Setze die Werte ein und berechne den Radius r:</p>
-            <p>
-              {data.volumen} = r² · {data.dicke}π
-            </p>
-            <p>
-              {data.volumen} : {data.dicke}π = r²{' '}
-            </p>
-            <p>r = {buildSqrt(data.volumen + 'cm² : ' + data.dicke + 'π')}</p>
-            <p>r = {pp(r)} cm</p>
+            {buildEquation([
+              [
+                <>
+                  V<sub>Zylinder</sub>
+                </>,
+                <>=</>,
+                <>r² · π · h</>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Einsetzen und nach r lösen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>{data.volumen}</>,
+                <>=</>,
+                <>r² · {data.dicke}π</>,
+                <>| : {data.dicke}π</>,
+              ],
+              [
+                <>
+                  {data.volumen} : {data.dicke}π
+                </>,
+                <>=</>,
+                <>r²</>,
+                <>| √</>,
+              ],
+              [
+                <>r</>,
+                <>=</>,
+                <>
+                  {buildSqrt(
+                    <>
+                      {data.volumen} : {data.dicke}π
+                    </>,
+                  )}
+                </>,
+              ],
+              [<>r</>, <>=</>, <>{pp(r)} [cm]</>],
+            ])}
+
             <p>Berechne den Durchmesser, in dem du den Radius verdoppelst:</p>
-            <p>d = 2 · r = {pp(2 * r)} cm</p>
-            <p>Der Durchmesser beträgt {pp(2 * r)} cm.</p>
+            <p>d = 2 · r = {pp(2 * r)} [cm]</p>
+            <p>
+              Der Durchmesser beträgt <strong>{pp(2 * r)} cm</strong>.
+            </p>
           </>
         )
       },
@@ -220,12 +265,16 @@ export const exercise18: Exercise<DATA> = {
         const d = Math.sqrt(data.volumen / (data.dicke * Math.PI)) * 2
         return (
           <>
+            <p>
+              <strong>Volumen des Mini - Röstis</strong>
+            </p>
             <p>Berechne zuerst das Volumen des Mini-Röstis:</p>
             <p>
-              {data.volumen} cm³ : 2 = {pp(data.volumen / 2)} cm³
+              {data.volumen} : 2 = {pp(data.volumen / 2)} [cm³]
             </p>
             <p>
-              Das Mini-Rösti hat ein Volumen von {pp(data.volumen / 2)} cm³.
+              Das Mini-Rösti hat ein Volumen von<br></br>{' '}
+              <Color3>{pp(data.volumen / 2)} cm³</Color3>.<br></br>
               <br></br>Vergleiche mit dem Volumen eines Zylinders mit{' '}
               {data.case == 1 && 'halbem '}
               {data.case == 2 && 'viertel '}
@@ -234,16 +283,22 @@ export const exercise18: Exercise<DATA> = {
               {data.case == 2 && pp(roundToDigits(d / 4, 2))}
               {data.case == 3 && pp(roundToDigits(2 * d, 2))} cm:
             </p>
-
+            <p>
+              <strong>
+                Volumen bei {data.case == 1 && 'halbem '}
+                {data.case == 2 && 'viertel '}
+                {data.case == 3 && 'doppeltem '}
+                Durchmesser
+              </strong>
+            </p>
             <p>
               V<sub>Zylinder</sub> = r² · π · h
             </p>
             <p>
-              V<sub>Zylinder</sub> = (
+              V<sub>Zylinder</sub> ={' '}
               {data.case == 1 && pp(roundToDigits(d / 4, 2))}
               {data.case == 2 && pp(roundToDigits(d / 8, 2))}
-              {data.case == 3 && pp(roundToDigits(d, 2))} cm)² · π ·{' '}
-              {data.dicke} cm
+              {data.case == 3 && pp(roundToDigits(d, 2))}² · π · {data.dicke}
             </p>
             <p>
               V<sub>Zylinder</sub> ={' '}
@@ -255,21 +310,29 @@ export const exercise18: Exercise<DATA> = {
                 pp(
                   roundToDigits(Math.pow(d, 2) * Math.PI * data.dicke, 2),
                 )}{' '}
-              cm³
+              [cm³]
             </p>
             <p>
               Das Volumen eines Zylinders mit {data.case == 1 && 'halbem '}
               {data.case == 2 && 'viertel '}
-              {data.case == 3 && 'doppeltem '} Durchmesser beträgt{' '}
-              {data.case == 1 &&
-                pp(roundToDigits(Math.pow(d / 4, 2) * Math.PI * data.dicke, 2))}
-              {data.case == 2 &&
-                pp(roundToDigits(Math.pow(d / 8, 2) * Math.PI * data.dicke, 2))}
-              {data.case == 3 &&
-                pp(
-                  roundToDigits(Math.pow(d, 2) * Math.PI * data.dicke, 2),
-                )}{' '}
-              cm³. Das ist ein {data.case == 1 && 'Viertel '}
+              {data.case == 3 && 'doppeltem '} Durchmesser beträgt
+              <Color3>
+                {' '}
+                {data.case == 1 &&
+                  pp(
+                    roundToDigits(Math.pow(d / 4, 2) * Math.PI * data.dicke, 2),
+                  )}
+                {data.case == 2 &&
+                  pp(
+                    roundToDigits(Math.pow(d / 8, 2) * Math.PI * data.dicke, 2),
+                  )}
+                {data.case == 3 &&
+                  pp(
+                    roundToDigits(Math.pow(d, 2) * Math.PI * data.dicke, 2),
+                  )}{' '}
+                cm³
+              </Color3>
+              . Das ist ein {data.case == 1 && 'Viertel '}
               {data.case == 2 && 'Sechzehntel '}
               {data.case == 3 && 'Vierfaches '} des Volumens des normalen
               Röstis. Also ist die Aussage{' '}

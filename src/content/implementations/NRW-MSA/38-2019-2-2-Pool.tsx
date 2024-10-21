@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { buildEquation, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -52,8 +53,10 @@ export const exercise38: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            a) Bestätige durch eine Rechnung, dass der Flächeninhalt der
-            Grundfläche des Schwimmbeckens {pp(data.surface)} m² beträgt.
+            <p>
+              a) Bestätige durch eine Rechnung, dass der Flächeninhalt der
+              Grundfläche des Schwimmbeckens {pp(data.surface)} m² beträgt.
+            </p>
           </>
         )
       },
@@ -88,7 +91,17 @@ export const exercise38: Exercise<DATA> = {
                   {pp(data.höhe)}
                 </>,
               ],
-              ['G', '≈', <>{pp(data.surface)} m²</>],
+              [
+                <>
+                  <strong>G</strong>
+                </>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>{pp(data.surface)} [m²]</strong>
+                </>,
+              ],
             ])}
           </>
         )
@@ -217,29 +230,46 @@ export const exercise38: Exercise<DATA> = {
               Pools.
             </p>
             <p>
+              <strong>Durchmesser berechnen</strong>
+            </p>
+            <p>
               Bestimme den Durchmesser aus der kreisförmigen Grundfläche:{' '}
               {pp(data.surface)} m²
             </p>
-            {buildEquation([['G', '=', 'π · r²']])}
-            <p>
-              Setze den Wert der Grundfläche ein und berechne den Radius
-              mithilfe der Quadratwurzel:
-            </p>
             {buildEquation([
               ['G', '=', 'π · r²'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Einsetzen und nach r umformen
+                    </span>
+                  </Color4>
+                </>,
+              ],
               [pp(data.surface), '=', 'π · r²', '|: π'],
+              [<>{pp(data.surface)} : π</>, '=', 'r²', '| √'],
               ['r', '=', buildSqrt(pp(data.surface) + ' : π')],
-              ['r', '≈', pp(r)],
+              [<>r</>, <>≈</>, <>{pp(r)} [m]</>],
             ])}{' '}
-            m
             <p>
-              Der Durchmesser beträgt damit:<br></br> d = 2r = {pp(2 * r)} m
+              Der Durchmesser beträgt damit:<br></br> d = 2r = {pp(2 * r)} [m]
+            </p>
+            <p>
+              <strong>Kantenlänge bestimmen</strong>
             </p>
             <p>
               {' '}
               Die quadratische Terrasse hat damit eine Kantenlänge von{' '}
-              {pp(2 * r)}+ {pp(data.terra / 100)} ={' '}
-              {pp(2 * r + data.terra / 100)} m
+              {pp(2 * r)} + {pp(data.terra / 100)} =
+              <strong> {pp(2 * r + data.terra / 100)} [m]</strong>
             </p>
           </>
         )
