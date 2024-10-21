@@ -159,7 +159,7 @@ export const exercise8: Exercise<DATA> = {
           <>
             <p>
               Die Anzahl der Milben verdoppelt sich alle 4 Wochen. Nach 4 Wochen
-              ist die Anzahl der Milben das doppelte des Ausgangswertes, also:
+              ist die Anzahl der Milben das Doppelte des Ausgangswertes, also:
               <br></br>
               {data.count} ⋅ 2 = <strong>{data.count * 2} Milben</strong>
             </p>
