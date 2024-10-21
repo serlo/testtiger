@@ -314,6 +314,22 @@ export const exercise54: Exercise<DATA> = {
               ],
               [
                 '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze b = {pp(data.b)} und r = {pp(data.dot / 2)} ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
                 '=',
                 <>
                   π · {pp(data.b)}² ·{' '}
@@ -322,7 +338,7 @@ export const exercise54: Exercise<DATA> = {
                   <span className="inline-block scale-y-[2.6]">)</span>
                 </>,
               ],
-              ['', '≈', <>{pp(roundToDigits(volume_s, 2))} cm³</>],
+              ['', '≈', <>{pp(roundToDigits(volume_s, 2))} [cm³]</>],
             ])}
             <br></br>
             <strong>Prozentualer Anteil</strong>
