@@ -232,7 +232,10 @@ export const exercise42: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  <Color1>4</Color1> · O
+                  <Color1>
+                    {ppFrac(faktor[data.case] * faktor[data.case])}
+                  </Color1>{' '}
+                  · O
                 </>,
               ],
             ])}
