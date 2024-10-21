@@ -393,8 +393,18 @@ export const exercise18: Exercise<DATA> = {
           <>
             <p>
               Die Pfade im Baumdiagramm, die aus einem gemeinsamen Punkt kommen,
-              ergeben zusammen immer 100 %.
+              ergeben zusammen immer 100 %:
             </p>
+            <ul>
+              <li>
+                100 % - {data.prob_1} % = {100 - data.prob_1} % haben nicht das
+                richtige Gewicht.
+              </li>
+              <li>
+                100 % - {data.prob_2} % = {100 - data.prob_2} % haben nicht das
+                richtige Aussehen.
+              </li>
+            </ul>
             <svg viewBox="0 0 700 430">
               <image
                 href="/content/NRW_MSA_Baumdiagramm_2.png"
@@ -466,7 +476,7 @@ export const exercise18: Exercise<DATA> = {
               Produktregel:
             </p>
             <p>
-              P(&quot;Beide Vorgaben werden eingehalten&quot;) ={' '}
+              P(&quot;Vorgaben werden eingehalten&quot;) ={' '}
               {pp(data.prob_1 / 100)} · {pp(data.prob_2 / 100)} ={' '}
               {pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4))}
             </p>

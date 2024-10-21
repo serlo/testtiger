@@ -481,10 +481,18 @@ export const exercise7: Exercise<DATA> = {
                 '|: ' + pp(data.zaehler / data.nenner / data.red),
               ],
               [
-                Math.round(1 / (data.zaehler / data.nenner / data.red)) +
-                  ' Herzen',
-                '≙',
-                '100 %',
+                <>
+                  <strong>
+                    {Math.round(1 / (data.zaehler / data.nenner / data.red))}{' '}
+                    Herzen
+                  </strong>
+                </>,
+                <>
+                  <strong>≙</strong>
+                </>,
+                <>
+                  <strong>100 %</strong>
+                </>,
               ],
             ])}
           </>
@@ -520,147 +528,169 @@ export const exercise7: Exercise<DATA> = {
         const bruch6 = kürzeBruch(gesamt - data.red - 1, gesamt - 1)
         return (
           <>
-            <p>
-              (1) Berechne zuerst die Wahrscheinlichkeit, ein weißes Herz zu
-              ziehen (p(w)). Beide Wahrscheinlichkeiten müssen in Summe 1
-              ergeben:
-            </p>
-            <p>
-              p(w) = 1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
-              {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
-            </p>
-            <p>
-              Beim zweiten Ziehen enthält der Karton ein Herz der gezogenen
-              Farbe weniger. Das muss für die Wahrscheinlichkeiten
-              berücksichtigt werden. Das Baumdiagramm ist:
-            </p>
-            <svg viewBox="0 0 328 220">
-              <image
-                href="/content/NRW_MSA-Baumdiagramm.PNG"
-                height="220"
-                width="328"
-              />
-              <rect
-                x="65"
-                y="65"
-                width="24"
-                height="35"
-                rx="4"
-                ry="4"
-                fill="#F9B9BA"
-              />
-              <foreignObject x="70" y="65" width={20} height={60}>
-                <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
-                  {buildFrac(bruch.zähler, bruch.nenner)}
-                </div>
-              </foreignObject>
-              <rect
-                x="65"
-                y="110"
-                width="24"
-                height="35"
-                rx="4"
-                ry="4"
-                fill="#F3FBFF"
-              />
-              <foreignObject x="70" y="110" width={20} height={60}>
-                <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
-                  {buildFrac(bruch2.zähler, bruch2.nenner)}
-                </div>
-              </foreignObject>
-              <rect
-                x="197.5"
-                y="35.5"
-                width="24"
-                height="35"
-                rx="4"
-                ry="4"
-                fill="#F9B9BA"
-              />
-              <foreignObject x="200" y="35" width={30} height={60}>
-                <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
-                  {buildFrac(bruch3.zähler, bruch3.nenner)}
-                </div>
-              </foreignObject>
-              <rect
-                x="197.5"
-                y="75.5"
-                width="24"
-                height="35"
-                rx="4"
-                ry="4"
-                fill="#F3FBFF"
-              />
-              <foreignObject x="200" y="75" width={30} height={60}>
-                <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
-                  {buildFrac(bruch4.zähler, bruch4.nenner)}
-                </div>
-              </foreignObject>
-              <rect
-                x="237"
-                y="105"
-                width="24"
-                height="35"
-                rx="4"
-                ry="4"
-                fill="#F9B9BA"
-              />
-              <foreignObject x="240" y="105" width={30} height={60}>
-                <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
-                  {buildFrac(bruch5.zähler, bruch5.nenner)}
-                </div>
-              </foreignObject>
-              <rect
-                x="237"
-                y="154"
-                width="24"
-                height="35"
-                rx="4"
-                ry="4"
-                fill="#F3FBFF"
-              />
-              <foreignObject x="240" y="154" width={30} height={60}>
-                <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
-                  {buildFrac(bruch6.zähler, bruch6.nenner)}
-                </div>
-              </foreignObject>
-            </svg>
-            <p>
-              (2) Für die Wahrscheinlichkeit betrachte die beiden Pfade, die zum
-              Ereignis {'"'}Unterschiedliche Farben{'"'} passen.
-            </p>
-            <p>
-              Verwende die Pfadregeln, um die Wahrscheinlichkeit zu berechnen:
-            </p>
-            <p>
-              p(rw;wr) = {buildFrac(bruch.zähler, bruch.nenner)} ·{' '}
-              {buildFrac(bruch4.zähler, bruch4.nenner)} +{' '}
-              {buildFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
-              {buildFrac(bruch5.zähler, bruch5.nenner)}
-            </p>
-            <p>
-              p(rw;wr) ={' '}
-              {pp(
-                roundToDigits(
-                  ((data.red * (gesamt - data.red)) / (gesamt * (gesamt - 1))) *
-                    2,
-                  4,
-                ),
-              )}
-            </p>
-            <p>
-              Die Wahrscheinlichkeit beträgt{' '}
-              {pp(
-                100 *
-                  roundToDigits(
-                    ((data.red * (gesamt - data.red)) /
-                      (gesamt * (gesamt - 1))) *
-                      2,
-                    4,
-                  ),
-              )}{' '}
-              %
-            </p>
+            <ol>
+              <li>
+                <p>
+                  Berechne zuerst die Wahrscheinlichkeit, ein weißes Herz zu
+                  ziehen (p(w)). Beide Wahrscheinlichkeiten müssen in Summe 1
+                  ergeben:
+                </p>
+                <p>
+                  p(w) = 1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
+                  {buildInlineFrac(bruch2.zähler, bruch2.nenner)}
+                </p>
+                <p>
+                  Beim zweiten Ziehen enthält der Karton ein Herz der gezogenen
+                  Farbe weniger. Das muss für die Wahrscheinlichkeiten
+                  berücksichtigt werden. Das Baumdiagramm ist:
+                </p>
+                <svg viewBox="0 0 328 220">
+                  <image
+                    href="/content/NRW_MSA-Baumdiagramm.PNG"
+                    height="220"
+                    width="328"
+                  />
+                  <rect
+                    x="65"
+                    y="65"
+                    width="24"
+                    height="35"
+                    rx="4"
+                    ry="4"
+                    fill="#F9B9BA"
+                  />
+                  <foreignObject x="70" y="65" width={20} height={60}>
+                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
+                      {buildFrac(bruch.zähler, bruch.nenner)}
+                    </div>
+                  </foreignObject>
+                  <rect
+                    x="65"
+                    y="110"
+                    width="24"
+                    height="35"
+                    rx="4"
+                    ry="4"
+                    fill="#F3FBFF"
+                  />
+                  <foreignObject x="70" y="110" width={20} height={60}>
+                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
+                      {buildFrac(bruch2.zähler, bruch2.nenner)}
+                    </div>
+                  </foreignObject>
+                  <rect
+                    x="197.5"
+                    y="35.5"
+                    width="24"
+                    height="35"
+                    rx="4"
+                    ry="4"
+                    fill="#F9B9BA"
+                  />
+                  <foreignObject x="200" y="35" width={30} height={60}>
+                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
+                      {buildFrac(bruch3.zähler, bruch3.nenner)}
+                    </div>
+                  </foreignObject>
+                  <rect
+                    x="197.5"
+                    y="75.5"
+                    width="24"
+                    height="35"
+                    rx="4"
+                    ry="4"
+                    fill="#F3FBFF"
+                  />
+                  <foreignObject x="200" y="75" width={30} height={60}>
+                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
+                      {buildFrac(bruch4.zähler, bruch4.nenner)}
+                    </div>
+                  </foreignObject>
+                  <rect
+                    x="237"
+                    y="105"
+                    width="24"
+                    height="35"
+                    rx="4"
+                    ry="4"
+                    fill="#F9B9BA"
+                  />
+                  <foreignObject x="240" y="105" width={30} height={60}>
+                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
+                      {buildFrac(bruch5.zähler, bruch5.nenner)}
+                    </div>
+                  </foreignObject>
+                  <rect
+                    x="237"
+                    y="154"
+                    width="24"
+                    height="35"
+                    rx="4"
+                    ry="4"
+                    fill="#F3FBFF"
+                  />
+                  <foreignObject x="240" y="154" width={30} height={60}>
+                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>
+                      {buildFrac(bruch6.zähler, bruch6.nenner)}
+                    </div>
+                  </foreignObject>
+                </svg>
+              </li>
+              <li>
+                <p>
+                  Für die Wahrscheinlichkeit betrachte die beiden Pfade, die zum
+                  Ereignis {'"'}Unterschiedliche Farben{'"'} passen.
+                </p>
+                <p>
+                  Verwende die Pfadregeln, um die Wahrscheinlichkeit zu
+                  berechnen:
+                </p>
+                {buildEquation([
+                  [
+                    <>p(rw;wr)</>,
+                    <>=</>,
+                    <>
+                      {buildFrac(bruch.zähler, bruch.nenner)} ·{' '}
+                      {buildFrac(bruch4.zähler, bruch4.nenner)} +{' '}
+                      {buildFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
+                      {buildFrac(bruch5.zähler, bruch5.nenner)}
+                    </>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      {' '}
+                      {pp(
+                        roundToDigits(
+                          ((data.red * (gesamt - data.red)) /
+                            (gesamt * (gesamt - 1))) *
+                            2,
+                          4,
+                        ),
+                      )}
+                    </>,
+                  ],
+                ])}
+
+                <p>
+                  Die Wahrscheinlichkeit beträgt{' '}
+                  <strong>
+                    {pp(
+                      100 *
+                        roundToDigits(
+                          ((data.red * (gesamt - data.red)) /
+                            (gesamt * (gesamt - 1))) *
+                            2,
+                          4,
+                        ),
+                    )}{' '}
+                    %
+                  </strong>
+                  .
+                </p>
+              </li>
+            </ol>
           </>
         )
       },

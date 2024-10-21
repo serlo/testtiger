@@ -565,6 +565,10 @@ export const exercise54: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <p>
+              Bestimme die Wahrscheinlichkeiten wie in (d). Achte darauf, dass
+              das erste Lied nicht mehr zur Auswahl steht in der zweiten Stufe.
+            </p>
             <p>Das vollständige Baumdiagramm sieht so aus:</p>
             <svg viewBox="0 0 328 360">
               <image
@@ -705,8 +709,8 @@ export const exercise54: Exercise<DATA> = {
               Die Wahrscheinlichkeit, dass beide Fälle hintereinander eintreten
               beträgt:<br></br> p = {buildInlineFrac(data.ed, 10)} ·{' '}
               {buildInlineFrac(data.ed - 1, 9)} ={' '}
-              {buildInlineFrac((data.ed - 1) * data.ed, 90)} ={' '}
-              {ppFrac(((data.ed - 1) * data.ed) / 90)}
+              {buildInlineFrac((data.ed - 1) * data.ed, 90)} =
+              <strong> {ppFrac(((data.ed - 1) * data.ed) / 90)}</strong>
             </p>
           </>
         )

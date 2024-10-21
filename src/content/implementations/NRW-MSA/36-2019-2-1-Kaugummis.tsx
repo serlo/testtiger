@@ -357,35 +357,54 @@ export const exercise36: Exercise<DATA> = {
             <p>
               Berechne die Wahrscheinlichkeit mithilfe der passenden Pfade im
               Baumdiagramm. Bestimme dazu die Pfade mit verschiedenfarbigen
-              Kaugummis. Mit den Pfadregeln gilt:
+              Kaugummis. <br></br>
+              <br></br>Mit den Pfadregeln gilt:
             </p>
+            {buildEquation([
+              [
+                <>p(rw;wr)</>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(bruch.zähler, bruch.nenner)} ·{' '}
+                  {buildInlineFrac(bruch4.zähler, bruch4.nenner)} +{' '}
+                  {buildInlineFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
+                  {buildInlineFrac(bruch5.zähler, bruch5.nenner)}
+                </>,
+              ],
+              [
+                <></>,
+                <>
+                  <strong>=</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        2 *
+                          ((data.red * data.white) /
+                            ((data.red + data.white) *
+                              (data.red + data.white - 1))),
+                        2,
+                      ),
+                    )}
+                  </strong>
+                </>,
+              ],
+              [],
+            ])}
+
             <p>
-              p(rw;wr) = {buildInlineFrac(bruch.zähler, bruch.nenner)} ·{' '}
-              {buildInlineFrac(bruch4.zähler, bruch4.nenner)} +{' '}
-              {buildInlineFrac(bruch2.zähler, bruch2.nenner)} ·{' '}
-              {buildInlineFrac(bruch5.zähler, bruch5.nenner)}
-            </p>
-            <p>
-              p(rw;wr) ={' '}
-              {pp(
-                roundToDigits(
+              Damit hat Steffis Bruder{' '}
+              <strong>
+                {roundToDigits(
                   2 *
                     ((data.red * data.white) /
                       ((data.red + data.white) * (data.red + data.white - 1))),
                   2,
-                ),
-              )}
-            </p>
-            <p>
-              Damit hat Steffis Bruder{' '}
-              {roundToDigits(
-                2 *
-                  ((data.red * data.white) /
-                    ((data.red + data.white) * (data.red + data.white - 1))),
-                2,
-              ) < 0.5
-                ? 'recht.'
-                : 'nicht recht.'}
+                ) < 0.5
+                  ? 'recht.'
+                  : 'nicht recht.'}
+              </strong>
             </p>
           </>
         )
