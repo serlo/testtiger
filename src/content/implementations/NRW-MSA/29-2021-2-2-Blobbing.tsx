@@ -239,8 +239,8 @@ export const exercise29: Exercise<DATA> = {
               <strong>{pp(getDuration(5))} Sekunden</strong> zu.
             </p>
             <p>
-              Geht man auf eine Höhe von 10 Metern, nimmt die Sprungdauer um{' '}
-              {pp(getDuration(10))} − {pp(getDuration(5))} ={' '}
+              Geht man auf die doppelte Höhe von 10 Metern, nimmt die
+              Sprungdauer um {pp(getDuration(10))} − {pp(getDuration(5))} ={' '}
               <strong>{pp(getDuration(10) - getDuration(5))} Sekunden</strong>{' '}
               zu, anstatt um weitere {pp(getDuration(5))} Sekunden.
             </p>
