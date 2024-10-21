@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color1, Color2, Color3, Color4 } from '@/helper/colors'
 import { buildEquation, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -309,18 +309,20 @@ export const exercise38: Exercise<DATA> = {
           <>
             <ul>
               <li>
-                Der Wert {pp(roundToDigits(data.surface / 20, 2))} m² ist die
-                Fläche, die zum Beginn der Beobachtung (x = 0) von Algen besetzt
-                wird.{' '}
+                Der Wert{' '}
+                <Color1>{pp(roundToDigits(data.surface / 20, 2))} m²</Color1>{' '}
+                ist die Fläche, die zum Beginn der Beobachtung (x = 0) von Algen
+                besetzt wird. Er heißt auch <Color1>Anfangswert</Color1>.{' '}
               </li>
               <li>
-                Der Wert {pp(data.growth / 100 + 1)} ist der Wachstumsfaktor der
-                Funktion, der den täglichen Zuwachs von {data.growth} % Algen
-                beschreibt.
+                Der Wert <Color2>{pp(data.growth / 100 + 1)}</Color2> ist der{' '}
+                <Color2>Wachstumsfaktor</Color2> der Funktion, der den täglichen
+                Zuwachs von {data.growth} % Algen beschreibt.
               </li>
               <li>
-                f(x), also die Funktionswerte der Funktion, geben die von Algen
-                besetzte Fläche in Abhängigkeit der Tage an.
+                <Color3>f(x)</Color3>, also die Funktionswerte der Funktion,
+                geben die von Algen besetzte{' '}
+                <Color3>Fläche in Abhängigkeit der Tage</Color3> an.
               </li>
             </ul>
           </>

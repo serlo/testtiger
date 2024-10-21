@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -11,6 +12,7 @@ interface DATA {
   prozent: number
   days: number
   fliegen: number
+  days_2: number
 }
 
 export const exercise53: Exercise<DATA> = {
@@ -23,6 +25,7 @@ export const exercise53: Exercise<DATA> = {
       prozent: rng.randomIntBetween(1, 5) / 10 + 1,
       days: rng.randomIntBetween(20, 35),
       fliegen: rng.randomIntBetween(74, 120),
+      days_2: rng.randomIntBetween(10, 16),
     }
   },
   constraint({ data }) {
@@ -298,7 +301,7 @@ export const exercise53: Exercise<DATA> = {
       points: 42,
       task({ data }) {
         const lös = pp(
-          Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100,
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100,
         )
         return (
           <>
@@ -310,7 +313,8 @@ export const exercise53: Exercise<DATA> = {
             <p>
               d) Jasmin bewahrt die Zuchtbox B im kühleren Keller auf und stellt
               fest, dass sich die Fruchfliegen dort langsamer vermehren als in
-              ihrem warmen Zimmer. An Tag 11 sind es {data.fliegen} Fliegen.
+              ihrem warmen Zimmer. An Tag {data.days_2} sind es {data.fliegen}{' '}
+              Fliegen.
               <br />
               Weise rechnerisch nach, dass q ≈ {lös} beträgt.
             </p>
@@ -319,19 +323,40 @@ export const exercise53: Exercise<DATA> = {
       },
       solution({ data }) {
         const q = pp(
-          Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100,
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100,
         )
         return (
           <>
-            <p>
-              <strong>Aufstellen der Gleichung:</strong>
-            </p>
+            <p>Verwende die Funktionsgleichung g(x) und berechne q.</p>
             {buildEquation([
+              [
+                <>g(x)</>,
+                '=',
+                <>
+                  20 · q<sup>x</sup>
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {data.fliegen} Fliegen an Tag {data.days_2}
+                    </span>
+                  </Color4>
+                </>,
+              ],
               [
                 data.fliegen,
                 '=',
                 <>
-                  20 · q<sup>11</sup>
+                  20 · q<sup>{data.days_2}</sup>
                 </>,
                 '| : 20',
               ],
@@ -339,12 +364,38 @@ export const exercise53: Exercise<DATA> = {
                 pp(data.fliegen / 20),
                 '=',
                 <>
-                  q<sup>11</sup>
+                  q<sup>{data.days_2}</sup>
                 </>,
-                <>| {buildSqrt('', 11)}</>,
+                <>| {buildSqrt('', data.days_2)}</>,
               ],
-              ['q', '=', <>{buildSqrt(pp(data.fliegen / 20), 11)}</>],
-              ['q', '≈', q],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Löse nach q mit der {data.days_2}. Wurzel
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              ['q', '=', <>{buildSqrt(pp(data.fliegen / 20), data.days_2)}</>],
+              [
+                <>
+                  <strong>q</strong>
+                </>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>{q}</strong>
+                </>,
+              ],
             ])}
           </>
         )

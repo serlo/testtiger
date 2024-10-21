@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color2 } from '@/helper/colors'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -231,12 +232,13 @@ export const exercise8: Exercise<DATA> = {
         return (
           <>
             <p>
-              Den Wert {data.count} nimmt die Funktion zum Zeitpunkt x=0 an, er
-              ist also der Anfangswert.{' '}
+              Den Wert <Color1>{data.count}</Color1> nimmt die Funktion zum
+              Zeitpunkt x = 0 an, er ist also der <Color1>Anfangswert</Color1>.
             </p>
             <p>
-              Der Wert 1,19 ist der Wachstumsfaktor. Er ist der Faktor, um den
-              sich die Zahl der Milben innerhalb einer Woche vermehrt.{' '}
+              Der Wert <Color2>1,19</Color2> ist der{' '}
+              <Color2>Wachstumsfaktor</Color2>. Er ist der Faktor, um den sich
+              die Anzahl der Milben innerhalb einer Woche vermehrt.{' '}
             </p>
           </>
         )
