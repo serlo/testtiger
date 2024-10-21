@@ -37,7 +37,7 @@ window
 document.addEventListener('ionBackButton', ev => {
   // @ts-ignore
   ev.detail.register(1000, () => {
-    console.log('Ignore hardware back button for now')
+    alert('ignore back button')
   })
 })
 
