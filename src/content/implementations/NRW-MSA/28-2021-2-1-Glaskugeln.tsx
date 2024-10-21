@@ -320,11 +320,15 @@ export const exercise28: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>{100 - data.error_1} % der Kugeln haben eine Form mit Fehler.</p>
-            <p>
-              {100 - data.error_2} % der richtig geformten Kugeln haben eine
-              Lackierung mit Fehler.
-            </p>
+            <ul>
+              <li>
+                {100 - data.error_1} % der Kugeln haben eine Form mit Fehler.
+              </li>
+              <li>
+                {100 - data.error_2} % der richtig geformten Kugeln haben eine
+                Lackierung mit Fehler.
+              </li>
+            </ul>
             <svg viewBox="0 0 700 500">
               <image
                 href="/content/NRW_MSA_Glaskugeln_Baumdiagramm.PNG"
