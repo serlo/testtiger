@@ -1,5 +1,10 @@
 'use client'
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
+import {
+  IonApp,
+  IonBackButton,
+  IonRouterOutlet,
+  setupIonicReact,
+} from '@ionic/react'
 import { StatusBar, Style } from '@capacitor/status-bar'
 import { IonReactRouter } from '@ionic/react-router'
 import { Redirect, Route } from 'react-router-dom'
@@ -12,9 +17,10 @@ import { Focus } from './pages/Focus'
 import { Ready } from './pages/Ready'
 import { App } from './pages/App'
 import { Topic } from './pages/Topic'
-import { Chat } from './pages/Chat'
 import { navigationData } from '@/content/navigations'
 import { exercisesData } from '@/content/exercises'
+import { Chatv2 } from './pages/Chatv2'
+import { ExerciseView } from './exercise-view/ExerciseView'
 
 setupIonicReact({})
 
@@ -27,6 +33,13 @@ window
       })
     } catch {}
   })
+
+document.addEventListener('ionBackButton', ev => {
+  // @ts-ignore
+  ev.detail.register(1000, () => {
+    console.log('Ignore hardware back button for now')
+  })
+})
 
 const AppShell = () => {
   return (
@@ -64,7 +77,7 @@ const AppShell = () => {
               <Route
                 path={`/exercise/${id}`}
                 key={id}
-                render={() => <Chat id={id} />}
+                render={() => <ExerciseView id={id} />}
               />
             ))}
         </IonRouterOutlet>

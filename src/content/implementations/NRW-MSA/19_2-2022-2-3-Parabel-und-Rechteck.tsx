@@ -113,7 +113,9 @@ export const exercise192: Exercise<DATA> = {
             <p>
               f({data.x}) = {data.y}
             </p>
-            Damit liegt der Punkt A<sub>1</sub> auf der Parabel.
+            <p>
+              Damit liegt der Punkt A<sub>1</sub> auf der Parabel.
+            </p>
           </>
         )
       },

@@ -61,7 +61,7 @@ export const exercise53: Exercise<DATA> = {
             ry="4"
             stroke="#007EC1"
             fill="transparent"
-            stroke-width="1"
+            strokeWidth="1"
           />
 
           <line
@@ -70,7 +70,7 @@ export const exercise53: Exercise<DATA> = {
             x2="310"
             y2="32"
             stroke="#007EC1"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <line
             x1="10"
@@ -78,7 +78,7 @@ export const exercise53: Exercise<DATA> = {
             x2="310"
             y2="54"
             stroke="#007EC1"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <line
             x1="10"
@@ -86,7 +86,7 @@ export const exercise53: Exercise<DATA> = {
             x2="310"
             y2="76"
             stroke="#007EC1"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <line
             x1="10"
@@ -94,7 +94,7 @@ export const exercise53: Exercise<DATA> = {
             x2="310"
             y2="98"
             stroke="#007EC1"
-            stroke-width="1"
+            strokeWidth="1"
           />
 
           <line
@@ -103,98 +103,56 @@ export const exercise53: Exercise<DATA> = {
             x2="85"
             y2="120"
             stroke="#007EC1"
-            stroke-width="1"
+            strokeWidth="1"
           />
 
           <text
             x="47.5"
             y="26"
-            font-size="10"
-            text-anchor="middle"
-            font-weight="bold"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
             fill="black"
           >
             Tag x
           </text>
-          <text
-            x="47.5"
-            y="48"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="47.5" y="48" fontSize="10" textAnchor="middle" fill="black">
             0
           </text>
-          <text
-            x="47.5"
-            y="70"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="47.5" y="70" fontSize="10" textAnchor="middle" fill="black">
             1
           </text>
-          <text
-            x="47.5"
-            y="92"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="47.5" y="92" fontSize="10" textAnchor="middle" fill="black">
             2
           </text>
-          <text
-            x="47.5"
-            y="114"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="47.5" y="114" fontSize="10" textAnchor="middle" fill="black">
             3
           </text>
 
           <text
             x="197.5"
             y="26"
-            font-size="10"
-            text-anchor="middle"
-            font-weight="bold"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
             fill="black"
           >
             Anzahl Fruchtfliegen
           </text>
-          <text
-            x="197.5"
-            y="48"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="197.5" y="48" fontSize="10" textAnchor="middle" fill="black">
             10
           </text>
-          <text
-            x="197.5"
-            y="70"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="197.5" y="70" fontSize="10" textAnchor="middle" fill="black">
             {pp(day1)}
           </text>
-          <text
-            x="197.5"
-            y="92"
-            font-size="10"
-            text-anchor="middle"
-            fill="black"
-          >
+          <text x="197.5" y="92" fontSize="10" textAnchor="middle" fill="black">
             {pp(day2)}
           </text>
           <text
             x="197.5"
             y="114"
-            font-size="10"
-            text-anchor="middle"
+            fontSize="10"
+            textAnchor="middle"
             fill="black"
           >
             {pp(day3)}
@@ -367,29 +325,27 @@ export const exercise53: Exercise<DATA> = {
           <>
             <p>
               <strong>Aufstellen der Gleichung:</strong>
-              <br />
-              <br />
-              {buildEquation([
-                [
-                  data.fliegen,
-                  '=',
-                  <>
-                    20 · q<sup>11</sup>
-                  </>,
-                  '| : 20',
-                ],
-                [
-                  pp(data.fliegen / 20),
-                  '=',
-                  <>
-                    q<sup>11</sup>
-                  </>,
-                  <>| {buildSqrt('', 11)}</>,
-                ],
-                ['q', '=', <>{buildSqrt(pp(data.fliegen / 20), 11)}</>],
-                ['q', '≈', q],
-              ])}
             </p>
+            {buildEquation([
+              [
+                data.fliegen,
+                '=',
+                <>
+                  20 · q<sup>11</sup>
+                </>,
+                '| : 20',
+              ],
+              [
+                pp(data.fliegen / 20),
+                '=',
+                <>
+                  q<sup>11</sup>
+                </>,
+                <>| {buildSqrt('', 11)}</>,
+              ],
+              ['q', '=', <>{buildSqrt(pp(data.fliegen / 20), 11)}</>],
+              ['q', '≈', q],
+            ])}
           </>
         )
       },
@@ -421,20 +377,24 @@ export const exercise53: Exercise<DATA> = {
               <strong>Erste Woche:</strong>
               <br /> g(7) = 20 · {pp(q)}
               <sup>7</sup> <br />
-              g(7) ≈ {lös1} <br />
-              <p>
-                Damit kommen in der ersten Woche:<br></br> {lös1} - 20 ={' '}
-                {lös1 - 20} Fruchtfliegen dazu.
-              </p>
+              g(7) ≈ {lös1}
+            </p>
+            <p>
+              Damit kommen in der ersten Woche:<br></br> {lös1} - 20 ={' '}
+              {lös1 - 20} Fruchtfliegen dazu.
+            </p>
+            <p>
               <strong>Zweite Woche:</strong>
               <br /> g(14) = 20 · {pp(q)}
               <sup>14</sup>
               <br />
-              g(14) ≈ {lös2} <br />
-              <p>
-                Damit kommen in der zweiten Woche:<br></br> {lös2} - {lös1} ={' '}
-                {lös2 - lös1} Fruchtfliegen dazu.
-              </p>
+              g(14) ≈ {lös2}{' '}
+            </p>
+            <p>
+              Damit kommen in der zweiten Woche:<br></br> {lös2} - {lös1} ={' '}
+              {lös2 - lös1} Fruchtfliegen dazu.
+            </p>
+            <p>
               {lös2 - lös1 > 2 * (lös1 - 20) ? (
                 <>
                   Jasmins Vermutung stimmt, denn <br></br> {lös2 - lös1} {'>'} 2
