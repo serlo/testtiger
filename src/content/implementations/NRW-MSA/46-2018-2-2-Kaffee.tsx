@@ -566,9 +566,12 @@ export const exercise46: Exercise<DATA> = {
             </ul>
             <p>
               {' '}
-              Damit kann nur der Funktionsterm <br></br>T(t) = {data.start} ·{' '}
-              {pp(data.decay)}
-              <sup>t</sup> den Temperaturverlauf beschreiben.
+              Damit kann nur der Funktionsterm <br></br>
+              <strong>
+                T(t) = {data.start} · {pp(data.decay)}
+                <sup>t</sup>{' '}
+              </strong>
+              den Temperaturverlauf beschreiben.
             </p>
           </>
         )
