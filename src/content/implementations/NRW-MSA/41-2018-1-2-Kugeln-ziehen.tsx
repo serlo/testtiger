@@ -156,9 +156,9 @@ export const exercise41: Exercise<DATA> = {
               <strong>
                 {buildInlineFrac(
                   <>
-                    {data.case == 'rot' && 19 - data.r}
-                    {data.case == 'blau' && 19 - data.b}
-                    {data.case == 'grün' && 19 - data.g}
+                    {data.case == 'rot' && data.b + data.g}
+                    {data.case == 'blau' && data.r + data.g}
+                    {data.case == 'grün' && data.b + data.r}
                   </>,
                   <>{data.r + data.b + data.g}</>,
                 )}
