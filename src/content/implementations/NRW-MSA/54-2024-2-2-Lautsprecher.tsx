@@ -579,8 +579,23 @@ export const exercise54: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bestimme die Wahrscheinlichkeiten wie in (d). Achte darauf, dass
-              das erste Lied nicht mehr zur Auswahl steht in der zweiten Stufe.
+              <p>
+                Bestimme die Wahrscheinlichkeiten mit der Laplace - Formel:{' '}
+              </p>
+              {buildEquation([
+                [
+                  <>p</>,
+                  '=',
+                  <>
+                    {buildFrac(
+                      'Anzahl Songs eines Künstlers',
+                      'Anzahl aller Songs',
+                    )}
+                  </>,
+                ],
+              ])}
+              Achte darauf, dass das erste Lied nicht mehr zur Auswahl steht in
+              der zweiten Stufe.
             </p>
             <p>Das vollständige Baumdiagramm sieht so aus:</p>
             <svg viewBox="0 0 328 360">
@@ -719,10 +734,10 @@ export const exercise54: Exercise<DATA> = {
                   {buildInlineFrac(data.ed - 1, 9)}
                 </li>
               </ul>
-              Die Wahrscheinlichkeit, dass beide Fälle hintereinander eintreten
-              beträgt:<br></br> p = {buildInlineFrac(data.ed, 10)} ·{' '}
-              {buildInlineFrac(data.ed - 1, 9)} ={' '}
-              {buildInlineFrac((data.ed - 1) * data.ed, 90)} =
+              Berechne die Wahrscheinlichkeit, dass beide Fälle hintereinander
+              eintreten, mit der Produktregel:<br></br> p ={' '}
+              {buildInlineFrac(data.ed, 10)} · {buildInlineFrac(data.ed - 1, 9)}{' '}
+              = {buildInlineFrac((data.ed - 1) * data.ed, 90)} =
               <strong> {ppFrac(((data.ed - 1) * data.ed) / 90)}</strong>
             </p>
           </>
