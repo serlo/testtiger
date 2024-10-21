@@ -92,13 +92,15 @@ export function ExerciseViewFooter() {
             className="mx-3 mt-3 mb-6 max-h-[50vh] overflow-y-auto"
             ref={solutionDiv}
           >
-            {proseWrapper(
-              ('tasks' in content
-                ? content.tasks[navIndicatorPosition].solution
-                : content.solution)({
-                data,
-              }),
-            )}
+            <div className="max-w-[328px] mx-auto">
+              {proseWrapper(
+                ('tasks' in content
+                  ? content.tasks[navIndicatorPosition].solution
+                  : content.solution)({
+                  data,
+                }),
+              )}
+            </div>
           </div>
         </>
       )}
