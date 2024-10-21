@@ -531,9 +531,9 @@ export const exercise7: Exercise<DATA> = {
             <ol>
               <li>
                 <p>
-                  Berechne zuerst die Wahrscheinlichkeit, ein weißes Herz zu
-                  ziehen (p(w)). Beide Wahrscheinlichkeiten müssen in Summe 1
-                  ergeben:
+                  Berechne zuerst die Wahrscheinlichkeit, beim ersten Zug ein
+                  weißes Herz zu ziehen (p(w)). Die Wahrscheinlichkeiten für den
+                  ersten Zug müssen in Summe 1 ergeben:
                 </p>
                 <p>
                   p(w) = 1 − {buildInlineFrac(bruch.zähler, bruch.nenner)} ={' '}
