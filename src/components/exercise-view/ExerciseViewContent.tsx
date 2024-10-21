@@ -93,6 +93,7 @@ export function ExerciseViewContent() {
         {(withSubtasks ? content.tasks : [content]).map((t, i) => (
           <div
             className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
+            style={{ scrollbarWidth: 'thin' }}
             key={i}
           >
             <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px]">
