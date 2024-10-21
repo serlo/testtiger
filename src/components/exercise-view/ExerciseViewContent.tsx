@@ -51,7 +51,7 @@ export function ExerciseViewContent() {
   const withSubtasks = 'tasks' in content
   return (
     <div
-      className="w-full h-full bg-gray-50"
+      className="w-full h-full bg-gray-100"
       onClick={() => {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
