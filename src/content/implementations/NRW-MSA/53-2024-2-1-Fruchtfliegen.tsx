@@ -288,7 +288,7 @@ export const exercise53: Exercise<DATA> = {
             </ul>
             <p>
               Die Population überschreitet 100 000 Fruchtfliegen nach{' '}
-              <strong>{Math.ceil(tage)} vollen Tagen</strong>.
+              <strong>{Math.ceil(tage)} Tagen</strong>.
             </p>
           </>
         )
