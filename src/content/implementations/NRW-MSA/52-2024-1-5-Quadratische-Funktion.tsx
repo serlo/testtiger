@@ -58,23 +58,55 @@ export const exercise52: Exercise<DATA> = {
         return (
           <>
             <p>Setze den Wert in den Funktionsterm ein und fasse zusammen:</p>
-            <p>
-              f({data.x_input}) ={' '}
-              {ppPolynom([
-                [
-                  data.coeff,
-                  data.x_input < 0
-                    ? ` · (${pp(data.x_input)})`
-                    : ` · ${pp(data.x_input)}`,
-                  2,
-                ],
-                [y_offset, 'x', 0],
-              ])}
-            </p>
-            <p>
-              f({data.x_input}) ={' '}
-              {data.coeff * data.x_input * data.x_input + y_offset}
-            </p>
+            {buildEquation([
+              [
+                <>f(x)</>,
+                <>=</>,
+                <>
+                  {ppPolynom([
+                    [data.coeff, 'x', 2],
+                    [y_offset, 'x', 0],
+                  ])}
+                </>,
+              ],
+              [
+                <>f({data.x_input})</>,
+                <>=</>,
+                <>
+                  {ppPolynom([
+                    [
+                      data.coeff,
+                      data.x_input < 0
+                        ? ` · (${pp(data.x_input)})`
+                        : ` · ${pp(data.x_input)}`,
+                      2,
+                    ],
+                    [y_offset, 'x', 0],
+                  ])}
+                </>,
+              ],
+              [
+                <>f({data.x_input})</>,
+                <>=</>,
+                <>
+                  {pp(data.coeff * data.x_input * data.x_input)}{' '}
+                  {pp(y_offset, 'merge_op')}
+                </>,
+              ],
+              [
+                <>
+                  <strong>f({data.x_input})</strong>
+                </>,
+                <>
+                  <strong>=</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(data.coeff * data.x_input * data.x_input + y_offset)}
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },

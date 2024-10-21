@@ -96,25 +96,41 @@ export const exercise192: Exercise<DATA> = {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
           <>
-            <p>Setze die Werte für x und y in die Funktionsgleichung ein:</p>
             <p>
-              f(x) =
-              {ppPolynom([
-                [data.a, 'x', 2],
-                [b, 'x', 0],
-              ])}
+              Setze die Werte für x und y in die Funktionsgleichung ein und
+              überprüfe ob die Gleichung erfüllt ist:
             </p>
+            {buildEquation([
+              [
+                <>f(x)</>,
+                <>=</>,
+                <>
+                  {ppPolynom([
+                    [data.a, 'x', 2],
+                    [b, 'x', 0],
+                  ])}
+                </>,
+              ],
+              [
+                <>{data.y}</>,
+                <>=</>,
+                <>
+                  {pp(data.a)} · {data.x}² + {pp(b)}
+                </>,
+              ],
+              [
+                <>{data.y}</>,
+                <>=</>,
+                <>
+                  {pp(data.a * data.x * data.x)} + {pp(b)}
+                </>,
+              ],
+              [<>{data.y}</>, <>=</>, <>{data.y}</>],
+            ])}
+
             <p>
-              f({data.x}) = {pp(data.a)} · {data.x}² + {pp(b)}
-            </p>
-            <p>
-              f({data.x}) = {pp(data.a * data.x * data.x)} + {pp(b)}
-            </p>
-            <p>
-              f({data.x}) = {data.y}
-            </p>
-            <p>
-              Damit liegt der Punkt A<sub>1</sub> auf der Parabel.
+              Auf beiden Seiten steht der gleiche Wert, wodurch die Gleichung
+              erfüllt ist. Damit liegt A<sub>1</sub> auf der Parabel.
             </p>
           </>
         )

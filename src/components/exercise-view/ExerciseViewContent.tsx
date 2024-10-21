@@ -133,7 +133,7 @@ export function ExerciseViewContent() {
                   </button>
                 </div>
               </div>
-              <div className="p-[3px] mt-3 sm:max-w-[334px]">
+              <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
                 {i == 0 &&
                   withSubtasks &&
                   proseWrapper(
@@ -142,7 +142,7 @@ export function ExerciseViewContent() {
                     }),
                   )}
               </div>
-              <div className="p-[3px] mt-3 sm:max-w-[334px]">
+              <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
                 {proseWrapper(t.task({ data }))}
               </div>
             </div>
