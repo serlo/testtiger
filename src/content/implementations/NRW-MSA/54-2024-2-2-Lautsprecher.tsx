@@ -213,7 +213,7 @@ export const exercise54: Exercise<DATA> = {
                 '',
                 '≈',
                 <>
-                  <strong>{pp(roundToDigits(volume, 2))}</strong>
+                  <strong>{pp(roundToDigits(volume, 2))} [cm³]</strong>
                 </>,
               ],
             ])}

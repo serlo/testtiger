@@ -102,14 +102,34 @@ export const exercise42: Exercise<DATA> = {
             <p>Berechne die Oberfläche der Kugel mit der Formel:</p>
             {buildEquation([
               [<>O</>, <>=</>, <>4 · π · r²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Radius einsetzen</span>
+                  </Color4>
+                </>,
+              ],
               [<></>, <>=</>, <>4 · π · {data.r}²</>],
-              [],
+              [
+                <></>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(roundToDigits(4 * Math.PI * Math.pow(data.r, 2), 2))}{' '}
+                    [cm²]
+                  </strong>
+                </>,
+              ],
             ])}
-
-            <p>O = 4 · π · ({data.r} cm)²</p>
-            <p>
-              O = {pp(roundToDigits(4 * Math.PI * Math.pow(data.r, 2), 2))} cm²
-            </p>
           </>
         )
       },

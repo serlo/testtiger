@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -43,41 +44,103 @@ export const exercise22: Exercise<DATA> = {
     return (
       <>
         <p>
+          <strong>Volumen berechnen</strong>
+        </p>
+        <p>
           Berechne zuerst das Volumen der Pyramide, um mithilfe der Dichte das
           Gewicht zu bestimmen. <br></br>
           <br></br>Die Formel zur Berechnung des Volumens einer Pyramide lautet:
-          <br /> {'  '}V = {buildInlineFrac('G · h', 3)}
         </p>
-        <p>
-          Die Grundfläche der Pyramide ist ein Quadrat mit der Seitenlänge{' '}
-          {data.l} cm:
-          <br />G = {data.l} cm · {data.l} cm = {data.l * data.l} cm²
-        </p>
-        <p>
-          Setze G und h in die Volumenformel ein:
-          <br />V ={' '}
-          {buildInlineFrac(
+        {buildEquation([
+          [<>V</>, <>=</>, <>{buildInlineFrac('G · h', 3)}</>],
+          [
+            '',
             <>
-              {data.l * data.l} cm² · {data.h} cm
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
             </>,
-            3,
-          )}{' '}
-          ={' '}
-          <strong>
-            {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³
-          </strong>
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>
+                  Grundfläche ist ein Quadrat, <br></br>Werte einsetzen{' '}
+                </span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>V</>,
+            <>=</>,
+            <>
+              {buildInlineFrac(
+                <>
+                  {data.l} ·{data.l} · {data.h}
+                </>,
+                3,
+              )}
+            </>,
+          ],
+          [
+            <></>,
+            <>≈</>,
+            <>
+              <strong>
+                {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³
+              </strong>
+            </>,
+          ],
+        ])}
+        <p>
+          <strong>Gewicht berechnen</strong>
         </p>
         <p>
           Die Formel zur Berechnung des Gewichts <strong>m</strong> lautet:{' '}
-          <br /> m = V · Dichte
         </p>
+        {buildEquation([
+          [<>m</>, <>=</>, <>V · Dichte</>],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>Werte einsetzen </span>
+              </Color4>
+            </>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              {' '}
+              {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} ·{' '}
+              {pp(data.d)}
+            </>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              <strong>
+                {pp(
+                  roundToDigits(((data.l * data.l * data.h) / 3) * data.d, 2),
+                )}{' '}
+                [g]
+              </strong>
+            </>,
+          ],
+        ])}
         <p>
-          Setze ein: <br />
+          Die Pyramide hat ein Gewicht von{' '}
           <strong>
-            m = {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³ ·{' '}
-            {pp(data.d)} {buildInlineFrac('g', 'cm³')} ={' '}
             {pp(roundToDigits(((data.l * data.l * data.h) / 3) * data.d, 2))} g
           </strong>
+          .
         </p>
       </>
     )

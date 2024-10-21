@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -77,17 +82,40 @@ export const exercise19: Exercise<DATA> = {
         return (
           <>
             <p>Berechne das Volumen der kugelförmigen Melone mit der Formel:</p>
-            <p>V = {buildInlineFrac(4, 3)} · π · r³</p>
-            <p>
-              Der Radius beträgt: r = {buildInlineFrac('d', 2)} ={' '}
-              {data.durchmesser / 2} cm
-            </p>
-            <p>Setze die Werte ein und runde das Ergebnis:</p>
-            <p>
-              V = {buildInlineFrac(4, 3)} · π · {pp(data.durchmesser / 2)}³
-            </p>
-            <p>V = {pp(roundToDigits(V, 2))}</p>
-            <p>V ≈ {pp(roundToDigits(V, -2))} cm³</p>
+            {buildEquation([
+              [<>V</>, <>=</>, <>{buildInlineFrac(4, 3)} · π · r³</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Radius bestimmen und einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(4, 3)} · π · {data.durchmesser / 2}³
+                </>,
+              ],
+              [<></>, <>≈</>, <>{pp(roundToDigits(V, 2))} </>],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  <strong>{pp(roundToDigits(V, -2))} [cm³]</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -119,18 +147,38 @@ export const exercise19: Exercise<DATA> = {
         return (
           <>
             <p>
+              <strong>Volumen des Fruchtfleischs</strong>
+            </p>
+            <p>
               Der innere Radius bis zur Schale beträgt: r<sub>innen</sub> ={' '}
               {pp(data.durchmesser / 2)} − {pp(data.schale)} = {pp(r)} cm
             </p>
             <p>Berechne damit das Volumen des Fruchtfleisches in der Melone:</p>
+            {buildEquation([
+              [<>V</>, <>=</>, <>{buildInlineFrac(4, 3)} · π · r³</>],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(4, 3)} · p · {pp(r)}³
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(V)} [cm³]</strong>
+                </>,
+              ],
+            ])}
+
             <p>
-              V = {buildInlineFrac(4, 3)} · π · {pp(r)}³
+              <strong>Prozentualer Anteil</strong>
             </p>
-            <p>V = {pp(V)} cm³</p>
             <p>Berechne den Anteil des Fruchtfleisches vom ganzen Volumen:</p>
             <p>
               {buildInlineFrac(pp(V), pp(V_außen))} = {pp(roundToDigits(p, 4))}{' '}
-              ≙ {pp(roundToDigits(p * 100, 2))} %
+              ≙ <strong>{pp(roundToDigits(p * 100, 2))} %</strong>
             </p>
           </>
         )
@@ -185,8 +233,23 @@ export const exercise19: Exercise<DATA> = {
               Berechne a, indem du den Wert für das Volumen einsetzt und die
               Gleichung umformst:
             </p>
-            <p>a = {buildSqrt(pp(V), 3)}</p>
-            <p>a ≈ {pp(roundToDigits(Math.pow(V, 1 / 3), 2))} cm</p>
+            {buildEquation([
+              [<>V</>, <>=</>, <>a³</>, <>| {buildSqrt(<></>, 3)}</>],
+              [<>a</>, <>=</>, <>{buildSqrt(pp(V), 3)}</>],
+              [
+                <>
+                  <strong>a</strong>
+                </>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(roundToDigits(Math.pow(V, 1 / 3), 2))} [cm]
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -218,23 +281,83 @@ export const exercise19: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Berechne die Oberfläche des Würfels:</p>
-            <p>O = 6 · a²</p>
             <p>
-              a ist hierbei die Kantenlänge des Würfels. Setze die Werte ein:
+              <strong>Oberfläche des Würfels</strong>
             </p>
-            <p>O = 6 · {pp(roundToDigits(Math.pow(V, 1 / 3), 2))}²</p>
-            <p>O = {pp(O1)} cm²</p>
+            {buildEquation([
+              [<>O</>, <>=</>, <>6 · a²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Kantenlänge a einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>6 · {pp(roundToDigits(Math.pow(V, 1 / 3), 2))}²</>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(O1)} [cm²]</strong>
+                </>,
+              ],
+            ])}
             <p>
-              Berechne die Oberfläche der kugelförmigen Melone und vergleiche:
+              <strong>Oberfläche der Kugel</strong>
             </p>
-            <p>O = 4 · π · r²</p>
-            <p>O = 4 · π · {pp(data.durchmesser / 2)}²</p>
-            <p>O = {pp(O2)} cm²</p>
+            {buildEquation([
+              [<>O</>, <>=</>, <>4 · π · r²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Radius r einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [<></>, <>=</>, <>4 · π · {pp(data.durchmesser / 2)}²</>],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(O2)} [cm²]</strong>
+                </>,
+              ],
+            ])}
+
             <p>
-              {O1 > O2
-                ? 'Die würfelförmige Melone hat bei gleichem Volumen eine größere Oberfläche.'
-                : 'Die kugelförmige Melone hat bei gleichem Volumen eine größere Oberfläche.'}
+              {O1 > O2 ? (
+                <>
+                  Die <strong>würfelförmige Melone</strong> hat bei gleichem
+                  Volumen eine größere Oberfläche.
+                </>
+              ) : (
+                <>
+                  Die <strong>kugelförmige Melone</strong> hat bei gleichem
+                  Volumen eine größere Oberfläche.
+                </>
+              )}
             </p>
           </>
         )

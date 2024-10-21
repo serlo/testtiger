@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2 } from '@/helper/colors'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { Color1, Color2, Color4 } from '@/helper/colors'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -55,22 +55,47 @@ export const exercise28: Exercise<DATA> = {
         return (
           <>
             <p>Berechne das Volumen der Kugel mit der Formel:</p>
-            <p>V = {buildInlineFrac(4, 3)} · π · r³</p>
-            <p>
-              Der Radius beträgt: r = {buildInlineFrac('d', 2)} ={' '}
-              {pp(data.dia / 2)} cm
-            </p>
-            <p>Setze die Werte ein und runde das Ergebnis:</p>
-            <p>
-              V = {buildInlineFrac(4, 3)} · π · {pp(data.dia / 2)}³
-            </p>
-            <p>
-              V ≈{' '}
-              {pp(
-                roundToDigits((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3), 2),
-              )}{' '}
-              cm³
-            </p>
+            {buildEquation([
+              [<>V</>, <>=</>, <>{buildInlineFrac(4, 3)} · π · r³</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Radius bestimmen und einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(4, 3)} · π · {pp(data.dia / 2)}³
+                </>,
+              ],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (4 / 3) * Math.PI * Math.pow(data.dia / 2, 3),
+                        2,
+                      ),
+                    )}{' '}
+                    [cm³]
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -96,26 +121,41 @@ export const exercise28: Exercise<DATA> = {
         const O = roundToDigits(4 * Math.PI * Math.pow(data.dia / 2, 2), 2)
         return (
           <>
-            <p>Berechne zuerst die Oberfläche der Kugel mit der Formel:</p>
-            <p>O = 4 · π · r²</p>
-            <p>O = 4 · π · {data.dia / 2}²</p>
-            <p>O = {pp(O)} cm²</p>
             <p>
-              Die Farbe reicht für {data.paint} m². Rechne die Fläche in cm² um:
+              <strong>Oberfläche berechnen</strong>
+            </p>
+            <p>Berechne zuerst die Oberfläche der Kugel mit der Formel:</p>
+            {buildEquation([
+              [<>O</>, <>=</>, <>4 · π · r²</>],
+              [<></>, <>=</>, <>4 · p · {data.dia / 2}²</>],
+              [<></>, <>=</>, <>{pp(O)} cm²</>],
+            ])}
+            <p>
+              <strong>Anzahl der Kugeln</strong>
+            </p>
+            <p>
+              Ein Liter Farbe reicht für {data.paint} m². <br></br>Rechne diese
+              Fläche in cm² um:
             </p>
             <p>
               {data.paint} m² = {data.paint * 100} dm² = {data.paint * 10000}{' '}
               cm²
             </p>
-            <p>Berechne die Anzahl der Kugeln:</p>
+
+            <p>
+              Berechne die Anzahl der Kugeln, die damit lackiert werden können:
+            </p>
             <p>
               {data.paint * 10000} : {pp(O)} ={' '}
               {pp(roundToDigits((data.paint * 10000) / O, 2))} ≈{' '}
               {pp(Math.floor((data.paint * 10000) / O))}
             </p>
             <p>
-              Es können etwa {pp(Math.floor((data.paint * 10000) / O))} ganze
-              Kugeln lackiert werden.
+              Es können etwa{' '}
+              <strong>
+                {pp(Math.floor((data.paint * 10000) / O))} ganze Kugeln
+              </strong>{' '}
+              lackiert werden.
             </p>
           </>
         )
@@ -141,27 +181,95 @@ export const exercise28: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              {data.case == 1 ||
-                (data.case == 3 &&
-                  'Bei einer Verdoppelung des Durchmessers verdoppelt sich auch der Radius.')}
-            </p>
+            {data.case == 1 ||
+              (data.case == 3 && (
+                <>
+                  <p>
+                    Bei einer Verdoppelung des Durchmessers verdoppelt sich auch
+                    der Radius.{' '}
+                  </p>
+                </>
+              ))}
+
             <p>
               Setze den verdoppelten Radius in die Formel ein und untersuche,
               wie sich die Oberfläche verändert:
             </p>
-            <p>O&apos; = 4 · π · (2r)²</p>
-            <p>O&apos; = 4 · π · 4r²</p>
-            <p>O&apos; = 4 · (4 · π · r²)</p>
-            <p>O&apos; = 4 · O</p>
+            {buildEquation([
+              [
+                <>O&apos;</>,
+                <>=</>,
+                <>
+                  4 · π · (<Color1>2</Color1>r)²
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Klammer auflösen mit Potenzregel
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  4 · π · <Color1>4</Color1>r²
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <Color1>4</Color1> · 4 · π · r²
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      4 · π · r² ist ursprüngliche Oberfläche
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <Color1>4</Color1> O
+                </>,
+              ],
+            ])}
+
             <p>
-              Die Oberfläche einer Kugel mit doppeltem Durchmesser ist 4 mal so
-              groß wie die Oberfläche der ursprünglichen Kugel.
+              Die Oberfläche einer Kugel mit doppeltem Durchmesser ist{' '}
+              <Color1>4</Color1> mal so groß wie die Oberfläche der
+              ursprünglichen Kugel.
             </p>
             <p>
-              Damit ist die Aussage {data.case == 1 && 'falsch.'}
-              {data.case == 2 && 'falsch.'}
-              {data.case == 3 && 'richtig.'}
+              Damit ist die Aussage{' '}
+              <strong>
+                {data.case == 1 && 'falsch.'}
+                {data.case == 2 && 'falsch.'}
+                {data.case == 3 && 'richtig.'}
+              </strong>
             </p>
           </>
         )

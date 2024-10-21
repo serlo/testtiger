@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { kürzeBruch } from '@/helper/kuerze-bruch'
 import {
   buildEquation,
@@ -74,17 +75,53 @@ export const exercise36: Exercise<DATA> = {
         const V = (4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)
         return (
           <>
-            <p>Berechne das Volumen der Kugel mit der Formel:</p>
-            <p>V = {buildInlineFrac(4, 3)} π · r³</p>
             <p>
-              Bestimme den Wert des Radius und setze ein: r ={' '}
-              {buildInlineFrac('d', 2)} = {pp(data.dia / 2)} cm
+              <strong>Volumen bestimmen</strong>
             </p>
-            <p>V ≈ {pp(roundToDigits(V, 2))} mm³</p>
-            Rechne das Volumen in cm³ um.
+            <p>Berechne das Volumen der Kugel mit der Formel:</p>
+            {buildEquation([
+              [<>V</>, <>=</>, <>{buildInlineFrac(4, 3)} π · r³</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Radius bestimmen und einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(4, 3)} π · {pp(data.dia / 2)}³
+                </>,
+              ],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  <strong>{pp(roundToDigits(V, 2))} [mm³]</strong>
+                </>,
+              ],
+            ])}
+            <p>
+              <strong>Einheit umrechnen</strong>
+            </p>
+            <p>
+              Ein cm³ entspricht 1000 mm³. <br></br>Rechne das Volumen in cm³
+              um:
+            </p>
             <p>
               {pp(roundToDigits(V, 2))} : 1000 ≈{' '}
-              {pp(roundToDigits(V / 1000, 2))} cm³
+              <strong>{pp(roundToDigits(V / 1000, 2))} cm³</strong>
             </p>
           </>
         )
