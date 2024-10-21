@@ -1,8 +1,11 @@
 import { ExerciseViewStore } from './state/exercise-view-store'
-import { Fragment } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { countLetter } from '@/helper/count-letter'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { exercisesData } from '@/content/exercises'
+import { FaIcon } from '../ui/FaIcon'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { createGesture } from '@ionic/react'
 
 export function ExerciseViewFooter() {
   const navIndicatorLength = ExerciseViewStore.useState(
@@ -16,6 +19,28 @@ export function ExerciseViewFooter() {
   const data = ExerciseViewStore.useState(s => s.data)
 
   const content = exercisesData[id]
+
+  const solutionDiv = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (solutionDiv.current) {
+      const target = solutionDiv.current
+
+      if (target) {
+        const gesture = createGesture({
+          el: target,
+          direction: 'y',
+          threshold: 50,
+          onEnd: () => {
+            console.log('gesture detected')
+          },
+          gestureName: 'close-on-down-pull',
+        })
+
+        gesture.enable()
+      }
+    }
+  }, [solutionDiv])
 
   return (
     <div className="bg-white min-h-[65px] relative">
@@ -52,9 +77,21 @@ export function ExerciseViewFooter() {
       {chatOverlay == 'solution' && (
         <>
           <div className="text-right mr-3 pt-3">
-            <span className="px-2 py-0.5 bg-gray-100 rounded">Lösung</span>
+            <button
+              className="px-2 py-0.5 bg-gray-100 rounded"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.chatOverlay = null
+                })
+              }}
+            >
+              <FaIcon icon={faCaretDown} /> Lösung
+            </button>
           </div>
-          <div className="mx-3 mt-3 mb-6 max-h-[50vh] overflow-y-auto">
+          <div
+            className="mx-3 mt-3 mb-6 max-h-[50vh] overflow-y-auto"
+            ref={solutionDiv}
+          >
             {proseWrapper(
               ('tasks' in content
                 ? content.tasks[navIndicatorPosition].solution

@@ -25,21 +25,12 @@ export function ExerciseViewContent() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // todo: Dedupe
     if (
       navIndicatorExternalUpdate >= 0 &&
       navIndicatorPosition != navIndicatorExternalUpdate &&
       ref.current
     ) {
-      let vw = Math.max(
-        document.documentElement.clientWidth || 0,
-        window.innerWidth || 0,
-      )
-      if (vw > 640) {
-        vw = 375
-      }
-      const distance = vw - 24 + 8
-      const offset = (vw - 24) / 2 + 16 + vw * 0.2 - vw / 2
+      const [distance, offset] = calculateSnapPoints()
       ref.current.scrollLeft = offset + distance * navIndicatorExternalUpdate
       ExerciseViewStore.update(s => {
         s.navIndicatorExternalUpdate = -1
@@ -67,23 +58,18 @@ export function ExerciseViewContent() {
           !withSubtasks && 'justify-center',
         )}
         onScroll={e => {
-          let vw = Math.max(
-            document.documentElement.clientWidth || 0,
-            window.innerWidth || 0,
-          )
-          if (vw > 640) {
-            vw = 375
-          }
-          const distance = vw - 24 + 8
-          const offset = (vw - 24) / 2 + 16 + vw * 0.2 - vw / 2
+          const [distance, offset] = calculateSnapPoints()
           const scrollLeft = (e.target as HTMLDivElement).scrollLeft
           const base = scrollLeft - offset
-          const index = Math.round(base / distance)
+          const index = Math.abs(Math.round(base / distance))
           ExerciseViewStore.update(s => {
             if (index != s.navIndicatorPosition && s.chatOverlay) {
               s.chatOverlay = null
             }
             s.navIndicatorPosition = index
+            if (s.navIndicatorExternalUpdate == index) {
+              s.navIndicatorExternalUpdate = -1
+            }
           })
         }}
       >
@@ -96,8 +82,8 @@ export function ExerciseViewContent() {
             style={{ scrollbarWidth: 'thin' }}
             key={i}
           >
-            <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px]">
-              <div className="flex justify-between p-[3px]">
+            <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
+              <div className="flex justify-between p-[3px] w-full">
                 <div>
                   <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                     Aufgabe{withSubtasks && <> {countLetter('a', i) + ')'}</>}
@@ -145,7 +131,7 @@ export function ExerciseViewContent() {
                   </button>
                 </div>
               </div>
-              <div className="p-[3px] mt-3">
+              <div className="p-[3px] mt-3 sm:max-w-[334px]">
                 {i == 0 &&
                   withSubtasks &&
                   proseWrapper(
@@ -154,7 +140,7 @@ export function ExerciseViewContent() {
                     }),
                   )}
               </div>
-              <div className="p-[3px] mt-3">
+              <div className="p-[3px] mt-3 sm:max-w-[334px]">
                 {proseWrapper(t.task({ data }))}
               </div>
             </div>
@@ -164,4 +150,17 @@ export function ExerciseViewContent() {
       </div>
     </div>
   )
+}
+
+function calculateSnapPoints() {
+  let vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0,
+  )
+  if (vw > 640) {
+    vw = 375
+  }
+  const distance = vw - 24 + 8
+  const offset = (vw - 24) / 2 + 16 + vw * 0.2 - vw / 2
+  return [distance, offset]
 }

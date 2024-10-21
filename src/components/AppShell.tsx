@@ -1,5 +1,10 @@
 'use client'
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
+import {
+  IonApp,
+  IonBackButton,
+  IonRouterOutlet,
+  setupIonicReact,
+} from '@ionic/react'
 import { StatusBar, Style } from '@capacitor/status-bar'
 import { IonReactRouter } from '@ionic/react-router'
 import { Redirect, Route } from 'react-router-dom'
@@ -28,6 +33,13 @@ window
       })
     } catch {}
   })
+
+document.addEventListener('ionBackButton', ev => {
+  // @ts-ignore
+  ev.detail.register(1000, () => {
+    console.log('Ignore hardware back button for now')
+  })
+})
 
 const AppShell = () => {
   return (
