@@ -100,7 +100,12 @@ export const exercise42: Exercise<DATA> = {
         return (
           <>
             <p>Berechne die Oberfläche der Kugel mit der Formel:</p>
-            <p>O = 4 · π · r²</p>
+            {buildEquation([
+              [<>O</>, <>=</>, <>4 · π · r²</>],
+              [<></>, <>=</>, <>4 · π · {data.r}²</>],
+              [],
+            ])}
+
             <p>O = 4 · π · ({data.r} cm)²</p>
             <p>
               O = {pp(roundToDigits(4 * Math.PI * Math.pow(data.r, 2), 2))} cm²
