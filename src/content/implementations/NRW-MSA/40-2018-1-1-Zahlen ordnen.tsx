@@ -176,7 +176,7 @@ export const exercise40: Exercise<DATA> = {
               </ul>
               <strong>
                 Damit hat Miriam{' '}
-                {data.g > data.h / data.i ? 'recht.' : 'nicht recht.'}
+                {data.g / 100 > data.h / data.i ? 'recht.' : 'nicht recht.'}
               </strong>
             </p>
           </>
