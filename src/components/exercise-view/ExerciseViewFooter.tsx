@@ -31,13 +31,24 @@ export function ExerciseViewFooter() {
           el: target,
           direction: 'y',
           threshold: 50,
-          onEnd: () => {
-            console.log('gesture detected')
+          canStart: () => {
+            return target.scrollTop < 5 && chatOverlay == 'solution'
+          },
+          onEnd: e => {
+            if (e.deltaY > 80) {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+            }
           },
           gestureName: 'close-on-down-pull',
         })
 
         gesture.enable()
+
+        return () => {
+          gesture.destroy()
+        }
       }
     }
   }, [solutionDiv])
@@ -49,24 +60,26 @@ export function ExerciseViewFooter() {
       </div>
       {navIndicatorLength > 0 && (
         <div className="text-center py-3 absolute -top-10 pointer-events-none left-0 right-0 flex justify-center">
-          <div className="bg-white pointer-events-auto rounded-full pt-1.5">
+          <div className="bg-white pointer-events-auto rounded-full pt-1.5 flex justify-center">
             {Array.from({ length: navIndicatorLength }).map((_, j) => {
               return (
                 <Fragment key={j}>
                   {navIndicatorPosition == j ? (
-                    <span className="bg-black inline-block w-12 h-4 mx-1.5 rounded-full text-white text-xs align-top">
+                    <div className="bg-black w-12 h-4 mx-1.5 rounded-full text-white text-xs align-top">
                       {countLetter('a', j)}
-                    </span>
+                    </div>
                   ) : (
-                    <span
-                      className="border-black border inline-block w-4 h-4 mx-1.5 rounded-full align-top cursor-pointer"
+                    <div
+                      className="cursor-pointer"
                       onClick={() => {
                         ExerciseViewStore.update(s => {
                           s.navIndicatorExternalUpdate = j
                           s.chatOverlay = null
                         })
                       }}
-                    ></span>
+                    >
+                      <div className="border-black border w-4 h-4 mx-1.5 rounded-full"></div>
+                    </div>
                   )}
                 </Fragment>
               )
