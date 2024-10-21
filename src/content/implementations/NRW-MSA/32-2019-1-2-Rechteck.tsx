@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color1 } from '@/helper/colors'
-import { buildSqrt } from '@/helper/math-builder'
+import { Color1, Color4 } from '@/helper/colors'
+import { buildEquation, buildSqrt } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -57,32 +57,65 @@ export const exercise32: Exercise<DATA> = {
               Verwende den Satz des Pythagoras. Zwei Seiten des Rechtecks bilden
               mit der Diagonale ein rechtwinkliges Dreieck. In diesem gilt:
             </p>
-            <p>a² + b² = d²</p>
+            {buildEquation([
+              [<>a² + b²</>, '=', <>d²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  {data.a}² + {pp(data.b)}²
+                </>,
+                '=',
+                <>d²</>,
+                <>| √</>,
+              ],
+              ['d', '=', <>{buildSqrt(data.a + '² + ' + data.b + '²')}</>],
+              [
+                '',
+                <>
+                  {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
+                    ? '='
+                    : '≈'}
+                </>,
+                <>
+                  {pp(
+                    roundToDigits(
+                      Math.sqrt(data.a * data.a + data.b * data.b),
+                      2,
+                    ),
+                  )}{' '}
+                  [cm]
+                </>,
+              ],
+            ])}
 
-            <p>Setze die gegebenen Seitenlängen ein:</p>
-            <p>
-              {data.a}² + {pp(data.b)}² = d²
-            </p>
-
-            <p>Ziehe die Quadratwurzel und bestimme d:</p>
-            <p>
-              d = {buildSqrt(data.a + '² + ' + data.b + '²')}{' '}
-              {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
-                ? '='
-                : '≈'}{' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.a * data.a + data.b * data.b), 2),
-              )}
-            </p>
             <p>
               Die Diagonale d ist{' '}
               {Math.sqrt(data.a * data.a + data.b * data.b) % 1 == 0
                 ? ''
                 : 'ungefähr'}{' '}
-              {pp(
-                roundToDigits(Math.sqrt(data.a * data.a + data.b * data.b), 2),
-              )}{' '}
-              cm lang.
+              <strong>
+                {pp(
+                  roundToDigits(
+                    Math.sqrt(data.a * data.a + data.b * data.b),
+                    2,
+                  ),
+                )}{' '}
+                cm
+              </strong>{' '}
+              lang.
             </p>
           </>
         )
@@ -94,8 +127,10 @@ export const exercise32: Exercise<DATA> = {
         const text = ['verdoppelt', 'verdreifacht', 'vervierfacht', 'halbiert']
         return (
           <>
-            b) Wie verändert sich der Flächeninhalt dieses Rechtecks, wenn man
-            jede Seitenlänge {text[data.case]}? Begründe.
+            <p>
+              b) Wie verändert sich der Flächeninhalt dieses Rechtecks, wenn man
+              jede Seitenlänge {text[data.case]}? Begründe.
+            </p>
           </>
         )
       },
@@ -104,24 +139,79 @@ export const exercise32: Exercise<DATA> = {
         const zahl = [2, 3, 4, 0.5]
         return (
           <>
-            <p>Den Flächeninhalt eines Rechtecks berechnest du mit:</p>
-            <p>A = Länge · Breite</p>
             <p>
-              Setze die <Color1>{text[data.case]}en</Color1> Seitenlängen ein:
+              Den Flächeninhalt des veränderten Rechtecks berechnest du mit:
             </p>
-            <p>
-              A = <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} cm ·{' '}
-              <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.b} cm{' '}
-            </p>
-            <p>
-              A = <Color1>{ppFrac(zahl[data.case])}</Color1> ·
-              <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} cm ·{' '}
-              {data.b} cm{' '}
-            </p>
-            <p>
-              A = <Color1>{ppFrac(zahl[data.case] * zahl[data.case])}</Color1> ·{' '}
-              {data.a} cm · {data.b} cm{' '}
-            </p>
+
+            {buildEquation([
+              [<>A&apos;</>, '=', <>Länge · Breite</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      <Color1>{text[data.case]}e</Color1> Seitenlängen einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} ·{' '}
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.b}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> ·{' '}
+                  <Color1>{ppFrac(zahl[data.case])}</Color1> · {data.a} ·{' '}
+                  {data.b}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case] * zahl[data.case])}</Color1> ·{' '}
+                  {data.a} · {data.b}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {data.a} · {data.b} ist die ursprüngliche Fläche A
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>{ppFrac(zahl[data.case] * zahl[data.case])}</Color1> ·
+                  A
+                </>,
+              ],
+            ])}
+
             <p>
               Wenn man die Seitenlängen {text[data.case]}, beträgt der neue
               Flächeninhalt{' '}
@@ -152,98 +242,89 @@ export const exercise32: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              Suche zwei Zahlenpaare, die miteinander multipliziert {data.r}{' '}
-              ergeben.
-            </p>
+            <p>Gesucht sind Zahlenpaare deren Produkt {data.r} ergibt.</p>
             {data.r == 6 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 1 cm und 6 cm </strong>
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 2 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 1 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 2 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 12 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 2 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 4 cm </strong>
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 2 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 4 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 18 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 2 cm und 9 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 3 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 2 cm und 9 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 24 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 4 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 8 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 4 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 8 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 30 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 5 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 3 cm und 10 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 5 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 3 cm und 10 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
             {data.r == 36 && (
               <>
-                <p>Die Seiten des Rechtecks können z.B.</p>
-                <p>
-                  {' '}
-                  <strong> 6 cm und 6 cm </strong>{' '}
-                </p>
-                <p> oder </p>
-                <p>
-                  {' '}
-                  <strong> 9 cm und 4 cm </strong>{' '}
-                </p>
-                <p>lang sein.</p>
+                <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>
+                <ul>
+                  <li>
+                    <strong> 6 cm und 6 cm </strong>
+                  </li>
+
+                  <li>
+                    <strong> 9 cm und 4 cm </strong>{' '}
+                  </li>
+                </ul>
               </>
             )}
           </>

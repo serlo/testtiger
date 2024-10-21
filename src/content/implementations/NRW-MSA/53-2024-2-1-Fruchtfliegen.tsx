@@ -224,18 +224,20 @@ export const exercise53: Exercise<DATA> = {
         return (
           <>
             <p>
-              <strong>Tag 0:</strong> Die Fruchtfliegenpopulation startet mit 10
-              Fliegen. <br />
-              <br />
-              <strong>Wachstumsrate: </strong>Es wird angegeben, dass die
-              Population täglich um ca. {prozentanzeige}% wächst. <br /> <br />
-              <strong>Berechnung für Tag 1:</strong> Für den Übergang von Tag 0
-              zu Tag 1 ({prozentanzeige}% Zuwachs): <br />
-              <i>
-                Anzahl an Tag 1 = 10 · {pp(data.prozent)} = {day1}
-              </i>{' '}
-              <br />
-              Dies stimmt mit der Tabelle überein.
+              Die Fruchtfliegenpopulation startet mit dem Grundwert von 10
+              Fliegen und wächst auf den Wert von {day1} Fliegen.
+            </p>
+            <p>Mit der Formel für den Prozentsatz gilt:</p>
+            {buildEquation([
+              ['p', '=', <>{buildInlineFrac('W', 'G')}</>],
+              ['', '=', <>{buildInlineFrac(<>{day1}</>, 10)}</>],
+              ['', '=', pp(day1 / 10)],
+              ['', '=', <>{pp((day1 / 10) * 100)} %</>],
+            ])}
+            <p>
+              Die Anzahl der Fliegen ist also um{' '}
+              <strong>{prozentanzeige} %</strong> auf {pp((day1 / 10) * 100)} %
+              angewachsen.
             </p>
           </>
         )
@@ -299,8 +301,13 @@ export const exercise53: Exercise<DATA> = {
         return (
           <>
             <p>
-              Setze für die Anzahl der Tage x systematisch Werte ein und
-              überprüfe, wann die Population 100 000 erreicht.
+              Mithilfe der Funktionsgleichung <br></br>f(x) = 10 ·{' '}
+              {pp(data.prozent)}
+              <sup>x</sup> kannst du die Anzahl der Fliegen am Tag x bestimmen.
+            </p>
+            <p>
+              Setze für x systematisch Werte ein und überprüfe, wann die
+              Population 100 000 erreicht.
             </p>
 
             <ul>
@@ -323,7 +330,7 @@ export const exercise53: Exercise<DATA> = {
             </ul>
             <p>
               Die Population überschreitet 100 000 Fruchtfliegen nach{' '}
-              {Math.ceil(tage)} vollen Tagen.
+              <strong>{Math.ceil(tage)} vollen Tagen</strong>.
             </p>
           </>
         )

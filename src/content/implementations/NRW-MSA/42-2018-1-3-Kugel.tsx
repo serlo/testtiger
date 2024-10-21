@@ -1,7 +1,7 @@
 import { Exercise } from '@/data/types'
-import { Color1 } from '@/helper/colors'
+import { Color1, Color4 } from '@/helper/colors'
 import { kürzeBruch } from '@/helper/kuerze-bruch'
-import { buildFrac } from '@/helper/math-builder'
+import { buildEquation, buildFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -142,21 +142,76 @@ export const exercise42: Exercise<DATA> = {
               Setze den <Color1>{text2_case[data.case]}en</Color1> Radius in die
               Formel für die veränderte Oberfläche O&apos; ein:
             </p>
-            <p>O&apos; = 4 · π · r&apos;²</p>
-            <p>
-              O&apos; = 4 · π · (<Color1>{ppFrac(faktor[data.case])}</Color1> ·{' '}
-              {data.r})²
-            </p>
-            <p>
-              O&apos; = 4 · π · {data.case == 2 && '('}
-              <Color1>{ppFrac(faktor[data.case])}</Color1>
-              {data.case == 2 && ')'}² · {data.r}²
-            </p>
-            <p>
-              O&apos; ={' '}
-              <Color1>{ppFrac(faktor[data.case] * faktor[data.case])}</Color1> ·
-              4 · π · {data.r}² = 4 · O
-            </p>
+            {buildEquation([
+              [<>O&apos;</>, '=', <>4 · π · r&apos;²</>],
+              [
+                '',
+                '=',
+                <>
+                  4 · π · (<Color1>{ppFrac(faktor[data.case])}</Color1> ·{' '}
+                  {data.r})²
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Klammer auflösen mit Potenzgesetz
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  4 · π · {data.case == 2 && '('}
+                  <Color1>{ppFrac(faktor[data.case])}</Color1>
+                  {data.case == 2 && ')'}² · {data.r}²
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>
+                    {ppFrac(faktor[data.case] * faktor[data.case])}
+                  </Color1>{' '}
+                  · 4 · π · {data.r}²
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      4 · π · {data.r}² ist die ursprüngliche Oberfläche
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <Color1>4</Color1> · O
+                </>,
+              ],
+            ])}
+
             <p>
               Die ursprüngliche Oberfläche{' '}
               <Color1>{text3_case[data.case]}</Color1> sich bei{' '}

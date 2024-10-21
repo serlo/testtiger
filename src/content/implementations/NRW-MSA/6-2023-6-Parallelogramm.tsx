@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -83,7 +84,9 @@ export const exercise6: Exercise<DATA> = {
 
             <p>Setze den Wert für α ein und löse nach dem Wert von β:</p>
             <p>β = 180° - {data.alpha}° </p>
-            <p>β = {180 - data.alpha}° </p>
+            <p>
+              <strong>β = {180 - data.alpha}°</strong>
+            </p>
           </>
         )
       },
@@ -111,23 +114,19 @@ export const exercise6: Exercise<DATA> = {
             </p>
             <p>A = a · h</p>
             <p>
-              Dabei steht a für die Länge der Grundseite und h für die Höhe des
-              Parallelogramms, die senkrecht auf a steht. Diese ist aber immer
-              kleiner als die Seite b.
+              Dabei steht h für die Höhe des Parallelogramms, die senkrecht auf
+              a steht. Die Höhe ist aber immer kleiner als die Seite b.
+            </p>
+
+            <p>
+              Max hat für den Flächeninhalt A = a · b gerechnet. Wenn aber h
+              kleiner als b ist, muss der Flächeninhalt auch kleiner sein als{' '}
+              {data.breite * data.länge} cm².
             </p>
             <p>
-              h {'<'} {data.länge} cm{' '}
+              {' '}
+              Max kann daher <strong>nicht recht</strong> haben.
             </p>
-            <p>
-              Damit ist auch die Fläche kleiner als das Produkt der beiden
-              Seitenlängen:
-            </p>
-            <p>A = a · h </p>
-            <p>A {'<'} a · b </p>
-            <p>
-              A {'<'} {data.breite * data.länge} cm²{' '}
-            </p>
-            <p> Max kann daher nicht recht haben.</p>
           </>
         )
       },

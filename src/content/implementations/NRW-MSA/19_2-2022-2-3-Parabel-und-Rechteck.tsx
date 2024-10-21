@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -326,23 +327,58 @@ export const exercise192: Exercise<DATA> = {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
           <>
-            <p>Setze die x-Koordinate in den Term ein und fasse zusammen:</p>
-            <p>
-              U<sub>Rechteck </sub> = 2 · 2x + 2 · (
-              {ppPolynom([[data.a, 'x', 2]])} + {pp(b)}){' '}
-            </p>
-            <p>
-              U<sub>Rechteck </sub> = 2 · 2 · 1 + 2 · ({pp(data.a)} · 1
-              <sup>2</sup> + {pp(b)}){' '}
-            </p>
+            <p>Setze die x-Koordinate in den Term ein:</p>
+            {buildEquation([
+              [
+                <>
+                  {' '}
+                  U<sub>Rechteck </sub>
+                </>,
+                '=',
+                <>
+                  2 · 2x + 2 · ({ppPolynom([[data.a, 'x', 2]])} + {pp(b)})
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  2 · 2 · 1 + 2 · ({pp(data.a)} · 1<sup>2</sup> + {pp(b)})
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  4 + 2 · ({pp(data.a)} + {pp(b)})
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{pp(4 + 2 * (data.a + b))}</strong>
+                </>,
+              ],
+            ])}
 
             <p>
-              U<sub>Rechteck </sub> = 4 + 2 · ({pp(data.a)} + {pp(b)}){' '}
+              Der Umfang beträgt <strong>{pp(4 + 2 * (data.a + b))} cm</strong>.
             </p>
-            <p>
-              U<sub>Rechteck </sub> = {pp(4 + 2 * (data.a + b))}{' '}
-            </p>
-            <p>Der Umfang beträgt {pp(4 + 2 * (data.a + b))} cm.</p>
           </>
         )
       },
@@ -372,43 +408,70 @@ export const exercise192: Exercise<DATA> = {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
           <>
+            <p>Beginne mit Term (I) und multipliziere die Klammer aus:</p>
+
+            {buildEquation([
+              [
+                '',
+                '',
+                <>
+                  2 · 2x + <Color1>2</Color1> · (
+                  {ppPolynom([
+                    [data.a, 'x', 2],
+                    [b, 'x', 0],
+                  ])}
+                  )
+                </>,
+              ],
+
+              [
+                '',
+                '=',
+                <>
+                  2 · 2x + <Color1>2</Color1> · ({ppPolynom([[data.a, 'x', 2]])}
+                  ) + <Color1>2</Color1> · {ppPolynom([[b, 'x', 0]])}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  {ppPolynom([
+                    [4, 'x', 1],
+                    [data.a * 2, 'x', 2],
+                    [b * 2, 'x', 0],
+                  ])}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  {ppPolynom([
+                    [data.a * 2, 'x', 2],
+                    [4, 'x', 1],
+                    [b * 2, 'x', 0],
+                  ])}{' '}
+                </>,
+              ],
+            ])}
             <p>
-              {buildEquation([
-                [
-                  '',
-                  '',
-                  <>
-                    2 · 2x + 2 · (
-                    {ppPolynom([
-                      [data.a, 'x', 2],
-                      [b, 'x', 0],
-                    ])}
-                    )
-                  </>,
-                ],
-                [
-                  '',
-                  '=',
-                  <>
-                    {ppPolynom([
-                      [4, 'x', 1],
-                      [data.a * 2, 'x', 2],
-                      [b * 2, 'x', 0],
-                    ])}
-                  </>,
-                ],
-                [
-                  '',
-                  '=',
-                  <>
-                    {ppPolynom([
-                      [data.a * 2, 'x', 2],
-                      [4, 'x', 1],
-                      [b * 2, 'x', 0],
-                    ])}
-                  </>,
-                ],
-              ])}
+              Term (I) wurde durch Umformung zu Term (II), womit die Terme (I)
+              und (II) gleichwertig sind.
             </p>
           </>
         )

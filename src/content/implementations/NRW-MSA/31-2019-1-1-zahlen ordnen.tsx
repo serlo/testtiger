@@ -66,7 +66,10 @@ export const exercise31: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Wandle die Brüche zuerst in eine Dezimalzahl um:</p>
+            <p>
+              Wandle die Brüche zuerst in Dezimalzahlen um, um die Zahlen
+              miteinander vergleichen zu können:
+            </p>
 
             <p>
               {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
@@ -78,8 +81,23 @@ export const exercise31: Exercise<DATA> = {
             <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
             <p>
-              {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}{' '}
-              {' < '} {pp(array[3])}
+              <strong>
+                {array[0] == data.c / data.d || array[0] == data.e / data.f
+                  ? ppFrac(array[0])
+                  : pp(array[0])}{' '}
+                {' < '}{' '}
+                {array[1] == data.c / data.d || array[1] == data.e / data.f
+                  ? ppFrac(array[1])
+                  : pp(array[1])}{' '}
+                {' < '}{' '}
+                {array[2] == data.c / data.d || array[2] == data.e / data.f
+                  ? ppFrac(array[2])
+                  : pp(array[2])}{' '}
+                {' < '}{' '}
+                {array[3] == data.c / data.d || array[3] == data.e / data.f
+                  ? ppFrac(array[3])
+                  : pp(array[3])}
+              </strong>
             </p>
           </>
         )

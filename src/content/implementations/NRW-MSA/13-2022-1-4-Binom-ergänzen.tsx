@@ -44,13 +44,13 @@ export const exercise13: Exercise<DATA> = {
     return (
       <>
         <p>
-          Verwende die 1. binomische Formel und vergleiche die Terme mit der
-          Aufgabe:
+          Verwende die 1. binomische Formel und vergleiche die Terme mit den
+          Termen in der Aufgabe:
         </p>
         {buildEquation([
           [
             <>
-              (<Color1>a</Color1>&nbsp; + &nbsp; b &nbsp; )²
+              ( <Color1>a</Color1>&nbsp; + &nbsp; b &nbsp; )²
             </>,
             '=',
             <>
@@ -73,15 +73,54 @@ export const exercise13: Exercise<DATA> = {
           ],
         ])}
         <p>Im Vergleich siehst du:</p>
-        <p>
-          b² = {data.b * data.b}
-          {data.c}
-        </p>
-        <p>Wende die Quadratwurzel an und bestimme den Term für b:</p>
-        <p>
-          b = {buildSqrt(data.b * data.b + '' + data.c)} = {data.b}
-          {data.c == '' ? '' : 'y'}
-        </p>
+        {buildEquation([
+          [
+            <>
+              <Color1>a</Color1>
+            </>,
+            '=',
+            <>
+              <Color1>{data.a}x</Color1>
+            </>,
+          ],
+          [
+            <>
+              <Color3>b²</Color3>
+            </>,
+            '=',
+            <>
+              <Color3>
+                {data.b * data.b}
+                {data.c}
+              </Color3>
+            </>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>
+                  ziehe die Quadratwurzel
+                </span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>b</>,
+            '=',
+            <>
+              {data.b}
+              {data.c == '' ? '' : 'y'}
+            </>,
+          ],
+        ])}
+
         <p>
           Bestimme den Mischterm 2ab, indem du die Terme für a und b einsetzt:
         </p>
@@ -90,9 +129,7 @@ export const exercise13: Exercise<DATA> = {
           {data.c == '' ? '' : 'y'} = {2 * data.a * data.b}x
           {data.c == '' ? '' : 'y'}
         </p>
-        <p>
-          <br></br>Setze die Terme in die Lücken ein:
-        </p>
+        <p>Setze die Terme in die Lücken ein:</p>
         <p>
           ({data.a}x +{' '}
           <strong>

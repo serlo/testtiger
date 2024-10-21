@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -79,7 +80,10 @@ export const exercise9: Exercise<DATA> = {
         const hrefs2 = '/content/NRW_Zahlenpaare_sol' + data.task_2 + '.PNG'
         return (
           <>
-            <p>Fülle die Kästchen und Lücken der Abbildung aus:</p>
+            <p>
+              Die Kästchen enthalten die Summe eines Zahlenpaares:{' '}
+              {data.task_2 + 1}
+            </p>
             <svg viewBox="0 0 328 140">
               <image href={hrefs2} height="140" width="328" />
             </svg>
@@ -157,12 +161,15 @@ export const exercise9: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Wende die gleiche Vorgehensweise wie in Abbildung 2 an.</p>
+            <p>Wende die gleiche Vorgehensweise wie in Abbildung 2 an:</p>
             <ul>
-              <li>Bestimme die Anzahl der Zahlenpaare: {data.task_3 / 2}</li>
               <li>
-                Bestimme die Summe der ersten und letzten Zahl:{' '}
-                {data.task_3 + 1}
+                Bestimme die <Color2>Summe eines Zahlenpaars:</Color2>{' '}
+                <Color2>{data.task_3 + 1}</Color2>
+              </li>
+              <li>
+                Bestimme die <Color1>Anzahl der Zahlenpaare:</Color1>{' '}
+                <Color1>{data.task_3 / 2}</Color1>
               </li>
             </ul>
             <p>Diese Zahlen müssen in den Kästchen stehen.</p>
@@ -195,20 +202,38 @@ export const exercise9: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>1. Setze den Wert in den Term ein und fasse zusammen:</p>
-            <p>{buildInlineFrac(1, 2)} ​n ⋅ (n + 1)</p>
-            <p>
-              = {buildInlineFrac(1, 2)} ⋅ {data.task_4} ⋅ {data.task_4 + 1}
-            </p>
-            <p>= {0.5 * data.task_4 * (data.task_4 + 1)}</p>
-            <p>
-              2. Der Term {buildInlineFrac(1, 2)} ​n beschreibt die Anzahl der
-              Zahlenpaare in der Summe. Diese beträgt immer die Hälfte des
-              höchsten Wertes. <br></br>
-              <br></br>(n + 1) ist die Summe der einzelnen Zahlenpaare, was zum
-              Beispiel aus der Summe {'"'}1 + höchste Zahl{'"'} ersichtlich
-              wird.
-            </p>
+            <ol>
+              <li>
+                Setze den Wert in den Term ein und fasse zusammen:
+                {buildEquation([
+                  ['', <>{buildInlineFrac(1, 2)} ​n ⋅ (n + 1)</>],
+                  [
+                    '=',
+                    <>
+                      {buildInlineFrac(1, 2)} ⋅ {data.task_4} ⋅{' '}
+                      {data.task_4 + 1}
+                    </>,
+                  ],
+                  [
+                    '=',
+                    <>
+                      <strong>{0.5 * data.task_4 * (data.task_4 + 1)}</strong>
+                    </>,
+                  ],
+                ])}
+              </li>
+              <li>
+                <p>
+                  Der Term <strong>{buildInlineFrac(1, 2)} ​n</strong>{' '}
+                  beschreibt die Anzahl der Zahlenpaare in der Summe. Diese
+                  beträgt immer die Hälfte des höchsten Wertes.
+                </p>
+                <p>
+                  <strong>(n + 1)</strong> ist die Summe der einzelnen
+                  Zahlenpaare.
+                </p>
+              </li>
+            </ol>
           </>
         )
       },
@@ -232,18 +257,49 @@ export const exercise9: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Setze den Wert in den Term ein und fasse zusammen:</p>
-            <p>
-              {buildInlineFrac(1, 2)} ​n² + {buildInlineFrac(1, 2)} ​n
-            </p>
-            <p>
-              = {buildInlineFrac(1, 2)} ⋅ {data.task_5}² +{' '}
-              {buildInlineFrac(1, 2)} ⋅ {data.task_5}
-            </p>
-            <p>
-              = {0.5 * data.task_5 * data.task_5} + {0.5 * data.task_5}
-            </p>
-            <p>= {0.5 * data.task_5 * data.task_5 + 0.5 * data.task_5}</p>
+            <p>Setze {data.task_5} für n in den Term ein:</p>
+            {buildEquation([
+              [
+                '',
+                <>
+                  {buildInlineFrac(1, 2)} ​n² + {buildInlineFrac(1, 2)} ​n
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {buildInlineFrac(1, 2)} ⋅ {data.task_5}² +{' '}
+                  {buildInlineFrac(1, 2)} ⋅ {data.task_5}
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {0.5 * data.task_5 * data.task_5} + {0.5 * data.task_5}
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  <strong>
+                    {0.5 * data.task_5 * data.task_5 + 0.5 * data.task_5}
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -361,14 +417,53 @@ export const exercise9: Exercise<DATA> = {
         return (
           <>
             <p>Multipliziere den Term mit der Klammer aus und vereinfache:</p>
-            <p>{buildInlineFrac(1, 2)}​(n − 1) ⋅ n + n</p>
-            <p>= {buildInlineFrac(1, 2)}(n² − n) + n</p>
-            <p>
-              = {buildInlineFrac(1, 2)} n² − {buildInlineFrac(1, 2)} n + n
-            </p>
-            <p>
-              = {buildInlineFrac(1, 2)} n² + {buildInlineFrac(1, 2)} n
-            </p>
+            {buildEquation([
+              [
+                '',
+                <>
+                  <Color1>{buildInlineFrac(1, 2)}​</Color1>(n − 1) ⋅{' '}
+                  <Color2>n</Color2> + n
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  <span className="inline-block  scale-y-[2.6]">(</span>
+                  <Color1>{buildInlineFrac(1, 2)}</Color1>n −{' '}
+                  <Color1>{buildInlineFrac(1, 2)}</Color1>
+                  <span className="inline-block  scale-y-[2.6]">)</span> ⋅{' '}
+                  <Color2>n</Color2> + n
+                </>,
+              ],
+
+              [
+                '=',
+                <>
+                  {buildInlineFrac(1, 2)} <Color2>n²</Color2> −{' '}
+                  {buildInlineFrac(1, 2)} <Color2>n</Color2> + n
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {buildInlineFrac(1, 2)} n² + {buildInlineFrac(1, 2)} n
+                </>,
+              ],
+            ])}
+
             <p>
               Die Terme sind gleichwertig, da sie ineinander umgeformt werden
               können.

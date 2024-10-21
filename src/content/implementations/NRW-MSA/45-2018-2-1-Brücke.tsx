@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color2, Color3, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -82,31 +83,57 @@ export const exercise45: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <p>Du kannst das zum Beispiel mit dem Dreisatz berechnen. </p>
             <p>
-              Rechne die Geschwindigkeit in Kilometer pro Minute um, um das
-              Ergebnis in Minuten zu erhalten:
+              Die Freunde brauchen für {pp(data.pace)} km eine Stunde, also 60
+              Minuten:
             </p>
+
+            {buildEquation([
+              [<>{pp(data.pace)} km</>, '≙', '60 min'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>: {pp(data.pace)}</span>
+                  </Color4>
+                </>,
+              ],
+              ['1 km', '≙', <>{pp(Math.round(60 / data.pace))} min</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· {pp(data.weg)}</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>{pp(data.weg)} km</>,
+                '≙',
+                <>{pp(Math.round((data.weg * 60) / data.pace))} min</>,
+              ],
+            ])}
+
             <p>
-              {pp(data.pace)}
-              {buildInlineFrac('km', 'h')} : 60 {buildInlineFrac('min', 'h')}={' '}
-              {pp(roundToDigits(data.pace / 60, 4))}
-              {buildInlineFrac('km', 'min')}
-            </p>
-            <p>
-              Weg, Geschwindigkeit und Zeit hängen über dieses Gesetz zusammen:
-            </p>
-            <p>Zeit = {buildFrac('Strecke', 'Geschwindigkeit')}</p>
-            <p>Setze ein und berechne die Zeit für den Fußweg:</p>
-            <p>
-              Zeit ={' '}
-              {buildFrac(pp(data.weg), pp(roundToDigits(data.pace / 60, 4)))} ={' '}
-              {pp(roundToDigits(data.weg / (data.pace / 60), 2))} ≈{' '}
-              {pp(Math.round(data.weg / (data.pace / 60)))}
-            </p>
-            <p>
-              Die Freunde brauchen etwa{' '}
-              {pp(Math.round(data.weg / (data.pace / 60)))} Minuten für den
-              Fußweg.
+              Die Freunde brauchen{' '}
+              {(data.weg / (data.pace / 60)) % 1 == 0 && 'etwa'}{' '}
+              <strong>
+                {pp(Math.round(data.weg / (data.pace / 60)))} Minuten
+              </strong>{' '}
+              für den Fußweg.
             </p>
           </>
         )
@@ -206,12 +233,14 @@ export const exercise45: Exercise<DATA> = {
         return (
           <>
             <p>
-              Auf der Teilstrecke{' '}
-              {züge[0] == (data.x_1 - 84) / (144 - 102) && '1'}
-              {züge[0] == (data.x_2 - data.x_1) / (102 - 85) && '2'}
-              {züge[0] == (data.x_3 - data.x_2) / (85 - 54) && '3'}
-              {züge[0] == (304 - data.x_3) / (54 - 25) && '4'} fährt der Zug mit
-              der höchsten Geschwindigkeit.
+              Auf der{' '}
+              <strong>
+                Teilstrecke {züge[0] == (data.x_1 - 84) / (144 - 102) && '1'}
+                {züge[0] == (data.x_2 - data.x_1) / (102 - 85) && '2'}
+                {züge[0] == (data.x_3 - data.x_2) / (85 - 54) && '3'}
+                {züge[0] == (304 - data.x_3) / (54 - 25) && '4'}
+              </strong>{' '}
+              fährt der Zug mit der höchsten Geschwindigkeit.
             </p>
             <p>
               Dort verläuft die Gerade am steilsten, was bedeutet, dass die
@@ -318,16 +347,18 @@ export const exercise45: Exercise<DATA> = {
               />
             </svg>
             <p>
-              Die orange Gerade stellt die Fahrt des Güterzugs dar. Hierbei ist
-              wichtig, dass die Gerade fällt, da der Güterzug entgegengesetzt
-              fährt.
+              Die <Color3>orange Gerade</Color3> stellt die Fahrt des Güterzugs
+              dar. Hierbei ist wichtig, dass die Gerade fällt, da der Güterzug
+              in die entgegengesetzte Richtung fährt.
             </p>
             <p>
               Die Züge begegnen sich in
-              {(62 * ((187.5 * 60 * 15.8) / (data.pace_2 * 15))) / 121 >
-              data.x_2 - 134
-                ? ' Streckenabschnitt 3. '
-                : ' Streckenabschnitt 2. '}
+              <strong>
+                {(62 * ((187.5 * 60 * 15.8) / (data.pace_2 * 15))) / 121 >
+                data.x_2 - 134
+                  ? ' Streckenabschnitt 3. '
+                  : ' Streckenabschnitt 2. '}
+              </strong>
               Bestimme den Schnittpunkt der Geraden und lies die Uhrzeit am
               Koordinatensystem ab.{' '}
             </p>
@@ -390,29 +421,72 @@ export const exercise45: Exercise<DATA> = {
               α und die Hypotenuse gegeben. Das Verhältnis dieser Seiten wird
               durch den Sinus beschrieben:
             </p>
-            <p>
-              sin(α) = {buildFrac('Gegenkathete', 'Hypotenuse')} ={' '}
-              {buildFrac('u', data.width + ' mm')}
-            </p>
-            <p>
-              Stelle die Gleichung um, um den Höhenunterschied u zu berechnen:
-            </p>
-            <p>
-              u = sin({data.alpha_max}°) · {data.width + ' mm'} ≈{' '}
-              {pp(
-                roundToDigits(
-                  Math.sin((data.alpha_max / 360) * 2 * Math.PI) * data.width,
-                  2,
-                ),
-              )}{' '}
-              mm
-            </p>
+            {buildEquation([
+              [
+                <>&nbsp;&nbsp;&nbsp;&nbsp;sin(α)</>,
+                '=',
+                <>{buildInlineFrac('Gegenkathete', 'Hypotenuse')}</>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Werte aus Abbildung 3 einsetzen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>sin({pp(data.alpha_max)}°)</>,
+                '=',
+                <>{buildInlineFrac('u', data.width + ' mm')}</>,
+                <>| · {data.width + ' mm'}</>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u
+                </>,
+                '=',
+                <>
+                  sin({pp(data.alpha_max)}°) · {data.width + ' mm'}
+                </>,
+              ],
+              [
+                <>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </>,
+                '=',
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        Math.sin((data.alpha_max / 360) * 2 * Math.PI) *
+                          data.width,
+                        2,
+                      ),
+                    )}{' '}
+                    mm
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
               Damit entspricht der Höhenunterschied etwa{' '}
               {Math.abs(ergebnis - data.max_mm) < 0.1
                 ? pp(data.max_mm)
                 : pp(ergebnis)}{' '}
-              cm. Max hat {!data.max && 'nicht'} recht.
+              cm. <strong>Max hat {!data.max && 'nicht'} recht.</strong>
             </p>
           </>
         )

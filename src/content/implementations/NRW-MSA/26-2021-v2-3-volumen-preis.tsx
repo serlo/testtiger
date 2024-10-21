@@ -1,4 +1,6 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
+import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -62,31 +64,57 @@ export const exercise26: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            Das Volumen eines Quaders wird mit dieser Formel berechnet:{' '}
-            <b>
-              V<sub>Quader</sub> = l · b · h.
-            </b>
-            <br></br>
-            <br></br>
-            Setze nun die Werte aus der Abbildung ein: V<sub>Quader</sub> ={' '}
-            {pp(data.length)} m · {pp(data.outerWidth)} m ·{' '}
-            {pp(data.outerHeight)} m ={' '}
-            {pp(
-              roundToDigits(
-                data.length * data.outerWidth * data.outerHeight,
-                2,
-              ),
-            )}{' '}
-            m³
+            <p>Das Volumen eines Quaders berechnest du mit der Formel:</p>
+            {buildEquation([
+              ['V', '=', 'l · b · h'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Einsetzen der Werte
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  {pp(data.length)} · {pp(data.outerWidth)} ·{' '}
+                  {pp(data.outerHeight)}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  {roundToDigits(
+                    data.length * data.outerWidth * data.outerHeight,
+                    2,
+                  )}{' '}
+                  [m³]
+                </>,
+              ],
+            ])}
             <p>
+              {' '}
               Das Volumen des quaderförmigen Laderaums beträgt{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth * data.outerHeight,
-                  2,
-                ),
-              )}{' '}
-              m³.
+              <b>
+                {pp(
+                  roundToDigits(
+                    data.length * data.outerWidth * data.outerHeight,
+                    2,
+                  ),
+                )}{' '}
+                m³
+              </b>
             </p>
           </>
         )

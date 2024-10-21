@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color2 } from '@/helper/colors'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -310,28 +311,32 @@ export const exercise28: Exercise<DATA> = {
         return (
           <>
             <p>
-              Berechne zuerst die erwartete Anzahl der Kugeln ohne Fehler in der
-              Form:
+              Berechne zuerst die erwartete Anzahl der Kugeln{' '}
+              <Color1>ohne Fehler in der Form</Color1>:
             </p>
             <p>
-              {data.control} · {pp(data.error_1 / 100)} ={' '}
+              {data.control} · <Color1>{pp(data.error_1 / 100)}</Color1> ={' '}
               {data.control * (data.error_1 / 100)}
             </p>
             <p>
-              Berechne davon die erwartete Anzahl der Kugeln, die auch keinen
-              Fehler in der Lackierung haben:
+              Berechne davon die erwartete Anzahl der Kugeln, die auch{' '}
+              <Color2>keinen Fehler in der Lackierung</Color2> haben:
             </p>
             <p>
-              {data.control * (data.error_1 / 100)} · {pp(data.error_2 / 100)} ≈{' '}
+              {data.control * (data.error_1 / 100)} ·{' '}
+              <Color2>{pp(data.error_2 / 100)}</Color2> ≈{' '}
               {Math.round(
                 data.control * (data.error_1 / 100) * (data.error_2 / 100),
               )}{' '}
             </p>
             <p>
-              Es werden etwa{' '}
-              {Math.round(
-                data.control * (data.error_1 / 100) * (data.error_2 / 100),
-              )}{' '}
+              Es werden etwa
+              <strong>
+                {' '}
+                {Math.round(
+                  data.control * (data.error_1 / 100) * (data.error_2 / 100),
+                )}{' '}
+              </strong>
               Kugeln ohne Fehler erwartet.
             </p>
           </>

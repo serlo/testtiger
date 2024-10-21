@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildFrac } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildFrac,
+  buildInlineFrac,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -176,23 +181,27 @@ export const exercise34: Exercise<DATA> = {
         return (
           <>
             <p>Die Formeln </p>
+            <ul>
+              <li>
+                {' '}
+                {'"'}
+                {richtig[data.item_1]}
+                {'"'}
+              </li>
+              <li>
+                {' '}
+                {'"'}
+                {richtig[data.item_2]}
+                {'"'}
+              </li>
+            </ul>
             <p>
-              {' '}
-              {'"'}
-              {richtig[data.item_1]}
-              {'"'}
+              berechnen den Wert der Zelle C8 <strong>korrekt</strong>.
             </p>
             <p>
-              {' '}
-              {'"'}
-              {richtig[data.item_2]}
-              {'"'}
-            </p>
-            <p>berechnen den Wert der Zelle C8 korrekt.</p>
-            <p>
-              <br></br>Die Formel {'"'}
+              Die Formel {'"'}
               {falsch[data.item_3]}
-              {'"'} nicht.
+              {'"'} <strong>nicht</strong>.
             </p>
           </>
         )
@@ -224,18 +233,36 @@ export const exercise34: Exercise<DATA> = {
         return (
           <>
             <p>
-              Berechne den Anteil, den das Abendessen von den Gesamtkosten
-              ausmacht:
+              Berechne den prozentualen Anteil, den das Abendessen von den
+              Gesamtkosten ausmacht:
+            </p>
+            {buildEquation([
+              ['p', '=', <>{buildInlineFrac('W', 'G')}</>],
+              ['', '=', <>{buildInlineFrac('Abendessen', 'Gesamtkosten')}</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              ['', '=', <>{buildInlineFrac(zaehler, nenner)}</>],
+              ['', '=', <>{pp(p)}</>],
+            ])}
+
+            <p>
+              Tarek würde <strong>{pp(p * 100)} % </strong>der Kosten sparen.
             </p>
             <p>
-              {buildFrac('Abendessen', 'Gesamtkosten')} ={' '}
-              {buildFrac(zaehler, nenner)} = {pp(p)}
-            </p>
-            <p>Tarek würde {pp(p * 100)} % der Kosten sparen.</p>
-            <p>
-              Alternativ kann man auch mit den Kosten für eine Nacht rechnen.
-              Das Ergebnis ist gleich, da das Abendessen den gleichen Anteil
-              ausmacht.
+              Alternativ kann man auch mit den Kosten für nur eine Nacht
+              rechnen, mit dem gleichen Ergebnis.
             </p>
           </>
         )

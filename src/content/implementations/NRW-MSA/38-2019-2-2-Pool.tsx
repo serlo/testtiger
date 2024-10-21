@@ -111,12 +111,20 @@ export const exercise38: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Höhe des Wassers beträgt: <br></br>
-              {pp(data.höhe)} − {pp(data.water / 100)} ={' '}
-              {pp(data.höhe - data.water / 100)} m
+              Berechne das Volumen des zylinderförmigen Pools mit der Formel:
             </p>
-            <p>Achte bei der Rechnung auf die Einheiten.</p>
-            <p>Das Volumen des Wassers beträgt:</p>
+            <p>V = G · h</p>
+            <ul>
+              <li>Die Grundfläche G beträgt {pp(data.surface)} m².</li>
+              <li>
+                Die Höhe h des Wassers beträgt: <br></br>
+                {pp(data.höhe)} − {pp(data.water / 100)} ={' '}
+                {pp(data.höhe - data.water / 100)} m
+              </li>
+            </ul>
+
+            <p>Setze ein und berechne:</p>
+
             {buildEquation([
               ['V', '=', 'G · h'],
               [
@@ -136,10 +144,23 @@ export const exercise38: Exercise<DATA> = {
                       2,
                     ),
                   )}{' '}
-                  m³
+                  [m³]
                 </>,
               ],
             ])}
+            <p>
+              Das Volumen beträgt{' '}
+              <strong>
+                {pp(
+                  roundToDigits(
+                    data.surface * (data.höhe - data.water / 100),
+                    2,
+                  ),
+                )}{' '}
+                m³
+              </strong>
+              .
+            </p>
           </>
         )
       },
@@ -329,9 +350,10 @@ export const exercise38: Exercise<DATA> = {
           <>
             <p>
               Wenn die Fläche des Schwimmbeckens vollständig mit Algen bewachsen
-              ist, stoppt das Wachstum. <br></br>Die Funktion kann das Wachstum
-              also nur bis zu dem Zeitpunkt beschreiben, bis der Funktionswert{' '}
-              {pp(data.surface)} m² erreicht wird.
+              ist, stoppt das Wachstum. <br></br>
+              <br></br>Die Funktion kann das Wachstum also nur bis zu dem
+              Zeitpunkt beschreiben, bis der Funktionswert {pp(data.surface)} m²
+              erreicht wird.
             </p>
           </>
         )

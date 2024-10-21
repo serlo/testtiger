@@ -55,7 +55,7 @@ export const exercise25: Exercise<DATA> = {
             </p>
 
             <p>
-              {ppFrac(data.c / data.d)}&nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
+              {ppFrac([data.c, data.d])}&nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
               &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.e)}
               <sup>-1</sup>
               &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.a)}
@@ -70,13 +70,16 @@ export const exercise25: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Wandle den Bruch zuerst in eine Dezimalzahl um:</p>
-
             <p>
-              {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
+              Wandle den Bruch zuerst in eine Dezimalzahl um, um ihn mit den
+              anderen Zahlen vergleichen zu können:
             </p>
 
-            <p>Wandle nun die Potenz in eine Dezimalzahl um:</p>
+            <p>
+              {ppFrac([data.c, data.d])} = {pp(data.c / data.d)}
+            </p>
+
+            <p>Forme auch die Potenz in eine Dezimalzahl um:</p>
 
             <p>
               {pp(data.e)}
@@ -86,8 +89,43 @@ export const exercise25: Exercise<DATA> = {
             <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
             <p>
-              {pp(array[0])} {' < '} {pp(array[1])} {' < '} {pp(array[2])}{' '}
-              {' < '} {pp(array[3])}
+              <strong>
+                {(array[0] == data.c / data.d && ppFrac(array[0])) ||
+                  (array[0] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[0])}{' '}
+                {' < '}{' '}
+                {(array[1] == data.c / data.d && ppFrac(array[1])) ||
+                  (array[1] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[1])}{' '}
+                {' < '}{' '}
+                {(array[2] == data.c / data.d && ppFrac(array[2])) ||
+                  (array[2] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[2])}{' '}
+                {' < '}{' '}
+                {(array[3] == data.c / data.d && ppFrac(array[3])) ||
+                  (array[3] == 1 / data.e && (
+                    <>
+                      {pp(data.e)}
+                      <sup>-1</sup>
+                    </>
+                  )) ||
+                  pp(array[3])}
+              </strong>
             </p>
           </>
         )

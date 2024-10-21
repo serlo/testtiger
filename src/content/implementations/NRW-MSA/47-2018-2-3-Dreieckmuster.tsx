@@ -1,5 +1,10 @@
 import { Exercise } from '@/data/types'
-import { buildInlineFrac, buildSqrt } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildSqrt,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 import { Fragment } from 'react'
@@ -72,9 +77,9 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bestätige durch eine Rechnung, dass der Flächeninhalt des Dreiecks
-              in Figur 0 <br></br>A<sub>0</sub> = {pp(data.f0)} cm² beträgt
-              (Abbildung 2).
+              a) Bestätige durch eine Rechnung, dass der Flächeninhalt des
+              Dreiecks in Figur 0 <br></br>A<sub>0</sub> = {pp(data.f0)} cm²
+              beträgt (Abbildung 2).
             </p>
             <svg viewBox="0 0 328 170">
               <image
@@ -100,19 +105,56 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
+              <strong>Höhe berechnen</strong>
+            </p>
+            <p>
               Verwende den Satz des Pythagoras im rechtwinkligen Dreieck, um die
-              Höhe h zu berechnen.{' '}
+              Höhe h zu berechnen. Es gilt:{' '}
             </p>
+            {buildEquation([
+              [
+                <>h² + {pp(data.seite / 2)}²</>,
+                '=',
+                <>{data.seite}²</>,
+                <>| − {pp(data.seite / 2)}²</>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Nach h umstellen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>h²</>,
+                '=',
+                <>
+                  {data.seite}² − {pp(data.seite / 2)}²
+                </>,
+                <>| √</>,
+              ],
+              [
+                <>h</>,
+                '=',
+                <>
+                  {buildSqrt(
+                    <>
+                      {data.seite}² − {pp(data.seite / 2)}²
+                    </>,
+                  )}
+                </>,
+              ],
+              [<>h</>, '≈', <>{pp(data.h)} [cm]</>],
+            ])}
             <p>
-              Es gilt: h² + {pp(data.seite / 2)}² = {data.seite}²
-            </p>
-            <p>Forme die Gleichung um und berechne h mit der Quadratwurzel.</p>
-            <p>
-              h ={' '}
-              {buildSqrt(
-                data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
-              )}{' '}
-              ≈ {pp(data.h)} cm
+              <strong>Flächeninhalt berechnen</strong>
             </p>
             <p>Um die Dreiecksfläche zu berechnen, verwende die Formel:</p>
             <p>A = {buildInlineFrac('g · h', 2)}</p>
@@ -120,7 +162,28 @@ export const exercise47: Exercise<DATA> = {
               Hierbei ist g die Grundlinie mit der Länge {data.seite} cm und h
               die Höhe. Setze ein und berechne:
             </p>
-            <p>A = {pp(data.f0)} cm²</p>
+            {buildEquation([
+              ['A', '=', <>{buildInlineFrac('g · h', 2)}</>],
+              [
+                '',
+                '=',
+                <>
+                  {buildInlineFrac(
+                    <>
+                      {data.seite} · {pp(data.h)}
+                    </>,
+                    2,
+                  )}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{pp(data.f0)} [cm²]</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -171,24 +234,28 @@ export const exercise47: Exercise<DATA> = {
         const tries = Math.ceil(Math.log(data.lower / data.f0) / Math.log(0.75))
         return (
           <>
-            <p>Hier gibt es viele unterschiedliche Rechenwege. </p>
+            <p>Hier gibt es viele unterschiedliche Lösungswege. </p>
             <p>
               Setze zum Beispiel ganzzahlige Werte für n in den Taschenrechner
               ein und überprüfe das Ergebnis. Notiere diese Ergebnisse.
             </p>
             <p>
-              {pp(data.f0)} · 0,75<sup>{tries - 1}</sup> {'>'} {data.lower}
+              {pp(data.f0)} · 0,75<sup>{tries - 1}</sup> ={' '}
+              {pp(roundToDigits(data.f0 * Math.pow(0.75, tries - 1), 2))}{' '}
+              <strong>{'>'}</strong> {data.lower}
             </p>
             <p>
               Nach {tries - 1} Figuren ist der Flächeninhalt immer noch größer
               als {data.lower} cm².
             </p>
             <p>
-              {pp(data.f0)} · 0,75<sup>{tries}</sup> {'<'} {data.lower}
+              {pp(data.f0)} · 0,75<sup>{tries}</sup> ={' '}
+              {pp(roundToDigits(data.f0 * Math.pow(0.75, tries), 2))}{' '}
+              <strong>{'<'}</strong> {data.lower}
             </p>
             <p>
-              Es braucht {tries} Figuren, damit der Flächeninhalt der schwarzen
-              Dreiecke unter {data.lower} cm² fällt.
+              Es braucht <strong>{tries} Figuren</strong>, damit der
+              Flächeninhalt der schwarzen Dreiecke unter {data.lower} cm² fällt.
             </p>
           </>
         )
@@ -280,24 +347,23 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Der Anteil an der Gesamtfläche beginnt mit 1 (100 %) und beträgt
-              in der darauffolgenden Stufe immer {buildInlineFrac(3, 4)} vom
-              vorherigen Wert, so wie die Fläche der schwarzen Dreiecke.
+              Der Anteil der Gesamtfläche beträgt in der darauffolgenden Stufe
+              immer {buildInlineFrac(3, 4)} vom vorherigen Wert, so wie die
+              Fläche der schwarzen Dreiecke.
             </p>
-            <p>
-              Der fehlende Wert ist:{' '}
-              {calculateValue3(
-                [0, 1, 2, 3, 4, 5, 6].find(
-                  value => !data.show.includes(value),
-                )! - 1,
-              )}{' '}
-              · {buildInlineFrac(3, 4)} ={' '}
+            <p>Der fehlende Wert ist:</p>{' '}
+            {calculateValue3(
+              [0, 1, 2, 3, 4, 5, 6].find(value => !data.show.includes(value))! -
+                1,
+            )}{' '}
+            · {buildInlineFrac(3, 4)} ={' '}
+            <strong>
               {calculateValue3(
                 [0, 1, 2, 3, 4, 5, 6].find(
                   value => !data.show.includes(value),
                 )!,
               )}
-            </p>
+            </strong>
           </>
         )
       },
@@ -352,13 +418,14 @@ export const exercise47: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Fläche der schwarzen Dreiecke wird zunehmend geringer und geht
-              gegen 0 cm².{' '}
+              Die Fläche der schwarzen Dreiecke wird in weniger Stufe um 25 %
+              geringer und geht damit gegen <strong>0 cm²</strong>.{' '}
             </p>
             <p>
               Die weißen Flächen entsprechen genau dem Gegenstück der schwarzen
               Flächen und nehmen den Rest des Dreiecks ein. Ihre Fläche geht
-              demnach gegen {pp(data.f0)} cm².
+              demnach gegen <br></br>
+              <strong>{pp(data.f0)} cm²</strong>.
             </p>
           </>
         )

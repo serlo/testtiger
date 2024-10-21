@@ -503,9 +503,9 @@ export const exercise19: Exercise<DATA> = {
               <>
                 <p>
                   Der Graph in der Abbildung 3 stellt ein lineares Wachstum dar,
-                  d.h. die Zunahme pro Zeitschritt ist immer gleich. Das Gewicht
-                  der Wassermelone verdoppelt sich jedoch pro Zeitschritt und
-                  wächst damit exponentiell.
+                  d.h. die Zunahme pro Zeitschritt ist immer gleich. <br></br>
+                  Das Gewicht der Wassermelone sollte sich jedoch in jedem
+                  Zeitschritt verdoppeln und wächst damit exponentiell.
                 </p>
                 <p>
                   <strong>Sinja hat nicht recht.</strong>

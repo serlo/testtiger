@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
-import { buildFrac, buildSqrt } from '@/helper/math-builder'
+import { Color4 } from '@/helper/colors'
+import { buildEquation, buildFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -36,6 +37,7 @@ export const exercise18: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 5,
       task({ data }) {
         return (
           <>
@@ -114,17 +116,29 @@ export const exercise18: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>{data.volumen} cm³ entsprechen 100 g Teig.</p>
-            <p>
-              Berechne wie viel 1 cm³ wiegt:<br></br>
-            </p>
-            <p>
-              1 cm³ · {buildFrac('100 g', data.volumen + ' cm³')} ={' '}
-              {pp(roundToDigits(100 / data.volumen, 2))} g
-            </p>
+            <p>{data.volumen} cm³ entsprechen 100 g Teig:</p>
+            {buildEquation([
+              [<>{pp(data.volumen)} cm³</>, '≙', '100 g'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>: {data.volumen}</span>
+                  </Color4>
+                </>,
+              ],
+              ['1 cm³', '≙', <>{pp(roundToDigits(100 / data.volumen, 2))} g</>],
+            ])}
+
             <p>
               Ein Kubikzentimeter wiegt also{' '}
-              {pp(roundToDigits(100 / data.volumen, 2))} g.
+              <b>{pp(roundToDigits(100 / data.volumen, 2))} g</b>.
             </p>
           </>
         )
@@ -395,8 +409,10 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <p>
               Damit beträgt die Wahrscheinlichkeit{' '}
-              {pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4))}{' '}
-              %, dass beide Vorgaben eingehalten werden.
+              <strong>
+                {pp(roundToDigits((data.prob_1 / 100) * data.prob_2, 4))} %
+              </strong>
+              , dass beide Vorgaben eingehalten werden.
             </p>
           </>
         )
@@ -407,9 +423,11 @@ export const exercise18: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            g) Das Unternehmen kontrolliert an einem Tag 10000 Rösti. Wie viele
-            Rösti werden vermutlich aussortiert, weil sie nicht den Vorgaben
-            entsprechen? Notiere deine Rechnung.
+            <p>
+              g) Das Unternehmen kontrolliert an einem Tag 10000 Rösti. Wie
+              viele Rösti werden vermutlich aussortiert, weil sie nicht den
+              Vorgaben entsprechen? Notiere deine Rechnung.
+            </p>
           </>
         )
       },
@@ -418,11 +436,20 @@ export const exercise18: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bei {pp(roundToDigits(p * 100, 2))} % der Röstis werden die
-              Vorgaben eingehalten. Die Anzahl beträgt:
+              <strong>Röstis, die den Vorgaben entsprechen</strong>
             </p>
             <p>
-              10000 · {pp(roundToDigits(p, 4))} = {pp(Math.round(p * 10000))}
+              Bei {pp(roundToDigits(p * 100, 2))} % der Röstis werden die
+              Vorgaben eingehalten. Berechne die Anzahl der Röstis, die den
+              Vorgaben entsprechen, mit der Formel für den Prozentwert:
+            </p>
+            {buildEquation([
+              ['W', '=', 'G · p'],
+              ['', '=', <>10000 · {pp(roundToDigits(p, 4))}</>],
+              ['', '=', <>{pp(Math.round(p * 10000))}</>],
+            ])}
+            <p>
+              <strong>Aussortierte Röstis</strong>
             </p>
             <p>Die aussortierten Röstis betragen demnach:</p>
             <p>
@@ -430,8 +457,9 @@ export const exercise18: Exercise<DATA> = {
               {10000 - Math.round(p * 10000)}
             </p>
             <p>
-              {10000 - Math.round(p * 10000)} Röstis werden erwartungsgemäß
-              aussortiert, weil sie den Vorgaben nicht entsprechen.
+              <strong>{10000 - Math.round(p * 10000)} Röstis</strong> werden
+              erwartungsgemäß aussortiert, weil sie den Vorgaben nicht
+              entsprechen.
             </p>
           </>
         )

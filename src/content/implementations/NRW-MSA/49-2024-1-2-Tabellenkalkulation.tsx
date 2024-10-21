@@ -159,8 +159,13 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   F2 bezeichnet den Gesamtgewinn durch die Blumen. Dieser
-                  berechnet sich durch die Stückzahl, multipliziert mit dem
-                  Gewinn pro Stück, also {'"'}= B2 * E2{'"'}.
+                  berechnet sich durch die Stückzahl (B2), multipliziert mit dem
+                  Gewinn pro Stück (E2). <br></br>
+                  <br></br> Die Formel lautet:{' '}
+                  <strong>
+                    {'"'}= B2 * E2{'"'}
+                  </strong>
+                  .
                 </p>
               </>
             )}
@@ -168,8 +173,13 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   F3 bezeichnet den Gesamtgewinn durch die Schokoladenherzen.
-                  Dieser berechnet sich durch die Stückzahl, multipliziert mit
-                  dem Gewinn pro Stück, also {'"'}= B3 * E3{'"'}.
+                  Dieser berechnet sich durch die Stückzahl (B3), multipliziert
+                  mit dem Gewinn pro Stück (E3). <br></br>
+                  <br></br> Die Formel lautet:{' '}
+                  <strong>
+                    {'"'}= B3 * E3{'"'}
+                  </strong>
+                  .
                 </p>
               </>
             )}
@@ -177,8 +187,13 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   F4 bezeichnet den Gesamtgewinn durch die Verkaufsaktion.
-                  Dieser berechnet sich aus den einzelnen Gewinnen, also {'"'}=
-                  F2 + F3{'"'}.
+                  Dieser berechnet sich aus den einzelnen Gewinnen (F2 und F3).
+                  <br></br>
+                  <br></br> Die Formel lautet:{' '}
+                  <strong>
+                    {'"'}= F2 + F3{'"'}
+                  </strong>
+                  .
                 </p>
               </>
             )}
@@ -186,9 +201,12 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   E2 bezeichnet den Gewinn pro Stück, also den Verkaufspreis
-                  abzüglich des Einkaufspreises. Die Formel lautet: {'"'}= C2 -
-                  D2
-                  {'"'}
+                  (C2) abzüglich des Einkaufspreises (D2). <br></br>
+                  <br></br>Die Formel lautet:{' '}
+                  <strong>
+                    {'"'}= C2 - D2
+                    {'"'}
+                  </strong>
                 </p>
               </>
             )}
@@ -196,8 +214,12 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>
                   E3 bezeichnet den Gewinn pro Stück, also dem Verkaufspreis
-                  abzüglich dem Einkaufspreis. Die Formel lautet: {'"'}= C3 - D3
-                  {'"'}
+                  (C3) abzüglich dem Einkaufspreis (D3).<br></br>
+                  <br></br> Die Formel lautet:{' '}
+                  <strong>
+                    {'"'}= C3 - D3
+                    {'"'}
+                  </strong>
                 </p>
               </>
             )}
@@ -245,37 +267,57 @@ export const exercise49: Exercise<DATA> = {
           <>
             {data.case_2 == 1 && (
               <>
-                Ändert sich der Einkaufspreis der Schokoladenherzen, ändern sich
-                Gewinn pro Stück (E3), der Gesamtgewinn durch die Herzen (F3)
-                und somit auch der Gesamtgewinn der Verkaufsaktion (F4).
+                <p>
+                  Ändert sich der Einkaufspreis der Schokoladenherzen, ändern
+                  sich
+                </p>
+                <ul>
+                  <li>der Gewinn pro Stück (E3),</li>
+                  <li> der Gesamtgewinn durch die Herzen (F3) und </li>
+                  <li>der Gesamtgewinn der Verkaufsaktion (F4).</li>
+                </ul>
               </>
             )}
             {data.case_2 == 2 && (
               <>
-                Ändert sich der Einkaufspreis der Blumen, ändern sich Gewinn pro
-                Stück (E2), der Gesamtgewinn durch die Blumen (F2) und somit
-                auch der Gesamtgewinn der Verkaufsaktion (F4).
+                <p>Ändert sich der Einkaufspreis der Blumen, ändern sich</p>
+                <ul>
+                  <li>der Gewinn pro Stück (E2),</li>
+                  <li> der Gesamtgewinn durch die Blumen (F2) und </li>
+                  <li>der Gesamtgewinn der Verkaufsaktion (F4).</li>
+                </ul>
               </>
             )}
             {data.case_2 == 3 && (
               <>
-                Ändert sich der Verkaufspreis der Blumen, verändert sich der
-                Gewinn pro Blume (E2), der Gesamtgewinn der Blumen (F2) und auch
-                der Gesamtgewinn der Verkaufsaktion (F4).
+                <p>Ändert sich der Verkaufspreis der Blumen, verändert sich</p>
+                <ul>
+                  <li>der Gewinn pro Blume (E2),</li>
+                  <li> der Gesamtgewinn der Blumen (F2) und </li>
+                  <li>der Gesamtgewinn der Verkaufsaktion (F4).</li>
+                </ul>
               </>
             )}
             {data.case_2 == 4 && (
               <>
-                Ändert sich der Verkaufspreis der Schokoladenherzen, verändert
-                sich der Gewinn pro Herz (E2), der Gesamtgewinn der Herzen (F2)
-                und auch der Gesamtgewinn der Verkaufsaktion (F4).
+                <p>
+                  Ändert sich der Verkaufspreis der Schokoladenherzen, verändert
+                  sich
+                </p>
+                <ul>
+                  <li>der Gewinn pro Herz (E2), </li>
+                  <li>der Gesamtgewinn der Herzen (F2) und</li>
+                  <li> der Gesamtgewinn der Verkaufsaktion (F4). </li>
+                </ul>
               </>
             )}
             {data.case_2 == 5 && (
               <>
-                Werden mehr Blumen verkauft, steigt der Gesamtgewinn durch die
-                Blumen (F2) und damit auch der Gesamtgewinn der Verkaufsaktion
-                (F4).
+                <p>Werden mehr Blumen verkauft,</p>
+                <ul>
+                  <li>steigt der Gesamtgewinn durch die Blumen (F2) und</li>{' '}
+                  <li>auch der Gesamtgewinn der Verkaufsaktion (F4).</li>
+                </ul>
               </>
             )}
           </>

@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -70,15 +71,40 @@ export const exercise50: Exercise<DATA> = {
         return (
           <>
             <p>Multipliziere die Zahlen, um den Anteil zu berechnen:</p>
-            <p>
-              {ppFrac(data.a / data.b)} · {data.c} = {ppFrac(data.a / data.b)} ·{' '}
-              {buildInlineFrac(data.c, 1)}
-            </p>
-            <p>Kürze und berechne das Produkt:</p>
-            <p>
-              {ppFrac(data.a / data.b)} · {buildInlineFrac(data.c, 1)} ={' '}
-              {ppFrac((data.a * data.c) / data.b)}
-            </p>
+            {buildEquation([
+              [
+                <>
+                  {ppFrac(data.a / data.b)} · {data.c}
+                </>,
+                '=',
+                <>
+                  {ppFrac(data.a / data.b)} · {buildInlineFrac(data.c, 1)}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Kürze und berechne
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <strong>{ppFrac((data.a * data.c) / data.b)}</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -97,15 +123,15 @@ export const exercise50: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              Multipliziere die Zahlen, um den Anteil zu bestimmen. Rechne dazu
-              die Prozentangabe in eine Dezimalzahl um:
-            </p>
+            <p>Rechne zuerst die Prozentangabe in eine Dezimalzahl um:</p>
             <p>
               {data.d} % = {pp(data.d / 100)}
             </p>
+            <p>Multipliziere die Zahlen, um den Anteil zu bestimmen:</p>
+
             <p>
-              {data.e} · {pp(data.d / 100)} = {pp((data.d * data.e) / 100)}
+              {data.e} · {pp(data.d / 100)} ={' '}
+              <strong>{pp((data.d * data.e) / 100)}</strong>
             </p>
           </>
         )
@@ -144,38 +170,82 @@ export const exercise50: Exercise<DATA> = {
               Nutze die Regeln für das Multiplizieren mit Brüchen. Als Hilfe
               kannst du die Zahl {data.h} als Bruch schreiben:{' '}
             </p>
-            {data.f < 0 && (
-              <span className="inline-block scale-y-[2.6]">(</span>
-            )}
-            {ppFrac(data.f / data.g)}
-            {data.f < 0 && (
-              <span className="inline-block scale-y-[2.6]">)</span>
-            )}{' '}
-            · {buildInlineFrac(data.h, 1)} ·{' '}
-            {data.i < 0 && (
-              <span className="inline-block scale-y-[2.6]">(</span>
-            )}
-            {ppFrac(data.i / data.j)}
-            {data.i < 0 && (
-              <span className="inline-block scale-y-[2.6]">)</span>
-            )}
-            <p>
-              Multipliziere die Zähler miteinander und die Nenner miteinander.
-              Achte auf das Vorzeichen des Produkts:
-            </p>
-            {data.f * data.i < 0 && '−'}
-            {buildInlineFrac(
-              Math.abs(data.f / Math.abs(getGcd(data.f, data.g))) +
-                ' · ' +
-                data.h +
-                ' · ' +
-                Math.abs(data.i / Math.abs(getGcd(data.i, data.j))),
-              data.g / Math.abs(getGcd(data.f, data.g)) +
-                ' · 1 · ' +
-                data.j / Math.abs(getGcd(data.i, data.j)),
-            )}{' '}
-            = {ppFrac((data.f * data.h * data.i) / (data.g * data.j))}
-            <p>Kürze das Ergebnis so weit wie möglich.</p>
+            {buildEquation([
+              [
+                '',
+                <>
+                  {data.f < 0 && (
+                    <span className="inline-block scale-y-[2.6]">(</span>
+                  )}
+                  {ppFrac(data.f / data.g)}
+                  {data.f < 0 && (
+                    <span className="inline-block scale-y-[2.6]">)</span>
+                  )}{' '}
+                  · {buildInlineFrac(data.h, 1)} ·{' '}
+                  {data.i < 0 && (
+                    <span className="inline-block scale-y-[2.6]">(</span>
+                  )}
+                  {ppFrac(data.i / data.j)}
+                  {data.i < 0 && (
+                    <span className="inline-block scale-y-[2.6]">)</span>
+                  )}
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Zähler mal Zähler, Nenner mal Nenner
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  {data.f * data.i < 0 && '−'}
+                  {buildInlineFrac(
+                    Math.abs(data.f / Math.abs(getGcd(data.f, data.g))) +
+                      ' · ' +
+                      data.h +
+                      ' · ' +
+                      Math.abs(data.i / Math.abs(getGcd(data.i, data.j))),
+                    data.g / Math.abs(getGcd(data.f, data.g)) +
+                      ' · 1 · ' +
+                      data.j / Math.abs(getGcd(data.i, data.j)),
+                  )}
+                </>,
+              ],
+              [
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Kürzen soweit es geht
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '=',
+                <>
+                  <strong>
+                    {ppFrac((data.f * data.h * data.i) / (data.g * data.j))}
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },

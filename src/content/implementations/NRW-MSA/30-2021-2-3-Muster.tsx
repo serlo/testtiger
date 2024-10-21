@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -72,15 +73,34 @@ export const exercise30: Exercise<DATA> = {
         return (
           <>
             <p>
-              In diesem rechtwinkligen Dreieck sind die Längen der beiden
-              Katheten a und b gegeben. Verwende den Satz des Pythagoras und
-              berechne die Länge der Hypotenuse c:
+              Verwende den Satz des Pythagoras und berechne die Länge der
+              Hypotenuse c:
             </p>
             {buildEquation([
               ['a² + b²', '=', 'c²'],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Einsetzen</span>
+                  </Color4>
+                </>,
+              ],
               [data.d1 + '² + ' + data.d1 + '²', '=', 'c²'],
               [data.d1 * 2 * data.d1, '=', 'c²', '| √'],
-              [pp(hypo), '≈', 'c'],
+              [
+                'c',
+                '≈',
+                <>
+                  <strong>{pp(hypo)} [cm]</strong>
+                </>,
+              ],
             ])}
           </>
         )
@@ -194,10 +214,13 @@ export const exercise30: Exercise<DATA> = {
               />
             </svg>
             <p>
-              Die Dreiecke sind gleichschenklig-rechtwinklig, das bedeutet die
-              Basiswinkel betragen 45∘. Ein Vollkreis hat 360∘. <br></br>Die
-              Anzahl der Dreiecke ist dann: {buildInlineFrac(360, 45)}​=8. Siehe
-              Skizze.
+              Die Dreiecke sind gleichschenklig und rechtwinklig. Das bedeutet
+              die spitzen Winkel betragen 45°. <br></br>
+              <br></br>Ein Vollkreis hat 360°. <br></br>
+              Die Anzahl der Dreiecke ist dann {buildInlineFrac(
+                360,
+                45,
+              )} ​= <strong>8</strong>, bis der Vollkreis ausgefüllt ist.
             </p>
           </>
         )

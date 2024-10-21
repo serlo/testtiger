@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -78,7 +79,7 @@ export const exercise55: Exercise<DATA> = {
             <p>a² + b² = c²</p>
             <p>
               Dabei muss c die Seitenlänge der Hypotenuse sein. <br></br>
-              <br></br>Ist diese Gleichung nicht erfüllt, kann das Dreieck nicht
+              <br></br>Ist diese Gleichung erfüllt, muss das Dreieck wiederum
               rechtwinklig sein. Überprüfe, indem du die Seitenlängen einsetzt:
             </p>
             {buildEquation([
@@ -89,9 +90,30 @@ export const exercise55: Exercise<DATA> = {
                 data.seiten[2] + '²',
               ],
               [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Ausrechnen und zusammenfassen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
                 data.seiten[0] * data.seiten[0] +
                   ' + ' +
                   data.seiten[1] * data.seiten[1],
+                '=',
+                data.seiten[2] * data.seiten[2],
+              ],
+              [
+                data.seiten[2] * data.seiten[2],
                 '=',
                 data.seiten[2] * data.seiten[2],
               ],
@@ -160,7 +182,7 @@ export const exercise55: Exercise<DATA> = {
           <>
             <p>
               Eine Rechnung wird hier nicht benötigt. Beide Terme beschreiben
-              den Flächeninhalt des rechtwinkligen Dreiecks:
+              den <strong>Flächeninhalt</strong> des rechtwinkligen Dreiecks:
             </p>
             <ul>
               <li>
@@ -174,7 +196,7 @@ export const exercise55: Exercise<DATA> = {
             </ul>
             <p>
               Da beide Terme den Flächeninhalt des gleichen Dreiecks
-              beschreiben, sind sie gleich und die Gleichung gilt.
+              beschreiben, gilt die Gleichung.
             </p>
           </>
         )
@@ -270,57 +292,89 @@ export const exercise55: Exercise<DATA> = {
         return (
           <>
             <p>
-              In einem rechtwinkligen Dreieck gilt mithilfe der Winkelfunktionen
-              bspw. folgende Gleichung:
-            </p>
-            <p>sin(α) = {buildFrac('Gegenkathete', 'Hypotenuse')}</p>
-            <p>
-              Setze die Seitenlängen ein und verwende die Umkehrfunktion sin
-              <sup>-1</sup>, um die Größe von α zu bestimmen.
+              Im rechtwinkligen Dreieck gilt mithilfe des Sinus folgende
+              Gleichung:
             </p>
             {buildEquation([
-              ['sin(α)', '=', buildFrac('Gegenkathete', 'Hypotenuse')],
-              ['sin(α)', '=', buildFrac('a', 'c')],
               [
                 'sin(α)',
                 '=',
-                buildFrac(data.seiten[0], data.seiten[2]),
+                <>{buildInlineFrac('Gegenkathete', 'Hypotenuse')}</>,
+              ],
+
+              ['sin(α)', '=', <>{buildInlineFrac('a', 'c')}</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                'sin(α)',
+                '=',
+                <>{buildInlineFrac(data.seiten[0], data.seiten[2])}</>,
                 <>
                   | sin<sup>-1</sup>()
                 </>,
               ],
               [
-                'α',
-                '=',
+                '',
                 <>
-                  sin<sup>-1</sup>{' '}
-                  <span className="inline-block scale-y-[2.6]">(</span>
-                  {buildFrac(data.seiten[0], data.seiten[2])}
-                  <span className="inline-block scale-y-[2.6]">)</span>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Mit sin<sup>-1</sup> nach α lösen
+                    </span>
+                  </Color4>
                 </>,
               ],
               [
                 'α',
-                '≈',
-                pp(
-                  roundToDigits(
-                    (Math.asin(data.seiten[0] / data.seiten[2]) /
-                      (2 * Math.PI)) *
-                      360,
-                    2,
-                  ),
-                ),
+                '=',
+                <>
+                  <>
+                    sin<sup>-1</sup>{' '}
+                    <span className="inline-block scale-y-[2.6]">(</span>
+                    {buildInlineFrac(data.seiten[0], data.seiten[2])}
+                    <span className="inline-block scale-y-[2.6]">)</span>
+                  </>
+                </>,
               ],
-            ])}{' '}
-            <br></br>Die Größe des Winkels α beträgt{' '}
-            {pp(
-              roundToDigits(
-                (Math.asin(data.seiten[0] / data.seiten[2]) / (2 * Math.PI)) *
-                  360,
-                2,
-              ),
-            )}
-            °.
+              [
+                <>
+                  <strong>α</strong>
+                </>,
+                <>
+                  <strong>≈</strong>
+                </>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (Math.asin(data.seiten[0] / data.seiten[2]) /
+                          (2 * Math.PI)) *
+                          360,
+                        2,
+                      ),
+                    )}
+                    °
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -369,32 +423,61 @@ export const exercise55: Exercise<DATA> = {
               </li>
               <li>
                 In diesem Dreieck gilt mit dem Satz des Pythagoras:
-                <p>{data.seiten[2]}² = a² + b²</p>
-                <p>Da die Katheten gleich lang sind, gilt:</p>
-                <p>{data.seiten[2]}² = 2a²</p>
-                <p>Stelle die Gleichung um und berechne a:</p>
-                <p>
-                  a = {buildSqrt(pp((data.seiten[2] * data.seiten[2]) / 2))}
-                </p>
-                <p>
-                  a ={' '}
-                  {pp(
-                    roundToDigits(
-                      Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
-                      2,
-                    ),
-                  )}
-                </p>
-                <p>
-                  Die Katheten sind jeweils{' '}
+                {buildEquation([
+                  [<>{data.seiten[2]}²</>, '=', <>a² + b²</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          a und b sind gleich lang
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<>{data.seiten[2]}²</>, '=', <>2a²</>, <>| : 2</>],
+                  [
+                    <>{buildInlineFrac(<>{data.seiten[2]}²</>, 2)}</>,
+                    '=',
+                    <>a²</>,
+                    <>| √</>,
+                  ],
+                  [
+                    <>a</>,
+                    '=',
+                    <>{buildSqrt(pp((data.seiten[2] * data.seiten[2]) / 2))}</>,
+                  ],
+                  [
+                    <></>,
+                    '≈',
+                    <>
+                      {pp(
+                        roundToDigits(
+                          Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
+                          2,
+                        ),
+                      )}{' '}
+                      [cm]
+                    </>,
+                  ],
+                ])}{' '}
+                <br></br>Die Katheten sind jeweils{' '}
+                <strong>
                   {pp(
                     roundToDigits(
                       Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
                       2,
                     ),
                   )}{' '}
-                  cm lang.
-                </p>
+                  cm
+                </strong>{' '}
+                lang.
               </li>
             </ol>
           </>
@@ -443,10 +526,11 @@ export const exercise55: Exercise<DATA> = {
             {data.case == 1 && (
               <>
                 <p>
-                  Ein Dreieck in dem alle Seiten gleich lang sind, heißt
+                  Ein Dreieck, in dem alle Seiten gleich lang sind, heißt
                   gleichseitig. Darin müssen auch alle Winkel gleich sein und
-                  jeweils 60° betragen. Einen rechten Winkel kann es nicht
-                  geben, womit Kais Behauptung nicht stimmt.
+                  jeweils 60° betragen.<br></br>
+                  <br></br> Einen rechten Winkel kann es nicht geben, womit Kais
+                  Behauptung <strong>nicht stimmt</strong>.
                 </p>
               </>
             )}
@@ -455,17 +539,18 @@ export const exercise55: Exercise<DATA> = {
                 <p>
                   Die Winkelsumme in einem Dreieck beträgt immer 180°. Da zwei
                   rechte Winkel diese 180° bereits ergeben, kann es keinen
-                  dritten Winkel im Dreieck geben. Damit ist Kais Behauptung
-                  falsch.
+                  dritten Winkel im Dreieck geben. <br></br>
+                  <br></br>Damit ist Kais Behauptung <strong>falsch</strong>.
                 </p>
               </>
             )}
             {data.case == 3 && (
               <>
                 <p>
-                  Diese Behauptung stimmt. Ein gleichschenkliges Dreieck bei dem
-                  nicht nur die zwei Schenkel gleich sind, sondern alle drei
-                  Seiten, heißt gleichseitig.
+                  <strong>Diese Behauptung stimmt.</strong> Bei einem
+                  gleichschenkligen Dreieck sind nicht nur die zwei Schenkel
+                  gleich, sondern alle drei Seiten. So ein Dreieck heißt
+                  gleichseitig.
                 </p>
               </>
             )}
@@ -481,8 +566,8 @@ export const exercise55: Exercise<DATA> = {
                 </p>
                 <p>
                   Die Gleichung wäre nur erfüllt, wenn die Seite a die Länge 0
-                  cm besitzt. Das ist nicht möglich, womit Kais Behauptung
-                  falsch ist.
+                  cm besitzt. Das ist nicht möglich, womit Kais Behauptung{' '}
+                  <strong>falsch</strong> ist.
                 </p>
               </>
             )}

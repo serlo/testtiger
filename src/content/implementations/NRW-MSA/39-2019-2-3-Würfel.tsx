@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color3, Color4 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
@@ -229,7 +230,31 @@ export const exercise39: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Die vollständige Tabelle ist:</p>
+            <p>
+              Um den fehlenden Wert zu bestimmen kannst du die Anzahl der Würfel
+              bestimmen, die in jeder Figur hinzu kommen:
+            </p>
+            <ul>
+              <li>
+                Von Figur 1 zu Figur 2:{' '}
+                {2 * (2 + data.startwert - 1) - 1 * (1 + data.startwert - 1)}
+              </li>
+              <li>
+                Von Figur 2 zu Figur 3:{' '}
+                {3 * (3 + data.startwert - 1) - 2 * (2 + data.startwert - 1)}
+              </li>
+              <li>
+                Von Figur 3 zu Figur 4 sind es also:{' '}
+                {4 * (4 + data.startwert - 1) - 3 * (3 + data.startwert - 1)}
+              </li>
+            </ul>
+            <p>
+              Zu den {3 * (3 + data.startwert - 1)} Würfeln kommen{' '}
+              {4 * (4 + data.startwert - 1) - 3 * (3 + data.startwert - 1)}{' '}
+              hinzu, womit die 4. Figur{' '}
+              <strong>{4 * (4 + data.startwert - 1)}</strong> Würfel besitzt:
+            </p>
+
             <svg viewBox="0 0 328 110">
               <image
                 href="/content/NRW_MSA_Würfel_Tabelle.PNG"
@@ -273,24 +298,6 @@ export const exercise39: Exercise<DATA> = {
                 {4 * (4 + data.startwert - 1)}
               </text>
             </svg>
-            <p>
-              Um den fehlenden Wert zu bestimmen kannst du die Anzahl der Würfel
-              bestimmen, die in jeder Figur hinzu kommt:
-            </p>
-            <ul>
-              <li>
-                Von Figur 1 zu Figur 2:{' '}
-                {2 * (2 + data.startwert - 1) - 1 * (1 + data.startwert - 1)}
-              </li>
-              <li>
-                Von Figur 2 zu Figur 3:{' '}
-                {3 * (3 + data.startwert - 1) - 2 * (2 + data.startwert - 1)}
-              </li>
-              <li>
-                Dann sind es von Figur 3 zu Figur 4:{' '}
-                {4 * (4 + data.startwert - 1) - 3 * (3 + data.startwert - 1)}
-              </li>
-            </ul>
           </>
         )
       },
@@ -323,7 +330,7 @@ export const exercise39: Exercise<DATA> = {
             ])}
             <p>
               Für Figur {data.random} benötigen sie{' '}
-              {data.random * (data.random + wert)} Würfel.
+              <strong>{data.random * (data.random + wert)} Würfel</strong>.
             </p>
           </>
         )
@@ -348,12 +355,13 @@ export const exercise39: Exercise<DATA> = {
             <ul>
               <li>
                 Jede Figur wird um eine weitere Reihe Würfel nach oben gebaut.
-                Die Anzahl aufeinanderliegender Reihen beträgt also n.
+                Die Anzahl aufeinanderliegender Reihen beträgt also{' '}
+                <strong>n</strong>.
               </li>
               <li>
-                (n + {data.startwert - 1}) beschreibt die Anzahl von Würfeln in
-                einer Reihe. Da in Figur 1 bereits mehrere Würfel vorhanden
-                sind, muss der Startwert angepasst werden.
+                <strong>(n + {data.startwert - 1})</strong> beschreibt die
+                Anzahl von Würfeln in einer Reihe. Da in Figur 1 bereits mehrere
+                Würfel vorhanden sind, muss der Startwert angepasst werden.
               </li>
             </ul>
             <p>
@@ -427,29 +435,89 @@ export const exercise39: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Löse die Klammern der Terme auf, um sie zu vergleichen:</p>
-            <ul>
-              <li>
-                n · (n + {data.startwert - 1}) = n² +{' '}
-                {data.startwert - 1 != 1 && data.startwert - 1}n
-              </li>
-              <li>
-                {' '}
-                (n + {pp((data.startwert - 1) / 2)})² −{' '}
-                {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
-                <br></br>= n² + 2 · n · {pp((data.startwert - 1) / 2)} +{' '}
-                {pp((data.startwert - 1) / 2)}² −{' '}
-                {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
-                <br></br>= n² + {pp(data.startwert - 1)} · n +{' '}
-                {pp((((data.startwert - 1) / 2) * (data.startwert - 1)) / 2)} −{' '}
-                {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}{' '}
-                <br></br> = n² + {data.startwert - 1 != 1 && data.startwert - 1}
-                n
-              </li>
-            </ul>
+            <p>Löse die Klammern beider Terme auf, um sie zu vergleichen.</p>
+            {buildEquation([
+              [<>Term I:</>, '', <>n · (n + {data.startwert - 1})</>],
+              [
+                '',
+                '=',
+                <>
+                  <b>n² + {data.startwert - 1 != 1 && data.startwert - 1}n</b>
+                </>,
+              ],
+            ])}
+            <p></p>
+            {buildEquation([
+              [
+                'Term II:',
+                '',
+                <>
+                  (n + {pp((data.startwert - 1) / 2)})² −{' '}
+                  {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      1. Binomische Formel
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  n² + 2 · n · {pp((data.startwert - 1) / 2)} +{' '}
+                  {pp((data.startwert - 1) / 2)}² −{' '}
+                  {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {pp((data.startwert - 1) / 2)}² ={' '}
+                      {pp((data.startwert - 1) / 2)}, dann zusammenfassen
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  n² + {pp(data.startwert - 1)} · n +{' '}
+                  {pp((((data.startwert - 1) / 2) * (data.startwert - 1)) / 2)}{' '}
+                  − {pp(((data.startwert - 1) * (data.startwert - 1)) / 4)}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                <>
+                  <b>n² + {data.startwert - 1 != 1 && data.startwert - 1}n</b>
+                </>,
+              ],
+            ])}
             <p>
               Nach einer Termumformung zeigt sich, dass die Terme identisch sind
-              und damit gleichwertig die Anzahl der Würfel beschreiben.
+              und sie damit gleichwertig die Anzahl der Würfel beschreiben.
             </p>
           </>
         )
@@ -476,27 +544,35 @@ export const exercise39: Exercise<DATA> = {
         return (
           <>
             <p>
-              Setze einige Werte für n und bestimme die größtmögliche Anzahl der
-              Würfel unter 500:
+              Setze systematisch Werte für n ein und bestimme die größtmögliche
+              Anzahl der Würfel unter 500:
             </p>
             <ul>
               <li>
                 {anzahl} · ({anzahl} + {data.startwert - 1}) ={' '}
-                {anzahl * anzahl + anzahl * (data.startwert - 1)}{' '}
+                <strong>
+                  {anzahl * anzahl + anzahl * (data.startwert - 1)}
+                </strong>{' '}
               </li>
               <li>
                 {anzahl + 1} · ({anzahl + 1} + {data.startwert - 1}) ={' '}
-                {(anzahl + 1) * (anzahl + 1) +
-                  (anzahl + 1) * (data.startwert - 1)}
+                <strong>
+                  {(anzahl + 1) * (anzahl + 1) +
+                    (anzahl + 1) * (data.startwert - 1)}
+                </strong>
               </li>
             </ul>
             <p>
-              Die größtmögliche Figur ist Figur {anzahl}. Für den Bau von Figur{' '}
-              {anzahl + 1} fehlen{' '}
-              {(anzahl + 1) * (anzahl + 1) +
-                (anzahl + 1) * (data.startwert - 1) -
-                500}{' '}
-              Würfel.
+              Die größtmögliche Figur ist <strong>Figur {anzahl}</strong>. Für
+              den Bau von Figur {anzahl + 1} fehlen
+              <strong>
+                {' '}
+                {(anzahl + 1) * (anzahl + 1) +
+                  (anzahl + 1) * (data.startwert - 1) -
+                  500}{' '}
+                Würfel
+              </strong>
+              .
             </p>
           </>
         )
