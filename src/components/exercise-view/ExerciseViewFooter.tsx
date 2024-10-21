@@ -32,10 +32,13 @@ export function ExerciseViewFooter() {
           direction: 'y',
           threshold: 50,
           canStart: () => {
-            return target.scrollTop < 5 && chatOverlay == 'solution'
+            return (
+              target.scrollTop < 5 &&
+              ExerciseViewStore.getRawState().chatOverlay == 'solution'
+            )
           },
           onEnd: e => {
-            if (e.deltaY > 80) {
+            if (e.deltaY > 80 && Math.abs(e.deltaX) < 30) {
               ExerciseViewStore.update(s => {
                 s.chatOverlay = null
               })

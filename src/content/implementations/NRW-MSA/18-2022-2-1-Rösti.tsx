@@ -475,11 +475,20 @@ export const exercise18: Exercise<DATA> = {
               Die Wahrscheinlichkeit dieses Pfades berechnest du mit der
               Produktregel:
             </p>
-            <p>
-              P(&quot;Vorgaben werden eingehalten&quot;) ={' '}
-              {pp(data.prob_1 / 100)} · {pp(data.prob_2 / 100)} ={' '}
-              {pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4))}
-            </p>
+            {buildEquation([
+              [
+                <>P(&quot;Vorgaben eingehalten&quot;)</>,
+                '=',
+                <>
+                  {pp(data.prob_1 / 100)} · {pp(data.prob_2 / 100)}
+                </>,
+              ],
+              [
+                '',
+                '=',
+                pp(roundToDigits(((data.prob_1 / 100) * data.prob_2) / 100, 4)),
+              ],
+            ])}
             <p>
               Damit beträgt die Wahrscheinlichkeit{' '}
               <strong>
