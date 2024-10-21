@@ -119,7 +119,8 @@ export function ExerciseViewContent() {
                       reseed()
                     }}
                   >
-                    <FaIcon icon={faClock} className="text-xs" /> ? min
+                    <FaIcon icon={faClock} className="text-xs" />{' '}
+                    {(withSubtasks ? t.duration : content.duration) ?? '?'} min
                   </button>
                   <button
                     className="px-1 py-0.5 rounded-md bg-gray-100"
