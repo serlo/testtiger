@@ -273,12 +273,17 @@ export const exercise30: Exercise<DATA> = {
               {buildSqrt('2')}
             </p>
             <p>
-              A<sub>2</sub> = a²
+              <strong>
+                A<sub>2</sub> = a²
+              </strong>
             </p>
             <p>
-              Der Flächeninhalt von D<sub>1</sub> beträgt A<sub>1</sub> ={' '}
-              {buildInlineFrac(1, 2)}a², weshalb der Flächeninhalt von D
-              <sub>2</sub> tatsächlich doppelt so groß ist.{' '}
+              Der Flächeninhalt von D<sub>1</sub> beträgt{' '}
+              <strong>
+                A<sub>1</sub> = {buildInlineFrac(1, 2)}a²
+              </strong>
+              , weshalb der Flächeninhalt von D<sub>2</sub> tatsächlich doppelt
+              so groß ist.{' '}
             </p>
           </>
         )
