@@ -149,15 +149,26 @@ export const exercise46: Exercise<DATA> = {
         return (
           <>
             <p>
+              <b>Pappbecher im Jahr</b>
+            </p>
+            <p>
               Berechne, wie viele Pappbecher jährlich in Deutschland verbraucht
               werden:
             </p>
             <p>
               {data.usage} · 83 000 000 = {data.usage * 83000000} [Becher]
             </p>
+            <p>
+              <b>Stunden pro Jahr</b>
+            </p>
             <p> Berechne, wie viele Stunden ein Jahr enthält:</p>
             <p>365 · 24 = {365 * 24}</p>
-            <p>Teile die Anzahl der Becher durch die Anzahl der Stunden:</p>
+            <p>
+              <b>Pappbecher in der Stunde</b>
+            </p>
+            <p>
+              Teile die Anzahl der Becher pro Jahr durch die Anzahl der Stunden:
+            </p>
             <p>
               {data.usage * 83000000} : {365 * 24} ≈ {pp(data.becher)} [Becher]
             </p>
@@ -167,8 +178,11 @@ export const exercise46: Exercise<DATA> = {
               {data.karinHatRecht == true
                 ? pp(roundToDigits(data.becher, -4))
                 : pp(data.trash)}{' '}
-              Bechern. Damit hat Karin{' '}
-              {data.karinHatRecht == true ? 'recht.' : 'nicht recht.'}
+              Bechern. Damit{' '}
+              <b>
+                hat Karin{' '}
+                {data.karinHatRecht == true ? 'recht.' : 'nicht recht.'}
+              </b>
             </p>
           </>
         )
