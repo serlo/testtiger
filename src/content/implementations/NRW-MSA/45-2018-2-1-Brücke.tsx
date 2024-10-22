@@ -448,8 +448,8 @@ export const exercise45: Exercise<DATA> = {
               [
                 <>sin({pp(data.alpha_max)}°)</>,
                 '=',
-                <>{buildInlineFrac('u', data.width + ' mm')}</>,
-                <>| · {data.width + ' mm'}</>,
+                <>{buildInlineFrac('u', data.width)}</>,
+                <>| · {data.width}</>,
               ],
             ])}
             {buildEquation([
@@ -459,7 +459,7 @@ export const exercise45: Exercise<DATA> = {
                 </>,
                 '=',
                 <>
-                  sin({pp(data.alpha_max)}°) · {data.width + ' mm'}
+                  sin({pp(data.alpha_max)}°) · {data.width}
                 </>,
               ],
               [
@@ -476,7 +476,7 @@ export const exercise45: Exercise<DATA> = {
                         2,
                       ),
                     )}{' '}
-                    mm
+                    [mm]
                   </strong>
                 </>,
               ],

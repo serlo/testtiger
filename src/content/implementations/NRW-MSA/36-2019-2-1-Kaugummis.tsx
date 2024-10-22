@@ -121,7 +121,7 @@ export const exercise36: Exercise<DATA> = {
             </p>
             <p>
               {pp(roundToDigits(V, 2))} : 1000 ≈{' '}
-              <strong>{pp(roundToDigits(V / 1000, 2))} cm³</strong>
+              <strong>{pp(roundToDigits(V / 1000, 2))} [cm³]</strong>
             </p>
           </>
         )
@@ -150,7 +150,7 @@ export const exercise36: Exercise<DATA> = {
             <p>Eine Kugel hat ein Volumen von etwa {pp(V)} cm³.</p>
             <p>
               Damit hat sie ein Gewicht von:<br></br> {pp(V)} ·{' '}
-              {pp(data.weight)} ≈ {pp(roundToDigits(data.weight * V, 2))} g{' '}
+              {pp(data.weight)} ≈ {pp(roundToDigits(data.weight * V, 2))} [g]{' '}
             </p>
             <p>
               {' '}

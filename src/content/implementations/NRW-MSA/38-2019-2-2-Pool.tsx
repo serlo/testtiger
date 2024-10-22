@@ -132,7 +132,7 @@ export const exercise38: Exercise<DATA> = {
               <li>
                 Die Höhe h des Wassers beträgt: <br></br>
                 {pp(data.höhe)} − {pp(data.water / 100)} ={' '}
-                {pp(data.höhe - data.water / 100)} m
+                {pp(data.höhe - data.water / 100)} [m]
               </li>
             </ul>
 

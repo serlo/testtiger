@@ -112,9 +112,7 @@ export const exercise46: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  <strong>
-                    {pp((data.liter * data.percent) / 100)} [Liter]
-                  </strong>
+                  <strong>{pp((data.liter * data.percent) / 100)} [ℓ]</strong>
                 </>,
               ],
             ])}
@@ -155,13 +153,13 @@ export const exercise46: Exercise<DATA> = {
               werden:
             </p>
             <p>
-              {data.usage} · 83 000 000 = {data.usage * 83000000} Becher
+              {data.usage} · 83 000 000 = {data.usage * 83000000} [Becher]
             </p>
             <p> Berechne, wie viele Stunden ein Jahr enthält:</p>
             <p>365 · 24 = {365 * 24}</p>
             <p>Teile die Anzahl der Becher durch die Anzahl der Stunden:</p>
             <p>
-              {data.usage * 83000000} : {365 * 24} ≈ {pp(data.becher)} Becher
+              {data.usage * 83000000} : {365 * 24} ≈ {pp(data.becher)} [Becher]
             </p>
             <p>
               {data.becher} entsprechen{' '}

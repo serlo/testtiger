@@ -297,7 +297,7 @@ export const exercise54: Exercise<DATA> = {
             </p>
             <p>
               Das Volumen der ganzen Kugel beträgt V<sub>Kugel</sub> ={' '}
-              {pp(roundToDigits(volume, 2))} cm³
+              {pp(roundToDigits(volume, 2))} [cm³]
             </p>
             <p>Das Volumen des Kugelsegments beträgt:</p>
             {buildEquation([
