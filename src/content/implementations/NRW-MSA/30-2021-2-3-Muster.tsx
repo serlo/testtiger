@@ -368,7 +368,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <p>
               {data.guess} ist nicht ohne Rest durch {pp(surface)} teilbar,
-              sodass es niemals als Vielfaches auftauchen kann:
+              sodass es niemals als Vielfaches in der Tabelle auftauchen kann:
             </p>
             <p>
               {data.guess} : {pp(surface)} ={' '}
@@ -414,7 +414,11 @@ export const exercise30: Exercise<DATA> = {
               ['2 · A', '=', 'a²', '| √'],
               [buildSqrt('2 · A'), '=', 'a'],
               ['a', '=', buildSqrt('2 · ' + werte)],
-              ['a', '=', pp(roundToDigits(Math.sqrt(2 * werte), 2))],
+              [
+                'a',
+                '=',
+                <>{pp(roundToDigits(Math.sqrt(2 * werte), 2))} [cm]</>,
+              ],
             ])}
             <p>
               Die Katheten sind {pp(roundToDigits(Math.sqrt(2 * werte), 2))} cm
