@@ -47,8 +47,8 @@ export const exercise22: Exercise<DATA> = {
           <strong>Volumen berechnen</strong>
         </p>
         <p>
-          Berechne zuerst das Volumen der Pyramide, um mithilfe der Dichte das
-          Gewicht zu bestimmen. <br></br>
+          Berechne zuerst das Volumen der Pyramide, um anschließend das Gewicht
+          zu bestimmen. <br></br>
           <br></br>Die Formel zur Berechnung des Volumens einer Pyramide lautet:
         </p>
         {buildEquation([
@@ -94,11 +94,9 @@ export const exercise22: Exercise<DATA> = {
         <p>
           <strong>Gewicht berechnen</strong>
         </p>
-        <p>
-          Die Formel zur Berechnung des Gewichts <strong>m</strong> lautet:{' '}
-        </p>
+        <p>1 cm³ Holz wiegt {pp(data.d)} g:</p>
         {buildEquation([
-          [<>m</>, <>=</>, <>V · Dichte</>],
+          [<>1 cm³</>, <>≙</>, <>{pp(data.d)} g</>],
           [
             '',
             <>
@@ -109,29 +107,18 @@ export const exercise22: Exercise<DATA> = {
             </>,
             <>
               <Color4>
-                <span style={{ fontSize: 'small' }}>Werte einsetzen </span>
+                <span style={{ fontSize: 'small' }}>
+                  · {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))}{' '}
+                </span>
               </Color4>
             </>,
           ],
           [
-            <></>,
-            <>=</>,
+            <>{pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³</>,
+            <>≙</>,
             <>
-              {' '}
-              {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} ·{' '}
-              {pp(data.d)}
-            </>,
-          ],
-          [
-            <></>,
-            <>=</>,
-            <>
-              <strong>
-                {pp(
-                  roundToDigits(((data.l * data.l * data.h) / 3) * data.d, 2),
-                )}{' '}
-                [g]
-              </strong>
+              {pp(roundToDigits(((data.l * data.l * data.h) / 3) * data.d, 2))}{' '}
+              g
             </>,
           ],
         ])}

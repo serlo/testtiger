@@ -569,9 +569,9 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Sprungweite des Blobbers ist die Distanz zwischen den
-              Nullstellen der Parabel. Um die Nullstellen zu berechnen, löse die
-              quadratische Gleichung mit der pq-Formel.
+              Die Sprungweite des Blobbers entspricht der positiven Nullstelle.
+              Um die Nullstellen zu berechnen, setze die Funktionsgleichung
+              gleich 0. Löse die quadratische Gleichung mit der pq-Formel.
             </p>
 
             {buildEquation([
