@@ -206,20 +206,26 @@ export const exercise46: Exercise<DATA> = {
         return (
           <>
             <p>
-              In dieser Anordnung nimmt jeder Pappbecher eine quadratische
-              Fläche von
+              <strong>Fläche eines Bechers</strong>
             </p>
             <p>
-              {data.dia} · {data.dia} = {data.dia * data.dia} cm²
-            </p>{' '}
-            <p>in Anspruch.</p>
+              In dieser Anordnung benötigt jeder Pappbecher eine quadratische
+              Fläche von:
+            </p>
             <p>
-              Das entspricht einer Fläche von {data.dia * data.dia} cm² ≙{' '}
-              {pp((data.dia * data.dia) / 10000)} m²
+              {data.dia} · {data.dia} = {data.dia * data.dia} [cm²]
+            </p>{' '}
+            <p>
+              Das entspricht einer Fläche von <br></br>
+              {data.dia * data.dia} cm² ≙ {pp((data.dia * data.dia) / 10000)} m²
+            </p>
+            <p>
+              <strong>Anzahl der Becher</strong>
             </p>
             <p>Die Sporthalle hat eine Grundfläche von </p>
             <p>
-              A = {data.length} · {data.width} = {data.length * data.width} m².
+              A = {data.length} · {data.width} = {data.length * data.width}{' '}
+              [m²].
             </p>
             <p>
               Damit passen {data.length * data.width} :{' '}
@@ -230,7 +236,7 @@ export const exercise46: Exercise<DATA> = {
               Becher in die Halle.
             </p>
             <p>
-              Damit reicht der Boden nicht aus, um die{' '}
+              Damit <strong>reicht der Boden nicht aus</strong>, um die{' '}
               {pp(roundToDigits(data.becher, -4))} Becher aufzustellen.
             </p>
           </>
