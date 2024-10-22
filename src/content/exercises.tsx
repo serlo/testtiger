@@ -128,3 +128,4 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 // ≙ ≠ ⇒ ∈ ∉
 // ['',<> <Color4><span className="inline-block  scale-y-[1.5]">↓</span></Color4></>,<><Color4><span style={{ fontSize: 'small' }}>Hier Erklärtext</span></Color4></>,]
 // π ≈ √
+// <center><Color5><span style={{ fontSize: 'small' }}>Unterschrift</span></Color5></center>
