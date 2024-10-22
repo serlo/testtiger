@@ -647,6 +647,23 @@ export const exercise45: Exercise<DATA> = {
               ['g(x)', '=', 'd · (x − e)² + f'],
               [
                 '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Aus x-Koordinate {pp(data.scale * 2.5)} wird{' '}
+                      {pp(-data.scale * 2.5)}
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
                 '=',
                 'd · (x − ' + pp(data.scale * 2.5) + ')² + ' + pp(data.scale),
               ],
@@ -665,14 +682,30 @@ export const exercise45: Exercise<DATA> = {
                 'd · (0 − ' + pp(data.scale * 2.5) + ')² + ' + pp(data.scale),
               ],
               [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Berechne</span>
+                  </Color4>
+                </>,
+              ],
+              [
                 '0',
                 '=',
                 pp(Math.pow(data.scale * 2.5, 2)) + ' · d + ' + pp(data.scale),
+                <>| − {data.scale}</>,
               ],
               [
                 pp(-data.scale),
                 '=',
                 pp(Math.pow(data.scale * 2.5, 2)) + ' · d',
+                <>| : {pp(Math.pow(data.scale * 2.5, 2))}</>,
               ],
               [
                 'd',
@@ -685,13 +718,15 @@ export const exercise45: Exercise<DATA> = {
             <p>
               Damit ist die vollständige Funktionsgleichung, wie angegeben:{' '}
             </p>
-            <p>
-              g(x) ={' '}
-              {pp(
-                roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
-              )}{' '}
-              · (x − {pp(data.scale * 2.5)})² + {pp(data.scale)}
-            </p>
+            <strong>
+              <p>
+                g(x) ={' '}
+                {pp(
+                  roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
+                )}{' '}
+                · (x − {pp(data.scale * 2.5)})² + {pp(data.scale)}
+              </p>
+            </strong>
           </>
         )
       },
@@ -713,8 +748,9 @@ export const exercise45: Exercise<DATA> = {
         return (
           <>
             <p>
-              Der Wert für d verändert sich nicht, denn die Form der Parabel
-              bleibt gleich, unabhängig von der Position des Ursprungs.
+              Der Wert für <strong>d verändert sich nicht</strong>, denn die
+              Form der Parabel bleibt gleich, unabhängig von der Position des
+              Ursprungs.
             </p>
             <p>
               Der neue Scheitelpunkt liegt im Ursprung (0|0), welcher in die
@@ -728,15 +764,19 @@ export const exercise45: Exercise<DATA> = {
               )}{' '}
               · (x − 0)² + 0
             </p>
-            <p>Damit sind die Werte e = 0 und f = 0.</p>
-            <p>Der Term vereinfacht sich zu:</p>
             <p>
-              g(x) ={' '}
-              {pp(
-                roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
-              )}{' '}
-              x²
+              Damit sind die Werte <strong>e = 0 und f = 0</strong>.
             </p>
+            <p>Der Funktionsterm vereinfacht sich zu:</p>
+            <strong>
+              <p>
+                g(x) ={' '}
+                {pp(
+                  roundToDigits(-data.scale / Math.pow(data.scale * 2.5, 2), 4),
+                )}{' '}
+                x²
+              </p>
+            </strong>
           </>
         )
       },
