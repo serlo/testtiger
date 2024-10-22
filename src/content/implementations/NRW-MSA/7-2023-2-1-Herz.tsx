@@ -95,9 +95,9 @@ export const exercise7: Exercise<DATA> = {
         return (
           <>
             <p>
-              Zeichne ein Quadrat mit der Seitenlänge {data.kante} cm. Achte
-              darauf, dass der Winkel, in dem das Quadrat zur Horizontalen
-              steht, 45° beträgt.
+              Zeichne ein Quadrat mit der Seitenlänge <br></br>
+              {data.kante} cm. Achte darauf, dass der Winkel, in dem das Quadrat
+              zur Horizontalen steht, 45° beträgt.
               <svg viewBox="0 0 328 200" className="min-w-[328px]">
                 <image
                   href="/content/NRW_MSA_Herz_Kon.PNG"
@@ -294,7 +294,7 @@ export const exercise7: Exercise<DATA> = {
             <p>
               Zeige durch eine Rechnung, dass die Strecke{' '}
               {buildOverline('M1M2')}
-              ​​ eine Länge von etwa{' '}
+              ​​eine Länge von etwa <br></br>
               {pp(
                 roundToDigits(
                   Math.sqrt((data.kante / 2) * (data.kante / 2) * 2),

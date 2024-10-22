@@ -404,7 +404,7 @@ export const exercise39: Exercise<DATA> = {
               ['=', data.random2 * (data.random2 + wert)],
             ])}
             <p>
-              Figur {data.random2} besteht aus{' '}
+              <strong>Figur {data.random2}</strong> besteht aus{' '}
               {data.random2 * (data.random2 + wert)} Würfeln.
             </p>
           </>

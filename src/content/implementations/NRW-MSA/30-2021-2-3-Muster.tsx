@@ -371,7 +371,8 @@ export const exercise30: Exercise<DATA> = {
 
             <p>
               Begründe, dass kein Dreieck in dem Muster einen Flächeninhalt von
-              genau {data.guess} cm² hat.
+              genau <br></br>
+              {data.guess} cm² hat.
             </p>
           </>
         )

@@ -149,8 +149,8 @@ export const exercise17: Exercise<DATA> = {
               <li>
                 Aus den Punkten {'(0|' + pp(data.b) + ')'} und{' '}
                 {'(1|' + pp(1 * data.m + data.b) + ')'} folgt, dass die Gerade
-                eine Steigung von m = {pp(data.m)} haben muss. Das kannst du
-                auch mit der Punkt-Steigungs-Formel berechnen:
+                eine Steigung von <br></br>m = {pp(data.m)} haben muss. Das
+                kannst du auch mit der Punkt-Steigungs-Formel berechnen:
                 <p>
                   <strong>
                     m = {buildInlineFrac(y_2 + ' − ' + pp(data.b), '1 − 0')} ={' '}

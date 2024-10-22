@@ -172,8 +172,8 @@ export const exercise47: Exercise<DATA> = {
             <p>Um die Dreiecksfläche zu berechnen, verwende die Formel:</p>
             <p>A = {buildInlineFrac('g · h', 2)}</p>
             <p>
-              Hierbei ist g die Grundlinie mit der Länge {data.seite} cm und h
-              die Höhe. Setze ein und berechne:
+              Hierbei ist g die Grundlinie mit der Länge <br></br>
+              {data.seite} cm und h die Höhe. Setze ein und berechne:
             </p>
             {buildEquation([
               ['A', '=', <>{buildInlineFrac('g · h', 2)}</>],
@@ -366,18 +366,21 @@ export const exercise47: Exercise<DATA> = {
               Fläche der schwarzen Dreiecke.
             </p>
             <p>Der fehlende Wert ist:</p>{' '}
-            {calculateValue3(
-              [0, 1, 2, 3, 4, 5, 6].find(value => !data.show.includes(value))! -
-                1,
-            )}{' '}
-            · {buildInlineFrac(3, 4)} ={' '}
-            <strong>
+            <p>
               {calculateValue3(
                 [0, 1, 2, 3, 4, 5, 6].find(
                   value => !data.show.includes(value),
-                )!,
-              )}
-            </strong>
+                )! - 1,
+              )}{' '}
+              · {buildInlineFrac(3, 4)} ={' '}
+              <strong>
+                {calculateValue3(
+                  [0, 1, 2, 3, 4, 5, 6].find(
+                    value => !data.show.includes(value),
+                  )!,
+                )}
+              </strong>
+            </p>
           </>
         )
       },

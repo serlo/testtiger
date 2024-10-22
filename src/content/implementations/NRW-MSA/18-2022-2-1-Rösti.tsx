@@ -131,7 +131,10 @@ export const exercise18: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>b) 100 g Teig haben ein Volumen von {data.volumen} cm³.</p>
+            <p>
+              b) 100 g Teig haben ein Volumen von <br></br>
+              {data.volumen} cm³.
+            </p>
             <p>Berechne, wie viel Gramm ein Kubikzentimeter Teig wiegt.</p>
           </>
         )
@@ -302,7 +305,8 @@ export const exercise18: Exercise<DATA> = {
               {data.case == 1 && 'halbem '}
               {data.case == 2 && 'viertel '}
               {data.case == 3 && 'doppeltem '}
-              Durchmesser d = {data.case == 1 && pp(roundToDigits(d / 2, 2))}
+              Durchmesser <br></br>d ={' '}
+              {data.case == 1 && pp(roundToDigits(d / 2, 2))}
               {data.case == 2 && pp(roundToDigits(d / 4, 2))}
               {data.case == 3 && pp(roundToDigits(2 * d, 2))} cm:
             </p>
@@ -513,7 +517,7 @@ export const exercise18: Exercise<DATA> = {
               ],
             ])}
             <p>
-              Damit beträgt die Wahrscheinlichkeit{' '}
+              Damit beträgt die Wahrscheinlichkeit <br></br>
               <strong>
                 {pp(roundToDigits((data.prob_1 / 100) * data.prob_2, 4))} %
               </strong>
