@@ -234,7 +234,8 @@ export const exercise19: Exercise<DATA> = {
               Gleichung umformst:
             </p>
             {buildEquation([
-              [<>V</>, <>=</>, <>a³</>, <>| {buildSqrt(<></>, 3)}</>],
+              [<>V</>, <>=</>, <>a³</>],
+              [pp(V), <>=</>, <>a³</>, <>| {buildSqrt(<></>, 3)}</>],
               [<>a</>, <>=</>, <>{buildSqrt(pp(V), 3)}</>],
               [
                 <>
