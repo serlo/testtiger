@@ -148,13 +148,27 @@ export const exercise55: Exercise<DATA> = {
               Die Fläche kann auf verschiedene Wege berechnet werden. Da das
               Dreieck rechtwinklig ist, gilt unter anderem die Formel:
             </p>
-            <p>A = {buildFrac('a · b', 2)}</p>
-            <p>Setze die Seitenlängen ein und berechne:</p>
+            {buildEquation([
+              [<>A</>, <>=</>, <>{buildFrac('a · b', 2)}</>],
+              [
+                <></>,
+                <>=</>,
+                <>{buildFrac(data.seiten[0] + ' · ' + data.seiten[1], 2)}</>,
+              ],
+              [
+                <></>,
+                <>
+                  <strong>=</strong>
+                </>,
+                <>
+                  <strong>{surface} [cm²]</strong>
+                </>,
+              ],
+            ])}
+
             <p>
-              A = {buildFrac(data.seiten[0] + ' · ' + data.seiten[1], 2)} ={' '}
-              {surface}
+              Der Flächeninhalt beträgt <strong>A = {surface} cm²</strong>.
             </p>
-            <p>Der Flächeninhalt beträgt A = {surface} cm².</p>
           </>
         )
       },
@@ -229,8 +243,8 @@ export const exercise55: Exercise<DATA> = {
                 2,
               )}
               <br></br>
-              <br></br>Der Flächeninhalt beträgt {surface} cm². Setze die
-              bekannten Werte ein und berechne die Höhe h<sub>c</sub>:
+              <br></br>Der Flächeninhalt beträgt laut (b) {surface} cm². Setze
+              die bekannten Werte ein und berechne die Höhe h<sub>c</sub>:
               {buildEquation([
                 [
                   'A',
@@ -265,15 +279,29 @@ export const exercise55: Exercise<DATA> = {
                 ],
                 [
                   <>
-                    h<sub>c</sub>
+                    <strong>
+                      h<sub>c</sub>
+                    </strong>
                   </>,
-                  (((surface * 2) / data.seiten[2]) * 100) % 1 == 0 ? '=' : '≈',
-                  pp(hoehe),
+                  <>
+                    <strong>
+                      {(((surface * 2) / data.seiten[2]) * 100) % 1 == 0
+                        ? '='
+                        : '≈'}
+                    </strong>
+                  </>,
+                  <>
+                    <strong>{pp(hoehe)} [cm]</strong>
+                  </>,
                 ],
               ])}
             </p>
             <p>
-              Die Höhe beträgt: h<sub>c</sub> = {pp(hoehe)} cm.
+              Die Höhe beträgt:{' '}
+              <strong>
+                h<sub>c</sub> = {pp(hoehe)} cm
+              </strong>
+              .
             </p>
           </>
         )
@@ -457,13 +485,15 @@ export const exercise55: Exercise<DATA> = {
                     <></>,
                     '≈',
                     <>
-                      {pp(
-                        roundToDigits(
-                          Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
-                          2,
-                        ),
-                      )}{' '}
-                      [cm]
+                      <strong>
+                        {pp(
+                          roundToDigits(
+                            Math.sqrt((data.seiten[2] * data.seiten[2]) / 2),
+                            2,
+                          ),
+                        )}{' '}
+                        [cm]
+                      </strong>
                     </>,
                   ],
                 ])}{' '}
