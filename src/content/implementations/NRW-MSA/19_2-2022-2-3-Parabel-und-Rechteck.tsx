@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -77,6 +77,14 @@ export const exercise192: Exercise<DATA> = {
             fill="none"
           />
         </svg>
+
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Parabel im Koordinatensystem
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
