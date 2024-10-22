@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -196,6 +196,14 @@ export const exercise46: Exercise<DATA> = {
                 width="328"
               />
             </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Anordnung der Kaffeebecher
+                </span>
+              </Color5>
+            </center>
+
             <p>Bestätige dies durch eine Rechnung.</p>
           </>
         )
@@ -258,8 +266,16 @@ export const exercise46: Exercise<DATA> = {
               <sup>2</sup> + r<sub>1</sub> · r<sub>2</sub> + r<sub>2</sub>
               <sup>2</sup>) · {buildInlineFrac('π · h', 3)}
             </p>
-            <img src="/content/NRW_MSA_Kegelstumpf.PNG" width={328} alt="" />
-            <p>Abbildung 2: Kegelstumpf</p>
+
+            <center>
+              <img src="/content/NRW_MSA_Kegelstumpf.PNG" width={200} alt="" />
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Kegelstumpf
+                </span>
+              </Color5>
+            </center>
+
             <p>
               d) Der Pappbecher hat folgende Maße: r<sub>1</sub> ={' '}
               {pp((data.dia - 1) / 2)} cm, r<sub>2</sub> = {pp(data.dia / 2)} cm
@@ -546,7 +562,14 @@ export const exercise46: Exercise<DATA> = {
                 x
               </text>
             </svg>
-            <p>Abbildung 3: Temperatur des Kaffees zu verschiedenen Zeiten</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Temperatur des Kaffees zu verschiedenen Zeiten
+                </span>
+              </Color5>
+            </center>
+
             <ul>{shuffledItems}</ul>
           </>
         )

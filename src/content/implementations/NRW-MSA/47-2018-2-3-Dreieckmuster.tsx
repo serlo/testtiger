@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -65,7 +65,14 @@ export const exercise47: Exercise<DATA> = {
           </li>
         </ul>
         <img src="/content/NRW_MSA_Sierpinski.PNG" width={328} alt="" />
-        <p>Abbildung 1: Sierpinski-Dreiecke, Figur 0 bis Figur 4</p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Sierpinski-Dreiecke, Figur 0 bis Figur 4
+            </span>
+          </Color5>
+        </center>
+
         <p>Jede Seitenlänge des Dreiecks in Figur 0 beträgt {data.seite} cm.</p>
       </>
     )
@@ -97,7 +104,13 @@ export const exercise47: Exercise<DATA> = {
                 {data.seite} cm
               </text>
             </svg>
-            <p>Abbildung 2: Dreieck zu Figur 0.</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Dreieck zu Figur 0
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },

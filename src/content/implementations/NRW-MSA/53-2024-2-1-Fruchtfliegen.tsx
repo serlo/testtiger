@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -39,11 +39,10 @@ export const exercise53: Exercise<DATA> = {
       <>
         <p>
           Jasmin möchte für ein Biologieprojekt untersuchen, wie schnell sich
-          Fruchtfliegen (Abbildung 1) vermehren. Sie kauft dazu zwei Zuchtboxen
-          und bezeichnet diese mit A und B. Zuchtbox A enthält anfänglich zehn
-          Fruchtfliegen. Jasmin bewahrt die Box in ihrem warmen Zimmer auf und
-          protokolliert in den folgenden Tagen die Anzahl der Tiere in der Box
-          (Abbildung 2).
+          Fruchtfliegen vermehren. Sie kauft dazu zwei Zuchtboxen und bezeichnet
+          diese mit A und B. Zuchtbox A enthält anfänglich zehn Fruchtfliegen.
+          Jasmin bewahrt die Box in ihrem warmen Zimmer auf und protokolliert in
+          den folgenden Tagen die Anzahl der Tiere in der Box (Abbildung 1).
         </p>
         <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg">
           <rect
@@ -161,6 +160,13 @@ export const exercise53: Exercise<DATA> = {
             {pp(day3)}
           </text>
         </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Protokoll von Zuchtbox A
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },

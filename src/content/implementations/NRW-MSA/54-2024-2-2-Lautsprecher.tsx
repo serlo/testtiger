@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -94,7 +94,13 @@ export const exercise54: Exercise<DATA> = {
             {pp(data.dot)} cm
           </text>
         </svg>
-        <p>Abbildung 1: Lautsprecher im Vergleich</p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Lautsprecher im Vergleich
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
@@ -276,7 +282,14 @@ export const exercise54: Exercise<DATA> = {
                 b = {pp(data.b)} cm
               </text>
             </svg>
-            <p>Abbildung 2: Kugelsegment einer Kugel mit Maßangaben</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Kugelsegment einer Kugel mit Maßangaben
+                </span>
+              </Color5>
+            </center>
+
             <p>
               c) Bestätige durch eine Rechnung, dass das Volumen des
               abgetrennten Kugelsegments ca.{' '}
@@ -438,7 +451,14 @@ export const exercise54: Exercise<DATA> = {
                 </text>
               ))}
             </svg>
-            <p>Abbildung 3: Playlist mit Künstlern und Liedern</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Playlist mit Künstlern und Liedern
+                </span>
+              </Color5>
+            </center>
+
             <p>
               d) Erläutere, dass die Wahrscheinlichkeit, als Erstes ein Lied des
               Sängers Ed Sheeran zu hören, p = {ppFrac(data.ed / 10)} beträgt.
@@ -564,10 +584,15 @@ export const exercise54: Exercise<DATA> = {
                 </div>
               </foreignObject>
             </svg>
-            <p>
-              Abbildung 4: Baumdiagramm mit MF: Mark Forster, ES: Ed Sheeran,
-              ZW: Zoe Wees
-            </p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 4: Baumdiagramm mit MF: Mark Forster, ES: Ed
+                  Sheeran, ZW: Zoe Wees
+                </span>
+              </Color5>
+            </center>
+
             <p>
               e) Ergänze die sechs fehlenden Wahrscheinlichkeiten im
               Baumdiagramm.

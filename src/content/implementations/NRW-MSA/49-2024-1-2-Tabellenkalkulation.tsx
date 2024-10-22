@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color5 } from '@/helper/colors'
 
 interface DATA {
   case: number
@@ -139,8 +140,14 @@ export const exercise49: Exercise<DATA> = {
                 </tbody>
               </table>
             </div>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Tabellenkalkulation über die Verkaufsaktion
+                </span>
+              </Color5>
+            </center>
 
-            <p>Abbildung 1: Tabellenkalkulation über die Verkaufsaktion</p>
             <p>
               a) Gib eine Formel an, mit der der Wert in Zelle{' '}
               {data.case == 1 && 'F2'}

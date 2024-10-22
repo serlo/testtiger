@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color5 } from '@/helper/colors'
 import { buildFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -34,7 +35,7 @@ export const exercise51: Exercise<DATA> = {
     return (
       <>
         <p>
-          In der Tabelle (Abbildung 2) sind die Einwohnerzahlen der fünf
+          In der Tabelle (Abbildung 1) sind die Einwohnerzahlen der fünf
           bevölkerungsreichsten Städte Deutschlands abgebildet (Stand: 2021, auf
           Hunderttausend Einwohner gerundet).
         </p>
@@ -60,6 +61,13 @@ export const exercise51: Exercise<DATA> = {
             {pp(data.frankfurt)}
           </text>
         </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Einwohnerzahlen
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
@@ -177,49 +185,50 @@ export const exercise51: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>c) </p>
-            {data.case == 1 && (
-              <>
-                <p>
-                  Stuttgart hat weniger Einwohner als Frankfurt am Main und
-                  liegt auf Platz sechs dieser Rangliste. <br></br> Erläutere,
-                  wie sich die Spannweite verändert, wenn zusätzlich Stuttgart
-                  berücksichtigt wird.
-                </p>
-              </>
-            )}
-            {data.case == 2 && (
-              <>
-                <p>
-                  Erläutere, wie sich die Spannweite verändert, wenn Hamburg
-                  genau so viele Einwohner hätte wie Berlin.
-                </p>
-              </>
-            )}
-            {data.case == 3 && (
-              <>
-                <p>
-                  Erläutere, wie sich der Durchschnitt verändert, wenn alle
-                  Städte einhunderttausend Einwohner mehr hätten.
-                </p>
-              </>
-            )}
-            {data.case == 4 && (
-              <>
-                <p>
-                  Erläutere, wie sich der Median verändert, wenn Berlin 1 Mio.
-                  Einwohner mehr hätte.
-                </p>
-              </>
-            )}
-            {data.case == 5 && (
-              <>
-                <p>
-                  Erläutere, wie sich der Durchschnitt verändert, wenn Berlin 1
-                  Mio. Einwohner mehr hätte.
-                </p>
-              </>
-            )}
+            <p>
+              {data.case == 1 && (
+                <>
+                  <p>
+                    c) Stuttgart hat weniger Einwohner als Frankfurt am Main und
+                    liegt auf Platz sechs dieser Rangliste. <br></br> Erläutere,
+                    wie sich die Spannweite verändert, wenn zusätzlich Stuttgart
+                    berücksichtigt wird.
+                  </p>
+                </>
+              )}
+              {data.case == 2 && (
+                <>
+                  <p>
+                    c) Erläutere, wie sich die Spannweite verändert, wenn
+                    Hamburg genau so viele Einwohner hätte wie Berlin.
+                  </p>
+                </>
+              )}
+              {data.case == 3 && (
+                <>
+                  <p>
+                    c) Erläutere, wie sich der Durchschnitt verändert, wenn alle
+                    Städte einhunderttausend Einwohner mehr hätten.
+                  </p>
+                </>
+              )}
+              {data.case == 4 && (
+                <>
+                  <p>
+                    c) Erläutere, wie sich der Median verändert, wenn Berlin 1
+                    Mio. Einwohner mehr hätte.
+                  </p>
+                </>
+              )}
+              {data.case == 5 && (
+                <>
+                  <p>
+                    c) Erläutere, wie sich der Durchschnitt verändert, wenn
+                    Berlin 1 Mio. Einwohner mehr hätte.
+                  </p>
+                </>
+              )}
+            </p>
           </>
         )
       },
