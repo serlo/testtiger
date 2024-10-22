@@ -145,46 +145,119 @@ export const exercise26: Exercise<DATA> = {
                 <li>2 x kurze Seitenwand</li>
               </ul>
               Berechne nun den Flächeninhalt der einzelnen Flächen:<br></br>
-              <br></br>A<sub>Boden</sub> = l · b = {pp(data.length)} m ·{' '}
-              {pp(data.outerWidth)} m<br></br>={' '}
-              {pp(data.length * data.outerWidth)} m<sup>2</sup>
-              <br></br>
-              <br></br>A<sub>lange Seitenwand</sub> = b · h ={' '}
-              {pp(data.outerWidth)} m · {pp(data.outerHeight)} m <br></br> ={' '}
-              {pp(data.outerWidth * data.outerHeight)} m<sup>2</sup>
-              <br></br>
-              <br></br>A<sub>kurze Seitenwand</sub> = l · h = {pp(data.length)}{' '}
-              m · {pp(data.outerHeight)} m <br></br> ={' '}
-              {pp(data.length * data.outerHeight)} m<sup>2</sup>
-              <br></br>
-              <br></br>
+              {buildEquation([
+                [
+                  <>
+                    A<sub>Boden</sub>
+                  </>,
+                  <>=</>,
+                  <>l · b</>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.length)} · {pp(data.outerWidth)}
+                  </>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.length * data.outerWidth)} [m<sup>2</sup>]
+                  </>,
+                ],
+              ])}
+              {buildEquation([
+                [
+                  <>
+                    A<sub>lange Seitenwand</sub>
+                  </>,
+                  <>=</>,
+                  <>b · h</>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.outerWidth)} · {pp(data.outerHeight)}
+                  </>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.outerWidth * data.outerHeight)} [m<sup>2</sup>]
+                  </>,
+                ],
+              ])}
+              {buildEquation([
+                [
+                  <>
+                    A<sub>kurze Seitenwand</sub>
+                  </>,
+                  <>=</>,
+                  <>l · h</>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.length)} · {pp(data.outerHeight)}
+                  </>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.length * data.outerHeight)} [m<sup>2</sup>]
+                  </>,
+                ],
+              ])}
               Jetzt kannst du die drei Flächen zusammenrechnen (Achtung: du
               brauchst die Seitenwände zweimal):
-              <br></br>
-              <br></br>A<sub>gesamt</sub> = A<sub>Boden</sub> + 2 · A
-              <sub>lange Seitenwand</sub> <br></br>{' '}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
-              2 · A
-              <sub>
-                kurze Seitenwand
-                <br></br>
-                <br></br>
-              </sub>
-              A<sub>gesamt</sub>= {pp(data.length * data.outerWidth)} m
-              <sup>2</sup> + 2 · {pp(data.outerWidth * data.outerHeight)} m
-              <sup>2</sup> <br></br>{' '}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
-              2 · {pp(data.length * data.outerHeight)} m<sup>2</sup> ≈{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth +
-                    2 * (data.outerWidth * data.outerHeight) +
-                    2 * (data.length * data.outerHeight),
-                  2,
-                ),
-              )}{' '}
-              m<sup>2</sup>.<br></br>
-              <br></br>
+              {buildEquation([
+                [
+                  <>
+                    A<sub>gesamt</sub>
+                  </>,
+                  <>=</>,
+                  <>
+                    A<sub>Boden</sub> + 2 · A<sub>lange Seitenwand</sub>
+                  </>,
+                ],
+                [
+                  <></>,
+                  <></>,
+                  <>
+                    + 2 · A<sub>kurze Seitenwand</sub>
+                  </>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {pp(data.length * data.outerWidth)} + 2 ·{' '}
+                    {pp(data.outerWidth * data.outerHeight)} + 2 ·{' '}
+                    {pp(data.length * data.outerHeight)}{' '}
+                  </>,
+                ],
+                [
+                  <></>,
+                  <>≈</>,
+                  <>
+                    {pp(
+                      roundToDigits(
+                        data.length * data.outerWidth +
+                          2 * (data.outerWidth * data.outerHeight) +
+                          2 * (data.length * data.outerHeight),
+                        2,
+                      ),
+                    )}{' '}
+                    [m<sup>2</sup>]
+                  </>,
+                ],
+              ])}
               Die Lackierung kostet {data.price} € pro angefangenem
               Quadratmeter. Es sind{' '}
               {pp(
@@ -214,7 +287,7 @@ export const exercise26: Exercise<DATA> = {
                   0,
                 ),
               )}{' '}
-              · {data.price} € ={' '}
+              · {data.price} ={' '}
               {pp(
                 roundToDigits(
                   data.length * data.outerWidth +
@@ -222,20 +295,22 @@ export const exercise26: Exercise<DATA> = {
                     2 * (data.length * data.outerHeight),
                   0,
                 ) * data.price,
-              )}{' '}
-              €.
-              <br></br>
+              )}
+              .<br></br>
               <br></br>
               Die neue Lackierung kostet{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth +
-                    2 * (data.outerWidth * data.outerHeight) +
-                    2 * (data.length * data.outerHeight),
-                  0,
-                ) * data.price,
-              )}{' '}
-              €.
+              <strong>
+                {pp(
+                  roundToDigits(
+                    data.length * data.outerWidth +
+                      2 * (data.outerWidth * data.outerHeight) +
+                      2 * (data.length * data.outerHeight),
+                    0,
+                  ) * data.price,
+                )}{' '}
+                €
+              </strong>
+              .
             </p>
           </>
         )

@@ -128,7 +128,7 @@ export const exercise28: Exercise<DATA> = {
             {buildEquation([
               [<>O</>, <>=</>, <>4 · π · r²</>],
               [<></>, <>=</>, <>4 · p · {data.dia / 2}²</>],
-              [<></>, <>=</>, <>{pp(O)} cm²</>],
+              [<></>, <>=</>, <>{pp(O)} [cm²]</>],
             ])}
             <p>
               <strong>Anzahl der Kugeln</strong>
