@@ -351,23 +351,76 @@ export const exercise36: Exercise<DATA> = {
                 height="400"
                 width="382"
               />
-
-              <foreignObject x="60" y="120" width={200} height={200}>
+              <rect
+                x="58"
+                y="245"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="58"
+                y="155"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="219"
+                y="235"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="219"
+                y="300"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="219"
+                y="169"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="219"
+                y="100"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <foreignObject x="60" y="152" width={200} height={200}>
                 {buildFrac(bruch.zähler, bruch.nenner)}
               </foreignObject>
-              <foreignObject x="60" y="260" width={200} height={200}>
+              <foreignObject x="60" y="240" width={200} height={200}>
                 {buildFrac(bruch2.zähler, bruch2.nenner)}
               </foreignObject>
-              <foreignObject x="220" y="80" width={200} height={200}>
+              <foreignObject x="222" y="97" width={200} height={200}>
                 {buildFrac(bruch3.zähler, bruch3.nenner)}
               </foreignObject>
-              <foreignObject x="230" y="180" width={200} height={200}>
+              <foreignObject x="222" y="165" width={200} height={200}>
                 {buildFrac(bruch4.zähler, bruch4.nenner)}
               </foreignObject>
-              <foreignObject x="210" y="220" width={200} height={200}>
+              <foreignObject x="220" y="231" width={200} height={200}>
                 {buildFrac(bruch5.zähler, bruch5.nenner)}
               </foreignObject>
-              <foreignObject x="220" y="310" width={200} height={200}>
+              <foreignObject x="220" y="295" width={200} height={200}>
                 {buildFrac(bruch6.zähler, bruch6.nenner)}
               </foreignObject>
             </svg>
