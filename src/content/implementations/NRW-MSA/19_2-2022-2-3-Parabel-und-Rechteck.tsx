@@ -202,9 +202,9 @@ export const exercise192: Exercise<DATA> = {
             </ul>
 
             <p>
-              Damit beträgt der Umfang <br></br>U<sub>Rechteck</sub> = 2 ·{' '}
+              Damit beträgt der Umfang: <br></br>U<sub>Rechteck</sub> = 2 ·{' '}
               <Color1>{data.x * 2}</Color1> + 2 · <Color2>{data.y}</Color2> ={' '}
-              {data.x * 2 * 2 + 2 * data.y} cm.
+              {data.x * 2 * 2 + 2 * data.y} [cm]
             </p>
           </>
         )
@@ -405,7 +405,7 @@ export const exercise192: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  <strong>{pp(4 + 2 * (data.a + b))}</strong>
+                  <strong>{pp(4 + 2 * (data.a + b))} [cm]</strong>
                 </>,
               ],
             ])}
@@ -674,14 +674,14 @@ export const exercise192: Exercise<DATA> = {
                   x-Werte x<sub>1</sub> ={' '}
                   {ppFrac((-4 / (2 * Math.abs(data.a)) + 1) / 2)} und x
                   <sub>2</sub> = {ppFrac((-4 / (2 * Math.abs(data.a)) - 1) / 2)}{' '}
-                  ein Rechteck mit dem Umfang {pp(zahl)} existiert.
+                  ein Rechteck mit dem Umfang {pp(zahl)} cm existiert.
                 </p>
               </>
             ) : (
               <p>
                 <strong>Erklärung:</strong> Die Gleichung besitzt keine Lösung,
                 da der Wert unter der Wurzel negativ ist. <br></br>Das bedeutet,
-                dass es kein Rechteck mit dem Umfang {pp(zahl)} geben kann.
+                dass es kein Rechteck mit dem Umfang {pp(zahl)} cm geben kann.
               </p>
             )}
           </>
