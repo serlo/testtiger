@@ -111,9 +111,32 @@ export const exercise4: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <ul>
+              <li>
+                Bestimme die Position des Scheitels aus der Abbildung: S(
+                {data.x_s}|{data.y_s})
+              </li>
+              <li>
+                Da die Parabel nach {data.a == 1 ? 'oben' : 'unten'} geöffnet
+                ist, ist der Faktor vor der Klammer{' '}
+                {data.a == 1 ? 'positiv' : 'negativ'}.
+              </li>
+              <li>
+                Eine Parabel ist das Schaubild einer quadratischen Funktion. Der
+                Exponent ist x<sup>2</sup> und niemals x<sup>3</sup>.
+              </li>
+            </ul>
+
             <p>
-              Der Funktionsterm lautet: f(x) = {data.a == 1 ? '' : '−'} (x{' '}
-              {pp(data.x_s, 'merge_op')})<sup>2</sup> {pp(data.y_s, 'merge_op')}
+              Zusammengesetzt lautet der richtige Funktionsterm: <br></br>
+              <strong>
+                f(x) = {data.a == 1 ? '' : '−'} (x {pp(-data.x_s, 'merge_op')})
+                <sup>2</sup> {pp(data.y_s, 'merge_op')}
+              </strong>
+            </p>
+            <p>
+              Achte darauf, dass die x-Koordinate des Scheitelpunkts mit
+              umgekehrtem Vorzeichen in der Scheitelform auftaucht.
             </p>
           </>
         )
