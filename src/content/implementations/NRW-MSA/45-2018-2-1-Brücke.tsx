@@ -129,9 +129,9 @@ export const exercise45: Exercise<DATA> = {
 
             <p>
               Die Freunde brauchen{' '}
-              {(data.weg / (data.pace / 60)) % 1 == 0 && 'etwa'}{' '}
+              {(data.weg / (data.pace / 60)) % 1 != 0 && 'etwa'}{' '}
               <strong>
-                {pp(roundToDigits(data.weg / (data.pace / 60), 2))} Minuten
+                {pp(roundToDigits(data.weg / (data.pace / 60), 0))} Minuten
               </strong>{' '}
               für den Fußweg.
             </p>
