@@ -86,7 +86,7 @@ export const exercise22: Exercise<DATA> = {
             <>≈</>,
             <>
               <strong>
-                {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} cm³
+                {pp(roundToDigits((data.l * data.l * data.h) / 3, 2))} [cm³]
               </strong>
             </>,
           ],

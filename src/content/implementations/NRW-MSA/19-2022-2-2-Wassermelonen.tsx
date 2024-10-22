@@ -151,7 +151,7 @@ export const exercise19: Exercise<DATA> = {
             </p>
             <p>
               Der innere Radius bis zur Schale beträgt: r<sub>innen</sub> ={' '}
-              {pp(data.durchmesser / 2)} − {pp(data.schale)} = {pp(r)} cm
+              {pp(data.durchmesser / 2)} − {pp(data.schale)} = {pp(r)} [cm]
             </p>
             <p>Berechne damit das Volumen des Fruchtfleisches in der Melone:</p>
             {buildEquation([
