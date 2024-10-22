@@ -122,6 +122,12 @@ export function ExerciseViewFooter() {
       )}
       {!chatOverlay && (
         <>
+          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
+            Antwort eingeben
+          </button>
+          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
+            Chat
+          </button>
           <button
             className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded"
             onClick={() => {
@@ -131,12 +137,6 @@ export function ExerciseViewFooter() {
             }}
           >
             Lösung
-          </button>
-          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
-            Fokus
-          </button>
-          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
-            Chat
           </button>
         </>
       )}

@@ -4,6 +4,7 @@ import { generateSeed } from '@/data/generate-seed'
 import { constrainedGeneration } from '@/helper/constrained-generation'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { ExerciseViewStore } from './exercise-view-store'
+import { extractor } from '../extractor/extractor'
 
 export function setupExercise(id: number) {
   const content = exercisesData[id]
@@ -14,6 +15,7 @@ export function setupExercise(id: number) {
     s.navIndicatorLength = 'tasks' in content ? content.tasks.length : 0
     s.navIndicatorPosition = 0
     s.navIndicatorExternalUpdate = 0
+    console.log(extractor(content, s.data))
   })
 }
 

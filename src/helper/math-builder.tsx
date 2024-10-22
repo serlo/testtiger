@@ -1,14 +1,20 @@
-import clsx from 'clsx'
-// import type JXG from 'jsxgraph'
-import { useEffect, useRef, useState } from 'react'
-// import { useState, useEffect } from 'react'
-
-// import { JSXGraphWrapper } from './jsx-graph-wrapper'
+import { ExtractorStore } from '@/components/exercise-view/extractor/extractor'
 
 export function buildFrac(
   x: JSX.Element | string | number,
   y: JSX.Element | string | number,
 ) {
+  if (ExtractorStore.getRawState().active) {
+    return (
+      <>
+        \frac{'{'}
+        {x}
+        {'}{'}
+        {y}
+        {'}'}
+      </>
+    )
+  }
   return (
     <span className="relative mx-0.5 inline-block text-center align-middle">
       <span className="block p-0.5">{x}</span>
@@ -21,6 +27,17 @@ export function buildInlineFrac(
   x: JSX.Element | string | number,
   y: JSX.Element | string | number,
 ) {
+  if (ExtractorStore.getRawState().active) {
+    return (
+      <>
+        \frac{'{'}
+        {x}
+        {'}{'}
+        {y}
+        {'}'}
+      </>
+    )
+  }
   return (
     <span className="relative mx-0.5 inline-block text-center align-middle text-sm">
       <span className="block p-0.5">{x}</span>
@@ -34,6 +51,15 @@ export function buildOverline(x: JSX.Element | number | string) {
 }
 
 export function buildSqrt(x: JSX.Element | number | string, n?: number) {
+  if (ExtractorStore.getRawState().active) {
+    return (
+      <>
+        \sqrt[{n ?? 2}]{'{'}
+        {x}
+        {'}'}
+      </>
+    )
+  }
   return (
     <>
       {n && <sup>{n}</sup>}
@@ -85,24 +111,6 @@ export function buildVec2(
 /*export function buildLatex(src: string) {
   return <StaticMath src={src} inline type="math" />
 }*/
-
-export function buildBlock(
-  color: 'gray' | 'green' | 'orange',
-  x: JSX.Element | string,
-) {
-  return (
-    <div
-      className={clsx(
-        'my-3 inline-block rounded-md bg-opacity-20 p-1 px-3 text-2xl',
-        color === 'gray' && 'bg-gray-300',
-        color === 'green' && 'bg-newgreen',
-        color === 'orange' && 'bg-yellow',
-      )}
-    >
-      {x}
-    </div>
-  )
-}
 
 export function buildVec(x: JSX.Element | string | number) {
   return (
