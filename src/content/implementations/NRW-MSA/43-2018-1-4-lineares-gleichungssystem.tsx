@@ -1,4 +1,6 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color4 } from '@/helper/colors'
+import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -54,46 +56,115 @@ export const exercise43: Exercise<DATA> = {
     return (
       <>
         <p>
-          Die Terme {'"'}− {data.a}y{'"'} und {'"'}
-          {data.a}y{'"'} haben entgegengesetzte Vorzeichen. Addiere die
-          Gleichungen I+II, um diesen Term aus den Gleichungen zu eliminieren:
+          Die Terme{' '}
+          <Color1>
+            {'"'}− {data.a}y
+          </Color1>
+          {'"'} und {'"'}
+          <Color1>
+            {data.a}y{'"'}
+          </Color1>{' '}
+          haben entgegengesetzte Vorzeichen. Addiere die Gleichungen I+II:
         </p>
+        {buildEquation([
+          [
+            <>
+              {data.b}x + {data.d}x{' '}
+              <Color1>
+                - {data.a}y + {data.a}y
+              </Color1>
+            </>,
+            <>=</>,
+            <>
+              {pp(c)} + {pp(e, 'embrace_neg')}
+            </>,
+          ],
+          [
+            <>
+              {data.b}x + {data.d}x{' '}
+            </>,
+            <>=</>,
+            <>
+              {pp(c)} + {pp(e, 'embrace_neg')}
+            </>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>fasse zusammen</span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>{data.b + data.d}x </>,
+            <>=</>,
+            <>{pp(c + e)}</>,
+
+            <>| : {data.b + data.d}</>,
+          ],
+          [<>x </>, <>=</>, <>{data.x}</>],
+        ])}
+
         <p>
-          {data.b}x + {data.d}x = {pp(c)} + {pp(e, 'embrace_neg')}
+          Setze den Wert für x in die Gleichung I oder II ein. <br></br>x in I
+          eingesetzt liefert:
         </p>
-        <p>Fasse die Terme zusammen:</p>
+
+        {buildEquation([
+          [
+            <>
+              {data.b} · {data.x} − {data.a} · y
+            </>,
+            <>=</>,
+            <>{pp(c)}</>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>fasse zusammen</span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>
+              {data.b * data.x} - {data.a} · y
+            </>,
+            <>=</>,
+            <>{pp(c)}</>,
+
+            <>| - {data.b * data.x}</>,
+          ],
+          [
+            <>- {data.a} · y</>,
+            <>=</>,
+            <>{pp(c - data.b * data.x)}</>,
+
+            <>| :(- {data.a})</>,
+          ],
+          [<>y</>, <>=</>, <>{pp(data.y)}</>],
+        ])}
+
         <p>
-          {data.b + data.d}x = {pp(c + e)}
-        </p>
-        {data.b + data.d !== 1 && (
-          <>
-            <p>Löse die Gleichung nach x:</p>
-            <p>x = {data.x}</p>
-          </>
-        )}
-        <p>
-          Setze den Wert für x in eine der Gleichungen ein. x in I eingesetzt
-          liefert:
-        </p>
-        <p>
-          {data.b} · {data.x} − {data.a} · y = {pp(c)}
-        </p>
-        <p>Vereinfache die Gleichung und löse nach y.</p>
-        <p>
-          {data.b * data.x} = {pp(c)} + {data.a} · y
-        </p>
-        <p>
-          {data.b * data.x} {pp(-c, 'merge_op')} = {data.a} · y
-        </p>
-        <p>
-          {data.a * data.y} = {data.a} · y
-        </p>
-        <p>y = {data.y}</p>
-        <p>
-          <br></br>
-          Die Lösungsmenge des Gleichungssystems ist {'L={('}
-          {data.x}; {data.y}
-          {')}'}
+          Die Lösungsmenge des Gleichungssystems ist{' '}
+          <b>
+            {'L={('}
+            {data.x}; {data.y}
+            {')}'}
+          </b>
         </p>
       </>
     )
