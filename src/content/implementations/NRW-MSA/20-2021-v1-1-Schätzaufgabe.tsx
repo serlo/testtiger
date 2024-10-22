@@ -56,31 +56,35 @@ export const exercise20: Exercise<DATA> = {
         {data.task === 1 && (
           <p>
             Schätze zuerst die Anzahl der Röhrchen in einem Kasten.<br></br>
-            <br></br>In der 1. Reihe im linken Kasten befinden sich 7 Röhrchen.
-            <br></br>In der ersten Spalte befinden sich 14 Röhrchen.<br></br>
+            <br></br>In der oberen Reihe im linken Kasten befinden sich 7
+            Röhrchen.
+            <br></br>An der linken Seite befinden sich 14 Röhrchen übereinander.
             <br></br>
-            Damit sind im ersten Kasten: 7 · 14 = 98 Röhrchen.<br></br>
-            <br></br> Im ganzen Insektenhotel sind damit 98 · 3 = 294 Röhrchen.
+            <br></br>
+            Damit sind im ersten Kasten etwa: 7 · 14 = 98 Röhrchen.<br></br>
+            <br></br> Im ganzen Insektenhotel sind damit 98 · 3 ={' '}
+            <b>294 Röhrchen</b>.
           </p>
         )}
         {data.task === 2 && (
           <p>
-            Bestimme die Anzahl der Holzscheite in der obersten Reihe und in der
-            ersten Spalte links:<br></br>
+            Bestimme die Anzahl der Holzscheite in der obersten Reihe und am
+            linken Rand:<br></br>
             <br></br>In der obersten Reihe befinden sich etwa 18 Holzscheite.
-            <br></br>In der ersten Spalte links befinden sich etwa 13
-            Holzscheite.<br></br>
+            <br></br>Am linken Rand befinden sich etwa 13 Holzscheite.<br></br>
             <br></br>Hochgerechnet auf den ganzen Stapel ergeben sich etwa 18 ·
-            13 = 234 Holzscheite.
+            13 = <b>234 Holzscheite</b>.
           </p>
         )}
         {data.task === 3 && (
           <p>
             Das Bild zeigt insgesamt 10 Fächer mit etwa gleich vielen Büchern
             pro Fach.<br></br>
-            In rechten, unteren Fach befinden sich 24 Bücher.<br></br>
+            Zähle die Anzahl der Bücher in einem Fach.<br></br>
+            In rechten, unteren Fach befinden sich zum Beispiel 24 Bücher.
+            <br></br>
             <br></br> Rechne damit die Gesamtzahl der Bücher hoch: 24 · 10 =
-            240.
+            <b>240 Bücher</b>.
           </p>
         )}
         {data.task === 4 && (
@@ -93,22 +97,20 @@ export const exercise20: Exercise<DATA> = {
             <br></br> In jeder dieser Stauden sind etwa 9 Bananen sichtbar
             (geschätzter Wert).
             <br></br>
-            <br></br> Damit sind insgesamt 5 · 5 · 9 = 225 Bananen sichtbar auf
-            dem Bild.
+            <br></br> Damit sind insgesamt etwa 5 · 5 · 9 = <b>225 Bananen</b>{' '}
+            sichtbar auf dem Bild.
           </p>
         )}
         {data.task === 5 && (
           <p>
             Auf dem Bild sind vier verschiedene Sorten von Beeren zu erkennen.
-            <br></br> Es gibt 9 Schalen mit jeweils etwa 6 · 8 = 48 Blaubeeren.
-            <br></br> Es gibt 4 Schalen mit jeweils etwa 6 · 6 = 36 orangen
-            Himbeeren.
-            <br></br> Es gibt 6 Schalen mit jeweils etwa 5 · 5 = 25 roten
-            Himbeeren.
-            <br></br> Es gibt 6 Schalen mit jeweils etwa 4 · 4 = 16 Brombeeren.
-            <br></br>
+            <br></br> Es gibt 9 Schalen mit jeweils etwa{' '}
+            <b>6 · 8 = 48 Blaubeeren</b>.<br></br> Es gibt 4 Schalen mit jeweils
+            etwa <b>6 · 6 = 36 orangen Himbeeren</b>.<br></br> Es gibt 6 Schalen
+            mit jeweils etwa <b>5 · 5 = 25 roten Himbeeren</b>.<br></br> Es gibt
+            6 Schalen mit jeweils etwa <b>4 · 4 = 16 Brombeeren</b>.<br></br>
             <br></br>Insgesamt erhältst du damit etwa 9 · 48 + 4 · 36 + 5 · 25 +
-            4 · 16 = {9 * 48 + 4 * 36 + 5 * 25 + 4 * 16} Beeren.
+            4 · 16 = <b>{9 * 48 + 4 * 36 + 5 * 25 + 4 * 16} Beeren</b>.
           </p>
         )}
       </>
