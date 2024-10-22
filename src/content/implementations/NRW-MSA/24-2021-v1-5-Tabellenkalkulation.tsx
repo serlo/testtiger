@@ -13,7 +13,7 @@ interface DATA {
 export const exercise24: Exercise<DATA> = {
   title: 'Tabellenkalkulation',
   source: '2021 Teil 1 Aufgabe 5',
-  useCalculator: false,
+  useCalculator: true,
   duration: 5,
   generator(rng) {
     return {

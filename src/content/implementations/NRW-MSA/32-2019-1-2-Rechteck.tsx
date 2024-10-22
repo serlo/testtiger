@@ -14,7 +14,7 @@ interface DATA {
 export const exercise32: Exercise<DATA> = {
   title: 'Rechteck',
   source: '2019 Teil 1 Aufgabe 2',
-  useCalculator: false,
+  useCalculator: true,
   duration: 4,
   generator(rng) {
     return {
@@ -48,7 +48,11 @@ export const exercise32: Exercise<DATA> = {
     {
       points: 2,
       task({ data }) {
-        return <>a) Berechne die Länge der Diagonale d.</>
+        return (
+          <>
+            <p>a) Berechne die Länge der Diagonale d.</p>
+          </>
+        )
       },
       solution({ data }) {
         return (

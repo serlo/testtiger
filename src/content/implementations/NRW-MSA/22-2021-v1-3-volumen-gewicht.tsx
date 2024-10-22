@@ -13,7 +13,7 @@ interface DATA {
 export const exercise22: Exercise<DATA> = {
   title: 'Volumen und Gewicht',
   source: '2021 Teil 1 Aufgabe 3',
-  useCalculator: false,
+  useCalculator: true,
   duration: 4,
   points: 3,
   generator(rng) {
