@@ -99,7 +99,7 @@ export const exercise192: Exercise<DATA> = {
         return (
           <>
             <p>
-              Setze die Werte für x und y in die Funktionsgleichung ein und
+              Setze die Werte für x und f(x) in die Funktionsgleichung ein und
               überprüfe ob die Gleichung erfüllt ist:
             </p>
             {buildEquation([
@@ -111,6 +111,22 @@ export const exercise192: Exercise<DATA> = {
                     [data.a, 'x', 2],
                     [b, 'x', 0],
                   ])}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      x = {pp(data.x)} und f(x) = {pp(data.y)}
+                    </span>
+                  </Color4>
                 </>,
               ],
               [

@@ -70,6 +70,22 @@ export const exercise52: Exercise<DATA> = {
                 </>,
               ],
               [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      x = {pp(data.x_input)}
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
                 <>f({data.x_input})</>,
                 <>=</>,
                 <>
