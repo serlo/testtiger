@@ -472,7 +472,8 @@ export const exercise24: Exercise<DATA> = {
             <p>Für die Beispielrechnung wählen wir den Pullover aus.</p>
             <ul>
               <li>
-                Preis des Pullovers vor der Absenkung: {pp(data.preis_p)} €
+                Preis des Pullovers vor der Absenkung:{' '}
+                {pp(roundToDigits(data.preis_p * 1.19, 2))} €
               </li>
               <li>
                 Ersparnis nach der Absenkung der MwSt.:{' '}
@@ -487,7 +488,7 @@ export const exercise24: Exercise<DATA> = {
               Die Erparnis beträgt in Prozent:<br></br>
               {buildInlineFrac(
                 pp(roundToDigits(data.preis_p * 0.19 - data.preis_p * 0.16, 2)),
-                pp(data.preis_p),
+                pp(roundToDigits(data.preis_p * 1.19, 2)),
               )}{' '}
               · 100 % ={' '}
               <strong>
@@ -496,7 +497,7 @@ export const exercise24: Exercise<DATA> = {
                     roundToDigits(
                       data.preis_p * 0.19 - data.preis_p * 0.16,
                       2,
-                    ) / data.preis_p,
+                    ) / roundToDigits(data.preis_p * 1.19, 2),
                     4,
                   ) * 100,
                 )}{' '}
