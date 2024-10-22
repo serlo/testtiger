@@ -1,10 +1,10 @@
-import { ExtractorStore } from '@/components/exercise-view/extractor/extractor'
+import { ExtractorStore } from '@/components/exercise-view/extractor/extractor-store'
 
 export function buildFrac(
   x: JSX.Element | string | number,
   y: JSX.Element | string | number,
 ) {
-  if (ExtractorStore.getRawState().active) {
+  if (ExtractorStore.active) {
     return (
       <>
         \frac{'{'}
@@ -27,7 +27,7 @@ export function buildInlineFrac(
   x: JSX.Element | string | number,
   y: JSX.Element | string | number,
 ) {
-  if (ExtractorStore.getRawState().active) {
+  if (ExtractorStore.active) {
     return (
       <>
         \frac{'{'}
@@ -51,7 +51,7 @@ export function buildOverline(x: JSX.Element | number | string) {
 }
 
 export function buildSqrt(x: JSX.Element | number | string, n?: number) {
-  if (ExtractorStore.getRawState().active) {
+  if (ExtractorStore.active) {
     return (
       <>
         \sqrt[{n ?? 2}]{'{'}
