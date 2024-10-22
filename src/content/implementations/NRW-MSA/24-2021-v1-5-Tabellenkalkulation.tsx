@@ -202,7 +202,7 @@ export const exercise24: Exercise<DATA> = {
                 '=',
                 <>
                   <strong>
-                    {pp(Math.round(data.preis * 1.19 * 100) / 100)} €
+                    {pp(Math.round(data.preis * 1.19 * 100) / 100)} [€]
                   </strong>
                 </>,
               ],
@@ -219,7 +219,7 @@ export const exercise24: Exercise<DATA> = {
                 '=',
                 <>
                   <strong>
-                    {pp(Math.round(data.preis * 1.16 * 100) / 100)} €
+                    {pp(Math.round(data.preis * 1.16 * 100) / 100)} [€]
                   </strong>
                 </>,
               ],

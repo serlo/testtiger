@@ -84,7 +84,7 @@ export const exercise18: Exercise<DATA> = {
               Masse aller einzelner Zutaten addierst:
             </p>
             <p>
-              M<sub>ges</sub> = 520 g + 60 g + 110 g + 20 g = 710 g
+              M<sub>ges</sub> = 520 + 60 + 110 + 20 = 710 [g]
             </p>
             <p>
               Teile die Gesamtmasse des Teigs 710 g durch die Teigmasse, die man
@@ -95,9 +95,13 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <p>
               Das entspricht{' '}
-              {!Number.isInteger(710 / data.gewicht)
-                ? 'etwas mehr als ' + Math.floor(710 / data.gewicht) + ' Rösti.'
-                : 'genau ' + Math.floor(710 / data.gewicht) + ' Rösti.'}
+              <strong>
+                {!Number.isInteger(710 / data.gewicht)
+                  ? 'etwas mehr als ' +
+                    Math.floor(710 / data.gewicht) +
+                    ' Rösti.'
+                  : 'genau ' + Math.floor(710 / data.gewicht) + ' Rösti.'}
+              </strong>
             </p>
           </>
         )
