@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -189,13 +189,22 @@ export const exercise192: Exercise<DATA> = {
             <p>
               U<sub>Rechteck</sub> = 2 · a + 2 · b
             </p>
-            <p>
-              a = {data.x} + {data.x} = {data.x * 2}
-            </p>
-            <p>b = {data.y}</p>
+            <p>Bestimme a und b aus der Abbildung:</p>
+            <ul>
+              <li>
+                <Color1>
+                  a = {data.x} + {data.x} = {data.x * 2}
+                </Color1>
+              </li>
+              <li>
+                <Color2>b = {data.y}</Color2>
+              </li>
+            </ul>
+
             <p>
               Damit beträgt der Umfang <br></br>U<sub>Rechteck</sub> = 2 ·{' '}
-              {data.x * 2} + 2 · {data.y} = {data.x * 2 * 2 + 2 * data.y} cm.
+              <Color1>{data.x * 2}</Color1> + 2 · <Color2>{data.y}</Color2> ={' '}
+              {data.x * 2 * 2 + 2 * data.y} cm.
             </p>
           </>
         )
