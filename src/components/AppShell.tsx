@@ -1,13 +1,12 @@
 'use client'
 import {
+  BackButtonEvent,
   IonApp,
-  IonBackButton,
   IonRouterOutlet,
   setupIonicReact,
 } from '@ionic/react'
-import { StatusBar, Style } from '@capacitor/status-bar'
 import { IonReactRouter } from '@ionic/react-router'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, useHistory } from 'react-router-dom'
 
 import { Onboarding } from './pages/Onboarding'
 import { Name } from './pages/Name'
@@ -19,29 +18,35 @@ import { App } from './pages/App'
 import { Topic } from './pages/Topic'
 import { navigationData } from '@/content/navigations'
 import { exercisesData } from '@/content/exercises'
-import { Chatv2 } from './pages/Chatv2'
 import { ExerciseView } from './exercise-view/ExerciseView'
+import { useEffect } from 'react'
+import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'
 
 setupIonicReact({})
 
-window
-  .matchMedia('(prefers-color-scheme: dark)')
-  .addEventListener('change', async status => {
-    try {
-      await StatusBar.setStyle({
-        style: status.matches ? Style.Dark : Style.Light,
+export function AppShell() {
+  const history = useHistory()
+
+  useEffect(() => {
+    const handler = (ev: any) => {
+      ev.detail.register(1000, () => {
+        if (ExerciseViewStore.getRawState().chatOverlay) {
+          ExerciseViewStore.update(s => {
+            s.chatOverlay = null
+          })
+          return
+        }
+        history.goBack()
       })
-    } catch {}
-  })
+    }
 
-document.addEventListener('ionBackButton', ev => {
-  // @ts-ignore
-  ev.detail.register(1000, () => {
-    console.log('Ignore hardware back button for now')
-  })
-})
+    document.addEventListener('ionBackButton', handler)
 
-const AppShell = () => {
+    return () => {
+      document.removeEventListener('ionBackButton', handler)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <IonApp>
       <IonReactRouter>
