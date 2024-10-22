@@ -182,7 +182,7 @@ export const exercise54: Exercise<DATA> = {
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
         return (
           <>
-            <p>Verwende die Formel und berechne das Volumen der Kugel:</p>
+            <p>Berechne das Volumen der Kugel mit der Formel:</p>
             {buildEquation([
               ['V', '=', <>{ppFrac(4 / 3)} · π · r³</>],
               [
