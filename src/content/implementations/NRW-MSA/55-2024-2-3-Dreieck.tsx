@@ -419,8 +419,8 @@ export const exercise55: Exercise<DATA> = {
           <>
             <p>
               f) Gegeben ist ein gleichschenkliges rechtwinkliges Dreieck mit
-              der Basis c = {data.seiten[2]} cm und den beiden Schenkeln a und
-              b.
+              der Basis <br></br>c = {data.seiten[2]} cm und den beiden
+              Schenkeln a und b.
             </p>
             <ol>
               <li>Skizziere eine geeignete Planfigur.</li>

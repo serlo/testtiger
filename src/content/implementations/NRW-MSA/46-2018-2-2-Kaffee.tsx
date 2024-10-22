@@ -277,7 +277,7 @@ export const exercise46: Exercise<DATA> = {
             </center>
 
             <p>
-              d) Der Pappbecher hat folgende Maße: r<sub>1</sub> ={' '}
+              d) Der Pappbecher hat folgende Maße: <br></br>r<sub>1</sub> ={' '}
               {pp((data.dia - 1) / 2)} cm, r<sub>2</sub> = {pp(data.dia / 2)} cm
               und h = {pp(data.höhe)} cm.
             </p>

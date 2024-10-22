@@ -46,7 +46,9 @@ export const exercise21: Exercise<DATA> = {
           1 Stunde entspricht 60 Minuten. 1 Minute entspricht 60 Sekunden. Damit
           entspricht 1 Stunde 60 · 60 = 3600 Sekunden. Damit sind:
         </p>{' '}
-        {pp(data.hours)} h = {pp(data.hours)} · 3600 s
+        <p>
+          {pp(data.hours)} h = {pp(data.hours)} · 3600 s
+        </p>
         <p>
           {pp(data.hours)} h = <strong>{pp(data.hours * 3600)} s</strong>
         </p>
@@ -56,8 +58,10 @@ export const exercise21: Exercise<DATA> = {
         <p>
           1 Zentimeter entspricht {buildInlineFrac(1, 100)} Meter. Damit sind:
         </p>
-        {pp(data.centimeters)} cm = {pp(data.centimeters)} ·{' '}
-        {buildInlineFrac(1, 100)} m
+        <p>
+          {pp(data.centimeters)} cm = {pp(data.centimeters)} ·{' '}
+          {buildInlineFrac(1, 100)} m
+        </p>
         <p>
           {pp(data.centimeters)} cm ={' '}
           <strong>{pp((data.centimeters * 1) / 100)} m</strong>
@@ -68,7 +72,10 @@ export const exercise21: Exercise<DATA> = {
         <p>
           1 Gramm entspricht {buildInlineFrac(1, 1000)} Kilogramm. Damit sind:
         </p>
-        {pp(data.gramms)} g = {pp(data.gramms)} · {buildInlineFrac(1, 1000)} kg
+        <p>
+          {pp(data.gramms)} g = {pp(data.gramms)} · {buildInlineFrac(1, 1000)}{' '}
+          kg
+        </p>
         <p>
           {pp(data.gramms)} g ={' '}
           <strong>{pp((data.gramms * 1) / 1000)} kg</strong>

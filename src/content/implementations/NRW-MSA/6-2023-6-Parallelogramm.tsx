@@ -71,7 +71,8 @@ export const exercise6: Exercise<DATA> = {
             </svg>
             <p>
               a) Gegeben ist ein Parallelogramm mit den Seitenlängen{' '}
-              {data.breite} cm und {data.länge} cm, sowie α = {data.alpha}°.
+              {data.breite} cm und {data.länge} cm, sowie <br></br>α ={' '}
+              {data.alpha}°.
             </p>
             <p>Gib die Größe des Winkels β an.</p>
           </>

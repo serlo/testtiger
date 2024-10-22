@@ -72,7 +72,8 @@ export const exercise19: Exercise<DATA> = {
               </Color5>
             </center>
             <p>
-              a) Zeige rechnerisch, dass diese Wassermelone ein Volumen von V ≈{' '}
+              a) Zeige rechnerisch, dass diese Wassermelone ein Volumen von{' '}
+              <br></br>V ≈{' '}
               {pp(
                 roundToDigits(
                   (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
@@ -206,7 +207,7 @@ export const exercise19: Exercise<DATA> = {
             </p>
             <p>
               Eine würfelförmige Wassermelone hat ebenfalls ein Volumen von V ≈{' '}
-              {pp(V)} cm³ .
+              {pp(V)} cm³.
             </p>
             <p>
               Bestätige durch eine Rechnung, dass diese Wassermelone eine

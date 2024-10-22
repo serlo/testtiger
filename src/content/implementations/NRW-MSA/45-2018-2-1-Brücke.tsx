@@ -67,7 +67,8 @@ export const exercise45: Exercise<DATA> = {
         <p>
           Die Freunde gehen zu Fuß zum Bahnhof in Frankfurt. Der Fußweg hat eine
           Länge von {pp(data.weg)} km. Sie gehen mit einer durchschnittlichen
-          Geschwindigkeit von {pp(data.pace)} Kilometern pro Stunde [km/h].
+          Geschwindigkeit von <br></br>
+          {pp(data.pace)} Kilometern pro Stunde [km/h].
         </p>
       </>
     )

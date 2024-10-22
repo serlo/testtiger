@@ -45,8 +45,8 @@ export const exercise11: Exercise<DATA> = {
               />
             </svg>
             <p>
-              In dem abgebildeten Dreieck gilt: a = {pp(data.a)} cm und c ={' '}
-              {data.c} cm.
+              In dem abgebildeten Dreieck gilt: <br></br>a = {pp(data.a)} cm und
+              c = {data.c} cm.
             </p>
             <p>a) Berechne die Länge der Seite b.</p>
           </>

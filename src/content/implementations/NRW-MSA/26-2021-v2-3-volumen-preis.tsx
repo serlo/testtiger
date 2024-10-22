@@ -139,12 +139,13 @@ export const exercise26: Exercise<DATA> = {
           <>
             <p>
               Bestimme die zu lackierenden Flächen:
+              <p />
               <ul>
                 <li>1 x Boden</li>
                 <li>2 x lange Seitenwand</li>
                 <li>2 x kurze Seitenwand</li>
               </ul>
-              Berechne nun den Flächeninhalt der einzelnen Flächen:<br></br>
+              <p>Berechne nun den Flächeninhalt der einzelnen Flächen:</p>
               {buildEquation([
                 [
                   <>
@@ -214,8 +215,10 @@ export const exercise26: Exercise<DATA> = {
                   </>,
                 ],
               ])}
-              Jetzt kannst du die drei Flächen zusammenrechnen (Achtung: du
-              brauchst die Seitenwände zweimal):
+              <p>
+                Jetzt kannst du die drei Flächen zusammenrechnen (Achtung: du
+                brauchst die Seitenwände zweimal):
+              </p>
               {buildEquation([
                 [
                   <>
@@ -258,48 +261,40 @@ export const exercise26: Exercise<DATA> = {
                   </>,
                 ],
               ])}
-              Die Lackierung kostet {data.price} € pro angefangenem
-              Quadratmeter. Es sind{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth +
-                    2 * (data.outerWidth * data.outerHeight) +
-                    2 * (data.length * data.outerHeight),
-                  2,
-                ),
-              )}{' '}
-              m<sup>2</sup> zu lackieren, das heißt, der{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth +
-                    2 * (data.outerWidth * data.outerHeight) +
-                    2 * (data.length * data.outerHeight) +
-                    0.5,
-                  0,
-                ),
-              )}
-              . Quadratmeter ist angefangen. <br></br>Berechne{' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth +
-                    2 * (data.outerWidth * data.outerHeight) +
-                    2 * (data.length * data.outerHeight),
-                  0,
-                ),
-              )}{' '}
-              · {data.price} ={' '}
-              {pp(
-                roundToDigits(
-                  data.length * data.outerWidth +
-                    2 * (data.outerWidth * data.outerHeight) +
-                    2 * (data.length * data.outerHeight),
-                  0,
-                ) * data.price,
-              )}
-              .<br></br>
-              <br></br>
-              Die neue Lackierung kostet{' '}
-              <strong>
+              <p>
+                Die Lackierung kostet {data.price} € pro angefangenem
+                Quadratmeter. <br></br>Es sind{' '}
+                {pp(
+                  roundToDigits(
+                    data.length * data.outerWidth +
+                      2 * (data.outerWidth * data.outerHeight) +
+                      2 * (data.length * data.outerHeight),
+                    2,
+                  ),
+                )}{' '}
+                m<sup>2</sup> zu lackieren, das heißt, der{' '}
+                {pp(
+                  roundToDigits(
+                    data.length * data.outerWidth +
+                      2 * (data.outerWidth * data.outerHeight) +
+                      2 * (data.length * data.outerHeight) +
+                      0.5,
+                    0,
+                  ),
+                )}
+                . Quadratmeter ist angefangen.{' '}
+              </p>
+              <p>
+                Berechne{' '}
+                {pp(
+                  roundToDigits(
+                    data.length * data.outerWidth +
+                      2 * (data.outerWidth * data.outerHeight) +
+                      2 * (data.length * data.outerHeight),
+                    0,
+                  ),
+                )}{' '}
+                · {data.price} ={' '}
                 {pp(
                   roundToDigits(
                     data.length * data.outerWidth +
@@ -307,10 +302,24 @@ export const exercise26: Exercise<DATA> = {
                       2 * (data.length * data.outerHeight),
                     0,
                   ) * data.price,
-                )}{' '}
-                €
-              </strong>
-              .
+                )}
+                .
+              </p>
+              <p>
+                Die neue Lackierung kostet{' '}
+                <strong>
+                  {pp(
+                    roundToDigits(
+                      data.length * data.outerWidth +
+                        2 * (data.outerWidth * data.outerHeight) +
+                        2 * (data.length * data.outerHeight),
+                      0,
+                    ) * data.price,
+                  )}{' '}
+                  €
+                </strong>
+                .
+              </p>
             </p>
           </>
         )

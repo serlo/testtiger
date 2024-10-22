@@ -386,9 +386,7 @@ export const exercise9: Exercise<DATA> = {
                 </>,
               ],
               [
-                <>
-                  n<sub>1/2</sub>
-                </>,
+                <></>,
                 <>=</>,
                 <>
                   −{buildInlineFrac(1, 2)} ±{' '}
@@ -403,9 +401,7 @@ export const exercise9: Exercise<DATA> = {
                 </>,
               ],
               [
-                <>
-                  n<sub>1/2</sub>
-                </>,
+                <></>,
                 <>=</>,
                 <>
                   <>
