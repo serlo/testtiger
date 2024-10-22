@@ -591,7 +591,7 @@ export const exercise192: Exercise<DATA> = {
                 </>,
                 <>=</>,
                 <>
-                  {buildInlineFrac('p', 2)} ±{' '}
+                  − {buildInlineFrac('p', 2)} ±{' '}
                   {buildSqrt(
                     <>
                       <span className="inline-block  scale-y-[2.6]">(</span>
@@ -608,7 +608,24 @@ export const exercise192: Exercise<DATA> = {
                 </>,
                 <>=</>,
                 <>
-                  {ppFrac(k_b / 2)} ±{' '}
+                  − {buildInlineFrac(<>({ppFrac(k_b)})</>, 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac(<>{ppFrac(k_b)}</>, 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      {pp(k_c)}
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  {ppFrac(-k_b / 2)} ±{' '}
                   {buildSqrt(
                     <>
                       {!Number.isInteger(k_b / 2) ? (
@@ -633,7 +650,7 @@ export const exercise192: Exercise<DATA> = {
                 </>,
                 <>=</>,
                 <>
-                  {ppFrac(k_b / 2)} ±{' '}
+                  {ppFrac(-k_b / 2)} ±{' '}
                   {buildSqrt(
                     <>{pp(roundToDigits((k_b / 2) * (k_b / 2) - k_c, 2))}</>,
                   )}

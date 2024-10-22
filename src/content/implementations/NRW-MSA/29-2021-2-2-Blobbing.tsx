@@ -568,65 +568,143 @@ export const exercise29: Exercise<DATA> = {
         )
         return (
           <>
-            <p>Setze die Funktionsgleichung gleich 0:</p>
             <p>
-              0 = {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
-              {pp(a * data.x_s * data.x_s + data.y_s, 'merge_op')}
+              Die Sprungweite des Blobbers ist die Distanz zwischen den
+              Nullstellen der Parabel. Um die Nullstellen zu berechnen, löse die
+              quadratische Gleichung mit der pq-Formel.
             </p>
-            <p>Setze die Werte für a, b und c in die Mitternachtsformel ein:</p>
-            <p>
-              x<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+
+            {buildEquation([
+              [
+                <>g(x)</>,
+                <>=</>,
                 <>
-                  <span className="align-middle">−b ± </span>
-                  {buildSqrt(<>b² − 4ac</>)}
+                  {pp(a)} x² {pp(-a * 2 * data.x_s, 'merge_op')}x + 1
                 </>,
-                <>2 · a</>,
-              )}
-            </p>
-            <p>
-              x<sub>1/2</sub> ={' '}
-              {buildInlineFrac(
+              ],
+              [
+                '',
                 <>
-                  <span className="align-middle">
-                    {pp(a * 2 * data.x_s)} ±{' '}
-                  </span>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>0 setzen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>0</>,
+                <>=</>,
+                <>
+                  {pp(a)} x² {pp(-a * 2 * data.x_s, 'merge_op')}x + 1
+                </>,
+                <>| : ({pp(a)})</>,
+              ],
+              [
+                <>0</>,
+                <>=</>,
+                <>
+                  x² {pp(-1 * 2 * data.x_s, 'merge_op')}x{' '}
+                  {pp(roundToDigits(1 / a, 2))}
+                </>,
+              ],
+            ])}
+
+            <p>Setze die Werte für p und q in die pq-Formel ein:</p>
+            {buildEquation([
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  − {buildInlineFrac('p', 2)} ±{' '}
                   {buildSqrt(
                     <>
-                      {pp(a * 2 * data.x_s * a * 2 * data.x_s)}{' '}
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac('p', 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      q
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  −{' '}
+                  {buildInlineFrac(
+                    <>({pp(-1 * 2 * data.x_s, 'merge_op')})</>,
+                    2,
+                  )}{' '}
+                  ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac(
+                        <>{pp(-1 * 2 * data.x_s, 'merge_op')}</>,
+                        2,
+                      )}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      ({pp(roundToDigits(1 / a, 2))})
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Zusammenfassen</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {pp(data.x_s)} ±{' '}
+                  {buildSqrt(
+                    <>
                       {pp(
-                        -4 * a * (a * data.x_s * data.x_s + data.y_s),
-                        'merge_op',
+                        -1 * data.x_s * (-1 * data.x_s) +
+                          roundToDigits(1 / -a, 2),
                       )}
                     </>,
                   )}
                 </>,
-                pp(2 * a),
-              )}
-            </p>
+              ],
+            ])}
+            <strong>
+              <p>
+                x<sub>1</sub> ≈{' '}
+                {pp(roundToDigits((a * 2 * data.x_s + D) / (2 * a), 2))}
+              </p>
+              <p>
+                {' '}
+                x<sub>2</sub> ≈{' '}
+                {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))}
+              </p>
+            </strong>
             <p>
-              x<sub>1/2</sub> ≈{' '}
-              {buildInlineFrac(
-                <>
-                  {pp(a * 2 * data.x_s)} {' ± '}
-                  {pp(D)}
-                </>,
-                pp(2 * a),
-              )}
-            </p>
-            <p>
-              x<sub>1</sub> ≈{' '}
-              {pp(roundToDigits((a * 2 * data.x_s + D) / (2 * a), 2))}
-            </p>
-            <p>
-              {' '}
-              x<sub>2</sub> ≈{' '}
-              {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))}
-            </p>
-            <p>
-              Die positive Lösung x<sub>2</sub> gibt an, wie weit der Blobber
-              geflogen ist:{' '}
-              {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))} m{' '}
+              Vom Sprungkissen (x = 0) ist der Blobber bis x<sub>2</sub> ≈{' '}
+              {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))} geflogen.
+              Die Sprungweite beträgt also{' '}
+              <strong>
+                {pp(roundToDigits((a * 2 * data.x_s - D) / (2 * a), 2))} m
+              </strong>
+              .
             </p>
           </>
         )
