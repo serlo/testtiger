@@ -656,8 +656,8 @@ export const exercise45: Exercise<DATA> = {
                 <>
                   <Color4>
                     <span style={{ fontSize: 'small' }}>
-                      Aus x-Koordinate {pp(data.scale * 2.5)} wird{' '}
-                      {pp(-data.scale * 2.5)}
+                      setze ein: e = {pp(data.scale * 2.5)} und f ={' '}
+                      {pp(data.scale)}
                     </span>
                   </Color4>
                 </>,
