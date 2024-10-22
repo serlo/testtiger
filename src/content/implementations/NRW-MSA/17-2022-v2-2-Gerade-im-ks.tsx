@@ -190,6 +190,11 @@ export const exercise17: Exercise<DATA> = {
         return (
           <>
             <p>
+              Skizziere eine Gerade mit dem gleichen y-Achsenabschnitt und der
+              Steigung m = {pp(-data.m)}.
+            </p>
+            <p>Das ist die gespiegelte Gerade.</p>
+            <p>
               <svg viewBox="0 0 329 250" className="h-[250px]">
                 <image
                   href="/content/NRW_MSA_KS_Vorlage.png"

@@ -14,7 +14,7 @@ export const exercise44: Exercise<DATA> = {
   duration: 3,
   generator(rng) {
     return {
-      b: rng.randomIntBetween(1, 9),
+      b: rng.randomIntBetween(1, 7),
       n: rng.randomIntBetween(-1, 2),
     }
   },
@@ -68,9 +68,12 @@ export const exercise44: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            Suche den Schnittpunkt der Funktion mit der y-Achse. Der y-Wert
-            dieses Punktes ist unser gesuchtes b.
-            <br /> <br />b = {pp(data.b)}
+            <p>
+              Suche den Schnittpunkt der Funktion mit der y-Achse. Der y-Wert
+              dieses Punktes ist der y-Achsenabschnitt b.
+              <br /> <br />
+              <strong>b = {pp(data.b)}</strong>
+            </p>
           </>
         )
       },

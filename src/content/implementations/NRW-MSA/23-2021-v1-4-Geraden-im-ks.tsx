@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color2, Color3 } from '@/helper/colors'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppPolynom } from '@/helper/pretty-print'
 
@@ -199,27 +200,33 @@ export const exercise23: Exercise<DATA> = {
             </p>
             <ul>
               <li>
-                f: y ={' '}
-                {ppPolynom([
-                  [data.m_1, 'x', 1],
-                  [data.b_1, 'x', 0],
-                ])}
+                <Color1>
+                  f: y ={' '}
+                  {ppPolynom([
+                    [data.m_1, 'x', 1],
+                    [data.b_1, 'x', 0],
+                  ])}
+                </Color1>
               </li>
 
               <li>
-                g: y ={' '}
-                {ppPolynom([
-                  [data.m_2, 'x', 1],
-                  [data.b_2, 'x', 0],
-                ])}
+                <Color2>
+                  g: y ={' '}
+                  {ppPolynom([
+                    [data.m_2, 'x', 1],
+                    [data.b_2, 'x', 0],
+                  ])}
+                </Color2>
               </li>
 
               <li>
-                h: y ={' '}
-                {ppPolynom([
-                  [data.m_3, 'x', 1],
-                  [data.b_3, 'x', 0],
-                ])}
+                <Color3>
+                  h: y ={' '}
+                  {ppPolynom([
+                    [data.m_3, 'x', 1],
+                    [data.b_3, 'x', 0],
+                  ])}
+                </Color3>
               </li>
             </ul>
           </>
@@ -345,34 +352,42 @@ export const exercise23: Exercise<DATA> = {
         const y_2 = 1 * data.m_b + data.b_b
         return (
           <>
-            <p>Der Funktionsterm hat allgemein die Form </p>
-            <p>y = mx + b. </p>
-            <p>
-              Dabei steht m für die Steigung der Geraden und b für den
-              y-Achsenabschnitt.
-            </p>
-            <p>
-              <br></br>Aus der Wertetabelle kannst du den Wert des
-              y-Achsenabschnitts bei x = 0 ablesen: b = {pp(data.b_b)}
-            </p>
-            <p>
-              Aus den Punkten {'(0|' + pp(data.b_b) + ')'} und{' '}
-              {'(1|' + pp(y_2) + ')'} folgt, dass die Gerade eine Steigung von m
-              = {pp(data.m_b)} haben muss. Das kannst du auch mit der
-              Punkt-Steigungs-Formel berechnen:
-            </p>
-            <p>
-              m ={' '}
-              {buildInlineFrac(
-                pp(y_2, 'embrace_neg') + ' − ' + pp(data.b_b, 'embrace_neg'),
-                '1 − 0',
-              )}{' '}
-              = {pp(data.m_b)}
-            </p>
+            <p>Der Funktionsterm hat allgemein die Form: </p>
+            <p>y = mx + b </p>
+            <ul>
+              <li>
+                <p>
+                  Aus der Wertetabelle kannst du den Wert des y-Achsenabschnitts
+                  bei x = 0 ablesen: <strong>b = {pp(data.b_b)}</strong>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Aus den Punkten {'(0|' + pp(data.b_b) + ')'} und{' '}
+                  {'(1|' + pp(y_2) + ')'} folgt, dass die Gerade eine Steigung
+                  von m = {pp(data.m_b)} haben muss. Das kannst du auch mit der
+                  Punkt-Steigungs-Formel berechnen:
+                </p>
+                <p>
+                  m ={' '}
+                  {buildInlineFrac(
+                    pp(y_2, 'embrace_neg') +
+                      ' − ' +
+                      pp(data.b_b, 'embrace_neg'),
+                    '1 − 0',
+                  )}{' '}
+                  = {pp(data.m_b)}
+                </p>
+              </li>
+            </ul>
             <p>
               Damit passt die Gleichung{' '}
               <strong>
-                y = {pp(data.m_b)}x + {pp(data.b_b)}
+                y ={' '}
+                {ppPolynom([
+                  [data.m_b, 'x', 1],
+                  [data.b_b, 'x', 0],
+                ])}
               </strong>{' '}
               zur Wertetabelle.
             </p>
