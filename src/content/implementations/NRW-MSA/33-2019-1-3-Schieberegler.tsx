@@ -69,7 +69,9 @@ export const exercise33: Exercise<DATA> = {
         return (
           <>
             <p>Lies in der Grafik den Funktionswert an der Stelle x = 0 ab.</p>
-            <p>Der Wert von c beträgt {data.c}.</p>
+            <p>
+              Der Wert von c ist: <strong>c = {data.c}</strong>
+            </p>
           </>
         )
       },
@@ -105,7 +107,7 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Der Graph verläuft für positive Werte von c oberhalb der
-                  x-Achse:<br></br> c {' > '}0
+                  x-Achse:<br></br> <strong>c {' > '}0</strong>
                 </p>
               </>
             )}
@@ -113,7 +115,7 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Der Graph verläuft für negative Werte von c auch unterhalb der
-                  x-Achse.<br></br> c {' < '}0
+                  x-Achse.<br></br> <strong>c {' < '}0</strong>
                 </p>
               </>
             )}
@@ -121,7 +123,7 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Wenn c größer als 2 ist, sind alle Funktionswerte von f größer
-                  als 2.<br></br> c {' > '}2
+                  als 2.<br></br> <strong>c {' > '}2</strong>
                 </p>
               </>
             )}
@@ -129,8 +131,11 @@ export const exercise33: Exercise<DATA> = {
               <>
                 <p>
                   Wenn c größer als -1 ist, sind alle Funktionswerte von f
-                  größer als -1.<br></br> c {' > '}
-                  {pp(-1)}
+                  größer als -1.<br></br>{' '}
+                  <strong>
+                    c {' > '}
+                    {pp(-1)}
+                  </strong>
                 </p>
               </>
             )}
