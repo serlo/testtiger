@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color3, Color4 } from '@/helper/colors'
+import { Color3, Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildFrac, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -54,7 +54,12 @@ export const exercise18: Exercise<DATA> = {
                 width="700"
               />
             </svg>
-            <p>Abbildung 1: Rösti</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>Abbildung 1: Rösti</span>
+              </Color5>
+            </center>
+
             <svg viewBox="0 0 700 450">
               <image
                 href="/content/NRW_MSA_röstirezept.png"
@@ -62,11 +67,25 @@ export const exercise18: Exercise<DATA> = {
                 width="700"
               />
             </svg>
-            <p>Abbildung 2: Rezept für Rösti-Teig</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Rezept für Rösti-Teig
+                </span>
+              </Color5>
+            </center>
+
             <svg viewBox="0 0 700 500">
               <image href="/content/NRW_MSA_zyl.jpg" height="500" width="700" />
             </svg>
-            <p>Abbildung 3: zylindrische Form</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: zylindrische Form
+                </span>
+              </Color5>
+            </center>
+
             <p>
               {' '}
               a) Zeige rechnerisch, dass aus der Teigmenge eines Rezeptes{' '}

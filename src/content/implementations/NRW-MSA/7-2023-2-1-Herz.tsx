@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import { kürzeBruch } from '@/helper/kuerze-bruch'
 import {
   buildEquation,
@@ -53,7 +53,7 @@ export const exercise7: Exercise<DATA> = {
               Eine Firma produziert herzförmige Dekoanhänger aus Metall. Jedes
               Herz besteht aus einem Quadrat mit der Kantenlänge {data.kante}{' '}
               cm, an das zwei Halbkreise mit einem Radius von jeweils{' '}
-              {pp(data.kante / 2)} cm angesetzt sind (Abbildung).
+              {pp(data.kante / 2)} cm angesetzt sind (Abbildung 1).
             </p>
             <svg viewBox="0 0 700 500" className="min-w-[328px]">
               <image
@@ -80,6 +80,13 @@ export const exercise7: Exercise<DATA> = {
                 {pp(data.kante / 2)} cm
               </text>
             </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Zeichnung des Herzes
+                </span>
+              </Color5>
+            </center>
             <p>a) Zeichne ein Herz in Originalgröße in dein Heft.</p>
           </>
         )
@@ -265,7 +272,7 @@ export const exercise7: Exercise<DATA> = {
           <>
             <p>
               d) Um die Breite b eines Herzens zu bestimmen, wird eine Skizze
-              angefertigt (Abbildung). Hier gilt: Die Strecke{' '}
+              angefertigt (Abbildung 2). Hier gilt: Die Strecke{' '}
               {buildOverline('AB')} entspricht der Breite b.{' '}
               {buildOverline('AB')} geht durch die Mittelpunkte M1​ und M2​ der
               angesetzten Halbkreise.
@@ -277,6 +284,13 @@ export const exercise7: Exercise<DATA> = {
                 width="328"
               />
             </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Skizze der Breite b
+                </span>
+              </Color5>
+            </center>
             <p>
               Zeige durch eine Rechnung, dass die Strecke{' '}
               {buildOverline('M1M2')}

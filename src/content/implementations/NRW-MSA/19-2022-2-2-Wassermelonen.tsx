@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -64,6 +64,13 @@ export const exercise19: Exercise<DATA> = {
                 {data.durchmesser} cm
               </text>
             </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Inneres der Wassermelone
+                </span>
+              </Color5>
+            </center>
             <p>
               a) Zeige rechnerisch, dass diese Wassermelone ein Volumen von V ≈{' '}
               {pp(
@@ -213,7 +220,13 @@ export const exercise19: Exercise<DATA> = {
                 width="500"
               />
             </svg>
-            <p>Abbildung 2: würfelförmige Wassermelone</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: würfelförmige Wassermelone
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },
@@ -623,6 +636,13 @@ export const exercise19: Exercise<DATA> = {
                 />
               </svg>
             )}
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Graph des Wachstums
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },

@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -53,7 +53,13 @@ export const exercise9: Exercise<DATA> = {
             width="328"
           />
         </svg>
-        <p>Abbildung 1: Rechentrick für die Addition der Zahlen von 1 bis 10</p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Rechentrick für die Addition der Zahlen von 1 bis 10
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
@@ -72,7 +78,13 @@ export const exercise9: Exercise<DATA> = {
             <svg viewBox="0 0 328 140">
               <image href={hrefs} height="140" width="328" />
             </svg>
-            <p>Abbildung 2: Addition der Zahlen von 1 bis {data.task_2}</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Addition der Zahlen von 1 bis {data.task_2}
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },
@@ -150,7 +162,14 @@ export const exercise9: Exercise<DATA> = {
                 strokeWidth={2}
               />
             </svg>
-            <p>Abbildung 3: Addition der Zahlen von 1 bis {data.task_3}</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Addition der Zahlen von 1 bis {data.task_3}
+                </span>
+              </Color5>
+            </center>
+
             <p>
               Begründe, dass in den Kästchen die Zahlen {data.task_3 / 2} bzw.{' '}
               {data.task_3 + 1} stehen müssen.
