@@ -87,10 +87,12 @@ export const exercise5: Exercise<DATA> = {
         <p>
           <strong>Verkaufspreis berechnen</strong>
         </p>
-        Abzüglich des Rabatts beträgt der neue Verkaufspreis:
+        <p>Abzüglich des Rabatts beträgt der neue Verkaufspreis:</p>
         <p>
-          {data.preis} € − {pp((data.preis * data.rabatt) / 100)} € ={' '}
-          <strong>{pp(data.preis - (data.preis * data.rabatt) / 100)} €</strong>
+          {data.preis} − {pp((data.preis * data.rabatt) / 100)} ={' '}
+          <strong>
+            {pp(data.preis - (data.preis * data.rabatt) / 100)} [€]
+          </strong>
         </p>
       </>
     )
