@@ -271,10 +271,64 @@ export const exercise36: Exercise<DATA> = {
                 height="400"
                 width="382"
               />
-              <foreignObject x="60" y="120" width={200} height={200}>
+              <rect
+                x="58"
+                y="245"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#189BCC"
+              />
+              <rect
+                x="58"
+                y="155"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="219"
+                y="235"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#F9B9BA"
+              />
+              <rect
+                x="219"
+                y="300"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#189BCC"
+              />
+              <rect
+                x="219"
+                y="169"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#189BCC"
+              />
+              <rect
+                x="219"
+                y="100"
+                width="25"
+                height="55"
+                rx="4"
+                ry="4"
+                fill="#189BCC"
+              />
+              <foreignObject x="60" y="150" width={200} height={200}>
                 {buildFrac(bruch.zähler, bruch.nenner)}
               </foreignObject>
-              <foreignObject x="220" y="210" width={200} height={200}>
+              <foreignObject x="220" y="230" width={200} height={200}>
                 {buildFrac(bruch_2.zähler, bruch_2.nenner)}
               </foreignObject>
             </svg>
@@ -297,6 +351,7 @@ export const exercise36: Exercise<DATA> = {
                 height="400"
                 width="382"
               />
+
               <foreignObject x="60" y="120" width={200} height={200}>
                 {buildFrac(bruch.zähler, bruch.nenner)}
               </foreignObject>
