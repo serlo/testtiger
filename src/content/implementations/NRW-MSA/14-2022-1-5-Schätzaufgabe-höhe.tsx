@@ -24,7 +24,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 1 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_1.png',
-            'Der „General Sherman Tree“ ist ein Riesenmammutbaum und steht im US-Bundesstaat Kalifornien. Bestimme näherungsweise den Durchmesser des Baumes in Schulterhöhen des Mannes. Beschreibe dein Vorgehen.',
+            'Der „General Sherman Tree“ ist ein Riesenmammutbaum und steht im US-Bundesstaat Kalifornien. Bestimme näherungsweise den Durchmesser des Baumes in Höhen des Mannes. Beschreibe dein Vorgehen.',
           )}
         {data.task === 2 &&
           getImageAndDescription(
@@ -55,7 +55,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 1 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_1_sol.png',
-            'Der Durchmesser beträgt etwa vier Schulterhöhen des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
+            'Der Durchmesser beträgt etwa vier mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
         {data.task === 2 &&
           getImageAndDescription(
