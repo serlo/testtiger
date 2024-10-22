@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2 } from '@/helper/colors'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -268,6 +268,20 @@ export const exercise8: Exercise<DATA> = {
                 <>
                   {' '}
                   {data.count} · 1,19<sup>x</sup>
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>x = 12</span>
+                  </Color4>
                 </>,
               ],
               [
