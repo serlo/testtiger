@@ -61,8 +61,9 @@ export const exercise20: Exercise<DATA> = {
             <br></br>An der linken Seite befinden sich 14 Röhrchen übereinander.
             <br></br>
             <br></br>
-            Damit sind im ersten Kasten etwa: 7 · 14 = 98 Röhrchen.<br></br>
-            <br></br> Im ganzen Insektenhotel sind damit 98 · 3 ={' '}
+            Damit sind im ersten Kasten etwa:<br></br> 7 · 14 = 98 Röhrchen.
+            <br></br>
+            <br></br> Im ganzen Insektenhotel sind damit<br></br> 98 · 3 ={' '}
             <b>294 Röhrchen</b>.
           </p>
         )}
@@ -72,8 +73,8 @@ export const exercise20: Exercise<DATA> = {
             linken Rand:<br></br>
             <br></br>In der obersten Reihe befinden sich etwa 18 Holzscheite.
             <br></br>Am linken Rand befinden sich etwa 13 Holzscheite.<br></br>
-            <br></br>Hochgerechnet auf den ganzen Stapel ergeben sich etwa 18 ·
-            13 = <b>234 Holzscheite</b>.
+            <br></br>Hochgerechnet auf den ganzen Stapel ergeben sich etwa{' '}
+            <br></br>18 · 13 = <b>234 Holzscheite</b>.
           </p>
         )}
         {data.task === 3 && (
@@ -83,7 +84,7 @@ export const exercise20: Exercise<DATA> = {
             Zähle die Anzahl der Bücher in einem Fach.<br></br>
             In rechten, unteren Fach befinden sich zum Beispiel 24 Bücher.
             <br></br>
-            <br></br> Rechne damit die Gesamtzahl der Bücher hoch: 24 · 10 =
+            <br></br> Rechne damit die Gesamtzahl der Bücher hoch: 24 · 10 ={' '}
             <b>240 Bücher</b>.
           </p>
         )}
@@ -104,13 +105,16 @@ export const exercise20: Exercise<DATA> = {
         {data.task === 5 && (
           <p>
             Auf dem Bild sind vier verschiedene Sorten von Beeren zu erkennen.
-            <br></br> Es gibt 9 Schalen mit jeweils etwa{' '}
+            <br></br>
+            <br></br> Es gibt 9 Schalen mit jeweils etwa <br></br>
             <b>6 · 8 = 48 Blaubeeren</b>.<br></br> Es gibt 4 Schalen mit jeweils
-            etwa <b>6 · 6 = 36 orangen Himbeeren</b>.<br></br> Es gibt 6 Schalen
-            mit jeweils etwa <b>5 · 5 = 25 roten Himbeeren</b>.<br></br> Es gibt
-            6 Schalen mit jeweils etwa <b>4 · 4 = 16 Brombeeren</b>.<br></br>
-            <br></br>Insgesamt erhältst du damit etwa 9 · 48 + 4 · 36 + 5 · 25 +
-            4 · 16 = <b>{9 * 48 + 4 * 36 + 5 * 25 + 4 * 16} Beeren</b>.
+            etwa<br></br> <b>6 · 6 = 36 orangen Himbeeren</b>.<br></br> Es gibt
+            6 Schalen mit jeweils etwa <br></br>
+            <b>5 · 5 = 25 roten Himbeeren</b>.<br></br> Es gibt 6 Schalen mit
+            jeweils etwa <br></br>
+            <b>4 · 4 = 16 Brombeeren</b>.<br></br>
+            <br></br>Insgesamt erhältst du damit etwa <br></br>9 · 48 + 4 · 36 +
+            5 · 25 + 4 · 16 = <b>{9 * 48 + 4 * 36 + 5 * 25 + 4 * 16} Beeren</b>.
           </p>
         )}
       </>
