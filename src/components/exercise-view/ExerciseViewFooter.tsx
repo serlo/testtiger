@@ -32,7 +32,7 @@ export function ExerciseViewFooter() {
           >
             Antwort eingeben
           </button>
-          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
+          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3 opacity-30">
             Chat
           </button>
           <button
