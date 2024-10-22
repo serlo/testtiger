@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -165,10 +165,15 @@ export const exercise34: Exercise<DATA> = {
                 )}
               </text>
             </svg>
-            <p>
-              Abbildung: Tabellenblatt zur Berechnung der Kosten für die
-              Jugendherberge.
-            </p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Tabellenblatt zur Berechnung der Kosten für die
+                  Jugendherberge.
+                </span>
+              </Color5>
+            </center>
+
             <p>
               a) Entscheide jeweils, ob die Formel in diesem Zusammenhang
               geeignet ist, den Wert der Zelle C8 zu berechnen:

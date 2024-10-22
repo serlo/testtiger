@@ -237,9 +237,11 @@ export const exercise32: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            c) Ein anderes Rechteck hat einen Flächeninhalt von {data.r} cm².
-            Wie lang könnten die Seiten sein? Gib zwei unterschiedliche
-            Möglichkeiten an.
+            <p>
+              c) Ein anderes Rechteck hat einen Flächeninhalt von {data.r} cm².
+              Wie lang könnten die Seiten sein? Gib zwei unterschiedliche
+              Möglichkeiten an.
+            </p>
           </>
         )
       },

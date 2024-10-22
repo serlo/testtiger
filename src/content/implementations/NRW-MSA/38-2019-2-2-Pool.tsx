@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color3, Color4 } from '@/helper/colors'
+import { Color1, Color2, Color3, Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -43,7 +43,13 @@ export const exercise38: Exercise<DATA> = {
           {pp(roundToDigits(data.surface * data.höhe, 2))} m².
         </p>
         <img src="/content/NRW_MSA_Pool.svg" width={328} alt="" />
-        <p>Abbildung 1: Schwimmbecken (nicht maßstabsgetreu)</p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Schwimmbecken (nicht maßstabsgetreu)
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
@@ -213,10 +219,14 @@ export const exercise38: Exercise<DATA> = {
                 {data.terra} cm
               </text>
             </svg>
-            <p>
-              Abbildung 2: Skizze des Schwimmbeckens auf der Terrasse (nicht
-              maßstabsgetreu).
-            </p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Skizze des Schwimmbeckens auf der Terrasse (nicht
+                  maßstabsgetreu).
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },

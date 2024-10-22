@@ -262,9 +262,8 @@ export const exercise36: Exercise<DATA> = {
         return (
           <>
             <p>
-              e) Das Baumdiagramm (Abbildung 2) zeigt die Wahrscheinlichkeiten,
-              beim ersten und zweiten Drehen eine rote oder weiße Kaugummikugel
-              zu erhalten.
+              e) Das Baumdiagramm zeigt die Wahrscheinlichkeiten, beim ersten
+              und zweiten Drehen eine rote oder weiße Kaugummikugel zu erhalten.
             </p>
             <svg viewBox="0 0 400 382">
               <image

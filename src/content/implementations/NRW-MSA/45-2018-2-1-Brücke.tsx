@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color2, Color3, Color4 } from '@/helper/colors'
+import { Color2, Color3, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -59,6 +59,11 @@ export const exercise45: Exercise<DATA> = {
             width="328"
           />
         </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>Abbildung 1: Brücke</span>
+          </Color5>
+        </center>
         <p>
           Die Freunde gehen zu Fuß zum Bahnhof in Frankfurt. Der Fußweg hat eine
           Länge von {pp(data.weg)} km. Sie gehen mit einer durchschnittlichen
@@ -215,6 +220,14 @@ export const exercise45: Exercise<DATA> = {
                 strokeWidth={2}
               />
             </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Verlauf der Zugfahrt
+                </span>
+              </Color5>
+            </center>
+
             <p>
               b) Auf welcher Teilstrecke fährt der Zug mit der höchsten
               Durchschnittsgeschwindigkeit?<br></br> Begründe deine
@@ -404,7 +417,13 @@ export const exercise45: Exercise<DATA> = {
                 {data.width} mm
               </text>
             </svg>
-            <p>Abbildung 3: Zug in Schräglage</p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Zug in Schräglage
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },
@@ -619,10 +638,15 @@ export const exercise45: Exercise<DATA> = {
                 {pp(data.scale * 5)}
               </text>
             </svg>
-            <p>
-              Abbildung 4: Brücke, Brückenbogen durch eine Parabel angenähert.
-              Alle Angaben sind in Metern.
-            </p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 4: Brücke, Brückenbogen durch eine Parabel
+                  angenähert. Alle Angaben sind in Metern.
+                </span>
+              </Color5>
+            </center>
+
             <p>
               e) Begründe, dass die Funktionsgleichung g(x) ={' '}
               {pp(

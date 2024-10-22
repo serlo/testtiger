@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -35,22 +35,26 @@ export const exercise30: Exercise<DATA> = {
           Jan möchte ein Muster aus rechtwinkligen gleichschenkligen Dreiecken
           konstruieren. Er beginnt mit dem Dreieck D<sub>1</sub>​ (Abbildung 1).
         </p>
-        <svg viewBox="0 0 328 240">
-          <image href="/content/NRW_MSA_Muster.PNG" height="240" width="328" />
+        <svg viewBox="0 0 328 160">
+          <image href="/content/NRW_MSA_Muster.PNG" height="160" width="328" />
           <text
-            x={70}
-            y={140}
-            fontSize={20}
+            x={110}
+            y={100}
+            fontSize={15}
             textAnchor="right"
             stroke="black"
-            transform="rotate(-90, 70, 140)"
+            transform="rotate(-90, 110, 100)"
           >
             {data.d1} cm
           </text>
         </svg>
-        <p>
-          Abbildung 1: Dreieck D<sub>1</sub>​
-        </p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Dreieck D<sub>1</sub>​
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
@@ -124,10 +128,14 @@ export const exercise30: Exercise<DATA> = {
                 width="328"
               />
             </svg>
-            <p>
-              Abbildung 2: Muster bis Dreieck D<sub>3</sub>​ zu Teilaufgabe b) -
-              d)
-            </p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Muster bis Dreieck D<sub>3</sub>​ zu Teilaufgabe
+                  b) - d)
+                </span>
+              </Color5>
+            </center>
           </>
         )
       },
@@ -352,10 +360,15 @@ export const exercise30: Exercise<DATA> = {
                 {pp(surface * 16)}
               </text>
             </svg>
-            <p>
-              Abbildung 3: Muster bis Dreieck D<sub>5</sub>​ verkleinert
-              dargestellt
-            </p>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Muster bis Dreieck D<sub>5</sub>​ verkleinert
+                  dargestellt
+                </span>
+              </Color5>
+            </center>
+
             <p>
               Begründe, dass kein Dreieck in dem Muster einen Flächeninhalt von
               genau {data.guess} cm² hat.

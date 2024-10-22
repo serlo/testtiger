@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color3, Color4 } from '@/helper/colors'
+import { Color1, Color3, Color4, Color5 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
@@ -176,6 +176,14 @@ export const exercise39: Exercise<DATA> = {
             )}
           </svg>
         </div>
+        <br></br>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Figur 1, 2 und 3 der Würfel
+            </span>
+          </Color5>
+        </center>
       </>
     )
   },
