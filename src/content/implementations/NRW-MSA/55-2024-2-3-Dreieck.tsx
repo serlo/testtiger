@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildFrac,
@@ -56,6 +56,11 @@ export const exercise55: Exercise<DATA> = {
             c = {data.seiten[2]} cm
           </text>
         </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>Abbildung 1: Dreieck</span>
+          </Color5>
+        </center>
       </>
     )
   },
