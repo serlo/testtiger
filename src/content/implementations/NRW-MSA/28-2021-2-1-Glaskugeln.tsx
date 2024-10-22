@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -37,7 +37,11 @@ export const exercise28: Exercise<DATA> = {
         <p>Ein Unternehmen stellt lackierte Glaskugeln her (Abbildung 1).</p>
         <p>Die Glaskugeln haben einen Durchmesser von {data.dia} cm.</p>
         <img src="/content/NRW_MSA_Glaskugeln.jpg" alt="" />
-        <p>Abbildung 1: Glaskugel</p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>Abbildung 1: Glaskugel</span>
+          </Color5>
+        </center>
       </>
     )
   },
@@ -288,15 +292,15 @@ export const exercise28: Exercise<DATA> = {
               Anteile. Die Anteile werden im Folgenden als Wahrscheinlichkeiten
               gedeutet.{' '}
             </p>
-            <svg viewBox="0 0 700 500">
+            <svg viewBox="0 0 700 400">
               <image
                 href="/content/NRW_MSA_Glaskugeln_Baumdiagramm.PNG"
-                height="500"
+                height="400"
                 width="700"
               />
               <text
-                x={40}
-                y={200}
+                x={25}
+                y={170}
                 fontSize={30}
                 textAnchor="right"
                 stroke="black"
@@ -305,7 +309,7 @@ export const exercise28: Exercise<DATA> = {
               </text>
               <text
                 x={340}
-                y={140}
+                y={100}
                 fontSize={30}
                 textAnchor="right"
                 stroke="black"
