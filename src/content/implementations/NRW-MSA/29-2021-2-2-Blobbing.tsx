@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -353,11 +353,12 @@ export const exercise29: Exercise<DATA> = {
           <>
             <p>
               Aus der Skizze kannst du den Scheitel der Parabel ablesen: S(
-              {data.x_s}|{data.y_s})
+              <Color1>{data.x_s}</Color1>|<Color2>{data.y_s}</Color2>)
             </p>
             <p>Die Funktion hat dann allgemein den Funktionsterm:</p>
             <p>
-              f(x) = a · (x − {data.x_s})² + {data.y_s}
+              f(x) = a · (x <Color1>− {data.x_s}</Color1>)² +{' '}
+              <Color2>{data.y_s}</Color2>
             </p>
             <p>Da die Parabel nach unten geöffnet ist muss a{' < '}0 sein.</p>
           </>
@@ -381,19 +382,58 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>
-              Um a zu berechnen, setze den Punkt (0|1) in f(x) ein und löse die
-              Gleichung:
+              Um a zu berechnen, setze einen Punkt auf der Parabel in den
+              Funktionsterm ein und löse nach a. <br></br>
+              <br></br>Setze zum Beispiel (0|1) in f(x) ein:
             </p>
-            <p>
-              1 = a · (0 − {data.x_s})² + {data.y_s}
-            </p>
-            <p>
-              1 = a · {data.x_s * data.x_s} + {data.y_s}
-            </p>
-            <p>
-              {1 - data.y_s} = a · {data.x_s * data.x_s}
-            </p>
-            <p>a = {pp((1 - data.y_s) / Math.pow(data.x_s, 2))}</p>
+            {buildEquation([
+              [
+                <>1</>,
+                <>=</>,
+                <>
+                  a · (0 − {data.x_s})² + {data.y_s}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Berechne</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>1</>,
+                <>=</>,
+                <>
+                  a · {data.x_s * data.x_s} + {data.y_s}
+                </>,
+                <>| − {data.y_s}</>,
+              ],
+              [
+                <>{1 - data.y_s}</>,
+                <>=</>,
+                <>a · {data.x_s * data.x_s}</>,
+                <>| : {data.x_s * data.x_s}</>,
+              ],
+              [
+                <>
+                  <strong>a</strong>
+                </>,
+                <>
+                  <strong>=</strong>
+                </>,
+                <>
+                  <strong>{pp((1 - data.y_s) / Math.pow(data.x_s, 2))}</strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
@@ -494,9 +534,10 @@ export const exercise29: Exercise<DATA> = {
                 '=',
                 <>
                   {pp(a)}x² {pp(-a * 2 * data.x_s, 'merge_op')}x{' '}
-                  {pp(a * data.x_s * data.x_s + data.y_s, 'merge_op')} = g(x)
+                  {pp(a * data.x_s * data.x_s + data.y_s, 'merge_op')}
                 </>,
               ],
+              [<></>, <>=</>, <>g(x)</>],
             ])}
             <p>
               Die Funktionsterme von f und g stimmen nach einer Umformung
