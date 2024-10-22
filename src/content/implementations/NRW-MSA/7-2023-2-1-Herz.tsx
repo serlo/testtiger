@@ -181,19 +181,21 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <p>
               A<sub>Quadrat</sub> = {data.kante} · {data.kante} ={' '}
-              {data.kante * data.kante} cm²
+              {data.kante * data.kante} [cm²]
             </p>
             <p>
               Die beiden Halbkreise ergeben eine Gesamtfläche eines Kreises:
             </p>
             <p>
-              A<sub>Kreis</sub> = π · r² = π · ({pp(data.kante / 2)} cm)² ≈{' '}
-              {pp(roundToDigits(A, 2))} cm²{' '}
+              A<sub>Kreis</sub> = π · r² = π · {pp(data.kante / 2)}² ≈{' '}
+              {pp(roundToDigits(A, 2))} [cm²]{' '}
             </p>
             <p>
               Damit ist die Gesamtfläche: <br></br>A<sub>ges</sub> ={' '}
-              {data.kante * data.kante} cm² + {pp(roundToDigits(A, 2))} cm² ={' '}
-              {pp(roundToDigits(data.kante * data.kante + A, 2))} cm²
+              {data.kante * data.kante} + {pp(roundToDigits(A, 2))} ={' '}
+              <strong>
+                {pp(roundToDigits(data.kante * data.kante + A, 2))} [cm²]
+              </strong>
             </p>
           </>
         )
