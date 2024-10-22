@@ -312,7 +312,7 @@ export const exercise55: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>e) bestimme rechnerisch die Größe des Winkels α.</p>
+            <p>e) Bestimme rechnerisch die Größe des Winkels α.</p>
           </>
         )
       },
