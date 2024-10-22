@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -50,9 +50,15 @@ export const exercise29: Exercise<DATA> = {
       <>
         <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
         <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
-        <p>
-          Abbildung 1: Ablauf eines Blobbingsprunges als überlagerte Aufnahme
-        </p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Ablauf eines Blobbingsprunges als überlagerte
+              Aufnahme
+            </span>
+          </Color5>
+        </center>
+
         <p>
           Eine vereinfachte Darstellung des Ablaufs ist in Abbildung 2
           dargestellt. Beim Blobbing liegt ein mit Luft gefülltes Kissen im
@@ -68,10 +74,15 @@ export const exercise29: Exercise<DATA> = {
           Wasser.
         </p>
         <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
-        <p>
-          Abbildung 2: Vereinfachte Darstellung des Blobbing-Ablaufs (nicht
-          maßstabsgetreu)
-        </p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 2: Vereinfachte Darstellung des Blobbing-Ablaufs (nicht
+              maßstabsgetreu)
+            </span>
+          </Color5>
+        </center>
+
         <p>
           Der Jumper kann zwischen verschiedenen Absprunghöhen wählen. Ein
           Sprung aus fünf Meter Höhe dauert ca. {pp(getDuration(5))}{' '}
@@ -97,7 +108,14 @@ export const exercise29: Exercise<DATA> = {
             {pp(getDuration(15))} s
           </text>
         </svg>
-        <p>Tabelle 1: Sprungdauer in Abhängigkeit von der Absprunghöhe</p>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Tabelle 1: Sprungdauer in Abhängigkeit von der Absprunghöhe
+            </span>
+          </Color5>
+        </center>
+
         <img src="/content/NRW_MSA_Blobbing_4.jpg" alt="" />
       </>
     )
@@ -338,6 +356,11 @@ export const exercise29: Exercise<DATA> = {
                 {'S'}
               </text>
             </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>Abbildung 4: Flugbahn</span>
+              </Color5>
+            </center>
             <p>
               Begründe mithilfe der Abbildung 4, dass sich die Funktion f mit{' '}
             </p>
