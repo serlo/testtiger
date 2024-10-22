@@ -237,8 +237,8 @@ export const exercise8: Exercise<DATA> = {
             </p>
             <p>
               Der Wert <Color2>1,19</Color2> ist der{' '}
-              <Color2>Wachstumsfaktor</Color2>. Er ist der Faktor, um den sich
-              die Anzahl der Milben innerhalb einer Woche vermehrt.{' '}
+              <Color2>Wachstumsfaktor</Color2>. Er gibt an, dass die Anzahl der
+              Milben sich jede Woche um 19 % vermehrt.{' '}
             </p>
           </>
         )

@@ -540,8 +540,8 @@ export const exercise192: Exercise<DATA> = {
         return (
           <>
             <p>
-              Forme die Gleichung zuerst um, damit du die pq-Formel anwenden
-              kannst:
+              Das ist eine quadratische Gleichung. Forme die Gleichung zuerst
+              um, damit du die pq-Formel anwenden kannst:
             </p>
             {buildEquation([
               [
@@ -572,8 +572,8 @@ export const exercise192: Exercise<DATA> = {
             ])}
 
             <p>
-              Das ist eine quadratische Gleichung. Zur Lösung verwende die
-              pq-Formel und setze die Werte ein.{' '}
+              Setze die Werte p = {ppFrac(k_b)} und q = {pp(k_c)} in die
+              pq-Formel ein:{' '}
             </p>
             {buildEquation([
               [
