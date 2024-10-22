@@ -232,7 +232,7 @@ export const exercise53: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Setze {data.days} für x ein und berechne:</p>
+            <p>Setze x = {data.days} ein und berechne:</p>
             {buildEquation([
               [
                 <>f(x)</>,
