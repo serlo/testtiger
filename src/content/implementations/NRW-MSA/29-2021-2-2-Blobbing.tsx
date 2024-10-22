@@ -660,21 +660,23 @@ export const exercise29: Exercise<DATA> = {
           <>
             {data.coin == true ? (
               <p>
-                Mögliche Gemeinsamkeit: Die Funktionen besitzen den gleichen
-                Öffnungsfaktor a. Die Flugbahnen haben damit ein ähnliches
-                Profil. <br></br>
-                <br></br> Möglicher Unterschied: Die Funktionen haben
-                unterschiedliche Scheitelpunktkoordinaten. Der höchste Punkt der
-                Flugbahn ist daher unterschiedlich.
+                <b>Mögliche Gemeinsamkeit:</b> Die Funktionen besitzen den{' '}
+                <b>gleichen Öffnungsfaktor a</b>. Die Flugbahnen haben damit ein
+                ähnliches Profil. <br></br>
+                <br></br> <b>Möglicher Unterschied:</b> Die Funktionen haben{' '}
+                <b>unterschiedliche Scheitelpunktkoordinaten</b>. Der höchste
+                Punkt der Flugbahn ist daher unterschiedlich.
               </p>
             ) : (
               <p>
-                Mögliche Gemeinsamkeit: Die Funktionen besitzen die gleiche
-                Scheitelpunktkoordinate x<sub>s</sub>. Damit erreichen die
-                Flugbahnen beide ihren Höhepunkt nach x<sub>s</sub> = {data.x_s}{' '}
-                Metern. <br></br>
-                <br></br> Möglicher Unterschied: Die Funktionen haben
-                unterschiedliche Öffnungsfaktoren. Sie besitzen eine
+                <b>Mögliche Gemeinsamkeit:</b> Die Funktionen besitzen die{' '}
+                <b>
+                  gleiche Scheitelpunktkoordinate x<sub>s</sub>
+                </b>
+                . Damit erreichen die Flugbahnen beide ihren Höhepunkt nach x
+                <sub>s</sub> = {data.x_s} Metern. <br></br>
+                <br></br> <b>Möglicher Unterschied:</b> Die Funktionen haben{' '}
+                <b>unterschiedliche Öffnungsfaktoren</b>. Sie besitzen eine
                 unterschiedliche Form.
               </p>
             )}
