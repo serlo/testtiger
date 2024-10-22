@@ -7,6 +7,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { createGesture } from '@ionic/react'
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
+import { TypeNCheckOverlay } from './TypeNCheckOverlay'
 
 export function ExerciseViewFooter() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
@@ -18,9 +19,17 @@ export function ExerciseViewFooter() {
       </div>
       <IndicatorBar />
       <SolutionOverlay />
+      <TypeNCheckOverlay />
       {!chatOverlay && (
-        <>
-          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
+        <div className="flex justify-around">
+          <button
+            className="mt-3 px-2 py-0.5 bg-gray-200 rounded"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = 'type-n-check'
+              })
+            }}
+          >
             Antwort eingeben
           </button>
           <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3">
@@ -36,7 +45,7 @@ export function ExerciseViewFooter() {
           >
             Lösung
           </button>
-        </>
+        </div>
       )}
     </div>
   )

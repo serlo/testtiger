@@ -7,7 +7,7 @@ export type IExerciseViewStore = {
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
-  chatOverlay: null | 'solution'
+  chatOverlay: null | 'solution' | 'type-n-check'
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
