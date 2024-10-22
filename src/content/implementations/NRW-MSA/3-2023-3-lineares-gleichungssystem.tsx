@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color4 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp, ppPolynom } from '@/helper/pretty-print'
 
@@ -58,42 +59,88 @@ export const exercise3: Exercise<DATA> = {
     return (
       <>
         <p>Subtrahiere die Gleichungen I-II:</p>
-        <p>
-          − {data.b}y − (− {data.d}y) = {pp(c)} − {pp(e, 'embrace_neg')}
-        </p>
-        <p>Fasse die Terme zusammen:</p>
-        <p>
-          {ppPolynom([[bd, 'y', 1]])} = {pp(c - e)}
-        </p>
-        {bd != 1 && (
-          <>
-            <p>Löse die Gleichung nach y:</p>
-            <p>y = {data.y}</p>
-          </>
-        )}
-        <p>
-          Setze den Wert für y in eine der Gleichungen ein. y in I eingesetzt
-          liefert:
-        </p>
-        <p>
-          {data.a}x − {data.b} · {data.y} = {pp(c)}
-        </p>
-        <p>Vereinfache die Gleichung und löse nach x.</p>
         {buildEquation([
           [
-            <>{data.a}x</>,
-            '=',
             <>
-              {pp(c)} + {data.b} · {data.y}
+              <Color1>
+                {data.a}x - {data.a}x
+              </Color1>{' '}
+              - {data.b}y - ({-data.d})y
+            </>,
+            <>=</>,
+            <>
+              {pp(c)} - {pp(e)}
             </>,
           ],
-          [<>{data.a}x</>, '=', pp(c + data.b * data.y)],
-          [<>x</>, '=', data.x],
+          [
+            <>
+              - {data.b}y - ({-data.d})y
+            </>,
+            <>=</>,
+            <>
+              {pp(c)} - {pp(e)}
+            </>,
+          ],
+          [
+            <>{-data.b + data.d}y </>,
+            <>=</>,
+            <>{pp(c - e)}</>,
+
+            <>| : ({-data.b + data.d})</>,
+          ],
+          [<>y </>, <>=</>, <>{data.y}</>],
         ])}
         <p>
-          Die Lösungsmenge des Gleichungssystems ist {'L={('}
-          {data.x}; {data.y}
-          {')}'}
+          Setze den Wert für y in die Gleichung I oder II ein. <br></br>y in I
+          eingesetzt liefert:
+        </p>
+        {buildEquation([
+          [
+            <>
+              {data.a}x - {data.b} · {data.y}
+            </>,
+            <>=</>,
+            <>{pp(c)}</>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>fasse zusammen</span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>
+              {data.a}x - {data.b * data.y}
+            </>,
+            <>=</>,
+            <>{pp(c)}</>,
+
+            <>| + {data.b * data.y}</>,
+          ],
+          [
+            <>{data.a}x</>,
+            <>=</>,
+            <>{pp(c + data.b * data.y)}</>,
+
+            <>| : {data.a}</>,
+          ],
+          [<>x</>, <>=</>, <>{pp(data.x)}</>],
+        ])}
+        <p>
+          Die Lösungsmenge des Gleichungssystems ist{' '}
+          <b>
+            {'L={('}
+            {data.x}; {data.y}
+            {')}'}
+          </b>
         </p>
       </>
     )
