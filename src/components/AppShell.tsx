@@ -1,10 +1,5 @@
 'use client'
-import {
-  BackButtonEvent,
-  IonApp,
-  IonRouterOutlet,
-  setupIonicReact,
-} from '@ionic/react'
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 import { Redirect, Route, useHistory } from 'react-router-dom'
 
