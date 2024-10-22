@@ -7,7 +7,6 @@ interface DATA {
   a: number
   correct_random: number
   sign: string
-  sup: string
 }
 
 export const exercise4: Exercise<DATA> = {
@@ -23,7 +22,6 @@ export const exercise4: Exercise<DATA> = {
       a: rng.randomItemFromArray([1, 1, -1]),
       correct_random: rng.randomIntBetween(1, 3),
       sign: rng.randomItemFromArray([' ', '−']),
-      sup: rng.randomItemFromArray(['2', '2', '2', '3']),
     }
   },
   constraint({ data }) {
@@ -83,8 +81,7 @@ export const exercise4: Exercise<DATA> = {
               <li>
                 f(x) = {data.correct_random == 1 && data.a == 1 ? '' : '−'}(x{' '}
                 {data.correct_random == 1 && data.x_s > 0 ? '−' : '+'}{' '}
-                {Math.abs(data.x_s)})
-                <sup>{data.correct_random == 1 ? '2' : data.sup}</sup>
+                {Math.abs(data.x_s)})<sup>2</sup>{' '}
                 {data.correct_random == 1 && data.y_s > 0 ? '+' : '+'}
                 {Math.abs(data.y_s)}
               </li>
@@ -92,15 +89,14 @@ export const exercise4: Exercise<DATA> = {
                 f(x) = {data.correct_random == 2 && data.a == 1 ? '' : '−'}(x{' '}
                 {data.correct_random == 2 && data.x_s > 0 ? '−' : '+'}{' '}
                 {Math.abs(data.x_s)})
-                <sup>{data.correct_random == 2 ? '2' : 2}</sup>
+                <sup>{data.correct_random == 2 ? '2' : 2}</sup>{' '}
                 {data.correct_random == 2 && data.y_s > 0 ? '+' : '−'}
                 {Math.abs(data.y_s)}
               </li>
               <li>
                 f(x) = {data.correct_random == 3 && data.a == 1 ? '' : ' '}(x{' '}
                 {data.correct_random == 3 && data.x_s > 0 ? '−' : '+'}{' '}
-                {Math.abs(data.x_s)})
-                <sup>{data.correct_random == 3 ? '2' : data.sup}</sup>
+                {Math.abs(data.x_s)})<sup>2</sup>{' '}
                 {data.correct_random == 3 && data.y_s > 0 ? '+' : '−'}
                 {Math.abs(data.y_s)}
               </li>
@@ -120,10 +116,6 @@ export const exercise4: Exercise<DATA> = {
                 Da die Parabel nach {data.a == 1 ? 'oben' : 'unten'} geöffnet
                 ist, ist der Faktor vor der Klammer{' '}
                 {data.a == 1 ? 'positiv' : 'negativ'}.
-              </li>
-              <li>
-                Eine Parabel ist das Schaubild einer quadratischen Funktion. Der
-                Exponent ist x<sup>2</sup> und niemals x<sup>3</sup>.
               </li>
             </ul>
 
