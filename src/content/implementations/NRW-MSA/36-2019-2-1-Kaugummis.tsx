@@ -213,7 +213,7 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       points: 2,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
@@ -221,6 +221,12 @@ export const exercise36: Exercise<DATA> = {
               weißen Kaugummikugeln in den Automaten. Durch Drehen am Automaten
               enthält man zufällig eine rote oder eine weiße Kaugummikugel.
             </p>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               d) Begründe, dass die Wahrscheinlichkeit, beim ersten Drehen eine
               rote Kaugummikugel zu erhalten,{' '}

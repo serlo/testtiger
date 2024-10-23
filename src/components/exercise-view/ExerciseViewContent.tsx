@@ -99,12 +99,7 @@ export function ExerciseViewContent() {
                   </button>
                 </div>
                 <div>
-                  <button
-                    className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top"
-                    onClick={() => {
-                      reseed()
-                    }}
-                  >
+                  <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
                     <div className="inset-0 absolute">
                       <FaIcon icon={faCalculator} />
                     </div>
@@ -114,34 +109,31 @@ export function ExerciseViewContent() {
                       </div>
                     )}
                   </button>
-                  <button
-                    className="px-1 py-0.5 rounded-md bg-gray-100 mr-2"
-                    onClick={() => {
-                      reseed()
-                    }}
-                  >
+                  <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
                     <FaIcon icon={faClock} className="text-xs" />{' '}
                     {(withSubtasks ? t.duration : content.duration) ?? '?'} min
                   </button>
-                  <button
-                    className="px-1 py-0.5 rounded-md bg-gray-100"
-                    onClick={() => {
-                      reseed()
-                    }}
-                  >
+                  <button className="px-1 py-0.5 rounded-md bg-gray-100">
                     {(withSubtasks ? t.points : content.points) ?? '?'} BE
                   </button>
                 </div>
               </div>
-              <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
-                {i == 0 &&
-                  withSubtasks &&
-                  proseWrapper(
+
+              {i == 0 && withSubtasks && (
+                <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
+                  {proseWrapper(
                     content.intro({
                       data,
                     }),
                   )}
-              </div>
+                </div>
+              )}
+
+              {'intro' in t && t.intro && (
+                <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]">
+                  {proseWrapper(t.intro({ data }))}
+                </div>
+              )}
               <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
                 {proseWrapper(t.task({ data }))}
               </div>
