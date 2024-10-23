@@ -89,26 +89,178 @@ export const exercise29: Exercise<DATA> = {
           {getDuration(5) == 1 ? 'Sekunde' : 'Sekunden'}. Ein Sprung aus zehn
           Meter Höhe dauert ca. {pp(getDuration(10))} Sekunden.
         </p>
-        <svg viewBox="0 0 700 500">
-          <image
-            href="/content/NRW_MSA_Blobbing_3.PNG"
-            height="500"
-            width="700"
-          />
-          <text x={420} y={250} fontSize={30} textAnchor="right" stroke="black">
-            {pp(getDuration(3))} s
-          </text>
-          <text x={410} y={320} fontSize={30} textAnchor="right" stroke="black">
-            {pp(getDuration(5))} s
-          </text>
-          <text x={410} y={395} fontSize={30} textAnchor="right" stroke="black">
-            {pp(getDuration(10))} s
-          </text>
-          <text x={410} y={465} fontSize={30} textAnchor="right" stroke="black">
-            {pp(getDuration(15))} s
-          </text>
-        </svg>
         <center>
+          <svg width="180" height="132" xmlns="http://www.w3.org/2000/svg">
+            <rect
+              x="0"
+              y="0"
+              width="180"
+              height="22"
+              fill="#D2ECF6"
+              stroke="none"
+            />
+
+            <rect
+              x="0"
+              y="0"
+              width="180"
+              height="132"
+              rx="4"
+              ry="4"
+              stroke="#007EC1"
+              fill="transparent"
+              strokeWidth="1"
+            />
+
+            <line
+              x1="0"
+              y1="22"
+              x2="180"
+              y2="22"
+              stroke="#007EC1"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="44"
+              x2="180"
+              y2="44"
+              stroke="#007EC1"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="66"
+              x2="180"
+              y2="66"
+              stroke="#007EC1"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="88"
+              x2="180"
+              y2="88"
+              stroke="#007EC1"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="110"
+              x2="180"
+              y2="110"
+              stroke="#007EC1"
+              strokeWidth="1"
+            />
+            <text
+              x="45"
+              y="16"
+              fontSize="10"
+              textAnchor="middle"
+              fontWeight="bold"
+              fill="black"
+            >
+              Absprunghöhe
+            </text>
+            <text x="45" y="38" fontSize="10" textAnchor="middle" fill="black">
+              0 m
+            </text>
+            <text x="135" y="38" fontSize="10" textAnchor="middle" fill="black">
+              0 s
+            </text>
+            <text x="45" y="60" fontSize="10" textAnchor="middle" fill="black">
+              3 m
+            </text>
+            <text x="135" y="60" fontSize="10" textAnchor="middle" fill="black">
+              {pp(getDuration(3))} s
+            </text>
+            <text x="45" y="82" fontSize="10" textAnchor="middle" fill="black">
+              5 m
+            </text>
+            <text x="135" y="82" fontSize="10" textAnchor="middle" fill="black">
+              {pp(getDuration(5))} s
+            </text>
+            <text x="45" y="104" fontSize="10" textAnchor="middle" fill="black">
+              10 m
+            </text>
+            <text
+              x="135"
+              y="104"
+              fontSize="10"
+              textAnchor="middle"
+              fill="black"
+            >
+              {pp(getDuration(10))} s
+            </text>
+            <text x="45" y="126" fontSize="10" textAnchor="middle" fill="black">
+              15 m
+            </text>
+            <text
+              x="135"
+              y="126"
+              fontSize="10"
+              textAnchor="middle"
+              fill="black"
+            >
+              {pp(getDuration(15))} s
+            </text>
+            <line
+              x1="90"
+              y1="0"
+              x2="90"
+              y2="132"
+              stroke="#007EC1"
+              strokeWidth="1"
+            />
+
+            <text
+              x="135"
+              y="16"
+              fontSize="10"
+              textAnchor="middle"
+              fontWeight="bold"
+              fill="black"
+            >
+              Sprungdauer
+            </text>
+
+            <text
+              x={75}
+              y={48}
+              fontSize={15}
+              textAnchor="right"
+              stroke="black"
+            ></text>
+            <text
+              x={130}
+              y={48}
+              fontSize={15}
+              textAnchor="right"
+              stroke="black"
+            ></text>
+            <text
+              x={190}
+              y={48}
+              fontSize={15}
+              textAnchor="right"
+              stroke="black"
+            ></text>
+            <text
+              x={235}
+              y={48}
+              fontSize={15}
+              textAnchor="right"
+              stroke="black"
+            ></text>
+            <text
+              x={282}
+              y={48}
+              fontSize={15}
+              textAnchor="right"
+              stroke="black"
+            ></text>
+          </svg>
+
           <Color5>
             <span style={{ fontSize: 'small' }}>
               Tabelle 1: Sprungdauer in Abhängigkeit von der Absprunghöhe
