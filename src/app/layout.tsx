@@ -4,8 +4,6 @@ import 'tailwindcss/tailwind.css'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 
-import '@ionic/react/css/structure.css'
-
 import '../../styles/global.css'
 
 import { Inter } from 'next/font/google'
