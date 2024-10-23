@@ -108,7 +108,7 @@ export const exercise54: Exercise<DATA> = {
     {
       points: 2,
       task({ data }) {
-        const volume = data.hoehe * Math.PI * data.echo * data.echo
+        const volume = (data.hoehe * Math.PI * data.echo * data.echo) / 4
         return (
           <>
             <p>
@@ -120,7 +120,7 @@ export const exercise54: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const volume = data.hoehe * Math.PI * data.echo * data.echo
+        const volume = (data.hoehe * Math.PI * data.echo * data.echo) / 4
         return (
           <>
             <p>Das Volumen eines Zylinders ist gegeben durch:</p>
