@@ -58,14 +58,17 @@ export const exercise3: Exercise<DATA> = {
     const bd = -data.b + data.d
     return (
       <>
-        <p>Subtrahiere die Gleichungen I-II:</p>
+        <p>
+          Subtrahiere die Gleichungen I-II, um den Term {'"'}
+          {data.a}x{'"'} zu eliminieren:
+        </p>
         {buildEquation([
           [
             <>
               <Color1>
-                {data.a}x - {data.a}x
+                {data.a}x − {data.a}x
               </Color1>{' '}
-              - {data.b}y - ({-data.d})y
+              − {data.b}y − ({pp(-data.d)})y
             </>,
             <>=</>,
             <>
@@ -74,22 +77,34 @@ export const exercise3: Exercise<DATA> = {
           ],
           [
             <>
-              - {data.b}y - ({-data.d})y
+              − {pp(data.b)}y − ({pp(-data.d)})y
             </>,
             <>=</>,
             <>
-              {pp(c)} - {pp(e)}
+              {pp(c)} − {pp(e)}
             </>,
           ],
           [
-            <>{-data.b + data.d}y </>,
+            <>{-data.b + data.d != 1 && pp(-data.b + data.d)}y </>,
             <>=</>,
             <>{pp(c - e)}</>,
 
-            <>| : ({-data.b + data.d})</>,
+            <>{-data.b + data.d != 1 && <>| : ({pp(-data.b + data.d)})</>}</>,
           ],
-          [<>y </>, <>=</>, <>{data.y}</>],
         ])}
+        {-data.b + data.d != 1 && (
+          <>
+            {buildEquation([
+              [
+                <>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y{' '}
+                </>,
+                <>=</>,
+                <>{data.y}</>,
+              ],
+            ])}
+          </>
+        )}
         <p>
           Setze den Wert für y in die Gleichung I oder II ein. <br></br>y in I
           eingesetzt liefert:
@@ -97,7 +112,7 @@ export const exercise3: Exercise<DATA> = {
         {buildEquation([
           [
             <>
-              {data.a}x - {data.b} · {data.y}
+              {data.a}x − {data.b} · {data.y}
             </>,
             <>=</>,
             <>{pp(c)}</>,
@@ -118,19 +133,19 @@ export const exercise3: Exercise<DATA> = {
           ],
           [
             <>
-              {data.a}x - {data.b * data.y}
+              {data.a}x − {data.b * data.y}
             </>,
             <>=</>,
             <>{pp(c)}</>,
 
-            <>| + {data.b * data.y}</>,
+            <>| + {pp(data.b * data.y)}</>,
           ],
           [
             <>{data.a}x</>,
             <>=</>,
             <>{pp(c + data.b * data.y)}</>,
 
-            <>| : {data.a}</>,
+            <>| : {pp(data.a)}</>,
           ],
           [<>x</>, <>=</>, <>{pp(data.x)}</>],
         ])}

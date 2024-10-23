@@ -60,7 +60,13 @@ export const exercise35: Exercise<DATA> = {
     const e = data.d * data.x + data.faktor * data.a * data.y
     return (
       <>
-        <p>Multipliziere die erste Gleichung mit dem Faktor {data.faktor}:</p>
+        <p>
+          Die Terme {'"'}
+          {pp(-data.a)}y{'"'} und {'"'}
+          {data.faktor * data.a}y{'"'} können eliminiert werden, wenn der erste
+          Term mit dem Faktor {data.faktor} multipliziert wird.
+        </p>
+
         <p>
           {data.faktor} · I: &nbsp;&nbsp; {data.faktor * data.b}x −{' '}
           <Color1>{data.faktor * data.a}y</Color1> = {pp(data.faktor * c)}
@@ -75,7 +81,7 @@ export const exercise35: Exercise<DATA> = {
             <>
               {data.faktor * data.b}x + {data.d}x{' '}
               <Color1>
-                - {data.faktor * data.a}y + {data.faktor * data.a}y
+                − {data.faktor * data.a}y + {data.faktor * data.a}y
               </Color1>
             </>,
             <>=</>,
@@ -130,19 +136,19 @@ export const exercise35: Exercise<DATA> = {
           ],
           [
             <>
-              {data.b * data.x} - {data.a} · y
+              {data.b * data.x} − {data.a} · y
             </>,
             <>=</>,
             <>{pp(c)}</>,
 
-            <>| - {data.b * data.x}</>,
+            <>| − {data.b * data.x}</>,
           ],
           [
-            <>- {data.a} · y</>,
+            <>− {data.a} · y</>,
             <>=</>,
             <>{pp(c - data.b * data.x)}</>,
 
-            <>| :(- {data.a})</>,
+            <>| : (− {data.a})</>,
           ],
           [<>y</>, <>=</>, <>{pp(data.y)}</>],
         ])}

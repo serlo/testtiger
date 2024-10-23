@@ -64,14 +64,15 @@ export const exercise43: Exercise<DATA> = {
           <Color1>
             {data.a}y{'"'}
           </Color1>{' '}
-          haben entgegengesetzte Vorzeichen. Addiere die Gleichungen I+II:
+          haben entgegengesetzte Vorzeichen. Addiere die Gleichungen I+II, um
+          diese Terme zu eliminieren:
         </p>
         {buildEquation([
           [
             <>
               {data.b}x + {data.d}x{' '}
               <Color1>
-                - {data.a}y + {data.a}y
+                − {data.a}y + {data.a}y
               </Color1>
             </>,
             <>=</>,
@@ -141,19 +142,19 @@ export const exercise43: Exercise<DATA> = {
           ],
           [
             <>
-              {data.b * data.x} - {data.a} · y
+              {data.b * data.x} − {data.a} · y
             </>,
             <>=</>,
             <>{pp(c)}</>,
 
-            <>| - {data.b * data.x}</>,
+            <>| − {data.b * data.x}</>,
           ],
           [
-            <>- {data.a} · y</>,
+            <>− {data.a} · y</>,
             <>=</>,
             <>{pp(c - data.b * data.x)}</>,
 
-            <>| :(- {data.a})</>,
+            <>| : (− {data.a})</>,
           ],
           [<>y</>, <>=</>, <>{pp(data.y)}</>],
         ])}
