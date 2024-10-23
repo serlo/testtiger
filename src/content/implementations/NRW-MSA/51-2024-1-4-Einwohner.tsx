@@ -39,25 +39,157 @@ export const exercise51: Exercise<DATA> = {
           bevölkerungsreichsten Städte Deutschlands abgebildet (Stand: 2021, auf
           Hunderttausend Einwohner gerundet).
         </p>
-        <svg viewBox="0 0 328 35">
-          <image
-            href="/content/NRW_MSA_Einwohner.PNG"
-            height="35"
+
+        <svg width="320" height="70" xmlns="http://www.w3.org/2000/svg">
+          <rect
+            x="0"
+            y="0"
             width="328"
+            height="22"
+            fill="#D2ECF6"
+            stroke="none"
           />
-          <text x={90} y={28} fontSize={10} textAnchor="right" stroke="black">
+
+          <rect
+            x="0"
+            y="0"
+            width="328"
+            height="60"
+            rx="4"
+            ry="4"
+            stroke="#007EC1"
+            fill="transparent"
+            strokeWidth="1"
+          />
+
+          <line
+            x1="0"
+            y1="22"
+            x2="328"
+            y2="22"
+            stroke="#007EC1"
+            strokeWidth="1"
+          />
+
+          <text
+            x="30"
+            y="16"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
+            fill="black"
+          >
+            Stadt
+          </text>
+          <text x="30" y="38" fontSize="10" textAnchor="middle" fill="black">
+            Einwohner
+          </text>
+          <text x="30" y="48" fontSize="10" textAnchor="middle" fill="black">
+            in Mio.
+          </text>
+          <line
+            x1="60"
+            y1="0"
+            x2="60"
+            y2="60"
+            stroke="#007EC1"
+            strokeWidth="1"
+          />
+          <line
+            x1="110"
+            y1="00"
+            x2="110"
+            y2="60"
+            stroke="#007EC1"
+            strokeWidth="1"
+          />
+          <line
+            x1="170"
+            y1="0"
+            x2="170"
+            y2="60"
+            stroke="#007EC1"
+            strokeWidth="1"
+          />
+          <line
+            x1="230"
+            y1="0"
+            x2="230"
+            y2="60"
+            stroke="#007EC1"
+            strokeWidth="1"
+          />
+          <line
+            x1="262.5"
+            y1="0"
+            x2="262.5"
+            y2="60"
+            stroke="#007EC1"
+            strokeWidth="1"
+          />
+          <text
+            x="85"
+            y="16"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
+            fill="black"
+          >
+            Berlin
+          </text>
+          <text
+            x="140"
+            y="16"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
+            fill="black"
+          >
+            Hamburg
+          </text>
+          <text
+            x="200"
+            y="16"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
+            fill="black"
+          >
+            München
+          </text>
+          <text
+            x="246.5"
+            y="16"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
+            fill="black"
+          >
+            Köln
+          </text>
+          <text
+            x="295"
+            y="16"
+            fontSize="10"
+            textAnchor="middle"
+            fontWeight="bold"
+            fill="black"
+          >
+            Frankfurt
+          </text>
+          <text x={75} y={48} fontSize={15} textAnchor="right" stroke="black">
             {pp(data.berlin)}
           </text>
-          <text x={135} y={28} fontSize={10} textAnchor="right" stroke="black">
+          <text x={130} y={48} fontSize={15} textAnchor="right" stroke="black">
             {pp(data.hamburg)}
           </text>
-          <text x={185} y={28} fontSize={10} textAnchor="right" stroke="black">
+          <text x={190} y={48} fontSize={15} textAnchor="right" stroke="black">
             {pp(data.münchen)}
           </text>
-          <text x={230} y={28} fontSize={10} textAnchor="right" stroke="black">
+          <text x={235} y={48} fontSize={15} textAnchor="right" stroke="black">
             {pp(data.köln)}
           </text>
-          <text x={280} y={28} fontSize={10} textAnchor="right" stroke="black">
+          <text x={282} y={48} fontSize={15} textAnchor="right" stroke="black">
             {pp(data.frankfurt)}
           </text>
         </svg>
