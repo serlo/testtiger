@@ -198,15 +198,134 @@ export const exercise39: Exercise<DATA> = {
               a) Wie viele Würfel benötigt man für Figur 4? Ergänze den Wert in
               der Tabelle.
             </p>
-            <svg viewBox="0 0 328 110">
-              <image
-                href="/content/NRW_MSA_Würfel_Tabelle.PNG"
-                height="110"
-                width="328"
+            <svg width="327" height="70" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="0"
+                y="0"
+                width="327"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
               />
+
+              <rect
+                x="0"
+                y="0"
+                width="327"
+                height="50"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              <line
+                x1="0"
+                y1="22"
+                x2="327"
+                y2="22"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
               <text
-                x={180}
-                y={80}
+                x="50"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Stadt
+              </text>
+              <text
+                x="50"
+                y="38"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Anzahl der Würfel
+              </text>
+
+              <line
+                x1="102"
+                y1="00"
+                x2="102"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="160"
+                y1="0"
+                x2="160"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="217.5"
+                y1="0"
+                x2="217.5"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="275"
+                y1="0"
+                x2="275"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              <text
+                x="130"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="190"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                2
+              </text>
+              <text
+                x="246.5"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                3
+              </text>
+              <text
+                x="302"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                4
+              </text>
+
+              <text
+                x={126}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -214,8 +333,8 @@ export const exercise39: Exercise<DATA> = {
                 {data.startwert}
               </text>
               <text
-                x={215}
-                y={80}
+                x={182}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -223,8 +342,8 @@ export const exercise39: Exercise<DATA> = {
                 {2 * (2 + data.startwert - 1)}
               </text>
               <text
-                x={250}
-                y={80}
+                x={238}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -255,16 +374,134 @@ export const exercise39: Exercise<DATA> = {
               Damit hat die 4. Figur 4 · {data.startwert + 3} ={' '}
               <strong>{4 * (4 + data.startwert - 1)}</strong> Würfel.
             </p>
-
-            <svg viewBox="0 0 328 110">
-              <image
-                href="/content/NRW_MSA_Würfel_Tabelle.PNG"
-                height="110"
-                width="328"
+            <svg width="328" height="70" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="0"
+                y="0"
+                width="327"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
               />
+
+              <rect
+                x="0"
+                y="0"
+                width="327"
+                height="50"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              <line
+                x1="0"
+                y1="22"
+                x2="327"
+                y2="22"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
               <text
-                x={180}
-                y={80}
+                x="50"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Stadt
+              </text>
+              <text
+                x="50"
+                y="38"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Anzahl der Würfel
+              </text>
+
+              <line
+                x1="102"
+                y1="00"
+                x2="102"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="160"
+                y1="0"
+                x2="160"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="217.5"
+                y1="0"
+                x2="217.5"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="275"
+                y1="0"
+                x2="275"
+                y2="50"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              <text
+                x="130"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="190"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                2
+              </text>
+              <text
+                x="246.5"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                3
+              </text>
+              <text
+                x="302"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                4
+              </text>
+
+              <text
+                x={126}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -272,8 +509,8 @@ export const exercise39: Exercise<DATA> = {
                 {data.startwert}
               </text>
               <text
-                x={215}
-                y={80}
+                x={182}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -281,8 +518,8 @@ export const exercise39: Exercise<DATA> = {
                 {2 * (2 + data.startwert - 1)}
               </text>
               <text
-                x={250}
-                y={80}
+                x={238}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
@@ -290,8 +527,8 @@ export const exercise39: Exercise<DATA> = {
                 {3 * (3 + data.startwert - 1)}
               </text>
               <text
-                x={285}
-                y={80}
+                x={292}
+                y={42}
                 fontSize={15}
                 textAnchor="right"
                 stroke="black"
