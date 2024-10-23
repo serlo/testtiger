@@ -25,6 +25,8 @@ export interface ExerciseWithSubtasks<T = unknown> {
   tasks: {
     points?: number
     duration?: number
+    skillIntro?: (props: { data: T }) => JSX.Element
+    intro?: (props: { data: T }) => JSX.Element
     task: (props: { data: T }) => JSX.Element
     solution: (props: { data: T }) => JSX.Element
   }[]
