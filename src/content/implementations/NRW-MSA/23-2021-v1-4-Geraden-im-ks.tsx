@@ -246,6 +246,15 @@ export const exercise23: Exercise<DATA> = {
               <rect
                 x="10"
                 y="10"
+                width="70"
+                height="80"
+                fill="#D2ECF6"
+                stroke="none"
+                ry="10"
+              />
+              <rect
+                x="10"
+                y="10"
                 width="280"
                 height="80"
                 rx="10"
