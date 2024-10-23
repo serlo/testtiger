@@ -135,22 +135,159 @@ export const exercise8: Exercise<DATA> = {
               voraussichtliche Anzahl der Milben für die kommenden vier und acht
               Wochen. Die Werte halten sie in einer Tabelle fest.
             </p>
-            <svg viewBox="0 0 700 200">
-              <image
-                href="/content/NRW_MSA_Milbe_Tabelle.PNG"
-                height="200"
-                width="700"
+            <svg width="320" height="66" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="0"
+                y="0"
+                width="328"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
               />
+
+              <rect
+                x="0"
+                y="0"
+                width="328"
+                height="66"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              <line
+                x1="0"
+                y1="22"
+                x2="328"
+                y2="22"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="0"
+                y1="44"
+                x2="328"
+                y2="44"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              <text x="5" y="38" fontSize="10" fill="black">
+                Zeit in Wochen
+              </text>
+              <text x="5" y="60" fontSize="10" fill="black">
+                Anzahl der Milben
+              </text>
+              <line
+                x1="100"
+                y1="0"
+                x2="100"
+                y2="66"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="180"
+                y1="00"
+                x2="180"
+                y2="66"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="255"
+                y1="0"
+                x2="255"
+                y2="66"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
               <text
-                x={250}
-                y={145}
-                fontSize={30}
+                x="140"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Wert 1
+              </text>
+              <text
+                x="215"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Wert 2
+              </text>
+              <text
+                x="290"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Wert 3
+              </text>
+
+              <text
+                x={136}
+                y={36}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                0
+              </text>
+              <text
+                x={214}
+                y={36}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                4
+              </text>
+              <text
+                x={289}
+                y={36}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                8
+              </text>
+              <text
+                x={130}
+                y={58}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.count}
               </text>
+              <text
+                x={214}
+                y={58}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              ></text>
+              <text
+                x={289}
+                y={58}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              ></text>
             </svg>
+
             <p>Ergänze die fehlenden Werte in der Tabelle.</p>
           </>
         )
@@ -169,34 +306,156 @@ export const exercise8: Exercise<DATA> = {
               Anzahl nach 4 Wochen. Der Wert nach 8 Wochen ist somit:<br></br>
               {data.count * 2} ⋅ 2 = <strong>{data.count * 4} Milben</strong>
             </p>
-            <svg viewBox="0 0 700 200">
-              <image
-                href="/content/NRW_MSA_Milbe_Tabelle.PNG"
-                height="200"
-                width="700"
+            <svg width="320" height="66" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="0"
+                y="0"
+                width="328"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
               />
+
+              <rect
+                x="0"
+                y="0"
+                width="328"
+                height="66"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              <line
+                x1="0"
+                y1="22"
+                x2="328"
+                y2="22"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="0"
+                y1="44"
+                x2="328"
+                y2="44"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              <text x="5" y="38" fontSize="10" fill="black">
+                Zeit in Wochen
+              </text>
+              <text x="5" y="60" fontSize="10" fill="black">
+                Anzahl der Milben
+              </text>
+              <line
+                x1="100"
+                y1="0"
+                x2="100"
+                y2="66"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="180"
+                y1="00"
+                x2="180"
+                y2="66"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="255"
+                y1="0"
+                x2="255"
+                y2="66"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
               <text
-                x={250}
-                y={145}
-                fontSize={30}
+                x="140"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Wert 1
+              </text>
+              <text
+                x="215"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Wert 2
+              </text>
+              <text
+                x="290"
+                y="16"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Wert 3
+              </text>
+
+              <text
+                x={136}
+                y={36}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                0
+              </text>
+              <text
+                x={214}
+                y={36}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                4
+              </text>
+              <text
+                x={289}
+                y={36}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                8
+              </text>
+              <text
+                x={130}
+                y={58}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.count}
               </text>
               <text
-                x={420}
-                y={145}
-                fontSize={30}
+                x={208}
+                y={58}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
                 {data.count * 2}
               </text>
               <text
-                x={580}
-                y={145}
-                fontSize={30}
+                x={283}
+                y={58}
+                fontSize={10}
                 textAnchor="right"
                 stroke="black"
               >
