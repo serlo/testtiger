@@ -40,7 +40,6 @@ import { exercise41 } from './implementations/NRW-MSA/41-2018-1-2-Kugeln-ziehen'
 import { exercise43 } from './implementations/NRW-MSA/43-2018-1-4-lineares-gleichungssystem'
 import { exercise44 } from './implementations/NRW-MSA/44-2018-1-5-lineare-funktion'
 import { exercise42 } from './implementations/NRW-MSA/42-2018-1-3-Kugel'
-import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
 import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
 import { exercise40 } from './implementations/NRW-MSA/40-2018-1-1-Zahlen ordnen'
 import { exercise9 } from './implementations/NRW-MSA/9-2023-2-3-Zahlenpaare'
@@ -58,6 +57,7 @@ import { exercise54 } from './implementations/NRW-MSA/54-2024-2-2-Lautsprecher'
 import { exercise53 } from './implementations/NRW-MSA/53-2024-2-1-Fruchtfliegen'
 import { exercise120 } from './implementations/NRW-EESA/120-2023-1-1-Zahlen-vergleichen'
 import { exercise121 } from './implementations/NRW-EESA/121-2023-1-2-Einheiten-umrechnen'
+import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
