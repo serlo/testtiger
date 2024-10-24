@@ -542,13 +542,19 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 2,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
               Die Anzahl der Würfel für Figur n kann mit folgendem Term
               berechnet werden:<br></br>(I) n · (n + {data.startwert - 1})
             </p>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               b) Bestimme mithilfe des Terms die Anzahl der Würfel für Figur{' '}
               {data.random}.

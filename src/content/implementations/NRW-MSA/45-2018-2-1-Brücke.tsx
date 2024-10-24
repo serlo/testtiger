@@ -147,7 +147,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 2,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
@@ -228,7 +228,12 @@ export const exercise45: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
-
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               b) Auf welcher Teilstrecke fährt der Zug mit der höchsten
               Durchschnittsgeschwindigkeit?<br></br> Begründe deine
@@ -266,7 +271,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 3,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
@@ -274,6 +279,12 @@ export const exercise45: Exercise<DATA> = {
               fährt die Strecke mit einer durchschnittlichen Geschwindigkeit von{' '}
               {data.pace_2} Kilometern pro Stunde [km/h].
             </p>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               c) Zeichne den Verlauf der Fahrt des Güterzugs in die Grafik ein
               (Abbildung 2). Entnimm der Grafik den Streckenabschnitt, auf dem
@@ -382,6 +393,18 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 4,
+      intro({ data }) {
+        return (
+          <>
+            <p>
+              Der Zug durchfährt Kurven in Schräglage. Um diese Schräglage zu
+              erreichen, werden die Gleise unterschiedlich hoch verlegt
+              (Abbildung 3). Der Neigungswinkel a darf maximal{' '}
+              {pp(data.alpha_max)}° betragen.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const ergebnis = roundToDigits(
           (Math.sin((data.alpha_max / 360) * 2 * Math.PI) * data.width) / 10,
@@ -389,12 +412,6 @@ export const exercise45: Exercise<DATA> = {
         )
         return (
           <>
-            <p>
-              Der Zug durchfährt Kurven in Schräglage. Um diese Schräglage zu
-              erreichen, werden die Gleise unterschiedlich hoch verlegt
-              (Abbildung 3). Der Neigungswinkel α darf maximal{' '}
-              {pp(data.alpha_max)}° betragen.
-            </p>
             <p>
               d) Max behauptet: {'"'}Wenn der Neigungswinkel α ={' '}
               {pp(data.alpha_max)}° beträgt, dann beträgt der Höhenunterschied
@@ -514,7 +531,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 3,
-      task({ data }) {
+      intro({ data }) {
         const a = roundToDigits(-30 / Math.pow(30 * 2.5, 2), 4)
         function toX(n: number) {
           return 10 + n * 2
@@ -540,7 +557,7 @@ export const exercise45: Exercise<DATA> = {
             <p>
               In Baunatal fotografieren Max und Justus die Brücke für den
               Mathematikunterricht. Der Brückenbogen kann durch eine Parabel g
-              der Form <br></br>g(x) = d · (x − e)² + f <br></br>angenähert
+              der Form <br></br>g(x) = d · (x - e)² + f <br></br>angenähert
               werden (Abbildung 4).
             </p>
             <svg viewBox="0 0 328 150">
@@ -647,7 +664,32 @@ export const exercise45: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
+          </>
+        )
+      },
+      task({ data }) {
+        const a = roundToDigits(-30 / Math.pow(30 * 2.5, 2), 4)
+        function toX(n: number) {
+          return 10 + n * 2
+        }
+        function toY(n: number) {
+          return 116 - n * 2.1
+        }
+        function generateParabolaPoints(
+          a: number,
 
+          step: number,
+        ): string {
+          let points = ''
+          for (let x = 0; x <= 150; x += step) {
+            const y = a * 0.95 * (x - 30 * 2.5) * (x - 30 * 2.5) + 30
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints(a, 0.1)
+        return (
+          <>
             <p>
               e) Begründe, dass die Funktionsgleichung g(x) ={' '}
               {pp(

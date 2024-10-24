@@ -194,6 +194,24 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 2,
+      intro({ data }) {
+        const V = roundToDigits(
+          (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
+          -2,
+        )
+        return (
+          <>
+            <p>
+              Sinja entdeckt würfelförmige Wassermelonen, die in Japan verkauft
+              werden (Abbildungen 2).
+            </p>
+            <p>
+              Eine würfelförmige Wassermelone hat ebenfalls ein Volumen von V ≈{' '}
+              {pp(V)} cm³.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const V = roundToDigits(
           (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
@@ -202,15 +220,7 @@ export const exercise19: Exercise<DATA> = {
         return (
           <>
             <p>
-              c) Sinja entdeckt würfelförmige Wassermelonen, die in Japan
-              verkauft werden (Abbildungen 2).
-            </p>
-            <p>
-              Eine würfelförmige Wassermelone hat ebenfalls ein Volumen von V ≈{' '}
-              {pp(V)} cm³.
-            </p>
-            <p>
-              Bestätige durch eine Rechnung, dass diese Wassermelone eine
+              c) Bestätige durch eine Rechnung, dass diese Wassermelone eine
               Kantenlänge von ca. {pp(roundToDigits(Math.pow(V, 1 / 3), 2))} cm
               hat.
             </p>

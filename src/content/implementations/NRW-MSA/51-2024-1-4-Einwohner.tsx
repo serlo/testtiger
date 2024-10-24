@@ -317,50 +317,48 @@ export const exercise51: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>
-              {data.case == 1 && (
-                <>
-                  <p>
-                    c) Stuttgart hat weniger Einwohner als Frankfurt am Main und
-                    liegt auf Platz sechs dieser Rangliste. <br></br> Erläutere,
-                    wie sich die Spannweite verändert, wenn zusätzlich Stuttgart
-                    berücksichtigt wird.
-                  </p>
-                </>
-              )}
-              {data.case == 2 && (
-                <>
-                  <p>
-                    c) Erläutere, wie sich die Spannweite verändert, wenn
-                    Hamburg genau so viele Einwohner hätte wie Berlin.
-                  </p>
-                </>
-              )}
-              {data.case == 3 && (
-                <>
-                  <p>
-                    c) Erläutere, wie sich der Durchschnitt verändert, wenn alle
-                    Städte einhunderttausend Einwohner mehr hätten.
-                  </p>
-                </>
-              )}
-              {data.case == 4 && (
-                <>
-                  <p>
-                    c) Erläutere, wie sich der Median verändert, wenn Berlin 1
-                    Mio. Einwohner mehr hätte.
-                  </p>
-                </>
-              )}
-              {data.case == 5 && (
-                <>
-                  <p>
-                    c) Erläutere, wie sich der Durchschnitt verändert, wenn
-                    Berlin 1 Mio. Einwohner mehr hätte.
-                  </p>
-                </>
-              )}
-            </p>
+            {data.case == 1 && (
+              <>
+                <p>
+                  c) Stuttgart hat weniger Einwohner als Frankfurt am Main und
+                  liegt auf Platz sechs dieser Rangliste. <br></br> Erläutere,
+                  wie sich die Spannweite verändert, wenn zusätzlich Stuttgart
+                  berücksichtigt wird.
+                </p>
+              </>
+            )}
+            {data.case == 2 && (
+              <>
+                <p>
+                  c) Erläutere, wie sich die Spannweite verändert, wenn Hamburg
+                  genau so viele Einwohner hätte wie Berlin.
+                </p>
+              </>
+            )}
+            {data.case == 3 && (
+              <>
+                <p>
+                  c) Erläutere, wie sich der Durchschnitt verändert, wenn alle
+                  Städte einhunderttausend Einwohner mehr hätten.
+                </p>
+              </>
+            )}
+            {data.case == 4 && (
+              <>
+                <p>
+                  c) Erläutere, wie sich der Median verändert, wenn Berlin 1
+                  Mio. Einwohner mehr hätte.
+                </p>
+              </>
+            )}
+            {data.case == 5 && (
+              <>
+                <p>
+                  c) Erläutere, wie sich der Durchschnitt verändert, wenn Berlin
+                  1 Mio. Einwohner mehr hätte.
+                </p>
+              </>
+            )}
           </>
         )
       },

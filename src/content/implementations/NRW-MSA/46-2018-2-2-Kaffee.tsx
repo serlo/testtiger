@@ -190,13 +190,20 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 3,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
+            {' '}
             <p>
               Die obere Öffnung eines handelsüblichen Pappbechers hat einen
               Durchmesser von {data.dia} cm.
             </p>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               c) Der Boden einer Sporthalle mit {data.width} m Breite und{' '}
               {data.length} m Länge reicht nicht aus, um{' '}
@@ -265,31 +272,43 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 3,
+      intro({ data }) {
+        return (
+          <>
+            {' '}
+            <p>
+              <p>
+                Ein Pappbecher hat die Form eines Kegelstumpfes (Abbildung 2).
+              </p>
+              <p>
+                Das Volumen des Kegelstumpfes lässt sich mit der folgenden
+                Formel berechnen:
+              </p>
+              <p>
+                V = (r<sub>1</sub>
+                <sup>2</sup> + r<sub>1</sub> · r<sub>2</sub> + r<sub>2</sub>
+                <sup>2</sup>) · {buildInlineFrac('π · h', 3)}
+              </p>
+
+              <center>
+                <img
+                  src="/content/NRW_MSA_Kegelstumpf.PNG"
+                  width={200}
+                  alt=""
+                />
+                <Color5>
+                  <span style={{ fontSize: 'small' }}>
+                    Abbildung 2: Kegelstumpf
+                  </span>
+                </Color5>
+              </center>
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
-            <p>
-              Ein Pappbecher hat die Form eines Kegelstumpfes (Abbildung 2).
-            </p>
-            <p>
-              Das Volumen des Kegelstumpfes lässt sich mit der folgenden Formel
-              berechnen:
-            </p>
-            <p>
-              V = (r<sub>1</sub>
-              <sup>2</sup> + r<sub>1</sub> · r<sub>2</sub> + r<sub>2</sub>
-              <sup>2</sup>) · {buildInlineFrac('π · h', 3)}
-            </p>
-
-            <center>
-              <img src="/content/NRW_MSA_Kegelstumpf.PNG" width={200} alt="" />
-              <Color5>
-                <span style={{ fontSize: 'small' }}>
-                  Abbildung 2: Kegelstumpf
-                </span>
-              </Color5>
-            </center>
-
             <p>
               d) Der Pappbecher hat folgende Maße: <br></br>r<sub>1</sub> ={' '}
               {pp((data.dia - 1) / 2)} cm, r<sub>2</sub> = {pp(data.dia / 2)} cm
@@ -447,6 +466,18 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 3,
+      intro({ data }) {
+        return (
+          <>
+            <p>
+              Karin misst die Temperatur des Kaffees zu verschiedenen Zeiten.
+              Sie stellt die Messwerte graphisch dar (Abbildung 3). Der
+              abgebildete Graph stellt eine gute Näherung für den
+              Abkühlungsprozess dar.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         function toX(n: number) {
           return 56 + (n / 10) * (221 / 5)
@@ -482,12 +513,6 @@ export const exercise46: Exercise<DATA> = {
         const shuffledItems = data.order.map(i => listItems[i])
         return (
           <>
-            <p>
-              Karin misst die Temperatur des Kaffees zu verschiedenen Zeiten.
-              Sie stellt die Messwerte graphisch dar (Abbildung 3). Der
-              abgebildete Graph stellt eine gute Näherung für den
-              Abkühlungsprozess dar.
-            </p>
             <p>
               f) Entscheide, welche Funktionsgleichung zu dem Graphen gehört.
               Begründe deine Entscheidung.

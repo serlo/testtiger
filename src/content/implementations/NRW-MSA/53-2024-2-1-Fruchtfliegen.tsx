@@ -213,7 +213,7 @@ export const exercise53: Exercise<DATA> = {
 
     {
       points: 42,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
@@ -222,6 +222,12 @@ export const exercise53: Exercise<DATA> = {
               <sup>x</sup> auf, um die Anzahl f(x) der Fruchtfliegen am Tag x zu
               berechnen.
             </p>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               b) Bestimme die voraussichtliche Anzahl an Fruchtfliegen nach{' '}
               {data.days}&nbsp;Tagen.
@@ -335,10 +341,7 @@ export const exercise53: Exercise<DATA> = {
     },
     {
       points: 42,
-      task({ data }) {
-        const lös = pp(
-          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100,
-        )
+      intro({ data }) {
         return (
           <>
             <p>
@@ -346,6 +349,15 @@ export const exercise53: Exercise<DATA> = {
               Berechnung der Anzahl der Fruchtfliegen in der Box an Tag x nutzt
               Jasmin daher die Funktion g mit g(x) = 20 · q<sup>x</sup>.
             </p>
+          </>
+        )
+      },
+      task({ data }) {
+        const lös = pp(
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100,
+        )
+        return (
+          <>
             <p>
               d) Jasmin bewahrt die Zuchtbox B im kühleren Keller auf und stellt
               fest, dass sich die Fruchfliegen dort langsamer vermehren als in

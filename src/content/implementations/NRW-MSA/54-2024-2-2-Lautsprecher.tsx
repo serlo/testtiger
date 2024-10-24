@@ -235,7 +235,7 @@ export const exercise54: Exercise<DATA> = {
 
     {
       points: 4,
-      task({ data }) {
+      intro({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
         const volume_s = Math.PI * data.b * (data.dot / 2 - data.b / 3)
@@ -289,7 +289,15 @@ export const exercise54: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
-
+          </>
+        )
+      },
+      task({ data }) {
+        const volume =
+          Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
+        const volume_s = Math.PI * data.b * (data.dot / 2 - data.b / 3)
+        return (
+          <>
             <p>
               c) Bestätige durch eine Rechnung, dass das Volumen des
               abgetrennten Kugelsegments ca.{' '}
@@ -411,7 +419,7 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 2,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
@@ -458,7 +466,12 @@ export const exercise54: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
-
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               d) Erläutere, dass die Wahrscheinlichkeit, als Erstes ein Lied des
               Sängers Ed Sheeran zu hören, p = {ppFrac(data.ed / 10)} beträgt.
@@ -497,7 +510,8 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 3,
-      task({ data }) {
+
+      intro({ data }) {
         return (
           <>
             <p>
@@ -592,7 +606,12 @@ export const exercise54: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
-
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               e) Ergänze die sechs fehlenden Wahrscheinlichkeiten im
               Baumdiagramm.

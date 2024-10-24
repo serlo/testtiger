@@ -53,7 +53,6 @@ export const exercise36: Exercise<DATA> = {
         return (
           <>
             <p>
-              <br></br>
               a) Eine Kaugummikugel hat einen Durchmesser von {data.dia} mm.
             </p>
 

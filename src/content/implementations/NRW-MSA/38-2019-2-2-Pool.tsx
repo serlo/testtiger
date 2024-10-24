@@ -287,7 +287,7 @@ export const exercise38: Exercise<DATA> = {
     },
     {
       points: 3,
-      task({ data }) {
+      intro({ data }) {
         return (
           <>
             <p>
@@ -305,6 +305,12 @@ export const exercise38: Exercise<DATA> = {
               <sup>x</sup>
             </p>
             <p>x ist die Zeit in Tagen; x = 0 ist der Tag der Abreise.</p>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
             <p>
               d) Erläutere die Bedeutung der Werte{' '}
               {pp(roundToDigits(data.surface / 20, 2))} und{' '}
