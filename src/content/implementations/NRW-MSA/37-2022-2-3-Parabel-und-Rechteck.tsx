@@ -540,12 +540,28 @@ export const exercise37: Exercise<DATA> = {
     {
       duration: 3,
       points: 3,
+      skillIntro({ data }) {
+        const b = data.y + data.x * data.x * Math.abs(data.a)
+        return (
+          <>
+            <p>
+              Gegeben ist der Term: <br></br>(I) 2 · 2x + 2 · (
+              {ppPolynom([
+                [data.a, 'x', 2],
+                [b, 'x', 0],
+              ])}
+              )
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
           <>
             <p>f) Julia vereinfacht den Term (I) zu (II):</p>
             <p>
+              (II){' '}
               {ppPolynom([
                 [data.a * 2, 'x', 2],
                 [4, 'x', 1],

@@ -152,7 +152,28 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Termumformungen', skillExercises: [] },
+          {
+            name: 'Termumformungen',
+            skillExercises: [
+              { id: 13 },
+              {
+                id: 37,
+                pages: [{ index: 'f', intro: ['skill'] }],
+              },
+              {
+                id: 9,
+                pages: [{ index: 'f', intro: ['global'] }],
+              },
+              {
+                id: 39,
+                pages: [{ index: 'e', intro: ['global'] }],
+              },
+              {
+                id: 29,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+            ],
+          },
           { name: 'Muster erkennen und anwenden', skillExercises: [] },
           { name: 'Exponentialgleichungen', skillExercises: [] },
         ],

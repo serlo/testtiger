@@ -615,6 +615,46 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 3,
+      intro({ data }) {
+        return (
+          <>
+            <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
+            <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Ablauf eines Blobbingsprunges als überlagerte
+                  Aufnahme
+                </span>
+              </Color5>
+            </center>
+
+            <p>
+              Eine vereinfachte Darstellung des Ablaufs ist in Abbildung 2
+              dargestellt. Beim Blobbing liegt ein mit Luft gefülltes Kissen im
+              Wasser.
+            </p>
+            <p>(1) Der Jumper springt vom Turm auf das Luftkissen.</p>
+            <p>
+              (2) Auf der anderen Seite des Kissens ist der Blobber. Durch den
+              Sprung befördert der Jumper den Blobber in die Luft.
+            </p>
+            <p>
+              (3) Der Blobber wird in die Luft geschleudert und landet dann im
+              Wasser.
+            </p>
+            <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Vereinfachte Darstellung des Blobbing-Ablaufs
+                  (nicht maßstabsgetreu)
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
+      },
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         return (
