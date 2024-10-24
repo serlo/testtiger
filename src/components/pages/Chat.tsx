@@ -256,9 +256,7 @@ export function Chat({ id }: ChatProps) {
     [id, seed, content],
   )
 
-  const color =
-    navigationData[1].topics.find(t => t.exercises.includes(id))?.twColor ??
-    'bg-gray-600'
+  const color = 'bg-gray-600'
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' && !event.shiftKey) {
