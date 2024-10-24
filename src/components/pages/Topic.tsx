@@ -70,7 +70,7 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
                         return (
                           <li
                             key={i}
-                            className="my-2 cursor-pointer"
+                            className="my-2 cursor-pointer hover:bg-gray-100 rounded"
                             onClick={() => {
                               setupExercise(ex.id, item.name, ex.pages)
                               history.push(
@@ -86,7 +86,10 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
                               )
                             }}
                           >
-                            {JSON.stringify(ex)}
+                            {exercisesData[ex.id].source}
+                            {ex.pages && (
+                              <> / {ex.pages.map(p => p.index).join(', ')}</>
+                            )}
                           </li>
                         )
                       })}
