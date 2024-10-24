@@ -364,6 +364,17 @@ export const exercise53: Exercise<DATA> = {
           </>
         )
       },
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Jasmin möchte für ein Biologieprojekt untersuchen, wie schnell
+              sich Fruchtfliegen vermehren. Sie kauft dazu zwei Zuchtboxen und
+              bezeichnet diese mit A und B.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const lös = pp(
           Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100,

@@ -470,11 +470,18 @@ export const exercise46: Exercise<DATA> = {
         return (
           <>
             <p>
-              Karin misst die Temperatur des Kaffees zu verschiedenen Zeiten.
+              Karin misst die Temperatur eines Kaffees zu verschiedenen Zeiten.
               Sie stellt die Messwerte graphisch dar (Abbildung 3). Der
               abgebildete Graph stellt eine gute Näherung für den
               Abkühlungsprozess dar.
             </p>
+          </>
+        )
+      },
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Kaffee ist das Lieblingsgetränk in Deutschland.</p>
           </>
         )
       },

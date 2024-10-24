@@ -397,7 +397,31 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Exponentialfunktion', skillExercises: [] },
+          {
+            name: 'Exponentialfunktion',
+            skillExercises: [
+              {
+                id: 38,
+                pages: [{ index: 'd' }],
+              },
+              {
+                id: 8,
+                pages: [{ index: 'c', intro: ['global'] }],
+              },
+              {
+                id: 46,
+                pages: [{ index: 'f', intro: ['skill'] }],
+              },
+              {
+                id: 53,
+                pages: [{ index: 'd', intro: ['skill'] }, { index: 'e' }],
+              },
+              {
+                id: 8,
+                pages: [{ index: 'f', intro: ['global', 'skill'] }],
+              },
+            ],
+          },
         ],
       },
       {
