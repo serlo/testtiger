@@ -57,7 +57,7 @@ import { exercise55 } from './implementations/NRW-MSA/55-2024-2-3-Dreieck'
 import { exercise54 } from './implementations/NRW-MSA/54-2024-2-2-Lautsprecher'
 import { exercise53 } from './implementations/NRW-MSA/53-2024-2-1-Fruchtfliegen'
 import { exercise101 } from './implementations/NRW-MSA/101-2023-1-2-Einheiten-umrechnen'
-import { exercise100 } from './implementations/NRW-MSA/100-2023-1-1-Zahlen vergleichen'
+import { exercise100 } from './implementations/NRW-MSA/100-2023-1-1-Zahlen-vergleichen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
