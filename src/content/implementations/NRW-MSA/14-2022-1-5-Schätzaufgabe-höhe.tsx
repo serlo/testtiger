@@ -25,27 +25,27 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 1 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_1.png',
-            'Der „General Sherman Tree“ ist ein Riesenmammutbaum und steht im US-Bundesstaat Kalifornien. Bestimme näherungsweise den Durchmesser des Baumes in Höhen des Mannes. Beschreibe dein Vorgehen.',
+            'Der „General Sherman Tree“ ist ein Riesenmammutbaum und steht im US-Bundesstaat Kalifornien. Bestimme näherungsweise den Durchmesser des Baumes. Beschreibe dein Vorgehen.',
           )}
         {data.task === 2 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_2.jpg',
-            'Bestimme näherungsweise die Höhe des Gebäudes bis zur Spitze in Höhen der Figur. Beschreibe dein Vorgehen.',
+            'Bestimme näherungsweise die Höhe des Gebäudes bis zur Spitze. Beschreibe dein Vorgehen.',
           )}
         {data.task === 3 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_3.jpg',
-            'Bestimme näherungsweise die Höhe der Kirche bis zur Spitze in Höhen der Frau mit der blauen Jacke. Beschreibe dein Vorgehen.',
+            'Bestimme näherungsweise die Höhe der Kirche bis zur Spitze. Beschreibe dein Vorgehen.',
           )}
         {data.task === 4 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_4.PNG',
-            'Bestimme näherungsweise die Höhe des Leuchtturms bis zur Spitze in Höhen des Mannes. Beschreibe dein Vorgehen.',
+            'Bestimme näherungsweise die Höhe des Leuchtturms bis zur Spitze. Beschreibe dein Vorgehen.',
           )}
         {data.task === 5 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_5.PNG',
-            'Bestimme näherungsweise die Höhe des Baumes in Höhen der Frau. Beschreibe dein Vorgehen.',
+            'Bestimme näherungsweise die Höhe des Baumes. Beschreibe dein Vorgehen.',
           )}
       </>
     )
