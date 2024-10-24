@@ -24,7 +24,7 @@ export async function generateStaticParams() {
     { all: ['lists'] },
     ...lists.map(list => ({ all: ['lists', list.id] })),
     { all: ['settings'] },
-    ...[0, 1, 2, 3, 4, 5].map(t => ({ all: ['topic', t.toString()] })),
+    ...[1, 2, 3, 4, 5, 6].map(t => ({ all: ['topic', t.toString()] })),
     ...Object.keys(exercisesData).map(id => ({
       all: ['exercise', id],
     })),
