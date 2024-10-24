@@ -10,7 +10,13 @@ interface ExerciseViewProps {
 export function ExerciseView({ id }: ExerciseViewProps) {
   useEffect(() => {
     if (ExerciseViewStore.getRawState().id !== id) {
-      setupExercise(id)
+      const hash = window.location.hash
+      if (hash) {
+        const obj = JSON.parse(decodeURIComponent(hash.substring(1)))
+        setupExercise(id, obj.name, obj.pages)
+      } else {
+        setupExercise(id)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

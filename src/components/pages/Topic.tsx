@@ -77,7 +77,12 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
                                 '/exercise/' +
                                   ex.id +
                                   '#' +
-                                  item.name.toLowerCase().replace(/\s/g, '-'),
+                                  encodeURIComponent(
+                                    JSON.stringify({
+                                      name: item.name,
+                                      pages: ex.pages,
+                                    }),
+                                  ),
                               )
                             }}
                           >
