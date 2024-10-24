@@ -12,7 +12,7 @@ export function IndicatorBar() {
 
   const pages = ExerciseViewStore.useState(s => s.pages)
 
-  if (navIndicatorLength == 0) {
+  if (navIndicatorLength == 0 || (pages && pages.length == 1)) {
     return null
   }
 
