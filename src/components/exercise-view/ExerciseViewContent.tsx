@@ -84,7 +84,7 @@ export function ExerciseViewContent() {
                 (t, j) => countLetter('a', j) == page.index,
               )!
               const intros = (page.intro ?? []).slice()
-              if (!page.disableDefaultLocalIntro) {
+              if (!page.disableDefaultLocalIntro && subexercise.intro) {
                 intros.push('local')
               }
               return (
