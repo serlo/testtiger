@@ -147,6 +147,16 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Max und Justus machen einen Ausflug von Frankfurt zur Brücke in
+              Baunatal.
+            </p>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>

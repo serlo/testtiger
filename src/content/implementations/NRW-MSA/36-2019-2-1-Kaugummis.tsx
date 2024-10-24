@@ -128,6 +128,21 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        const V = (4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)
+        return (
+          <>
+            <p>
+              Steffi hat zum Geburtstag einen Kaugummiautomaten und eine Tüte
+              mit Kaugummikugeln bekommen.
+            </p>
+            <p>
+              Eine Kaugummikugel hat ein Volumen von{' '}
+              {pp(roundToDigits(V / 1000, 2))} [cm³].
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

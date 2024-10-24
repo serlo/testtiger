@@ -33,7 +33,23 @@ export const navigationData: { [key: number]: Navigation } = {
             skillExercises: [
               {
                 id: 45,
-                pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 45,
+                pages: [{ index: 'b', intro: ['skill'] }],
+              },
+              {
+                id: 18,
+                pages: [{ index: 'b' }],
+              },
+              {
+                id: 36,
+                pages: [{ index: 'b', intro: ['skill'] }],
+              },
+              {
+                id: 7,
+                pages: [{ index: 'c', intro: ['skill'] }],
               },
             ],
           },

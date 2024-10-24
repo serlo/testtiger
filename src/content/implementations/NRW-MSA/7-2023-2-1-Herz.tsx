@@ -210,6 +210,18 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        const A = Math.PI * (data.kante / 2) * (data.kante / 2)
+        return (
+          <>
+            <p>
+              Eine Firma produziert herzförmige Dekoanhänger aus Metall. Ein
+              Herz hat eine Gesamtfläche von{' '}
+              {pp(roundToDigits(data.kante * data.kante + A, 2))} [cm²].
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
