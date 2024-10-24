@@ -3,7 +3,7 @@ import { Store } from '../../../../store'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { setName } from '../../../../store/actions'
 import { exercisesData } from '@/content/exercises'
 import { setupExercise } from '@/components/exercise-view/state/actions'
@@ -11,6 +11,8 @@ import { setupExercise } from '@/components/exercise-view/state/actions'
 export function Home() {
   const name = Store.useState(s => s.name)
   const history = useHistory()
+
+  const [exam, setExam] = useState<'msa' | 'eesa'>('msa')
 
   useEffect(() => {
     if (!name) {
@@ -59,9 +61,25 @@ export function Home() {
               </button>
             ))}
           </div>
+          <div className="flex flex-col space-y-2 mt-4">
+            <label className="text-lg font-semibold" htmlFor="exam-select">
+              Prüfung
+            </label>
+            <select
+              id="exam-select"
+              value={exam}
+              onChange={e => setExam(e.target.value as 'msa' | 'eesa')}
+              className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="msa">MSA</option>
+              <option value="eesa">EESA</option>
+            </select>
+          </div>
           <div className="mt-8">
             Liste aller Aufgaben (Redaktion):
             {exercises.map(([id, content]) => {
+              if (exam == 'msa' && parseInt(id) > 99) return null
+              if (exam == 'eesa' && parseInt(id) < 100) return null
               return (
                 <div
                   key={id}
