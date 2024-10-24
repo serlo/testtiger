@@ -40,68 +40,59 @@ export const exercise31: Exercise<DATA> = {
       !Number.isInteger(data.e / data.f)
     )
   },
-  intro({ data }) {
-    return <></>
+  points: 2,
+  task({ data }) {
+    return (
+      <>
+        <p>Ordne die Zahlen der Größe nach. Beginne mit der kleinsten Zahl.</p>
+        <p>
+          {ppFrac(data.c / data.d)} &nbsp;&nbsp;&nbsp;&nbsp;{pp(data.a)}{' '}
+          &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
+          &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.e / data.f)}
+        </p>
+      </>
+    )
   },
-  tasks: [
-    {
-      points: 2,
-      task({ data }) {
-        return (
-          <>
-            <p>
-              Ordne die Zahlen der Größe nach. Beginne mit der kleinsten Zahl.
-            </p>
-            <p>
-              {ppFrac(data.c / data.d)} &nbsp;&nbsp;&nbsp;&nbsp;{pp(data.a)}{' '}
-              &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
-              &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.e / data.f)}
-            </p>
-          </>
-        )
-      },
-      solution({ data }) {
-        const array = [data.a, data.b, data.c / data.d, data.e / data.f].sort(
-          (a, b) => a - b,
-        )
-        return (
-          <>
-            <p>
-              Wandle die Brüche zuerst in Dezimalzahlen um, um die Zahlen
-              miteinander vergleichen zu können:
-            </p>
+  solution({ data }) {
+    const array = [data.a, data.b, data.c / data.d, data.e / data.f].sort(
+      (a, b) => a - b,
+    )
+    return (
+      <>
+        <p>
+          Wandle die Brüche zuerst in Dezimalzahlen um, um die Zahlen
+          miteinander vergleichen zu können:
+        </p>
 
-            <p>
-              {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
-            </p>
-            <p>
-              {ppFrac(data.e / data.f)} = {pp(data.e / data.f)}
-            </p>
+        <p>
+          {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
+        </p>
+        <p>
+          {ppFrac(data.e / data.f)} = {pp(data.e / data.f)}
+        </p>
 
-            <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
+        <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
 
-            <p>
-              <strong>
-                {array[0] == data.c / data.d || array[0] == data.e / data.f
-                  ? ppFrac(array[0])
-                  : pp(array[0])}{' '}
-                {' < '}{' '}
-                {array[1] == data.c / data.d || array[1] == data.e / data.f
-                  ? ppFrac(array[1])
-                  : pp(array[1])}{' '}
-                {' < '}{' '}
-                {array[2] == data.c / data.d || array[2] == data.e / data.f
-                  ? ppFrac(array[2])
-                  : pp(array[2])}{' '}
-                {' < '}{' '}
-                {array[3] == data.c / data.d || array[3] == data.e / data.f
-                  ? ppFrac(array[3])
-                  : pp(array[3])}
-              </strong>
-            </p>
-          </>
-        )
-      },
-    },
-  ],
+        <p>
+          <strong>
+            {array[0] == data.c / data.d || array[0] == data.e / data.f
+              ? ppFrac(array[0])
+              : pp(array[0])}{' '}
+            {' < '}{' '}
+            {array[1] == data.c / data.d || array[1] == data.e / data.f
+              ? ppFrac(array[1])
+              : pp(array[1])}{' '}
+            {' < '}{' '}
+            {array[2] == data.c / data.d || array[2] == data.e / data.f
+              ? ppFrac(array[2])
+              : pp(array[2])}{' '}
+            {' < '}{' '}
+            {array[3] == data.c / data.d || array[3] == data.e / data.f
+              ? ppFrac(array[3])
+              : pp(array[3])}
+          </strong>
+        </p>
+      </>
+    )
+  },
 }
