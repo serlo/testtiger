@@ -288,7 +288,33 @@ export const navigationData: { [key: number]: Navigation } = {
         headerColor: 'medium',
         twColor: 'bg-fuchsia-500',
         /*exercises: [24, 34, 49],*/
-        skillGroups: [{ name: 'Tabellenkalkulation', skillExercises: [] }],
+        skillGroups: [
+          {
+            name: 'Tabellenkalkulation',
+            skillExercises: [
+              {
+                id: 34,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 24,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'c' },
+                ],
+              },
+              {
+                id: 49,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 47,
+                pages: [{ index: 'd', intro: ['global'] }, { index: 'e' }],
+              },
+            ],
+          },
+        ],
       },
     ],
   },
