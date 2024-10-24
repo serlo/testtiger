@@ -9,7 +9,7 @@ interface DATA {
   millilitres: number
 }
 
-export const exercise100: Exercise<DATA> = {
+export const exercise101: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
   source: '2023 Teil 1 Aufgabe 2',
   useCalculator: false,
