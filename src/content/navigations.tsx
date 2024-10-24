@@ -174,7 +174,44 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Muster erkennen und anwenden', skillExercises: [] },
+          {
+            name: 'Muster erkennen und anwenden',
+            skillExercises: [
+              {
+                id: 39,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'c', intro: ['skill'] },
+                  { index: 'd' },
+                  { index: 'f' },
+                ],
+              },
+              {
+                id: 19,
+                pages: [{ index: 'e' }],
+              },
+              {
+                id: 8,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 9,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'c' },
+                ],
+              },
+              {
+                id: 30,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 47,
+                pages: [{ index: 'b', intro: ['global'] }, { index: 'f' }],
+              },
+            ],
+          },
           { name: 'Exponentialgleichungen', skillExercises: [] },
         ],
       },

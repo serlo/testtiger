@@ -582,6 +582,13 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Gegeben ist der Term n · (n + {data.startwert - 1})</p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
