@@ -435,13 +435,15 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 2,
+
       intro({ data }) {
         return (
           <>
             <p>
-              Chris hat sich das Modell Dot gekauft und erstellt eine Playlist
-              mit Liedern seiner drei Lieblingskünstler (Abbildung 3). Die
-              Lieder der Playlist lässt er in zufälliger Reihenfolge abspielen.{' '}
+              Chris hat sich den Lautsprecher {'"'}Modell Dot{'"'} gekauft und
+              erstellt eine Playlist mit Liedern seiner drei Lieblingskünstler
+              (Abbildung 3). Die Lieder der Playlist lässt er in zufälliger
+              Reihenfolge abspielen.{' '}
             </p>
             <svg viewBox="0 0 328 360">
               <rect
@@ -526,7 +528,49 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 3,
-
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Chris hat eine Playlist mit Liedern seiner drei Lieblingskünstler
+              erstellt. Die Lieder der Playlist lässt er in zufälliger
+              Reihenfolge abspielen.{' '}
+            </p>
+            <svg viewBox="0 0 328 360">
+              <rect
+                x={0}
+                y={0}
+                width={328}
+                height={360}
+                fill="none"
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={135}
+                y={25}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                Playlist
+              </text>
+              {data.playlist.map((song, index) => (
+                <text
+                  key={index}
+                  x={40}
+                  y={80 + index * 25} // Start y at 80, with a gap of 25 per song
+                  fontSize={20}
+                  textAnchor="left"
+                  stroke="black"
+                >
+                  {song}
+                </text>
+              ))}
+            </svg>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>
@@ -625,6 +669,7 @@ export const exercise54: Exercise<DATA> = {
           </>
         )
       },
+
       task({ data }) {
         return (
           <>

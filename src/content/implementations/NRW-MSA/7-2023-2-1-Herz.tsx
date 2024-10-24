@@ -444,6 +444,13 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Eine Firma produziert herzförmige Dekoanhänger aus Metall.</p>
+          </>
+        )
+      },
       task({ data }) {
         const bruch = kürzeBruch(data.zaehler, data.nenner)
         return (

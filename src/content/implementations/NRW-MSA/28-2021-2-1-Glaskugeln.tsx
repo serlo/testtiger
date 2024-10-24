@@ -281,6 +281,13 @@ export const exercise28: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Ein Unternehmen stellt lackierte Glaskugeln her.</p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

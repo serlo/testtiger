@@ -291,6 +291,21 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Steffi hat zum Geburtstag einen Kaugummiautomaten und eine Tüte
+              mit Kaugummikugeln bekommen.
+            </p>
+            <p>
+              Sie füllt eine Mischung aus {data.red} roten und {data.white}{' '}
+              weißen Kaugummikugeln in den Automaten. Durch Drehen am Automaten
+              enthält man zufällig eine rote oder eine weiße Kaugummikugel.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const bruch = kürzeBruch(data.red, data.red + data.white)
         const bruch_2 = kürzeBruch(data.red, data.red + data.white - 1)

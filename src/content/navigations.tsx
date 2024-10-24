@@ -278,9 +278,69 @@ export const navigationData: { [key: number]: Navigation } = {
         twColor: 'bg-purple-600',
         /*exercises: [15, 41],*/
         skillGroups: [
-          { name: 'Laplace-Experimente', skillExercises: [] },
-          { name: 'Diagramme und Kenngrößen', skillExercises: [] },
-          { name: 'Baumdiagramm und Pfadregeln', skillExercises: [] },
+          {
+            name: 'Laplace-Experimente',
+            skillExercises: [
+              {
+                id: 41,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 36,
+                pages: [{ index: 'd', intro: ['global'] }],
+              },
+              {
+                id: 54,
+                pages: [{ index: 'd' }],
+              },
+            ],
+          },
+          {
+            name: 'Diagramme und Kenngrößen',
+            skillExercises: [
+              {
+                id: 15,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 51,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'c' },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Baumdiagramm und Pfadregeln',
+            skillExercises: [
+              {
+                id: 36,
+                pages: [{ index: 'e', intro: ['skill'] }, { index: 'f' }],
+              },
+              {
+                id: 28,
+                pages: [
+                  { index: 'd', intro: ['skill'] },
+                  { index: 'e' },
+                  { index: 'f' },
+                ],
+              },
+              {
+                id: 18,
+                pages: [{ index: 'e', intro: ['skill'] }, { index: 'f' }],
+              },
+              {
+                id: 7,
+                pages: [{ index: 'f', intro: ['skill'] }, { index: 'g' }],
+              },
+              {
+                id: 54,
+                pages: [{ index: 'e', intro: ['skill'] }, { index: 'f' }],
+              },
+            ],
+          },
         ],
       },
       {

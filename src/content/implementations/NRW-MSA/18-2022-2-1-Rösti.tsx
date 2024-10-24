@@ -376,6 +376,16 @@ export const exercise18: Exercise<DATA> = {
     },
     {
       points: 2,
+      intro({ data }) {
+        return (
+          <>
+            <p>
+              Ein Unternehmen stellt nach eigenem Rezept aus Kartoffeln
+              sogenannte Rösti her.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
