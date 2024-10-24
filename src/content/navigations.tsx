@@ -13,7 +13,20 @@ export const navigationData: { [key: number]: Navigation } = {
         skillGroups: [
           {
             name: 'Zahlen und Einheiten',
-            skillExercises: [{ id: 31 }, { id: 32 }, { id: 33 }],
+            skillExercises: [
+              { id: 40, pages: [{ index: 'a' }] },
+              { id: 40, pages: [{ index: 'b' }] },
+              { id: 31 },
+              { id: 25 },
+              { id: 1, pages: [{ index: 'a' }] },
+              { id: 1, pages: [{ index: 'b' }] },
+              { id: 48 },
+              { id: 21 },
+              { id: 16 },
+              { id: 32, pages: [{ index: 'c', intro: ['global'] }] },
+              { id: 50 },
+              { id: 10 },
+            ],
           },
           {
             name: 'Proportionalität',
@@ -33,7 +46,14 @@ export const navigationData: { [key: number]: Navigation } = {
         headerColor: 'danger',
         twColor: 'bg-red-500',
         /*exercises: [3, 9, 12, 13, 27, 35, 39, 43],*/
-        skillGroups: [],
+        skillGroups: [
+          { name: 'Umgang mit Formeln und Termen', skillExercises: [] },
+          { name: 'lineare Gleichungssysteme', skillExercises: [] },
+          { name: 'Quadratische Gleichungen', skillExercises: [] },
+          { name: 'Termumformungen', skillExercises: [] },
+          { name: 'Muster erkennen und anwenden', skillExercises: [] },
+          { name: 'Exponentialgleichungen', skillExercises: [] },
+        ],
       },
       {
         title: 'Körper und Figuren',
@@ -42,28 +62,57 @@ export const navigationData: { [key: number]: Navigation } = {
         /*exercises: [
           2, 6, 7, 11, 18, 19, 28, 36, 38, 46, 30, 36, 42, 52, 55, 54,
         ],*/
-        skillGroups: [],
+        skillGroups: [
+          { name: 'Oberfläche und Volumen - Grundlage', skillExercises: [] },
+
+          { name: 'Geometrische Sätze', skillExercises: [] },
+          { name: 'Länge von Strecken', skillExercises: [] },
+          {
+            name: 'Oberfläche und Volumen - Fortgeschritten',
+            skillExercises: [],
+          },
+          { name: 'Einfluss von Parameteränderungen', skillExercises: [] },
+          { name: 'Geometrische Sätze', skillExercises: [] },
+          { name: 'Fläche und Umfang', skillExercises: [] },
+          { name: 'Figuren zeichnen', skillExercises: [] },
+        ],
       },
       {
         title: 'Funktionen und Graphen',
         headerColor: 'success',
         twColor: 'bg-green-600',
         /*exercises: [4, 17, 23, 192, 29, 45, 33, 44, 53],*/
-        skillGroups: [],
+        skillGroups: [
+          { name: 'Wertetabellen', skillExercises: [] },
+          { name: 'Punktproben und Funktionswerte', skillExercises: [] },
+          { name: 'Lineare Funktionen', skillExercises: [] },
+          { name: 'Quadratische Funktion - Grundlage', skillExercises: [] },
+          { name: 'Graphen', skillExercises: [] },
+          {
+            name: 'Quadratische Funktion - Fortgeschritten',
+            skillExercises: [],
+          },
+          { name: 'Wachstum', skillExercises: [] },
+          { name: 'Exponentialfunktion', skillExercises: [] },
+        ],
       },
       {
         title: 'Zufall und Daten',
         headerColor: 'tertiary',
         twColor: 'bg-purple-600',
         /*exercises: [15, 41],*/
-        skillGroups: [],
+        skillGroups: [
+          { name: 'Laplace-Experimente', skillExercises: [] },
+          { name: 'Diagramme und Kenngrößen', skillExercises: [] },
+          { name: 'Baumdiagramm und Pfadregeln', skillExercises: [] },
+        ],
       },
       {
         title: 'Digitale Werkzeuge',
         headerColor: 'medium',
         twColor: 'bg-fuchsia-500',
         /*exercises: [24, 34, 49],*/
-        skillGroups: [],
+        skillGroups: [{ name: 'Tabellenkalkulation', skillExercises: [] }],
       },
     ],
   },
