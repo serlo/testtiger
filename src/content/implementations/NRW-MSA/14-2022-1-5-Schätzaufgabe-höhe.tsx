@@ -86,19 +86,44 @@ export const exercise14: Exercise<DATA> = {
             '/content/NRW_MSA_2022_v1_5_3_sol.PNG',
             'Die Höhe der Kirche entspricht etwa 13 mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
+        {data.task === 3 && (
+          <>
+            <p>
+              Verwendet man 1,65 m als Höhe der Frau, beträgt die Höhe der
+              Kirche etwa:{' '}
+            </p>
+            <p>13 · 1,65 = 21,45 [m]</p>
+          </>
+        )}
         {data.task === 3 && <></>}
         {data.task === 4 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_4_sol.PNG',
             'Die Höhe des Leuchtturms entspricht etwa 12 mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
-        {data.task === 4 && <></>}
+        {data.task === 4 && (
+          <>
+            <p>
+              Verwendet man 1,80 m als Höhe des Mannes, beträgt die Höhe des
+              Leuchtturms etwa:{' '}
+            </p>
+            <p>12 · 1,8 = 21,6 [m]</p>
+          </>
+        )}
         {data.task === 5 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_5_sol.PNG',
             'Die Höhe des Baumes entspricht etwa 5,25 mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
-        {data.task === 5 && <></>}
+        {data.task === 5 && (
+          <>
+            <p>
+              Verwendet man 1,65 m als Höhe der Frau, beträgt die Höhe des
+              Baumes etwa:{' '}
+            </p>
+            <p>5,25 · 1,65 ≈ 8,66 [m]</p>
+          </>
+        )}
       </>
     )
   },
