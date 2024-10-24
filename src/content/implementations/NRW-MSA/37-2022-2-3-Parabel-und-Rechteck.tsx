@@ -635,6 +635,111 @@ export const exercise37: Exercise<DATA> = {
     {
       duration: 5,
       points: 4,
+      skillIntro({ data }) {
+        const b = data.y + data.x * data.x * Math.abs(data.a)
+        function toX(n: number) {
+          return 352 + n * (450 / 12)
+        }
+        function toY(n: number) {
+          return 412 - n * (450 / 12)
+        }
+        function generateParabolaPoints(
+          a: number,
+          b: number,
+
+          step: number,
+        ): string {
+          let points = ''
+          for (let x = -8; x <= 8; x += step) {
+            const y = a * x * x + b
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints(
+          data.a,
+
+          b,
+          0.1,
+        )
+        return (
+          <>
+            <p>
+              Die Punkte A<sub>1</sub>, B<sub>1</sub>, C<sub>1</sub> und D
+              <sub>1</sub> beschreiben ein Rechteck.
+            </p>
+            <svg viewBox="0 0 700 450" className="max-w-[328px]">
+              <image
+                href="/content/NRW_MSA_KS_groß.png"
+                width="700"
+                height="450"
+              />
+              <polyline
+                points={parabolaPoints}
+                stroke="blue"
+                strokeWidth="3"
+                fill="none"
+              />
+
+              <text
+                x={toX(1) - 5}
+                y={toY(b + data.a) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}A2
+              </text>
+              <text
+                x={toX(-1) - 30}
+                y={toY(b + data.a) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                B2
+                {'×'}
+              </text>
+              <text
+                x={toX(1) - 5}
+                y={toY(0) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                {'×'}D2
+              </text>
+              <text
+                x={toX(-1) - 31}
+                y={toY(0) + 7}
+                fontSize={20}
+                textAnchor="right"
+                stroke="black"
+              >
+                C2{'×'}
+              </text>
+              <rect
+                x={toX(-1)}
+                y={toY(b + data.a)} // obere linke Ecke
+                width={toX(1) - toX(-1)} // Breite des Rechtecks
+                height={toY(0) - toY(b + data.a)} // Höhe des Rechtecks
+                fill="none" // Farbe des Rechtecks
+                stroke="black"
+                strokeWidth={2}
+              />
+            </svg>
+            <p>
+              Mit dem Term (II) kann man den Umfang für jedes dieser Rechtecke
+              berechnen: <br></br>(II){' '}
+              {ppPolynom([
+                [data.a * 2, 'x', 2],
+                [4, 'x', 1],
+                [2 * b, 'x', 0],
+              ])}
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         const c = 3.75

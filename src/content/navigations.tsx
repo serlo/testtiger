@@ -102,8 +102,8 @@ export const navigationData: { [key: number]: Navigation } = {
             name: 'Umgang mit Formeln und Termen',
             skillExercises: [
               {
-                id: 18,
-                pages: [{ index: 'b', intro: [] }],
+                id: 39,
+                pages: [{ index: 'b', intro: ['global'] }],
               },
               {
                 id: 37,
@@ -122,8 +122,36 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'lineare Gleichungssysteme', skillExercises: [] },
-          { name: 'Quadratische Gleichungen', skillExercises: [] },
+          {
+            name: 'lineare Gleichungssysteme',
+            skillExercises: [
+              { id: 43 },
+              { id: 35 },
+              {
+                id: 27,
+                pages: [{ index: 'a' }],
+              },
+              { id: 12 },
+              { id: 3 },
+            ],
+          },
+          {
+            name: 'Quadratische Gleichungen',
+            skillExercises: [
+              {
+                id: 52,
+                pages: [{ index: 'b' }],
+              },
+              {
+                id: 37,
+                pages: [{ index: 'g', intro: ['skill'] }],
+              },
+              {
+                id: 9,
+                pages: [{ index: 'e', intro: ['global', 'skill'] }],
+              },
+            ],
+          },
           { name: 'Termumformungen', skillExercises: [] },
           { name: 'Muster erkennen und anwenden', skillExercises: [] },
           { name: 'Exponentialgleichungen', skillExercises: [] },

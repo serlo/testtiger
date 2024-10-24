@@ -327,6 +327,17 @@ export const exercise9: Exercise<DATA> = {
     },
     {
       points: 6,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Mit dem Term (II) {buildInlineFrac(1, 2)} ​n² +{' '}
+              {buildInlineFrac(1, 2)} ​n kann Merle die Summe der Zahlen 1 bis n
+              berechnen.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
