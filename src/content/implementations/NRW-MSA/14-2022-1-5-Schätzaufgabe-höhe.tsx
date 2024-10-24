@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
 import { getImageAndDescription } from '@/helper/get-image-and-description'
+import { buildEquation } from '@/helper/math-builder'
 
 interface DATA {
   task: number
@@ -57,26 +58,47 @@ export const exercise14: Exercise<DATA> = {
             '/content/NRW_MSA_2022_v1_5_1_sol.png',
             'Der Durchmesser beträgt etwa vier mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
+        {data.task === 1 && (
+          <>
+            <p>
+              Verwendet man 1,80 m als Höhe des Mannes, beträgt der Durchmesser
+              des Baumes etwa:{' '}
+            </p>
+            <p>4 · 1,8 = 7,2 [m]</p>
+          </>
+        )}
         {data.task === 2 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_2_sol.PNG',
             'Die Höhe des Gebäudes entspricht etwa 6,5 mal die Höhe der Figur. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
+        {data.task === 2 && (
+          <>
+            <p>
+              Verwendet man 1,80 m als Höhe des Mannes, beträgt die Höhe des
+              Hauses etwa:{' '}
+            </p>
+            <p>6,5 · 1,8 = 11,7 [m]</p>
+          </>
+        )}
         {data.task === 3 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_3_sol.PNG',
             'Die Höhe der Kirche entspricht etwa 13 mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
+        {data.task === 3 && <></>}
         {data.task === 4 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_4_sol.PNG',
             'Die Höhe des Leuchtturms entspricht etwa 12 mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
+        {data.task === 4 && <></>}
         {data.task === 5 &&
           getImageAndDescription(
             '/content/NRW_MSA_2022_v1_5_5_sol.PNG',
             'Die Höhe des Baumes entspricht etwa 5,25 mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
+        {data.task === 5 && <></>}
       </>
     )
   },
