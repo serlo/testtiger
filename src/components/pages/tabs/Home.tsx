@@ -21,7 +21,6 @@ export function Home() {
   }, [name])
 
   const exercises = Object.entries(exercisesData)
-  exercises.reverse()
 
   return (
     <IonPage>
