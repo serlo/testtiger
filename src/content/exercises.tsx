@@ -23,7 +23,7 @@ import { exercise34 } from './implementations/NRW-MSA/34-2019-1-4-Tabellenkalkul
 import { exercise35 } from './implementations/NRW-MSA/35-2019-1-5-lineares-gleichungssystem'
 import { exercise19 } from './implementations/NRW-MSA/19-2022-2-2-Wassermelonen'
 import { exercise8 } from './implementations/NRW-MSA/8-2023-2-2-Varroa-Milbe'
-import { exercise192 } from './implementations/NRW-MSA/19_2-2022-2-3-Parabel-und-Rechteck'
+import { exercise37 } from './implementations/NRW-MSA/37-2022-2-3-Parabel-und-Rechteck'
 import { exercise28 } from './implementations/NRW-MSA/28-2021-2-1-Glaskugeln'
 import { exercise29 } from './implementations/NRW-MSA/29-2021-2-2-Blobbing'
 import { exercise36 } from './implementations/NRW-MSA/36-2019-2-1-Kaugummis'
@@ -98,7 +98,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 
   38: exercise38,
   39: exercise39,
-  192: exercise192,
+  37: exercise37,
   40: exercise40,
   41: exercise41,
   42: exercise42,
@@ -131,3 +131,4 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 // ['',<> <Color4><span className="inline-block  scale-y-[1.5]">↓</span></Color4></>,<><Color4><span style={{ fontSize: 'small' }}>Hier Erklärtext</span></Color4></>,]
 // π ≈ √
 // <center><Color5><span style={{ fontSize: 'small' }}>Unterschrift</span></Color5></center>
+// intro({data}){return(<></>)},

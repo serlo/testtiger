@@ -15,7 +15,7 @@ interface DATA {
   y: number
 }
 
-export const exercise192: Exercise<DATA> = {
+export const exercise37: Exercise<DATA> = {
   title: 'Parabel und Rechteck',
   source: '2022 Teil 2 Aufgabe 3',
   useCalculator: true,
