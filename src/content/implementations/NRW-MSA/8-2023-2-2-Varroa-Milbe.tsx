@@ -568,6 +568,20 @@ export const exercise8: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Um die Entwicklung der Milben pro Woche vorauszusagen, beschreiben
+              sie die Anzahl der Milben mit der folgenden Exponentialfunktion f:
+            </p>
+            <p>
+              f(x) = {data.count} ⋅ 1,19<sup>x</sup>
+            </p>
+            <p>x ist die Zeit in Wochen, x = 0 ist der Beobachtungsbeginn.</p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

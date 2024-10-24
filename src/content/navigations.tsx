@@ -212,7 +212,23 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Exponentialgleichungen', skillExercises: [] },
+          {
+            name: 'Exponentialgleichungen',
+            skillExercises: [
+              {
+                id: 47,
+                pages: [{ index: 'c', intro: ['global'] }],
+              },
+              {
+                id: 8,
+                pages: [{ index: 'e', intro: ['global'] }],
+              },
+              {
+                id: 53,
+                pages: [{ index: 'c', intro: ['global', 'skill'] }],
+              },
+            ],
+          },
         ],
       },
       {

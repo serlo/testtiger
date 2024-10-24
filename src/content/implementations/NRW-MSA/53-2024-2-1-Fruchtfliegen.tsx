@@ -289,6 +289,18 @@ export const exercise53: Exercise<DATA> = {
     },
     {
       points: 42,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Jasmin stellt die Funktion f mit der Funktionsgleichung f(x) = 10
+              · {pp(data.prozent)}
+              <sup>x</sup> auf, um die Anzahl f(x) der Fruchtfliegen am Tag x zu
+              berechnen.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
