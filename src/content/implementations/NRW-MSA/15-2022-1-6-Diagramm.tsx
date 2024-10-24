@@ -54,7 +54,243 @@ export const exercise15: Exercise<DATA> = {
     )
   },
   intro({ data }) {
-    return <></>
+    return (
+      <>
+        <p>
+          Die Weltgesundheitsorganisation (WHO) empfiehlt eine körperliche
+          Aktivität von mindestens 2,5 Stunden pro Woche.<br></br>Das Diagramm
+          zeigt den Anteil der Männer und Frauen, die mindestens 2,5 Stunden pro
+          Woche körperlich aktiv sind.
+        </p>
+        <svg viewBox="0 0 700 500">
+          <image
+            href="/content/NRW_MSA_Diagramm.png"
+            height="500"
+            width="700"
+          />
+
+          <text x={60} y={20} fontSize={20} textAnchor="right" stroke="black">
+            Prozent
+          </text>
+          <rect
+            x={70}
+            y={418 - 8.8 * data.maenner_1} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.maenner_1} // Höhe des Rechtecks
+            fill="orange" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={70}
+            y={418 - 8.8 * data.maenner_1 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.maenner_1} %
+          </text>
+          <rect
+            x={100}
+            y={418 - 8.8 * data.frauen_1} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.frauen_1} // Höhe des Rechtecks
+            fill="green" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={100}
+            y={418 - 8.8 * data.frauen_1 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.frauen_1} %
+          </text>
+          <rect
+            x={180}
+            y={418 - 8.8 * data.maenner_2} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.maenner_2} // Höhe des Rechtecks
+            fill="orange" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={180}
+            y={418 - 8.8 * data.maenner_2 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.maenner_2} %
+          </text>
+          <rect
+            x={210}
+            y={418 - 8.8 * data.frauen_2} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.frauen_2} // Höhe des Rechtecks
+            fill="green" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={210}
+            y={418 - 8.8 * data.frauen_2 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.frauen_2} %
+          </text>
+          <rect
+            x={290}
+            y={418 - 8.8 * data.maenner_3} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.maenner_3} // Höhe des Rechtecks
+            fill="orange" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={290}
+            y={418 - 8.8 * data.maenner_3 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.maenner_3} %
+          </text>
+          <rect
+            x={320}
+            y={418 - 8.8 * data.frauen_3} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.frauen_3} // Höhe des Rechtecks
+            fill="green" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={320}
+            y={418 - 8.8 * data.frauen_3 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.frauen_3} %
+          </text>
+          <rect
+            x={390}
+            y={418 - 8.8 * data.maenner_4} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.maenner_4} // Höhe des Rechtecks
+            fill="orange" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={390}
+            y={418 - 8.8 * data.maenner_4 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.maenner_4} %
+          </text>
+          <rect
+            x={420}
+            y={418 - 8.8 * data.frauen_4} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.frauen_4} // Höhe des Rechtecks
+            fill="green" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={420}
+            y={418 - 8.8 * data.frauen_4 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.frauen_4} %
+          </text>
+          <rect
+            x={500}
+            y={418 - 8.8 * data.maenner_5} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.maenner_5} // Höhe des Rechtecks
+            fill="orange" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={500}
+            y={418 - 8.8 * data.maenner_5 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.maenner_5} %
+          </text>
+          <rect
+            x={530}
+            y={418 - 8.8 * data.frauen_5} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.frauen_5} // Höhe des Rechtecks
+            fill="green" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={530}
+            y={418 - 8.8 * data.frauen_5 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.frauen_5} %
+          </text>
+          <rect
+            x={600}
+            y={418 - 8.8 * data.maenner_6} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.maenner_6} // Höhe des Rechtecks
+            fill="orange" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={600}
+            y={418 - 8.8 * data.maenner_6 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.maenner_6} %
+          </text>
+          <rect
+            x={630}
+            y={418 - 8.8 * data.frauen_6} // obere linke Ecke
+            width={25} // Breite des Rechtecks
+            height={8.8 * data.frauen_6} // Höhe des Rechtecks
+            fill="green" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
+          <text
+            x={630}
+            y={418 - 8.8 * data.frauen_6 - 10}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {data.frauen_6} %
+          </text>
+        </svg>
+      </>
+    )
   },
   tasks: [
     {
@@ -62,245 +298,6 @@ export const exercise15: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>
-              Die Weltgesundheitsorganisation (WHO) empfiehlt eine körperliche
-              Aktivität von mindestens 2,5 Stunden pro Woche.<br></br>Das
-              Diagramm zeigt den Anteil der Männer und Frauen, die mindestens
-              2,5 Stunden pro Woche körperlich aktiv sind.
-            </p>
-            <svg viewBox="0 0 700 500">
-              <image
-                href="/content/NRW_MSA_Diagramm.png"
-                height="500"
-                width="700"
-              />
-
-              <text
-                x={60}
-                y={20}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                Prozent
-              </text>
-              <rect
-                x={70}
-                y={418 - 8.8 * data.maenner_1} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.maenner_1} // Höhe des Rechtecks
-                fill="orange" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={70}
-                y={418 - 8.8 * data.maenner_1 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.maenner_1} %
-              </text>
-              <rect
-                x={100}
-                y={418 - 8.8 * data.frauen_1} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.frauen_1} // Höhe des Rechtecks
-                fill="green" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={100}
-                y={418 - 8.8 * data.frauen_1 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.frauen_1} %
-              </text>
-              <rect
-                x={180}
-                y={418 - 8.8 * data.maenner_2} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.maenner_2} // Höhe des Rechtecks
-                fill="orange" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={180}
-                y={418 - 8.8 * data.maenner_2 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.maenner_2} %
-              </text>
-              <rect
-                x={210}
-                y={418 - 8.8 * data.frauen_2} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.frauen_2} // Höhe des Rechtecks
-                fill="green" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={210}
-                y={418 - 8.8 * data.frauen_2 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.frauen_2} %
-              </text>
-              <rect
-                x={290}
-                y={418 - 8.8 * data.maenner_3} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.maenner_3} // Höhe des Rechtecks
-                fill="orange" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={290}
-                y={418 - 8.8 * data.maenner_3 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.maenner_3} %
-              </text>
-              <rect
-                x={320}
-                y={418 - 8.8 * data.frauen_3} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.frauen_3} // Höhe des Rechtecks
-                fill="green" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={320}
-                y={418 - 8.8 * data.frauen_3 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.frauen_3} %
-              </text>
-              <rect
-                x={390}
-                y={418 - 8.8 * data.maenner_4} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.maenner_4} // Höhe des Rechtecks
-                fill="orange" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={390}
-                y={418 - 8.8 * data.maenner_4 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.maenner_4} %
-              </text>
-              <rect
-                x={420}
-                y={418 - 8.8 * data.frauen_4} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.frauen_4} // Höhe des Rechtecks
-                fill="green" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={420}
-                y={418 - 8.8 * data.frauen_4 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.frauen_4} %
-              </text>
-              <rect
-                x={500}
-                y={418 - 8.8 * data.maenner_5} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.maenner_5} // Höhe des Rechtecks
-                fill="orange" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={500}
-                y={418 - 8.8 * data.maenner_5 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.maenner_5} %
-              </text>
-              <rect
-                x={530}
-                y={418 - 8.8 * data.frauen_5} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.frauen_5} // Höhe des Rechtecks
-                fill="green" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={530}
-                y={418 - 8.8 * data.frauen_5 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.frauen_5} %
-              </text>
-              <rect
-                x={600}
-                y={418 - 8.8 * data.maenner_6} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.maenner_6} // Höhe des Rechtecks
-                fill="orange" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={600}
-                y={418 - 8.8 * data.maenner_6 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.maenner_6} %
-              </text>
-              <rect
-                x={630}
-                y={418 - 8.8 * data.frauen_6} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={8.8 * data.frauen_6} // Höhe des Rechtecks
-                fill="green" // Farbe des Rechtecks
-                stroke="black"
-                strokeWidth={2}
-              />
-              <text
-                x={630}
-                y={418 - 8.8 * data.frauen_6 - 10}
-                fontSize={20}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.frauen_6} %
-              </text>
-            </svg>
             <p>
               a) Entscheide mithilfe des Diagramms ob die Aussage zutrifft oder
               nicht.
@@ -430,6 +427,17 @@ export const exercise15: Exercise<DATA> = {
     },
     {
       points: 1,
+      intro({ data }) {
+        return (
+          <>
+            <p>
+              In der Gruppe der 18- bis 29-Jährigen geben {data.umfrage} Männer
+              an, dass sie mindestens 2,5 Stunden pro Woche körperlich aktiv
+              sind.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

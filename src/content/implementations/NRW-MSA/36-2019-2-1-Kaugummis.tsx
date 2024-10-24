@@ -179,6 +179,21 @@ export const exercise36: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        const V = roundToDigits(
+          ((4 / 3) * Math.PI * Math.pow(data.dia / 2, 3)) / 1000,
+          2,
+        )
+        return (
+          <>
+            <p>
+              Steffi hat zum Geburtstag einen Kaugummiautomaten und eine Tüte
+              mit Kaugummikugeln bekommen.
+            </p>
+            <p>Eine Kugel hat ein Volumen von etwa {pp(V)} cm³.</p>
+          </>
+        )
+      },
       task({ data }) {
         const V = roundToDigits(
           ((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000,

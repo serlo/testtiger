@@ -529,6 +529,22 @@ export const exercise18: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Bevor die Rösti verpackt werden, wird zuerst das Gewicht und dann
+              das Aussehen kontrolliert. Alle Rösti, deren Gewicht oder deren
+              Aussehen nicht der Vorgabe entsprechen, werden aussortiert.
+            </p>
+            <p>
+              Die Wahrscheinlichkeit, dass beide Vorgaben eingehalten werden,
+              beträgt: {pp(roundToDigits((data.prob_1 / 100) * data.prob_2, 4))}{' '}
+              %
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

@@ -53,8 +53,43 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Schätzen und Überschlagen', skillExercises: [] },
-          { name: 'Prozentrechnung', skillExercises: [] },
+          {
+            name: 'Schätzen und Überschlagen',
+            skillExercises: [
+              { id: 20 },
+              { id: 14 },
+              {
+                id: 36,
+                pages: [{ index: 'c', intro: ['skill'] }],
+              },
+            ],
+          },
+          {
+            name: 'Prozentrechnung',
+            skillExercises: [
+              {
+                id: 15,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              { id: 5 },
+              {
+                id: 46,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 18,
+                pages: [{ index: 'g', intro: ['skill'] }],
+              },
+              {
+                id: 53,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 54,
+                pages: [{ index: 'c', intro: ['skill'] }],
+              },
+            ],
+          },
         ],
       },
       {

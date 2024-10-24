@@ -235,6 +235,23 @@ export const exercise54: Exercise<DATA> = {
 
     {
       points: 4,
+      skillIntro({ data }) {
+        const volume =
+          Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
+        return (
+          <>
+            <p>
+              Chris möchte sich einen Lautsprecher kaufen. Er vergleicht dazu
+              Maße und Volumen des zylinderförmigen Modells Echo mit den Maßen
+              und dem Volumen des näherungsweise kugelförmigen Modells Dot.
+            </p>
+            <p>
+              Das Volumen der ganzen Kugel von Modell Dot beträgt{' '}
+              {Math.round(volume)} cm³.
+            </p>
+          </>
+        )
+      },
       intro({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
