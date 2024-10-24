@@ -5,6 +5,7 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import { exercisesData } from '@/content/exercises'
 import { createGesture } from '@ionic/react'
 import { useRef, useEffect } from 'react'
+import { countLetter } from '@/helper/count-letter'
 
 export function SolutionOverlay() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
@@ -13,6 +14,8 @@ export function SolutionOverlay() {
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
   )
+
+  const pages = ExerciseViewStore.useState(s => s.pages)
 
   const content = exercisesData[id]
 
@@ -77,7 +80,12 @@ export function SolutionOverlay() {
         <div className="max-w-[328px] mx-auto">
           {proseWrapper(
             ('tasks' in content
-              ? content.tasks[navIndicatorPosition].solution
+              ? pages
+                ? content.tasks.find(
+                    (el, i) =>
+                      countLetter('a', i) == pages[navIndicatorPosition].index,
+                  )!.solution
+                : content.tasks[navIndicatorPosition].solution
               : content.solution)({
               data,
             }),

@@ -82,11 +82,6 @@ export function Home() {
                   </div>
                   <div className="text-xs text-gray-600">
                     {content.duration} min,{' '}
-                    {
-                      navigationData[1].topics.find(e =>
-                        e.exercises.includes(parseInt(id)),
-                      )?.title
-                    }
                     {'tasks' in content ? (
                       <>, {content.tasks.length} Teilaufgaben</>
                     ) : null}

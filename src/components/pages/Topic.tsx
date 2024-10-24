@@ -10,21 +10,36 @@ import {
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
 import { setupExercise } from '../exercise-view/state/actions'
+import { useState } from 'react'
+import { navigationData } from '@/content/navigations'
+import { SkillGroup } from '@/data/types'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FaIcon } from '../ui/FaIcon'
 
 interface TopicProps {
   title: string
   color: string
-  exercises: number[]
+  skillGroups: SkillGroup[]
 }
 
-export function Topic({ title, color, exercises }: TopicProps) {
+export function Topic({ title, color, skillGroups }: TopicProps) {
   const history = useHistory()
+  const [openIndex, setOpenIndex] = useState(0) // Default to the first section being open
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color={color}>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/app/home"></IonBackButton>
+            <button
+              className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block mx-4 text-xl"
+              onClick={() => {
+                // scroll restoration is buggy and will fix later
+                history.push('/app/home')
+              }}
+            >
+              <FaIcon icon={faArrowLeft} />
+            </button>
           </IonButtons>
           <IonTitle></IonTitle>
         </IonToolbar>
@@ -32,25 +47,49 @@ export function Topic({ title, color, exercises }: TopicProps) {
       <IonContent className="ion-padding">
         <div className="mx-4">
           <h1 className="font-bold text-2xl mt-4">{title}</h1>
-          <h2 className="mt-8 font-bold">Aufgaben:</h2>
-          <div className="">
-            {exercises.map((ex, i) => {
-              const content = exercisesData[ex]
-              if (!content) return null
-              return (
-                <button
-                  key={i}
-                  className="m-2 border p-3 hover:bg-gray-200 block rounded-lg"
-                  onClick={() => {
-                    setupExercise(ex)
-                    history.push('/exercise/' + ex)
-                  }}
+          <div className="w-full max-w-md mt-4 space-y-4">
+            {skillGroups.map((item, index) => (
+              <div key={index} className="border border-gray-300 rounded-md">
+                {/* Accordion Header */}
+                <div
+                  className="cursor-pointer bg-gray-200 px-4 py-2 font-medium text-gray-700"
+                  onClick={() => setOpenIndex(index)}
                 >
-                  {content.source && <>[{content.source}] </>}
-                  {content.title}
-                </button>
-              )
-            })}
+                  {item.name}
+                </div>
+
+                {/* Accordion Content */}
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openIndex === index ? 'max-h-screen' : 'max-h-0'
+                  }`}
+                >
+                  <div className="p-4 bg-white text-gray-600">
+                    <ul className="list-inside list-disc">
+                      {item.skillExercises.map((ex, i) => {
+                        return (
+                          <li
+                            key={i}
+                            className="my-2 cursor-pointer"
+                            onClick={() => {
+                              setupExercise(ex.id, item.name, ex.pages)
+                              history.push(
+                                '/exercise/' +
+                                  ex.id +
+                                  '#' +
+                                  item.name.toLowerCase().replace(/\s/g, '-'),
+                              )
+                            }}
+                          >
+                            {JSON.stringify(ex)}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </IonContent>

@@ -10,6 +10,8 @@ export function IndicatorBar() {
     s => s.navIndicatorPosition,
   )
 
+  const pages = ExerciseViewStore.useState(s => s.pages)
+
   if (navIndicatorLength == 0) {
     return null
   }
@@ -22,7 +24,7 @@ export function IndicatorBar() {
             <Fragment key={j}>
               {navIndicatorPosition == j ? (
                 <div className="bg-black w-12 h-4 mx-1.5 rounded-full text-white text-xs align-top">
-                  {countLetter('a', j)}
+                  {pages ? pages[j].index : countLetter('a', j)}
                 </div>
               ) : (
                 <div

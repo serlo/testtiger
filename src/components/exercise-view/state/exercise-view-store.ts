@@ -1,3 +1,4 @@
+import { SkillExercisePage } from '@/data/types'
 import { Store } from 'pullstate'
 
 export type IExerciseViewStore = {
@@ -13,6 +14,8 @@ export type IExerciseViewStore = {
     resultPending: boolean
     result: string
   }[]
+  pages?: SkillExercisePage[]
+  skill?: string
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({

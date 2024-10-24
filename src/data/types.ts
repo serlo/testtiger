@@ -39,8 +39,24 @@ export interface Navigation {
     title: string
     headerColor: string
     twColor: string
-    exercises: number[]
+    skillGroups: SkillGroup[]
   }[]
+}
+
+export interface SkillGroup {
+  name: string
+  skillExercises: SkillExercise[]
+}
+
+export interface SkillExercise {
+  id: number
+  pages?: SkillExercisePage[]
+}
+
+export interface SkillExercisePage {
+  index: string
+  intro?: ('global' | 'local' | 'skill')[]
+  disableDefaultLocalIntro?: boolean
 }
 
 export type IMessage = CoreMessage & {

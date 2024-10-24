@@ -17,6 +17,7 @@ export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)
   const data = ExerciseViewStore.useState(s => s.data)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
+  const pages = ExerciseViewStore.useState(s => s.pages)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
     s => s.navIndicatorExternalUpdate,
   )
@@ -41,6 +42,8 @@ export function ExerciseViewContent() {
 
   const content = exercisesData[id]
   const withSubtasks = 'tasks' in content
+
+  const multiPage = withSubtasks && (!pages || pages.length > 1)
   return (
     <div
       className="w-full h-full bg-gray-100"
@@ -56,7 +59,7 @@ export function ExerciseViewContent() {
         ref={ref}
         className={clsx(
           'flex overflow-x-scroll snap-x snap-mandatory gap-2 items-stretch w-full h-full',
-          !withSubtasks && 'justify-center',
+          !multiPage && 'justify-center',
         )}
         onScroll={e => {
           const [distance, offset] = calculateSnapPoints()
@@ -74,73 +77,160 @@ export function ExerciseViewContent() {
           })
         }}
       >
-        {withSubtasks && (
-          <div className="flex-shrink-0 w-[20%] snap-none"></div>
-        )}
-        {(withSubtasks ? content.tasks : [content]).map((t, i) => (
-          <div
-            className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
-            style={{ scrollbarWidth: 'thin' }}
-            key={i}
-          >
-            <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
-              <div className="flex justify-between p-[3px] w-full">
-                <div>
-                  <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
-                    Aufgabe{withSubtasks && <> {countLetter('a', i) + ')'}</>}
-                  </div>
-                  <button
-                    className="px-1 py-0.5 rounded-md bg-gray-100"
-                    onClick={() => {
-                      reseed()
-                    }}
-                  >
-                    <FaIcon icon={faMagicWandSparkles} />
-                  </button>
-                </div>
-                <div>
-                  <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-                    <div className="inset-0 absolute">
-                      <FaIcon icon={faCalculator} />
-                    </div>
-                    {!content.useCalculator && (
-                      <div className="absolute inset-0 -scale-x-100">
-                        <FaIcon icon={faSlash} />
+        {multiPage && <div className="flex-shrink-0 w-[20%] snap-none"></div>}
+        {pages && withSubtasks
+          ? pages.map((page, i) => {
+              const subexercise = content.tasks.find(
+                (t, j) => countLetter('a', j) == page.index,
+              )!
+              const intros = (page.intro ?? []).slice()
+              if (!page.disableDefaultLocalIntro) {
+                intros.push('local')
+              }
+              return (
+                <div
+                  className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
+                  style={{ scrollbarWidth: 'thin' }}
+                  key={i}
+                >
+                  <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
+                    <div className="flex justify-between p-[3px] w-full">
+                      <div>
+                        <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
+                          Aufgabe {page.index})
+                        </div>
+                        <button
+                          className="px-1 py-0.5 rounded-md bg-gray-100"
+                          onClick={() => {
+                            reseed()
+                          }}
+                        >
+                          <FaIcon icon={faMagicWandSparkles} />
+                        </button>
                       </div>
-                    )}
-                  </button>
-                  <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
-                    <FaIcon icon={faClock} className="text-xs" />{' '}
-                    {(withSubtasks ? t.duration : content.duration) ?? '?'} min
-                  </button>
-                  <button className="px-1 py-0.5 rounded-md bg-gray-100">
-                    {(withSubtasks ? t.points : content.points) ?? '?'} BE
-                  </button>
-                </div>
-              </div>
+                      <div>
+                        <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+                          <div className="inset-0 absolute">
+                            <FaIcon icon={faCalculator} />
+                          </div>
+                          {!content.useCalculator && (
+                            <div className="absolute inset-0 -scale-x-100">
+                              <FaIcon icon={faSlash} />
+                            </div>
+                          )}
+                        </button>
+                        <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
+                          <FaIcon icon={faClock} className="text-xs" />{' '}
+                          {subexercise.duration ?? '?'} min
+                        </button>
+                        <button className="px-1 py-0.5 rounded-md bg-gray-100">
+                          {subexercise.points ?? '?'} BE
+                        </button>
+                      </div>
+                    </div>
 
-              {i == 0 && withSubtasks && (
-                <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
-                  {proseWrapper(
-                    content.intro({
-                      data,
-                    }),
+                    {intros.map((intro, i) => (
+                      <div
+                        className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]"
+                        key={i}
+                      >
+                        {intro == 'global' &&
+                          proseWrapper(
+                            content.intro({
+                              data,
+                            }),
+                          )}
+
+                        {intro == 'local' &&
+                          subexercise.intro &&
+                          proseWrapper(
+                            subexercise.intro({
+                              data,
+                            }),
+                          )}
+
+                        {intro == 'skill' &&
+                          subexercise.skillIntro &&
+                          proseWrapper(
+                            subexercise.skillIntro({
+                              data,
+                            }),
+                          )}
+                      </div>
+                    ))}
+                    <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
+                      {proseWrapper(subexercise.task({ data }))}
+                    </div>
+                  </div>
+                </div>
+              )
+            })
+          : (withSubtasks ? content.tasks : [content]).map((t, i) => (
+              <div
+                className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
+                style={{ scrollbarWidth: 'thin' }}
+                key={i}
+              >
+                <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
+                  <div className="flex justify-between p-[3px] w-full">
+                    <div>
+                      <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
+                        Aufgabe
+                        {withSubtasks && <> {countLetter('a', i) + ')'}</>}
+                      </div>
+                      <button
+                        className="px-1 py-0.5 rounded-md bg-gray-100"
+                        onClick={() => {
+                          reseed()
+                        }}
+                      >
+                        <FaIcon icon={faMagicWandSparkles} />
+                      </button>
+                    </div>
+                    <div>
+                      <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+                        <div className="inset-0 absolute">
+                          <FaIcon icon={faCalculator} />
+                        </div>
+                        {!content.useCalculator && (
+                          <div className="absolute inset-0 -scale-x-100">
+                            <FaIcon icon={faSlash} />
+                          </div>
+                        )}
+                      </button>
+                      <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
+                        <FaIcon icon={faClock} className="text-xs" />{' '}
+                        {(withSubtasks ? t.duration : content.duration) ?? '?'}{' '}
+                        min
+                      </button>
+                      <button className="px-1 py-0.5 rounded-md bg-gray-100">
+                        {(withSubtasks ? t.points : content.points) ?? '?'} BE
+                      </button>
+                    </div>
+                  </div>
+
+                  {i == 0 && withSubtasks && (
+                    <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
+                      {proseWrapper(
+                        content.intro({
+                          data,
+                        }),
+                      )}
+                    </div>
                   )}
-                </div>
-              )}
 
-              {'intro' in t && t.intro && (
-                <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]">
-                  {proseWrapper(t.intro({ data }))}
+                  {'intro' in t && t.intro && (
+                    <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]">
+                      {proseWrapper(t.intro({ data }))}
+                    </div>
+                  )}
+                  <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
+                    {proseWrapper(t.task({ data }))}
+                  </div>
                 </div>
-              )}
-              <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
-                {proseWrapper(t.task({ data }))}
               </div>
-            </div>
-          </div>
-        ))}
-        {withSubtasks && <div className="flex-shrink-0 w-[5%] snap-none"></div>}
+            ))}
+        {multiPage && <div className="flex-shrink-0 w-[5%] snap-none"></div>}
       </div>
     </div>
   )

@@ -66,7 +66,7 @@ export function AppShell() {
                 <Topic
                   title={t.title}
                   color={t.headerColor}
-                  exercises={t.exercises}
+                  skillGroups={t.skillGroups}
                 />
               )}
             />

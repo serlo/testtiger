@@ -5,24 +5,38 @@ import { constrainedGeneration } from '@/helper/constrained-generation'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { ExerciseViewStore } from './exercise-view-store'
 import { extractor } from '../extractor/extractor'
-import { IMessage } from '@/data/types'
+import { IMessage, SkillExercise, SkillExercisePage } from '@/data/types'
 import { makePost } from '@/helper/make-post'
 import { countLetter } from '@/helper/count-letter'
 
-export function setupExercise(id: number) {
+export function setupExercise(
+  id: number,
+  skill?: string,
+  pages?: SkillExercisePage[],
+) {
   const content = exercisesData[id]
   ExerciseViewStore.update(s => {
     s.id = id
     s.seed = generateSeed()
     s.data = generateData(id, s.seed, content, true) as object
-    s.navIndicatorLength = 'tasks' in content ? content.tasks.length : 0
+    s.pages = pages
+    s.navIndicatorLength = pages
+      ? pages.length
+      : 'tasks' in content
+        ? content.tasks.length
+        : 0
     s.navIndicatorPosition = 0
     s.navIndicatorExternalUpdate = 0
     s.checks = Array.from({ length: s.navIndicatorLength }).map(_ => {
       return { answerInput: '', result: '', resultPending: false }
     })
     s.chatOverlay = null
+    s.skill = skill
   })
+}
+
+export function setupSkillExercise(ex: SkillExercise) {
+  // TODO
 }
 
 export function reseed() {
