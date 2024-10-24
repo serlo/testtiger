@@ -347,6 +347,27 @@ export const exercise38: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Familie Sommer fährt in den Urlaub. In dieser Zeit wachsen Algen
+              auf der Wasseroberfläche ihres Schwimmbeckens. Am Tag der Abreise
+              bedecken die Algen schon ca.{' '}
+              {pp(roundToDigits(data.surface / 20, 2))} m² der Wasseroberfläche
+              und vermehren sich täglich um {data.growth} %. Das Wachstum der
+              Algen auf der Wasseroberfläche kann mit der folgenden
+              Exponentialfunktion f beschrieben werden:{' '}
+            </p>
+            <p>
+              f(x) = {pp(roundToDigits(data.surface / 20, 2))} ·{' '}
+              {pp(data.growth / 100 + 1)}
+              <sup>x</sup>
+            </p>
+            <p>x ist die Zeit in Tagen; x = 0 ist der Tag der Abreise.</p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

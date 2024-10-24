@@ -48,7 +48,7 @@ export const exercise52: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>a) Berechne f({data.x_input})</p>
+            <p>a) Berechne f({pp(data.x_input)})</p>
           </>
         )
       },
@@ -86,7 +86,7 @@ export const exercise52: Exercise<DATA> = {
                 </>,
               ],
               [
-                <>f({data.x_input})</>,
+                <>f({pp(data.x_input)})</>,
                 <>=</>,
                 <>
                   {ppPolynom([
@@ -102,7 +102,7 @@ export const exercise52: Exercise<DATA> = {
                 </>,
               ],
               [
-                <>f({data.x_input})</>,
+                <>f({pp(data.x_input)})</>,
                 <>=</>,
                 <>
                   {pp(data.coeff * data.x_input * data.x_input)}{' '}
@@ -111,7 +111,7 @@ export const exercise52: Exercise<DATA> = {
               ],
               [
                 <>
-                  <strong>f({data.x_input})</strong>
+                  <strong>f({pp(data.x_input)})</strong>
                 </>,
                 <>
                   <strong>=</strong>

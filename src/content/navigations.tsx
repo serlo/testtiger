@@ -259,8 +259,44 @@ export const navigationData: { [key: number]: Navigation } = {
         twColor: 'bg-green-600',
         /*exercises: [4, 17, 23, 192, 29, 45, 33, 44, 53],*/
         skillGroups: [
-          { name: 'Wertetabellen', skillExercises: [] },
-          { name: 'Punktproben und Funktionswerte', skillExercises: [] },
+          {
+            name: 'Wertetabellen',
+            skillExercises: [
+              {
+                id: 11,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 29,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+            ],
+          },
+          {
+            name: 'Punktproben und Funktionswerte',
+            skillExercises: [
+              {
+                id: 52,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 37,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 8,
+                pages: [{ index: 'd', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 38,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+              {
+                id: 53,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+            ],
+          },
           { name: 'Lineare Funktionen', skillExercises: [] },
           { name: 'Quadratische Funktion - Grundlage', skillExercises: [] },
           { name: 'Graphen', skillExercises: [] },
