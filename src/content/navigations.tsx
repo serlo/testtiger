@@ -98,7 +98,30 @@ export const navigationData: { [key: number]: Navigation } = {
         twColor: 'bg-red-500',
         /*exercises: [3, 9, 12, 13, 27, 35, 39, 43],*/
         skillGroups: [
-          { name: 'Umgang mit Formeln und Termen', skillExercises: [] },
+          {
+            name: 'Umgang mit Formeln und Termen',
+            skillExercises: [
+              {
+                id: 18,
+                pages: [{ index: 'b', intro: [] }],
+              },
+              {
+                id: 37,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+              {
+                id: 9,
+                pages: [
+                  { index: 'c', intro: ['global'] },
+                  { index: 'd', intro: [] },
+                ],
+              },
+              {
+                id: 54,
+                pages: [{ index: 'c', intro: ['skill'] }],
+              },
+            ],
+          },
           { name: 'lineare Gleichungssysteme', skillExercises: [] },
           { name: 'Quadratische Gleichungen', skillExercises: [] },
           { name: 'Termumformungen', skillExercises: [] },
