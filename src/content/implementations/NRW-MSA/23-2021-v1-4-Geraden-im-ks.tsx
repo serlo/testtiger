@@ -35,6 +35,7 @@ export const exercise23: Exercise<DATA> = {
   },
   constraint({ data }) {
     return (
+      data.m_b != 0 &&
       data.m_1 != 0 &&
       data.m_1 != data.m_2 &&
       data.m_2 != 0 &&

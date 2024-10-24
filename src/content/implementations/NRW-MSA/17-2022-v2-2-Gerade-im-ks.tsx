@@ -28,30 +28,34 @@ export const exercise17: Exercise<DATA> = {
     )
   },
   intro({ data }) {
-    return <></>
+    return (
+      <>
+        <p>Gegeben ist der Funktionsgraph einer linearen Funktion.</p>
+        <svg viewBox="0 0 500 450">
+          <image
+            href="/content/NRW_MSA_KS_Vorlage.png"
+            height="500"
+            width="500"
+          />
+          <line
+            x1={0}
+            y1={338 - (380 / 7.6) * (data.m * -5 + data.b)}
+            x2={500}
+            y2={338 - (380 / 7.6) * (data.m * 5 + data.b)}
+            stroke="blue"
+            strokeWidth={4}
+          />
+        </svg>
+      </>
+    )
   },
   tasks: [
     {
       points: 2,
+
       task({ data }) {
         return (
           <>
-            <p>Gegeben ist der Funktionsgraph einer linearen Funktion.</p>
-            <svg viewBox="0 0 500 450">
-              <image
-                href="/content/NRW_MSA_KS_Vorlage.png"
-                height="500"
-                width="500"
-              />
-              <line
-                x1={0}
-                y1={338 - (380 / 7.6) * (data.m * -5 + data.b)}
-                x2={500}
-                y2={338 - (380 / 7.6) * (data.m * 5 + data.b)}
-                stroke="blue"
-                strokeWidth={4}
-              />
-            </svg>
             <p>a) Ergänze in der Wertetabelle die fehlenden Werte.</p>
             <svg viewBox="0 0 700 500" className="h-[170px]">
               <image

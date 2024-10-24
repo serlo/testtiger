@@ -576,6 +576,16 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 2,
+      intro({ data }) {
+        return (
+          <>
+            <p>
+              Wassermelonen verdoppeln ihr Gewicht pro Woche unter idealen
+              Wachstumsbedingungen.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         function toX(n: number) {
           return 73 + n * (450 / 12)

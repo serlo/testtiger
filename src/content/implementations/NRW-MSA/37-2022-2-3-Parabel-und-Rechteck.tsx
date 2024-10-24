@@ -165,6 +165,15 @@ export const exercise37: Exercise<DATA> = {
     {
       duration: 1,
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Der Punkt A<sub>1</sub>({data.x}|{data.y}) liegt auf der Parabel.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

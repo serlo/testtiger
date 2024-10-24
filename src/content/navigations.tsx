@@ -297,14 +297,106 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Lineare Funktionen', skillExercises: [] },
-          { name: 'Quadratische Funktion - Grundlage', skillExercises: [] },
-          { name: 'Graphen', skillExercises: [] },
+          {
+            name: 'Lineare Funktionen',
+            skillExercises: [
+              {
+                id: 44,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 44,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 23,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 23,
+                pages: [{ index: 'b' }],
+              },
+              {
+                id: 27,
+                pages: [{ index: 'b' }],
+              },
+              {
+                id: 17,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 17,
+                pages: [{ index: 'c', intro: ['global'] }],
+              },
+            ],
+          },
+          {
+            name: 'Quadratische Funktion - Grundlage',
+            skillExercises: [
+              {
+                id: 33,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+
+              {
+                id: 4,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+            ],
+          },
+          {
+            name: 'Graphen',
+            skillExercises: [
+              {
+                id: 45,
+                pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+              },
+            ],
+          },
           {
             name: 'Quadratische Funktion - Fortgeschritten',
-            skillExercises: [],
+            skillExercises: [
+              {
+                id: 45,
+                pages: [{ index: 'e' }, { index: 'f' }],
+              },
+              {
+                id: 29,
+                pages: [
+                  { index: 'c', intro: ['skill'] },
+                  { index: 'd' },
+                  { index: 'e' },
+                  { index: 'f' },
+                  { index: 'g' },
+                ],
+              },
+              {
+                id: 37,
+                pages: [{ index: 'b', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 37,
+                pages: [{ index: 'g', intro: ['skill'] }],
+              },
+            ],
           },
-          { name: 'Wachstum', skillExercises: [] },
+          {
+            name: 'Wachstum',
+            skillExercises: [
+              {
+                id: 29,
+                pages: [{ index: 'b', intro: ['skill'] }],
+              },
+              {
+                id: 19,
+                pages: [{ index: 'f', intro: ['skill'] }],
+              },
+              {
+                id: 38,
+                pages: [{ index: 'f', intro: ['skill'] }],
+              },
+            ],
+          },
           { name: 'Exponentialfunktion', skillExercises: [] },
         ],
       },
