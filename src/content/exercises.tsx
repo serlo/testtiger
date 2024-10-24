@@ -56,7 +56,8 @@ import { exercise51 } from './implementations/NRW-MSA/51-2024-1-4-Einwohner'
 import { exercise55 } from './implementations/NRW-MSA/55-2024-2-3-Dreieck'
 import { exercise54 } from './implementations/NRW-MSA/54-2024-2-2-Lautsprecher'
 import { exercise53 } from './implementations/NRW-MSA/53-2024-2-1-Fruchtfliegen'
-import { exercise101 } from './implementations/NRW-MSA/101-2023-1-2'
+import { exercise101 } from './implementations/NRW-MSA/101-2023-1-2-Einheiten-umrechnen'
+import { exercise100 } from './implementations/NRW-MSA/100-2023-1-1-Zahlen vergleichen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -115,6 +116,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   53: exercise53,
   55: exercise55,
   54: exercise54,
+  100: exercise100,
   101: exercise101,
 }
 
