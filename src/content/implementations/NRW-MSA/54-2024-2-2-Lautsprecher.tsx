@@ -241,9 +241,8 @@ export const exercise54: Exercise<DATA> = {
         return (
           <>
             <p>
-              Chris möchte sich einen Lautsprecher kaufen. Er vergleicht dazu
-              Maße und Volumen des zylinderförmigen Modells Echo mit den Maßen
-              und dem Volumen des näherungsweise kugelförmigen Modells Dot.
+              Chris möchte sich einen Lautsprecher des näherungsweise
+              kugelförmigen Modells Dot kaufen.
             </p>
             <p>
               Das Volumen der ganzen Kugel von Modell Dot beträgt{' '}
