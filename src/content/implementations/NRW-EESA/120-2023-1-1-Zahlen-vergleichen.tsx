@@ -23,12 +23,12 @@ export const exercise120: Exercise<DATA> = {
     return {
       a: rng.randomIntBetween(10, 100) / -100,
       b: rng.randomIntBetween(10, 100) / -100,
-      c: rng.randomItemFromArray([5, 10, 20, 30, 40, 50, 60, 70, 80, 90]),
+      c: rng.randomItemFromArray([30, 40, 60, 70, 80, 90]),
       d: rng.randomItemFromArray([5, 10, 50, 100]),
-      e: rng.randomIntBetween(1, 9),
+      e: rng.randomItemFromArray([1, 3, 6, 7, 8, 9]),
       f: rng.randomItemFromArray([2, 4, 5]),
-      g: rng.randomIntBetween(100, 100) / 100,
-      h: rng.randomIntBetween(1, 9),
+      g: rng.randomIntBetween(10, 100) / 100,
+      h: rng.randomItemFromArray([1, 3, 6, 7, 8, 9]),
       i: rng.randomItemFromArray([2, 4, 5]),
     }
   },
@@ -42,11 +42,52 @@ export const exercise120: Exercise<DATA> = {
           Vergleiche und setze in die Lücke jeweils das Zeichen "{'<'}", "{'>'}"
           oder "{'='}" ein.
         </p>
-        <p>{pp(data.a)}</p>
+        <p>
+          {pp(data.a)} ______ {pp(data.b)}
+        </p>
+        <p>
+          {ppFrac([data.c, data.d])} ______ {ppFrac([data.e, data.f])}
+        </p>
+        <p>
+          {pp(data.g)} ______ {ppFrac([data.h, data.i])}
+        </p>
       </>
     )
   },
   solution({ data }) {
-    return <></>
+    return (
+      <>
+        <p>
+          <strong>
+            Vergleiche {pp(data.a)} und {pp(data.b)}:
+          </strong>
+        </p>
+        <p>
+          {pp(data.a)}
+          {data.a > data.b ? '>' : '<'}
+          {pp(data.b)}
+        </p>
+        <p>
+          <strong>
+            Vergleiche {ppFrac([data.c, data.d])} und {ppFrac([data.e, data.f])}
+            :
+          </strong>
+        </p>
+        <p>
+          {ppFrac([data.c, data.d])}{' '}
+          {data.c / data.d > data.e / data.f ? '>' : '<'}{' '}
+          {ppFrac([data.e, data.f])}
+        </p>
+        <p>
+          <strong>
+            Vergleiche {pp(data.g)} und {ppFrac([data.h, data.i])}:
+          </strong>
+        </p>
+        <p>
+          {pp(data.g)} {data.g > data.h / data.i ? '>' : '<'}{' '}
+          {ppFrac([data.h, data.i])}
+        </p>
+      </>
+    )
   },
 }
