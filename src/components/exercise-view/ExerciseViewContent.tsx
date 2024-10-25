@@ -174,7 +174,7 @@ export function ExerciseViewContent() {
                     })
                   }}
                 >
-                  ORIG
+                  OD
                 </button>
               )}
             </div>
@@ -204,7 +204,7 @@ export function ExerciseViewContent() {
     )
   }
 
-  function renderContentElement(c: JSX.Element | null, key: string = 'x') {
+  function renderContentElement(c: JSX.Element | null, key?: string) {
     if (!c) return null
     return (
       <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]" key={key}>
