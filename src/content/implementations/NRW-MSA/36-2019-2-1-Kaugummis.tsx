@@ -33,6 +33,14 @@ export const exercise36: Exercise<DATA> = {
       white: rng.randomItemFromArray([18, 16, 14, 12, 10]),
     }
   },
+  originalData: {
+    dia: 14,
+    weight: 0.82,
+    length: 16.5,
+    height: 42.5,
+    red: 8,
+    white: 12,
+  },
   constraint({ data }) {
     return true
   },

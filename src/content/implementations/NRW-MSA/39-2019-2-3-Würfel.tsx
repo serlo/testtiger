@@ -21,6 +21,11 @@ export const exercise39: Exercise<DATA> = {
       random2: rng.randomIntBetween(9, 14),
     }
   },
+  originalData: {
+    startwert: 3,
+    random: 8,
+    random2: 12,
+  },
   constraint({ data }) {
     return true
   },

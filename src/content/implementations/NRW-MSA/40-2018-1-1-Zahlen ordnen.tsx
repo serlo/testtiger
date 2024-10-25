@@ -34,6 +34,17 @@ export const exercise40: Exercise<DATA> = {
       i: rng.randomItemFromArray([30, 40, 60]),
     }
   },
+  originalData: {
+    a: -0.7,
+    b: 7,
+    c: 100,
+    d: -1,
+    e: 7,
+    f: 0.17,
+    g: 65,
+    h: 25,
+    i: 30,
+  },
   constraint({ data }) {
     return (
       data.f != 0 &&

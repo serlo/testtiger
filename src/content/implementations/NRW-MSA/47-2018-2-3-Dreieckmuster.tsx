@@ -11,8 +11,6 @@ import { Fragment } from 'react'
 
 interface DATA {
   seite: number
-  h: number
-  f0: number
   lower: number
   show: Array<number>
   case: number
@@ -24,17 +22,10 @@ export const exercise47: Exercise<DATA> = {
   useCalculator: true,
   duration: 30,
   generator(rng) {
-    const seite = rng.randomIntBetween(6, 12)
-    const h = roundToDigits(
-      Math.pow(seite * seite - (seite / 2) * (seite / 2), 0.5),
-      2,
-    )
     return {
-      seite,
-      h,
-      f0: roundToDigits((h * seite) / 2, 2),
+      seite: rng.randomIntBetween(6, 12),
       lower: rng.randomIntBetween(3, 7),
-      case: rng.randomIntBetween(1, 3),
+      case: 1,
       show: rng.randomItemFromArray([
         [0, 1, 2, 3, 4, 5],
         [0, 1, 2, 3, 4, 6],
@@ -45,6 +36,13 @@ export const exercise47: Exercise<DATA> = {
       ]),
     }
   },
+  originalData: {
+    seite: 10,
+    lower: 4,
+    case: 1,
+    show: [0, 1, 2, 4, 5, 6],
+  },
+
   constraint({ data }) {
     return true
   },
@@ -81,12 +79,21 @@ export const exercise47: Exercise<DATA> = {
     {
       points: 3,
       task({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
               a) Bestätige durch eine Rechnung, dass der Flächeninhalt des
-              Dreiecks in Figur 0 <br></br>A<sub>0</sub> = {pp(data.f0)} cm²
-              beträgt (Abbildung 2).
+              Dreiecks in Figur 0 <br></br>A<sub>0</sub> = {pp(f0)} cm² beträgt
+              (Abbildung 2).
             </p>
             <svg viewBox="0 0 328 170">
               <image
@@ -115,6 +122,19 @@ export const exercise47: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const h = Math.sqrt(
+          data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+        )
+
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
@@ -164,7 +184,7 @@ export const exercise47: Exercise<DATA> = {
                   )}
                 </>,
               ],
-              [<>h</>, '≈', <>{pp(data.h)} [cm]</>],
+              [<>h</>, '≈', <>{pp(h)} [cm]</>],
             ])}
             <p>
               <strong>Flächeninhalt berechnen</strong>
@@ -183,7 +203,7 @@ export const exercise47: Exercise<DATA> = {
                 <>
                   {buildInlineFrac(
                     <>
-                      {data.seite} · {pp(data.h)}
+                      {data.seite} · {pp(h)}
                     </>,
                     2,
                   )}
@@ -193,7 +213,7 @@ export const exercise47: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  <strong>{pp(data.f0)} [cm²]</strong>
+                  <strong>{pp(f0)} [cm²]</strong>
                 </>,
               ],
             ])}
@@ -204,6 +224,15 @@ export const exercise47: Exercise<DATA> = {
     {
       points: 2,
       task({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
@@ -216,6 +245,15 @@ export const exercise47: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
@@ -232,20 +270,38 @@ export const exercise47: Exercise<DATA> = {
     {
       points: 3,
       task({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
               c) Der Flächeninhalt A<sub>n</sub> aller schwarzen Dreiecke in
               Figur n kann mit folgendem Term berechnet werden:<br></br>
-              {pp(data.f0)} · 0,75<sup>n</sup> (in cm²).<br></br>Bei welcher
-              Figur n beträgt der Flächeninhalt aller schwarzen Dreiecke zum
-              ersten Mal weniger als {data.lower} cm²? Notiere dein Vorgehen.
+              {pp(f0)} · 0,75<sup>n</sup> (in cm²).<br></br>Bei welcher Figur n
+              beträgt der Flächeninhalt aller schwarzen Dreiecke zum ersten Mal
+              weniger als {data.lower} cm²? Notiere dein Vorgehen.
             </p>
           </>
         )
       },
       solution({ data }) {
-        const tries = Math.ceil(Math.log(data.lower / data.f0) / Math.log(0.75))
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
+        const tries = Math.ceil(Math.log(data.lower / f0) / Math.log(0.75))
         return (
           <>
             <p>Hier gibt es viele unterschiedliche Lösungswege. </p>
@@ -254,8 +310,8 @@ export const exercise47: Exercise<DATA> = {
               ein und überprüfe das Ergebnis. Notiere diese Ergebnisse.
             </p>
             <p>
-              {pp(data.f0)} · 0,75<sup>{tries - 1}</sup> ={' '}
-              {pp(roundToDigits(data.f0 * Math.pow(0.75, tries - 1), 2))}{' '}
+              {pp(f0)} · 0,75<sup>{tries - 1}</sup> ={' '}
+              {pp(roundToDigits(f0 * Math.pow(0.75, tries - 1), 2))}{' '}
               <strong>{'>'}</strong> {data.lower}
             </p>
             <p>
@@ -263,8 +319,8 @@ export const exercise47: Exercise<DATA> = {
               als {data.lower} cm².
             </p>
             <p>
-              {pp(data.f0)} · 0,75<sup>{tries}</sup> ={' '}
-              {pp(roundToDigits(data.f0 * Math.pow(0.75, tries), 2))}{' '}
+              {pp(f0)} · 0,75<sup>{tries}</sup> ={' '}
+              {pp(roundToDigits(f0 * Math.pow(0.75, tries), 2))}{' '}
               <strong>{'<'}</strong> {data.lower}
             </p>
             <p>
@@ -278,13 +334,20 @@ export const exercise47: Exercise<DATA> = {
     {
       points: 3,
       task({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         function calculateValue(x: number): string {
-          return pp(roundToDigits(Math.pow(3 / 12, x) * data.f0, 3))
+          return pp(roundToDigits(Math.pow(3 / 12, x) * f0, 3))
         }
         function calculateValue2(x: number): string {
-          return pp(
-            roundToDigits(Math.pow(3, x) * Math.pow(3 / 12, x) * data.f0, 3),
-          )
+          return pp(roundToDigits(Math.pow(3, x) * Math.pow(3 / 12, x) * f0, 3))
         }
         function calculateValue3(x: number): string {
           return pp(roundToDigits(Math.pow(0.75, x), 3))
@@ -419,19 +482,36 @@ export const exercise47: Exercise<DATA> = {
     {
       points: 3,
       task({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
               f) Die Summe der Flächeninhalte der schwarzen und der weiße
-              Dreiecke ergibt in jeder Figur zusammen {pp(data.f0)} cm².{' '}
-              <br></br>Wie entwickeln sich die Flächeninhalte der schwarzen und
-              weißen Flächen, wenn man die Figuren immer weiter fortsetzt?
-              Beschreibe.
+              Dreiecke ergibt in jeder Figur zusammen {pp(f0)} cm². <br></br>Wie
+              entwickeln sich die Flächeninhalte der schwarzen und weißen
+              Flächen, wenn man die Figuren immer weiter fortsetzt? Beschreibe.
             </p>
           </>
         )
       },
       solution({ data }) {
+        const f0 =
+          0.5 *
+          data.seite *
+          roundToDigits(
+            Math.sqrt(
+              data.seite * data.seite - (data.seite / 2) * (data.seite / 2),
+            ),
+            2,
+          )
         return (
           <>
             <p>
@@ -443,7 +523,7 @@ export const exercise47: Exercise<DATA> = {
               Die weißen Flächen entsprechen genau dem Gegenstück der schwarzen
               Flächen und nehmen den Rest des Dreiecks ein. Ihre Fläche geht
               demnach gegen <br></br>
-              <strong>{pp(data.f0)} cm²</strong>.
+              <strong>{pp(f0)} cm²</strong>.
             </p>
           </>
         )

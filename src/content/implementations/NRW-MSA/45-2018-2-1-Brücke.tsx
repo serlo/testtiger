@@ -42,6 +42,19 @@ export const exercise45: Exercise<DATA> = {
       max_mm: rng.randomIntBetween(1501, 1999) / 100,
     }
   },
+  originalData: {
+    weg: 2.4,
+    pace: 4,
+    pace_2: 100,
+    alpha_max: 7.1,
+    width: 1435,
+    scale: 20,
+    x_1: 170,
+    x_2: 187,
+    x_3: 221,
+    max: true,
+    max_mm: 17.7,
+  },
   constraint({ data }) {
     return true
   },

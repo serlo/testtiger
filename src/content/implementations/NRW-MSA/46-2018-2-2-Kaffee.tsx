@@ -16,7 +16,7 @@ interface DATA {
   width: number
   length: number
   höhe: number
-  Vstumpf: number
+
   start: number
   decay: number
   order: number[]
@@ -47,11 +47,6 @@ export const exercise46: Exercise<DATA> = {
       width: rng.randomIntBetween(22, 30),
       length: rng.randomIntBetween(42, 50),
       höhe,
-      Vstumpf:
-        (((dia - 1) / 2) * ((dia - 1) / 2) +
-          ((dia - 1) / 2) * (dia / 2) +
-          (dia / 2) * (dia / 2)) *
-        ((Math.PI * höhe) / 3),
       start: rng.randomIntBetween(65, 90),
       decay: rng.randomIntBetween(85, 95) / 100,
       order: rng.shuffleArray([0, 1, 2]),
@@ -61,6 +56,27 @@ export const exercise46: Exercise<DATA> = {
       error_4: rng.randomIntBetween(-5, 5),
       error_5: rng.randomIntBetween(-5, 5),
     }
+  },
+  originalData: {
+    liter: 165,
+    percent: 5,
+    trash: 320000,
+    usage: 34,
+    becher: 320000,
+    karinHatRecht: false,
+    dia: 7,
+    width: 27,
+    length: 45,
+    höhe: 8.5,
+
+    start: 80,
+    decay: 0.94,
+    order: [0, 1, 2],
+    error_1: 1,
+    error_2: 0,
+    error_3: 1,
+    error_4: 1,
+    error_5: -1,
   },
   constraint({ data }) {
     return (
@@ -307,6 +323,11 @@ export const exercise46: Exercise<DATA> = {
         )
       },
       task({ data }) {
+        const Vstumpf =
+          (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
+            ((data.dia - 1) / 2) * (data.dia / 2) +
+            (data.dia / 2) * (data.dia / 2)) *
+          ((Math.PI * data.höhe) / 3)
         return (
           <>
             <p>
@@ -316,12 +337,17 @@ export const exercise46: Exercise<DATA> = {
             </p>
             <p>
               Bestätige mithilfe der Formel, dass das Volumen eines solchen
-              Bechers ca. {roundToDigits(data.Vstumpf, -1)} ml beträgt.
+              Bechers ca. {roundToDigits(Vstumpf, -1)} ml beträgt.
             </p>
           </>
         )
       },
       solution({ data }) {
+        const Vstumpf =
+          (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
+            ((data.dia - 1) / 2) * (data.dia / 2) +
+            (data.dia / 2) * (data.dia / 2)) *
+          ((Math.PI * data.höhe) / 3)
         return (
           <>
             <p>Setze die Angaben in die Formel ein und berechne das Volumen:</p>
@@ -362,14 +388,14 @@ export const exercise46: Exercise<DATA> = {
                 '',
                 '≈',
                 <>
-                  <strong>{pp(roundToDigits(data.Vstumpf, 2))} [cm³]</strong>
+                  <strong>{pp(roundToDigits(Vstumpf, 2))} [cm³]</strong>
                 </>,
               ],
             ])}
 
             <p>
               Ein cm³ entspricht einem ml. <br></br>Damit fasst der Becher
-              ungefähr {roundToDigits(data.Vstumpf, -1)} ml.
+              ungefähr {roundToDigits(Vstumpf, -1)} ml.
             </p>
           </>
         )
@@ -378,6 +404,11 @@ export const exercise46: Exercise<DATA> = {
     {
       points: 4,
       task({ data }) {
+        const Vstumpf =
+          (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
+            ((data.dia - 1) / 2) * (data.dia / 2) +
+            (data.dia / 2) * (data.dia / 2)) *
+          ((Math.PI * data.höhe) / 3)
         return (
           <>
             <p>
@@ -392,12 +423,17 @@ export const exercise46: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const Vstumpf =
+          (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
+            ((data.dia - 1) / 2) * (data.dia / 2) +
+            (data.dia / 2) * (data.dia / 2)) *
+          ((Math.PI * data.höhe) / 3)
         const V =
           Math.pow(((data.dia - 1) / 2 + data.dia / 2) / 2, 2) *
           Math.PI *
           data.höhe
         const diff = roundToDigits(
-          roundToDigits(data.Vstumpf, 2) - roundToDigits(V, 2),
+          roundToDigits(Vstumpf, 2) - roundToDigits(V, 2),
           2,
         )
         return (
@@ -436,7 +472,7 @@ export const exercise46: Exercise<DATA> = {
               Die Abweichung zum Ergebnis des Kegelstumpfes aus (d) beträgt:
             </p>
             <p>
-              {pp(roundToDigits(data.Vstumpf, 2))} − {pp(roundToDigits(V, 2))} ={' '}
+              {pp(roundToDigits(Vstumpf, 2))} − {pp(roundToDigits(V, 2))} ={' '}
               {pp(diff)} [cm³]
             </p>
             <p>
@@ -444,15 +480,10 @@ export const exercise46: Exercise<DATA> = {
               prozentuale Abweichung zu erhalten:
             </p>
             <p>
-              {buildInlineFrac(pp(diff), pp(roundToDigits(data.Vstumpf, 2)))} ≈{' '}
-              {pp(roundToDigits(diff / roundToDigits(data.Vstumpf, 2), 4))} ≙{' '}
+              {buildInlineFrac(pp(diff), pp(roundToDigits(Vstumpf, 2)))} ≈{' '}
+              {pp(roundToDigits(diff / roundToDigits(Vstumpf, 2), 4))} ≙{' '}
               <strong>
-                {pp(
-                  roundToDigits(
-                    (diff / roundToDigits(data.Vstumpf, 2)) * 100,
-                    2,
-                  ),
-                )}{' '}
+                {pp(roundToDigits((diff / roundToDigits(Vstumpf, 2)) * 100, 2))}{' '}
                 %
               </strong>{' '}
               {' < '} 1 %
@@ -467,6 +498,11 @@ export const exercise46: Exercise<DATA> = {
     {
       points: 3,
       intro({ data }) {
+        const Vstumpf =
+          (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
+            ((data.dia - 1) / 2) * (data.dia / 2) +
+            (data.dia / 2) * (data.dia / 2)) *
+          ((Math.PI * data.höhe) / 3)
         return (
           <>
             <p>
@@ -513,6 +549,7 @@ export const exercise46: Exercise<DATA> = {
           </li>,
           <li key="3">
             T(t) = {data.start} · {pp(1 + data.decay)}
+            <sup>t</sup>
           </li>,
         ]
 

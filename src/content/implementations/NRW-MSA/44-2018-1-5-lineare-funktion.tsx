@@ -18,6 +18,10 @@ export const exercise44: Exercise<DATA> = {
       n: rng.randomIntBetween(-1, 2),
     }
   },
+  originalData: {
+    b: 3,
+    n: 2,
+  },
   constraint({ data }) {
     return data.n != 0 && data.n + data.b != 9 && data.n + data.b != 10
   },

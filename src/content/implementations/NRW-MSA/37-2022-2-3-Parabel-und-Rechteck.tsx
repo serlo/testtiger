@@ -27,6 +27,11 @@ export const exercise37: Exercise<DATA> = {
       y: rng.randomIntBetween(2, 5),
     }
   },
+  originalData: {
+    a: -0.5,
+    x: 3,
+    y: 1,
+  },
   constraint({ data }) {
     const b = data.y + data.x * data.x * Math.abs(data.a)
     return (b * 2) % 1 == 0 && b + data.a < 9

@@ -25,34 +25,41 @@ export const exercise43: Exercise<DATA> = {
       d: rng.randomIntBetween(3, 6),
     }
   },
+  originalData: {
+    x: 2,
+    y: 4,
+    a: 4,
+    b: 3,
+    d: 5,
+  },
   constraint({ data }) {
     return (
       data.b != data.d &&
-      data.b * data.x - data.a * data.y != 0 &&
-      data.d * data.x + data.a * data.y != 0 &&
-      data.b * data.x - data.a * data.y != data.d * data.x + data.a * data.y
+      data.b * data.x + data.a * data.y != 0 &&
+      data.d * data.x - data.a * data.y != 0 &&
+      data.b * data.x + data.a * data.y != data.d * data.x - data.a * data.y
     )
   },
   points: 3,
   task({ data }) {
-    const c = data.b * data.x - data.a * data.y
-    const e = data.d * data.x + data.a * data.y
+    const c = data.b * data.x + data.a * data.y
+    const e = data.d * data.x - data.a * data.y
     return (
       <>
         <p>Löse das lineare Gleichungssystem. Notiere deinen Lösungsweg.</p>
 
         <p>
-          I &nbsp;&nbsp; {data.b}x − {data.a}y = {pp(c)}
+          I &nbsp;&nbsp; {data.b}x {pp(data.a, 'merge_op')}y = {pp(c)}
         </p>
         <p>
-          II &nbsp; {data.d}x + {data.a}y = {pp(e)}
+          II &nbsp; {data.d}x {pp(-data.a, 'merge_op')}y = {pp(e)}
         </p>
       </>
     )
   },
   solution({ data }) {
-    const c = data.b * data.x - data.a * data.y
-    const e = data.d * data.x + data.a * data.y
+    const c = data.b * data.x + data.a * data.y
+    const e = data.d * data.x - data.a * data.y
     return (
       <>
         <p>

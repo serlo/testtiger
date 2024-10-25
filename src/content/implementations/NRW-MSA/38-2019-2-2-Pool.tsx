@@ -28,6 +28,14 @@ export const exercise38: Exercise<DATA> = {
       day: rng.randomIntBetween(3, 8),
     }
   },
+  originalData: {
+    höhe: 1.5,
+    surface: 9.62,
+    water: 20,
+    terra: 80,
+    growth: 20,
+    day: 6,
+  },
   constraint({ data }) {
     return (
       (data.surface / 20, 2) * Math.pow(data.growth / 100 + 1, data.day) <

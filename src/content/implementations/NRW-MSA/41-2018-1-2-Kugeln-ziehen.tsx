@@ -21,6 +21,12 @@ export const exercise41: Exercise<DATA> = {
       case: rng.randomItemFromArray(['rot', 'blau', 'grün']),
     }
   },
+  originalData: {
+    r: 8,
+    b: 2,
+    g: 6,
+    case: 'blau',
+  },
   constraint({ data }) {
     return true
   },
