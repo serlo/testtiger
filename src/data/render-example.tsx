@@ -19,7 +19,7 @@ export function renderExample(
         {proseWrapper(
           exercise.intro({
             data,
-          }),
+          }) ?? <></>,
         )}
         {exercise.tasks.map((t, i) => {
           return (

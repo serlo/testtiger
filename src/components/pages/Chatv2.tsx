@@ -101,7 +101,7 @@ export function Chatv2({ id }: Chatv2Props) {
                       proseWrapper(
                         content.intro({
                           data,
-                        }),
+                        }) ?? <></>,
                       )}
                   </div>
                   <div className="p-[3px] bg-gray-300 rounded-xl mt-3">
