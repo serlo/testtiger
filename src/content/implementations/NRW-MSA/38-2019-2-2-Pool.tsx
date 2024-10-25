@@ -115,6 +115,13 @@ export const exercise38: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Die Grundfläche beträgt G = {pp(data.surface)} [m²].</p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

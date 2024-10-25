@@ -239,7 +239,33 @@ export const navigationData: { [key: number]: Navigation } = {
           2, 6, 7, 11, 18, 19, 28, 36, 38, 46, 30, 36, 42, 52, 55, 54,
         ],*/
         skillGroups: [
-          { name: 'Oberfläche und Volumen - Grundlage', skillExercises: [] },
+          {
+            name: 'Oberfläche und Volumen - Grundlage',
+            skillExercises: [
+              {
+                id: 26,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 26,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 2,
+              },
+              {
+                id: 42,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 22,
+              },
+              {
+                id: 38,
+                pages: [{ index: 'b', intro: ['global', 'skill'] }],
+              },
+            ],
+          },
 
           { name: 'Geometrische Sätze', skillExercises: [] },
           { name: 'Länge von Strecken', skillExercises: [] },
