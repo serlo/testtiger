@@ -26,7 +26,27 @@ export const exercise6: Exercise<DATA> = {
     return data.breite > data.länge
   },
   intro({ data }) {
-    return <></>
+    return (
+      <>
+        <svg viewBox="0 0 790 480">
+          <image
+            href="/content/NRW_MSA_Parallelogramm.PNG"
+            height="500"
+            width="700"
+          />
+
+          <text x={260} y={420} fontSize={40} textAnchor="right" stroke="black">
+            a = {data.breite} cm
+          </text>
+          <text x={630} y={230} fontSize={40} textAnchor="right" stroke="black">
+            b = {data.länge} cm
+          </text>
+          <text x={75} y={340} fontSize={50} textAnchor="right" stroke="black">
+            α
+          </text>
+        </svg>
+      </>
+    )
   },
   tasks: [
     {
@@ -34,41 +54,6 @@ export const exercise6: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <svg viewBox="0 0 790 480">
-              <image
-                href="/content/NRW_MSA_Parallelogramm.PNG"
-                height="500"
-                width="700"
-              />
-
-              <text
-                x={260}
-                y={420}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
-              >
-                a = {data.breite} cm
-              </text>
-              <text
-                x={630}
-                y={230}
-                fontSize={40}
-                textAnchor="right"
-                stroke="black"
-              >
-                b = {data.länge} cm
-              </text>
-              <text
-                x={75}
-                y={340}
-                fontSize={50}
-                textAnchor="right"
-                stroke="black"
-              >
-                α
-              </text>
-            </svg>
             <p>
               a) Gegeben ist ein Parallelogramm mit den Seitenlängen{' '}
               {data.breite} cm und {data.länge} cm, sowie <br></br>α ={' '}

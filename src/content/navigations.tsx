@@ -404,7 +404,50 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Fläche und Umfang', skillExercises: [] },
+          {
+            name: 'Fläche und Umfang',
+            skillExercises: [
+              {
+                id: 6,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 30,
+                pages: [
+                  { index: 'e', intro: ['global', 'skill'] },
+                  { index: 'f' },
+                ],
+              },
+              {
+                id: 46,
+                pages: [{ index: 'c' }],
+              },
+              {
+                id: 37,
+                pages: [{ index: 'c', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 47,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 30,
+                pages: [{ index: 'd', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 55,
+                pages: [
+                  { index: 'b', intro: ['global'] },
+                  { index: 'c' },
+                  { index: 'd' },
+                ],
+              },
+              {
+                id: 7,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+            ],
+          },
           { name: 'Figuren zeichnen', skillExercises: [] },
         ],
       },

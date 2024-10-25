@@ -261,6 +261,31 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Jan setzt das Muster mit den beiden weiteren Dreiecken D
+              <sub>2</sub> und D<sub>3</sub> fort (Abbildung 2).
+            </p>
+            <svg viewBox="0 0 328 240">
+              <image
+                href="/content/NRW_MSA_Muster_2.jpg"
+                height="240"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Muster bis Dreieck D<sub>3</sub>? zu Teilaufgabe
+                  b) - d)
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
@@ -324,6 +349,17 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        const surface = data.d1 * data.d1 * 0.5
+        return (
+          <>
+            <p>
+              Der Flächeninhalt von Dreieck D<sub>1</sub> beträgt {pp(surface)}{' '}
+              cm².
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const surface = data.d1 * data.d1 * 0.5
         return (

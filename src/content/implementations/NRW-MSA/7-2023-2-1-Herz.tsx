@@ -41,7 +41,32 @@ export const exercise7: Exercise<DATA> = {
     )
   },
   intro({ data }) {
-    return <></>
+    return (
+      <>
+        <p>
+          Eine Firma produziert herzförmige Dekoanhänger aus Metall. Jedes Herz
+          besteht aus einem Quadrat mit der Kantenlänge {data.kante} cm, an das
+          zwei Halbkreise mit einem Radius von jeweils {pp(data.kante / 2)} cm
+          angesetzt sind (Abbildung 1).
+        </p>
+        <svg viewBox="0 0 700 500" className="min-w-[328px]">
+          <image href="/content/NRW_MSA-23-2-1.PNG" height="500" width="700" />
+          <text x={160} y={370} fontSize={30} textAnchor="right" stroke="black">
+            {data.kante} cm
+          </text>
+          <text x={380} y={230} fontSize={30} textAnchor="right" stroke="black">
+            {pp(data.kante / 2)} cm
+          </text>
+        </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 1: Zeichnung des Herzes
+            </span>
+          </Color5>
+        </center>
+      </>
+    )
   },
   tasks: [
     {
@@ -49,44 +74,6 @@ export const exercise7: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>
-              Eine Firma produziert herzförmige Dekoanhänger aus Metall. Jedes
-              Herz besteht aus einem Quadrat mit der Kantenlänge {data.kante}{' '}
-              cm, an das zwei Halbkreise mit einem Radius von jeweils{' '}
-              {pp(data.kante / 2)} cm angesetzt sind (Abbildung 1).
-            </p>
-            <svg viewBox="0 0 700 500" className="min-w-[328px]">
-              <image
-                href="/content/NRW_MSA-23-2-1.PNG"
-                height="500"
-                width="700"
-              />
-              <text
-                x={160}
-                y={370}
-                fontSize={30}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.kante} cm
-              </text>
-              <text
-                x={380}
-                y={230}
-                fontSize={30}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(data.kante / 2)} cm
-              </text>
-            </svg>
-            <center>
-              <Color5>
-                <span style={{ fontSize: 'small' }}>
-                  Abbildung 1: Zeichnung des Herzes
-                </span>
-              </Color5>
-            </center>
             <p>a) Zeichne ein Herz in Originalgröße in dein Heft.</p>
           </>
         )

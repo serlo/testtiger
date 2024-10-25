@@ -201,6 +201,16 @@ export const exercise37: Exercise<DATA> = {
     {
       duration: 2,
       points: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Die Punkte A<sub>1</sub>({data.x}|{data.y}) und B<sub>1</sub>(
+              {pp(-data.x)}|{data.y}) liegen auf der Parabel.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
