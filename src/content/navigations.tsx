@@ -349,7 +349,16 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             name: 'Einfluss von Parameteränderungen',
-            skillExercises: [],
+            skillExercises: [
+              {
+                id: 42,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 32,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+            ],
           },
           { name: 'Geometrische Sätze', skillExercises: [] },
           { name: 'Fläche und Umfang', skillExercises: [] },
