@@ -10,7 +10,6 @@ export const exerciseXXX: Exercise<DATA> = {
   generator(rng) {
     return {}
   },
-  originalData: {},
   constraint({ data }) {
     return true
   },
@@ -20,9 +19,6 @@ export const exerciseXXX: Exercise<DATA> = {
   tasks: [
     {
       points: 42,
-      intro({ data }) {
-        return <></>
-      },
       task({ data }) {
         return <></>
       },
@@ -32,9 +28,6 @@ export const exerciseXXX: Exercise<DATA> = {
     },
     {
       points: 42,
-      intro({ data }) {
-        return <></>
-      },
       task({ data }) {
         return <></>
       },
