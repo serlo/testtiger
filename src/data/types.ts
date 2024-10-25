@@ -7,6 +7,7 @@ export interface SingleExercise<T = unknown> {
   useCalculator: boolean
   duration: number
   points?: number
+  originalData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
@@ -18,7 +19,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
   source?: string
   useCalculator: boolean
   duration: number
-  points?: number[]
+  originalData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   intro: (props: { data: T }) => JSX.Element
