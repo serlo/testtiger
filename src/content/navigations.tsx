@@ -288,7 +288,19 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Länge von Strecken', skillExercises: [] },
+          {
+            name: 'Länge von Strecken',
+            skillExercises: [
+              {
+                id: 8,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 7,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+            ],
+          },
           {
             name: 'Oberfläche und Volumen - Fortgeschritten',
             skillExercises: [],

@@ -365,6 +365,50 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Eine Firma produziert herzförmige Dekoanhänger aus Metall. Jedes
+              Herz besteht aus einem Quadrat mit der Kantenlänge {data.kante}{' '}
+              cm, an das zwei Halbkreise mit einem Radius von jeweils{' '}
+              {pp(data.kante / 2)} cm angesetzt sind.
+            </p>
+            <p>
+              Um die Breite b eines Herzens zu bestimmen, wird eine Skizze
+              angefertigt (Abbildung 2). Hier gilt: Die Strecke{' '}
+              {buildOverline('AB')} entspricht der Breite b.{' '}
+              {buildOverline('AB')} geht durch die Mittelpunkte M1 und M2 der
+              angesetzten Halbkreise.
+            </p>
+            <svg viewBox="0 0 328 200" className="min-w-[328px]">
+              <image
+                href="/content/NRW_MSA_Herz_Skizze.png"
+                height="200"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Skizze der Breite b
+                </span>
+              </Color5>
+            </center>
+            <p>
+              Die Strecke {buildOverline('M1M2')} hat eine Länge von etwa{' '}
+              <br></br>
+              {pp(
+                roundToDigits(
+                  Math.sqrt((data.kante / 2) * (data.kante / 2) * 2),
+                  2,
+                ),
+              )}{' '}
+              cm.{' '}
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
