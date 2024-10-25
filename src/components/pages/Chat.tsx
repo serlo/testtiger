@@ -101,7 +101,7 @@ export function Chat({ id }: ChatProps) {
 
             Das gemeinsame Intro:
 
-            ${toHtml(content.intro({ data }))}
+            ${toHtml(content.intro({ data }) ?? <></>)}
 
             ${content.tasks
               .map(
@@ -398,7 +398,7 @@ export function Chat({ id }: ChatProps) {
                             {proseWrapper(
                               content.intro({
                                 data,
-                              }),
+                              }) ?? <></>,
                             )}
                             <div className="h-4"></div>
                           </>

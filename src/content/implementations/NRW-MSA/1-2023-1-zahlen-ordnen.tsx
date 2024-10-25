@@ -24,6 +24,13 @@ export const exercise1: Exercise<DATA> = {
       e: rng.randomIntBetween(5, 99),
     }
   },
+  originalData: {
+    a: -0.45,
+    b: 0.38,
+    c: -2,
+    d: 5,
+    e: 20,
+  },
   constraint({ data }) {
     return (
       data.c != data.d &&
@@ -39,7 +46,7 @@ export const exercise1: Exercise<DATA> = {
     )
   },
   intro({ data }) {
-    return <></>
+    return null
   },
   tasks: [
     {

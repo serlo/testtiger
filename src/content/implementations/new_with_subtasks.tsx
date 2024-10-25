@@ -14,7 +14,7 @@ export const exerciseXXX: Exercise<DATA> = {
     return true
   },
   intro({ data }) {
-    return <></>
+    return null
   },
   tasks: [
     {

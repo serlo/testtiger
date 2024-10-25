@@ -22,7 +22,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
   originalData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
-  intro: (props: { data: T }) => JSX.Element
+  intro: (props: { data: T }) => JSX.Element | null
   tasks: {
     points?: number
     duration?: number

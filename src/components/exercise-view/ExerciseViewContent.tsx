@@ -87,153 +87,131 @@ export function ExerciseViewContent() {
               if (!page.disableDefaultLocalIntro && subexercise.intro) {
                 intros.push('local')
               }
-              return (
-                <div
-                  className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
-                  style={{ scrollbarWidth: 'thin' }}
-                  key={i}
-                >
-                  <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
-                    <div className="flex justify-between p-[3px] w-full">
-                      <div>
-                        <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
-                          Aufgabe {page.index})
-                        </div>
-                        <button
-                          className="px-1 py-0.5 rounded-md bg-gray-100"
-                          onClick={() => {
-                            reseed()
-                          }}
-                        >
-                          <FaIcon icon={faMagicWandSparkles} />
-                        </button>
-                      </div>
-                      <div>
-                        <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-                          <div className="inset-0 absolute">
-                            <FaIcon icon={faCalculator} />
-                          </div>
-                          {!content.useCalculator && (
-                            <div className="absolute inset-0 -scale-x-100">
-                              <FaIcon icon={faSlash} />
-                            </div>
-                          )}
-                        </button>
-                        <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
-                          <FaIcon icon={faClock} className="text-xs" />{' '}
-                          {subexercise.duration ?? '?'} min
-                        </button>
-                        <button className="px-1 py-0.5 rounded-md bg-gray-100">
-                          {subexercise.points ?? '?'} BE
-                        </button>
-                      </div>
-                    </div>
-
-                    {intros.map((intro, i) => (
-                      <div
-                        className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]"
-                        key={i}
-                      >
+              return renderContentCard(
+                i,
+                subexercise.duration ?? '?',
+                subexercise.points ?? '?',
+                <>
+                  {intros.map((intro, i) =>
+                    renderContentElement(
+                      <>
                         {intro == 'global' &&
-                          proseWrapper(
-                            content.intro({
-                              data,
-                            }),
-                          )}
-
+                          content.intro({
+                            data,
+                          })}
                         {intro == 'local' &&
                           subexercise.intro &&
-                          proseWrapper(
-                            subexercise.intro({
-                              data,
-                            }),
-                          )}
-
+                          subexercise.intro({
+                            data,
+                          })}
                         {intro == 'skill' &&
                           subexercise.skillIntro &&
-                          proseWrapper(
-                            subexercise.skillIntro({
-                              data,
-                            }),
-                          )}
-                      </div>
-                    ))}
-                    <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
-                      {proseWrapper(subexercise.task({ data }))}
-                    </div>
-                  </div>
-                </div>
+                          subexercise.skillIntro({
+                            data,
+                          })}
+                      </>,
+                      i.toString(),
+                    ),
+                  )}
+                  {renderContentElement(subexercise.task({ data }))}
+                </>,
               )
             })
-          : (withSubtasks ? content.tasks : [content]).map((t, i) => (
-              <div
-                className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
-                style={{ scrollbarWidth: 'thin' }}
-                key={i}
-              >
-                <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
-                  <div className="flex justify-between p-[3px] w-full">
-                    <div>
-                      <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
-                        Aufgabe
-                        {withSubtasks && <> {countLetter('a', i) + ')'}</>}
-                      </div>
-                      <button
-                        className="px-1 py-0.5 rounded-md bg-gray-100"
-                        onClick={() => {
-                          reseed()
-                        }}
-                      >
-                        <FaIcon icon={faMagicWandSparkles} />
-                      </button>
-                    </div>
-                    <div>
-                      <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-                        <div className="inset-0 absolute">
-                          <FaIcon icon={faCalculator} />
-                        </div>
-                        {!content.useCalculator && (
-                          <div className="absolute inset-0 -scale-x-100">
-                            <FaIcon icon={faSlash} />
-                          </div>
-                        )}
-                      </button>
-                      <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
-                        <FaIcon icon={faClock} className="text-xs" />{' '}
-                        {(withSubtasks ? t.duration : content.duration) ?? '?'}{' '}
-                        min
-                      </button>
-                      <button className="px-1 py-0.5 rounded-md bg-gray-100">
-                        {(withSubtasks ? t.points : content.points) ?? '?'} BE
-                      </button>
-                    </div>
-                  </div>
-
-                  {i == 0 && withSubtasks && (
-                    <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
-                      {proseWrapper(
-                        content.intro({
-                          data,
-                        }),
-                      )}
-                    </div>
-                  )}
-
-                  {'intro' in t && t.intro && (
-                    <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]">
-                      {proseWrapper(t.intro({ data }))}
-                    </div>
-                  )}
-                  <div className="p-[3px] mt-3 min-w-[300px] sm:w-[334px]">
-                    {proseWrapper(t.task({ data }))}
-                  </div>
-                </div>
-              </div>
-            ))}
+          : (withSubtasks ? content.tasks : [content]).map((t, i) =>
+              renderContentCard(
+                i,
+                (withSubtasks ? t.duration : content.duration) ?? '?',
+                (withSubtasks ? t.points : content.points) ?? '?',
+                <>
+                  {i == 0 &&
+                    withSubtasks &&
+                    renderContentElement(content.intro({ data }))}
+                  {'intro' in t &&
+                    t.intro &&
+                    renderContentElement(t.intro({ data }))}
+                  {renderContentElement(t.task({ data }))}
+                </>,
+              ),
+            )}
         {multiPage && <div className="flex-shrink-0 w-[5%] snap-none"></div>}
       </div>
     </div>
   )
+
+  function renderContentCard(
+    i: number,
+    duration: number | string,
+    points: number | string,
+    contentEl: JSX.Element,
+  ) {
+    return (
+      <div
+        className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
+        style={{ scrollbarWidth: 'thin' }}
+        key={i}
+      >
+        <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
+          <div className="flex justify-between p-[3px] w-full">
+            <div>
+              <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
+                Aufgabe
+                {withSubtasks && <> {countLetter('a', i) + ')'}</>}
+              </div>
+              <button
+                className="px-1 py-0.5 rounded-md bg-gray-100"
+                onClick={() => {
+                  reseed()
+                }}
+              >
+                <FaIcon icon={faMagicWandSparkles} />
+              </button>
+              {content.originalData && (
+                <button
+                  className="px-1 py-0.5 rounded-md bg-gray-100 ml-1"
+                  onClick={() => {
+                    ExerciseViewStore.update(s => {
+                      s.data = content.originalData
+                    })
+                  }}
+                >
+                  ORIG
+                </button>
+              )}
+            </div>
+            <div>
+              <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+                <div className="inset-0 absolute">
+                  <FaIcon icon={faCalculator} />
+                </div>
+                {!content.useCalculator && (
+                  <div className="absolute inset-0 -scale-x-100">
+                    <FaIcon icon={faSlash} />
+                  </div>
+                )}
+              </button>
+              <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
+                <FaIcon icon={faClock} className="text-xs" /> {duration} min
+              </button>
+              <button className="px-1 py-0.5 rounded-md bg-gray-100">
+                {points} BE
+              </button>
+            </div>
+          </div>
+
+          {contentEl}
+        </div>
+      </div>
+    )
+  }
+
+  function renderContentElement(c: JSX.Element | null, key: string = 'x') {
+    if (!c) return null
+    return (
+      <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]" key={key}>
+        {proseWrapper(c)}
+      </div>
+    )
+  }
 }
 
 function calculateSnapPoints() {
