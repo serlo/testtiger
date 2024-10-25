@@ -37,6 +37,18 @@ export const exercise50: Exercise<DATA> = {
       j: rng.randomItemFromArray([2, 4, 5, 6, 10, 15]),
     }
   },
+  originalData: {
+    a: 3,
+    b: 4,
+    c: 24,
+    d: 5,
+    e: 160,
+    f: -5,
+    g: 2,
+    h: 3,
+    i: -4,
+    j: 15,
+  },
   constraint({ data }) {
     return (
       Number.isInteger((data.a / data.b) * data.c) &&

@@ -30,6 +30,16 @@ export const exercise48: Exercise<DATA> = {
       h: rng.randomIntBetween(-100, 100) / 100,
     }
   },
+  originalData: {
+    a: -3,
+    b: 8,
+    c: 2,
+    d: 5,
+    e: 1,
+    f: 6,
+    g: -2,
+    h: 0.2,
+  },
   constraint({ data }) {
     const array = [
       data.a / data.b,

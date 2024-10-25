@@ -21,6 +21,11 @@ export const exercise52: Exercise<DATA> = {
       coeff: rng.randomIntBetween(-6, 6),
     }
   },
+  originalData: {
+    x_input: 1,
+    x_sol: 2,
+    coeff: -5,
+  },
   constraint({ data }) {
     return (
       data.x_input != 0 &&

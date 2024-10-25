@@ -69,6 +69,26 @@ export const exercise54: Exercise<DATA> = {
       playlist, // Die gemischte Playlist wird gespeichert
     }
   },
+  originalData: {
+    echo: 8.8,
+    dot: 10,
+    ed: 3,
+    mark: 5,
+    hoehe: 14.9,
+    b: 1.1,
+    playlist: [
+      'Ed Sheeran - Shape Of You',
+      'Mark Forster - Einmal',
+      'Mark Forster - 194 Länder',
+      'Zoes Wees - Girls Like Us',
+      'Mark Forster - Au Revoir',
+      'Zoe Wees - Control',
+      'Mark Forster - Chöre',
+      'Ed Sheeran - Shivers',
+      'Mark Forster - Übermorgen',
+      'Ed Sheeran - Galway Girl',
+    ],
+  },
   constraint({ data }) {
     return true
   },
@@ -158,10 +178,11 @@ export const exercise54: Exercise<DATA> = {
                   )}
                 </>,
               ],
-              ['h', '≈', <>{data.hoehe} [cm]</>],
+              ['h', '≈', <>{pp(data.hoehe)} [cm]</>],
             ])}
             <p>
-              Die Höhe beträgt ungefähr <strong>h = {data.hoehe} cm</strong>.
+              Die Höhe beträgt ungefähr <strong>h = {pp(data.hoehe)} cm</strong>
+              .
             </p>
           </>
         )

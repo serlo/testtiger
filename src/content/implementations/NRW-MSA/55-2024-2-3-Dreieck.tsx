@@ -33,6 +33,10 @@ export const exercise55: Exercise<DATA> = {
       case: rng.randomIntBetween(1, 4),
     }
   },
+  originalData: {
+    seiten: [6, 8, 10],
+    case: 1,
+  },
   constraint({ data }) {
     return true
   },

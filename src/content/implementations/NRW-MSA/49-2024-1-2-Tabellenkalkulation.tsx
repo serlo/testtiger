@@ -17,6 +17,10 @@ export const exercise49: Exercise<DATA> = {
       case_2: rng.randomIntBetween(1, 5),
     }
   },
+  originalData: {
+    case: 1,
+    case_2: 1,
+  },
   constraint({ data }) {
     return true
   },

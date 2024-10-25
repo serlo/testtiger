@@ -28,6 +28,12 @@ export const exercise53: Exercise<DATA> = {
       days_2: rng.randomIntBetween(10, 16),
     }
   },
+  originalData: {
+    prozent: 1.3,
+    days: 30,
+    fliegen: 77,
+    days_2: 11,
+  },
   constraint({ data }) {
     return data.prozent != 1.7 && data.prozent != 1.1
   },

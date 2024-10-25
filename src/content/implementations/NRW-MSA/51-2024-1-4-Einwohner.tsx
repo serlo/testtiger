@@ -28,6 +28,14 @@ export const exercise51: Exercise<DATA> = {
       case: rng.randomIntBetween(1, 5),
     }
   },
+  originalData: {
+    hamburg: 1.9,
+    berlin: 3.7,
+    münchen: 1.5,
+    köln: 1.1,
+    frankfurt: 0.8,
+    case: 1,
+  },
   constraint({ data }) {
     return true
   },
