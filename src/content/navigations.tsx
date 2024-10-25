@@ -303,9 +303,54 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             name: 'Oberfläche und Volumen - Fortgeschritten',
+            skillExercises: [
+              {
+                id: 38,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'c' }],
+              },
+              {
+                id: 18,
+                pages: [{ index: 'c', intro: ['global'] }, { index: 'd' }],
+              },
+              {
+                id: 54,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 54,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 46,
+                pages: [{ index: 'd' }, { index: 'e' }],
+              },
+              {
+                id: 36,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 28,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'c' },
+                ],
+              },
+              {
+                id: 19,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'c' },
+                  { index: 'd' },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Einfluss von Parameteränderungen',
             skillExercises: [],
           },
-          { name: 'Einfluss von Parameteränderungen', skillExercises: [] },
           { name: 'Geometrische Sätze', skillExercises: [] },
           { name: 'Fläche und Umfang', skillExercises: [] },
           { name: 'Figuren zeichnen', skillExercises: [] },

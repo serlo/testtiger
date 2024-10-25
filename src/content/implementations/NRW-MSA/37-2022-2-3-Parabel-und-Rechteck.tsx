@@ -765,6 +765,7 @@ export const exercise37: Exercise<DATA> = {
           </>
         )
       },
+
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         const c = 3.75

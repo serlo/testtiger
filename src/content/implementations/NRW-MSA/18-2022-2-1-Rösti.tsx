@@ -32,60 +32,59 @@ export const exercise18: Exercise<DATA> = {
     return true
   },
   intro({ data }) {
-    return <></>
+    return (
+      <>
+        <p>
+          Ein Unternehmen stellt nach eigenem Rezept aus Kartoffeln sogenannte
+          Rösti her (Abbildung 1 und 2). Dazu wird der Teig in eine zylindrische
+          Form gegossen (Abbildung 3) und anschließend gebacken. Für ein Rösti
+          benötigt man {data.gewicht} g Teig.
+        </p>
+        <svg viewBox="0 0 700 430">
+          <image href="/content/NRW_MSA_rösti.jpg" height="500" width="700" />
+        </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>Abbildung 1: Rösti</span>
+          </Color5>
+        </center>
+
+        <svg viewBox="0 0 700 450">
+          <image
+            href="/content/NRW_MSA_röstirezept.png"
+            height="500"
+            width="700"
+          />
+        </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 2: Rezept für Rösti-Teig
+            </span>
+          </Color5>
+        </center>
+
+        <svg viewBox="0 0 700 500">
+          <image href="/content/NRW_MSA_zyl.jpg" height="500" width="700" />
+        </svg>
+        <center>
+          <Color5>
+            <span style={{ fontSize: 'small' }}>
+              Abbildung 3: zylindrische Form
+            </span>
+          </Color5>
+        </center>
+      </>
+    )
   },
   tasks: [
     {
       points: 2,
       duration: 5,
+
       task({ data }) {
         return (
           <>
-            <p>
-              Ein Unternehmen stellt nach eigenem Rezept aus Kartoffeln
-              sogenannte Rösti her (Abbildung 1 und 2). Dazu wird der Teig in
-              eine zylindrische Form gegossen (Abbildung 3) und anschließend
-              gebacken. Für ein Rösti benötigt man {data.gewicht} g Teig.
-            </p>
-            <svg viewBox="0 0 700 430">
-              <image
-                href="/content/NRW_MSA_rösti.jpg"
-                height="500"
-                width="700"
-              />
-            </svg>
-            <center>
-              <Color5>
-                <span style={{ fontSize: 'small' }}>Abbildung 1: Rösti</span>
-              </Color5>
-            </center>
-
-            <svg viewBox="0 0 700 450">
-              <image
-                href="/content/NRW_MSA_röstirezept.png"
-                height="500"
-                width="700"
-              />
-            </svg>
-            <center>
-              <Color5>
-                <span style={{ fontSize: 'small' }}>
-                  Abbildung 2: Rezept für Rösti-Teig
-                </span>
-              </Color5>
-            </center>
-
-            <svg viewBox="0 0 700 500">
-              <image href="/content/NRW_MSA_zyl.jpg" height="500" width="700" />
-            </svg>
-            <center>
-              <Color5>
-                <span style={{ fontSize: 'small' }}>
-                  Abbildung 3: zylindrische Form
-                </span>
-              </Color5>
-            </center>
-
             <p>
               {' '}
               a) Zeige rechnerisch, dass aus der Teigmenge eines Rezeptes{' '}
