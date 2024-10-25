@@ -448,7 +448,23 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Figuren zeichnen', skillExercises: [] },
+          {
+            name: 'Figuren zeichnen',
+            skillExercises: [
+              {
+                id: 37,
+                pages: [{ index: 'd', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 7,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 55,
+                pages: [{ index: 'f' }],
+              },
+            ],
+          },
         ],
       },
       {

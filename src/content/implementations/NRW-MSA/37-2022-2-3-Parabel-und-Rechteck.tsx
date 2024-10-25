@@ -256,6 +256,19 @@ export const exercise37: Exercise<DATA> = {
     {
       duration: 5,
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Die Punkte A<sub>1</sub>({data.x}|{data.y}) und B<sub>1</sub>(
+              {pp(-data.x)}|{data.y}) liegen auf der Parabel. Die Punkte C
+              <sub>1</sub> und D<sub>1</sub> liegen auf der x-Achse und bilden
+              mit den Punkten A<sub>1</sub> und B<sub>1</sub> das Rechteck A
+              <sub>1</sub>B<sub>1</sub>C<sub>1</sub>D<sub>1</sub>.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         return (
