@@ -39,8 +39,8 @@ export const exercise120: Exercise<DATA> = {
     return (
       <>
         <p>
-          Vergleiche und setze in die Lücke jeweils das Zeichen "{'<'}", "{'>'}"
-          oder "{'='}" ein.
+          Vergleiche und setze in die Lücke jeweils das Zeichen {'"<"'}, {'">"'}
+          oder {'"="'} ein.
         </p>
         <p>{pp(data.a)}</p>
       </>
