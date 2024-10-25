@@ -48,6 +48,15 @@ export const exercise34: Exercise<DATA> = {
       order: rng.shuffleArray([0, 1, 2]),
     }
   },
+  originalData: {
+    preis: 18,
+    breakfast: 4,
+    dinner: 6,
+    item_1: 1,
+    item_2: 0,
+    item_3: 0,
+    order: [2, 1, 0],
+  },
   constraint({ data }) {
     return data.breakfast < data.dinner && data.item_1 != data.item_2
   },

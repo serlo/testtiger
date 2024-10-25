@@ -24,6 +24,12 @@ export const exercise32: Exercise<DATA> = {
       r: rng.randomIntBetween(1, 6) * 6,
     }
   },
+  originalData: {
+    a: 5,
+    b: 3,
+    case: 0,
+    r: 24,
+  },
   constraint({ data }) {
     return data.a > data.b && data.a * data.b != data.r
   },

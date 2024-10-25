@@ -26,6 +26,14 @@ export const exercise31: Exercise<DATA> = {
       f: rng.randomItemFromArray([1, 2, 4, 5, 10]),
     }
   },
+  originalData: {
+    a: -0.626,
+    b: -6.26,
+    c: 6,
+    d: 10,
+    e: 1,
+    f: 6,
+  },
   constraint({ data }) {
     return (
       data.c != data.d &&
@@ -46,7 +54,7 @@ export const exercise31: Exercise<DATA> = {
       <>
         <p>Ordne die Zahlen der Größe nach. Beginne mit der kleinsten Zahl.</p>
         <p>
-          {ppFrac(data.c / data.d)} &nbsp;&nbsp;&nbsp;&nbsp;{pp(data.a)}{' '}
+          {ppFrac([data.c, data.d])} &nbsp;&nbsp;&nbsp;&nbsp;{pp(data.a)}{' '}
           &nbsp;&nbsp;&nbsp;&nbsp; {pp(data.b)}
           &nbsp;&nbsp;&nbsp;&nbsp; {ppFrac(data.e / data.f)}
         </p>
@@ -65,7 +73,7 @@ export const exercise31: Exercise<DATA> = {
         </p>
 
         <p>
-          {ppFrac(data.c / data.d)} = {pp(data.c / data.d)}
+          {ppFrac([data.c, data.d])} = {pp(data.c / data.d)}
         </p>
         <p>
           {ppFrac(data.e / data.f)} = {pp(data.e / data.f)}

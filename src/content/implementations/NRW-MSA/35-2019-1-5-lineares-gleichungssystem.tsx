@@ -29,6 +29,14 @@ export const exercise35: Exercise<DATA> = {
       faktor: rng.randomIntBetween(2, 4),
     }
   },
+  originalData: {
+    x: 6,
+    y: -8,
+    a: 1,
+    b: 4,
+    d: -2,
+    faktor: 2,
+  },
   constraint({ data }) {
     return (
       data.b != data.d &&
@@ -47,10 +55,10 @@ export const exercise35: Exercise<DATA> = {
         <p>Löse das lineare Gleichungssystem. Notiere deinen Lösungsweg.</p>
 
         <p>
-          I &nbsp;&nbsp; {data.b}x − {data.a}y = {pp(c)}
+          I &nbsp;&nbsp; {data.b}x {pp(data.a, 'merge_op')}y = {pp(c)}
         </p>
         <p>
-          II &nbsp; {data.d}x + {data.faktor * data.a}y = {pp(e)}
+          II &nbsp; {data.d}x {pp(-data.faktor * data.a, 'merge_op')}y = {pp(e)}
         </p>
       </>
     )
