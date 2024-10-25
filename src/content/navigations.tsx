@@ -267,7 +267,27 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
 
-          { name: 'Geometrische Sätze', skillExercises: [] },
+          {
+            name: 'Geometrische Sätze',
+            skillExercises: [
+              {
+                id: 6,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 32,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 11,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 55,
+                pages: [{ index: 'g' }],
+              },
+            ],
+          },
           { name: 'Länge von Strecken', skillExercises: [] },
           {
             name: 'Oberfläche und Volumen - Fortgeschritten',
