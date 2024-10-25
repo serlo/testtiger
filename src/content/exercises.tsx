@@ -59,6 +59,7 @@ import { exercise121 } from './implementations/NRW-EESA/121-2023-1-2-Einheiten-u
 import { exercise25 } from './implementations/NRW-MSA/25-2021-v2-2-zahlen-ordnen'
 import { exercise31 } from './implementations/NRW-MSA/31-2019-1-1-zahlen ordnen'
 import { exercise136 } from './implementations/NRW-EESA/136-2024-2-2-E-Schooter'
+import { exercise137 } from './implementations/NRW-EESA/137-2024-2-3-Würfel'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -120,6 +121,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   120: exercise120,
   121: exercise121,
   136: exercise136,
+  137: exercise137,
 }
 
 // symbols:
