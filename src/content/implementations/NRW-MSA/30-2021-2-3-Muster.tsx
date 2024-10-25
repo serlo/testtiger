@@ -24,6 +24,10 @@ export const exercise30: Exercise<DATA> = {
       guess: rng.randomIntBetween(20, 30) * 10,
     }
   },
+  originalData: {
+    d1: 3,
+    guess: 250,
+  },
   constraint({ data }) {
     const surface = data.d1 * data.d1 * 0.5
     return (data.guess / surface) % 1 != 0

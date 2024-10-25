@@ -24,6 +24,13 @@ export const exercise26: Exercise<DATA> = {
       price: rng.randomIntBetween(35, 45),
     }
   },
+  originalData: {
+    length: 2.88,
+    outerWidth: 1.94,
+    outerHeight: 0.4,
+    price: 39,
+  },
+
   constraint({ data }) {
     return true
   },

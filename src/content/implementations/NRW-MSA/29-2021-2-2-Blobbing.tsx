@@ -34,6 +34,15 @@ export const exercise29: Exercise<DATA> = {
       g: rng.randomIntBetween(900, 1100) / 100,
     }
   },
+  originalData: {
+    x_s: 5,
+    y_s: 6,
+    coin: false,
+    fake_a: -0.28,
+    fake_x: 5,
+    fake_y: 8,
+    g: 9.81,
+  },
   constraint({ data }) {
     return (
       (((1 - data.y_s) / (data.x_s * data.x_s)) * 100) % 1 == 0 &&
@@ -931,7 +940,7 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 3,
-      intro({ data }) {
+      skillIntro({ data }) {
         return (
           <>
             <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
