@@ -21,7 +21,7 @@ export const exerciseXXX: Exercise<DATA> = {
     {
       points: 42,
       intro({ data }) {
-        return <></>
+        return null
       },
       task({ data }) {
         return <></>
@@ -33,7 +33,7 @@ export const exerciseXXX: Exercise<DATA> = {
     {
       points: 42,
       intro({ data }) {
-        return <></>
+        return null
       },
       task({ data }) {
         return <></>
