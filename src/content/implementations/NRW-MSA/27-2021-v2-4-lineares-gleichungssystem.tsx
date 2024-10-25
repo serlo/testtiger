@@ -35,6 +35,16 @@ export const exercise27: Exercise<DATA> = {
       ]),
     }
   },
+  originalData: {
+    x: -3,
+    y: 2,
+    a: 4,
+    b: 6,
+    d: 2,
+    b_b: -7,
+    m_b: 3,
+    b_2_b: 5,
+  },
   constraint({ data }) {
     return (
       data.b != data.d &&
