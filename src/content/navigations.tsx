@@ -268,7 +268,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
 
           {
-            name: 'Geometrische Sätze',
+            name: 'Geometrische Sätze - Grundlage',
             skillExercises: [
               {
                 id: 6,
@@ -360,7 +360,50 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          { name: 'Geometrische Sätze', skillExercises: [] },
+          {
+            name: 'Geometrische Sätze - Fortgeschritten',
+            skillExercises: [
+              {
+                id: 11,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 30,
+                pages: [{ index: 'c', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 47,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 30,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'c', intro: ['skill'] },
+                ],
+              },
+              {
+                id: 7,
+                pages: [{ index: 'd', intro: ['global', 'skill'] }],
+              },
+              {
+                id: 55,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 55,
+                pages: [{ index: 'e', intro: ['global'] }],
+              },
+              {
+                id: 55,
+                pages: [{ index: 'f' }],
+              },
+              {
+                id: 45,
+                pages: [{ index: 'd' }],
+              },
+            ],
+          },
           { name: 'Fläche und Umfang', skillExercises: [] },
           { name: 'Figuren zeichnen', skillExercises: [] },
         ],

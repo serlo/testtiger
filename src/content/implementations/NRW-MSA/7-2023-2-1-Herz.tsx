@@ -279,6 +279,18 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Eine Firma produziert herzförmige Dekoanhänger aus Metall. Jedes
+              Herz besteht aus einem Quadrat mit der Kantenlänge {data.kante}{' '}
+              cm, an das zwei Halbkreise mit einem Radius von jeweils{' '}
+              {pp(data.kante / 2)} cm angesetzt sind.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
@@ -305,8 +317,7 @@ export const exercise7: Exercise<DATA> = {
             </center>
             <p>
               Zeige durch eine Rechnung, dass die Strecke{' '}
-              {buildOverline('M1M2')}
-              ​​eine Länge von etwa <br></br>
+              {buildOverline('M1M2')} ​​eine Länge von etwa <br></br>
               {pp(
                 roundToDigits(
                   Math.sqrt((data.kante / 2) * (data.kante / 2) * 2),

@@ -29,7 +29,17 @@ export const exercise11: Exercise<DATA> = {
     return data.a != data.c
   },
   intro({ data }) {
-    return <></>
+    return (
+      <>
+        <svg viewBox="0 0 720 480">
+          <image href="/content/NRW_MSA_dreieck.jpg" height="500" width="700" />
+        </svg>
+        <p>
+          In dem abgebildeten Dreieck gilt: <br></br>a = {pp(data.a)} cm und c ={' '}
+          {data.c} cm.
+        </p>
+      </>
+    )
   },
   tasks: [
     {
@@ -37,17 +47,6 @@ export const exercise11: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <svg viewBox="0 0 720 480">
-              <image
-                href="/content/NRW_MSA_dreieck.jpg"
-                height="500"
-                width="700"
-              />
-            </svg>
-            <p>
-              In dem abgebildeten Dreieck gilt: <br></br>a = {pp(data.a)} cm und
-              c = {data.c} cm.
-            </p>
             <p>a) Berechne die Länge der Seite b.</p>
           </>
         )
