@@ -1,5 +1,8 @@
 import { Exercise } from '@/data/types'
-import { Color5 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
+import { buildEquation, buildSqrt } from '@/helper/math-builder'
+import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   bildvariante: number
@@ -54,7 +57,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.breite} cm
+              {data.breite} m
             </text>
             <text
               x={420}
@@ -63,7 +66,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} cm
+              {data.radius} m
             </text>
           </svg>
         )}
@@ -81,7 +84,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.breite} cm
+              {data.breite} m
             </text>
             <text
               x={420}
@@ -90,7 +93,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} cm
+              {data.radius} m
             </text>
           </svg>
         )}
@@ -107,7 +110,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.breite} cm
+              {data.breite} m
             </text>
             <text
               x={420}
@@ -116,7 +119,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} cm
+              {data.radius} m
             </text>
           </svg>
         )}
@@ -133,7 +136,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.breite} cm
+              {data.breite} m
             </text>
             <text
               x={420}
@@ -142,7 +145,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} cm
+              {data.radius} m
             </text>
           </svg>
         )}
@@ -159,7 +162,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.breite} cm
+              {data.breite} m
             </text>
             <text
               x={420}
@@ -168,7 +171,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} cm
+              {data.radius} m
             </text>
           </svg>
         )}
@@ -185,7 +188,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.breite} cm
+              {data.breite} m
             </text>
             <text
               x={420}
@@ -194,7 +197,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} cm
+              {data.radius} m
             </text>
           </svg>
         )}
@@ -292,10 +295,89 @@ export const exercise135: Exercise<DATA> = {
         return null
       },
       task({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              b) Bestätige durch eine Rechnung, dass die Seitenlänge des inneren
+              Quadrats ca.{' '}
+              {pp(
+                roundToDigits(
+                  Math.sqrt(2 * (data.breite / 2) * (data.breite / 2)),
+                  1,
+                ),
+              )}{' '}
+              m beträgt.
+            </p>
+          </>
+        )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            {' '}
+            <p>
+              Verwende den Satz des Pythagoras. Die Seiten des inneren Quadrats
+              bilden mit jeweils zwei halben Außenkanten des äußeren Quadrats
+              ein rechtwinkliges Dreieck. In diesem gilt:
+            </p>
+            {buildEquation([
+              [
+                <>
+                  {data.breite / 2}² + {pp(data.breite / 2)}²
+                </>,
+                '=',
+                <>a²</>,
+              ],
+              [
+                <>
+                  {((data.breite / 2) * data.breite) / 2} +{' '}
+                  {pp(((data.breite / 2) * data.breite) / 2)}
+                </>,
+                '=',
+                <>a²</>,
+              ],
+              [
+                <>
+                  {((data.breite / 2) * data.breite) / 2 +
+                    ((data.breite / 2) * data.breite) / 2}
+                </>,
+                '=',
+                <>a²</>,
+                <>| √</>,
+              ],
+              [
+                'a',
+                '=',
+                <>
+                  {buildSqrt(
+                    ((data.breite / 2) * data.breite) / 2 +
+                      ((data.breite / 2) * data.breite) / 2,
+                  )}
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {Math.sqrt((((data.breite / 2) * data.breite) / 2) * 2) % 1 ==
+                  0
+                    ? '='
+                    : '≈'}
+                </>,
+                <>
+                  <b>
+                    {pp(
+                      roundToDigits(
+                        Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                        1,
+                      ),
+                    )}{' '}
+                    [m]
+                  </b>
+                </>,
+              ],
+            ])}
+          </>
+        )
       },
     },
     {
@@ -304,10 +386,134 @@ export const exercise135: Exercise<DATA> = {
         return null
       },
       task({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              c) Auf den Seiten des inneren Quadrats werden Buchsbäume im
+              Abstand von{' '}
+              {pp(
+                roundToDigits(
+                  (100 *
+                    roundToDigits(
+                      Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                      1,
+                    )) /
+                    data.buchsbaeume,
+                  1,
+                ),
+              )}{' '}
+              cm gepflanzt. Berechne die Anzahl der Buchsbäume.
+            </p>
+          </>
+        )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Die Seiten des inneren Quadrats sind insgesamt 4 ·{' '}
+              {pp(
+                roundToDigits(
+                  Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                  1,
+                ),
+              )}{' '}
+              m ={' '}
+              {pp(
+                4 *
+                  roundToDigits(
+                    Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                    1,
+                  ),
+              )}{' '}
+              m ={' '}
+              {pp(
+                100 *
+                  4 *
+                  roundToDigits(
+                    Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                    1,
+                  ),
+              )}{' '}
+              cm lang.
+            </p>
+            <p>Teile dies durch den Abstand der Buchsbäume:</p>{' '}
+            <p>
+              {pp(
+                100 *
+                  4 *
+                  roundToDigits(
+                    Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                    1,
+                  ),
+              )}{' '}
+              :{' '}
+              {pp(
+                roundToDigits(
+                  (100 *
+                    roundToDigits(
+                      Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                      1,
+                    )) /
+                    data.buchsbaeume,
+                  1,
+                ),
+              )}{' '}
+              ≈{' '}
+              {pp(
+                roundToDigits(
+                  (100 *
+                    4 *
+                    roundToDigits(
+                      Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                      1,
+                    )) /
+                    roundToDigits(
+                      (100 *
+                        roundToDigits(
+                          Math.sqrt(
+                            (((2 * data.breite) / 2) * data.breite) / 2,
+                          ),
+                          1,
+                        )) /
+                        data.buchsbaeume,
+                      1,
+                    ),
+                  0,
+                ),
+              )}
+            </p>
+            <p>
+              Lisa benötigt{' '}
+              <b>
+                {pp(
+                  roundToDigits(
+                    (100 *
+                      4 *
+                      roundToDigits(
+                        Math.sqrt((((2 * data.breite) / 2) * data.breite) / 2),
+                        1,
+                      )) /
+                      roundToDigits(
+                        (100 *
+                          roundToDigits(
+                            Math.sqrt(
+                              (((2 * data.breite) / 2) * data.breite) / 2,
+                            ),
+                            1,
+                          )) /
+                          data.buchsbaeume,
+                        1,
+                      ),
+                    0,
+                  ),
+                )}{' '}
+                Buchsbäume
+              </b>{' '}
+              für das innere Quadrat.
+            </p>
+          </>
+        )
       },
     },
     {
