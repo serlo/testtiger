@@ -20,6 +20,11 @@ export const exercise2: Exercise<DATA> = {
       c: rng.randomIntBetween(1, 9) * 10,
     }
   },
+  originalData: {
+    a: 50,
+    b: 40,
+    c: 30
+  },
   constraint({ data }) {
     return data.a * data.b * data.c < 200000
   },
