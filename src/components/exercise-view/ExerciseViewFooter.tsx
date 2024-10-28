@@ -1,10 +1,6 @@
 import { ExerciseViewStore } from './state/exercise-view-store'
-import { useEffect, useRef } from 'react'
-import { proseWrapper } from '@/helper/prose-wrapper'
-import { exercisesData } from '@/content/exercises'
 import { FaIcon } from '../ui/FaIcon'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import { createGesture } from '@ionic/react'
+import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { TypeNCheckOverlay } from './TypeNCheckOverlay'
@@ -23,17 +19,25 @@ export function ExerciseViewFooter() {
       {!chatOverlay && (
         <div className="flex justify-around">
           <button
-            className="mt-3 px-2 py-0.5 bg-gray-200 rounded"
+            className="mr-3 mt-3 px-2 py-0.5 bg-gray-200 rounded"
+            onClick={() => {
+              const fileInput = document.getElementById(
+                'file-upload',
+              ) as HTMLInputElement
+              fileInput.click()
+            }}
+          >
+            <FaIcon icon={faImage} /> Foto-Hilfe
+          </button>
+          <button
+            className="mt-3 px-2 py-0.5 bg-gray-200 rounded opacity-60"
             onClick={() => {
               ExerciseViewStore.update(s => {
                 s.chatOverlay = 'type-n-check'
               })
             }}
           >
-            Antwort eingeben
-          </button>
-          <button className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded ml-3 opacity-30">
-            Chat
+            Eingabe
           </button>
           <button
             className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded"
@@ -45,6 +49,31 @@ export function ExerciseViewFooter() {
           >
             Lösung
           </button>
+          <input
+            id="file-upload"
+            type="file"
+            accept="image/*"
+            onChange={e => {
+              if (e.target.files) {
+                const file = e.target.files[0]
+                if (file) {
+                  const reader = new FileReader()
+                  reader.onload = e => {
+                    const t = e.target
+                    if (t) {
+                      // Speichern des Bildes als Base64-URL im Pullstate
+                      ExerciseViewStore.update(s => {
+                        s.uploadedImage = t.result?.toString()!
+                        s.cropImage = true
+                      })
+                    }
+                  }
+                  reader.readAsDataURL(file)
+                }
+              }
+            }}
+            className="sr-only"
+          />
         </div>
       )}
     </div>

@@ -16,6 +16,8 @@ export type IExerciseViewStore = {
   }[]
   pages?: SkillExercisePage[]
   skill?: string
+  cropImage: boolean
+  uploadedImage: string
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -27,4 +29,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   navIndicatorExternalUpdate: -1,
   chatOverlay: null,
   checks: [],
+  cropImage: false,
+  uploadedImage: '',
 })
