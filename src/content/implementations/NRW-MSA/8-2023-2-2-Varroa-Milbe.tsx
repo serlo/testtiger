@@ -26,6 +26,13 @@ export const exercise8: Exercise<DATA> = {
       goal: rng.randomIntBetween(8, 13) * 1000,
     }
   },
+  originalData: {
+    mass: 0.5,
+    length: 63,
+    width: 48,
+    count: 308,
+    goal: 10000,
+  },
   constraint({ data }) {
     return true
   },

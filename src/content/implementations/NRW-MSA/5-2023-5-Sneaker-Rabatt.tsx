@@ -21,6 +21,10 @@ export const exercise5: Exercise<DATA> = {
       rabatt: rng.randomIntBetween(4, 12) * 5,
     }
   },
+  originalData: {
+    preis: 82,
+    rabatt: 25,
+  },
   constraint({ data }) {
     return true
   },

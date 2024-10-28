@@ -33,6 +33,13 @@ export const exercise7: Exercise<DATA> = {
       red: rng.randomIntBetween(12, 22),
     }
   },
+  originalData: {
+    kante: 6,
+    dichte: 117,
+    zaehler: 3,
+    nenner: 4,
+    red: 15,
+  },
   constraint({ data }) {
     return (
       data.zaehler != data.nenner &&
