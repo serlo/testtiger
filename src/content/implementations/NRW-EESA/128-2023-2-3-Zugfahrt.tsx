@@ -198,8 +198,10 @@ export const exercise128: Exercise<DATA> = {
           <>
             <p>
               c) Bestimme die durchschnittliche Geschwindigkeit des Zuges von
-              Aachen nach Lüttich und gib diese in Kilometer pro Stunde (
-              {buildInlineFrac('km', 'h')}​) an.
+              Aachen nach Lüttich und gib diese in Kilometer pro Stunde{' '}
+              <span className="inline-block  scale-y-[2.6]">(</span>
+              {buildInlineFrac('km', 'h')}
+              <span className="inline-block  scale-y-[2.6]">)</span> an.
             </p>
           </>
         )
@@ -211,6 +213,12 @@ export const exercise128: Exercise<DATA> = {
     {
       points: 42,
       intro({ data }) {
+        function toX(n: number) {
+          return 33 + n * 15.6
+        }
+        function toY(n: number) {
+          return 157 - n * 15.6
+        }
         return (
           <>
             <p>
