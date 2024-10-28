@@ -21,6 +21,6 @@ Für ein gutes Arbeitserlebnis, richte noch paar Dinge im Editor ein:
 - Gehe unter View > Extensions und installiere `Tailwind CSS IntelliSense` und `Prettier - Code formatter`
 - Gehe unter File > Preferences > Settings und aktiviere "Format on Save" und setze "Default Formatter" auf "Prettier - Code formatter".
 
-Lasse jetzt im Terminal `npm run dev` laufen. Öffne http://localhost:3000/ im Browser. Du hast jetzt eine Vorschau. Änderungen im Code werden sofort dargestellt.
+Lasse jetzt im Terminal `npm start` laufen. Öffne http://localhost:3000/ im Browser. Du hast jetzt eine Vorschau. Änderungen im Code werden sofort dargestellt.
 
 Um deine Änderungen zu veröffentlichen, erstelle über GitHub Desktop einen Commit und pushe.

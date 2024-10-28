@@ -32,6 +32,7 @@ export function setupExercise(
     })
     s.chatOverlay = null
     s.skill = skill
+    s.cropImage = false
   })
 }
 

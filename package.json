@@ -17,7 +17,8 @@
     "presync": "npm run build",
     "sync": "npx cap sync",
     "android": "npx cap run android",
-    "ios": "npx cap run ios"
+    "ios": "npx cap run ios",
+    "start": "npm install && npm run dev"
   },
   "dependencies": {
     "@capacitor/android": "^6.1.2",
@@ -37,6 +38,7 @@
     "esm-seedrandom": "3.0.5",
     "next": "14.2.13",
     "react": "18.2.0",
+    "react-cropper": "2.3.3",
     "react-dom": "18.2.0",
     "react-markdown": "9.0.1",
     "react-router": "5.3.4",

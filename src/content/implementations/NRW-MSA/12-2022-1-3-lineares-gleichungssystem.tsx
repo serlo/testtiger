@@ -25,18 +25,25 @@ export const exercise12: Exercise<DATA> = {
       d: rng.randomIntBetween(3, 6),
     }
   },
+  originalData: {
+    x: -2,
+    y: 8,
+    a: 2,
+    b: 3,
+    d: 8,
+  },
   constraint({ data }) {
     return (
       data.b != data.d &&
-      data.a * data.x - data.b * data.y != 0 &&
-      data.a * data.x - data.d * data.y != 0 &&
-      data.a * data.x - data.d * data.y != data.a * data.x - data.b * data.y
+      data.a * data.x + data.b * data.y != 0 &&
+      -data.a * data.x + data.d * data.y != 0 &&
+      data.a * data.x + data.d * data.y != -data.a * data.x + data.b * data.y
     )
   },
   points: 3,
   task({ data }) {
-    const c = data.a * data.x - data.b * data.y
-    const e = -data.a * data.x - data.d * data.y
+    const c = data.a * data.x + data.b * data.y
+    const e = -data.a * data.x + data.d * data.y
     return (
       <>
         <p>Löse das lineare Gleichungssystem.</p>
@@ -44,17 +51,17 @@ export const exercise12: Exercise<DATA> = {
         <p>Notiere deinen Lösungsweg.</p>
 
         <p>
-          I &nbsp;&nbsp; {data.a}x − {data.b}y = {pp(c)}
+          I &nbsp;&nbsp; {data.a}x + {data.b}y = {pp(c)}
         </p>
         <p>
-          II &nbsp; −{data.a}x − {data.d}y = {pp(e)}
+          II &nbsp; −{data.a}x + {data.d}y = {pp(e)}
         </p>
       </>
     )
   },
   solution({ data }) {
-    const c = data.a * data.x - data.b * data.y
-    const e = -data.a * data.x - data.d * data.y
+    const c = data.a * data.x + data.b * data.y
+    const e = -data.a * data.x + data.d * data.y
     const bd = -data.b - data.d
     return (
       <>
@@ -62,11 +69,11 @@ export const exercise12: Exercise<DATA> = {
         <p>
           Die Terme{' '}
           <Color1>
-            {'"'}− {data.a}x
+            {'"'} {data.a}x
           </Color1>
           {'"'} und {'"'}
           <Color1>
-            {data.a}x{'"'}
+            - {data.a}x{'"'}
           </Color1>{' '}
           haben entgegengesetzte Vorzeichen. Addiere die Gleichungen I+II, um
           die Terme zu eliminieren:
@@ -75,30 +82,28 @@ export const exercise12: Exercise<DATA> = {
           [
             <>
               <Color1>
-                − {data.a}x + {data.a}x
+                {data.a}x + (-{data.a}x)
               </Color1>{' '}
-              − {data.b}y − {data.d}y
+              + {data.b}y + {data.d}y
             </>,
             <>=</>,
             <>
-              {pp(c)} − {pp(-e)}
+              {pp(c)} + {pp(e)}
             </>,
           ],
           [
             <>
-              − {data.b}y − {data.d}y
+              {data.b}y + {data.d}y
             </>,
             <>=</>,
-            <>
-              {pp(c)} − {pp(-e)}
-            </>,
+            <>{pp(c + e)}</>,
           ],
           [
-            <>{pp(-data.b - data.d)}y </>,
+            <>{pp(data.b + data.d)}y </>,
             <>=</>,
             <>{pp(c + e)}</>,
 
-            <>| : ({pp(-data.b - data.d)})</>,
+            <>| : ({pp(data.b + data.d)})</>,
           ],
           [<>y </>, <>=</>, <>{data.y}</>],
         ])}
@@ -109,7 +114,7 @@ export const exercise12: Exercise<DATA> = {
         {buildEquation([
           [
             <>
-              {data.a}x − {data.b} · {data.y}
+              {data.a}x + {data.b} · {data.y}
             </>,
             <>=</>,
             <>{pp(c)}</>,
@@ -130,17 +135,17 @@ export const exercise12: Exercise<DATA> = {
           ],
           [
             <>
-              {data.a}x − {data.b * data.y}
+              {data.a}x + {data.b * data.y}
             </>,
             <>=</>,
             <>{pp(c)}</>,
 
-            <>| + {data.b * data.y}</>,
+            <>| - {data.b * data.y}</>,
           ],
           [
             <>{data.a}x</>,
             <>=</>,
-            <>{pp(c + data.b * data.y)}</>,
+            <>{pp(c - data.b * data.y)}</>,
 
             <>| : {data.a}</>,
           ],

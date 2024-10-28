@@ -3,6 +3,7 @@ import { ExerciseViewHeader } from './ExerciseViewHeader'
 import { ExerciseViewContent } from './ExerciseViewContent'
 import { ExerciseViewFooter } from './ExerciseViewFooter'
 import { ChatOverlay } from './ChatOverlay'
+import { CropImageOverlay } from './CropImageOverlay'
 
 export function ExerciseViewLayout() {
   return (
@@ -17,6 +18,7 @@ export function ExerciseViewLayout() {
         <ExerciseViewFooter />
       </IonFooter>
       <ChatOverlay />
+      <CropImageOverlay />
     </IonPage>
   )
 }
