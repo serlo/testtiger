@@ -22,6 +22,11 @@ export const exercise6: Exercise<DATA> = {
       alpha: rng.randomIntBetween(5, 8) * 10,
     }
   },
+  originalData: {
+    länge: 5,
+    breite: 4,
+    alpha: 70,
+  },
   constraint({ data }) {
     return data.breite > data.länge
   },

@@ -25,6 +25,10 @@ export const exercise11: Exercise<DATA> = {
       c: rng.randomIntBetween(24, 30),
     }
   },
+  originalData: {
+    a: 22.4,
+    c: 25,
+  },
   constraint({ data }) {
     return data.a != data.c
   },
