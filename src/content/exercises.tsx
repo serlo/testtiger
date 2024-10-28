@@ -63,6 +63,7 @@ import { exercise137 } from './implementations/NRW-EESA/137-2024-2-3-Würfel'
 import { exercise126 } from './implementations/NRW-EESA/126-2023-2-1-Pizzeria'
 import { exercise127 } from './implementations/NRW-EESA/127-2023-2-2-Tischgruppe'
 import { exercise128 } from './implementations/NRW-EESA/128-2023-2-3-Zugfahrt'
+import { exercise135 } from './implementations/NRW-EESA/135-2024-2-1-Garten'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -123,6 +124,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   54: exercise54,
   120: exercise120,
   121: exercise121,
+  135: exercise135,
   136: exercise136,
   137: exercise137,
   126: exercise126,
