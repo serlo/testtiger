@@ -69,7 +69,7 @@ export function TypeNCheckOverlay() {
             })
           }}
         >
-          <FaIcon icon={faCaretDown} /> Eingabe
+          <FaIcon icon={faCaretDown} /> Chat
         </button>
       </div>
       <div
