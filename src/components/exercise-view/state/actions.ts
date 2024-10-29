@@ -29,7 +29,14 @@ export function setupExercise(
     s.navIndicatorExternalUpdate = 0
     s.checks = Array.from({ length: Math.max(1, s.navIndicatorLength) }).map(
       _ => {
-        return { answerInput: '', result: '', resultPending: false }
+        return {
+          answerInput: '',
+          result: '',
+          resultPending: false,
+          fotoFeedback: '',
+          croppedImage: '',
+          uploadedImage: '',
+        }
       },
     )
     s.chatOverlay = null
@@ -74,7 +81,11 @@ export async function submitAnswerInput() {
     content: `
       In der vorherigen Nachricht sieht du eine Aufgabe. Du bist ein Tutor. In der nächsten Nachricht erhältst du die Antwort des Nutzers.
       
-      Du befindest dich bei der Teilaufgabe ${countLetter('a', state.navIndicatorPosition)}).
+      Du befindest dich bei der Teilaufgabe ${
+        state.pages
+          ? state.pages[state.navIndicatorPosition].index
+          : countLetter('a', state.navIndicatorPosition)
+      }).
 
       Teile die Eingabe in Zeilen auf. Antworte in diesem JSON-Format. Bitte kein Markdown, nur JSON als Antwort!!!!!
 
@@ -135,5 +146,53 @@ async function submitUserMessage({
       role: 'assistant',
       content: 'Error: Unable to get a response from the AI',
     }
+  }
+}
+
+export async function anaylseImage() {
+  const state = ExerciseViewStore.getRawState()
+  const exerciseContext = extractor(exercisesData[state.id], state.data)
+  const messages: IMessage[] = []
+  messages.push({
+    role: 'system',
+    content: exerciseContext,
+    id: 'context',
+  })
+  messages.push({
+    role: 'system',
+    content: `
+      Du befindest dich bei der Teilaufgabe Du befindest dich bei der Teilaufgabe ${
+        state.pages
+          ? state.pages[state.navIndicatorPosition].index
+          : countLetter('a', state.navIndicatorPosition)
+      }).
+
+      Die SchülerIn hat dir ein Bild hochgeladen mit ihrer Lösung. Schaue dir die Lösung an und gebe Feedback in 3 - 4 Sätzen.
+
+      Verrate nicht die Lösung!!! Verwende kein Latex, sondern nutze möglichst Unicode, Brüche kannst du als 8/10 darstellen.
+      `,
+    id: 'prompt',
+  })
+  messages.push({
+    role: 'user',
+    content: [
+      {
+        type: 'image',
+        image: state.checks[state.navIndicatorPosition].croppedImage,
+      },
+    ],
+    id: 'user',
+  })
+  const result = await submitUserMessage({ messages })
+  try {
+    ExerciseViewStore.update(s => {
+      s.checks[s.navIndicatorPosition].fotoFeedback = result.content.toString()
+    })
+  } catch (e) {
+    console.log(e)
+    ExerciseViewStore.update(s => {
+      s.checks[s.navIndicatorPosition].fotoFeedback =
+        'Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.'
+    })
   }
 }

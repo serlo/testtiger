@@ -15,6 +15,9 @@ export const exercise14: Exercise<DATA> = {
     const task = rng.randomItemFromArray([1, 2, 3, 4, 5])
     return { task }
   },
+  originalData: {
+    task: 1,
+  },
   constraint({ data }) {
     return true
   },

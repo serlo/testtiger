@@ -42,6 +42,21 @@ export const exercise15: Exercise<DATA> = {
       umfrage: rng.randomIntBetween(110, 150),
     }
   },
+  originalData: {
+    maenner_1: 41,
+    frauen_1: 18,
+    maenner_2: 27,
+    frauen_2: 12,
+    maenner_3: 23,
+    frauen_3: 17,
+    maenner_4: 21,
+    frauen_4: 16,
+    maenner_5: 19,
+    frauen_5: 17,
+    maenner_6: 17,
+    frauen_6: 11,
+    umfrage: 123,
+  },
   constraint({ data }) {
     return (
       data.maenner_2 != data.frauen_2 * 2 &&

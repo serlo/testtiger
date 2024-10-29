@@ -65,6 +65,9 @@ import { exercise127 } from './implementations/NRW-EESA/127-2023-2-2-Tischgruppe
 import { exercise128 } from './implementations/NRW-EESA/128-2023-2-3-Zugfahrt'
 import { exercise135 } from './implementations/NRW-EESA/135-2024-2-1-Garten'
 import { exercise108 } from './implementations/NRW-EESA/108-2021-2-2-Blumenbeet'
+import { exercise117 } from './implementations/NRW-EESA/117-2022-2-1-Hochbeet'
+import { exercise118 } from './implementations/NRW-EESA/118-2022-2-2-Führerschein'
+import { exercise119 } from './implementations/NRW-EESA/119-2022-2-3-Bambus'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -132,6 +135,9 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   127: exercise127,
   128: exercise128,
   108: exercise108,
+  117: exercise117,
+  118: exercise118,
+  119: exercise119,
 }
 
 // symbols:
