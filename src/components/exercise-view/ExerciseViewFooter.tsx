@@ -1,6 +1,6 @@
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { FaIcon } from '../ui/FaIcon'
-import { faImage } from '@fortawesome/free-solid-svg-icons'
+import { faCameraAlt, faImage } from '@fortawesome/free-solid-svg-icons'
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { TypeNCheckOverlay } from './TypeNCheckOverlay'
@@ -27,10 +27,10 @@ export function ExerciseViewFooter() {
               fileInput.click()
             }}
           >
-            <FaIcon icon={faImage} /> Foto-Hilfe
+            <FaIcon icon={faCameraAlt} /> Foto
           </button>
           <button
-            className="mt-3 px-2 py-0.5 bg-gray-200 rounded opacity-60"
+            className="mt-3 px-2 py-0.5 bg-gray-200 rounded"
             onClick={() => {
               ExerciseViewStore.update(s => {
                 s.chatOverlay = 'type-n-check'

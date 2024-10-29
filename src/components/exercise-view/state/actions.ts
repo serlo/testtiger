@@ -27,17 +27,17 @@ export function setupExercise(
         : 0
     s.navIndicatorPosition = 0
     s.navIndicatorExternalUpdate = 0
-    s.checks = Array.from({ length: s.navIndicatorLength }).map(_ => {
-      return { answerInput: '', result: '', resultPending: false }
-    })
+    s.checks = Array.from({ length: Math.max(1, s.navIndicatorLength) }).map(
+      _ => {
+        return { answerInput: '', result: '', resultPending: false }
+      },
+    )
     s.chatOverlay = null
     s.skill = skill
     s.cropImage = false
+    s.completed = s.checks.map(() => false)
+    s.showEndScreen = false
   })
-}
-
-export function setupSkillExercise(ex: SkillExercise) {
-  // TODO
 }
 
 export function reseed() {

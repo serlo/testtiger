@@ -18,6 +18,8 @@ export type IExerciseViewStore = {
   skill?: string
   cropImage: boolean
   uploadedImage: string
+  completed: boolean[]
+  showEndScreen: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -31,4 +33,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   checks: [],
   cropImage: false,
   uploadedImage: '',
+  completed: [],
+  showEndScreen: false,
 })
