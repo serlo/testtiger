@@ -40,7 +40,7 @@ export function ExerciseViewFooter() {
             Eingabe
           </button>
           <button
-            className="ml-3 mt-3 px-2 py-0.5 bg-gray-200 rounded"
+            className="ml-3 mt-3 px-2 py-0.5 bg-gray-300 rounded"
             onClick={() => {
               ExerciseViewStore.update(s => {
                 s.chatOverlay = 'solution'

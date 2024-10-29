@@ -81,7 +81,7 @@ export async function submitAnswerInput() {
       [
         {
           line: "Zeile 1 des Nutzers"
-          correct: boolean // true = diese Zeile ist richtig // false = diese Zeile enthält ein Problem
+          correct: boolean // true = diese Zeile ist richtig // false = diese Zeile enthält ein Problem. Bitte sei großzügig. Wenn das Problem nur eine Formalität ist, dann lasse die Antwort trotzdem gelten.
           message: "Wenn die Zeile ein Problem enthält, erkläre knapp, maximal 1 oder 2 Sätze, was das Problem ist. Bitte vermeide es, die richtige Antwort zu sagen!! Du darfst die Herangehensweise erklären.
         },
         ...

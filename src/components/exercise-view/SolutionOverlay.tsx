@@ -120,7 +120,7 @@ export function SolutionOverlay() {
                             s.navIndicatorPosition + 1
                           s.chatOverlay = null
                         })
-                      }, 300)
+                      }, 500)
                     }
                   }
                 }

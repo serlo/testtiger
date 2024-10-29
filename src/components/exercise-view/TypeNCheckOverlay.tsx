@@ -43,6 +43,7 @@ export function TypeNCheckOverlay() {
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].answerInput = newText
     })
+    setShowBox(false)
   }
 
   if (chatOverlay !== 'type-n-check') return null
