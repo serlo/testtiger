@@ -8,16 +8,18 @@ export type IExerciseViewStore = {
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
-  chatOverlay: null | 'solution' | 'type-n-check'
+  chatOverlay: null | 'solution' | 'type-n-check' | 'foto'
   checks: {
     answerInput: string
     resultPending: boolean
     result: string
+    uploadedImage: string
+    croppedImage: string
+    fotoFeedback: string
   }[]
   pages?: SkillExercisePage[]
   skill?: string
   cropImage: boolean
-  uploadedImage: string
   completed: boolean[]
   showEndScreen: boolean
 }
@@ -32,7 +34,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   chatOverlay: null,
   checks: [],
   cropImage: false,
-  uploadedImage: '',
   completed: [],
   showEndScreen: false,
 })

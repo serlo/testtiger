@@ -1,9 +1,10 @@
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { FaIcon } from '../ui/FaIcon'
-import { faCameraAlt, faImage } from '@fortawesome/free-solid-svg-icons'
+import { faCameraAlt } from '@fortawesome/free-solid-svg-icons'
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { TypeNCheckOverlay } from './TypeNCheckOverlay'
+import { FotoOverlay } from './FotoOverlay'
 
 export function ExerciseViewFooter() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
@@ -16,11 +17,19 @@ export function ExerciseViewFooter() {
       <IndicatorBar />
       <SolutionOverlay />
       <TypeNCheckOverlay />
+      <FotoOverlay />
       {!chatOverlay && (
         <div className="flex justify-around">
           <button
             className="mr-3 mt-3 px-2 py-0.5 bg-gray-200 rounded"
             onClick={() => {
+              const state = ExerciseViewStore.getRawState()
+              if (state.checks[state.navIndicatorPosition].croppedImage) {
+                ExerciseViewStore.update(s => {
+                  s.chatOverlay = 'foto'
+                })
+                return
+              }
               const fileInput = document.getElementById(
                 'file-upload',
               ) as HTMLInputElement
@@ -63,7 +72,8 @@ export function ExerciseViewFooter() {
                     if (t) {
                       // Speichern des Bildes als Base64-URL im Pullstate
                       ExerciseViewStore.update(s => {
-                        s.uploadedImage = t.result?.toString()!
+                        s.checks[s.navIndicatorPosition].uploadedImage =
+                          t.result?.toString()!
                         s.cropImage = true
                       })
                     }
