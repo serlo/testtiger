@@ -169,13 +169,7 @@ export async function anaylseImage() {
 
       Die SchülerIn hat dir ein Bild hochgeladen mit ihrer Lösung. Schaue dir die Lösung an und gebe Feedback in 3 - 4 Sätzen.
 
-      Wähle dabei den wichtigsten Aspekten von diesen:
-
-      - Ist der Ansatz korrekt angefangen?
-      - Ist die Lösung korrekt?
-      - Kannst du einen nützlichen Tipp geben?
-
-      Verrate nicht die Lösung!!!
+      Verrate nicht die Lösung!!! Verwende kein Latex, sondern nutze möglichst Unicode, Brüche kannst du als 8/10 darstellen.
       `,
     id: 'prompt',
   })

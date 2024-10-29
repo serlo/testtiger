@@ -519,13 +519,24 @@ export const exercise135: Exercise<DATA> = {
     {
       points: 42,
       intro({ data }) {
-        return null
+        return (
+          <>
+            <p>
+              Ausgehend vom Mittelpunkt des Gartens möchte Lisa ein
+              kreisförmiges Beet mit einem Radius von {data.radius} m anlegen.
+            </p>
+          </>
+        )
       },
       task({ data }) {
-        return <></>
+        return (
+          <>
+            <p>d) Zeichne dieses Beet maßstabsgetreu in Abbildung 1 ein.</p>
+          </>
+        )
       },
       solution({ data }) {
-        return <></>
+        return <>Bild muss erstellt werden.</>
       },
     },
     {
@@ -534,10 +545,91 @@ export const exercise135: Exercise<DATA> = {
         return null
       },
       task({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              e) In dem kreisförmigen Beet möchte sie eine Blumenwiese anlegen.
+              Für einen Quadratmeter benötigt sie {data.samen} Gramm
+              Blumensamen. Berechne, wie viel Gramm Blumensamen sie benötigt.
+              Runde sinnvoll.
+            </p>
+          </>
+        )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              <b>Beetfläche berechnen</b>
+            </p>
+            <p>Die Fläche des kreisförmigen Blumenbeets beträgt:</p>
+            {buildEquation([
+              [<>A</>, '=', <>π · r²</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>Radius einsetzen</span>
+                  </Color4>
+                </>,
+              ],
+              ['', '=', <>π · {data.radius}²</>],
+              [
+                <></>,
+                '=',
+                <>
+                  {pp(roundToDigits(Math.PI * data.radius * data.radius, 2))}{' '}
+                  [m²]
+                </>,
+              ],
+            ])}
+            <p>
+              <b>Benötigte Blumensamen</b>
+            </p>
+            <p>
+              Multipliziere die Beetfläche mit den benötigten Samen für einen
+              Quadratmeter:
+            </p>
+            <p>
+              {pp(roundToDigits(Math.PI * data.radius * data.radius, 2))} ·{' '}
+              {data.samen} ={' '}
+              {pp(
+                roundToDigits(Math.PI * data.radius * data.radius, 2) *
+                  data.samen,
+              )}{' '}
+              ≈{' '}
+              {pp(
+                roundToDigits(
+                  roundToDigits(Math.PI * data.radius * data.radius, 2) *
+                    data.samen,
+                  0,
+                ),
+              )}{' '}
+              [g]
+            </p>
+            <p>
+              Lisa benötigt{' '}
+              <b>
+                ca.{' '}
+                {pp(
+                  roundToDigits(
+                    roundToDigits(Math.PI * data.radius * data.radius, 2) *
+                      data.samen,
+                    0,
+                  ),
+                )}{' '}
+                Gramm{' '}
+              </b>
+              Blumensamen.{' '}
+            </p>
+          </>
+        )
       },
     },
   ],
