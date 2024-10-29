@@ -1,6 +1,7 @@
 import { countLetter } from '@/helper/count-letter'
 import { Fragment } from 'react'
 import { ExerciseViewStore } from './state/exercise-view-store'
+import clsx from 'clsx'
 
 export function IndicatorBar() {
   const navIndicatorLength = ExerciseViewStore.useState(
@@ -11,6 +12,8 @@ export function IndicatorBar() {
   )
 
   const pages = ExerciseViewStore.useState(s => s.pages)
+
+  const completed = ExerciseViewStore.useState(s => s.completed)
 
   if (navIndicatorLength == 0 || (pages && pages.length == 1)) {
     return null
@@ -23,7 +26,12 @@ export function IndicatorBar() {
           return (
             <Fragment key={j}>
               {navIndicatorPosition == j ? (
-                <div className="bg-black w-12 h-4 mx-1.5 rounded-full text-white text-xs align-top">
+                <div
+                  className={clsx(
+                    'w-12 h-4 mx-1.5 rounded-full text-white text-xs align-top select-none',
+                    completed[j] ? 'bg-green-700' : 'bg-black',
+                  )}
+                >
                   {pages ? pages[j].index : countLetter('a', j)}
                 </div>
               ) : (
@@ -36,7 +44,14 @@ export function IndicatorBar() {
                     })
                   }}
                 >
-                  <div className="border-black border w-4 h-4 mx-1.5 rounded-full"></div>
+                  <div
+                    className={clsx(
+                      'border w-4 h-4 mx-1.5 rounded-full',
+                      completed[j]
+                        ? 'bg-green-700 border-green-900'
+                        : 'border-black',
+                    )}
+                  ></div>
                 </div>
               )}
             </Fragment>

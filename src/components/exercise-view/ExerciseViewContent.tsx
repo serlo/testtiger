@@ -179,7 +179,7 @@ export function ExerciseViewContent() {
               )}
             </div>
             <div>
-              <button className="px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+              <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
                 <div className="inset-0 absolute">
                   <FaIcon icon={faCalculator} />
                 </div>
@@ -189,10 +189,10 @@ export function ExerciseViewContent() {
                   </div>
                 )}
               </button>
-              <button className="px-1 py-0.5 rounded-md bg-gray-100 mr-2">
+              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-2">
                 <FaIcon icon={faClock} className="text-xs" /> {duration} min
               </button>
-              <button className="px-1 py-0.5 rounded-md bg-gray-100">
+              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">
                 {points} BE
               </button>
             </div>

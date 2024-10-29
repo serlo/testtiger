@@ -6,6 +6,7 @@ import { exercisesData } from '@/content/exercises'
 import { createGesture } from '@ionic/react'
 import { useRef, useEffect } from 'react'
 import { countLetter } from '@/helper/count-letter'
+import clsx from 'clsx'
 
 export function SolutionOverlay() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
@@ -13,6 +14,9 @@ export function SolutionOverlay() {
   const data = ExerciseViewStore.useState(s => s.data)
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
+  )
+  const completed = ExerciseViewStore.useState(
+    s => s.completed[s.navIndicatorPosition],
   )
 
   const pages = ExerciseViewStore.useState(s => s.pages)
@@ -92,9 +96,38 @@ export function SolutionOverlay() {
           )}
         </div>
         <div className="text-center mt-6 mb-4">
-          <button className="bg-gray-200 hover:bg-gray-300 px-6 py-1 rounded-xl">
-            <FaIcon icon={faCheck} className="mr-2" />
-            Kann ich
+          <button
+            className={clsx(
+              'px-6 py-1 rounded-xl',
+              completed ? 'bg-green-200' : 'bg-gray-200 hover:bg-gray-300',
+            )}
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                const wasNotDone = s.completed[s.navIndicatorPosition] == false
+                s.completed[s.navIndicatorPosition] = true
+                if (s.completed.every(x => x)) {
+                  setTimeout(() => {
+                    ExerciseViewStore.update(s => {
+                      s.showEndScreen = true
+                    })
+                  }, 1000)
+                } else {
+                  if (s.navIndicatorPosition + 1 < s.navIndicatorLength) {
+                    if (wasNotDone) {
+                      setTimeout(() => {
+                        ExerciseViewStore.update(s => {
+                          s.navIndicatorExternalUpdate =
+                            s.navIndicatorPosition + 1
+                          s.chatOverlay = null
+                        })
+                      }, 500)
+                    }
+                  }
+                }
+              })
+            }}
+          >
+            Kann ich{completed && <FaIcon icon={faCheck} className="ml-2" />}
           </button>
         </div>
       </div>
