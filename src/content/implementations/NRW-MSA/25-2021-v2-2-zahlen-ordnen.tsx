@@ -24,6 +24,13 @@ export const exercise25: Exercise<DATA> = {
       e: rng.randomItemFromArray([2, 4, 5, 8, 10]),
     }
   },
+  originalData: {
+    a: 0.05,
+    b: 0.15,
+    c: 2,
+    d: 10,
+    e: 10,
+  },
   constraint({ data }) {
     const potenz = Math.pow(data.e, -1)
     const array = [data.a, data.b, data.c / data.d, potenz].sort(

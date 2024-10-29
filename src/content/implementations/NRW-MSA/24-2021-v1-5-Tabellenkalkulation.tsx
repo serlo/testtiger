@@ -23,6 +23,12 @@ export const exercise24: Exercise<DATA> = {
       coin: rng.randomIntBetween(1, 9),
     }
   },
+  originalData: {
+    preis_p: 11.72,
+    preis: 33.57,
+    preis_t: 7.25,
+    coin: 1,
+  },
   constraint({ data }) {
     return (
       roundToDigits(

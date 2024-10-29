@@ -24,6 +24,11 @@ export const exercise13: Exercise<DATA> = {
       c: rng.randomItemFromArray(['', 'y²']),
     }
   },
+  originalData: {
+    a: 2,
+    b: 3,
+    c: 'y²',
+  },
   constraint({ data }) {
     return data.a != 0 && data.a != -1
   },

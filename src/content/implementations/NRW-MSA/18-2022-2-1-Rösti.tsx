@@ -28,6 +28,14 @@ export const exercise18: Exercise<DATA> = {
       case: rng.randomIntBetween(1, 3),
     }
   },
+  originalData: {
+    gewicht: 100,
+    volumen: 81,
+    dicke: 2,
+    prob_1: 98,
+    prob_2: 99,
+    case: 1,
+  },
   constraint({ data }) {
     return true
   },

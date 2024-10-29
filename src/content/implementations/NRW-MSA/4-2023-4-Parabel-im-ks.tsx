@@ -24,6 +24,13 @@ export const exercise4: Exercise<DATA> = {
       sign: rng.randomItemFromArray([' ', '−']),
     }
   },
+  originalData: {
+    x_s: 2,
+    y_s: 3,
+    a: 1,
+    correct_random: 3,
+    sign: ' ',
+  },
   constraint({ data }) {
     return data.x_s != 0 && data.y_s != 0
   },

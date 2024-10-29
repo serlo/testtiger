@@ -20,6 +20,11 @@ export const exercise21: Exercise<DATA> = {
       gramms: rng.randomIntBetween(10000, 200000) / 10,
     }
   },
+  originalData: {
+    hours: 2.5,
+    centimeters: 1296,
+    gramms: 50,
+  },
   constraint({ data }) {
     return true
   },

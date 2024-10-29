@@ -23,6 +23,11 @@ export const exercise22: Exercise<DATA> = {
       h: rng.randomIntBetween(2, 9) * 3,
     }
   },
+  originalData: {
+    l: 15,
+    h: 24,
+    d: 0.8,
+  },
   constraint({ data }) {
     return true
   },

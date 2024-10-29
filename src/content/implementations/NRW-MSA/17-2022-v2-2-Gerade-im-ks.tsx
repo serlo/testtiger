@@ -18,6 +18,10 @@ export const exercise17: Exercise<DATA> = {
       b: rng.randomIntBetween(-2, 8) / 2,
     }
   },
+  originalData: {
+    m: -0.5,
+    b: 2,
+  },
   constraint({ data }) {
     return (
       data.m != 0 &&

@@ -21,6 +21,11 @@ export const exercise16: Exercise<DATA> = {
       cubics: rng.randomIntBetween(10, 100) / 100,
     }
   },
+  originalData: {
+    hours: 2.25,
+    gramms: 1238.6,
+    cubics: 0.12,
+  },
   constraint({ data }) {
     return true
   },

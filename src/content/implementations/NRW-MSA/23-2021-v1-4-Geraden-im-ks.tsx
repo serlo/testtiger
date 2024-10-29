@@ -33,6 +33,17 @@ export const exercise23: Exercise<DATA> = {
       order: rng.shuffleArray([0, 1, 2]),
     }
   },
+  originalData: {
+    m_1: -0.5,
+    b_1: 2,
+    m_2: 0.5,
+    b_2: 3,
+    m_3: 2,
+    b_3: 3,
+    m_b: 1.5,
+    b_b: 2,
+    order: [],
+  },
   constraint({ data }) {
     return (
       data.m_b != 0 &&
