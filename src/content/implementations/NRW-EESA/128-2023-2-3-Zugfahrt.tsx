@@ -1,35 +1,79 @@
 import { Exercise } from '@/data/types'
 import { Color5 } from '@/helper/colors'
 import { buildInlineFrac } from '@/helper/math-builder'
+import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   case: number
-  aussagen_e: Array<string>
-}
 
+  item_1: number
+  item_2: number
+  item_3: number
+  order: number[]
+  strecke_1: number
+  strecke_2: number
+  strecke_3: number
+  zeit_1: number
+  zeit_2: number
+  zeit_3: number
+  zeit_4: number
+  zeit_5: number
+  zeit_6: number
+}
+const richtig = [
+  'In Brüssel hält der Zug für weniger als 15 Minuten.',
+  'Die Fahrt von Lüttich nach Brüssel dauert nicht einmal eine Stunde.',
+  'Von Brüssel nach Paris fährt der Zug im Durchschnitt schneller als 150 km/h',
+  'In den ersten 40 Minuten der Fahrt werden nicht einmal 100 km zurückgelegt.',
+]
+
+const falsch = [
+  'Von Lüttich nach Brüssel fährt der Zug schneller als von Brüssel nach Paris.',
+  '40 Minuten nach der Abfahrt in Brüssel ist der Zug mehr als 200 km von seiner Gesamtstrecke gefahren.',
+  'Die Fahrt von Lüttich nach Paris dauer genau 2 Stunden.',
+  'Die Distanz von Brüssel nach Paris beträgt etwa 430 km.',
+]
 export const exercise128: Exercise<DATA> = {
   title: 'Zugfahrt',
   source: '2023 Teil 2 Aufgabe 3',
   useCalculator: true,
   duration: 30,
   generator(rng) {
-    const aussagen = [
-      'Von Lüttich nach Brüssel fährt der Zug schneller als von Brüssel nach Paris.',
-      'In Brüssel hält der Zug für weniger als 15 Minuten.',
-      '40 Minuten nach der Abfahrt in Brüssel ist der Zug mehr als 200 km von seiner Gesamtstrecke gefahren.',
-    ]
     return {
       case: rng.randomIntBetween(1, 4),
-      aussagen_e: rng.shuffleArray(aussagen),
+
+      item_1: rng.randomIntBetween(0, 3),
+      item_2: rng.randomIntBetween(0, 3),
+      item_3: rng.randomIntBetween(0, 3),
+      order: rng.shuffleArray([0, 1, 2]),
+      strecke_1: rng.randomIntBetween(30, 70),
+      strecke_2: rng.randomIntBetween(100, 170),
+      strecke_3: rng.randomIntBetween(390, 420),
+      zeit_1: rng.randomIntBetween(10, 30),
+
+      zeit_2: rng.randomIntBetween(44, 50),
+      zeit_3: rng.randomIntBetween(51, 59),
+      zeit_4: rng.randomIntBetween(36, 40),
+      zeit_5: rng.randomIntBetween(46, 50),
+      zeit_6: rng.randomIntBetween(0, 5),
     }
   },
   originalData: {
     case: 1,
-    aussagen_e: [
-      'Von Lüttich nach Brüssel fährt der Zug schneller als von Brüssel nach Paris.',
-      'In Brüssel hält der Zug für weniger als 15 Minuten.',
-      '40 Minuten nach der Abfahrt in Brüssel ist der Zug mehr als 200 km von seiner Gesamtstrecke gefahren.',
-    ],
+    item_1: 0,
+    item_2: 0,
+    item_3: 1,
+    order: [1, 0, 2],
+    strecke_1: 42,
+    strecke_2: 114,
+    strecke_3: 428,
+    zeit_1: 22,
+    zeit_2: 49,
+    zeit_3: 52,
+    zeit_4: 35,
+    zeit_5: 43,
+    zeit_6: 5,
   },
   constraint({ data }) {
     return true
@@ -87,7 +131,7 @@ export const exercise128: Exercise<DATA> = {
                   -
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  07:22
+                  07:{data.zeit_1}
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
                   0
@@ -98,13 +142,13 @@ export const exercise128: Exercise<DATA> = {
                   Lüttich
                 </td>
                 <td className="py-1 border text-center font-bold p-1 text-black">
-                  07:49
+                  07:{data.zeit_2}
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  07:52
+                  07:{data.zeit_3}
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  42
+                  {data.strecke_1}
                 </td>
               </tr>
               <tr>
@@ -112,13 +156,13 @@ export const exercise128: Exercise<DATA> = {
                   Brüssel
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  08:35
+                  08:{data.zeit_4}
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  08:43
+                  08:{data.zeit_5}
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  114
+                  {data.strecke_2}
                 </td>
               </tr>
               <tr>
@@ -126,13 +170,13 @@ export const exercise128: Exercise<DATA> = {
                   Paris
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  10:05
+                  10:0{data.zeit_6}
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
                   -
                 </td>
                 <td className="py-1 border text-center font-bold p-1  text-black">
-                  428
+                  {data.strecke_3}
                 </td>
               </tr>
             </tbody>
@@ -165,7 +209,21 @@ export const exercise128: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Die Fahrt beginnt um 07:{data.zeit_1} Uhr und endet um 10:0
+              {data.zeit_6} Uhr.
+            </p>
+            <p>
+              Es vergehen{' '}
+              <strong>
+                2 ganze Stunden und {60 - data.zeit_1 + data.zeit_6} Minuten
+              </strong>
+              .
+            </p>
+          </>
+        )
       },
     },
     {
@@ -185,7 +243,21 @@ export const exercise128: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <ol>
+              <li>Die längste Teilstrecke ist von Brüssel nach Paris.</li>
+              <li>
+                Laut Fahrplan betragen die Strecken ab Aachen {data.strecke_2}{' '}
+                km bis Brüssel und {data.strecke_3} km bis Paris.<br></br>
+                Zwischen Brüssel und Paris sind es damit:<br></br>
+                <br></br>
+                {data.strecke_3} − {data.strecke_2} ={' '}
+                <strong>{data.strecke_3 - data.strecke_2} [km]</strong>
+              </li>
+            </ol>
+          </>
+        )
       },
     },
     {
@@ -207,7 +279,47 @@ export const exercise128: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              <strong>Zeit in Stunden</strong>
+            </p>
+            <p>
+              Zwischen Aachen und Lüttich beträgt die Strecke {data.strecke_1}{' '}
+              km.
+            </p>
+            <p>
+              Der Zug benötigt für diese Strecke {data.zeit_2 - data.zeit_1}{' '}
+              Minuten. Rechne diese Zeit in Stunden um:
+            </p>
+            <p>
+              {buildInlineFrac(<>{data.zeit_2 - data.zeit_1}</>, <>60</>)}{' '}
+              {((data.zeit_2 - data.zeit_1) / 60) % 1 == 0 ? '=' : '≈'}{' '}
+              {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} [h]
+            </p>
+            <p>
+              <strong>Geschwindigkeit bestimmen</strong>
+            </p>
+            <p>
+              {buildInlineFrac(
+                <>{data.strecke_1} km</>,
+                <>
+                  {' '}
+                  {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} h
+                </>,
+              )}{' '}
+              ={' '}
+              {pp(
+                roundToDigits(
+                  data.strecke_1 /
+                    roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2),
+                  2,
+                ),
+              )}
+              {buildInlineFrac(<>km</>, <>h</>)}
+            </p>
+          </>
+        )
       },
     },
     {
@@ -232,38 +344,42 @@ export const exercise128: Exercise<DATA> = {
                 width="328"
               />
               <text
-                x={97}
-                y={104}
-                fontSize={5}
-                textAnchor="right"
-                stroke="black"
-              >
-                o
-              </text>
-              <text
-                x={110}
-                y={104}
+                x={toX((data.zeit_2 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_1 / 50) + 1}
                 fontSize={5}
                 textAnchor="right"
                 stroke="blue"
+                fill="blue"
               >
                 o
               </text>
               <text
-                x={198}
-                y={87}
+                x={toX((data.zeit_3 - data.zeit_1) / 10)}
+                y={toY(data.strecke_1 / 50) + 1}
                 fontSize={5}
                 textAnchor="right"
-                stroke="black"
+                stroke="blue"
+                fill="blue"
               >
                 o
               </text>
               <text
-                x={213}
-                y={87}
+                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10) - 2}
+                y={toY(data.strecke_2 / 50) + 1}
                 fontSize={5}
                 textAnchor="right"
-                stroke="black"
+                stroke="blue"
+                fill="blue"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_5 + 60 - data.zeit_1) / 10) - 2}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize={5}
+                textAnchor="right"
+                stroke="blue"
+                fill="blue"
               >
                 o
               </text>
@@ -277,28 +393,28 @@ export const exercise128: Exercise<DATA> = {
                 Aachen
               </text>
               <text
-                x={85}
-                y={100}
+                x={toX((data.zeit_2 - data.zeit_1) / 10)}
+                y={toY(data.strecke_1 / 50) - 4}
                 fontSize={7}
-                textAnchor="right"
+                textAnchor="middle"
                 stroke="blue"
               >
                 Lüttich
               </text>
               <text
-                x={190}
-                y={80}
+                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
+                y={toY(data.strecke_2 / 50) - 4}
                 fontSize={7}
-                textAnchor="right"
+                textAnchor="middle"
                 stroke="blue"
               >
                 Brüssel
               </text>
               <text
-                x={280}
-                y={25}
+                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
+                y={toY(data.strecke_3 / 50) - 4}
                 fontSize={7}
-                textAnchor="right"
+                textAnchor="middle"
                 stroke="blue"
               >
                 Paris
@@ -306,49 +422,50 @@ export const exercise128: Exercise<DATA> = {
               <line
                 x1={33}
                 y1={157}
-                x2={100}
-                y2={102}
+                x2={toX((data.zeit_2 - data.zeit_1) / 10)}
+                y2={toY(data.strecke_1 / 50)}
                 stroke="blue"
                 strokeWidth={2}
               />
               <line
-                x1={100}
-                y1={102}
-                x2={110}
-                y2={102}
+                x1={toX((data.zeit_2 - data.zeit_1) / 10)}
+                y1={toY(data.strecke_1 / 50)}
+                x2={toX((data.zeit_3 - data.zeit_1) / 10)}
+                y2={toY(data.strecke_1 / 50)}
                 stroke="blue"
                 strokeWidth={2}
               />
               <line
-                x2={200}
-                y2={85}
-                x1={111}
-                y1={102}
+                x2={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
+                y2={toY(data.strecke_2 / 50)}
+                x1={toX((data.zeit_3 - data.zeit_1) / 10)}
+                y1={toY(data.strecke_1 / 50)}
                 stroke="blue"
                 strokeWidth={2}
               />
               <line
-                x1={200}
-                y1={85}
-                x2={215}
-                y2={85}
+                x1={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
+                y1={toY(data.strecke_2 / 50)}
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
+                y2={toY(data.strecke_2 / 50)}
                 stroke="blue"
                 strokeWidth={2}
               />
               <line
-                x2={215}
-                y1={30}
-                x1={290}
-                y2={85}
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
+                y1={toY(data.strecke_3 / 50)}
+                x1={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
+                y2={toY(data.strecke_2 / 50)}
                 stroke="blue"
                 strokeWidth={2}
               />
               <text
-                x={288}
-                y={32}
+                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10) - 2}
+                y={toY(data.strecke_3 / 50) + 1}
                 fontSize={5}
                 textAnchor="right"
                 stroke="blue"
+                fill="blue"
               >
                 o
               </text>
@@ -374,7 +491,171 @@ export const exercise128: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        function toX(n: number) {
+          return 33 + n * 15.6
+        }
+        function toY(n: number) {
+          return 157 - n * 15.6
+        }
+        const weg =
+          data.strecke_1 +
+          ((50 - data.zeit_3 + data.zeit_1) *
+            (data.strecke_2 - data.strecke_1)) /
+            (data.zeit_4 + 60 - data.zeit_2)
+        return (
+          <>
+            <svg viewBox="0 0 328 180">
+              <image
+                href="/content/NRW_EESA/128_Zugfahrt2.PNG"
+                height="180"
+                width="328"
+              />
+              <text
+                x={toX((data.zeit_2 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_1 / 50) + 1}
+                fontSize={5}
+                textAnchor="right"
+                stroke="blue"
+                fill="blue"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_3 - data.zeit_1) / 10)}
+                y={toY(data.strecke_1 / 50) + 1}
+                fontSize={5}
+                textAnchor="right"
+                stroke="blue"
+                fill="blue"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize={5}
+                textAnchor="right"
+                stroke="blue"
+                fill="blue"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_5 + 60 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize={5}
+                textAnchor="right"
+                stroke="blue"
+                fill="blue"
+              >
+                o
+              </text>
+              <text
+                x={15}
+                y={145}
+                fontSize={7}
+                textAnchor="right"
+                stroke="blue"
+              >
+                Aachen
+              </text>
+              <text
+                x={toX((data.zeit_2 - data.zeit_1) / 10)}
+                y={toY(data.strecke_1 / 50) - 4}
+                fontSize={7}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                Lüttich
+              </text>
+              <text
+                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
+                y={toY(data.strecke_2 / 50) - 4}
+                fontSize={7}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                Brüssel
+              </text>
+              <text
+                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
+                y={toY(data.strecke_3 / 50) - 4}
+                fontSize={7}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                Paris
+              </text>
+              <line
+                x1={33 + 1}
+                y1={157}
+                x2={toX((data.zeit_2 - data.zeit_1) / 10) + 1}
+                y2={toY(data.strecke_1 / 50)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX((data.zeit_2 - data.zeit_1) / 10) + 1}
+                y1={toY(data.strecke_1 / 50)}
+                x2={toX((data.zeit_3 - data.zeit_1) / 10) + 1}
+                y2={toY(data.strecke_1 / 50)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x2={toX((data.zeit_4 + 60 - data.zeit_1) / 10) + 1}
+                y2={toY(data.strecke_2 / 50)}
+                x1={toX((data.zeit_3 - data.zeit_1) / 10) + 1}
+                y1={toY(data.strecke_1 / 50)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX((data.zeit_4 + 60 - data.zeit_1) / 10) + 1}
+                y1={toY(data.strecke_2 / 50)}
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10) + 1}
+                y2={toY(data.strecke_2 / 50)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10) + 1}
+                y1={toY(data.strecke_3 / 50)}
+                x1={toX((data.zeit_6 + 180 - data.zeit_1) / 10) + 1}
+                y2={toY(data.strecke_2 / 50)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <text
+                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10) - 2}
+                y={toY(data.strecke_3 / 50) + 2}
+                fontSize={5}
+                textAnchor="right"
+                stroke="blue"
+                fill="blue"
+              >
+                o
+              </text>
+              <line
+                x1={toX(5) + 1.5}
+                y1={toY(0) - 1}
+                x2={toX(5) + 1.5}
+                y2={toY(9) - 1}
+                stroke="orange"
+                strokeWidth={2}
+              />
+            </svg>
+            <p>
+              Die orange Linie markiert den Zeitpunkt, wenn der Zug 50 Minuten
+              unterwegs ist. Lies den Schnittpunkt der blauen Gerade mit der
+              orangen Linie ab.
+            </p>
+            <p>
+              Nach 50 Minuten wurden etwa{' '}
+              <strong>{Math.round(weg / 5) * 5} km</strong> zurückgelegt.
+            </p>
+          </>
+        )
       },
     },
     {
@@ -388,25 +669,103 @@ export const exercise128: Exercise<DATA> = {
             <p>
               e){' '}
               {data.case == 1 && (
-                <>In Lüttich und in Brüssel hält der Zug an.</>
+                <>
+                  In Lüttich und in Brüssel hält der Zug an. Erkläre, woran du
+                  dies am Graphen erkennen kannst.
+                </>
               )}
               {data.case == 2 && (
-                <>In Brüssel hält der Zug länger als in Lüttich.</>
+                <>
+                  In Lüttich macht der Zug Pause. Erkläre, woran du dies am
+                  Graphen erkennen kannst.
+                </>
               )}
               {data.case == 3 && (
                 <>
-                  Zwischen Aachen und Lüttich fährt der Zug schneller als
-                  zwischen Lüttich und Brüssel.
+                  Zwischen Brüssel und Paris fährt der Zug schneller als 150
+                  {buildInlineFrac('km', 'h')}. Erkläre anhand der Werte des
+                  Graphen.
                 </>
               )}
-              {data.case == 4 && <>In Brüssel macht der Zug Pause.</>} Erkläre,
-              woran du dies am Graphen erkennen kannst.
+              {data.case == 4 && (
+                <>
+                  In Brüssel macht der Zug Pause. Erkläre, woran du dies am
+                  Graphen erkennen kannst.
+                </>
+              )}
             </p>
           </>
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            {data.case == 1 && (
+              <>
+                <p>
+                  In Lüttich und Brüssel sind zwei Abschnitte sichtbar, in denen
+                  der Graph waagerecht verläuft. Dort wird keine Strecke
+                  zurückgelegt, weil der Zug am Bahnhof steht.
+                </p>
+              </>
+            )}
+            {data.case == 2 && (
+              <>
+                <p>
+                  In Lüttich verläuft der Graph waagerecht. Dort wird keine
+                  Strecke zurückgelegt, weil der Zug am Bahnhof steht.
+                </p>
+              </>
+            )}
+            {data.case == 3 && (
+              <>
+                <p>
+                  Die Strecke von Brüssel nach Paris ist{' '}
+                  {data.strecke_3 - data.strecke_2} km lang. Die Strecke wird in
+                  <br></br> {data.zeit_6 + 120 - data.zeit_5} Minuten ≙{' '}
+                  {pp(roundToDigits((data.zeit_6 + 120 - data.zeit_5) / 60, 2))}{' '}
+                  h zurückgelegt.
+                </p>
+                <p></p>
+                <p>Das entspricht einer Geschwindigkeit von:</p>
+                <p>
+                  {buildInlineFrac(
+                    <>{data.strecke_3 - data.strecke_2} km</>,
+                    <>
+                      {pp(
+                        roundToDigits(
+                          (data.zeit_6 + 120 - data.zeit_5) / 60,
+                          2,
+                        ),
+                      )}{' '}
+                      h
+                    </>,
+                  )}{' '}
+                  ≈{' '}
+                  {pp(
+                    roundToDigits(
+                      (data.strecke_3 - data.strecke_2) /
+                        roundToDigits(
+                          (data.zeit_6 + 120 - data.zeit_5) / 60,
+                          2,
+                        ),
+                      2,
+                    ),
+                  )}{' '}
+                  {buildInlineFrac('km', 'h')}
+                </p>
+              </>
+            )}
+            {data.case == 4 && (
+              <>
+                <p>
+                  In Brüssel verläuft der Graph waagerecht. Dort wird keine
+                  Strecke zurückgelegt, weil der Zug am Bahnhof steht.
+                </p>
+              </>
+            )}
+          </>
+        )
       },
     },
     {
@@ -415,22 +774,39 @@ export const exercise128: Exercise<DATA> = {
         return null
       },
       task({ data }) {
+        const listItems = [
+          <li key="1">{richtig[data.item_1]}</li>,
+          <li key="2">{falsch[data.item_2]}</li>,
+          <li key="3">{falsch[data.item_3]}</li>,
+        ]
+        const shuffledItems = data.order.map(i => listItems[i])
         return (
           <>
             <p>
               f) Welche Aussagen zum Graphen stimmen bzw. stimmen nicht? Wähle
               aus. an.
             </p>
-            <ul>
-              <li>{data.aussagen_e[0]}</li>
-              <li>{data.aussagen_e[1]}</li>
-              <li>{data.aussagen_e[2]}</li>
-            </ul>
+            <ul>{shuffledItems}</ul>
           </>
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>Die Aussagen</p>
+            <ul>
+              <li>{richtig[data.item_1]}</li>
+              <li>{falsch[data.item_2]}</li>
+            </ul>{' '}
+            <p>
+              sind <strong>korrekt</strong>. Die Aussage{' '}
+              <ul>
+                <li>{falsch[data.item_3]}</li>
+              </ul>{' '}
+              ist <strong>nicht korrekt</strong>.
+            </p>
+          </>
+        )
       },
     },
   ],
