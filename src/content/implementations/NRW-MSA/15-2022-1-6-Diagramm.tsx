@@ -309,7 +309,8 @@ export const exercise15: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 1,
+      points: 3,
+      duration: 6,
       task({ data }) {
         return (
           <>
@@ -442,6 +443,7 @@ export const exercise15: Exercise<DATA> = {
     },
     {
       points: 1,
+      duration: 3,
       intro({ data }) {
         return (
           <>

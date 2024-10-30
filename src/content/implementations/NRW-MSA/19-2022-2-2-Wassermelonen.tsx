@@ -43,6 +43,7 @@ export const exercise19: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -136,6 +137,7 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -200,6 +202,7 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 4,
       intro({ data }) {
         const V = roundToDigits(
           (4 / 3) * Math.PI * Math.pow(data.durchmesser / 2, 3),
@@ -287,6 +290,7 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 4,
       task({ data }) {
         return (
           <>
@@ -396,6 +400,7 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 1,
       task({ data }) {
         return (
           <>
@@ -582,6 +587,7 @@ export const exercise19: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 3,
       intro({ data }) {
         return (
           <>
