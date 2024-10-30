@@ -216,7 +216,9 @@ export async function anaylseImage() {
     console.log(e)
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].fotoFeedback =
-        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rank": "0"}'
+        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry. ' +
+        result.content.toString() +
+        '","rank": "0"}'
     })
   }
 }
