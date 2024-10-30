@@ -85,6 +85,52 @@ export const exercise37: Exercise<DATA> = {
             strokeWidth="3"
             fill="none"
           />
+          <text
+            x={toX(data.x) - 5}
+            y={toY(b + data.a * data.x * data.x) + 7}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {'×'}A1
+          </text>
+          <text
+            x={toX(-data.x) - 30}
+            y={toY(b + data.a * data.x * data.x) + 7}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            B1
+            {'×'}
+          </text>
+          <text
+            x={toX(data.x) - 5}
+            y={toY(0) + 7}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            {'×'}D1
+          </text>
+          <text
+            x={toX(-data.x) - 31}
+            y={toY(0) + 7}
+            fontSize={20}
+            textAnchor="right"
+            stroke="black"
+          >
+            C1{'×'}
+          </text>
+          <rect
+            x={toX(-data.x)}
+            y={toY(b + data.a * data.x * data.x)} // obere linke Ecke
+            width={toX(data.x) - toX(-data.x)} // Breite des Rechtecks
+            height={toY(0) - toY(b + data.a * data.x * data.x)} // Höhe des Rechtecks
+            fill="none" // Farbe des Rechtecks
+            stroke="black"
+            strokeWidth={2}
+          />
         </svg>
 
         <center>
