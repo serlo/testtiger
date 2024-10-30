@@ -70,6 +70,7 @@ import { exercise118 } from './implementations/NRW-EESA/118-2022-2-2-Führersche
 import { exercise119 } from './implementations/NRW-EESA/119-2022-2-3-Bambus'
 import { exercise107 } from './implementations/NRW-EESA/107-2021-2-1-Roller-Tour'
 import { exercise109 } from './implementations/NRW-EESA/109-2021-2-3-Kasimir'
+import { exercise122 } from './implementations/NRW-EESA/122-2023-1-3-Volumen-berechnen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -142,6 +143,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   117: exercise117,
   118: exercise118,
   119: exercise119,
+  122: exercise122,
 }
 
 // symbols:
