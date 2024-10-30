@@ -1,7 +1,19 @@
 import { Exercise } from '@/data/types'
 import { Color5 } from '@/helper/colors'
+import { getGcd } from '@/helper/get-gcd'
+import { buildInlineFrac } from '@/helper/math-builder'
+import { pp } from '@/helper/pretty-print'
 
-interface DATA {}
+interface DATA {
+  legende: number
+  pace: number
+  free: number
+  grund_easy: number
+  grund_roller: number
+  gebühr_easy: number
+  gebühr_roller: number
+  fahrt: number
+}
 
 export const exercise107: Exercise<DATA> = {
   title: 'Roller-Tour',
@@ -9,11 +21,34 @@ export const exercise107: Exercise<DATA> = {
   useCalculator: true,
   duration: 30,
   generator(rng) {
-    return {}
+    return {
+      legende: rng.randomIntBetween(1, 4),
+      pace: rng.randomIntBetween(20, 40),
+      free: rng.randomIntBetween(8, 12) * 10,
+      grund_easy: rng.randomIntBetween(3, 7) * 10,
+      grund_roller: rng.randomIntBetween(4, 8) * 10,
+      gebühr_easy: rng.randomIntBetween(3, 4) / 10,
+      gebühr_roller: rng.randomIntBetween(2, 4) / 10,
+      fahrt: rng.randomIntBetween(13, 19) * 10,
+    }
   },
-  originalData: {},
+  originalData: {
+    legende: 2,
+    pace: 24,
+    free: 100,
+    grund_easy: 80,
+    grund_roller: 90,
+    gebühr_easy: 0.2,
+    gebühr_roller: 0.4,
+    fahrt: 170,
+  },
   constraint({ data }) {
-    return true
+    return (
+      getGcd(data.legende, data.pace) != 1 &&
+      data.gebühr_easy < data.gebühr_roller &&
+      data.grund_easy < data.grund_roller &&
+      data.grund_roller - 20 < data.grund_easy
+    )
   },
   intro({ data }) {
     return (
@@ -23,12 +58,15 @@ export const exercise107: Exercise<DATA> = {
           eine Woche unterwegs sein. Am ersten Tag wollen sie von Fröndenberg zu
           einem Campingplatz am Möhnesee fahren (Abbildung 1).
         </p>
-        <svg viewBox="0 0 328 130">
+        <svg viewBox="0 0 328 100">
           <image
-            href="/content/NRW_EESA/107_Roller-Tour.PNG"
-            height="130"
+            href="/content/NRW_EESA/107_Roller-Tour1.PNG"
+            height="100"
             width="328"
           />
+          <text x={302} y={90} fontSize={9} textAnchor="right" stroke="black">
+            {data.legende}
+          </text>
         </svg>
         <center>
           <Color5>
@@ -51,8 +89,8 @@ export const exercise107: Exercise<DATA> = {
         return (
           <>
             <p>
-              a) Die Strecke ist ungefähr 30 km lang. Bestätige dies durch
-              Messen und mithilfe des Maßstabs.
+              a) Die Strecke ist ungefähr {data.legende * 15} km lang. Bestätige
+              dies durch Messen und mithilfe des Maßstabs.
             </p>
           </>
         )
@@ -71,8 +109,9 @@ export const exercise107: Exercise<DATA> = {
           <>
             <p>
               b) Melike und Robin gehen von einer durchschnittlichen
-              Geschwindigkeit von 24 hkm​ aus. Berechne für die 30 km lange
-              Strecke die Fahrzeit in Minuten. Notiere deinen Lösungsweg.
+              Geschwindigkeit von {data.pace} {buildInlineFrac(<>km</>, <>h</>)}
+              ​ aus. Berechne für die {data.legende * 15} km lange Strecke die
+              Fahrzeit in Minuten. Notiere deinen Lösungsweg.
             </p>
           </>
         )
@@ -90,20 +129,97 @@ export const exercise107: Exercise<DATA> = {
               Für die Tour wollen Melike und Robin einen Motorroller für eine
               Woche mieten. Robin findet zwei Angebote (Abbildung 2).
             </p>
-            <svg viewBox="0 0 328 110">
-              <image
-                href="/content/NRW_EESA/107_Roller-Tour4.PNG"
-                height="110"
-                width="328"
-              />
-            </svg>
-            <svg viewBox="0 0 328 110">
-              <image
-                href="/content/NRW_EESA/107_Roller-Tour5.PNG"
-                height="110"
-                width="328"
-              />
-            </svg>
+            <center>
+              <svg viewBox="0 0 328 200">
+                <rect
+                  x="64"
+                  y="10"
+                  width="200"
+                  height="66"
+                  rx="4"
+                  ry="4"
+                  stroke="#007EC1"
+                  fill="transparent"
+                  strokeWidth="2"
+                />
+                <text
+                  x="164"
+                  y="24"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                >
+                  Angebot von {'"'}Easy Rent{'"'}
+                </text>
+                <text
+                  x="164"
+                  y="44"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Grundgebühr für eine Woche: {data.grund_easy} €
+                </text>
+                <text
+                  x="164"
+                  y="66"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Jeder km kostet {pp(data.gebühr_easy)} €
+                </text>
+                <rect
+                  x="64"
+                  y="90"
+                  width="200"
+                  height="88"
+                  rx="4"
+                  ry="4"
+                  stroke="#007EC1"
+                  fill="transparent"
+                  strokeWidth="2"
+                />
+                <text
+                  x="164"
+                  y="106"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                >
+                  Angebot von {'"'}Rollerverleih24{'"'}
+                </text>
+                <text
+                  x="164"
+                  y="126"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Grundgebühr für eine Woche: {data.grund_roller} €
+                </text>
+                <text
+                  x="164"
+                  y="146"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  {data.free} km frei
+                </text>
+                <text
+                  x="164"
+                  y="168"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Jeder km kostet {pp(data.gebühr_roller)} €
+                </text>
+              </svg>
+            </center>
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
@@ -119,12 +235,12 @@ export const exercise107: Exercise<DATA> = {
         return (
           <>
             <p>
-              c) Die Kosten bei {'"'}Easy Rent{'"'} können mit dem Term 0,2 ⋅ x
-              + 80 berechnet werden
+              c) Die Kosten bei {'"'}Easy Rent{'"'} können mit dem Term{' '}
+              {pp(data.gebühr_easy)} ⋅ x + {data.grund_easy} berechnet werden
             </p>
             <p>
-              Gib die Bedeutung von x, von 0,2 und von 80 im Zusammenhang mit
-              den Kosten an.
+              Gib die Bedeutung von x, von {pp(data.gebühr_easy)} und von{' '}
+              {data.grund_easy} im Zusammenhang mit den Kosten an.
             </p>
           </>
         )
@@ -136,6 +252,12 @@ export const exercise107: Exercise<DATA> = {
     {
       points: 42,
       intro({ data }) {
+        function toX(n: number) {
+          return 20.5 + n * (287 / 20)
+        }
+        function toY(n: number) {
+          return 197 - n * (287 / 20)
+        }
         return (
           <>
             <p>
@@ -147,6 +269,40 @@ export const exercise107: Exercise<DATA> = {
                 href="/content/NRW_EESA/107_Roller-Tour3.PNG"
                 height="220"
                 width="328"
+              />
+              <line
+                x1={toX(0)}
+                y1={toY(data.grund_roller / 10) - 1}
+                x2={toX(data.free / 10)}
+                y2={toY(data.grund_roller / 10) - 1}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(data.free / 10)}
+                y1={toY(data.grund_roller / 10) - 1}
+                x2={toX(20)}
+                y2={
+                  toY(
+                    data.grund_roller / 10 +
+                      ((200 - data.free) * data.gebühr_roller) / 10,
+                  ) - 1
+                }
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(0)}
+                y1={toY(data.grund_easy / 10) - 1}
+                x2={toX(20)}
+                y2={
+                  toY(
+                    data.grund_easy / 10 +
+                      ((200 - data.free) * data.gebühr_easy) / 10,
+                  ) - 1
+                }
+                stroke="orange"
+                strokeWidth={2}
               />
             </svg>
             <center>
@@ -202,9 +358,9 @@ export const exercise107: Exercise<DATA> = {
         return (
           <>
             <p>
-              f) Insgesamt wollen Melike und Robin ungefähr 170 km weit fahren.
-              Welches Angebot ist günstiger? Gib die Kosten für das günstigere
-              Angebot an.
+              f) Insgesamt wollen Melike und Robin ungefähr {data.fahrt} km weit
+              fahren. Welches Angebot ist günstiger? Gib die Kosten für das
+              günstigere Angebot an.
             </p>
           </>
         )
