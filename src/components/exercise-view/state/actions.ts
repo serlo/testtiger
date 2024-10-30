@@ -124,7 +124,7 @@ export async function submitAnswerInput() {
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].resultPending = false
       s.checks[s.navIndicatorPosition].result =
-        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rating":0}'
+        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rank":0}'
     })
   }
 }
@@ -190,6 +190,8 @@ export async function anaylseImage() {
       Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
 
       Die nächste Nachricht ist ein Bild mit der Bearbeitung der Schülerin.
+
+      Bitte gib die Antwort als JSON aus!
       `,
     id: 'prompt',
   })
@@ -206,6 +208,7 @@ export async function anaylseImage() {
   const result = await submitUserMessage({ messages })
   try {
     console.log(result.content.toString())
+    JSON.parse(result.content.toString())
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].fotoFeedback = result.content.toString()
     })
