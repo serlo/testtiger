@@ -82,6 +82,7 @@ export const exercise7: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
+      duration: 5,
       task({ data }) {
         return (
           <>
@@ -158,6 +159,7 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -208,6 +210,7 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       skillIntro({ data }) {
         const A = Math.PI * (data.kante / 2) * (data.kante / 2)
         return (
@@ -277,6 +280,7 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
@@ -374,6 +378,7 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
@@ -497,6 +502,7 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
@@ -588,6 +594,7 @@ export const exercise7: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 5,
       task({ data }) {
         return (
           <>

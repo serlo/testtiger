@@ -55,7 +55,7 @@ export const exercise9: Exercise<DATA> = {
         </p>
         <svg viewBox="0 0 328 140">
           <image
-            href="/content/NRW_MSA/NRW_MSA_Zahlenpaare.png"
+            href="/content/NRW_MSA/NRW_MSA/NRW_MSA_Zahlenpaare.png"
             height="140"
             width="328"
           />
@@ -73,8 +73,10 @@ export const exercise9: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 3,
       task({ data }) {
-        const hrefs = '/content/NRW_MSA/NRW_Zahlenpaare' + data.task_2 + '.PNG'
+        const hrefs =
+          '/content/NRW_MSA/NRW_MSA/NRW_Zahlenpaare' + data.task_2 + '.PNG'
 
         return (
           <>
@@ -96,7 +98,8 @@ export const exercise9: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const hrefs2 = '/content/NRW_Zahlenpaare_sol' + data.task_2 + '.PNG'
+        const hrefs2 =
+          '/content/NRW_MSA/NRW_Zahlenpaare_sol' + data.task_2 + '.PNG'
         return (
           <>
             <p>
@@ -112,6 +115,7 @@ export const exercise9: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -206,7 +210,7 @@ export const exercise9: Exercise<DATA> = {
     },
     {
       points: 4,
-
+      duration: 4,
       task({ data }) {
         return (
           <>
@@ -268,6 +272,7 @@ export const exercise9: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -334,6 +339,7 @@ export const exercise9: Exercise<DATA> = {
     },
     {
       points: 6,
+      duration: 6,
       skillIntro({ data }) {
         return (
           <>
@@ -456,6 +462,7 @@ export const exercise9: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       skillIntro({ data }) {
         return (
           <>

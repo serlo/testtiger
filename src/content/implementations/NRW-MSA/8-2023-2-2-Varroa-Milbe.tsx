@@ -60,6 +60,7 @@ export const exercise8: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -134,6 +135,7 @@ export const exercise8: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -479,6 +481,7 @@ export const exercise8: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 3,
       intro({ data }) {
         return (
           <>
@@ -523,6 +526,7 @@ export const exercise8: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
@@ -600,6 +604,7 @@ export const exercise8: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -669,6 +674,7 @@ export const exercise8: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
