@@ -98,6 +98,7 @@ export const exercise46: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -144,6 +145,7 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -206,6 +208,7 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 2,
       intro({ data }) {
         return (
           <>
@@ -288,6 +291,7 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 2,
       intro({ data }) {
         return (
           <>
@@ -403,6 +407,7 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 5,
       task({ data }) {
         const Vstumpf =
           (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +
@@ -497,6 +502,7 @@ export const exercise46: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       intro({ data }) {
         const Vstumpf =
           (((data.dia - 1) / 2) * ((data.dia - 1) / 2) +

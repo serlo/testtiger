@@ -127,6 +127,7 @@ export const exercise54: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         const volume = (data.hoehe * Math.PI * data.echo * data.echo) / 4
         return (
@@ -190,6 +191,7 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
@@ -256,6 +258,7 @@ export const exercise54: Exercise<DATA> = {
 
     {
       points: 4,
+      duration: 4,
       skillIntro({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
@@ -456,7 +459,7 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 2,
-
+      duration: 2,
       intro({ data }) {
         return (
           <>
@@ -549,6 +552,7 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       skillIntro({ data }) {
         return (
           <>
@@ -835,6 +839,7 @@ export const exercise54: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>

@@ -78,6 +78,7 @@ export const exercise47: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         const f0 =
           0.5 *
@@ -184,7 +185,7 @@ export const exercise47: Exercise<DATA> = {
                   )}
                 </>,
               ],
-              [<>h</>, '≈', <>{pp(h)} [cm]</>],
+              [<>h</>, '≈', <>{pp(roundToDigits(h, 2))} [cm]</>],
             ])}
             <p>
               <strong>Flächeninhalt berechnen</strong>
@@ -203,7 +204,7 @@ export const exercise47: Exercise<DATA> = {
                 <>
                   {buildInlineFrac(
                     <>
-                      {data.seite} · {pp(h)}
+                      {data.seite} · {pp(roundToDigits(h, 2))}
                     </>,
                     2,
                   )}
@@ -223,6 +224,7 @@ export const exercise47: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         const f0 =
           0.5 *
@@ -269,6 +271,7 @@ export const exercise47: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         const f0 =
           0.5 *
@@ -333,6 +336,7 @@ export const exercise47: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         const f0 =
           0.5 *
@@ -450,6 +454,7 @@ export const exercise47: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -481,6 +486,7 @@ export const exercise47: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 2,
       task({ data }) {
         const f0 =
           0.5 *

@@ -50,6 +50,7 @@ export const exercise52: Exercise<DATA> = {
   tasks: [
     {
       points: 1,
+      duration: 1,
       task({ data }) {
         return (
           <>
@@ -134,6 +135,7 @@ export const exercise52: Exercise<DATA> = {
     },
     {
       points: 1,
+      duration: 3,
       task({ data }) {
         const y_offset = -data.coeff * data.x_sol * data.x_sol
         return (

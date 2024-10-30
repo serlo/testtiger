@@ -71,6 +71,7 @@ export const exercise55: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -138,6 +139,7 @@ export const exercise55: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         const surface = (data.seiten[0] * data.seiten[1]) / 2
         return (
@@ -184,6 +186,7 @@ export const exercise55: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -227,6 +230,7 @@ export const exercise55: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -318,6 +322,7 @@ export const exercise55: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -418,6 +423,7 @@ export const exercise55: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 6,
       task({ data }) {
         return (
           <>
@@ -525,6 +531,7 @@ export const exercise55: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 1,
       task({ data }) {
         return (
           <>

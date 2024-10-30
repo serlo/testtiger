@@ -178,7 +178,8 @@ export const exercise53: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      duration: 1,
+      points: 2,
       task({ data }) {
         const prozentanzeige = data.prozent * 100 - 100
         return (
@@ -218,7 +219,8 @@ export const exercise53: Exercise<DATA> = {
     },
 
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return (
           <>
@@ -294,7 +296,8 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
@@ -358,7 +361,8 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 4,
+      duration: 2,
       intro({ data }) {
         return (
           <>
@@ -479,7 +483,8 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
+      duration: 2,
       task({ data }) {
         return (
           <>

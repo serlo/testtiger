@@ -67,7 +67,7 @@ export const exercise45: Exercise<DATA> = {
         </p>
         <svg viewBox="0 0 328 180">
           <image
-            href="/content/NRW_MSA/NRW_MSA/NRW_MSA_Cotterbridge.PNG"
+            href="/content/NRW_MSA/NRW_MSA_Cotterbridge.PNG"
             height="180"
             width="328"
           />
@@ -180,7 +180,7 @@ export const exercise45: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 180">
               <image
-                href="/content/NRW_MSA/NRW_MSA/NRW_MSA_Zug_KS.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Zug_KS.PNG"
                 height="180"
                 width="328"
               />
@@ -321,7 +321,7 @@ export const exercise45: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 328 181">
               <image
-                href="/content/NRW_MSA/NRW_MSA/NRW_MSA_Zug_KS.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Zug_KS.PNG"
                 height="181"
                 width="328"
               />
@@ -443,7 +443,7 @@ export const exercise45: Exercise<DATA> = {
             <p>Hat Max recht? Begründe mit einer Rechnung.</p>
             <svg viewBox="0 0 328 300">
               <image
-                href="/content/NRW_MSA/NRW_MSA/NRW_MSA_2018_2_1_Zuggrafik.svg"
+                href="/content/NRW_MSA/NRW_MSA_2018_2_1_Zuggrafik.svg"
                 height="300"
                 width="328"
               />
@@ -585,7 +585,7 @@ export const exercise45: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 150">
               <image
-                href="/content/NRW_MSA/NRW_MSA/NRW_MSA_Brücke.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Brücke.PNG"
                 height="150"
                 width="328"
               />
