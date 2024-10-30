@@ -40,7 +40,7 @@ export const exercise33: Exercise<DATA> = {
 
         <svg viewBox="0 0 500 450">
           <image
-            href="/content/NRW_MSA_2019_1_3_koordinatensystem.svg"
+            href="/content/NRW_MSA/NRW_MSA_2019_1_3_koordinatensystem.svg"
             height="450"
             width="500"
           />

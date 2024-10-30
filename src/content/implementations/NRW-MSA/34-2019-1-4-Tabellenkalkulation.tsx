@@ -82,7 +82,7 @@ export const exercise34: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 600 300">
               <image
-                href="/content/NRW_MSA_Tabellenkalk_2.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Tabellenkalk_2.PNG"
                 height="300"
                 width="600"
               />

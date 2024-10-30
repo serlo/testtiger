@@ -44,7 +44,7 @@ export const exercise28: Exercise<DATA> = {
       <>
         <p>Ein Unternehmen stellt lackierte Glaskugeln her (Abbildung 1).</p>
         <p>Die Glaskugeln haben einen Durchmesser von {data.dia} cm.</p>
-        <img src="/content/NRW_MSA_Glaskugeln.jpg" alt="" />
+        <img src="/content/NRW_MSA/NRW_MSA_Glaskugeln.jpg" alt="" />
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>Abbildung 1: Glaskugel</span>
@@ -309,7 +309,7 @@ export const exercise28: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 700 400">
               <image
-                href="/content/NRW_MSA_Glaskugeln_Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Glaskugeln_Baumdiagramm.PNG"
                 height="400"
                 width="700"
               />
@@ -350,7 +350,7 @@ export const exercise28: Exercise<DATA> = {
             </ul>
             <svg viewBox="0 0 700 500">
               <image
-                href="/content/NRW_MSA_Glaskugeln_Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Glaskugeln_Baumdiagramm.PNG"
                 height="500"
                 width="700"
               />

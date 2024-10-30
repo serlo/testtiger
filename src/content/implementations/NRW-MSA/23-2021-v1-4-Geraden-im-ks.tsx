@@ -115,7 +115,7 @@ export const exercise23: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 500 450">
               <image
-                href="/content/NRW_MSA_KS_Vorlage.png"
+                href="/content/NRW_MSA/NRW_MSA_KS_Vorlage.png"
                 height="500"
                 width="500"
               />

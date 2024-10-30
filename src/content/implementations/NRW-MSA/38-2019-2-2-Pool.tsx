@@ -50,7 +50,7 @@ export const exercise38: Exercise<DATA> = {
           Schwimmbecken ist {pp(data.höhe)} m hoch und hat ein Volumen von{' '}
           {pp(roundToDigits(data.surface * data.höhe, 2))} m².
         </p>
-        <img src="/content/NRW_MSA_Pool.svg" width={328} alt="" />
+        <img src="/content/NRW_MSA/NRW_MSA_Pool.svg" width={328} alt="" />
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
@@ -211,7 +211,7 @@ export const exercise38: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 270">
               <image
-                href="/content/NRW_MSA_Pool.png"
+                href="/content/NRW_MSA/NRW_MSA_Pool.png"
                 height="270"
                 width="328"
               />

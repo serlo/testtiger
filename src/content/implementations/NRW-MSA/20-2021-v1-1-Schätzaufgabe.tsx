@@ -27,27 +27,27 @@ export const exercise20: Exercise<DATA> = {
       <>
         {data.task === 1 &&
           getImageAndDescription(
-            '/content/NRW_MSA_Schätzen_1.jpg',
+            '/content/NRW_MSA/NRW_MSA_Schätzen_1.jpg',
             'Schätze: Wie viele Röhrchen sind von dem Insektenhotel zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 2 &&
           getImageAndDescription(
-            '/content/NRW_MSA_Schätzen_2.jpg',
+            '/content/NRW_MSA/NRW_MSA_Schätzen_2.jpg',
             'Schätze: Wie viele Holzscheite sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 3 &&
           getImageAndDescription(
-            '/content/NRW_MSA_Schätzen_3.jpg',
+            '/content/NRW_MSA/NRW_MSA_Schätzen_3.jpg',
             'Schätze: Wie viele Bücher sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 4 &&
           getImageAndDescription(
-            '/content/NRW_MSA_Schätzen_4.jpg',
+            '/content/NRW_MSA/NRW_MSA_Schätzen_4.jpg',
             'Schätze: Wie viele Bananen sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
         {data.task === 5 &&
           getImageAndDescription(
-            '/content/NRW_MSA_Schätzen_5.jpg',
+            '/content/NRW_MSA/NRW_MSA_Schätzen_5.jpg',
             'Schätze: Wie viele Beeren sind auf dem Bild zu sehen? Beschreibe, wie du vorgegangen bist.',
           )}
       </>

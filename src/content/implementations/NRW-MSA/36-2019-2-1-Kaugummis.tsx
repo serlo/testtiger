@@ -325,7 +325,7 @@ export const exercise36: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 400 382">
               <image
-                href="/content/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
                 height="400"
                 width="382"
               />
@@ -405,7 +405,7 @@ export const exercise36: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 400 382">
               <image
-                href="/content/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Kaugummi_Baumdiagramm.PNG"
                 height="400"
                 width="382"
               />

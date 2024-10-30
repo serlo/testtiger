@@ -62,7 +62,7 @@ export const exercise47: Exercise<DATA> = {
             2,3,4, ...).
           </li>
         </ul>
-        <img src="/content/NRW_MSA_Sierpinski.PNG" width={328} alt="" />
+        <img src="/content/NRW_MSA/NRW_MSA_Sierpinski.PNG" width={328} alt="" />
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
@@ -97,7 +97,7 @@ export const exercise47: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 170">
               <image
-                href="/content/NRW_MSA_Sierpinski_2.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Sierpinski_2.PNG"
                 height="170"
                 width="328"
               />
@@ -361,7 +361,7 @@ export const exercise47: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 200">
               <image
-                href="/content/NRW_MSA_Sierpinski_3.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Sierpinski_3.PNG"
                 height="200"
                 width="328"
               />

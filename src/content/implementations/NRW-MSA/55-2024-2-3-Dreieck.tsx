@@ -46,7 +46,7 @@ export const exercise55: Exercise<DATA> = {
         <p>Abbildung 1 zeigt das Dreieck ABC mit vorgegebenen Maßangaben.</p>
         <svg viewBox="0 0 328 150">
           <image
-            href="/content/NRW_MSA_Dreieck24.PNG"
+            href="/content/NRW_MSA/NRW_MSA_Dreieck24.PNG"
             height="150"
             width="328"
           />
@@ -438,7 +438,7 @@ export const exercise55: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 328 190">
               <image
-                href="/content/NRW_MSA_Planfigur.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Planfigur.PNG"
                 height="190"
                 width="328"
               />

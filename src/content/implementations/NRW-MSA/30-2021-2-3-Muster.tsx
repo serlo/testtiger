@@ -40,7 +40,11 @@ export const exercise30: Exercise<DATA> = {
           konstruieren. Er beginnt mit dem Dreieck D<sub>1</sub>​ (Abbildung 1).
         </p>
         <svg viewBox="0 0 328 160">
-          <image href="/content/NRW_MSA_Muster.PNG" height="160" width="328" />
+          <image
+            href="/content/NRW_MSA/NRW_MSA_Muster.PNG"
+            height="160"
+            width="328"
+          />
           <text
             x={110}
             y={100}
@@ -127,7 +131,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 240">
               <image
-                href="/content/NRW_MSA_Muster_2.jpg"
+                href="/content/NRW_MSA/NRW_MSA_Muster_2.jpg"
                 height="240"
                 width="328"
               />
@@ -152,7 +156,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_MSA_Muster_Konst1.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Konst1.png"
                 height="160"
                 width="328"
               />
@@ -163,7 +167,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_MSA_Muster_Konst2.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Konst2.png"
                 height="160"
                 width="328"
               />
@@ -173,7 +177,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_MSA_Muster_Konst3.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Konst3.png"
                 height="160"
                 width="328"
               />
@@ -184,7 +188,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_MSA_Muster_Konst4.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Konst4.png"
                 height="160"
                 width="328"
               />
@@ -194,7 +198,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_MSA_Muster_Konst5.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Konst5.png"
                 height="160"
                 width="328"
               />
@@ -214,7 +218,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 240">
               <image
-                href="/content/NRW_MSA_Muster_2.jpg"
+                href="/content/NRW_MSA/NRW_MSA_Muster_2.jpg"
                 height="240"
                 width="328"
               />
@@ -245,7 +249,7 @@ export const exercise30: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 328 200">
               <image
-                href="/content/NRW_MSA_Muster_Skizze.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Skizze.png"
                 height="200"
                 width="328"
               />
@@ -274,7 +278,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 240">
               <image
-                href="/content/NRW_MSA_Muster_2.jpg"
+                href="/content/NRW_MSA/NRW_MSA_Muster_2.jpg"
                 height="240"
                 width="328"
               />
@@ -310,7 +314,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 220">
               <image
-                href="/content/NRW_MSA_Muster_Skizze3.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Skizze3.PNG"
                 height="220"
                 width="328"
               />
@@ -375,7 +379,7 @@ export const exercise30: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 270">
               <image
-                href="/content/NRW_MSA_Muster_3.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Muster_3.PNG"
                 height="270"
                 width="328"
               />

@@ -63,7 +63,11 @@ export const exercise4: Exercise<DATA> = {
     return (
       <>
         <svg viewBox="0 0 500 450" className="max-w-[500px]">
-          <image href="/content/KS_groß_Vorlage.png" width="500" height="450" />
+          <image
+            href="/content/NRW_MSA/KS_groß_Vorlage.png"
+            width="500"
+            height="450"
+          />
           <polyline
             points={parabolaPoints}
             stroke="blue"

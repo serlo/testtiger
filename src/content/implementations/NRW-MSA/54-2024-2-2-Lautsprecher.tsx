@@ -102,7 +102,7 @@ export const exercise54: Exercise<DATA> = {
         </p>
         <svg viewBox="0 0 328 240">
           <image
-            href="/content/NRW_MSA_Lautsprecher.PNG"
+            href="/content/NRW_MSA/NRW_MSA_Lautsprecher.PNG"
             height="240"
             width="328"
           />
@@ -295,7 +295,7 @@ export const exercise54: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 280">
               <image
-                href="/content/NRW_MSA_Kugelsegment.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Kugelsegment.PNG"
                 height="280"
                 width="328"
               />
@@ -606,7 +606,7 @@ export const exercise54: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 360">
               <image
-                href="/content/NRW_MSA_Lautsprecher_Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Lautsprecher_Baumdiagramm.PNG"
                 height="360"
                 width="328"
               />
@@ -726,7 +726,7 @@ export const exercise54: Exercise<DATA> = {
             <p>Das vollständige Baumdiagramm sieht so aus:</p>
             <svg viewBox="0 0 328 360">
               <image
-                href="/content/NRW_MSA_Lautsprecher_Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Lautsprecher_Baumdiagramm.PNG"
                 height="360"
                 width="328"
               />

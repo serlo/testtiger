@@ -49,7 +49,11 @@ export const exercise18: Exercise<DATA> = {
           benötigt man {data.gewicht} g Teig.
         </p>
         <svg viewBox="0 0 700 430">
-          <image href="/content/NRW_MSA_rösti.jpg" height="500" width="700" />
+          <image
+            href="/content/NRW_MSA/NRW_MSA_rösti.jpg"
+            height="500"
+            width="700"
+          />
         </svg>
         <center>
           <Color5>
@@ -59,7 +63,7 @@ export const exercise18: Exercise<DATA> = {
 
         <svg viewBox="0 0 700 450">
           <image
-            href="/content/NRW_MSA_röstirezept.png"
+            href="/content/NRW_MSA/NRW_MSA_röstirezept.png"
             height="500"
             width="700"
           />
@@ -73,7 +77,11 @@ export const exercise18: Exercise<DATA> = {
         </center>
 
         <svg viewBox="0 0 700 500">
-          <image href="/content/NRW_MSA_zyl.jpg" height="500" width="700" />
+          <image
+            href="/content/NRW_MSA/NRW_MSA_zyl.jpg"
+            height="500"
+            width="700"
+          />
         </svg>
         <center>
           <Color5>
@@ -405,7 +413,7 @@ export const exercise18: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 700 430">
               <image
-                href="/content/NRW_MSA_Baumdiagramm_2.png"
+                href="/content/NRW_MSA/NRW_MSA_Baumdiagramm_2.png"
                 height="350"
                 width="700"
               />
@@ -451,7 +459,7 @@ export const exercise18: Exercise<DATA> = {
             </ul>
             <svg viewBox="0 0 700 430">
               <image
-                href="/content/NRW_MSA_Baumdiagramm_2.png"
+                href="/content/NRW_MSA/NRW_MSA_Baumdiagramm_2.png"
                 height="350"
                 width="700"
               />

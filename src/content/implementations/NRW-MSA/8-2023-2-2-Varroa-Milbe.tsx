@@ -45,7 +45,11 @@ export const exercise8: Exercise<DATA> = {
           Mikroskop.
         </p>
         <svg viewBox="0 0 700 500">
-          <image href="/content/NRW_MSA_Milbe.PNG" height="500" width="700" />
+          <image
+            href="/content/NRW_MSA/NRW_MSA_Milbe.PNG"
+            height="500"
+            width="700"
+          />
           <text x={513} y={470} fontSize={30} textAnchor="right" stroke="black">
             {pp(data.mass)} mm
           </text>

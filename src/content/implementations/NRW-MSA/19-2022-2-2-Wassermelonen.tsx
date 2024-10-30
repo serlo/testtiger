@@ -56,7 +56,7 @@ export const exercise19: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 500 350">
               <image
-                href="/content/NRW_MSA_Melone.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Melone.PNG"
                 height="350"
                 width="500"
               />
@@ -232,7 +232,7 @@ export const exercise19: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 500 350">
               <image
-                href="/content/NRW_MSA_Melone_dice.jpg"
+                href="/content/NRW_MSA/NRW_MSA_Melone_dice.jpg"
                 height="350"
                 width="500"
               />
@@ -627,7 +627,7 @@ export const exercise19: Exercise<DATA> = {
             {data.case == 1 && (
               <svg viewBox="0 0 550 220">
                 <image
-                  href="/content/NRW_MSA_Melone_Graph.jpg"
+                  href="/content/NRW_MSA/NRW_MSA_Melone_Graph.jpg"
                   height="220"
                   width="550"
                 />
@@ -636,7 +636,7 @@ export const exercise19: Exercise<DATA> = {
             {data.case == 2 && (
               <svg viewBox="0 0 550 220">
                 <image
-                  href="/content/NRW_MSA_Melone_Plot.PNG"
+                  href="/content/NRW_MSA/NRW_MSA_Melone_Plot.PNG"
                   height="220"
                   width="550"
                 />
@@ -651,7 +651,7 @@ export const exercise19: Exercise<DATA> = {
             {data.case == 3 && (
               <svg viewBox="0 0 550 220">
                 <image
-                  href="/content/NRW_MSA_Melone_Plot.PNG"
+                  href="/content/NRW_MSA/NRW_MSA_Melone_Plot.PNG"
                   height="220"
                   width="550"
                 />

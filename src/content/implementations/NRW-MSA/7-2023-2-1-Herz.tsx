@@ -57,7 +57,11 @@ export const exercise7: Exercise<DATA> = {
           angesetzt sind (Abbildung 1).
         </p>
         <svg viewBox="0 0 700 500" className="min-w-[328px]">
-          <image href="/content/NRW_MSA-23-2-1.PNG" height="500" width="700" />
+          <image
+            href="/content/NRW_MSA/NRW_MSA-23-2-1.PNG"
+            height="500"
+            width="700"
+          />
           <text x={160} y={370} fontSize={30} textAnchor="right" stroke="black">
             {data.kante} cm
           </text>
@@ -94,7 +98,7 @@ export const exercise7: Exercise<DATA> = {
               zur Horizontalen steht, 45° beträgt.
               <svg viewBox="0 0 328 200" className="min-w-[328px]">
                 <image
-                  href="/content/NRW_MSA_Herz_Kon.PNG"
+                  href="/content/NRW_MSA/NRW_MSA_Herz_Kon.PNG"
                   height="200"
                   width="328"
                 />
@@ -125,7 +129,7 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 200" className="min-w-[328px]">
               <image
-                href="/content/NRW_MSA_Herz_Kon2.png"
+                href="/content/NRW_MSA/NRW_MSA_Herz_Kon2.png"
                 height="200"
                 width="328"
               />
@@ -297,7 +301,7 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 200" className="min-w-[328px]">
               <image
-                href="/content/NRW_MSA_Herz_Skizze.png"
+                href="/content/NRW_MSA/NRW_MSA_Herz_Skizze.png"
                 height="200"
                 width="328"
               />
@@ -388,7 +392,7 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 200" className="min-w-[328px]">
               <image
-                href="/content/NRW_MSA_Herz_Skizze.png"
+                href="/content/NRW_MSA/NRW_MSA_Herz_Skizze.png"
                 height="200"
                 width="328"
               />
@@ -513,7 +517,7 @@ export const exercise7: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 150">
               <image
-                href="/content/NRW_MSA-Baumdiagramm.PNG"
+                href="/content/NRW_MSA/NRW_MSA-Baumdiagramm.PNG"
                 height="150"
                 width="328"
               />
@@ -629,7 +633,7 @@ export const exercise7: Exercise<DATA> = {
                 </p>
                 <svg viewBox="0 0 328 220">
                   <image
-                    href="/content/NRW_MSA-Baumdiagramm.PNG"
+                    href="/content/NRW_MSA/NRW_MSA-Baumdiagramm.PNG"
                     height="220"
                     width="328"
                   />

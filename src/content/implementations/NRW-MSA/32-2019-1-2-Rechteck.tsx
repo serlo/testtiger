@@ -38,7 +38,7 @@ export const exercise32: Exercise<DATA> = {
       <>
         <>
           <img
-            src="/content/NRW_MSA_2019_1_2_rechteck.svg"
+            src="/content/NRW_MSA/NRW_MSA_2019_1_2_rechteck.svg"
             alt="Rechteck mit Diagonale"
             className="w-[250px] mx-auto"
           />

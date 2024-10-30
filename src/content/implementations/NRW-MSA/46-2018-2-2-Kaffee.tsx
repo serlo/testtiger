@@ -228,7 +228,7 @@ export const exercise46: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 120">
               <image
-                href="/content/NRW_MSA_Kaffee.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Kaffee.PNG"
                 height="120"
                 width="328"
               />
@@ -308,7 +308,7 @@ export const exercise46: Exercise<DATA> = {
 
               <center>
                 <img
-                  src="/content/NRW_MSA_Kegelstumpf.PNG"
+                  src="/content/NRW_MSA/NRW_MSA_Kegelstumpf.PNG"
                   width={200}
                   alt=""
                 />
@@ -563,7 +563,7 @@ export const exercise46: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 460">
               <image
-                href="/content/NRW_MSA_Kaffee_Plot.png"
+                href="/content/NRW_MSA/NRW_MSA_Kaffee_Plot.png"
                 height="440"
                 width="328"
               />

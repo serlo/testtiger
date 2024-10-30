@@ -23,7 +23,7 @@ export const exercise2: Exercise<DATA> = {
   originalData: {
     a: 50,
     b: 40,
-    c: 30
+    c: 30,
   },
   constraint({ data }) {
     return data.a * data.b * data.c < 200000
@@ -39,7 +39,7 @@ export const exercise2: Exercise<DATA> = {
 
         <svg viewBox="0 0 700 500">
           <image
-            href="/content/NRW_MSA_2023_Teil1_A2.PNG"
+            href="/content/NRW_MSA/NRW_MSA_2023_Teil1_A2.PNG"
             height="500"
             width="700"
           />

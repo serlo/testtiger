@@ -37,7 +37,7 @@ export const exercise17: Exercise<DATA> = {
         <p>Gegeben ist der Funktionsgraph einer linearen Funktion.</p>
         <svg viewBox="0 0 500 450">
           <image
-            href="/content/NRW_MSA_KS_Vorlage.png"
+            href="/content/NRW_MSA/NRW_MSA_KS_Vorlage.png"
             height="500"
             width="500"
           />
@@ -63,7 +63,7 @@ export const exercise17: Exercise<DATA> = {
             <p>a) Ergänze in der Wertetabelle die fehlenden Werte.</p>
             <svg viewBox="0 0 700 500" className="h-[170px]">
               <image
-                href="/content/NRW_MSA_Wertetabelle.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Wertetabelle.PNG"
                 height="500"
                 width="700"
               />
@@ -77,7 +77,7 @@ export const exercise17: Exercise<DATA> = {
             <p>Lies die Werte aus dem Koordinatensystem ab.</p>
             <svg viewBox="0 0 700 500" className="h-[170px]">
               <image
-                href="/content/NRW_MSA_Wertetabelle.PNG"
+                href="/content/NRW_MSA/NRW_MSA_Wertetabelle.PNG"
                 height="500"
                 width="700"
               />
@@ -205,7 +205,7 @@ export const exercise17: Exercise<DATA> = {
             <p>
               <svg viewBox="0 0 329 250" className="h-[250px]">
                 <image
-                  href="/content/NRW_MSA_KS_Vorlage.png"
+                  href="/content/NRW_MSA/NRW_MSA_KS_Vorlage.png"
                   height="250"
                   width="329"
                 />

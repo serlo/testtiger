@@ -35,7 +35,7 @@ export const exercise6: Exercise<DATA> = {
       <>
         <svg viewBox="0 0 790 480">
           <image
-            href="/content/NRW_MSA_Parallelogramm.PNG"
+            href="/content/NRW_MSA/NRW_MSA_Parallelogramm.PNG"
             height="500"
             width="700"
           />

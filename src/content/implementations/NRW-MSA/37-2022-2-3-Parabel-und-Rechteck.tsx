@@ -74,7 +74,11 @@ export const exercise37: Exercise<DATA> = {
         </p>
         <p>in ein Koordinatensystem (Abbildung 1).</p>
         <svg viewBox="0 0 700 450" className="max-w-[328px]">
-          <image href="/content/NRW_MSA_KS_groß.png" width="700" height="450" />
+          <image
+            href="/content/NRW_MSA/NRW_MSA_KS_groß.png"
+            width="700"
+            height="450"
+          />
           <polyline
             points={parabolaPoints}
             stroke="blue"
@@ -326,7 +330,7 @@ export const exercise37: Exercise<DATA> = {
             <p>Deine Skizze sollte etwa so aussehen:</p>
             <svg viewBox="0 0 700 450" className="max-w-[328px]">
               <image
-                href="/content/NRW_MSA_KS_groß.png"
+                href="/content/NRW_MSA/NRW_MSA_KS_groß.png"
                 width="700"
                 height="450"
               />
@@ -426,7 +430,7 @@ export const exercise37: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 700 450" className="max-w-[328px]">
               <image
-                href="/content/NRW_MSA_KS_groß.png"
+                href="/content/NRW_MSA/NRW_MSA_KS_groß.png"
                 width="700"
                 height="450"
               />
@@ -723,7 +727,7 @@ export const exercise37: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 700 450" className="max-w-[328px]">
               <image
-                href="/content/NRW_MSA_KS_groß.png"
+                href="/content/NRW_MSA/NRW_MSA_KS_groß.png"
                 width="700"
                 height="450"
               />

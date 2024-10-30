@@ -58,7 +58,7 @@ export const exercise29: Exercise<DATA> = {
     return (
       <>
         <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
-        <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
+        <img src="/content/NRW_MSA/NRW_MSA_Blobbing.jpg" alt="" />
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
@@ -82,7 +82,7 @@ export const exercise29: Exercise<DATA> = {
           (3) Der Blobber wird in die Luft geschleudert und landet dann im
           Wasser.
         </p>
-        <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
+        <img src="/content/NRW_MSA/NRW_MSA_Blobbing_2.png" alt="" />
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
@@ -277,7 +277,7 @@ export const exercise29: Exercise<DATA> = {
           </Color5>
         </center>
 
-        <img src="/content/NRW_MSA_Blobbing_4.jpg" alt="" />
+        <img src="/content/NRW_MSA/NRW_MSA_Blobbing_4.jpg" alt="" />
       </>
     )
   },
@@ -319,7 +319,7 @@ export const exercise29: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 700 500">
               <image
-                href="/content/NRW_MSA_Blobbing_4.jpg"
+                href="/content/NRW_MSA/NRW_MSA_Blobbing_4.jpg"
                 height="500"
                 width="700"
               />
@@ -388,7 +388,7 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
-            <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
+            <img src="/content/NRW_MSA/NRW_MSA_Blobbing.jpg" alt="" />
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
@@ -412,7 +412,7 @@ export const exercise29: Exercise<DATA> = {
               (3) Der Blobber wird in die Luft geschleudert und landet dann im
               Wasser.
             </p>
-            <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
+            <img src="/content/NRW_MSA/NRW_MSA_Blobbing_2.png" alt="" />
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
@@ -712,7 +712,7 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
-            <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
+            <img src="/content/NRW_MSA/NRW_MSA_Blobbing.jpg" alt="" />
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
@@ -736,7 +736,7 @@ export const exercise29: Exercise<DATA> = {
               (3) Der Blobber wird in die Luft geschleudert und landet dann im
               Wasser.
             </p>
-            <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
+            <img src="/content/NRW_MSA/NRW_MSA_Blobbing_2.png" alt="" />
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
@@ -779,7 +779,7 @@ export const exercise29: Exercise<DATA> = {
             <p>c) Abbildung 4 zeigt die Flugbahn eines Blobbers A.</p>
             <svg viewBox="0 0 700 500">
               <image
-                href="/content/NRW_MSA_Blobbing_Plot.png"
+                href="/content/NRW_MSA/NRW_MSA_Blobbing_Plot.png"
                 height="500"
                 width="700"
               />
@@ -944,7 +944,7 @@ export const exercise29: Exercise<DATA> = {
         return (
           <>
             <p>Blobbing ist eine Wassersportart im Freien (Abbildung 1).</p>
-            <img src="/content/NRW_MSA_Blobbing.jpg" alt="" />
+            <img src="/content/NRW_MSA/NRW_MSA_Blobbing.jpg" alt="" />
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
@@ -968,7 +968,7 @@ export const exercise29: Exercise<DATA> = {
               (3) Der Blobber wird in die Luft geschleudert und landet dann im
               Wasser.
             </p>
-            <img src="/content/NRW_MSA_Blobbing_2.png" alt="" />
+            <img src="/content/NRW_MSA/NRW_MSA_Blobbing_2.png" alt="" />
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>

@@ -37,7 +37,7 @@ export const exercise44: Exercise<DATA> = {
 
         <svg viewBox="0 0 500 450">
           <image
-            href="/content/NRW_MSA_2018_1_5_koordinatensystem.svg"
+            href="/content/NRW_MSA/NRW_MSA_2018_1_5_koordinatensystem.svg"
             height="450"
             width="500"
           />
@@ -99,7 +99,7 @@ export const exercise44: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 500 450">
               <image
-                href="/content/NRW_MSA_2018_1_5_koordinatensystem.svg"
+                href="/content/NRW_MSA/NRW_MSA_2018_1_5_koordinatensystem.svg"
                 height="450"
                 width="500"
               />
