@@ -46,7 +46,7 @@ export function ExerciseViewFooter() {
               })
             }}
           >
-            Chat
+            Eingabe
           </button>
           <button
             className="ml-3 mt-3 px-2 py-0.5 bg-gray-300 rounded"
