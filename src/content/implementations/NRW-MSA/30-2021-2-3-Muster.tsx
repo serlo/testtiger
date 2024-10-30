@@ -69,6 +69,7 @@ export const exercise30: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
+      duration: 2,
       task({ data }) {
         const hypo = roundToDigits(Math.sqrt(data.d1 * data.d1 * 2), 2)
         return (
@@ -120,6 +121,7 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 6,
       task({ data }) {
         return (
           <>
@@ -209,6 +211,7 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
@@ -269,6 +272,7 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -357,6 +361,7 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 3,
       skillIntro({ data }) {
         const surface = data.d1 * data.d1 * 0.5
         return (
@@ -468,6 +473,7 @@ export const exercise30: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 4,
       task({ data }) {
         return (
           <>

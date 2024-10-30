@@ -53,6 +53,7 @@ export const exercise32: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -133,6 +134,7 @@ export const exercise32: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 4,
       task({ data }) {
         const text = ['verdoppelt', 'verdreifacht', 'vervierfacht', 'halbiert']
         return (
@@ -240,6 +242,7 @@ export const exercise32: Exercise<DATA> = {
     },
     {
       points: 1,
+      duration: 1,
       task({ data }) {
         return (
           <>

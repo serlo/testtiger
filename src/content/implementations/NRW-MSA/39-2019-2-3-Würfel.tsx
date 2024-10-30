@@ -195,6 +195,7 @@ export const exercise39: Exercise<DATA> = {
 
   tasks: [
     {
+      duration: 1,
       points: 2,
       task({ data }) {
         return (
@@ -547,6 +548,7 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 1,
       intro({ data }) {
         return (
           <>
@@ -587,6 +589,7 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       skillIntro({ data }) {
         return (
           <>
@@ -631,6 +634,7 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 30,
       task({ data }) {
         return (
           <>
@@ -668,6 +672,7 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 3,
       task({ data }) {
         return (
           <>
@@ -781,6 +786,7 @@ export const exercise39: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 4,
       task({ data }) {
         return (
           <>

@@ -94,6 +94,7 @@ export const exercise42: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -141,6 +142,7 @@ export const exercise42: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 4,
       task({ data }) {
         const text1_case = ['verdopple', 'verdreifache', 'halbiere']
         const text_falsch = ['verdoppelt', 'verdreifacht', 'halbiert']
