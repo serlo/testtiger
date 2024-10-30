@@ -79,29 +79,31 @@ export async function submitAnswerInput() {
   messages.push({
     role: 'system',
     content: `
-      In der vorherigen Nachricht sieht du eine Aufgabe. Du bist ein Tutor. In der nächsten Nachricht erhältst du die Antwort des Nutzers.
-      
       Du befindest dich bei der Teilaufgabe ${
         state.pages
           ? state.pages[state.navIndicatorPosition].index
           : countLetter('a', state.navIndicatorPosition)
       }).
 
-      Teile die Eingabe in Zeilen auf. Antworte in diesem JSON-Format. Bitte kein Markdown, nur JSON als Antwort!!!!!
+      Analysiere die Eingabe der SchülerIn und gebe dein Ergebnis als folgendes JSON-Object aus (nur JSON! kein Markdown oder \`\`\`-Zeichen)
 
-      [
-        {
-          line: "Zeile 1 des Nutzers"
-          correct: boolean // true = diese Zeile ist richtig // false = diese Zeile enthält ein Problem. Bitte sei großzügig. Wenn das Problem nur eine Formalität ist, dann lasse die Antwort trotzdem gelten.
-          message: "Wenn die Zeile ein Problem enthält, erkläre knapp, maximal 1 oder 2 Sätze, was das Problem ist. Bitte vermeide es, die richtige Antwort zu sagen!! Du darfst die Herangehensweise erklären.
-        },
-        ...
-        {
-          line: "" // wenn alle Zeilen richtig sind, dann füge am Ende noch eine leere Zeile hinzu
-          correct: boolean // Bitte sage hier, ob die gesamte Aufgabe löst wurde oder nicht
-          message: "" // Wenn die Aufgabe vollständig ist, dann schreibe 2 - 3 lobende Worte, ansonsten erkläre, was noch fehlt.
-        }
-      ]
+      {
+        feedback: string
+        rating: number // Zwischen 0 und 100
+      }
+
+      Schaue erstmal ob die Bearbeitung einen Bezug zur Aufgabe hat. Wenn die Eingabe gar keinen Bezug hat, dann ist das Rating 0. Gib als Feedback einen Tipp, wie man mit der Aufgabe beginnt. Verrate nicht die Lösung!!!!!
+
+      Wenn die Eingabe einen Bezug hat, dann beschreibt das Rating in Prozent wie richtig und vollständig die Aufgabe ist Ein paar Beispiele. Du darfst auch Werte dazwischen angeben!
+
+      - 10 = erste Schritte vorhanden, aber Aufgabe ist sehr unvollständig
+      - 30 = wesentliche Schritte sind vorhanden, aber die Lösung ist falsch
+      - 60 = Lösung ist vorhanden und richtig, aber es fehlen Lösungsschritte
+      - 100 = Aufgabe ist wie in Lösungsbeispiel gelöst. Es darf unterschiedliche Ansätze bei den Lösungsschritten geben.
+
+      Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
+
+      Die nächste Nachricht ist vollständig die Eingabe der Schülerin.
       `,
     id: 'prompt',
   })
@@ -121,7 +123,7 @@ export async function submitAnswerInput() {
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].resultPending = false
       s.checks[s.navIndicatorPosition].result =
-        '[{"line":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","correct":false}]'
+        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rating":0}'
     })
   }
 }
