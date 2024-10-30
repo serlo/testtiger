@@ -29,6 +29,16 @@ export const exercise10: Exercise<DATA> = {
       bool: rng.randomBoolean(),
     }
   },
+  originalData: {
+    potenz_1: -1,
+    potenz_2: -2,
+    basis: -4,
+    exponent: 2,
+    basis_2: -4,
+    case: 2,
+    basis_3: 2,
+    bool: true,
+  },
   constraint({ data }) {
     return data.potenz_1 != data.potenz_2
   },

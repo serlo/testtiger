@@ -124,30 +124,11 @@ export function TypeNCheckOverlay() {
               </Fragment>
             ))}
           </div>
-          <div className="mx-3 mt-4 flex mb-4">
-            <div>
-              <CircularProgress progress={JSON.parse(check.result).rating} />
-              <div className="text-center mt-3">
-                {JSON.parse(check.result).rating >= 50 && (
-                  <FaIcon icon={faCheck} className="text-3xl text-center" />
-                )}
-              </div>
+          <div className="mx-3 mt-4 mb-4">
+            <div className="my-3 font-bold">
+              Rang: {JSON.parse(check.result).rank}
             </div>
-            <div className="ml-2">{JSON.parse(check.result).feedback}</div>
-          </div>
-          <div className="text-sm text-gray-600 text-center mb-6 mt-2 hidden">
-            Bitte vergleiche am Ende mit dem{' '}
-            <button
-              className="underline"
-              onClick={() => {
-                ExerciseViewStore.update(s => {
-                  s.chatOverlay = 'solution'
-                })
-              }}
-            >
-              Lösungsbeispiel
-            </button>
-            .
+            <div className="">{JSON.parse(check.result).feedback}</div>
           </div>
           <div className="mb-5 ml-3 flex justify-center">
             <button
@@ -160,37 +141,16 @@ export function TypeNCheckOverlay() {
             >
               <FaIcon icon={faPencil} /> Eingabe bearbeiten
             </button>
-            {JSON.parse(check.result).rating >= 50 && (
+            {JSON.parse(check.result).rank == 'A' && (
               <button
-                className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded ml-3"
+                className="px-2 py-0.5 bg-gray-200 ml-3 rounded"
                 onClick={() => {
                   ExerciseViewStore.update(s => {
-                    const wasNotDone =
-                      s.completed[s.navIndicatorPosition] == false
-                    s.completed[s.navIndicatorPosition] = true
-                    if (s.completed.every(x => x)) {
-                      setTimeout(() => {
-                        ExerciseViewStore.update(s => {
-                          s.showEndScreen = true
-                        })
-                      }, 1000)
-                    } else {
-                      if (s.navIndicatorPosition + 1 < s.navIndicatorLength) {
-                        if (wasNotDone) {
-                          setTimeout(() => {
-                            ExerciseViewStore.update(s => {
-                              s.navIndicatorExternalUpdate =
-                                s.navIndicatorPosition + 1
-                              s.chatOverlay = null
-                            })
-                          }, 500)
-                        }
-                      }
-                    }
+                    s.chatOverlay = 'solution'
                   })
                 }}
               >
-                weiter
+                Lösung anzeigen
               </button>
             )}
           </div>
@@ -233,45 +193,6 @@ export function TypeNCheckOverlay() {
           </button>
         </div>
       )}
-    </div>
-  )
-}
-
-const CircularProgress = ({ progress }: { progress: number }) => {
-  const circleRadius = 50
-  const circleCircumference = 2 * Math.PI * circleRadius
-  const progressOffset =
-    circleCircumference - (progress / 100) * circleCircumference
-
-  return (
-    <div className="flex items-center justify-center">
-      <svg className="w-24 h-24" width="120" height="120" viewBox="0 0 120 120">
-        <circle
-          className="text-gray-300"
-          strokeWidth="10"
-          stroke="currentColor"
-          fill="transparent"
-          r={circleRadius}
-          cx="60"
-          cy="60"
-        />
-        <circle
-          className="text-gray-500"
-          strokeWidth="10"
-          strokeDasharray={circleCircumference}
-          strokeDashoffset={progressOffset}
-          strokeLinecap="round"
-          stroke="currentColor"
-          fill="transparent"
-          r={circleRadius}
-          cx="60"
-          cy="60"
-          style={{ transition: 'stroke-dashoffset 0.5s' }}
-        />
-      </svg>
-      <span className="absolute text-xl font-semibold text-gray-600">
-        {progress}%
-      </span>
     </div>
   )
 }

@@ -39,7 +39,12 @@ export function FotoOverlay() {
       </div>
       {fotoFeedback ? (
         <>
-          <div className="m-3 p-2 bg-gray-200 rounded">{fotoFeedback}</div>
+          <div className="mx-3 mt-4 mb-4">
+            <div className="my-3 font-bold">
+              Rang: {JSON.parse(fotoFeedback).rank}
+            </div>
+            <div className="">{JSON.parse(fotoFeedback).feedback}</div>
+          </div>
           <div className="m-3 flex justify-between">
             <button
               onClick={() => {

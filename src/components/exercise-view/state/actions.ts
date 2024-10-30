@@ -89,17 +89,18 @@ export async function submitAnswerInput() {
 
       {
         feedback: string
-        rating: number // Zwischen 0 und 100
+        rank: '0' | 'C' | 'B' | 'A'
       }
 
-      Schaue erstmal ob die Bearbeitung einen Bezug zur Aufgabe hat. Wenn die Eingabe gar keinen Bezug hat, dann ist das Rating 0. Gib als Feedback einen Tipp, wie man mit der Aufgabe beginnt. Verrate nicht die Lösung!!!!!
+      Die Erklärung der Ränge:
 
-      Wenn die Eingabe einen Bezug hat, dann beschreibt das Rating in Prozent wie richtig und vollständig die Aufgabe ist Ein paar Beispiele. Du darfst auch Werte dazwischen angeben!
+      Rang 0: Die Eingabe hat keinen Bezug zur Aufgabe. Es wurde etwas irrelevantes eingeben. Sage im Feedback, dass die Eingabe keinen Bezug hat und gib einen Tipp, wie man am besten mit der Aufgabe startet. Verrate nicht die Lösung.
 
-      - 10 = erste Schritte vorhanden, aber Aufgabe ist sehr unvollständig
-      - 30 = wesentliche Schritte sind vorhanden, aber die Lösung ist falsch
-      - 60 = Lösung ist vorhanden und richtig, aber es fehlen Lösungsschritte
-      - 100 = Aufgabe ist wie in Lösungsbeispiel gelöst. Es darf unterschiedliche Ansätze bei den Lösungsschritten geben.
+      Rang C: Es ist merkbar, dass die Eingabe einen Bezug zur Aufgabe hat. Allerdings ist noch kein Ergebnis vorhanden und der Rechenweg ist unvollständig. Zumindest einzelne Elemente können mit der Aufgabe in Verbindung gebracht werden. Zeige im Feedback, dass die Eingabe mit der Aufgabe zusammenhängt und wie. Gib dann eine relativ konkrete Anweisung, was als nächster sinnvolle Schritt für die Aufgabe zu tun ist. Ermutige, weiter zu machen. Verrate nicht die Lösung.
+
+      Rang B: Wesentliche Zwischenschritte sind korrekt, es fehlt aber noch die Antwort oder die Antwort ist falsch. Lobe erstmal den Fortschritt im Feedback. Mache dann klar, welche Elemente falsch sind oder fehlen. Gib einen konkreten nächsten Auftrag.
+
+      Rang A: Die Ergebnisse stimmen mit der Musterlösung überein. Sei großzügig bei den Formalitäten: Es ist nicht schlimm, wenn einzelne Details im Lösungsweg fehlen. Begründen werden nur erwartet, wenn sie in der Aufgabenstellung explizit gefordert wurden. Lobe den Fortschritt. Mache auch klar, dass du als KI-Tutor keine Korrektur übernehmen kannst und deshalb sollte im Zweifel immer mit der Musterlösung verglichen werden. Falls du einen möglichen Tipps siehst, formuliere ganz vorsichtig diesen Tipp.
 
       Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
 
@@ -123,7 +124,7 @@ export async function submitAnswerInput() {
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].resultPending = false
       s.checks[s.navIndicatorPosition].result =
-        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rating":0}'
+        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rank":0}'
     })
   }
 }
@@ -163,15 +164,34 @@ export async function anaylseImage() {
   messages.push({
     role: 'system',
     content: `
-      Du befindest dich bei der Teilaufgabe Du befindest dich bei der Teilaufgabe ${
+      Du befindest dich bei der Teilaufgabe ${
         state.pages
           ? state.pages[state.navIndicatorPosition].index
           : countLetter('a', state.navIndicatorPosition)
       }).
 
-      Die SchülerIn hat dir ein Bild hochgeladen mit ihrer Lösung. Schaue dir die Lösung an und gebe Feedback in 3 - 4 Sätzen.
+      Analysiere die Eingabe der SchülerIn und gebe dein Ergebnis als folgendes JSON-Object aus (nur JSON! kein Markdown oder \`\`\`-Zeichen)
 
-      Verrate nicht die Lösung!!! Verwende kein Latex, sondern nutze möglichst Unicode, Brüche kannst du als 8/10 darstellen.
+      {
+        feedback: string
+        rank: '0' | 'C' | 'B' | 'A'
+      }
+
+      Die Erklärung der Ränge:
+
+      Rang 0: Die Eingabe hat keinen Bezug zur Aufgabe. Es wurde etwas irrelevantes eingeben. Sage im Feedback, dass die Eingabe keinen Bezug hat und gib einen Tipp, wie man am besten mit der Aufgabe startet. Verrate nicht die Lösung.
+
+      Rang C: Es ist merkbar, dass die Eingabe einen Bezug zur Aufgabe hat. Allerdings ist noch kein Ergebnis vorhanden und der Rechenweg ist unvollständig. Zumindest einzelne Elemente können mit der Aufgabe in Verbindung gebracht werden. Zeige im Feedback, dass die Eingabe mit der Aufgabe zusammenhängt und wie. Gib dann eine relativ konkrete Anweisung, was als nächster sinnvolle Schritt für die Aufgabe zu tun ist. Ermutige, weiter zu machen. Verrate nicht die Lösung.
+
+      Rang B: Wesentliche Zwischenschritte sind korrekt, es fehlt aber noch die Antwort oder die Antwort ist falsch. Lobe erstmal den Fortschritt im Feedback. Mache dann klar, welche Elemente falsch sind oder fehlen. Gib einen konkreten nächsten Auftrag.
+
+      Rang A: Die Ergebnisse stimmen mit der Musterlösung überein. Sei großzügig bei den Formalitäten: Es ist nicht schlimm, wenn einzelne Details im Lösungsweg fehlen. Begründen werden nur erwartet, wenn sie in der Aufgabenstellung explizit gefordert wurden. Lobe den Fortschritt. Mache auch klar, dass du als KI-Tutor keine Korrektur übernehmen kannst und deshalb sollte im Zweifel immer mit der Musterlösung verglichen werden. Falls du einen möglichen Tipps siehst, formuliere ganz vorsichtig diesen Tipp.
+
+      Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
+
+      Die nächste Nachricht ist ein Bild mit der Bearbeitung der Schülerin.
+
+      Bitte gib die Antwort als JSON aus!
       `,
     id: 'prompt',
   })
@@ -187,6 +207,8 @@ export async function anaylseImage() {
   })
   const result = await submitUserMessage({ messages })
   try {
+    console.log(result.content.toString())
+    JSON.parse(result.content.toString())
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].fotoFeedback = result.content.toString()
     })
@@ -194,7 +216,9 @@ export async function anaylseImage() {
     console.log(e)
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].fotoFeedback =
-        'Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.'
+        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry. ' +
+        result.content.toString() +
+        '","rank": "0"}'
     })
   }
 }

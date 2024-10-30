@@ -5,9 +5,42 @@ import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { TypeNCheckOverlay } from './TypeNCheckOverlay'
 import { FotoOverlay } from './FotoOverlay'
+import {
+  Camera,
+  CameraResultType,
+  CameraSource,
+  CameraDirection,
+} from '@capacitor/camera'
+import { defineCustomElements } from '@ionic/pwa-elements/loader'
+
+defineCustomElements(window)
 
 export function ExerciseViewFooter() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
+
+  const takePhoto = async () => {
+    try {
+      const image = await Camera.getPhoto({
+        // If we want to save some money on tokens, we can probably get away
+        // with choosing a lower quality
+        quality: 95,
+        allowEditing: true,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Camera,
+        direction: CameraDirection.Rear,
+        presentationStyle: 'fullscreen',
+        webUseInput: false,
+      })
+
+      ExerciseViewStore.update(s => {
+        s.checks[s.navIndicatorPosition].uploadedImage =
+          `data:image/jpeg;base64,${image.base64String}`
+        s.cropImage = true
+      })
+    } catch (error) {
+      console.error('Error taking photo:', error)
+    }
+  }
 
   return (
     <div className="bg-white min-h-[65px] relative">
@@ -30,10 +63,12 @@ export function ExerciseViewFooter() {
                 })
                 return
               }
-              const fileInput = document.getElementById(
+              takePhoto()
+
+              /*const fileInput = document.getElementById(
                 'file-upload',
               ) as HTMLInputElement
-              fileInput.click()
+              fileInput.click()*/
             }}
           >
             <FaIcon icon={faCameraAlt} /> Foto
@@ -46,7 +81,7 @@ export function ExerciseViewFooter() {
               })
             }}
           >
-            Chat
+            Eingabe
           </button>
           <button
             className="ml-3 mt-3 px-2 py-0.5 bg-gray-300 rounded"

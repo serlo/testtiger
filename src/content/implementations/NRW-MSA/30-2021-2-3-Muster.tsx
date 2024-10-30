@@ -252,7 +252,7 @@ export const exercise30: Exercise<DATA> = {
           <>
             <svg viewBox="0 0 328 200">
               <image
-                href="/content/NRW_MSA/NRW_MSA_Muster_Skizze.png"
+                href="/content/NRW_MSA/NRW_MSA_Muster_Skizze.PNG"
                 height="200"
                 width="328"
               />

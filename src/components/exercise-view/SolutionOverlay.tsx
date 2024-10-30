@@ -98,7 +98,7 @@ export function SolutionOverlay() {
         <div className="text-center mt-6 mb-4">
           <button
             className={clsx(
-              'px-6 py-1 rounded-xl',
+              'px-6 py-1 rounded-xl hidden',
               completed ? 'bg-green-200' : 'bg-gray-200 hover:bg-gray-300',
             )}
             onClick={() => {
