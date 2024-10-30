@@ -22,6 +22,11 @@ export const exercise121: Exercise<DATA> = {
       millilitres: rng.randomIntBetween(100, 10000),
     }
   },
+  originalData: {
+    kilometers: 21,
+    minutes: 5,
+    millilitres: 500,
+  },
   constraint({ data }) {
     return true
   },
