@@ -283,6 +283,7 @@ export const exercise29: Exercise<DATA> = {
   },
   tasks: [
     {
+      duration: 6,
       points: 3,
       task({ data }) {
         return (
@@ -381,6 +382,7 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 4,
       skillIntro({ data }) {
         function getDuration(t: number) {
           return roundToDigits(Math.pow((2 * t) / data.g, 0.5), 2)
@@ -708,6 +710,7 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       skillIntro({ data }) {
         return (
           <>
@@ -867,6 +870,7 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 3,
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
         return (
@@ -940,6 +944,7 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       skillIntro({ data }) {
         return (
           <>
@@ -1089,6 +1094,7 @@ export const exercise29: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 5,
       task({ data }) {
         return (
           <>
@@ -1251,6 +1257,7 @@ export const exercise29: Exercise<DATA> = {
       },
     },
     {
+      duration: 2,
       points: 2,
       task({ data }) {
         const a = (1 - data.y_s) / (data.x_s * data.x_s)
