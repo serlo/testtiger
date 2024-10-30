@@ -191,7 +191,7 @@ export async function anaylseImage() {
 
       Die nächste Nachricht ist ein Bild mit der Bearbeitung der Schülerin.
 
-      Bitte gib die Antwort als JSON aus!
+      Bitte gib die Antwort als JSON aus! Kein Markdown, keine BackTicks bitte.
       `,
     id: 'prompt',
   })
@@ -205,19 +205,23 @@ export async function anaylseImage() {
     ],
     id: 'user',
   })
-  const result = await submitUserMessage({ messages })
+  let result: any = undefined
   try {
-    console.log(result.content.toString())
-    JSON.parse(result.content.toString())
+    result = await submitUserMessage({ messages })
+    const json = result.content
+      .toString()
+      .replace(/```/, '')
+      .replace(/json```/, '')
+    console.log(json)
+    JSON.parse(json)
     ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].fotoFeedback = result.content.toString()
+      s.checks[s.navIndicatorPosition].fotoFeedback = json
     })
   } catch (e) {
     console.log(e)
     ExerciseViewStore.update(s => {
       s.checks[s.navIndicatorPosition].fotoFeedback =
         '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry. ' +
-        result.content.toString() +
         '","rank": "0"}'
     })
   }

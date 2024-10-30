@@ -24,7 +24,9 @@ export function ExerciseViewFooter() {
         // If we want to save some money on tokens, we can probably get away
         // with choosing a lower quality
         quality: 95,
-        allowEditing: true,
+        width: 512,
+        height: 512,
+        allowEditing: false,
         resultType: CameraResultType.Base64,
         source: CameraSource.Camera,
         direction: CameraDirection.Rear,
