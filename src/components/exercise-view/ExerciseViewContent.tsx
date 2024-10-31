@@ -155,7 +155,11 @@ export function ExerciseViewContent() {
             <div>
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
-                {withSubtasks && <> {countLetter('a', i) + ')'}</>}
+                {pages ? (
+                  <> {pages[i].index + ')'}</>
+                ) : (
+                  withSubtasks && <> {countLetter('a', i) + ')'}</>
+                )}
               </div>
               <button
                 className="px-1 py-0.5 rounded-md bg-gray-100"
