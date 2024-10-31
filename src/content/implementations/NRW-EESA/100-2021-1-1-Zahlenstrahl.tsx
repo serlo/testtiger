@@ -10,7 +10,7 @@ interface DATA {
 
 export const exercise100: Exercise<DATA> = {
   title: 'Zahlenstrahl',
-  source: '2024 Teil 1 Aufgabe 1',
+  source: '2021 Teil 1 Aufgabe 1',
   useCalculator: false,
   duration: 42,
   generator(rng) {
