@@ -15,7 +15,7 @@ export const exercise21: Exercise<DATA> = {
   duration: 3,
   generator(rng) {
     return {
-      hours: (rng.randomIntBetween(30, 60) * 5) / 100,
+      hours: rng.randomIntBetween(4, 7) * 0.5,
       centimeters: rng.randomIntBetween(100, 10000),
       gramms: rng.randomIntBetween(10000, 200000) / 10,
     }

@@ -218,7 +218,7 @@ export const exercise7: Exercise<DATA> = {
             <p>
               Eine Firma produziert herzförmige Dekoanhänger aus Metall. Ein
               Herz hat eine Gesamtfläche von{' '}
-              {pp(roundToDigits(data.kante * data.kante + A, 2))} [cm²].
+              {pp(roundToDigits(data.kante * data.kante + A, 2))} cm².
             </p>
           </>
         )

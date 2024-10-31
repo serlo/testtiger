@@ -67,7 +67,7 @@ export const exercise36: Exercise<DATA> = {
 
             <p>
               Bestätige durch eine Rechnung, dass das Volumen einer
-              Kaugummikugel ca.{' '}
+              Kaugummikugel ca. <br></br>
               {pp(
                 roundToDigits(
                   ((4 / 3) * Math.pow(data.dia / 2, 3) * Math.PI) / 1000,
@@ -148,7 +148,7 @@ export const exercise36: Exercise<DATA> = {
             </p>
             <p>
               Eine Kaugummikugel hat ein Volumen von{' '}
-              {pp(roundToDigits(V / 1000, 2))} [cm³].
+              {pp(roundToDigits(V / 1000, 2))} cm³.
             </p>
           </>
         )
@@ -171,7 +171,10 @@ export const exercise36: Exercise<DATA> = {
         const solution = roundToDigits(300 / (data.weight * V), 2)
         return (
           <>
-            <p>Eine Kugel hat ein Volumen von etwa {pp(V)} cm³.</p>
+            <p>
+              Eine Kugel hat ein Volumen von etwa <br></br>
+              {pp(V)} cm³.
+            </p>
             <p>
               Damit hat sie ein Gewicht von:<br></br> {pp(V)} ·{' '}
               {pp(data.weight)} ≈ {pp(roundToDigits(data.weight * V, 2))} [g]{' '}

@@ -24,7 +24,7 @@ export const exercise48: Exercise<DATA> = {
       b: rng.randomItemFromArray([2, 4, 5, 6, 10]),
       c: rng.randomIntBetween(-8, 8),
       d: rng.randomItemFromArray([2, 4, 5, 6, 10]),
-      e: rng.randomIntBetween(1, 8),
+      e: rng.randomIntBetween(1, 4),
       f: rng.randomItemFromArray([2, 4, 5, 10]),
       g: rng.randomIntBetween(-3, 3),
       h: rng.randomIntBetween(-100, 100) / 100,
@@ -48,6 +48,7 @@ export const exercise48: Exercise<DATA> = {
       data.h,
     ].sort((a, b) => a - b)
     return (
+      data.e < data.f &&
       data.c != 0 &&
       data.a != 0 &&
       data.e != 0 &&
