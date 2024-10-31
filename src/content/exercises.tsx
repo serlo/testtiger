@@ -71,6 +71,12 @@ import { exercise119 } from './implementations/NRW-EESA/119-2022-2-3-Bambus'
 import { exercise107 } from './implementations/NRW-EESA/107-2021-2-1-Roller-Tour'
 import { exercise109 } from './implementations/NRW-EESA/109-2021-2-3-Kasimir'
 import { exercise122 } from './implementations/NRW-EESA/122-2023-1-3-Volumen-berechnen'
+import { exercise129 } from './implementations/NRW-EESA/129-2024-1-1-Zahlen-ordnen'
+import { exercise130 } from './implementations/NRW-EESA/130-2024-1-2-Einheiten-umrechnen'
+import { exercise131 } from './implementations/NRW-EESA/131-2024-1-3-Weitsprung'
+import { exercise132 } from './implementations/NRW-EESA/132-2024-1-4-Basketball'
+import { exercise133 } from './implementations/NRW-EESA/133-2024-1-5-Schätzen'
+import { exercise134 } from './implementations/NRW-EESA/134-2024-1-6-Tabellenkalkulation'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -144,6 +150,12 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   118: exercise118,
   119: exercise119,
   122: exercise122,
+  129: exercise129,
+  130: exercise130,
+  131: exercise131,
+  132: exercise132,
+  133: exercise133,
+  134: exercise134,
 }
 
 // symbols:
