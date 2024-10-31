@@ -81,6 +81,7 @@ import { exercise100 } from './implementations/NRW-EESA/100-2021-1-1-Zahlenstrah
 import { exercise101 } from './implementations/NRW-EESA/101-2021-1-2-Einheiten-umrechnen'
 import { exercise102 } from './implementations/NRW-EESA/102-2021-1-3-Zahlenrätsel'
 import { exercise103 } from './implementations/NRW-EESA/103-2021-1-4-Kugeln-ziehen'
+import { exercise104 } from './implementations/NRW-EESA/104-2021-1-5-Verkehrsmittel'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -164,6 +165,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   133: exercise133,
   134: exercise134,
   103: exercise103,
+  104: exercise104,
 }
 
 // symbols:
