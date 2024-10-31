@@ -278,7 +278,7 @@ export const exercise54: Exercise<DATA> = {
       intro({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
-        const volume_s = Math.PI * data.b * (data.dot / 2 - data.b / 3)
+        const volume_s = Math.PI * data.b * data.b * (data.dot / 2 - data.b / 3)
         return (
           <>
             <p>
@@ -335,7 +335,7 @@ export const exercise54: Exercise<DATA> = {
       task({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
-        const volume_s = Math.PI * data.b * (data.dot / 2 - data.b / 3)
+        const volume_s = Math.PI * data.b * data.b * (data.dot / 2 - data.b / 3)
         return (
           <>
             <p>
@@ -350,7 +350,7 @@ export const exercise54: Exercise<DATA> = {
       solution({ data }) {
         const volume =
           Math.PI * (4 / 3) * (data.dot / 2) * (data.dot / 2) * (data.dot / 2)
-        const volume_s = Math.PI * data.b * (data.dot / 2 - data.b / 3)
+        const volume_s = Math.PI * data.b * data.b * (data.dot / 2 - data.b / 3)
         return (
           <>
             <p>
