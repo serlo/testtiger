@@ -170,10 +170,10 @@ export async function anaylseImage() {
           : countLetter('a', state.navIndicatorPosition)
       }).
 
-      Analysiere die Eingabe der SchülerIn und gebe dein Ergebnis als folgendes JSON-Object aus (nur JSON! kein Markdown oder \`\`\`-Zeichen)
+      Analysiere die Eingabe der SchülerIn und gebe dein Ergebnis als folgendes JSON-Object aus (nur JSON! kein Markdown oder \`\`\`-Zeichen). Neben dem JSON soll kein anderer Text stehen.
 
       {
-        feedback: string
+        feedback: string <-- deine Antworten stehen hier drin
         rank: '0' | 'C' | 'B' | 'A'
       }
 
@@ -188,10 +188,10 @@ export async function anaylseImage() {
       Rang A: Die Ergebnisse stimmen mit der Musterlösung überein. Sei großzügig bei den Formalitäten: Es ist nicht schlimm, wenn einzelne Details im Lösungsweg fehlen. Begründen werden nur erwartet, wenn sie in der Aufgabenstellung explizit gefordert wurden. Lobe den Fortschritt. Mache auch klar, dass du als KI-Tutor keine Korrektur übernehmen kannst und deshalb sollte im Zweifel immer mit der Musterlösung verglichen werden. Falls du einen möglichen Tipps siehst, formuliere ganz vorsichtig diesen Tipp.
 
       Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
-
-      Die nächste Nachricht ist ein Bild mit der Bearbeitung der Schülerin.
-
+      
       Bitte gib die Antwort als JSON aus! Kein Markdown, keine BackTicks bitte.
+      
+      Die nächste Nachricht ist ein Bild mit der Bearbeitung der Schülerin.
       `,
     id: 'prompt',
   })
@@ -220,9 +220,12 @@ export async function anaylseImage() {
   } catch (e) {
     console.log(e)
     ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].fotoFeedback =
-        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry. ' +
-        '","rank": "0"}'
+      s.checks[s.navIndicatorPosition].fotoFeedback = JSON.stringify({
+        rank: '0',
+        feedback:
+          'Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.' +
+          result?.content?.toString(),
+      })
     })
   }
 }

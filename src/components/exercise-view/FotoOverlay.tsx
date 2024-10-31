@@ -13,7 +13,7 @@ export function FotoOverlay() {
   if (chatOverlay != 'foto') return null
 
   return (
-    <div>
+    <div className="max-h-[70vh] overflow-y-auto">
       <div className="text-right mr-3 pt-3">
         <button
           className="px-2 py-0.5 bg-gray-100 rounded"
