@@ -89,6 +89,7 @@ export const exercise45: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -160,6 +161,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 2,
+      duration: 1,
       skillIntro({ data }) {
         return (
           <>
@@ -294,6 +296,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 6,
       intro({ data }) {
         return (
           <>
@@ -416,6 +419,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 4,
+      duration: 3,
       intro({ data }) {
         return (
           <>
@@ -554,6 +558,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 4,
       intro({ data }) {
         const a = roundToDigits(-30 / Math.pow(30 * 2.5, 2), 4)
         function toX(n: number) {
@@ -823,6 +828,7 @@ export const exercise45: Exercise<DATA> = {
     },
     {
       points: 3,
+      duration: 3,
       task({ data }) {
         return (
           <>
