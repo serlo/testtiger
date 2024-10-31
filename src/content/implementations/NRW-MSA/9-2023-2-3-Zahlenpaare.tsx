@@ -75,8 +75,7 @@ export const exercise9: Exercise<DATA> = {
       points: 2,
       duration: 3,
       task({ data }) {
-        const hrefs =
-          '/content/NRW_MSA/NRW_MSA/NRW_Zahlenpaare' + data.task_2 + '.PNG'
+        const hrefs = '/content/NRW_MSA/NRW_Zahlenpaare' + data.task_2 + '.PNG'
 
         return (
           <>
