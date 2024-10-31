@@ -11,7 +11,7 @@ interface DATA {
 
 export const exercise102: Exercise<DATA> = {
   title: 'Zahlenrätsel',
-  source: '2024 Teil 1 Aufgabe 3',
+  source: '2021 Teil 1 Aufgabe 3',
   useCalculator: false,
   duration: 42,
   generator(rng) {
