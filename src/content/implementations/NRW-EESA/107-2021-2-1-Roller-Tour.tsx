@@ -1,8 +1,9 @@
 import { Exercise } from '@/data/types'
-import { Color5 } from '@/helper/colors'
+import { Color1, Color2, Color3, Color4, Color5 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   legende: number
@@ -27,8 +28,8 @@ export const exercise107: Exercise<DATA> = {
       free: rng.randomIntBetween(8, 12) * 10,
       grund_easy: rng.randomIntBetween(3, 7) * 10,
       grund_roller: rng.randomIntBetween(4, 8) * 10,
-      gebühr_easy: rng.randomIntBetween(3, 4) / 10,
-      gebühr_roller: rng.randomIntBetween(2, 4) / 10,
+      gebühr_easy: (rng.randomIntBetween(4, 6) * 5) / 100,
+      gebühr_roller: rng.randomIntBetween(4, 5) / 10,
       fahrt: rng.randomIntBetween(13, 19) * 10,
     }
   },
@@ -43,11 +44,23 @@ export const exercise107: Exercise<DATA> = {
     fahrt: 170,
   },
   constraint({ data }) {
+    const schnitt_2_x =
+      data.free +
+      Math.round(
+        (data.grund_easy + data.free * data.gebühr_easy - data.grund_roller) /
+          (data.gebühr_roller - data.gebühr_easy),
+      )
+    const schnitt_2_y = Math.round(
+      data.grund_easy + data.gebühr_easy * schnitt_2_x,
+    )
     return (
       getGcd(data.legende, data.pace) != 1 &&
       data.gebühr_easy < data.gebühr_roller &&
       data.grund_easy < data.grund_roller &&
-      data.grund_roller - 20 < data.grund_easy
+      data.grund_roller - 20 < data.grund_easy &&
+      data.grund_roller + (200 - data.free) * data.gebühr_roller >
+        data.grund_easy + data.gebühr_easy * 200 &&
+      data.fahrt != schnitt_2_x
     )
   },
   intro({ data }) {
@@ -96,7 +109,19 @@ export const exercise107: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Die Strecke und der Maßstab können zum Beispiel durch ein Lineal
+              abgemessen und verglichen werden. Das Maßstab passt ungefähr 15
+              mal in den Streckenzug.
+            </p>
+            <p>Damit hat die Strecke eine Länge von:</p>
+            <p>
+              15 · {data.legende} = <strong>{15 * data.legende} [km]</strong>
+            </p>
+          </>
+        )
       },
     },
     {
@@ -109,15 +134,81 @@ export const exercise107: Exercise<DATA> = {
           <>
             <p>
               b) Melike und Robin gehen von einer durchschnittlichen
-              Geschwindigkeit von {data.pace} {buildInlineFrac(<>km</>, <>h</>)}
-              ​ aus. Berechne für die {data.legende * 15} km lange Strecke die
-              Fahrzeit in Minuten. Notiere deinen Lösungsweg.
+              Geschwindigkeit von <br></br>
+              {data.pace} {buildInlineFrac(<>km</>, <>h</>)}​ aus. Berechne für
+              die {data.legende * 15} km lange Strecke die Fahrzeit in Minuten.
+              Notiere deinen Lösungsweg.
             </p>
           </>
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Meike und Robin schaffen {data.pace} km in einer Stunde, also in
+              60 Minuten.
+            </p>
+            <p>Berechne mit dem Dreisatz:</p>
+            {buildEquation([
+              [<>60 min</>, <>≙</>, <>{data.pace} km</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>: {data.pace} </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>{pp(roundToDigits(60 / data.pace, 2))} min</>,
+                <>≙</>,
+                <>1 km</>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      · {data.legende * 15}{' '}
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  {pp(data.legende * 15 * roundToDigits(60 / data.pace, 2))} min
+                </>,
+                <>≙</>,
+                <>{data.legende * 15} km</>,
+              ],
+            ])}
+            <p>
+              Melike und Robin brauchen ungefähr <br></br>
+              <strong>
+                {pp(
+                  Math.round(
+                    data.legende * 15 * roundToDigits(60 / data.pace, 2),
+                  ),
+                )}{' '}
+                Minuten
+              </strong>{' '}
+              für den Weg.
+            </p>
+          </>
+        )
       },
     },
     {
@@ -246,7 +337,26 @@ export const exercise107: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>Bedeutung:</p>
+            <ul>
+              <li>
+                <Color1>x</Color1> ist ein Platzhalter für die Anzahl der
+                Kilometer, die Melike und Robin fahren.
+              </li>
+              <li>
+                <Color1>{pp(data.gebühr_easy)}</Color1> [€] ist der Preis, den
+                sie für jeden gefahrenen Kilometer bezahlen müssen.
+              </li>
+              <li>
+                <Color1>{data.grund_easy}</Color1> [€] ist die Grundgebühr für
+                den Roller, den sie unabhängig von den gefahrenen Kilometern
+                bezahlen müssen.
+              </li>
+            </ul>
+          </>
+        )
       },
     },
     {
@@ -296,10 +406,7 @@ export const exercise107: Exercise<DATA> = {
                 y1={toY(data.grund_easy / 10) - 1}
                 x2={toX(20)}
                 y2={
-                  toY(
-                    data.grund_easy / 10 +
-                      ((200 - data.free) * data.gebühr_easy) / 10,
-                  ) - 1
+                  toY(data.grund_easy / 10 + (200 * data.gebühr_easy) / 10) - 1
                 }
                 stroke="orange"
                 strokeWidth={2}
@@ -327,7 +434,17 @@ export const exercise107: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Bei {'"'}Rollerverleih24{'"'} sind die ersten {data.free}{' '}
+              Kilometer kostenlos. Damit verläuft der Graph auf der Höhe der
+              Grundkosten bis {data.free} km waagerecht. Erst danach wird eine
+              Gebühr für jeden gefahrenen Kilometer bezahlt, sodass der Graph
+              steigt.
+            </p>
+          </>
+        )
       },
     },
     {
@@ -346,7 +463,46 @@ export const exercise107: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const schnitt_1_x = Math.round(
+          (data.grund_roller - data.grund_easy) / data.gebühr_easy,
+        )
+        const schnitt_2_x =
+          data.free +
+          Math.round(
+            (data.grund_easy +
+              data.free * data.gebühr_easy -
+              data.grund_roller) /
+              (data.gebühr_roller - data.gebühr_easy),
+          )
+        const schnitt_2_y = Math.round(
+          data.grund_easy + data.gebühr_easy * schnitt_2_x,
+        )
+        return (
+          <>
+            <p>
+              Lies die Schnittpunkte der Graphen aus dem Koordinatensystem ab.
+            </p>
+            <ul>
+              <li>
+                Nach etwa {pp(schnitt_1_x)} Kilometer schneiden sich die Graphen
+                bei {data.grund_roller} €. Der Schnittpunkt ist also{' '}
+                <strong>
+                  ({pp(schnitt_1_x)}|{data.grund_roller})
+                </strong>
+                .
+              </li>
+              <li>
+                Danach schneiden sie sich noch einmal bei {pp(schnitt_2_x)}{' '}
+                Kilometer und dem Preis von {pp(schnitt_2_y)} €. Der zweite
+                Schnittpunkt lautet{' '}
+                <strong>
+                  ({pp(schnitt_2_x)}|{pp(schnitt_2_y)})
+                </strong>
+                .
+              </li>
+            </ul>
+          </>
+        )
       },
     },
     {
@@ -366,7 +522,71 @@ export const exercise107: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const schnitt_2_x =
+          data.free +
+          Math.round(
+            (data.grund_easy +
+              data.free * data.gebühr_easy -
+              data.grund_roller) /
+              (data.gebühr_roller - data.gebühr_easy),
+          )
+        const schnitt_2_y = Math.round(
+          data.grund_easy + data.gebühr_easy * schnitt_2_x,
+        )
+        return (
+          <>
+            <p>
+              Bestimme anhand der Graphen ob der blaue Graph oder der orange
+              Graph nach {data.fahrt} Kilometer den geringeren Preis anzeigt.
+            </p>
+            <p>
+              Nach {data.fahrt} Kilometer liegt der{' '}
+              {schnitt_2_x > data.fahrt ? (
+                <>
+                  <Color1>blaue</Color1>{' '}
+                </>
+              ) : (
+                <>
+                  <Color3>orange</Color3>{' '}
+                </>
+              )}{' '}
+              Graph unter dem anderen Graphen und zeigt damit einen günstigeren
+              Preis an.
+            </p>
+            <p>
+              Das{' '}
+              {schnitt_2_x > data.fahrt ? (
+                <>
+                  <Color1>blaue</Color1>{' '}
+                </>
+              ) : (
+                <>
+                  <Color3>orange</Color3>{' '}
+                </>
+              )}{' '}
+              Angebot kostet dann{' '}
+              {schnitt_2_x > data.fahrt ? (
+                <>
+                  <Color1>
+                    {pp(
+                      data.grund_roller +
+                        (data.fahrt - data.free) * data.gebühr_roller,
+                    )}{' '}
+                    €
+                  </Color1>
+                  .
+                </>
+              ) : (
+                <>
+                  <Color3>
+                    {pp(data.grund_easy + data.gebühr_easy * data.fahrt)} €
+                  </Color3>
+                  .
+                </>
+              )}
+            </p>
+          </>
+        )
       },
     },
   ],
