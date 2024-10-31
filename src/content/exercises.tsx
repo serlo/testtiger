@@ -79,6 +79,7 @@ import { exercise133 } from './implementations/NRW-EESA/133-2024-1-5-Schätzen'
 import { exercise134 } from './implementations/NRW-EESA/134-2024-1-6-Tabellenkalkulation'
 import { exercise100 } from './implementations/NRW-EESA/100-2021-1-1-Zahlenstrahl'
 import { exercise101 } from './implementations/NRW-EESA/101-2024-1-2-Einheiten-umrechnen'
+import { exercise102 } from './implementations/NRW-EESA/102-2024-1-3-Zahlenrätsel'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -139,6 +140,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   54: exercise54,
   100: exercise100,
   101: exercise101,
+  102: exercise102,
   120: exercise120,
   121: exercise121,
   135: exercise135,
