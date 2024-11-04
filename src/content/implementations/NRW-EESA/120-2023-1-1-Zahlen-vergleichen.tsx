@@ -25,16 +25,22 @@ export const exercise120: Exercise<DATA> = {
       a: rng.randomIntBetween(10, 100) / -100,
       b: rng.randomIntBetween(10, 100) / -100,
       c: rng.randomItemFromArray([30, 40, 60, 70, 80, 90]),
-      d: rng.randomItemFromArray([5, 10, 50, 100]),
+      d: rng.randomItemFromArray([50, 100]),
       e: rng.randomItemFromArray([1, 3, 6, 7, 8, 9]),
       f: rng.randomItemFromArray([2, 4, 5]),
       g: rng.randomIntBetween(10, 100) / 100,
-      h: rng.randomItemFromArray([1, 3, 6, 7, 8, 9]),
-      i: rng.randomItemFromArray([2, 4, 5]),
+      h: rng.randomItemFromArray([1, 2, 3, 4, 5, 6]),
+      i: rng.randomItemFromArray([2, 4, 5, 8]),
     }
   },
   constraint({ data }) {
-    return true
+    return (
+      data.c < data.d &&
+      data.h < data.i &&
+      data.e < data.f &&
+      data.g - 0.2 < data.h / data.i &&
+      data.h / data.i < data.g + 0.2
+    )
   },
   originalData: {
     a: -1.2,
@@ -78,7 +84,7 @@ export const exercise120: Exercise<DATA> = {
         </p>
         <p>
           Beachte: Die beiden Zahlen sind negativ. Deswegen gilt: {pp(data.a)}
-          {data.a > data.b ? '>' : '<'}
+          {data.a > data.b ? ' > ' : ' < '}
           {pp(data.b)}{' '}
         </p>
         <p>
@@ -109,13 +115,15 @@ export const exercise120: Exercise<DATA> = {
         </p>
         <p>
           Wandle {ppFrac([data.h, data.i])} in eine Dezimalzahl um. Dafür
-          erweiterst du zunächst den Bruch:
+          erweitere zunächst den Bruch:
           {ppFrac([data.h, data.i])} ={' '}
           {ppFrac([data.h * (hauptnenner2 / data.i), hauptnenner2])}
         </p>
-        Jetzt kannst du den Bruch als Dezimalzahl schreiben:{' '}
-        {ppFrac([data.h * (hauptnenner2 / data.i), hauptnenner2])} ={' '}
-        {pp(data.h / data.i)}
+        <p>
+          Jetzt kannst du den Bruch als Dezimalzahl schreiben:{' '}
+          {ppFrac([data.h * (hauptnenner2 / data.i), hauptnenner2])} ={' '}
+          {pp(data.h / data.i)}
+        </p>
         <p>
           Damit ist: {pp(data.g)} {data.g > data.h / data.i ? '>' : '<'}{' '}
           {ppFrac([data.h, data.i])}
