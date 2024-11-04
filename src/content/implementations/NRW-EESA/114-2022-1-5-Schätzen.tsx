@@ -147,52 +147,62 @@ export const exercise114: Exercise<DATA> = {
                 height="310"
                 width="328"
               />
-              <line
-                x2={328 / 4}
-                y1={0}
-                x1={328 / 4}
-                y2={310}
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="280"
                 stroke="black"
-                strokeWidth={2}
+                fill="transparent"
+                strokeWidth="2"
               />
               <line
-                x2={(2 * 328) / 4}
-                y1={0}
-                x1={(2 * 328) / 4}
-                y2={310}
-                stroke="black"
-                strokeWidth={2}
-              />
-              <line
-                x2={(3 * 328) / 4}
-                y1={0}
-                x1={(3 * 328) / 4}
-                y2={310}
+                x2={300 / 4 + 10}
+                y1={10}
+                x1={300 / 4 + 10}
+                y2={290}
                 stroke="black"
                 strokeWidth={2}
               />
 
               <line
-                x2={0}
-                y1={310 / 4}
-                x1={328}
-                y2={310 / 4}
+                x2={(2 * 300) / 4 + 10}
+                y1={10}
+                x1={(2 * 300) / 4 + 10}
+                y2={290}
                 stroke="black"
                 strokeWidth={2}
               />
               <line
-                x2={0}
-                y1={(2 * 310) / 4}
-                x1={328}
-                y2={(2 * 310) / 4}
+                x2={(3 * 300) / 4 + 10}
+                y1={10}
+                x1={(3 * 300) / 4 + 10}
+                y2={290}
+                stroke="black"
+                strokeWidth={2}
+              />
+
+              <line
+                x2={10}
+                y1={280 / 4 + 10}
+                x1={310}
+                y2={280 / 4 + 10}
                 stroke="black"
                 strokeWidth={2}
               />
               <line
-                x2={0}
-                y1={(3 * 310) / 4}
-                x1={328}
-                y2={(3 * 310) / 4}
+                x2={10}
+                y1={(2 * 280) / 4 + 10}
+                x1={310}
+                y2={(2 * 280) / 4 + 10}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <line
+                x2={10}
+                y1={(3 * 280) / 4 + 10}
+                x1={310}
+                y2={(3 * 280) / 4 + 10}
                 stroke="black"
                 strokeWidth={2}
               />
@@ -200,11 +210,10 @@ export const exercise114: Exercise<DATA> = {
             <p>
               Teile das Bild auf in ein Raster mit gleich großen Bereichen.
               <br></br>
-              <br></br>Im oberen linken Bereich befinden sich etwa 32
-              Reiskörner.
+              <br></br>Im oberen linken Bereich befinden sich 10 Nadeln.
               <br></br>
-              <br></br> Damit sind insgesamt etwa 32 · 12 ={' '}
-              <b>384 Reiskörner</b> auf dem Bild.
+              <br></br> Damit sind insgesamt etwa 16 · 10 = <b>160 Nadeln</b>{' '}
+              auf dem Bild.
             </p>
           </>
         )}
