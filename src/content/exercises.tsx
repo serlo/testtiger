@@ -84,6 +84,7 @@ import { exercise103 } from './implementations/NRW-EESA/103-2021-1-4-Kugeln-zieh
 import { exercise104 } from './implementations/NRW-EESA/104-2021-1-5-Verkehrsmittel'
 import { exercise105 } from './implementations/NRW-EESA/105-2024-1-v2-4-Würfelkörper'
 import { exercise106 } from './implementations/NRW-EESA/106-2021-1-v2-5-Goldpreis'
+import { exercise123 } from './implementations/NRW-EESA/123-2023-1-4-schriftlich-addieren'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -160,6 +161,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   118: exercise118,
   119: exercise119,
   122: exercise122,
+  123: exercise123,
   129: exercise129,
   130: exercise130,
   131: exercise131,
