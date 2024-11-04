@@ -4,6 +4,7 @@ import { Store } from 'pullstate'
 interface TextChatMessage {
   type: 'text'
   content: string
+  canEdit?: boolean
 }
 
 interface ImageChatMeessage {
@@ -12,7 +13,7 @@ interface ImageChatMeessage {
   description: string
 }
 
-interface SystemResponse {
+export interface SystemResponse {
   type: 'response'
   content: string
   category:

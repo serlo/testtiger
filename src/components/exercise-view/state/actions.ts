@@ -3,7 +3,7 @@ import { generateData } from '@/data/generate-data'
 import { generateSeed } from '@/data/generate-seed'
 import { constrainedGeneration } from '@/helper/constrained-generation'
 import { isDeepEqual } from '@/helper/is-deep-equal'
-import { ExerciseViewStore } from './exercise-view-store'
+import { ExerciseViewStore, SystemResponse } from './exercise-view-store'
 import { extractor } from '../extractor/extractor'
 import { IMessage, SkillExercise, SkillExercisePage } from '@/data/types'
 import { makePost } from '@/helper/make-post'
@@ -127,7 +127,7 @@ export async function analyseLastInput() {
   if (lastMessage.type == 'text') {
     messages.push({
       role: 'user',
-      content: state.chatHistory[state.navIndicatorPosition].answerInput,
+      content: lastMessage.content,
       id: 'user',
     })
   } else if (lastMessage.type == 'image') {
@@ -145,12 +145,36 @@ export async function analyseLastInput() {
 
   const result = await submitUserMessage({ messages })
 
+  const result_str = result.content
+    .toString()
+    .replace(/```/g, '')
+    .replace(/```json/g, '')
+
+  let response: SystemResponse = {
+    type: 'response',
+    content: result_str,
+    category: 'none',
+  }
+
+  try {
+    const obj = JSON.parse(result_str)
+    response.content = obj.feedback
+    response.category = obj.category
+    if (lastMessage.type == 'image') {
+      ExerciseViewStore.update(s => {
+        const lastEntry =
+          s.chatHistory[s.navIndicatorPosition].entries[
+            s.chatHistory[s.navIndicatorPosition].entries.length - 1
+          ]
+        if (lastEntry.type == 'image') {
+          lastEntry.description = obj.description
+        }
+      })
+    }
+  } catch {}
+
   ExerciseViewStore.update(s => {
-    s.chatHistory[s.navIndicatorPosition].entries.push({
-      type: 'response',
-      content: result.content.toString(),
-      category: 'none',
-    })
+    s.chatHistory[s.navIndicatorPosition].entries.push(response)
     s.chatHistory[s.navIndicatorPosition].resultPending = false
   })
 }

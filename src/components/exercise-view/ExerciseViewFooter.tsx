@@ -111,6 +111,23 @@ export function ExerciseViewFooter() {
                   <div key={i} className="flex justify-end">
                     <div className="bg-gray-100 p-2 rounded mb-3 text-right">
                       {el.content}
+                      {el.canEdit && (
+                        <>
+                          <br />
+                          <button
+                            className="text-gray-500 underline text-xs"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatHistory[
+                                  s.navIndicatorPosition
+                                ].answerInput = el.content
+                              })
+                            }}
+                          >
+                            überarbeiten
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                 )
@@ -119,6 +136,39 @@ export function ExerciseViewFooter() {
                 return (
                   <div key={i} className="mb-4">
                     {el.content}
+                    {el.category == 'actionable-feedback' && (
+                      <p className="text-xs text-gray-600 mt-2">
+                        Das Feedback ersetzt keine Korrektur. Vergleiche im
+                        Zweifel mit dem{' '}
+                        <button
+                          className="underline"
+                          onClick={() => {
+                            ExerciseViewStore.update(s => {
+                              s.chatOverlay = 'solution'
+                            })
+                          }}
+                        >
+                          Lösungsbeispiel
+                        </button>
+                        .
+                      </p>
+                    )}
+                    {el.category == 'success' && (
+                      <p className="mt-2">
+                        Vergleiche zum Abschluss mit dem{' '}
+                        <button
+                          className="underline"
+                          onClick={() => {
+                            ExerciseViewStore.update(s => {
+                              s.chatOverlay = 'solution'
+                            })
+                          }}
+                        >
+                          Lösungsbeispiel
+                        </button>
+                        .
+                      </p>
+                    )}
                   </div>
                 )
               }
@@ -347,8 +397,10 @@ export function ExerciseViewFooter() {
                   s.chatHistory[s.navIndicatorPosition].entries.push({
                     type: 'text',
                     content: s.chatHistory[s.navIndicatorPosition].answerInput,
+                    canEdit: true,
                   })
                   s.chatOverlay = 'chat'
+                  s.chatHistory[s.navIndicatorPosition].answerInput = ''
                 })
                 void analyseLastInput()
               }}
