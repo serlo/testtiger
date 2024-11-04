@@ -61,6 +61,10 @@ export function ExerciseViewFooter() {
       })
     } catch (error) {
       console.error('Error taking photo:', error)
+
+      ExerciseViewStore.update(s => {
+        s.cropImage = false
+      })
     }
   }
 
@@ -105,7 +109,7 @@ export function ExerciseViewFooter() {
               if (el.type == 'text') {
                 return (
                   <div key={i} className="flex justify-end">
-                    <div className="bg-gray-100 p-2 rounded mb-3">
+                    <div className="bg-gray-100 p-2 rounded mb-3 text-right">
                       {el.content}
                     </div>
                   </div>
@@ -279,6 +283,7 @@ export function ExerciseViewFooter() {
                             type: 'response',
                             content:
                               'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
+                            category: 'none',
                           })
                         }
                       })

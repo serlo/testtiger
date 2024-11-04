@@ -18,7 +18,7 @@ export function CropImageOverlay() {
   if (!cropImage) return null
 
   return (
-    <div className="fixed inset-0 bg-pink-300 z-[1000]">
+    <div className="fixed inset-0 bg-gray-100 z-[1000]">
       <div className="bg-white p-3">
         {resultPending ? (
           <>Bild wird verarbeitet ...</>

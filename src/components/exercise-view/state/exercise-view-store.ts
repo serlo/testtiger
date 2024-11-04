@@ -15,6 +15,12 @@ interface ImageChatMeessage {
 interface SystemResponse {
   type: 'response'
   content: string
+  category:
+    | 'not-relevant'
+    | 'actionable-feedback'
+    | 'success'
+    | 'none'
+    | 'question'
 }
 
 type ChatHistoryEntry = TextChatMessage | ImageChatMeessage | SystemResponse
