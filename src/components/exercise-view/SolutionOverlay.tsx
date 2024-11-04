@@ -79,7 +79,20 @@ export function SolutionOverlay() {
 
   return (
     <>
-      <div className="text-right mr-3 pt-3">
+      <div className="flex justify-between mx-3 pt-3">
+        {content.originalData && (
+          <button
+            className="text-sm text-gray-200 rounded-md ml-3"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.data = content.originalData
+                s.chatOverlay = null
+              })
+            }}
+          >
+            (Original-Variante)
+          </button>
+        )}
         <button
           className="px-2 py-0.5 bg-gray-100 rounded"
           onClick={() => {
@@ -156,19 +169,6 @@ export function SolutionOverlay() {
               }}
             >
               <FaIcon icon={faWandMagicSparkles} /> Aufgabe neu generieren
-            </button>
-          )}
-          {content.originalData && (
-            <button
-              className="text-sm text-gray-300 rounded-md ml-3"
-              onClick={() => {
-                ExerciseViewStore.update(s => {
-                  s.data = content.originalData
-                  s.chatOverlay = null
-                })
-              }}
-            >
-              (OD)
             </button>
           )}
         </div>
