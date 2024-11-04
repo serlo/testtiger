@@ -39,6 +39,11 @@ export function setupExercise(
         }
       },
     )
+    s.chatHistory = Array.from({
+      length: Math.max(1, s.navIndicatorLength),
+    }).map(_ => {
+      return { entries: [], resultPending: false, answerInput: '' }
+    })
     s.chatOverlay = null
     s.skill = skill
     s.cropImage = false
@@ -63,10 +68,17 @@ export function reseed() {
   })
 }
 
-export async function submitAnswerInput() {
+export async function analyseLastInput() {
+  await new Promise(res => setTimeout(res, 5000))
   ExerciseViewStore.update(s => {
-    s.checks[s.navIndicatorPosition].resultPending = true
+    s.chatHistory[s.navIndicatorPosition].entries.push({
+      type: 'response',
+      content: 'Hier würde dann das Feedback der KI stehen',
+    })
+    s.chatHistory[s.navIndicatorPosition].resultPending = false
   })
+}
+/*
   const state = ExerciseViewStore.getRawState()
   const index = state.navIndicatorPosition
   const exerciseContext = extractor(exercisesData[state.id], state.data)
@@ -126,8 +138,7 @@ export async function submitAnswerInput() {
       s.checks[s.navIndicatorPosition].result =
         '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rank":0}'
     })
-  }
-}
+  }*/
 
 async function submitUserMessage({
   messages,

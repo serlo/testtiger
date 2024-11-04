@@ -3,15 +3,12 @@ import { FaIcon } from '../ui/FaIcon'
 import {
   faCameraAlt,
   faCaretDown,
-  faCaretRight,
   faCaretUp,
-  faQuestion,
+  faQuestionCircle,
   faSquareRootVariable,
-  faTimeline,
 } from '@fortawesome/free-solid-svg-icons'
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
-import { TypeNCheckOverlay } from './TypeNCheckOverlay'
 import { FotoOverlay } from './FotoOverlay'
 import {
   Camera,
@@ -22,7 +19,7 @@ import {
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
-import { submitAnswerInput } from './state/actions'
+import { analyseLastInput } from './state/actions'
 import { useRef } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 
@@ -33,12 +30,17 @@ export function ExerciseViewFooter() {
   const formulaDropdownRef = useRef<HTMLDetailsElement>(null)
   const helpDropdownRef = useRef<HTMLDetailsElement>(null)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
-  const check = ExerciseViewStore.useState(
-    s => s.checks[s.navIndicatorPosition],
+
+  const chatHistory = ExerciseViewStore.useState(
+    s => s.chatHistory[s.navIndicatorPosition],
   )
 
   const takePhoto = async () => {
     try {
+      ExerciseViewStore.update(s => {
+        s.cropImage = true
+      })
+
       const image = await Camera.getPhoto({
         // If we want to save some money on tokens, we can probably get away
         // with choosing a lower quality
@@ -56,7 +58,6 @@ export function ExerciseViewFooter() {
       ExerciseViewStore.update(s => {
         s.checks[s.navIndicatorPosition].uploadedImage =
           `data:image/jpeg;base64,${image.base64String}`
-        s.cropImage = true
       })
     } catch (error) {
       console.error('Error taking photo:', error)
@@ -81,7 +82,7 @@ export function ExerciseViewFooter() {
 
     // Update in deinem State speichern
     ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].answerInput = newText
+      s.chatHistory[s.navIndicatorPosition].answerInput = newText
     })
     if (formulaDropdownRef.current) {
       formulaDropdownRef.current.open = false
@@ -96,32 +97,63 @@ export function ExerciseViewFooter() {
       <IndicatorBar />
       <SolutionOverlay />
       <FotoOverlay />
+      <div className="h-1"></div>
       {chatOverlay == 'chat' && (
         <>
-          <div className="max-h-[50vh] overflow-y-auto mt-2 mx-3">
-            Hier werden die Nachrichten angezeigt.Hier werden die Nachrichten
-            angezeigt Hier werden die Nachrichten angezeigt Hier werden die
-            Nachrichten angezeigt Hier werden die Nachrichten angezeigtHier
-            werden die Nachrichten angezeigtHier werden die Nachrichten
-            angezeigtHier werden die Nachrichten angezeigtHier werden die
-            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
-            werden die Nachrichten angezeigtHier werden die Nachrichten
-            angezeigtHier werden die Nachrichten angezeigtHier werden die
-            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
-            werden die Nachrichten angezeigtHier werden die Nachrichten
-            angezeigtHier werden die Nachrichten angezeigtHier werden die
-            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
-            werden die Nachrichten angezeigtHier werden die Nachrichten
-            angezeigtHier werden die Nachrichten angezeigtHier werden die
-            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
-            werden die Nachrichten angezeigtHier werden die Nachrichten
-            angezeigt
+          <div className="max-h-[50vh] overflow-y-auto mx-3">
+            {chatHistory.entries.map((el, i) => {
+              if (el.type == 'text') {
+                return (
+                  <div key={i} className="flex justify-end">
+                    <div className="bg-gray-100 p-2 rounded mb-3">
+                      {el.content}
+                    </div>
+                  </div>
+                )
+              }
+              if (el.type == 'response') {
+                return (
+                  <div key={i} className="mb-4">
+                    {el.content}
+                  </div>
+                )
+              }
+              if (el.type == 'image') {
+                return (
+                  <div
+                    className="flex justify-end items-center mx-3 my-4"
+                    key={i}
+                  >
+                    <img
+                      src={el.image}
+                      alt="Cropped Preview"
+                      className="max-w-full max-h-full"
+                      style={{
+                        maxWidth: '300px',
+                        maxHeight: '300px',
+                      }}
+                    />
+                  </div>
+                )
+              }
+              return null
+            })}
+            {chatHistory.resultPending ? (
+              <div className="mb-6 text-center flex items-center justify-center space-x-2">
+                <div className="w-5 h-5 border-2 border-t-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                <span className="text-gray-600 font-medium">
+                  Eingabe wird analysiert ...
+                </span>
+              </div>
+            ) : (
+              <div className="h-4"></div>
+            )}
           </div>
         </>
       )}
       {(!chatOverlay || chatOverlay == 'chat') && (
         <>
-          <div className="flex justify-between mt-2">
+          <div className="flex justify-between">
             <div className="ml-5">
               <details
                 className="dropdown dropdown-top mr-5"
@@ -177,14 +209,8 @@ export function ExerciseViewFooter() {
               </details>
               <button
                 className="mr-3 px-2 py-0.5 bg-gray-200 rounded"
+                disabled={chatHistory.resultPending}
                 onClick={() => {
-                  const state = ExerciseViewStore.getRawState()
-                  if (state.checks[state.navIndicatorPosition].croppedImage) {
-                    ExerciseViewStore.update(s => {
-                      s.chatOverlay = 'foto'
-                    })
-                    return
-                  }
                   takePhoto()
 
                   /*const fileInput = document.getElementById(
@@ -197,29 +223,31 @@ export function ExerciseViewFooter() {
               </button>
             </div>
             <div>
-              <button
-                className="bg-gray-100 px-2 rounded mr-3"
-                onClick={() => {
-                  ExerciseViewStore.update(s => {
-                    if (s.chatOverlay) {
-                      s.chatOverlay = null
-                    } else {
-                      s.chatOverlay = 'chat'
-                    }
-                  })
-                }}
-              >
-                <FaIcon
-                  icon={chatOverlay == 'chat' ? faCaretDown : faCaretUp}
-                  className="text-lg"
-                />
-              </button>
+              {chatHistory.entries.length > 0 && (
+                <button
+                  className="bg-gray-100 px-2 rounded mr-3"
+                  onClick={() => {
+                    ExerciseViewStore.update(s => {
+                      if (s.chatOverlay) {
+                        s.chatOverlay = null
+                      } else {
+                        s.chatOverlay = 'chat'
+                      }
+                    })
+                  }}
+                >
+                  <FaIcon
+                    icon={chatOverlay == 'chat' ? faCaretDown : faCaretUp}
+                    className="text-lg"
+                  />
+                </button>
+              )}
               <details
                 className="dropdown dropdown-top dropdown-end mr-5"
                 ref={helpDropdownRef}
               >
                 <summary className="list-none cursor-pointer px-2 py-0.5 bg-gray-100 rounded">
-                  <FaIcon icon={faQuestion} /> Hilfe
+                  <FaIcon icon={faQuestionCircle} /> Hilfe
                 </summary>
                 <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
                   <li
@@ -235,7 +263,30 @@ export function ExerciseViewFooter() {
                   >
                     Lösung anzeigen
                   </li>
-                  <li className="py-2 cursor-pointer hover:underline">
+                  <li
+                    className="py-2 cursor-pointer hover:underline"
+                    onClick={() => {
+                      ExerciseViewStore.update(s => {
+                        if (
+                          !s.chatHistory[s.navIndicatorPosition].resultPending
+                        ) {
+                          s.chatOverlay = 'chat'
+                          s.chatHistory[s.navIndicatorPosition].entries.push({
+                            type: 'text',
+                            content: 'Wie lerne ich?',
+                          })
+                          s.chatHistory[s.navIndicatorPosition].entries.push({
+                            type: 'response',
+                            content:
+                              'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
+                          })
+                        }
+                      })
+                      if (helpDropdownRef.current) {
+                        helpDropdownRef.current.open = false
+                      }
+                    }}
+                  >
                     Wie lerne ich?
                   </li>
                 </ul>
@@ -271,10 +322,11 @@ export function ExerciseViewFooter() {
           <div className="flex items-end pb-6 mt-3 mx-2 sm:mx-3 gap-3">
             <TextareaAutosize
               ref={textareaRef}
-              value={check.answerInput}
+              value={chatHistory.answerInput}
               onChange={e =>
                 ExerciseViewStore.update(s => {
-                  s.checks[s.navIndicatorPosition].answerInput = e.target.value
+                  s.chatHistory[s.navIndicatorPosition].answerInput =
+                    e.target.value
                 })
               }
               placeholder="Gib deine Antwort oder Frage ein ..."
@@ -283,8 +335,19 @@ export function ExerciseViewFooter() {
               className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
             />
             <button
-              className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
-              onClick={submitAnswerInput}
+              className="flex-shrink-0 w-10 h-10 bg-gray-500 text-white rounded-full flex items-center justify-center hover:bg-gray-600"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.chatHistory[s.navIndicatorPosition].resultPending = true
+                  s.chatHistory[s.navIndicatorPosition].entries.push({
+                    type: 'text',
+                    content: s.chatHistory[s.navIndicatorPosition].answerInput,
+                  })
+                  s.chatOverlay = 'chat'
+                })
+                void analyseLastInput()
+              }}
+              disabled={chatHistory.resultPending}
             >
               <FaIcon icon={faPaperPlane} className="w-5 h-5" />
             </button>

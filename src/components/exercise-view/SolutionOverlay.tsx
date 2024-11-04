@@ -114,7 +114,7 @@ export function SolutionOverlay() {
           </button>
           {content.originalData && (
             <button
-              className="px-1 py-0.5 rounded-md bg-gray-100 ml-1"
+              className="text-sm text-gray-300 rounded-md ml-3"
               onClick={() => {
                 ExerciseViewStore.update(s => {
                   s.data = content.originalData
@@ -122,7 +122,7 @@ export function SolutionOverlay() {
                 })
               }}
             >
-              OD
+              (OD)
             </button>
           )}
           <button

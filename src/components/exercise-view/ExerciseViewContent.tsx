@@ -172,7 +172,11 @@ export function ExerciseViewContent() {
                 )}
               </button>
               <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-1">
-                <FaIcon icon={faClock} className="text-xs" /> {duration} min
+                <FaIcon
+                  icon={faClock}
+                  className="text-xs mb-0.5 ml-0.5 inline-block"
+                />{' '}
+                {duration} min
               </button>
               <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">
                 {points} BE
