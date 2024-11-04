@@ -98,7 +98,7 @@ export function ExerciseViewFooter() {
       <FotoOverlay />
       {chatOverlay == 'chat' && (
         <>
-          <div className="max-h-[50vh] overflow-y-auto mb-2 mx-3">
+          <div className="max-h-[50vh] overflow-y-auto mt-2 mx-3">
             Hier werden die Nachrichten angezeigt.Hier werden die Nachrichten
             angezeigt Hier werden die Nachrichten angezeigt Hier werden die
             Nachrichten angezeigt Hier werden die Nachrichten angezeigtHier
@@ -121,25 +121,8 @@ export function ExerciseViewFooter() {
       )}
       {(!chatOverlay || chatOverlay == 'chat') && (
         <>
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-2">
             <div className="ml-5">
-              <button
-                className="bg-gray-100 px-2 rounded mr-3"
-                onClick={() => {
-                  ExerciseViewStore.update(s => {
-                    if (s.chatOverlay) {
-                      s.chatOverlay = null
-                    } else {
-                      s.chatOverlay = 'chat'
-                    }
-                  })
-                }}
-              >
-                <FaIcon
-                  icon={chatOverlay == 'chat' ? faCaretDown : faCaretUp}
-                  className="text-lg"
-                />
-              </button>
               <details
                 className="dropdown dropdown-top mr-5"
                 ref={formulaDropdownRef}
@@ -213,32 +196,51 @@ export function ExerciseViewFooter() {
                 <FaIcon icon={faCameraAlt} /> Foto
               </button>
             </div>
-            <details
-              className="dropdown dropdown-top dropdown-end mr-5"
-              ref={helpDropdownRef}
-            >
-              <summary className="list-none cursor-pointer px-2 py-0.5 bg-gray-100 rounded">
-                <FaIcon icon={faQuestion} /> Hilfe
-              </summary>
-              <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
-                <li
-                  className="py-2 cursor-pointer hover:underline"
-                  onClick={() => {
-                    ExerciseViewStore.update(s => {
-                      s.chatOverlay = 'solution'
-                    })
-                    if (helpDropdownRef.current) {
-                      helpDropdownRef.current.open = false
+            <div>
+              <button
+                className="bg-gray-100 px-2 rounded mr-3"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    if (s.chatOverlay) {
+                      s.chatOverlay = null
+                    } else {
+                      s.chatOverlay = 'chat'
                     }
-                  }}
-                >
-                  Lösung anzeigen
-                </li>
-                <li className="py-2 cursor-pointer hover:underline">
-                  Wie lerne ich?
-                </li>
-              </ul>
-            </details>
+                  })
+                }}
+              >
+                <FaIcon
+                  icon={chatOverlay == 'chat' ? faCaretDown : faCaretUp}
+                  className="text-lg"
+                />
+              </button>
+              <details
+                className="dropdown dropdown-top dropdown-end mr-5"
+                ref={helpDropdownRef}
+              >
+                <summary className="list-none cursor-pointer px-2 py-0.5 bg-gray-100 rounded">
+                  <FaIcon icon={faQuestion} /> Hilfe
+                </summary>
+                <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
+                  <li
+                    className="py-2 cursor-pointer hover:underline"
+                    onClick={() => {
+                      ExerciseViewStore.update(s => {
+                        s.chatOverlay = 'solution'
+                      })
+                      if (helpDropdownRef.current) {
+                        helpDropdownRef.current.open = false
+                      }
+                    }}
+                  >
+                    Lösung anzeigen
+                  </li>
+                  <li className="py-2 cursor-pointer hover:underline">
+                    Wie lerne ich?
+                  </li>
+                </ul>
+              </details>
+            </div>
             <input
               id="file-upload"
               type="file"

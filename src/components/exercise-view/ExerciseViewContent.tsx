@@ -4,14 +4,12 @@ import clsx from 'clsx'
 import {
   faCalculator,
   faClock,
-  faMagicWandSparkles,
   faSlash,
 } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef } from 'react'
-import { reseed } from './state/actions'
 
 export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)
@@ -151,7 +149,7 @@ export function ExerciseViewContent() {
         key={i}
       >
         <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
-          <div className="flex justify-between p-[3px] w-full">
+          <div className="flex justify-between p-[3px] w-full sticky bg-white top-0">
             <div>
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
@@ -161,26 +159,6 @@ export function ExerciseViewContent() {
                   withSubtasks && <> {countLetter('a', i) + ')'}</>
                 )}
               </div>
-              <button
-                className="px-1 py-0.5 rounded-md bg-gray-100"
-                onClick={() => {
-                  reseed()
-                }}
-              >
-                <FaIcon icon={faMagicWandSparkles} />
-              </button>
-              {content.originalData && (
-                <button
-                  className="px-1 py-0.5 rounded-md bg-gray-100 ml-1"
-                  onClick={() => {
-                    ExerciseViewStore.update(s => {
-                      s.data = content.originalData
-                    })
-                  }}
-                >
-                  OD
-                </button>
-              )}
             </div>
             <div>
               <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
@@ -193,7 +171,7 @@ export function ExerciseViewContent() {
                   </div>
                 )}
               </button>
-              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-2">
+              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-1">
                 <FaIcon icon={faClock} className="text-xs" /> {duration} min
               </button>
               <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">

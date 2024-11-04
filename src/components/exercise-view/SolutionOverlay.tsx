@@ -1,5 +1,9 @@
 import { proseWrapper } from '@/helper/prose-wrapper'
-import { faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCaretDown,
+  faCheck,
+  faWandMagicSparkles,
+} from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { exercisesData } from '@/content/exercises'
@@ -7,6 +11,7 @@ import { createGesture } from '@ionic/react'
 import { useRef, useEffect } from 'react'
 import { countLetter } from '@/helper/count-letter'
 import clsx from 'clsx'
+import { reseed } from './state/actions'
 
 export function SolutionOverlay() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
@@ -95,7 +100,31 @@ export function SolutionOverlay() {
             }),
           )}
         </div>
-        <div className="text-center mt-6 mb-4">
+        <div className="text-center mt-4 mb-4">
+          <button
+            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+              reseed()
+            }}
+          >
+            <FaIcon icon={faWandMagicSparkles} /> Aufgabe neu generieren
+          </button>
+          {content.originalData && (
+            <button
+              className="px-1 py-0.5 rounded-md bg-gray-100 ml-1"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.data = content.originalData
+                  s.chatOverlay = null
+                })
+              }}
+            >
+              OD
+            </button>
+          )}
           <button
             className={clsx(
               'px-6 py-1 rounded-xl hidden',
