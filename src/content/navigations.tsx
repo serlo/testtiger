@@ -221,7 +221,7 @@ export const navigationData: { [key: number]: Navigation } = {
               },
               {
                 id: 8,
-                pages: [{ index: 'e', intro: ['global'] }],
+                pages: [{ index: 'e', intro: ['skill'] }],
               },
               {
                 id: 53,
