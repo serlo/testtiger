@@ -11,7 +11,6 @@ import { FaIcon } from '../ui/FaIcon'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Fragment, useRef, useState } from 'react'
-import { submitAnswerInput } from './state/actions'
 import clsx from 'clsx'
 import { buildInlineFrac } from '@/helper/math-builder'
 
@@ -185,10 +184,7 @@ export function TypeNCheckOverlay() {
             maxRows={5}
             className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
           />
-          <button
-            className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600"
-            onClick={submitAnswerInput}
-          >
+          <button className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600">
             <FaIcon icon={faPaperPlane} className="w-5 h-5" />
           </button>
         </div>

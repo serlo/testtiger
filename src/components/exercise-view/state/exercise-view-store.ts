@@ -1,6 +1,31 @@
 import { SkillExercisePage } from '@/data/types'
 import { Store } from 'pullstate'
 
+interface TextChatMessage {
+  type: 'text'
+  content: string
+  canEdit?: boolean
+}
+
+interface ImageChatMeessage {
+  type: 'image'
+  image: string
+  description: string
+}
+
+export interface SystemResponse {
+  type: 'response'
+  content: string
+  category:
+    | 'not-relevant'
+    | 'actionable-feedback'
+    | 'success'
+    | 'none'
+    | 'question'
+}
+
+type ChatHistoryEntry = TextChatMessage | ImageChatMeessage | SystemResponse
+
 export type IExerciseViewStore = {
   id: number
   seed: string
@@ -8,7 +33,13 @@ export type IExerciseViewStore = {
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
-  chatOverlay: null | 'solution' | 'type-n-check' | 'foto'
+  chatOverlay: null | 'solution' | 'type-n-check' | 'foto' | 'chat'
+  chatHistory: {
+    entries: ChatHistoryEntry[]
+    resultPending: boolean
+    answerInput: string
+  }[]
+
   checks: {
     answerInput: string
     resultPending: boolean
@@ -36,4 +67,5 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   cropImage: false,
   completed: [],
   showEndScreen: false,
+  chatHistory: [],
 })

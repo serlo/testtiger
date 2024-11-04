@@ -1,9 +1,14 @@
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { FaIcon } from '../ui/FaIcon'
-import { faCameraAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCameraAlt,
+  faCaretDown,
+  faCaretUp,
+  faQuestionCircle,
+  faSquareRootVariable,
+} from '@fortawesome/free-solid-svg-icons'
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
-import { TypeNCheckOverlay } from './TypeNCheckOverlay'
 import { FotoOverlay } from './FotoOverlay'
 import {
   Camera,
@@ -12,14 +17,30 @@ import {
   CameraDirection,
 } from '@capacitor/camera'
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import TextareaAutosize from 'react-textarea-autosize'
+import { analyseLastInput } from './state/actions'
+import { useRef } from 'react'
+import { buildInlineFrac } from '@/helper/math-builder'
 
 defineCustomElements(window)
 
 export function ExerciseViewFooter() {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const formulaDropdownRef = useRef<HTMLDetailsElement>(null)
+  const helpDropdownRef = useRef<HTMLDetailsElement>(null)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
+
+  const chatHistory = ExerciseViewStore.useState(
+    s => s.chatHistory[s.navIndicatorPosition],
+  )
 
   const takePhoto = async () => {
     try {
+      ExerciseViewStore.update(s => {
+        s.cropImage = true
+      })
+
       const image = await Camera.getPhoto({
         // If we want to save some money on tokens, we can probably get away
         // with choosing a lower quality
@@ -37,10 +58,38 @@ export function ExerciseViewFooter() {
       ExerciseViewStore.update(s => {
         s.checks[s.navIndicatorPosition].uploadedImage =
           `data:image/jpeg;base64,${image.base64String}`
-        s.cropImage = true
       })
     } catch (error) {
       console.error('Error taking photo:', error)
+
+      ExerciseViewStore.update(s => {
+        s.cropImage = false
+      })
+    }
+  }
+
+  const insertSymbolAtCursor = (symbol: string) => {
+    const textarea = textareaRef.current
+    if (!textarea) return
+
+    const start = textarea.selectionStart
+    const end = textarea.selectionEnd
+    const text = textarea.value
+
+    // Text vor und nach der aktuellen Cursorposition
+    const newText = text.slice(0, start) + symbol + text.slice(end)
+    textarea.value = newText
+
+    // Cursorposition anpassen
+    textarea.selectionStart = textarea.selectionEnd = start + symbol.length
+    //textarea.focus()
+
+    // Update in deinem State speichern
+    ExerciseViewStore.update(s => {
+      s.chatHistory[s.navIndicatorPosition].answerInput = newText
+    })
+    if (formulaDropdownRef.current) {
+      formulaDropdownRef.current.open = false
     }
   }
 
@@ -51,77 +100,316 @@ export function ExerciseViewFooter() {
       </div>
       <IndicatorBar />
       <SolutionOverlay />
-      <TypeNCheckOverlay />
       <FotoOverlay />
-      {!chatOverlay && (
-        <div className="flex justify-around">
-          <button
-            className="mr-3 mt-3 px-2 py-0.5 bg-gray-200 rounded"
-            onClick={() => {
-              const state = ExerciseViewStore.getRawState()
-              if (state.checks[state.navIndicatorPosition].croppedImage) {
-                ExerciseViewStore.update(s => {
-                  s.chatOverlay = 'foto'
-                })
-                return
+      <div className="h-1"></div>
+      {chatOverlay == 'chat' && (
+        <>
+          <div className="max-h-[50vh] overflow-y-auto mx-3">
+            {chatHistory.entries.map((el, i) => {
+              if (el.type == 'text') {
+                return (
+                  <div key={i} className="flex justify-end">
+                    <div className="bg-gray-100 p-2 rounded mb-3 text-right">
+                      {el.content}
+                      {el.canEdit && (
+                        <>
+                          <br />
+                          <button
+                            className="text-gray-500 underline text-xs"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatHistory[
+                                  s.navIndicatorPosition
+                                ].answerInput = el.content
+                              })
+                            }}
+                          >
+                            überarbeiten
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )
               }
-              takePhoto()
+              if (el.type == 'response') {
+                return (
+                  <div key={i} className="mb-4">
+                    {el.content}
+                    {el.category == 'actionable-feedback' && (
+                      <p className="text-xs text-gray-600 mt-2">
+                        Das Feedback ersetzt keine Korrektur. Vergleiche im
+                        Zweifel mit dem{' '}
+                        <button
+                          className="underline"
+                          onClick={() => {
+                            ExerciseViewStore.update(s => {
+                              s.chatOverlay = 'solution'
+                            })
+                          }}
+                        >
+                          Lösungsbeispiel
+                        </button>
+                        .
+                      </p>
+                    )}
+                    {el.category == 'success' && (
+                      <p className="mt-2">
+                        Vergleiche zum Abschluss mit dem{' '}
+                        <button
+                          className="underline"
+                          onClick={() => {
+                            ExerciseViewStore.update(s => {
+                              s.chatOverlay = 'solution'
+                            })
+                          }}
+                        >
+                          Lösungsbeispiel
+                        </button>
+                        .
+                      </p>
+                    )}
+                  </div>
+                )
+              }
+              if (el.type == 'image') {
+                return (
+                  <div
+                    className="flex justify-end items-center mx-3 my-4"
+                    key={i}
+                  >
+                    <img
+                      src={el.image}
+                      alt="Cropped Preview"
+                      className="max-w-full max-h-full"
+                      style={{
+                        maxWidth: '300px',
+                        maxHeight: '300px',
+                      }}
+                    />
+                  </div>
+                )
+              }
+              return null
+            })}
+            {chatHistory.resultPending ? (
+              <div className="mb-6 text-center flex items-center justify-center space-x-2">
+                <div className="w-5 h-5 border-2 border-t-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                <span className="text-gray-600 font-medium">
+                  Eingabe wird analysiert ...
+                </span>
+              </div>
+            ) : (
+              <div className="h-4"></div>
+            )}
+          </div>
+        </>
+      )}
+      {(!chatOverlay || chatOverlay == 'chat') && (
+        <>
+          <div className="flex justify-between">
+            <div className="ml-5">
+              <details
+                className="dropdown dropdown-top mr-5"
+                ref={formulaDropdownRef}
+                onFocus={() => {
+                  textareaRef.current?.focus()
+                }}
+              >
+                <summary className="list-none">
+                  <FaIcon
+                    icon={faSquareRootVariable}
+                    className="text-xl cursor-pointer"
+                  />
+                </summary>
+                <div className="dropdown-content flex flex-row space-x-2 bg-white rounded p-2 border">
+                  <button
+                    onClick={() => insertSymbolAtCursor('·')}
+                    className="p-2 hover:bg-gray-100"
+                  >
+                    ·
+                  </button>
+                  <button
+                    onClick={() => insertSymbolAtCursor(' _ / _ ')}
+                    className="p-2 hover:bg-gray-100"
+                  >
+                    {buildInlineFrac('□', '□')}
+                  </button>
+                  <button
+                    onClick={() => insertSymbolAtCursor('²')}
+                    className="p-2 hover:bg-gray-100"
+                  >
+                    □²
+                  </button>
+                  <button
+                    onClick={() => insertSymbolAtCursor('³')}
+                    className="p-2 hover:bg-gray-100"
+                  >
+                    □³
+                  </button>
+                  <button
+                    onClick={() => insertSymbolAtCursor('√')}
+                    className="p-2 hover:bg-gray-100"
+                  >
+                    √
+                  </button>
+                  <button
+                    onClick={() => insertSymbolAtCursor('π')}
+                    className="p-2 hover:bg-gray-100"
+                  >
+                    π
+                  </button>
+                </div>
+              </details>
+              <button
+                className="mr-3 px-2 py-0.5 bg-gray-200 rounded"
+                disabled={chatHistory.resultPending}
+                onClick={() => {
+                  takePhoto()
 
-              /*const fileInput = document.getElementById(
+                  /*const fileInput = document.getElementById(
                 'file-upload',
               ) as HTMLInputElement
               fileInput.click()*/
-            }}
-          >
-            <FaIcon icon={faCameraAlt} /> Foto
-          </button>
-          <button
-            className="mt-3 px-2 py-0.5 bg-gray-200 rounded"
-            onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.chatOverlay = 'type-n-check'
-              })
-            }}
-          >
-            Eingabe
-          </button>
-          <button
-            className="ml-3 mt-3 px-2 py-0.5 bg-gray-300 rounded"
-            onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.chatOverlay = 'solution'
-              })
-            }}
-          >
-            Lösung
-          </button>
-          <input
-            id="file-upload"
-            type="file"
-            accept="image/*"
-            onChange={e => {
-              if (e.target.files) {
-                const file = e.target.files[0]
-                if (file) {
-                  const reader = new FileReader()
-                  reader.onload = e => {
-                    const t = e.target
-                    if (t) {
-                      // Speichern des Bildes als Base64-URL im Pullstate
+                }}
+              >
+                <FaIcon icon={faCameraAlt} /> Foto
+              </button>
+            </div>
+            <div>
+              {chatHistory.entries.length > 0 && (
+                <button
+                  className="bg-gray-100 px-2 rounded mr-3"
+                  onClick={() => {
+                    ExerciseViewStore.update(s => {
+                      if (s.chatOverlay) {
+                        s.chatOverlay = null
+                      } else {
+                        s.chatOverlay = 'chat'
+                      }
+                    })
+                  }}
+                >
+                  <FaIcon
+                    icon={chatOverlay == 'chat' ? faCaretDown : faCaretUp}
+                    className="text-lg"
+                  />
+                </button>
+              )}
+              <details
+                className="dropdown dropdown-top dropdown-end mr-5"
+                ref={helpDropdownRef}
+              >
+                <summary className="list-none cursor-pointer px-2 py-0.5 bg-gray-100 rounded">
+                  <FaIcon icon={faQuestionCircle} /> Hilfe
+                </summary>
+                <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
+                  <li
+                    className="py-2 cursor-pointer hover:underline"
+                    onClick={() => {
                       ExerciseViewStore.update(s => {
-                        s.checks[s.navIndicatorPosition].uploadedImage =
-                          t.result?.toString()!
-                        s.cropImage = true
+                        s.chatOverlay = 'solution'
                       })
+                      if (helpDropdownRef.current) {
+                        helpDropdownRef.current.open = false
+                      }
+                    }}
+                  >
+                    Lösung anzeigen
+                  </li>
+                  <li
+                    className="py-2 cursor-pointer hover:underline"
+                    onClick={() => {
+                      ExerciseViewStore.update(s => {
+                        if (
+                          !s.chatHistory[s.navIndicatorPosition].resultPending
+                        ) {
+                          s.chatOverlay = 'chat'
+                          s.chatHistory[s.navIndicatorPosition].entries.push({
+                            type: 'text',
+                            content: 'Wie lerne ich?',
+                          })
+                          s.chatHistory[s.navIndicatorPosition].entries.push({
+                            type: 'response',
+                            content:
+                              'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
+                            category: 'none',
+                          })
+                        }
+                      })
+                      if (helpDropdownRef.current) {
+                        helpDropdownRef.current.open = false
+                      }
+                    }}
+                  >
+                    Wie lerne ich?
+                  </li>
+                </ul>
+              </details>
+            </div>
+            <input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              onChange={e => {
+                if (e.target.files) {
+                  const file = e.target.files[0]
+                  if (file) {
+                    const reader = new FileReader()
+                    reader.onload = e => {
+                      const t = e.target
+                      if (t) {
+                        // Speichern des Bildes als Base64-URL im Pullstate
+                        ExerciseViewStore.update(s => {
+                          s.checks[s.navIndicatorPosition].uploadedImage =
+                            t.result?.toString()!
+                          s.cropImage = true
+                        })
+                      }
                     }
+                    reader.readAsDataURL(file)
                   }
-                  reader.readAsDataURL(file)
                 }
+              }}
+              className="sr-only"
+            />
+          </div>
+          <div className="flex items-end pb-6 mt-3 mx-2 sm:mx-3 gap-3">
+            <TextareaAutosize
+              ref={textareaRef}
+              value={chatHistory.answerInput}
+              onChange={e =>
+                ExerciseViewStore.update(s => {
+                  s.chatHistory[s.navIndicatorPosition].answerInput =
+                    e.target.value
+                })
               }
-            }}
-            className="sr-only"
-          />
-        </div>
+              placeholder="Gib deine Antwort oder Frage ein ..."
+              minRows={1}
+              maxRows={5}
+              className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
+            />
+            <button
+              className="flex-shrink-0 w-10 h-10 bg-gray-500 text-white rounded-full flex items-center justify-center hover:bg-gray-600"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.chatHistory[s.navIndicatorPosition].resultPending = true
+                  s.chatHistory[s.navIndicatorPosition].entries.push({
+                    type: 'text',
+                    content: s.chatHistory[s.navIndicatorPosition].answerInput,
+                    canEdit: true,
+                  })
+                  s.chatOverlay = 'chat'
+                  s.chatHistory[s.navIndicatorPosition].answerInput = ''
+                })
+                void analyseLastInput()
+              }}
+              disabled={chatHistory.resultPending}
+            >
+              <FaIcon icon={faPaperPlane} className="w-5 h-5" />
+            </button>
+          </div>
+        </>
       )}
     </div>
   )
