@@ -103,9 +103,11 @@ export const exercise26: Exercise<DATA> = {
                 '',
                 '=',
                 <>
-                  {roundToDigits(
-                    data.length * data.outerWidth * data.outerHeight,
-                    2,
+                  {pp(
+                    roundToDigits(
+                      data.length * data.outerWidth * data.outerHeight,
+                      2,
+                    ),
                   )}{' '}
                   [m³]
                 </>,
