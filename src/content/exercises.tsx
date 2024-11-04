@@ -88,6 +88,7 @@ import { exercise115 } from './implementations/NRW-EESA/115-2022-1-v2-2-Dreieck'
 import { exercise116 } from './implementations/NRW-EESA/116-2022-1-v2-4-Füllgraphen'
 import { exercise123 } from './implementations/NRW-EESA/123-2023-1-4-schriftlich-addieren'
 import { exercise114 } from './implementations/NRW-EESA/114-2022-1-5-Schätzen'
+import { exercise113 } from './implementations/NRW-EESA/113-2022-1-4-Glücksrad'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -178,6 +179,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   115: exercise115,
   116: exercise116,
   114: exercise114,
+  113: exercise113,
 }
 
 // symbols:
