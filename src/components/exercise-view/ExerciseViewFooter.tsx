@@ -2,6 +2,9 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import { FaIcon } from '../ui/FaIcon'
 import {
   faCameraAlt,
+  faCaretDown,
+  faCaretRight,
+  faCaretUp,
   faQuestion,
   faSquareRootVariable,
   faTimeline,
@@ -74,7 +77,7 @@ export function ExerciseViewFooter() {
 
     // Cursorposition anpassen
     textarea.selectionStart = textarea.selectionEnd = start + symbol.length
-    textarea.focus()
+    //textarea.focus()
 
     // Update in deinem State speichern
     ExerciseViewStore.update(s => {
@@ -92,20 +95,62 @@ export function ExerciseViewFooter() {
       </div>
       <IndicatorBar />
       <SolutionOverlay />
-      <TypeNCheckOverlay />
       <FotoOverlay />
-      {!chatOverlay && (
+      {chatOverlay == 'chat' && (
+        <>
+          <div className="max-h-[50vh] overflow-y-auto mb-2 mx-3">
+            Hier werden die Nachrichten angezeigt.Hier werden die Nachrichten
+            angezeigt Hier werden die Nachrichten angezeigt Hier werden die
+            Nachrichten angezeigt Hier werden die Nachrichten angezeigtHier
+            werden die Nachrichten angezeigtHier werden die Nachrichten
+            angezeigtHier werden die Nachrichten angezeigtHier werden die
+            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
+            werden die Nachrichten angezeigtHier werden die Nachrichten
+            angezeigtHier werden die Nachrichten angezeigtHier werden die
+            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
+            werden die Nachrichten angezeigtHier werden die Nachrichten
+            angezeigtHier werden die Nachrichten angezeigtHier werden die
+            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
+            werden die Nachrichten angezeigtHier werden die Nachrichten
+            angezeigtHier werden die Nachrichten angezeigtHier werden die
+            Nachrichten angezeigtHier werden die Nachrichten angezeigtHier
+            werden die Nachrichten angezeigtHier werden die Nachrichten
+            angezeigt
+          </div>
+        </>
+      )}
+      {(!chatOverlay || chatOverlay == 'chat') && (
         <>
           <div className="flex justify-between">
             <div className="ml-5">
+              <button
+                className="bg-gray-100 px-2 rounded mr-3"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    if (s.chatOverlay) {
+                      s.chatOverlay = null
+                    } else {
+                      s.chatOverlay = 'chat'
+                    }
+                  })
+                }}
+              >
+                <FaIcon
+                  icon={chatOverlay == 'chat' ? faCaretDown : faCaretUp}
+                  className="text-lg"
+                />
+              </button>
               <details
-                className="dropdown dropdown-top"
+                className="dropdown dropdown-top mr-5"
                 ref={formulaDropdownRef}
+                onFocus={() => {
+                  textareaRef.current?.focus()
+                }}
               >
                 <summary className="list-none">
                   <FaIcon
                     icon={faSquareRootVariable}
-                    className="text-xl mr-5 cursor-pointer"
+                    className="text-xl cursor-pointer"
                   />
                 </summary>
                 <div className="dropdown-content flex flex-row space-x-2 bg-white rounded p-2 border">
@@ -140,7 +185,7 @@ export function ExerciseViewFooter() {
                     √
                   </button>
                   <button
-                    onClick={() => insertSymbolAtCursor('γ')}
+                    onClick={() => insertSymbolAtCursor('π')}
                     className="p-2 hover:bg-gray-100"
                   >
                     π
@@ -223,7 +268,6 @@ export function ExerciseViewFooter() {
           </div>
           <div className="flex items-end pb-6 mt-3 mx-2 sm:mx-3 gap-3">
             <TextareaAutosize
-              autoFocus
               ref={textareaRef}
               value={check.answerInput}
               onChange={e =>

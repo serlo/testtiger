@@ -8,7 +8,7 @@ export type IExerciseViewStore = {
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
-  chatOverlay: null | 'solution' | 'type-n-check' | 'foto'
+  chatOverlay: null | 'solution' | 'type-n-check' | 'foto' | 'chat'
   checks: {
     answerInput: string
     resultPending: boolean
