@@ -64,7 +64,7 @@ export const exercise122: Exercise<DATA> = {
         </p>
         <p>
           <b>
-            Antwort: Das Volumen des Kartons beträgt{' '}
+            Das Volumen des Kartons beträgt<br></br>
             {data.length * data.width * data.height} cm<sup>3</sup>.
           </b>
         </p>
