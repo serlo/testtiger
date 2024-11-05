@@ -40,10 +40,10 @@ export const exercise6: Exercise<DATA> = {
             width="700"
           />
 
-          <text x={260} y={420} fontSize={40} textAnchor="right" stroke="black">
+          <text x={260} y={420} fontSize={30} textAnchor="right" stroke="black">
             a = {data.breite} cm
           </text>
-          <text x={630} y={230} fontSize={40} textAnchor="right" stroke="black">
+          <text x={630} y={230} fontSize={30} textAnchor="right" stroke="black">
             b = {data.länge} cm
           </text>
           <text x={75} y={340} fontSize={50} textAnchor="right" stroke="black">
