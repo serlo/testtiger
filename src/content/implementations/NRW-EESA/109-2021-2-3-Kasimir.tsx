@@ -144,7 +144,7 @@ export const exercise109: Exercise<DATA> = {
         return (
           <>
             <p>
-              Kasimir markiert auf jeder Dreieckseite den Mittelpunkt. Die
+              Kasimir markiert auf jeder Dreiecksseite den Mittelpunkt. Die
               Mittelpunkte verbindet er. Es entstehen vier gleiche kleine
               Dreiecke (Abbildung 2).
             </p>
@@ -464,7 +464,7 @@ export const exercise109: Exercise<DATA> = {
             <svg viewBox="0 0 328 100">
               <image href={falsch[data.item_3]} height="100" width="328" />
             </svg>
-            <p>beschreiben keinen Tetraeder.</p>
+            <p>beschreiben keine Tetraeder.</p>
           </>
         )
       },

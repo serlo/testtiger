@@ -129,7 +129,7 @@ export const exercise133: Exercise<DATA> = {
               />
             </svg>
             <p>
-              Teile das Bild auf in ein Raster mit gleich großen Bereichen.
+              Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
               <br></br>
               <br></br>Im oberen linken Bereich befinden sich etwa 32
               Reiskörner.

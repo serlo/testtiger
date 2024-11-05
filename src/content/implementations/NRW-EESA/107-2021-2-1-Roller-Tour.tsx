@@ -113,7 +113,7 @@ export const exercise107: Exercise<DATA> = {
           <>
             <p>
               Die Strecke und der Maßstab können zum Beispiel durch ein Lineal
-              abgemessen und verglichen werden. Das Maßstab passt ungefähr 15
+              abgemessen und verglichen werden. Der Maßstab passt ungefähr 15
               mal in den Streckenzug.
             </p>
             <p>Damit hat die Strecke eine Länge von:</p>
@@ -536,7 +536,7 @@ export const exercise107: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bestimme anhand der Graphen ob der blaue Graph oder der orange
+              Bestimme anhand der Graphen, ob der blaue Graph oder der orange
               Graph nach {data.fahrt} Kilometer den geringeren Preis anzeigt.
             </p>
             <p>

@@ -68,10 +68,10 @@ export const exercise130: Exercise<DATA> = {
           {pp(data.min * 60)} s = <strong>{pp(data.min)} [min]</strong>
         </p>
         <p>
-          <strong>Liter (ℓ) in Mililiter (ml)</strong>
+          <strong>Liter (ℓ) in Milliliter (ml)</strong>
         </p>
         <p>
-          1 Liter enthält 1000 Mililiter. <br></br>Rechne mit dem
+          1 Liter enthält 1000 Milliliter. <br></br>Rechne mit dem
           Umrechnungsfaktor 1000:
         </p>
         <p>

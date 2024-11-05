@@ -245,7 +245,7 @@ export const exercise127: Exercise<DATA> = {
           <>
             <p>Berechne den Flächeninhalt dieser Tischgruppe.</p>
 
-            <p>Gib das Ergebnis in Quadratmetern ( m²) an.</p>
+            <p>Gib das Ergebnis in Quadratmetern (m²) an.</p>
           </>
         )
       },

@@ -562,7 +562,7 @@ export const exercise135: Exercise<DATA> = {
             <p>
               <b>Beetfläche berechnen</b>
             </p>
-            <p>Die Fläche des kreisförmigen Blumenbeets beträgt:</p>
+            <p>Die Fläche des kreisförmigen Blumenbeetes beträgt:</p>
             {buildEquation([
               [<>A</>, '=', <>π · r²</>],
               [

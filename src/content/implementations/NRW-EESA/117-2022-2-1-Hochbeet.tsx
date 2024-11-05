@@ -104,7 +104,7 @@ export const exercise117: Exercise<DATA> = {
               </li>
             </ul>
             <p>
-              Für den bau werden <strong>15 Bretter</strong> benötigt.
+              Für den Bau werden <strong>15 Bretter</strong> benötigt.
             </p>
           </>
         )
@@ -121,7 +121,7 @@ export const exercise117: Exercise<DATA> = {
             <p>
               b) Emma möchte die Außenflächen des Hochbeets mit Farbe
               anstreichen. Ein Eimer Farbe reicht für eine Fläche von ca.{' '}
-              {pp(data.color)} m² .
+              {pp(data.color)} m².
             </p>
             <p>Entscheide durch eine Rechnung, ob ein Eimer Farbe ausreicht.</p>
           </>
@@ -326,7 +326,7 @@ export const exercise117: Exercise<DATA> = {
             <p>
               Zeichne die Skizze mit den angegebenen Maßen ab. Zwischen dem
               Salat und der Seitenwand ist zudem ein Platz von einem halben
-              Milimeter:
+              Millimeter:
             </p>
             <svg viewBox="0 0 400 220">
               <image

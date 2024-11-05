@@ -100,7 +100,7 @@ export const exercise119: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Berechne wie viel die Pflanze in {data.days} Tagen wächst:</p>
+            <p>Berechne, wie viel die Pflanze in {data.days} Tagen wächst:</p>
             <p>
               {' '}
               {data.days} · {data.wachsen} = {data.days * data.wachsen} [cm]
@@ -110,7 +110,7 @@ export const exercise119: Exercise<DATA> = {
               {pp((data.days * data.wachsen) / 100)} m
             </p>
             <p>
-              Addiere die Starthöhe, um zu bestimmen wie hoch die Pflanze
+              Addiere die Starthöhe, um zu bestimmen, wie hoch die Pflanze
               insgesamt gewachsen ist:
             </p>
             <p>
@@ -508,7 +508,7 @@ export const exercise119: Exercise<DATA> = {
             </p>
             <p>
               Um das Gewicht zu berechnen, muss das Volumen der Bambusrohre mit
-              deren Dichte multiplizert werden. Das Volumen eines Bambusrohrs
+              deren Dichte multipliziert werden. Das Volumen eines Bambusrohrs
               wird mit der Formel für den Prisma berechnet:
             </p>
             {buildEquation([

@@ -267,7 +267,7 @@ export const exercise131: Exercise<DATA> = {
             </p>
             <p>
               Der Durchschnitt beträgt{' '}
-              <strong>{pp(roundToDigits(mittel, 2))} Meter</strong>..
+              <strong>{pp(roundToDigits(mittel, 2))} Meter</strong>.
             </p>
           </>
         )

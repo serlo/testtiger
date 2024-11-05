@@ -145,7 +145,7 @@ export const exercise103: Exercise<DATA> = {
               <strong>Wahrscheinlichkeit für schwarz</strong>
             </p>
             <p>
-              Berechne mit der gleichen Rechnung die Wahrscheinlichkeit eine
+              Berechne mit der gleichen Rechnung die Wahrscheinlichkeit, eine
               schwarze Kugel zu ziehen:
             </p>
             {buildEquation([

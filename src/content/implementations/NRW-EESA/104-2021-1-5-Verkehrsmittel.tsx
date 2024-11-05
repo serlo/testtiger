@@ -376,7 +376,7 @@ export const exercise104: Exercise<DATA> = {
 
         return (
           <>
-            <p>Die Ergebnisse werden in einem Kreis Diagramm dargestellt.</p>
+            <p>Die Ergebnisse werden in einem Kreisdiagramm dargestellt.</p>
             <svg width="328" height="270">
               <circle
                 cx="164"
@@ -395,7 +395,7 @@ export const exercise104: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
-            <p>b) Vervollständige das Kreis Diagramm.</p>
+            <p>b) Vervollständige das Kreisdiagramm.</p>
           </>
         )
       },

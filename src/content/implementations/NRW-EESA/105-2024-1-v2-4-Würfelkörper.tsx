@@ -156,7 +156,7 @@ export const exercise105: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Zähle die einzelnen Würfel der Kröper und vergleiche.</p>
+            <p>Zähle die einzelnen Würfel der Körper und vergleiche.</p>
             <p>
               <strong>Körper {data.case == 1 ? 'A' : 'B'}</strong> hat das
               größere Volumen.

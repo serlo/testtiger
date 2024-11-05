@@ -621,7 +621,7 @@ export const exercise126: Exercise<DATA> = {
             ])}
             <p>
               Der Flächeninhalt der großen Pizza ist{' '}
-              <Color1>4 mal so groß</Color1> wie der Flächeninhalt der kleinen
+              <Color1>4-mal so groß</Color1> wie der Flächeninhalt der kleinen
               Pizza.
             </p>
             <p>
