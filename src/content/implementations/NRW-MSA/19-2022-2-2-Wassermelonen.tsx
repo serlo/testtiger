@@ -420,7 +420,7 @@ export const exercise19: Exercise<DATA> = {
                 ry="4"
                 stroke="#007EC1"
                 fill="transparent"
-                stroke-width="1"
+                strokeWidth="1"
               />
 
               <line
@@ -429,7 +429,7 @@ export const exercise19: Exercise<DATA> = {
                 x2="310"
                 y2="40"
                 stroke="#007EC1"
-                stroke-width="1"
+                strokeWidth="1"
               />
 
               <line
@@ -438,7 +438,7 @@ export const exercise19: Exercise<DATA> = {
                 x2="130"
                 y2="70"
                 stroke="#007EC1"
-                stroke-width="1"
+                strokeWidth="1"
               />
               <line
                 x1="180"
@@ -446,7 +446,7 @@ export const exercise19: Exercise<DATA> = {
                 x2="180"
                 y2="70"
                 stroke="#007EC1"
-                stroke-width="1"
+                strokeWidth="1"
               />
               <line
                 x1="230"
@@ -454,7 +454,7 @@ export const exercise19: Exercise<DATA> = {
                 x2="230"
                 y2="70"
                 stroke="#007EC1"
-                stroke-width="1"
+                strokeWidth="1"
               />
               <line
                 x1="280"
@@ -462,7 +462,7 @@ export const exercise19: Exercise<DATA> = {
                 x2="280"
                 y2="70"
                 stroke="#007EC1"
-                stroke-width="1"
+                strokeWidth="1"
               />
 
               <text
