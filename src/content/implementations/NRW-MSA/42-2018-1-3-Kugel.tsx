@@ -46,7 +46,7 @@ export const exercise42: Exercise<DATA> = {
             cy="150"
             r={rad}
             stroke="#007EC1"
-            stroke-width="3"
+            strokeWidth="3"
             fill="transparent"
           />
           <ellipse
@@ -55,7 +55,7 @@ export const exercise42: Exercise<DATA> = {
             rx={rad}
             ry={rad / 2.5}
             stroke="#007Ec1"
-            stroke-dasharray="4 4"
+            strokeDasharray="4 4"
             fill="transparent"
           />
           <circle cx="150" cy="150" r="3" fill="black" />
@@ -65,7 +65,7 @@ export const exercise42: Exercise<DATA> = {
             x2={150 + rad * 0.6}
             y2={150 + rad * 0.3}
             stroke="#007Ec1"
-            stroke-dasharray="4 4"
+            strokeDasharray="4 4"
           />
           <rect
             x={147 + rad * 0.5}
@@ -75,7 +75,7 @@ export const exercise42: Exercise<DATA> = {
             rx="4"
             ry="4"
             fill="#C4DDEB"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <text
             x={152 + rad * 0.5}

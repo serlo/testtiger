@@ -275,7 +275,7 @@ export const exercise23: Exercise<DATA> = {
                 ry="10"
                 stroke="#007Ec1"
                 fill="transparent"
-                stroke-width="2"
+                strokeWidth="2"
               />
 
               <line
@@ -284,7 +284,7 @@ export const exercise23: Exercise<DATA> = {
                 x2="80"
                 y2="90"
                 stroke="#007EC1"
-                stroke-width="2"
+                strokeWidth="2"
               />
               <line
                 x1="150"
@@ -292,7 +292,7 @@ export const exercise23: Exercise<DATA> = {
                 x2="150"
                 y2="90"
                 stroke="#007EC1"
-                stroke-width="2"
+                strokeWidth="2"
               />
               <line
                 x1="220"
@@ -300,7 +300,7 @@ export const exercise23: Exercise<DATA> = {
                 x2="220"
                 y2="90"
                 stroke="#007EC1"
-                stroke-width="2"
+                strokeWidth="2"
               />
               <line
                 x1="10"
@@ -308,7 +308,7 @@ export const exercise23: Exercise<DATA> = {
                 x2="290"
                 y2="50"
                 stroke="#007EC1"
-                stroke-width="2"
+                strokeWidth="2"
               />
 
               <text

@@ -3,7 +3,7 @@ export function getSectorPath(
   y: number,
   outerDiameter: number,
   a1: number,
-  a2: number
+  a2: number,
 ) {
   const degtorad = Math.PI / 180
   const halfOuterDiameter = outerDiameter / 2
@@ -81,7 +81,7 @@ export const rightAngle = (
       d={`M 0,25 A 25,25 0 0 0 25,0`}
       fill="none"
       stroke="black"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <circle cx={10} cy={10} r={2.5} fill="black" />
   </>

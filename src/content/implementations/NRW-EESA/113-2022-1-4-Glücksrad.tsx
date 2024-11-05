@@ -127,7 +127,7 @@ export const exercise113: Exercise<DATA> = {
                 <>=</>,
                 <>
                   {buildInlineFrac(
-                    <>Anzahl der Felder mit 'H'</>,
+                    <>Anzahl der Felder mit {"'H'"}</>,
                     <>Anzahl aller Felder</>,
                   )}
                 </>,
