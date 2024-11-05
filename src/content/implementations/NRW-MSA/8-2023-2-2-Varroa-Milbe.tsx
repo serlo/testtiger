@@ -66,12 +66,12 @@ export const exercise8: Exercise<DATA> = {
           <>
             <p>
               a) Die Schülerinnen und Schüler messen die Länge {data.length} mm
-              und Breite {data.width} mm am Mikroskop.
+              und Breite {data.width} mm.
             </p>
             <p>
-              Bestimme den Maßstab, wenn die {pp(data.mass)} mm in der Zeichnung
-              15 mm am Mikroskop entsprechen. Berechne damit die tatsächliche
-              Länge und Breite der Milbe.
+              Bestimme den Maßstab, wenn die 15 mm in der Zeichnung{' '}
+              {pp(data.mass)} mm in echt entsprechen. Berechne damit die
+              tatsächliche Länge und Breite der Milbe.
             </p>
           </>
         )
@@ -82,13 +82,13 @@ export const exercise8: Exercise<DATA> = {
             <p>
               <strong>Maßstab bestimmen</strong>
             </p>
-            <p> 15 mm am Mikroskop ≙ {pp(data.mass)} mm Zeichnung</p>
+            <p> 15 mm ≙ {pp(data.mass)} mm in echt</p>
             <p>
               Teile beide Seiten durch 15. Dann erhältst du echte Länge, wenn am
               Mikroskop 1 mm gemessen wird:
             </p>
             <p>
-              1 mm am Mikroskop ≙ {buildInlineFrac(pp(data.mass), 15)}{' '}
+              1 mm ≙ {buildInlineFrac(pp(data.mass), 15)}{' '}
               {data.mass == 1 || data.mass == 2 ? false : '='}{' '}
               {data.mass == 1 || data.mass == 2
                 ? false
