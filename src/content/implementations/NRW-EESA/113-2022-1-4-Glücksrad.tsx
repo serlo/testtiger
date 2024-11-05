@@ -2,7 +2,7 @@ import { Exercise } from '@/data/types'
 import { Color4 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
-import { ppFrac } from '@/helper/pretty-print'
+import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
   nenner: number
@@ -22,7 +22,9 @@ export const exercise113: Exercise<DATA> = {
   },
   originalData: { nenner: 3, array: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0] },
   constraint({ data }) {
-    return true
+    return (
+      data.array.filter(element => element === 1).length + 12 / data.nenner < 12
+    )
   },
   intro({ data }) {
     return null
@@ -127,7 +129,7 @@ export const exercise113: Exercise<DATA> = {
                 <>=</>,
                 <>
                   {buildInlineFrac(
-                    <>Anzahl der Felder mit {"'H'"}</>,
+                    <>Anzahl der Felder mit &quot;H&quot;</>,
                     <>Anzahl aller Felder</>,
                   )}
                 </>,
@@ -184,7 +186,95 @@ export const exercise113: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        // Anzahl der Sektoren
+        const sectors = 12
+        const centerX = 164 // Mittelpunkt des Kreises (X)
+        const centerY = 125 // Mittelpunkt des Kreises (Y)
+        const radius = 120 // Radius des Kreises
+        const angleStep = (2 * Math.PI) / sectors // Berechnung der Winkel
+
+        // Felder für "Niete" setzen
+        const updatedArray = [...data.array]
+        let nCounter = 0
+        while (nCounter < 12 / data.nenner) {
+          const randomIndex = Math.floor(Math.random() * sectors)
+          if (updatedArray[randomIndex] === 0) {
+            // Sicherstellen, dass wir ein leeres Feld wählen
+            updatedArray[randomIndex] = 2 // 2 steht für "Niete"
+            nCounter++
+          }
+        }
+
+        // Sektoren generieren
+        const sectorsPaths = Array.from({ length: sectors }, (_, i) => {
+          const startAngle = i * angleStep + 30
+          const endAngle = startAngle + angleStep
+
+          // Endpunkte der Sektoren berechnen
+          const x1 = centerX + radius * Math.cos(startAngle)
+          const y1 = centerY + radius * Math.sin(startAngle)
+          const x2 = centerX + radius * Math.cos(endAngle)
+          const y2 = centerY + radius * Math.sin(endAngle)
+
+          // Farben und Beschriftungen je nach Feldtyp
+          let fillColor = 'none'
+          let textLabel = ''
+
+          if (updatedArray[i] === 1) {
+            fillColor = 'gray'
+            textLabel = 'H' // Hauptgewinn
+          } else if (updatedArray[i] === 2) {
+            fillColor = 'lightgray'
+            textLabel = 'N' // Niete
+          }
+
+          // SVG-Pfad für den Sektor
+          return (
+            <g key={i}>
+              <path
+                d={`M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 0 1 ${x2} ${y2} Z`}
+                fill={fillColor}
+                stroke="black"
+                strokeWidth={1}
+              />
+              {textLabel && (
+                <text
+                  x={((x1 + x2) / 2 + 164) / 2}
+                  y={((y1 + y2) / 2 + 125) / 2}
+                  fill="black"
+                  fontSize="16"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                >
+                  {textLabel}
+                </text>
+              )}
+            </g>
+          )
+        })
+
+        return (
+          <>
+            <p>Berechne die Anzahl der Felder mit einer Niete:</p>
+            <p>
+              12 · {ppFrac(1 / data.nenner)} ={' '}
+              <strong>{pp(12 / data.nenner)}</strong>
+            </p>
+            <p>Beschrifte {pp(12 / data.nenner)} Felder mit &quot;N&quot;:</p>
+            <svg width="328" height="250">
+              <circle
+                cx="164"
+                cy="125"
+                r="120"
+                fill="none"
+                stroke="black"
+                strokeWidth={3}
+              />
+              {sectorsPaths} {/* Hier werden die Sektoren hinzugefügt */}
+              <polygon points="274,125 304,115 304,135" fill="black" />
+            </svg>
+          </>
+        )
       },
     },
   ],
