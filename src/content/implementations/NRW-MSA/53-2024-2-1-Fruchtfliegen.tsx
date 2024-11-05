@@ -296,7 +296,7 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 2,
+      points: 3,
       duration: 2,
       skillIntro({ data }) {
         return (
@@ -361,7 +361,7 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 4,
+      points: 3,
       duration: 2,
       intro({ data }) {
         return (

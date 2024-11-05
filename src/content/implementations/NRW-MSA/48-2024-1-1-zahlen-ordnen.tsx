@@ -18,6 +18,7 @@ export const exercise48: Exercise<DATA> = {
   source: '2024 Teil 1 Aufgabe 1',
   useCalculator: false,
   duration: 2,
+  points: 2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(-8, 8),

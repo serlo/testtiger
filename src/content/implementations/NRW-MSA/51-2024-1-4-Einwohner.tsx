@@ -213,7 +213,7 @@ export const exercise51: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 1,
+      points: 2,
       duration: 1,
       task({ data }) {
         return (
@@ -253,7 +253,7 @@ export const exercise51: Exercise<DATA> = {
       },
     },
     {
-      points: 1,
+      points: 2,
       duration: 1,
       task({ data }) {
         const mittel =
@@ -324,7 +324,7 @@ export const exercise51: Exercise<DATA> = {
     },
     {
       duration: 1,
-      points: 1,
+      points: 2,
       task({ data }) {
         return (
           <>

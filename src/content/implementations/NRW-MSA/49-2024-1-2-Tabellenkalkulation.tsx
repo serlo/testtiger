@@ -239,7 +239,7 @@ export const exercise49: Exercise<DATA> = {
       },
     },
     {
-      points: 1,
+      points: 2,
       task({ data }) {
         return (
           <>
