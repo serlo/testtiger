@@ -69,9 +69,9 @@ export const exercise8: Exercise<DATA> = {
               und Breite {data.width} mm.
             </p>
             <p>
-              Bestimme den Maßstab, wenn die 15 mm in der Zeichnung{' '}
-              {pp(data.mass)} mm in echt entsprechen. Berechne damit die
-              tatsächliche Länge und Breite der Milbe.
+              Bestimme den Maßstab, wenn 15 mm in der Zeichnung {pp(data.mass)}{' '}
+              mm in echt entsprechen. Berechne damit die tatsächliche Länge und
+              Breite der Milbe.
             </p>
           </>
         )
