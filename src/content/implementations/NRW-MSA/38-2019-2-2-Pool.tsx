@@ -147,6 +147,9 @@ export const exercise38: Exercise<DATA> = {
         return (
           <>
             <p>
+              <strong>Volumen berechnen</strong>
+            </p>
+            <p>
               Berechne das Volumen des zylinderförmigen Pools mit der Formel:
             </p>
             <p>V = G · h</p>
@@ -196,6 +199,28 @@ export const exercise38: Exercise<DATA> = {
                 m³
               </strong>
               .
+            </p>
+            <p>
+              <strong>Volumen in Liter umrechnen</strong>
+            </p>
+            <p>
+              Ein Kubikmeter [m³] enthält 1000 Liter. Damit beträgt das Volumen:
+            </p>
+            <p>
+              {pp(
+                roundToDigits(data.surface * (data.höhe - data.water / 100), 2),
+              )}{' '}
+              · 1000 ={' '}
+              <strong>
+                {pp(
+                  1000 *
+                    roundToDigits(
+                      data.surface * (data.höhe - data.water / 100),
+                      2,
+                    ),
+                )}{' '}
+                [ℓ]
+              </strong>
             </p>
           </>
         )
