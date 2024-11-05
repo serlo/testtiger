@@ -24,6 +24,7 @@ export const exercise110: Exercise<DATA> = {
       d: rng.randomIntBetween(1, 10),
     }
   },
+  originalData: { a: -2.2, b: -2.57, c: 2.51, d: 5 },
   constraint({ data }) {
     return (
       Math.abs(Math.abs(data.a) - Math.abs(data.b)) < 0.2 &&

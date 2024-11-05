@@ -15,12 +15,13 @@ export const exercise116: Exercise<DATA> = {
   points: 42,
   generator(rng) {
     return {
-      one: rng.randomIntBetween(1, 12),
-      two: rng.randomIntBetween(1, 12),
-      three: rng.randomIntBetween(1, 12),
-      four: rng.randomIntBetween(1, 12),
+      one: rng.randomIntBetween(1, 14),
+      two: rng.randomIntBetween(1, 14),
+      three: rng.randomIntBetween(1, 14),
+      four: rng.randomIntBetween(1, 14),
     }
   },
+  originalData: { one: 14, two: 13, three: 11, four: 3 },
   constraint({ data }) {
     return (
       data.one != data.two &&

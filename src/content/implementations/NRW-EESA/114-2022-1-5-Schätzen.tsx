@@ -14,6 +14,7 @@ export const exercise114: Exercise<DATA> = {
   generator(rng) {
     return { task: rng.randomIntBetween(1, 5) }
   },
+  originalData: { task: 5 },
   constraint({ data }) {
     return true
   },
