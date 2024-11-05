@@ -12,7 +12,8 @@ export const exercise100: Exercise<DATA> = {
   title: 'Zahlenstrahl',
   source: '2021 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 42,
+  duration: 3,
+  points: 3,
   generator(rng) {
     return {
       a: rng.randomIntBetween(1, 9) / 10,

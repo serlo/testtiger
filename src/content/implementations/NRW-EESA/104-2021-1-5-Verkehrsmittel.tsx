@@ -15,7 +15,7 @@ export const exercise104: Exercise<DATA> = {
   title: 'Verkehrsmittel',
   source: '2024 Teil 1 Aufgabe 5',
   useCalculator: false,
-  duration: 42,
+  duration: 9,
   generator(rng) {
     return {
       fuß: rng.randomIntBetween(15, 35),
@@ -192,7 +192,8 @@ export const exercise104: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return <></>
       },
@@ -239,7 +240,8 @@ export const exercise104: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 7,
       intro({ data }) {
         return null
       },

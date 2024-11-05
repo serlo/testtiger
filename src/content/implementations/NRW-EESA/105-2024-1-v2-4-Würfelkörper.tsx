@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
 import { Color5 } from '@/helper/colors'
+import { buildEquation } from '@/helper/math-builder'
 
 interface DATA {
   höhe_1: number
@@ -41,7 +42,8 @@ export const exercise105: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 3,
       intro({ data }) {
         return null
       },
@@ -113,11 +115,196 @@ export const exercise105: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              <strong>Körper zerlegen</strong>
+            </p>
+            <p>
+              Das Volumen des zusammengesetzten Körpers kann auf verschiedene
+              Wege berechnet werden. Hier wird der Körper in einzelne Quader
+              zerlegt:
+            </p>
+            <svg viewBox="0 0 328 250">
+              <image
+                href="/content/NRW_EESA/105_Würfelkörper.PNG"
+                height="250"
+                width="328"
+              />
+              <text
+                x="64"
+                y="144"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+              >
+                {data.höhe_1}
+              </text>
+              <text
+                x="270"
+                y="159"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+              >
+                {data.höhe_2}
+              </text>
+              <text
+                x="147"
+                y="245"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+              >
+                {data.length_1}
+              </text>
+              <text
+                x="207"
+                y="98"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+              >
+                {data.length_2}
+              </text>
+              <text
+                x="248"
+                y="228"
+                fontSize="13"
+                textAnchor="middle"
+                fill="black"
+              >
+                {data.depth}
+              </text>
+              <text
+                x="96"
+                y="32"
+                fontSize="13"
+                textAnchor="middle"
+                fill="#007EC1"
+              >
+                {data.length_1 - data.length_2}
+              </text>
+              <text
+                x="123"
+                y="82"
+                fontSize="13"
+                textAnchor="middle"
+                fill="#007EC1"
+              >
+                {data.höhe_1 - data.höhe_2}
+              </text>
+              <line
+                x1="75"
+                y1="133"
+                x2="114"
+                y2="133"
+                stroke="#007EC1"
+                strokeWidth="2"
+              />
+              <line
+                x1="114"
+                y1="133"
+                x2="144"
+                y2="103"
+                stroke="#007EC1"
+                strokeWidth="2"
+              />
+              <line
+                x1="105"
+                y1="103"
+                x2="144"
+                y2="103"
+                stroke="#007EC1"
+                strokeWidth="2"
+              />
+              <line
+                x2="75"
+                y1="103"
+                x1="105"
+                y2="133"
+                stroke="#007EC1"
+                strokeWidth="2"
+              />
+            </svg>
+            <p>
+              Die Seitenlängen des kleinen Quaders können durch die anderen
+              Seiten bestimmt werden.
+            </p>
+            <p>
+              <strong>Volumen berechnen</strong>
+            </p>
+            <p>Berechne das Volumen der einzelnen Quader und addiere sie:</p>
+            {buildEquation([
+              [
+                <>
+                  V<sub>klein</sub>
+                </>,
+                <>=</>,
+                <>a · b · c</>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {data.length_1 - data.length_2} · {data.depth} ·{' '}
+                  {data.höhe_1 - data.höhe_2}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {(data.length_1 - data.length_2) *
+                    (data.höhe_1 - data.höhe_2) *
+                    data.depth}{' '}
+                  [cm³]
+                </>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>
+                  V<sub>groß</sub>
+                </>,
+                <>=</>,
+                <>a · b · c</>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {data.length_1} · {data.depth} · {data.höhe_2}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>{data.length_1 * data.depth * data.höhe_2} [cm³]</>,
+              ],
+            ])}
+            <p>Das gesamte Volumen beträgt damit: </p>
+            <p>
+              V<sub>gesamt</sub> ={' '}
+              {(data.length_1 - data.length_2) *
+                (data.höhe_1 - data.höhe_2) *
+                data.depth}{' '}
+              + {data.length_1 * data.depth * data.höhe_2} ={' '}
+              <strong>
+                {(data.length_1 - data.length_2) *
+                  (data.höhe_1 - data.höhe_2) *
+                  data.depth +
+                  data.length_1 * data.depth * data.höhe_2}{' '}
+                [cm³]
+              </strong>
+            </p>
+          </>
+        )
       },
     },
     {
-      points: 42,
+      points: 1,
+      duration: 1,
       intro({ data }) {
         return null
       },

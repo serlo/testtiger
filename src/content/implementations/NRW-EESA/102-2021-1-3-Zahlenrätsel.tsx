@@ -13,7 +13,7 @@ export const exercise102: Exercise<DATA> = {
   title: 'Zahlenrätsel',
   source: '2021 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 42,
+  duration: 3,
   generator(rng) {
     return {
       faktor: rng.randomIntBetween(2, 5),
@@ -40,7 +40,8 @@ export const exercise102: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 1,
       intro({ data }) {
         return null
       },
@@ -125,7 +126,8 @@ export const exercise102: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
+      duration: 2,
       intro({ data }) {
         return null
       },
