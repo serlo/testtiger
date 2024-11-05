@@ -195,8 +195,8 @@ export const exercise115: Exercise<DATA> = {
         return (
           <>
             <p>
-              Kann das oben abgebildete Dreieck mit den angegebenen Winkelmaßen
-              gezeichnet werden?
+              b) Kann das oben abgebildete Dreieck mit den angegebenen
+              Winkelmaßen gezeichnet werden?
             </p>{' '}
             <p>Entscheide und begründe deine Entscheidung.</p>
           </>

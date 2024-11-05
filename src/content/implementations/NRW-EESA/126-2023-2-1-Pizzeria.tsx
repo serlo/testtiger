@@ -480,7 +480,7 @@ export const exercise126: Exercise<DATA> = {
         return (
           <>
             <p>
-              Zeige durch eine Rechnung, dass der Flächeninhalt einer kleinen
+              d) Zeige durch eine Rechnung, dass der Flächeninhalt einer kleinen
               Pizza ungefähr{' '}
               {pp(Math.round(Math.PI * (data.dia / 2) * (data.dia / 2)))} cm²
               beträgt.

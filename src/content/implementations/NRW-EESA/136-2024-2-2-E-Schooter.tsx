@@ -57,7 +57,7 @@ export const exercise136: Exercise<DATA> = {
         return (
           <>
             <p>
-              Tom geht von einer durchschnittlichen Geschwindigkeit von{' '}
+              a) Tom geht von einer durchschnittlichen Geschwindigkeit von{' '}
               {data.pace} {buildInlineFrac('km', 'h')} aus. Bestätige durch eine
               Rechnung, dass Tom mit dem E-Scooter {time} Minuten bis zur Arbeit
               benötigt.

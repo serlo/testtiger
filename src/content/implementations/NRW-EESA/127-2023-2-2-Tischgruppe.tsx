@@ -245,7 +245,7 @@ export const exercise127: Exercise<DATA> = {
         const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
         return (
           <>
-            <p>Berechne den Flächeninhalt dieser Tischgruppe.</p>
+            <p>b) Berechne den Flächeninhalt dieser Tischgruppe.</p>
 
             <p>Gib das Ergebnis in Quadratmetern (m²) an.</p>
           </>
@@ -577,7 +577,7 @@ export const exercise127: Exercise<DATA> = {
         return (
           <>
             <p>
-              Mit welchen Formeln kann der Wert in Zelle D8 berechnet werden?
+              e) Mit welchen Formeln kann der Wert in Zelle D8 berechnet werden?
               Wähle aus.
             </p>
             <ul>{shuffledItems}</ul>

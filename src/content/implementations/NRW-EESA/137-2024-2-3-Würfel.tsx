@@ -632,7 +632,7 @@ export const exercise137: Exercise<DATA> = {
         return (
           <>
             <p>
-              Selma mischt die {data.case == 1 ? <>27</> : <>64</>} kleinen
+              f) Selma mischt die {data.case == 1 ? <>27</> : <>64</>} kleinen
               Würfel und nimmt ohne hinzusehen einen Würfel. Bestimme die
               Wahrscheinlichkeit, dass der Würfel genau zwei blaue Außenflächen
               hat.
