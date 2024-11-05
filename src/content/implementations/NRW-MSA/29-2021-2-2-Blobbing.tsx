@@ -797,7 +797,7 @@ export const exercise29: Exercise<DATA> = {
                 stroke="blue"
                 strokeWidth="3"
                 fill="none"
-                stroke-dasharray="5,5"
+                strokeDasharray="5,5"
               />
               <text
                 x={toX(0) - 5}
