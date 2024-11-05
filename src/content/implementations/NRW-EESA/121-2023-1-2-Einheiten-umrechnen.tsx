@@ -13,8 +13,8 @@ export const exercise121: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
   source: '2023 Teil 1 Aufgabe 2',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 3,
+  points: 3,
   generator(rng) {
     return {
       kilometers: rng.randomIntBetween(1, 100),

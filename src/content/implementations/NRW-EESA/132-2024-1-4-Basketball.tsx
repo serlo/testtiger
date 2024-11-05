@@ -12,8 +12,8 @@ export const exercise132: Exercise<DATA> = {
   title: 'Basketball',
   source: '2024 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 2,
+  points: 3,
   generator(rng) {
     return {
       ball: rng.randomIntBetween(40, 70),

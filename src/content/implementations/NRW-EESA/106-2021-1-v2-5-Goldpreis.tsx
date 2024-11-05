@@ -15,7 +15,7 @@ export const exercise106: Exercise<DATA> = {
   title: 'Goldpreis',
   source: '2021 Teil 1 Variante 2 Aufgabe 5',
   useCalculator: false,
-  duration: 42,
+  duration: 5,
   generator(rng) {
     return {
       preis: rng.randomIntBetween(4000, 5000) / 100,
@@ -40,7 +40,8 @@ export const exercise106: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 3,
+      duration: 3,
       intro({ data }) {
         return null
       },
@@ -495,7 +496,8 @@ export const exercise106: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },

@@ -14,8 +14,8 @@ export const exercise110: Exercise<DATA> = {
   title: 'Zahlen ordnen',
   source: '2022 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 2,
+  points: 3,
   generator(rng) {
     return {
       a: rng.randomIntBetween(-30, 30) / 10,

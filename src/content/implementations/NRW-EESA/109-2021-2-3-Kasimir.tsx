@@ -77,7 +77,8 @@ export const exercise109: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -139,7 +140,8 @@ export const exercise109: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
+      duration: 6,
       intro({ data }) {
         return (
           <>
@@ -205,7 +207,8 @@ export const exercise109: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 1,
       intro({ data }) {
         return <></>
       },
@@ -246,7 +249,8 @@ export const exercise109: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         const h = roundToDigits(
           Math.sqrt(data.a * data.a - (data.a * data.a) / 4),
@@ -340,7 +344,8 @@ export const exercise109: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return <></>
       },
@@ -414,7 +419,8 @@ export const exercise109: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 1,
+      duration: 1,
       intro({ data }) {
         return <></>
       },

@@ -94,7 +94,8 @@ export const exercise107: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 3,
+      duration: 3,
       intro({ data }) {
         return <></>
       },
@@ -125,7 +126,8 @@ export const exercise107: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return <></>
       },
@@ -212,7 +214,8 @@ export const exercise107: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
+      duration: 3,
       intro({ data }) {
         return (
           <>
@@ -360,7 +363,8 @@ export const exercise107: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 3,
       intro({ data }) {
         function toX(n: number) {
           return 20.5 + n * (287 / 20)
@@ -448,7 +452,8 @@ export const exercise107: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 1,
       intro({ data }) {
         return <></>
       },
@@ -506,7 +511,8 @@ export const exercise107: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return <></>
       },

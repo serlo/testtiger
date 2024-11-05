@@ -15,7 +15,7 @@ export const exercise105: Exercise<DATA> = {
   title: 'Würfelkörper',
   source: '2021 Teil 1 Variante 2 Aufgabe 4',
   useCalculator: false,
-  duration: 42,
+  duration: 4,
   generator(rng) {
     return {
       höhe_1: rng.randomIntBetween(8, 14),

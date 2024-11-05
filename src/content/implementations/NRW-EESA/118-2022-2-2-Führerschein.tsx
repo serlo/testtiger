@@ -200,7 +200,8 @@ export const exercise118: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 3,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -227,7 +228,7 @@ export const exercise118: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bereche, wie viel Geld Alina noch fehlt um die Gesamtkosten zu
+              Bereche, wie viel Geld Alina noch fehlt, um die Gesamtkosten zu
               bezahlen:
             </p>
             <p>
@@ -260,7 +261,8 @@ export const exercise118: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -287,7 +289,8 @@ export const exercise118: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -328,7 +331,8 @@ export const exercise118: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 1,
       intro({ data }) {
         return null
       },
@@ -368,7 +372,8 @@ export const exercise118: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -546,7 +551,8 @@ export const exercise118: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return (
           <>

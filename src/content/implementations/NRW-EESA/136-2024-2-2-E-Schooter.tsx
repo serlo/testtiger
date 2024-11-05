@@ -50,7 +50,8 @@ export const exercise136: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       task({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
@@ -119,7 +120,8 @@ export const exercise136: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       skillIntro({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
@@ -279,7 +281,8 @@ export const exercise136: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         const time = data.weg / (data.pace / 60)
         const tag = data.zeitkosten * time + data.fixkosten * 2
@@ -377,7 +380,8 @@ export const exercise136: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>
@@ -403,7 +407,8 @@ export const exercise136: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
+      duration: 6,
       intro({ data }) {
         return (
           <>
@@ -489,7 +494,8 @@ export const exercise136: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       task({ data }) {
         return (
           <>

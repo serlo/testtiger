@@ -11,8 +11,8 @@ export const exercise130: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
   source: '2024 Teil 1 Aufgabe 2',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 3,
+  points: 3,
   generator(rng) {
     return {
       m: rng.randomIntBetween(2, 8),

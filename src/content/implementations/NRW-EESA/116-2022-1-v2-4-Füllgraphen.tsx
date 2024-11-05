@@ -11,8 +11,8 @@ export const exercise116: Exercise<DATA> = {
   title: 'Füllgraphen',
   source: '2022 Teil 1 Variante 2 Aufgabe 4',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 2,
+  points: 3,
   generator(rng) {
     return {
       one: rng.randomIntBetween(1, 14),

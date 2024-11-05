@@ -21,7 +21,7 @@ export const exercise112: Exercise<DATA> = {
   title: 'Landtagswahl',
   source: '2022 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 42,
+  duration: 4,
   generator(rng) {
     return {
       stimmen: rng.randomIntBetween(8000000, 9000000),
@@ -267,7 +267,8 @@ export const exercise112: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -371,7 +372,8 @@ export const exercise112: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },

@@ -10,8 +10,8 @@ export const exercise123: Exercise<DATA> = {
   title: 'schriftlich addieren',
   source: '2023 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 3,
+  points: 3,
   generator(rng) {
     return {
       a: rng.randomIntBetween(2000, 3000) / 100,

@@ -13,7 +13,7 @@ export const exercise113: Exercise<DATA> = {
   title: 'Glücksrad',
   source: '2022 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 42,
+  duration: 7,
   generator(rng) {
     const array = Array.from({ length: 12 }, () =>
       Math.random() > 0.25 ? 0 : 1,
@@ -31,7 +31,8 @@ export const exercise113: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 1,
       intro({ data }) {
         // Anzahl der Sektoren
         const sectors = 12
@@ -168,7 +169,8 @@ export const exercise113: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 6,
       intro({ data }) {
         return null
       },
