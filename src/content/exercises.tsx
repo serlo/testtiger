@@ -90,6 +90,8 @@ import { exercise123 } from './implementations/NRW-EESA/123-2023-1-4-schriftlich
 import { exercise114 } from './implementations/NRW-EESA/114-2022-1-5-Schätzen'
 import { exercise113 } from './implementations/NRW-EESA/113-2022-1-4-Glücksrad'
 import { exercise112 } from './implementations/NRW-EESA/112-2022-1-3-Landtagswahl'
+import { exercise110 } from './implementations/NRW-EESA/110-2022-1-1-Zahlen-ordnen'
+import { exercise111 } from './implementations/NRW-EESA/111-2022-1-2-Quadrat'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -182,6 +184,8 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   114: exercise114,
   113: exercise113,
   112: exercise112,
+  110: exercise110,
+  111: exercise111,
 }
 
 // symbols:
