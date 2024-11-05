@@ -162,7 +162,7 @@ export const exercise24: Exercise<DATA> = {
                       4
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      Kapuzen- pullover
+                      Kapuzenpullover
                     </td>
                     <td className="py-1 border text-center font-bold p-1">
                       {pp(data.preis)}
@@ -338,7 +338,7 @@ export const exercise24: Exercise<DATA> = {
                       4
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      Kapuzen- pullover
+                      Kapuzenpullover
                     </td>
                     <td className="py-1 border text-center font-bold p-1">
                       {pp(data.preis)}
@@ -516,7 +516,7 @@ export const exercise24: Exercise<DATA> = {
               </strong>
             </p>
             <p>
-              <strong>Damit trifft die Aussage von Herr Meyer zu</strong>.
+              <strong>Damit trifft die Aussage von Herrn Meyer zu</strong>.
             </p>
           </>
         )

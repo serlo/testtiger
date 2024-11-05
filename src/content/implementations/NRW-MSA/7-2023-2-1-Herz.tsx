@@ -72,7 +72,7 @@ export const exercise7: Exercise<DATA> = {
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
-              Abbildung 1: Zeichnung des Herzes
+              Abbildung 1: Zeichnung des Herzens
             </span>
           </Color5>
         </center>
@@ -245,7 +245,7 @@ export const exercise7: Exercise<DATA> = {
               {pp(roundToDigits(A, 2))} cm² ≈ {pp(roundToDigits(A / 100, 2))}{' '}
               dm²
             </p>
-            <p>1 dm² des Metallsblechs wiegt {data.dichte} g:</p>
+            <p>1 dm² des Metallblechs wiegt {data.dichte} g:</p>
             {buildEquation([
               [<>1 dm³</>, '≙', <>{data.dichte} g</>],
               [
@@ -479,7 +479,7 @@ export const exercise7: Exercise<DATA> = {
               ],
             ])}
             <p>
-              Die Breite des Herzes beträgt{' '}
+              Die Breite des Herzens beträgt{' '}
               <strong>
                 {pp(
                   2 * (data.kante / 2) +

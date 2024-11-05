@@ -315,7 +315,7 @@ export const exercise15: Exercise<DATA> = {
         return (
           <>
             <p>
-              a) Entscheide mithilfe des Diagramms ob die Aussage zutrifft oder
+              a) Entscheide mithilfe des Diagramms, ob die Aussage zutrifft oder
               nicht.
             </p>
             <ol>
@@ -380,7 +380,8 @@ export const exercise15: Exercise<DATA> = {
                     </>
                   ) : (
                     <>
-                      Der Anteil der köperlich aktiven Frauen ist im Bereich der{' '}
+                      Der Anteil der körperlich aktiven Frauen ist im Bereich
+                      der{' '}
                     </>
                   )}
                   {data.maenner_4 < data.frauen_4 && (

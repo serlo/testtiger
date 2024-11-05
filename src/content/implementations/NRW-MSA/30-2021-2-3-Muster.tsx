@@ -290,7 +290,7 @@ export const exercise30: Exercise<DATA> = {
             <center>
               <Color5>
                 <span style={{ fontSize: 'small' }}>
-                  Abbildung 2: Muster bis Dreieck D<sub>3</sub>? zu Teilaufgabe
+                  Abbildung 2: Muster bis Dreieck D<sub>3</sub> zu Teilaufgabe
                   b) - d)
                 </span>
               </Color5>

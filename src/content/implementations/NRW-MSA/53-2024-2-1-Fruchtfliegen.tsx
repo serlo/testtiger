@@ -393,7 +393,7 @@ export const exercise53: Exercise<DATA> = {
           <>
             <p>
               d) Jasmin bewahrt die Zuchtbox B im kühleren Keller auf und stellt
-              fest, dass sich die Fruchfliegen dort langsamer vermehren als in
+              fest, dass sich die Fruchtfliegen dort langsamer vermehren als in
               ihrem warmen Zimmer. An Tag {data.days_2} sind es {data.fliegen}{' '}
               Fliegen.
               <br />

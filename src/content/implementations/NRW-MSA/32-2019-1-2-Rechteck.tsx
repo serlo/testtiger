@@ -257,7 +257,7 @@ export const exercise32: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Gesucht sind Zahlenpaare deren Produkt {data.r} ergibt.</p>
+            <p>Gesucht sind Zahlenpaare, deren Produkt {data.r} ergibt.</p>
             {data.r == 6 && (
               <>
                 <p>Zwei Möglichkeiten für die Seitenlängen sind:</p>

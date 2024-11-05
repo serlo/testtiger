@@ -119,7 +119,7 @@ export const exercise9: Exercise<DATA> = {
         return (
           <>
             <p>
-              b) Merle verwendet den Trick für aufwendigere Additionen. Damit
+              b) Merle verwendet den Trick für aufwändigere Additionen. Damit
               die Rechnungen übersichtlich bleiben, ersetzt sie fehlende
               Summanden durch Pünktchen. In Abbildung 3 ist Merles Berechnung
               für die Summe der Zahlen von 1 bis {data.task_3} dargestellt.

@@ -247,7 +247,7 @@ export const exercise50: Exercise<DATA> = {
                 <>
                   <Color4>
                     <span style={{ fontSize: 'small' }}>
-                      Kürzen soweit es geht
+                      Kürzen so weit es geht
                     </span>
                   </Color4>
                 </>,

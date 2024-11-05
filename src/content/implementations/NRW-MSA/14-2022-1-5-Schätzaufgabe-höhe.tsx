@@ -59,7 +59,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 1 &&
           getImageAndDescription(
             '/content/NRW_MSA/NRW_MSA_2022_v1_5_1_sol.png',
-            'Der Durchmesser beträgt etwa vier mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
+            'Der Durchmesser beträgt etwa viermal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
         {data.task === 1 && (
           <>
@@ -73,7 +73,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 2 &&
           getImageAndDescription(
             '/content/NRW_MSA/NRW_MSA_2022_v1_5_2_sol.PNG',
-            'Die Höhe des Gebäudes entspricht etwa 6,5 mal die Höhe der Figur. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
+            'Die Höhe des Gebäudes entspricht etwa 6,5-mal die Höhe der Figur. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
         {data.task === 2 && (
           <>
@@ -87,7 +87,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 3 &&
           getImageAndDescription(
             '/content/NRW_MSA/NRW_MSA_2022_v1_5_3_sol.PNG',
-            'Die Höhe der Kirche entspricht etwa 13 mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
+            'Die Höhe der Kirche entspricht etwa 13-mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
         {data.task === 3 && (
           <>
@@ -102,7 +102,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 4 &&
           getImageAndDescription(
             '/content/NRW_MSA/NRW_MSA_2022_v1_5_4_sol.PNG',
-            'Die Höhe des Leuchtturms entspricht etwa 12 mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
+            'Die Höhe des Leuchtturms entspricht etwa 12-mal die Höhe des Mannes. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
         {data.task === 4 && (
           <>
@@ -116,7 +116,7 @@ export const exercise14: Exercise<DATA> = {
         {data.task === 5 &&
           getImageAndDescription(
             '/content/NRW_MSA/NRW_MSA_2022_v1_5_5_sol.PNG',
-            'Die Höhe des Baumes entspricht etwa 5,25 mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
+            'Die Höhe des Baumes entspricht etwa 5,25-mal die Höhe der Frau. Das kann zum Beispiel bestimmt werden, indem mit dem Lineal grob die Maße verglichen werden.',
           )}
         {data.task === 5 && (
           <>

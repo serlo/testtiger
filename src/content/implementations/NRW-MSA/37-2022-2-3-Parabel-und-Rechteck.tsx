@@ -163,7 +163,7 @@ export const exercise37: Exercise<DATA> = {
           <>
             <p>
               Setze die Werte für x und f(x) in die Funktionsgleichung ein und
-              überprüfe ob die Gleichung erfüllt ist:
+              überprüfe, ob die Gleichung erfüllt ist:
             </p>
             {buildEquation([
               [
