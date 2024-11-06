@@ -500,7 +500,9 @@ export const exercise53: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        const q =
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100
+
         const lös1 = Math.round(20 * Math.pow(q, 7))
         const lös2 = Math.round(20 * Math.pow(q, 14))
         return (
@@ -550,7 +552,9 @@ export const exercise53: Exercise<DATA> = {
       points: 3,
       duration: 3,
       task({ data }) {
-        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        const q =
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100
+
         function toX(n: number) {
           return 144.5 + n * 9.575
         }
@@ -661,7 +665,9 @@ export const exercise53: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        const q =
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100
+
         return (
           <>
             <ol>
@@ -695,7 +701,9 @@ export const exercise53: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        const q =
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100
+
         const tag = Math.log(2) / Math.log(data.prozent / q)
         return (
           <>
