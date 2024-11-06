@@ -547,8 +547,8 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 2,
-      duration: 2,
+      points: 3,
+      duration: 3,
       task({ data }) {
         const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
         function toX(n: number) {
@@ -681,8 +681,8 @@ export const exercise53: Exercise<DATA> = {
       },
     },
     {
-      points: 3,
-      duration: 3,
+      points: 2,
+      duration: 1,
       task({ data }) {
         return (
           <>
