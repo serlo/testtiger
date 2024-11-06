@@ -35,7 +35,9 @@ export const exercise53: Exercise<DATA> = {
     days_2: 11,
   },
   constraint({ data }) {
-    return data.prozent != 1.7 && data.prozent != 1.1
+    const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+    const tag = Math.log(2) / Math.log(data.prozent / q)
+    return data.prozent != 1.7 && data.prozent != 1.1 && tag < 7
   },
   intro({ data }) {
     const day1 = Math.round(10 * data.prozent)
@@ -539,6 +541,176 @@ export const exercise53: Exercise<DATA> = {
                   {lös2 - lös1} {'>'} 2 · {lös1 - 20} = {2 * (lös1 - 20)}
                 </>
               )}
+            </p>
+          </>
+        )
+      },
+    },
+    {
+      points: 2,
+      duration: 2,
+      task({ data }) {
+        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        function toX(n: number) {
+          return 144.5 + n * 9.575
+        }
+        function toY(n: number) {
+          return 468 - n * 9.575
+        }
+        function Points1(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 20; x += step) {
+            const y = 10 * Math.pow(data.prozent, x)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        function Points2(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 55; x += step) {
+            const y = 20 * Math.pow(q, x)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const plotPoints1 = Points1(0.1)
+        const plotPoints2 = Points2(0.1)
+
+        return (
+          <>
+            <p>In Abbildung 3 sind die Graphen A und B dargestellt.</p>
+            <svg viewBox="0 0 480 500">
+              <image
+                href="/content/NRW_MSA/NRW_MSA_Fruchtfliegen_KS.PNG"
+                height="500"
+                width="480"
+              />
+
+              <text
+                x={toX(1)}
+                y={toY(17)}
+                fontSize="20"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="blue"
+              >
+                A
+              </text>
+              <text
+                x={toX(1)}
+                y={toY(27)}
+                fontSize="20"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="orange"
+              >
+                B
+              </text>
+              <text
+                x="60"
+                y="40"
+                fontSize="15"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Fruchtfliegen
+              </text>
+              <text
+                x="370"
+                y="490"
+                fontSize="15"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                x in Tagen
+              </text>
+              <polyline
+                points={plotPoints1}
+                stroke="blue"
+                strokeWidth="2"
+                fill="none"
+              />
+              <polyline
+                points={plotPoints2}
+                stroke="orange"
+                strokeWidth="2"
+                fill="none"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Graphen A und B
+                </span>
+              </Color5>
+            </center>
+            <p>f) Begründe, dass</p>
+            <ol>
+              <li>
+                die Funktion f mit f(x) = 10 ⋅ {pp(data.prozent)}
+                <sup>x</sup> durch Graph A dargestellt wird und
+              </li>
+              <li>
+                die Funktion g mit g(x) = 20 ⋅ {pp(q)}
+                <sup>x</sup> durch Graph B dargestellt wird.
+              </li>
+            </ol>
+          </>
+        )
+      },
+      solution({ data }) {
+        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        return (
+          <>
+            <ol>
+              <li>
+                Graph A hat bei x = 0 den Anfangswert 10, sowie die Funktion f.
+                Ein weiterer Funktionswert von f ist f(1)={10 * data.prozent}{' '}
+                und stimmt mit Graph A überein.
+              </li>
+              <li>
+                Graph B hat bei x = 0 den Anfangswert 20, sowie die Funktion g.
+                Ein weiterer Funktionswert von g ist g(1)={pp(20 * q)} und
+                stimmt mit Graph B überein.
+              </li>
+            </ol>
+          </>
+        )
+      },
+    },
+    {
+      points: 3,
+      duration: 3,
+      task({ data }) {
+        return (
+          <>
+            <p>
+              g) Bestimme mithilfe von Abbildung 3 den Tag, an dem die
+              Zuchtboxen A und B etwa gleich viele Fruchtfliegen enthalten und
+              gib die Anzahl an.
+            </p>
+          </>
+        )
+      },
+      solution({ data }) {
+        const q = Math.round(Math.pow(data.fliegen / 20, 1 / 11) * 100) / 100
+        const tag = Math.log(2) / Math.log(data.prozent / q)
+        return (
+          <>
+            <p>
+              Die Graphen schneiden sich etwa bei <br></br>x ={' '}
+              {pp(Math.round(tag / 0.5) * 0.5)}. In den Zuchtboxen befinden sich
+              also nach <strong>{pp(Math.round(tag / 0.5) * 0.5)} Tagen</strong>{' '}
+              gleich viele Fruchtfliegen.
+            </p>
+            <p>
+              An der y-Achse im Koordinatensystem kann die Anzahl der
+              Fruchtfliegen abgelesen werden:{' '}
+              <strong>
+                {Math.round(10 * Math.pow(data.prozent, tag))} Fliegen
+              </strong>
             </p>
           </>
         )
