@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { pp } from '@/helper/pretty-print'
+import { pp, ppPolynom } from '@/helper/pretty-print'
 
 interface DATA {
   x_s: number
@@ -7,6 +7,7 @@ interface DATA {
   a: number
   correct_random: number
   sign: string
+  order: Array<number>
 }
 
 export const exercise4: Exercise<DATA> = {
@@ -22,6 +23,7 @@ export const exercise4: Exercise<DATA> = {
       a: rng.randomItemFromArray([1, 1, -1]),
       correct_random: rng.randomIntBetween(1, 3),
       sign: rng.randomItemFromArray([' ', '−']),
+      order: rng.shuffleArray([0, 1, 2]),
     }
   },
   originalData: {
@@ -30,6 +32,7 @@ export const exercise4: Exercise<DATA> = {
     a: 1,
     correct_random: 3,
     sign: ' ',
+    order: [0, 1, 2],
   },
   constraint({ data }) {
     return data.x_s != 0 && data.y_s != 0
@@ -83,40 +86,51 @@ export const exercise4: Exercise<DATA> = {
       points: 1,
       duration: 1,
       task({ data }) {
+        const options = [
+          <>
+            f(x) = {data.a == -1 && '−'}(x {pp(-data.x_s, 'merge_op')}
+            )²{pp(data.y_s, 'merge_op')}
+          </>,
+          <>
+            f(x) = {data.a == 1 && '−'}(x {pp(data.x_s, 'merge_op')}
+            )²{pp(data.y_s, 'merge_op')}
+          </>,
+          <>
+            f(x) = {data.a == -1 && '−'}(x {pp(-data.x_s, 'merge_op')}
+            )²{pp(-data.y_s, 'merge_op')}
+          </>,
+        ]
+        const options_shuffled = data.order.map(i => options[i])
         return (
           <>
             <p>
               a) Wähle, welche der angegebenen Funktionsgleichungen zu dem
               Graphen von f passt.
             </p>
+
             <ul>
-              <li>
-                f(x) = {data.correct_random == 1 && data.a == 1 ? '' : '−'}(x{' '}
-                {data.correct_random == 1 && data.x_s > 0 ? '−' : '+'}{' '}
-                {Math.abs(data.x_s)})<sup>2</sup>{' '}
-                {data.correct_random == 1 && data.y_s > 0 ? '+' : '+'}
-                {Math.abs(data.y_s)}
-              </li>
-              <li>
-                f(x) = {data.correct_random == 2 && data.a == 1 ? '' : '−'}(x{' '}
-                {data.correct_random == 2 && data.x_s > 0 ? '−' : '+'}{' '}
-                {Math.abs(data.x_s)})
-                <sup>{data.correct_random == 2 ? '2' : 2}</sup>{' '}
-                {data.correct_random == 2 && data.y_s > 0 ? '+' : '−'}
-                {Math.abs(data.y_s)}
-              </li>
-              <li>
-                f(x) = {data.correct_random == 3 && data.a == 1 ? '' : ' '}(x{' '}
-                {data.correct_random == 3 && data.x_s > 0 ? '−' : '+'}{' '}
-                {Math.abs(data.x_s)})<sup>2</sup>{' '}
-                {data.correct_random == 3 && data.y_s > 0 ? '+' : '−'}
-                {Math.abs(data.y_s)}
-              </li>
+              <li>{options_shuffled[0]}</li>
+              <li>{options_shuffled[1]}</li>
+              <li>{options_shuffled[2]}</li>
             </ul>
           </>
         )
       },
       solution({ data }) {
+        const options = [
+          <>
+            f(x) = {data.a == -1 && '−'}(x {pp(-data.x_s, 'merge_op')}
+            )²{pp(data.y_s, 'merge_op')}
+          </>,
+          <>
+            f(x) = {data.a == 1 && '−'}(x {pp(data.x_s, 'merge_op')}
+            )²{pp(data.y_s, 'merge_op')}
+          </>,
+          <>
+            f(x) = {data.a == -1 && '−'}(x {pp(-data.x_s, 'merge_op')}
+            )²{pp(-data.y_s, 'merge_op')}
+          </>,
+        ]
         return (
           <>
             <ul>
@@ -133,10 +147,7 @@ export const exercise4: Exercise<DATA> = {
 
             <p>
               Zusammengesetzt lautet der richtige Funktionsterm: <br></br>
-              <strong>
-                f(x) = {data.a == 1 ? '' : '−'} (x {pp(-data.x_s, 'merge_op')})
-                <sup>2</sup> {pp(data.y_s, 'merge_op')}
-              </strong>
+              <strong>{options[0]}</strong>
             </p>
             <p>
               Achte darauf, dass die x-Koordinate des Scheitelpunkts mit
