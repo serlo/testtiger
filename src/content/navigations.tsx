@@ -477,7 +477,7 @@ export const navigationData: { [key: number]: Navigation } = {
             name: 'Wertetabellen',
             skillExercises: [
               {
-                id: 11,
+                id: 17,
                 pages: [{ index: 'a', intro: ['global'] }],
               },
               {
