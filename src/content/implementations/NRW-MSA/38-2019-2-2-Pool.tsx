@@ -458,7 +458,7 @@ export const exercise38: Exercise<DATA> = {
                   <strong>
                     {pp(
                       roundToDigits(
-                        (data.surface / 20) *
+                        roundToDigits(data.surface / 20, 2) *
                           Math.pow(data.growth / 100 + 1, data.day),
                         2,
                       ),
