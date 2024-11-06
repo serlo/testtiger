@@ -11,7 +11,7 @@ interface DATA {
 export const exercise111: Exercise<DATA> = {
   title: 'Quadrat',
   source: '2022 Teil 1 Aufgabe 2',
-  useCalculator: false,
+  useCalculator: true,
   duration: 4,
   generator(rng) {
     return { seite: rng.randomIntBetween(2, 9) }

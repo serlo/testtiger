@@ -14,7 +14,7 @@ interface DATA {
 export const exercise104: Exercise<DATA> = {
   title: 'Verkehrsmittel',
   source: '2024 Teil 1 Aufgabe 5',
-  useCalculator: false,
+  useCalculator: true,
   duration: 9,
   generator(rng) {
     return {

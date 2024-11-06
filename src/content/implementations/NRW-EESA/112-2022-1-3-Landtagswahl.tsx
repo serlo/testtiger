@@ -20,7 +20,7 @@ interface DATA {
 export const exercise112: Exercise<DATA> = {
   title: 'Landtagswahl',
   source: '2022 Teil 1 Aufgabe 3',
-  useCalculator: false,
+  useCalculator: true,
   duration: 4,
   generator(rng) {
     return {
