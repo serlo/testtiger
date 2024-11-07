@@ -805,12 +805,13 @@ export const navigationData: { [key: number]: Navigation } = {
             skillExercises: [
               { id: 102, pages: [{ index: 'a', intro: ['global'] }] },
               { id: 109, pages: [{ index: 'd', intro: ['skill'] }] },
-              { id: 102, pages: [{ index: 'b', intro: ['global'] }] },
             ],
           },
           {
             name: 'lineare Gleichungen',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 102, pages: [{ index: 'b', intro: ['global'] }] },
+            ],
           },
         ],
       },
@@ -821,39 +822,120 @@ export const navigationData: { [key: number]: Navigation } = {
         skillGroups: [
           {
             name: 'Oberfläche und Volumen - Grundlage',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              {
+                id: 117,
+                pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+              },
+              {
+                id: 122,
+              },
+              {
+                id: 137,
+                pages: [{ index: 'a', intro: ['global'] }],
+              },
+              {
+                id: 105,
+                pages: [{ index: 'a' }],
+              },
+              {
+                id: 105,
+                pages: [{ index: 'b' }],
+              },
+              {
+                id: 137,
+                pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+              },
+            ],
           },
           {
             name: 'Oberfläche und Volumen - fortgeschritten',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 109, pages: [{ index: 'e', intro: ['skill'] }] },
+              { id: 137, pages: [{ index: 'd', intro: ['global'] }] },
+            ],
           },
           {
             name: 'Einfluss von Parameteränderungen',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 126, pages: [{ index: 'e', intro: ['skill'] }] },
+            ],
           },
           {
             name: 'geometrische Sätze',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 115, pages: [{ index: 'b' }] },
+              { id: 111, pages: [{ index: 'b', intro: ['skill'] }] },
+              { id: 108, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 127, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 135, pages: [{ index: 'b', intro: ['global'] }] },
+            ],
           },
           {
             name: 'Fläche und Umfang',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 111 },
+              { id: 117, pages: [{ index: 'e', intro: ['skill'] }] },
+              {
+                id: 109,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'c', intro: ['skill'] },
+                ],
+              },
+              {
+                id: 108,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+              {
+                id: 108,
+                pages: [{ index: 'd', intro: ['global', 'skill'] }],
+              },
+              { id: 127, pages: [{ index: 'b' }] },
+              {
+                id: 108,
+                pages: [{ index: 'c', intro: ['skill'] }],
+              },
+              {
+                id: 126,
+                pages: [{ index: 'd', intro: ['skill'] }],
+              },
+              {
+                id: 119,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+            ],
           },
           {
             name: 'Figuren zeichnen',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 109, pages: [{ index: 'b', intro: ['global'] }] },
+              { id: 127, pages: [{ index: 'c', intro: ['global', 'skill'] }] },
+              { id: 135, pages: [{ index: 'd', intro: ['global'] }] },
+              { id: 115, pages: [{ index: 'a' }] },
+            ],
           },
           {
             name: 'Maßstab',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 107, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 117, pages: [{ index: 'd', intro: ['skill'] }] },
+            ],
           },
           {
             name: 'Mit Längen argumentieren',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 117, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 119, pages: [{ index: 'd' }] },
+              { id: 135, pages: [{ index: 'c', intro: ['global', 'skill'] }] },
+            ],
           },
           {
             name: 'Körpernetz & Symmetrie',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 109, pages: [{ index: 'f', intro: ['skill'] }] },
+              { id: 135, pages: [{ index: 'a', intro: ['global'] }] },
+            ],
           },
         ],
       },

@@ -466,6 +466,62 @@ export const exercise126: Exercise<DATA> = {
     {
       points: 3,
       duration: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Mehmet und Sina gehen zur Neueröffnung einer Pizzeria.</p>
+            <div
+              className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto "
+              style={{
+                transform: 'scale(1)',
+                transformOrigin: 'top left',
+              }}
+            >
+              <table className="table-auto rounded-lg shadow-md w-full text-left text-[9px] ">
+                <thead
+                  className="uppercase bg-[#D2ECF6] text-[#404040]"
+                  style={{ backgroundColor: '#D2ECF6', color: '#404040' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]"></td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      kleine Pizza <br></br>Durchmesser {data.dia} cm
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      große Pizza <br></br>Durchmesser {2 * data.dia} cm
+                    </td>
+                  </tr>
+                </thead>
+                <tbody
+                  className="bg-white text-gray-500"
+                  style={{ backgroundColor: '#FFFFFF', color: '#6b7280' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 text-black ">
+                      Preis der Pizza
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      {pp(data.small)} €
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1  text-black">
+                      {pp(2 * data.small)} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Preis der Pizza <br></br>mit 60 % Rabatt
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1  text-black"></td>
+                    <td className="py-1 border text-center font-bold p-1  text-black">
+                      {pp(2 * data.small * 0.4)} €
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>
@@ -534,8 +590,60 @@ export const exercise126: Exercise<DATA> = {
     {
       points: 3,
       duration: 2,
-      intro({ data }) {
-        return null
+      skillIntro({ data }) {
+        return (
+          <>
+            <div
+              className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto "
+              style={{
+                transform: 'scale(1)',
+                transformOrigin: 'top left',
+              }}
+            >
+              <table className="table-auto rounded-lg shadow-md w-full text-left text-[9px] ">
+                <thead
+                  className="uppercase bg-[#D2ECF6] text-[#404040]"
+                  style={{ backgroundColor: '#D2ECF6', color: '#404040' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]"></td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      kleine Pizza <br></br>Durchmesser {data.dia} cm
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      große Pizza <br></br>Durchmesser {2 * data.dia} cm
+                    </td>
+                  </tr>
+                </thead>
+                <tbody
+                  className="bg-white text-gray-500"
+                  style={{ backgroundColor: '#FFFFFF', color: '#6b7280' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 text-black ">
+                      Preis der Pizza
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      {pp(data.small)} €
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1  text-black">
+                      {pp(2 * data.small)} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      Preis der Pizza <br></br>mit 60 % Rabatt
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1  text-black"></td>
+                    <td className="py-1 border text-center font-bold p-1  text-black">
+                      {pp(2 * data.small * 0.4)} €
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </>
+        )
       },
       task({ data }) {
         return (

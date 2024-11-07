@@ -292,6 +292,53 @@ export const exercise127: Exercise<DATA> = {
     {
       points: 3,
       duration: 5,
+      skillIntro({ data }) {
+        const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
+        return (
+          <>
+            <p>
+              Vier dreieckige Tische können zu einer quadratischen Tischgruppe
+              zusammengestellt werden (Abbildung 2).
+            </p>
+            <svg viewBox="0 0 328 250">
+              <image
+                href="/content/NRW_EESA/127_Tischgruppe2.PNG"
+                height="250"
+                width="328"
+              />
+              <text
+                x="122"
+                y="190"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+                transform="rotate(-45, 122, 190)"
+              >
+                {data.kathete} cm
+              </text>
+              <text
+                x="205"
+                y="190"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+                transform="rotate(45, 205, 190)"
+              >
+                {data.kathete} cm
+              </text>
+              <text
+                x="164"
+                y="235"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+              >
+                {hypo} cm
+              </text>
+            </svg>
+          </>
+        )
+      },
       intro({ data }) {
         return null
       },

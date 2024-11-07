@@ -270,6 +270,13 @@ export const exercise108: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>Maria und Leon bauen ein quadratisches Blumenbeet.</p>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>
@@ -371,8 +378,36 @@ export const exercise108: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
-      intro({ data }) {
-        return null
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Maria und Leon erweitern das quadratische Beet um einen Kreis. Der
+              Kreis verläuft durch die vier Eckpunkte des Quadrats. Die
+              Kreislinie gestalten sie mit einem Metallband. Die Flächen
+              zwischen Quadrat und Kreislinie sollen mit Kieselsteinen bedeckt
+              werden (Abbildung 2).
+            </p>
+            <svg viewBox="0 0 328 250">
+              <image
+                href="/content/NRW_EESA/108_Blumenbeet2.PNG"
+                width="328"
+                height="250"
+              />
+              <text
+                x={110}
+                y={180}
+                fontSize={15}
+                textAnchor="right"
+                stroke="black"
+                transform="rotate(-45, 100, 150)"
+              >
+                ca. {roundToDigits(Math.sqrt(2 * data.breite * data.breite), 0)}{' '}
+                cm
+              </text>
+            </svg>
+          </>
+        )
       },
       task({ data }) {
         return (

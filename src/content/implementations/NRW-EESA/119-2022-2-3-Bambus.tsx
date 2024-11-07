@@ -347,6 +347,30 @@ export const exercise119: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Herr Paulsen möchte einen Zaun aus Bambusrohren bauen (Abbildung
+              2).
+            </p>
+            <svg viewBox="0 0 328 160">
+              <image
+                href="/content/NRW_EESA/119_Bambus2.PNG"
+                height="160"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Zaun aus Bambusrohren
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>

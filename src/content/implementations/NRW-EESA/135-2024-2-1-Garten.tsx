@@ -472,8 +472,21 @@ export const exercise135: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
-      intro({ data }) {
-        return null
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Die Seiten des inneren Quadrats haben eine Länge von{' '}
+              {pp(
+                roundToDigits(
+                  Math.sqrt(2 * (data.breite / 2) * (data.breite / 2)),
+                  1,
+                ),
+              )}{' '}
+              m.
+            </p>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -664,7 +677,7 @@ export const exercise135: Exercise<DATA> = {
               </text>
               <text
                 x={164}
-                y={353}
+                y={343}
                 fontSize={15}
                 textAnchor="middle"
                 stroke="#007EC1"

@@ -209,8 +209,30 @@ export const exercise109: Exercise<DATA> = {
     {
       points: 2,
       duration: 1,
-      intro({ data }) {
-        return <></>
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Kasimir markiert auf jeder Dreiecksseite den Mittelpunkt. Die
+              Mittelpunkte verbindet er. Es entstehen vier gleiche kleine
+              Dreiecke (Abbildung 2).
+            </p>
+            <svg viewBox="0 0 328 140">
+              <image
+                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                height="140"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Einteilung des Dreiecks
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
       },
       task({ data }) {
         const h = roundToDigits(
@@ -363,8 +385,49 @@ export const exercise109: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
-      intro({ data }) {
-        return <></>
+      skillIntro({ data }) {
+        const h = roundToDigits(
+          Math.sqrt(data.a * data.a - (data.a * data.a) / 4),
+          1,
+        )
+        const surface = (h * data.a) / 2
+        return (
+          <>
+            <p>
+              Die Kantenlänge eines Tetraeders beträgt {pp(data.a / 2)} cm. Der
+              Flächeninhalt der Grundfläche beträgt ca.{' '}
+              {pp(roundToDigits(surface / 4, 1))} cm².
+            </p>
+            <svg viewBox="0 0 328 180">
+              <image
+                href="/content/NRW_EESA/109_Kasimir3.PNG"
+                height="180"
+                width="328"
+              />
+              <text
+                x="205"
+                y="160"
+                fontSize="15"
+                textAnchor="middle"
+                fill="black"
+                transform="rotate(-25, 205, 160)"
+              >
+                b = {pp(data.a / 2)} cm
+              </text>
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Tetraeder
+                </span>
+              </Color5>
+            </center>
+            <p>
+              Die Körperhöhe h<sub>K​</sub> des Tetraeders beträgt:{' '}
+              {pp(roundToDigits((Math.sqrt(6) / 3) * (data.a / 2), 1))} cm
+            </p>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -438,8 +501,25 @@ export const exercise109: Exercise<DATA> = {
     {
       points: 1,
       duration: 1,
-      intro({ data }) {
-        return <></>
+      skillIntro({ data }) {
+        return (
+          <>
+            <svg viewBox="0 0 328 140">
+              <image
+                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                height="140"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: Netz eines Tetraeders
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
       },
       task({ data }) {
         const listItems = [

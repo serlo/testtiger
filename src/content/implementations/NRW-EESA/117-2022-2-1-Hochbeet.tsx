@@ -279,6 +279,16 @@ export const exercise117: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Emma und Pierre bauen ein Hochbeet mit der Länge{' '}
+              {5 * ((data.breite - 2) / 2)} cm und Breite {data.breite} cm.
+            </p>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>
@@ -432,8 +442,45 @@ export const exercise117: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
-      intro({ data }) {
-        return null
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Emma und Pierre bepflanzen das neue Hochbeet mit Salat (Abbildung
+              2). Jeder Salat benötigt eine kreisförmige Fläche mit einem
+              Durchmesser von {(data.breite - 2) / 2} cm.
+            </p>
+
+            <svg viewBox="0 0 400 200">
+              <image
+                href="/content/NRW_EESA/117_Hochbeet2.PNG"
+                height="200"
+                width="400"
+              />
+
+              <text
+                x="136"
+                y="75"
+                fontSize="13"
+                textAnchor="middle"
+                fill="black"
+              >
+                {(data.breite - 2) / 2} cm
+              </text>
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 2: maßstabsgetreue Skizze zum Bepflanzen des
+                  Hochbeets
+                </span>
+              </Color5>
+            </center>
+            <p>
+              Das Hochbeet hat eine Länge von {((data.breite - 2) / 2) * 5} cm.
+            </p>
+          </>
+        )
       },
       task({ data }) {
         return (
