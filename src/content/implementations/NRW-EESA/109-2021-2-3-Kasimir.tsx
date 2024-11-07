@@ -251,6 +251,23 @@ export const exercise109: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Kasimir zeichnet ein großes, gleichseitiges Dreieck. Er teilt
+              dieses in vier gleiche, kleine Dreiecke auf.
+            </p>
+            <svg viewBox="0 0 328 140">
+              <image
+                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                height="140"
+                width="328"
+              />
+            </svg>
+          </>
+        )
+      },
       intro({ data }) {
         const h = roundToDigits(
           Math.sqrt(data.a * data.a - (data.a * data.a) / 4),

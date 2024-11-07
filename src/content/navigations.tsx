@@ -802,7 +802,11 @@ export const navigationData: { [key: number]: Navigation } = {
         skillGroups: [
           {
             name: 'Umgang mit Formeln und Termen',
-            skillExercises: [{ id: 101 }],
+            skillExercises: [
+              { id: 102, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 109, pages: [{ index: 'd', intro: ['skill'] }] },
+              { id: 102, pages: [{ index: 'b', intro: ['global'] }] },
+            ],
           },
           {
             name: 'lineare Gleichungen',
