@@ -1,5 +1,7 @@
 import { Exercise } from '@/data/types'
+import { Color1 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
+import { buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -73,9 +75,10 @@ export const exercise120: Exercise<DATA> = {
     )
   },
   solution({ data }) {
-    const hauptnenner1 = (data.d * data.f) / getGcd(data.e, data.f)
+    const hauptnenner1 = (data.d * data.f) / getGcd(data.d, data.f)
     const hauptnenner2 = (data.i * 10) / getGcd(data.i, 10)
     const hauptnenner3 = (data.i * 100) / getGcd(data.i, 100)
+
     return (
       <>
         <p>
@@ -99,10 +102,33 @@ export const exercise120: Exercise<DATA> = {
           Nenner ist {hauptnenner1}:
         </p>
         <p>
-          {ppFrac([data.c, data.d])} ={' '}
-          {ppFrac([data.c * (hauptnenner1 / data.d), hauptnenner1])} und{' '}
-          {ppFrac([data.e, data.f])} ={' '}
-          {ppFrac([data.e * (hauptnenner1 / data.f), hauptnenner1])}
+          {data.d == 50 && (
+            <>
+              {buildInlineFrac(
+                <>
+                  {data.c} <Color1>· 2</Color1>
+                </>,
+                <>
+                  {data.d} <Color1>· 2</Color1>
+                </>,
+              )}
+            </>
+          )}{' '}
+          {data.d == 50 ? (
+            <>= {ppFrac([2 * data.c, 2 * data.d])}</>
+          ) : (
+            ppFrac([data.c, data.d])
+          )}{' '}
+          und{' '}
+          {buildInlineFrac(
+            <>
+              {data.e} <Color1>· {hauptnenner1 / data.f}</Color1>
+            </>,
+            <>
+              {data.f} <Color1>· {hauptnenner1 / data.f}</Color1>
+            </>,
+          )}{' '}
+          = {ppFrac([data.e * (hauptnenner1 / data.f), hauptnenner1])}
         </p>
         <p>
           Damit ist: {ppFrac([data.c, data.d])}{' '}
@@ -116,15 +142,54 @@ export const exercise120: Exercise<DATA> = {
         </p>
         <p>
           Wandle {ppFrac([data.h, data.i])} in eine Dezimalzahl um. Dafür
-          erweitere zunächst den Bruch:
-          {ppFrac([data.h, data.i])} = if (data.i == 2 or data.i == 5):
-          {ppFrac([data.h * (hauptnenner2 / data.i), hauptnenner2])}
-          else:
-          {ppFrac([data.h * (hauptnenner3 / data.i), hauptnenner3])}
+          erweitere zunächst den Bruch:<br></br>
+          {ppFrac([data.h, data.i])} ={' '}
+          {data.i == 8 && (
+            <>
+              {buildInlineFrac(
+                <>
+                  {data.h} <Color1>· 125</Color1>
+                </>,
+                <>
+                  {data.i} <Color1>· 125</Color1>
+                </>,
+              )}{' '}
+              = {ppFrac([data.h * 125, data.i * 125])}
+            </>
+          )}
+          {data.i == 4 && (
+            <>
+              {buildInlineFrac(
+                <>
+                  {data.h} <Color1>· 25</Color1>
+                </>,
+                <>
+                  {data.i} <Color1>· 25</Color1>
+                </>,
+              )}{' '}
+              = {ppFrac([data.h * 25, data.i * 25])}
+            </>
+          )}
+          {(data.i == 2 || data.i == 5) && (
+            <>
+              {buildInlineFrac(
+                <>
+                  {data.h} <Color1>· {10 / data.i}</Color1>
+                </>,
+                <>
+                  {data.i} <Color1>· {10 / data.i}</Color1>
+                </>,
+              )}{' '}
+              = {ppFrac([(data.h * 10) / data.i, (data.i * 10) / data.i])}
+            </>
+          )}
         </p>
         <p>
           Jetzt kannst du den Bruch als Dezimalzahl schreiben:{' '}
-          {ppFrac([data.h * (hauptnenner2 / data.i), hauptnenner2])} ={' '}
+          {data.i == 4 && ppFrac([data.h * 25, data.i * 25])}
+          {(data.i == 2 || data.i == 5) &&
+            ppFrac([(data.h * 10) / data.i, (data.i * 10) / data.i])}
+          {data.i == 8 && <>{ppFrac([data.h * 125, data.i * 125])}</>}={' '}
           {pp(data.h / data.i)}
         </p>
         <p>
