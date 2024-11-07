@@ -378,6 +378,115 @@ export const exercise107: Exercise<DATA> = {
               Melike und Robin wollen die Angebote miteinander vergleichen und
               erstellen dazu eine Grafik (Abbildung 3).
             </p>
+            <svg viewBox="0 0 328 230">
+              <image
+                href="/content/NRW_EESA/107_Roller-Tour3.PNG"
+                height="220"
+                width="328"
+              />
+              <line
+                x1={toX(0)}
+                y1={toY(data.grund_roller / 10) - 1}
+                x2={toX(data.free / 10)}
+                y2={toY(data.grund_roller / 10) - 1}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(data.free / 10)}
+                y1={toY(data.grund_roller / 10) - 1}
+                x2={toX(20)}
+                y2={
+                  toY(
+                    data.grund_roller / 10 +
+                      ((200 - data.free) * data.gebühr_roller) / 10,
+                  ) - 1
+                }
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(0)}
+                y1={toY(data.grund_easy / 10) - 1}
+                x2={toX(20)}
+                y2={
+                  toY(data.grund_easy / 10 + (200 * data.gebühr_easy) / 10) - 1
+                }
+                stroke="orange"
+                strokeWidth={2}
+              />
+              <text
+                x={270}
+                y={220}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Anzahl der Kilometer
+              </text>
+              <text
+                x={30}
+                y={10}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Kosten in €
+              </text>
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Vergleich der Angebote von {'"'}Easy Rent
+                  {'"'} und {'"'}Rollerverleih24{'"'}
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
+      },
+      task({ data }) {
+        return (
+          <>
+            <p>
+              d) Erkläre, warum der Graph zum Angebot von {'"'}Rollerverleih24
+              {'"'} im ersten Abschnitt waagerecht verläuft.
+            </p>
+          </>
+        )
+      },
+      solution({ data }) {
+        return (
+          <>
+            <p>
+              Bei {'"'}Rollerverleih24{'"'} sind die ersten {data.free}{' '}
+              Kilometer kostenlos. Damit verläuft der Graph auf der Höhe der
+              Grundkosten bis {data.free} km waagerecht. Erst danach wird eine
+              Gebühr für jeden gefahrenen Kilometer bezahlt, sodass der Graph
+              steigt.
+            </p>
+          </>
+        )
+      },
+    },
+    {
+      points: 2,
+      duration: 1,
+      skillIntro({ data }) {
+        function toX(n: number) {
+          return 20.5 + n * (287 / 20)
+        }
+        function toY(n: number) {
+          return 197 - n * (287 / 20)
+        }
+        return (
+          <>
+            <p>
+              Melike und Robin vergleichen zwei Angebote von Rollerverleihen und
+              erstellen dazu eine Grafik (Abbildung 3). Die Graphen stellen die
+              Kosten der Angebote {'"'}Easy Rent
+              {'"'} in orange und {'"'}Rollerverleih24{'"'} in blau dar.
+            </p>
             <svg viewBox="0 0 328 220">
               <image
                 href="/content/NRW_EESA/107_Roller-Tour3.PNG"
@@ -426,36 +535,6 @@ export const exercise107: Exercise<DATA> = {
             </center>
           </>
         )
-      },
-      task({ data }) {
-        return (
-          <>
-            <p>
-              d) Erkläre, warum der Graph zum Angebot von {'"'}Rollerverleih24
-              {'"'} im ersten Abschnitt waagerecht verläuft.
-            </p>
-          </>
-        )
-      },
-      solution({ data }) {
-        return (
-          <>
-            <p>
-              Bei {'"'}Rollerverleih24{'"'} sind die ersten {data.free}{' '}
-              Kilometer kostenlos. Damit verläuft der Graph auf der Höhe der
-              Grundkosten bis {data.free} km waagerecht. Erst danach wird eine
-              Gebühr für jeden gefahrenen Kilometer bezahlt, sodass der Graph
-              steigt.
-            </p>
-          </>
-        )
-      },
-    },
-    {
-      points: 2,
-      duration: 1,
-      intro({ data }) {
-        return <></>
       },
       task({ data }) {
         return (

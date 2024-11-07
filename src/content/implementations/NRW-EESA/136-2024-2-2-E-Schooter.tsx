@@ -328,8 +328,8 @@ export const exercise136: Exercise<DATA> = {
               <line
                 x1={toX(0)}
                 y1={toY(0)}
-                x2={toX(6)}
-                y2={toY(6)}
+                x2={toX(12)}
+                y2={toY(12)}
                 stroke="blue"
                 strokeWidth={2}
               />
@@ -382,6 +382,60 @@ export const exercise136: Exercise<DATA> = {
     {
       points: 2,
       duration: 2,
+      skillIntro({ data }) {
+        const time = data.weg / (data.pace / 60)
+        const tag = data.zeitkosten * time + data.fixkosten * 2
+        function toX(n: number) {
+          return 27 + n * 23.3
+        }
+        function toY(n: number) {
+          return 236 - (n * 23.3 * 30 * tag) / 100
+        }
+        return (
+          <>
+            <p>
+              Wenn Tom den E-Scooter jeden Tag nutzt, muss er mit Kosten von{' '}
+              {pp(30 * tag)} € pro Monat rechnen. Tom stellt für die Berechnung
+              der Gesamtkosten die Funktionsgleichung auf: y = {pp(30 * tag)} ·
+              x. Er zeichnet den dazugehörigen Graphen in das Koordinatensystem
+              (Abbildung 1).
+            </p>
+            <svg viewBox="0 0 328 260">
+              <image
+                href="/content/NRW_EESA/136_KS.png"
+                height="260"
+                width="328"
+              />
+              <text
+                x={30}
+                y={20}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Gesamtkosten in €
+              </text>
+              <text
+                x={230}
+                y={230}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Anzahl der Monate
+              </text>
+              <line
+                x1={toX(0)}
+                y1={toY(0)}
+                x2={toX(12)}
+                y2={toY(12)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+            </svg>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
@@ -409,6 +463,67 @@ export const exercise136: Exercise<DATA> = {
     {
       points: 3,
       duration: 6,
+      skillIntro({ data }) {
+        const time = data.weg / (data.pace / 60)
+        const tag = data.zeitkosten * time + data.fixkosten * 2
+        function toX(n: number) {
+          return 27 + n * 23.3
+        }
+        function toY(n: number) {
+          return 236 - (n * 23.3 * 30 * tag) / 100
+        }
+        return (
+          <>
+            <p>
+              Wenn Tom den E-Scooter jeden Tag nutzt, muss er mit Kosten von{' '}
+              {pp(30 * tag)} € pro Monat rechnen. Tom stellt für die Berechnung
+              der Gesamtkosten die Funktionsgleichung auf: y = {pp(30 * tag)} ·
+              x. Er zeichnet den dazugehörigen Graphen in das Koordinatensystem
+              (Abbildung 1).
+            </p>
+            <svg viewBox="0 0 328 260">
+              <image
+                href="/content/NRW_EESA/136_KS.png"
+                height="260"
+                width="328"
+              />
+              <text
+                x={30}
+                y={20}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Gesamtkosten in €
+              </text>
+              <text
+                x={230}
+                y={230}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Anzahl der Monate
+              </text>
+              <line
+                x1={toX(0)}
+                y1={toY(0)}
+                x2={toX(12)}
+                y2={toY(12)}
+                stroke="blue"
+                strokeWidth={2}
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Übersicht der Kostenberechnung
+                </span>
+              </Color5>
+            </center>
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>

@@ -944,8 +944,49 @@ export const navigationData: { [key: number]: Navigation } = {
         headerColor: 'success',
         twColor: 'bg-green-600',
         skillGroups: [
-          { name: 'Lineare Funktionen', skillExercises: [{ id: 101 }] },
-          { name: 'Graphen', skillExercises: [{ id: 101 }] },
+          {
+            name: 'Lineare Funktionen',
+            skillExercises: [
+              { id: 107, pages: [{ index: 'c', intro: ['global'] }] },
+              { id: 136, pages: [{ index: 'c', intro: ['global'] }] },
+              { id: 119, pages: [{ index: 'b', intro: ['global'] }] },
+              {
+                id: 136,
+                pages: [
+                  { index: 'e', intro: ['global', 'skill'] },
+                  { index: 'f' },
+                ],
+              },
+              { id: 119, pages: [{ index: 'c', intro: ['global', 'skill'] }] },
+            ],
+          },
+          {
+            name: 'Graphen',
+            skillExercises: [
+              {
+                id: 107,
+                pages: [
+                  { index: 'e', intro: ['global', 'skill'] },
+                  { index: 'f' },
+                ],
+              },
+              {
+                id: 128,
+                pages: [
+                  { index: 'd', intro: ['global'] },
+                  { index: 'e' },
+                  { index: 'f' },
+                ],
+              },
+              {
+                id: 136,
+                pages: [{ index: 'd', intro: ['skill'] }],
+              },
+              {
+                id: 116,
+              },
+            ],
+          },
         ],
       },
       {

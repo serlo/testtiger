@@ -212,8 +212,16 @@ export const exercise119: Exercise<DATA> = {
     {
       points: 2,
       duration: 3,
-      intro({ data }) {
-        return null
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Unter idealen Bedingungen kann das Wachstum der Bambuspflanze mit
+              der Gleichung y = {ppFrac(data.wachsen / 100)} ​x + {data.start}{' '}
+              beschrieben werden.
+            </p>
+          </>
+        )
       },
       task({ data }) {
         return (
