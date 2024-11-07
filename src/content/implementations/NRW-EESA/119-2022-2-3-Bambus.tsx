@@ -260,7 +260,12 @@ export const exercise119: Exercise<DATA> = {
                 </>,
                 <>
                   <strong>
-                    {pp((data.height - data.start) / (data.wachsen / 100))}
+                    {pp(
+                      roundToDigits(
+                        (data.height - data.start) / (data.wachsen / 100),
+                        2,
+                      ),
+                    )}
                   </strong>
                 </>,
               ],
@@ -268,7 +273,7 @@ export const exercise119: Exercise<DATA> = {
             <p>
               Nach etwa{' '}
               {Math.round((data.height - data.start) / (data.wachsen / 100))}{' '}
-              Tagen hat die Pflanze eine Höhe von {pp(data.height)} erreicht.
+              Tagen hat die Pflanze eine Höhe von {pp(data.height)} m erreicht.
             </p>
           </>
         )
@@ -571,7 +576,7 @@ export const exercise119: Exercise<DATA> = {
               ],
             ])}
             <br></br>
-            <strong>Gewicht bestimmen</strong>
+            <strong>Gewicht eines Rohrs bestimmen</strong>
             <p>Berechne das Gewicht eines Rohrs mit dem Dreisatz:</p>
             {buildEquation([
               [<>1 cm³</>, <>≙</>, <>{pp(data.dichte)} g</>],
@@ -668,7 +673,13 @@ export const exercise119: Exercise<DATA> = {
                   2,
                 ) / 1000,
               )}{' '}
-              kg. Insgesamt lädt Herr Paulsen ein Gewicht von<br></br>
+              kg.
+            </p>
+            <strong>Gewicht aller Rohre bestimmen</strong>
+            <p>
+              {' '}
+              Insgesamt lädt Herr Paulsen ein Gewicht von {data.rohre} Rohren
+              auf:
               <br></br>{' '}
               {pp(
                 roundToDigits(
@@ -701,7 +712,6 @@ export const exercise119: Exercise<DATA> = {
                 )}{' '}
                 [kg]
               </strong>{' '}
-              auf.
             </p>
             Das erlaubte Ladegewicht wird damit{' '}
             {roundToDigits(
