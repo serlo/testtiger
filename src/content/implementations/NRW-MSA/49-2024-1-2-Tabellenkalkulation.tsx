@@ -326,7 +326,10 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>Werden mehr Blumen verkauft,</p>
                 <ul>
-                  <li>steigt der Gesamtgewinn durch die Blumen (F2) und</li>{' '}
+                  <li>steigt die Anzahl der verkauften Blumen (B2),</li>
+                  <li>
+                    steigt der Gesamtgewinn durch die Blumen (F2) und
+                  </li>{' '}
                   <li>auch der Gesamtgewinn der Verkaufsaktion (F4).</li>
                 </ul>
               </>
