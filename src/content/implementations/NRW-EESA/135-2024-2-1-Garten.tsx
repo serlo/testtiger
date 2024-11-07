@@ -27,7 +27,7 @@ export const exercise135: Exercise<DATA> = {
     }
   },
   originalData: {
-    bildvariante: 1,
+    bildvariante: 4,
     breite: 8,
     radius: 2,
     buchsbaeume: 38,
@@ -238,7 +238,7 @@ export const exercise135: Exercise<DATA> = {
               {data.bildvariante == 3 &&
                 '4 Symmetrieachsen. Diese sind in der Abbildung rot eingezeichnet:'}
               {data.bildvariante == 4 &&
-                '1 Symmetrieachse. Diese ist in der Abbildung rot eingezeichnet:'}
+                '2 Symmetrieachsen. Diese ist in der Abbildung rot eingezeichnet:'}
               {data.bildvariante == 5 &&
                 '1 Symmetrieachse. Diese ist in der Abbildung rot eingezeichnet:'}
               {data.bildvariante == 6 &&
@@ -266,11 +266,25 @@ export const exercise135: Exercise<DATA> = {
               />
             )}
             {data.bildvariante == 4 && (
-              <img
-                src="/content/NRW_EESA/135_garten_v4_1sym_achsen.svg"
-                width={328}
-                alt=""
-              />
+              <>
+                {' '}
+                <svg viewBox="0 0 328 328">
+                  <image
+                    href="/content/NRW_EESA/135_garten_v4_1sym_achsen.svg"
+                    height="328"
+                    width="328"
+                  />
+
+                  <line
+                    x1="17"
+                    y1="2"
+                    x2="310"
+                    y2="295"
+                    stroke="red"
+                    strokeWidth="2.5"
+                  />
+                </svg>
+              </>
             )}
             {data.bildvariante == 5 && (
               <img
