@@ -481,8 +481,60 @@ export const exercise119: Exercise<DATA> = {
     {
       points: 2,
       duration: 3,
-      intro({ data }) {
-        return <></>
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Bambusrohre sind innen hohl, außen bestehen sie aus Holz
+              (Abbildung 3).
+            </p>
+            <svg viewBox="0 0 328 80">
+              <image
+                href="/content/NRW_EESA/119_Bambu3.PNG"
+                height="80"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Bambusrohr
+                </span>
+              </Color5>
+            </center>
+            <p>
+              Die Querschnittsfläche von einem Bambusrohr ist ein Kreisring
+              (Abbildung 4).
+            </p>
+            <svg viewBox="0 0 328 80">
+              <image
+                href="/content/NRW_EESA/119_Bambus4.PNG"
+                height="80"
+                width="328"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 4: Modell des Querschnitts eines Bambusrohrs
+                </span>
+              </Color5>
+            </center>
+            <p>
+              Die Fläche des Kreisrings beträgt<br></br>{' '}
+              {pp(
+                roundToDigits(
+                  Math.PI *
+                    ((data.dia / 2) * (data.dia / 2) -
+                      (data.dia / 2 - 1) * (data.dia / 2 - 1)),
+                  2,
+                ),
+              )}{' '}
+              cm².
+            </p>
+            <p></p>
+          </>
+        )
       },
       task({ data }) {
         return (

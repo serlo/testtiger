@@ -755,10 +755,130 @@ export const navigationData: { [key: number]: Navigation } = {
   2: {
     topics: [
       {
-        title: 'New Topic',
+        title: 'Grundlagen - Zahlen und Größen',
         headerColor: 'primary',
         twColor: 'bg-blue-300',
-        skillGroups: [{ name: 'Test-Skill', skillExercises: [{ id: 101 }] }],
+        skillGroups: [
+          {
+            name: 'Zahlen & Einheiten',
+            skillExercises: [
+              { id: 100 },
+              { id: 110 },
+              { id: 120 },
+              { id: 129 },
+              { id: 101 },
+              { id: 121 },
+              { id: 130 },
+            ],
+          },
+          { name: 'schriftliches Addieren', skillExercises: [{ id: 123 }] },
+          {
+            name: 'Proportionalität',
+            skillExercises: [
+              { id: 107, pages: [{ index: 'b', intro: ['global'] }] },
+              { id: 136, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 119, pages: [{ index: 'a', intro: ['global'] }] },
+              { id: 135, pages: [{ index: 'e', intro: ['global', 'skill'] }] },
+              { id: 136, pages: [{ index: 'b', intro: ['global', 'skill'] }] },
+              { id: 106, pages: [{ index: 'b' }] },
+              { id: 119, pages: [{ index: 'f', intro: ['skill'] }] },
+              { id: 106, pages: [{ index: 'a', intro: ['global'] }] },
+            ],
+          },
+          {
+            name: 'Schätzen & Überschlagen',
+            skillExercises: [{ id: 114 }, { id: 133 }],
+          },
+          {
+            name: 'Prozentrechnung',
+            skillExercises: [{ id: 126, pages: [{ index: 'c' }] }],
+          },
+        ],
+      },
+      {
+        title: 'Terme und Gleichungen',
+        headerColor: 'danger',
+        twColor: 'bg-red-500',
+        skillGroups: [
+          {
+            name: 'Umgang mit Formeln und Termen',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'lineare Gleichungen',
+            skillExercises: [{ id: 101 }],
+          },
+        ],
+      },
+      {
+        title: 'Körper und Figuren',
+        headerColor: 'warning',
+        twColor: 'bg-yellow-400',
+        skillGroups: [
+          {
+            name: 'Oberfläche und Volumen - Grundlage',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Oberfläche und Volumen - fortgeschritten',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Einfluss von Parameteränderungen',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'geometrische Sätze',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Fläche und Umfang',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Figuren zeichnen',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Maßstab',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Mit Längen argumentieren',
+            skillExercises: [{ id: 101 }],
+          },
+          {
+            name: 'Körpernetz & Symmetrie',
+            skillExercises: [{ id: 101 }],
+          },
+        ],
+      },
+      {
+        title: 'Funktionen und Graphen',
+        headerColor: 'success',
+        twColor: 'bg-green-600',
+        skillGroups: [
+          { name: 'Lineare Funktionen', skillExercises: [{ id: 101 }] },
+          { name: 'Graphen', skillExercises: [{ id: 101 }] },
+        ],
+      },
+      {
+        title: 'Zufall und Daten',
+        headerColor: 'tertiary',
+        twColor: 'bg-purple-600',
+        skillGroups: [
+          { name: 'Laplace Experimente', skillExercises: [{ id: 101 }] },
+          { name: 'Diagramme und Kenngrößen', skillExercises: [{ id: 101 }] },
+          { name: 'Tabellen', skillExercises: [{ id: 101 }] },
+        ],
+      },
+      {
+        title: 'Digitale Werkzeuge',
+        headerColor: 'medium',
+        twColor: 'bg-fuchsia-500',
+        skillGroups: [
+          { name: 'Tabellenkalkulation', skillExercises: [{ id: 101 }] },
+        ],
       },
     ],
   },

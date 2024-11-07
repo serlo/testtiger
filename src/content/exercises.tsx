@@ -191,7 +191,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 // symbols:
 
 // ℚ
-// ·
+// π ·
 // − ±
 // ×
 // α β γ δ

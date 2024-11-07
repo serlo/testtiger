@@ -721,8 +721,15 @@ export const exercise135: Exercise<DATA> = {
     {
       points: 3,
       duration: 3,
-      intro({ data }) {
-        return null
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Ausgehend vom Mittelpunkt des Gartens möchte Lisa ein
+              kreisförmiges Beet mit einem Radius von {data.radius} m anlegen.
+            </p>
+          </>
+        )
       },
       task({ data }) {
         return (
