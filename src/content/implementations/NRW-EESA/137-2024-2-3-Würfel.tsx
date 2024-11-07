@@ -370,6 +370,36 @@ export const exercise137: Exercise<DATA> = {
     {
       points: 2,
       duration: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Als nächstes baut Selma aus {data.case == 1 ? <>27</> : <>64</>}{' '}
+              kleinen Würfeln einen großen Würfel. Dieser hat eine Kantenlänge
+              von {data.kante * (2 + data.case)} cm. Die sechs Außenflächen des
+              großen Würfels lackiert Selma blau (Abbildung 3).
+            </p>
+
+            {data.case == 1 ? (
+              <svg viewBox="0 0 328 130">
+                <image
+                  href="/content/NRW_EESA/137_Würfel4.PNG"
+                  height="130"
+                  width="328"
+                />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 130">
+                <image
+                  href="/content/NRW_EESA/137_Würfel5.PNG"
+                  height="130"
+                  width="328"
+                />
+              </svg>
+            )}
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>
@@ -621,10 +651,154 @@ export const exercise137: Exercise<DATA> = {
     {
       points: 1,
       duration: 2,
-      intro({ data }) {
+      skillIntro({ data }) {
         return (
           <>
-            <p></p>
+            <p>
+              Als nächstes baut Selma aus {data.case == 1 ? <>27</> : <>64</>}{' '}
+              kleinen Würfeln einen großen Würfel. Dieser hat eine Kantenlänge
+              von {data.kante * (2 + data.case)} cm. Die sechs Außenflächen des
+              großen Würfels lackiert Selma blau (Abbildung 3).
+            </p>
+
+            {data.case == 1 ? (
+              <svg viewBox="0 0 328 130">
+                <image
+                  href="/content/NRW_EESA/137_Würfel4.PNG"
+                  height="130"
+                  width="328"
+                />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 130">
+                <image
+                  href="/content/NRW_EESA/137_Würfel5.PNG"
+                  height="130"
+                  width="328"
+                />
+              </svg>
+            )}
+            <p>
+              Durch die Lackierung unterscheiden sich die{' '}
+              {data.case == 1 ? <>27</> : <>64</>} kleinen Würfel. Sie haben
+              unterschiedlich viele blaue Außenflächen. Selma zählt die Anzahl
+              gleicher Würfel und trägt sie in eine Tabelle ein.
+            </p>
+            <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="88"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              <line
+                x1="10"
+                y1="32"
+                x2="310"
+                y2="32"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="10"
+                y1="78"
+                x2="310"
+                y2="78"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="10"
+                y1="54"
+                x2="310"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              <line
+                x1="250"
+                y1="10"
+                x2="250"
+                y2="98"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              <text x="15" y="26" fontSize="10" textAnchor="left" fill="black">
+                genau drei blaue Außenflächen
+              </text>
+              <text x="255" y="26" fontSize="10" textAnchor="left" fill="black">
+                {data.case == 1 ? <>8</> : <>8</>} Würfel
+              </text>
+              <text x="15" y="48" fontSize="10" textAnchor="left" fill="black">
+                genau zwei blaue Außenflächen
+              </text>
+              <text x="255" y="48" fontSize="10" textAnchor="left" fill="black">
+                {data.case == 1 ? <>12</> : <>32</>} Würfel
+              </text>
+              <text x="15" y="70" fontSize="10" textAnchor="left" fill="black">
+                genau eine blaue Außenfläche
+              </text>
+              <text x="255" y="70" fontSize="10" textAnchor="left" fill="black">
+                {data.case == 1 ? <>6</> : <>16</>} Würfel
+              </text>
+              <text x="15" y="92" fontSize="10" textAnchor="left" fill="black">
+                keine blaue Außenfläche
+              </text>
+              <text x="255" y="92" fontSize="10" textAnchor="left" fill="black">
+                {data.case == 1 ? <>1</> : <>8</>} Würfel
+              </text>
+              <text
+                x="164"
+                y="26"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              ></text>
+              <text
+                x="280"
+                y="48"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+              <text
+                x="280"
+                y="70"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+              <text
+                x="197.5"
+                y="70"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+              <text
+                x="197.5"
+                y="92"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+              <text
+                x="197.5"
+                y="114"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+            </svg>
           </>
         )
       },

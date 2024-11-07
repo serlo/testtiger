@@ -994,9 +994,58 @@ export const navigationData: { [key: number]: Navigation } = {
         headerColor: 'tertiary',
         twColor: 'bg-purple-600',
         skillGroups: [
-          { name: 'Laplace Experimente', skillExercises: [{ id: 101 }] },
-          { name: 'Diagramme und Kenngrößen', skillExercises: [{ id: 101 }] },
-          { name: 'Tabellen', skillExercises: [{ id: 101 }] },
+          {
+            name: 'Laplace Experimente',
+            skillExercises: [
+              {
+                id: 103,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 113,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 126,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 137,
+                pages: [{ index: 'f', intro: ['skill'] }],
+              },
+            ],
+          },
+          {
+            name: 'Diagramme und Kenngrößen',
+            skillExercises: [
+              { id: 104, pages: [{ index: 'a', intro: ['global'] }] },
+              {
+                id: 112,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+              {
+                id: 104,
+                pages: [{ index: 'b', intro: ['global'] }],
+              },
+            ],
+          },
+          {
+            name: 'Tabellen',
+            skillExercises: [
+              {
+                id: 128,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'c' },
+                ],
+              },
+              {
+                id: 137,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+            ],
+          },
         ],
       },
       {
