@@ -16,15 +16,16 @@ export function ExerciseViewHeader() {
       <button
         className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block"
         onClick={() => {
+          const i1 = navigationData[1].topics.findIndex(t =>
+            t.skillGroups.some(g => g.name == skill),
+          )
+          const i2 = navigationData[2].topics.findIndex(t =>
+            t.skillGroups.some(g => g.name == skill),
+          )
           // scroll restoration is buggy and will fix later
           history.push(
             skill
-              ? '/topic/' +
-                  (
-                    navigationData[1].topics.findIndex(t =>
-                      t.skillGroups.some(g => g.name == skill),
-                    ) + 1
-                  ).toString()
+              ? '/topic/' + (i1 >= 0 ? i1 + 1 : i2 + 101).toString()
               : '/app/home',
           )
         }}

@@ -744,4 +744,14 @@ export const navigationData: { [key: number]: Navigation } = {
       },
     ],
   },
+  2: {
+    topics: [
+      {
+        title: 'New Topic',
+        headerColor: 'primary',
+        twColor: 'bg-blue-300',
+        skillGroups: [{ name: 'Test-Skill', skillExercises: [{ id: 101 }] }],
+      },
+    ],
+  },
 }
