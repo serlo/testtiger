@@ -50,33 +50,43 @@ export const exercise121: Exercise<DATA> = {
           <strong> Kilometer in Meter:</strong>
         </p>
 
-        <p>1 Kilometer entspricht 1000 Metern. Damit sind:</p>
-
         <p>
-          {pp(data.kilometers)} km = {pp(data.kilometers * 1000)} m{' '}
+          1 Kilometer entspricht 1000 Metern. Rechne mit dem Umrechnungsfaktor
+          1000:
         </p>
-
         <p>
-          <strong> Minuten in Sekunden:</strong>
+          {pp(data.kilometers)} km = {pp(data.kilometers)} · 1000 [m]
         </p>
-
-        <p>1 Minute entspricht 60 Sekunden. Damit sind:</p>
-
         <p>
-          {pp(data.minutes)} min = {pp(data.minutes * 60)} s
+          {pp(data.kilometers)} km ={' '}
+          <strong>{pp(data.kilometers * 1000)} m</strong>
         </p>
-
+        <p>
+          1 Minute entspricht 60 Sekunden. Rechne mit dem Umrechnungsfaktor 60:
+        </p>
+        <p>
+          {pp(data.minutes)} min = {pp(data.minutes)} min · 60 [s]
+        </p>
+        <p>
+          {pp(data.minutes)} min = <strong>{pp(data.minutes * 60)} s</strong>
+        </p>
         <p>
           <strong> Milliliter in Liter:</strong>
         </p>
 
         <p>
-          1 Milliliter entspricht {buildInlineFrac(1, 1000)} Liter. Damit sind:
+          1 Milliliter entspricht {buildInlineFrac(1, 1000)} Liter. Rechne mit
+          dem Umrechnungsfaktor {buildInlineFrac(1, 1000)}:
         </p>
-
+        <p>
+          {pp(data.millilitres)} ml = {pp(data.millilitres)} ml ·{' '}
+          {buildInlineFrac(1, 1000)} [l]
+        </p>
         <p>
           {pp(data.millilitres)} ml ={' '}
-          {pp(roundToDigits((data.millilitres * 1) / 1000, 2))} l
+          <strong>
+            {pp(roundToDigits((data.millilitres * 1) / 1000, 2))} l
+          </strong>
         </p>
       </>
     )

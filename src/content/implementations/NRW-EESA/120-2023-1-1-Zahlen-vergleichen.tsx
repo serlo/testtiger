@@ -75,6 +75,7 @@ export const exercise120: Exercise<DATA> = {
   solution({ data }) {
     const hauptnenner1 = (data.d * data.f) / getGcd(data.e, data.f)
     const hauptnenner2 = (data.i * 10) / getGcd(data.i, 10)
+    const hauptnenner3 = (data.i * 100) / getGcd(data.i, 100)
     return (
       <>
         <p>
@@ -116,8 +117,10 @@ export const exercise120: Exercise<DATA> = {
         <p>
           Wandle {ppFrac([data.h, data.i])} in eine Dezimalzahl um. Dafür
           erweitere zunächst den Bruch:
-          {ppFrac([data.h, data.i])} ={' '}
+          {ppFrac([data.h, data.i])} = if (data.i == 2 or data.i == 5):
           {ppFrac([data.h * (hauptnenner2 / data.i), hauptnenner2])}
+          else:
+          {ppFrac([data.h * (hauptnenner3 / data.i), hauptnenner3])}
         </p>
         <p>
           Jetzt kannst du den Bruch als Dezimalzahl schreiben:{' '}
@@ -131,4 +134,7 @@ export const exercise120: Exercise<DATA> = {
       </>
     )
   },
+}
+function erweitereBruch(arg0: number, arg1: number, arg2: number) {
+  throw new Error('Function not implemented.')
 }
