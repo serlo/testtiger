@@ -881,7 +881,35 @@ export const navigationData: { [key: number]: Navigation } = {
         headerColor: 'medium',
         twColor: 'bg-fuchsia-500',
         skillGroups: [
-          { name: 'Tabellenkalkulation', skillExercises: [{ id: 101 }] },
+          {
+            name: 'Tabellenkalkulation',
+            skillExercises: [
+              {
+                id: 118,
+                pages: [
+                  { index: 'a', intro: ['global'] },
+                  { index: 'b' },
+                  { index: 'e' },
+                ],
+              },
+              {
+                id: 118,
+                pages: [{ index: 'c', intro: ['global'] }, { index: 'd' }],
+              },
+              {
+                id: 118,
+                pages: [{ index: 'f', intro: ['global'] }],
+              },
+              {
+                id: 127,
+                pages: [{ index: 'd', intro: ['global'] }, { index: 'e' }],
+              },
+              {
+                id: 134,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+            ],
+          },
         ],
       },
     ],
