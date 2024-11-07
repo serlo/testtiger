@@ -47,18 +47,22 @@ export function Home() {
             <h2 className="font-bold">Aufgaben nach Thema</h2>
           </div>
           <div className="flex overflow-x-auto mt-3 pb-3">
-            {navigationData[1].topics.map(({ title, twColor }, i) => (
-              <button
-                key={title}
-                className="w-36 border mx-3 flex-shrink-0 rounded block flex justify-start flex-col hover:shadow-lg"
-                onClick={() => {
-                  history.push(`/topic/${i + 1}`)
-                }}
-              >
-                <div className={clsx('w-full bg-blue-200 h-24', twColor)}></div>
-                <div className="p-2">{title}</div>
-              </button>
-            ))}
+            {navigationData[exam == 'msa' ? 1 : 2].topics.map(
+              ({ title, twColor }, i) => (
+                <button
+                  key={title}
+                  className="w-36 border mx-3 flex-shrink-0 rounded block flex justify-start flex-col hover:shadow-lg"
+                  onClick={() => {
+                    history.push(`/topic/${i + (exam == 'msa' ? 1 : 101)}`)
+                  }}
+                >
+                  <div
+                    className={clsx('w-full bg-blue-200 h-24', twColor)}
+                  ></div>
+                  <div className="p-2">{title}</div>
+                </button>
+              ),
+            )}
           </div>
           <div className="flex flex-col space-y-2 mt-4">
             <label className="text-lg font-semibold" htmlFor="exam-select">

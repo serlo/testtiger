@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { lists } from '../../../mock'
 import { exercisesData } from '@/content/exercises'
+import { navigationData } from '@/content/navigations'
 
 const App = dynamic(() => import('../../components/AppShell'), {
   ssr: false,
@@ -25,6 +26,9 @@ export async function generateStaticParams() {
     ...lists.map(list => ({ all: ['lists', list.id] })),
     { all: ['settings'] },
     ...[1, 2, 3, 4, 5, 6].map(t => ({ all: ['topic', t.toString()] })),
+    ...Array.from({ length: navigationData[2].topics.length }).map((_, i) => ({
+      all: ['topic', (101 + i).toString()],
+    })),
     ...Object.keys(exercisesData).map(id => ({
       all: ['exercise', id],
     })),
