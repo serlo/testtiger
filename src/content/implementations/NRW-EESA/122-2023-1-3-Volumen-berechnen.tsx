@@ -1,4 +1,6 @@
 import { Exercise } from '@/data/types'
+import { Color4 } from '@/helper/colors'
+import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -17,7 +19,7 @@ export const exercise122: Exercise<DATA> = {
     return {
       length: rng.randomItemFromArray([20, 30, 40]),
       width: rng.randomItemFromArray([10, 20, 30]),
-      height: rng.randomIntBetween(5, 15),
+      height: rng.randomIntBetween(5, 10),
     }
   },
   originalData: {
@@ -26,7 +28,7 @@ export const exercise122: Exercise<DATA> = {
     height: 6,
   },
   constraint({ data }) {
-    return true
+    return data.length > data.width
   },
   task({ data }) {
     return (
@@ -55,13 +57,46 @@ export const exercise122: Exercise<DATA> = {
     return (
       <>
         <p>Berechne das Volumen des quaderförmigen Kartons mit der Formel:</p>
-        <p>
-          <b>
-            V<sub>Quader</sub> = l · b · h{' '}
-          </b>
-          = {pp(data.length)} · {pp(data.width)} · {pp(data.height)} ={' '}
-          {data.length * data.width * data.height} cm<sup>3</sup>
-        </p>
+        {buildEquation([
+          [
+            <>
+              V<sub>Quader</sub>
+            </>,
+            <>=</>,
+            <>l · b · h</>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+              </Color4>
+            </>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              {pp(data.length)} · {pp(data.width)} · {pp(data.height)}
+            </>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              <strong>
+                {data.length * data.width * data.height} [cm<sup>3</sup>]
+              </strong>
+            </>,
+          ],
+        ])}
+
         <p>
           <b>
             Das Volumen des Kartons beträgt<br></br>
