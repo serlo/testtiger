@@ -689,6 +689,111 @@ export const exercise53: Exercise<DATA> = {
     {
       points: 2,
       duration: 1,
+      skillIntro({ data }) {
+        const q =
+          Math.round(Math.pow(data.fliegen / 20, 1 / data.days_2) * 100) / 100
+
+        function toX(n: number) {
+          return 144.5 + n * 9.575
+        }
+        function toY(n: number) {
+          return 468 - n * 9.575
+        }
+        function Points1(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 20; x += step) {
+            const y = 10 * Math.pow(data.prozent, x)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        function Points2(step: number): string {
+          let points = ''
+          for (let x = 0; x <= 55; x += step) {
+            const y = 20 * Math.pow(q, x)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const plotPoints1 = Points1(0.1)
+        const plotPoints2 = Points2(0.1)
+        return (
+          <>
+            <p>In Abbildung 3 sind die Graphen A und B dargestellt.</p>
+            <svg viewBox="0 0 480 500">
+              <image
+                href="/content/NRW_MSA/NRW_MSA_Fruchtfliegen_KS.PNG"
+                height="500"
+                width="480"
+              />
+
+              <text
+                x={toX(1)}
+                y={toY(17)}
+                fontSize="20"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="blue"
+              >
+                A
+              </text>
+              <text
+                x={toX(1)}
+                y={toY(27)}
+                fontSize="20"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="orange"
+              >
+                B
+              </text>
+              <text
+                x="60"
+                y="40"
+                fontSize="15"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Fruchtfliegen
+              </text>
+              <text
+                x="370"
+                y="490"
+                fontSize="15"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                x in Tagen
+              </text>
+              <polyline
+                points={plotPoints1}
+                stroke="blue"
+                strokeWidth="2"
+                fill="none"
+              />
+              <polyline
+                points={plotPoints2}
+                stroke="orange"
+                strokeWidth="2"
+                fill="none"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 3: Graphen A und B
+                </span>
+              </Color5>
+            </center>
+            <p>
+              Graph A stellt die Anzahl der Fruchtfliegen in Zuchtbox A dar und
+              Graph B die Anzahl in Zuchtbox B.
+            </p>
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

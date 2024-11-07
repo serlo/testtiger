@@ -509,6 +509,10 @@ export const navigationData: { [key: number]: Navigation } = {
                 id: 53,
                 pages: [{ index: 'b', intro: ['global'] }],
               },
+              {
+                id: 53,
+                pages: [{ index: 'g', intro: ['skill'] }],
+              },
             ],
           },
           {
@@ -629,6 +633,10 @@ export const navigationData: { [key: number]: Navigation } = {
               {
                 id: 53,
                 pages: [{ index: 'd', intro: ['skill'] }, { index: 'e' }],
+              },
+              {
+                id: 53,
+                pages: [{ index: 'f' }],
               },
               {
                 id: 8,
