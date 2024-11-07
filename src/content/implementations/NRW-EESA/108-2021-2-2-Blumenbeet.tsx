@@ -23,7 +23,7 @@ export const exercise108: Exercise<DATA> = {
   title: 'Blumenbeet',
   source: '2021 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 42,
+  duration: 30,
   generator(rng) {
     return {
       breite: rng.randomIntBetween(8, 16) * 10,
@@ -94,7 +94,8 @@ export const exercise108: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 3,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -213,7 +214,8 @@ export const exercise108: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -266,7 +268,8 @@ export const exercise108: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return (
           <>
@@ -366,7 +369,8 @@ export const exercise108: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -475,7 +479,8 @@ export const exercise108: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 3,
+      duration: 2,
       intro({ data }) {
         return (
           <>

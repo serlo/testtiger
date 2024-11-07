@@ -16,7 +16,7 @@ export const exercise135: Exercise<DATA> = {
   title: 'Garten',
   source: '2024 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 42,
+  duration: 30,
   generator(rng) {
     return {
       bildvariante: rng.randomIntBetween(1, 6),
