@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4, Color5 } from '@/helper/colors'
+import { Color1, Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildSqrt } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -20,7 +20,7 @@ export const exercise135: Exercise<DATA> = {
   generator(rng) {
     return {
       bildvariante: rng.randomIntBetween(1, 6),
-      breite: rng.randomItemFromArray([2, 4, 6, 8, 10]),
+      breite: rng.randomItemFromArray([6, 8, 10]),
       radius: rng.randomIntBetween(1, 2),
       buchsbaeume: rng.randomIntBetween(7, 38),
       samen: rng.randomIntBetween(2, 7),
@@ -205,7 +205,7 @@ export const exercise135: Exercise<DATA> = {
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
-              Abbildung 1: Grundriss des Gartens (maßstabsgetreu)
+              Abbildung 1: Grundriss des Gartens (nicht maßstabsgetreu)
             </span>
           </Color5>
         </center>
@@ -334,8 +334,81 @@ export const exercise135: Exercise<DATA> = {
             <p>
               Verwende den Satz des Pythagoras. Die Seiten des inneren Quadrats
               bilden mit jeweils zwei halben Außenkanten des äußeren Quadrats
-              ein rechtwinkliges Dreieck. In diesem gilt:
+              ein rechtwinkliges Dreieck.{' '}
             </p>
+            <svg viewBox="0 0 328 230">
+              <rect
+                x="10"
+                y="10"
+                width={200 / Math.sqrt(2)}
+                height={200 / Math.sqrt(2)}
+                stroke="black"
+                fill="transparent"
+                strokeWidth="2"
+                transform="rotate(45, 60, 130)"
+              />
+              <rect
+                x="10"
+                y="10"
+                width="200"
+                height="200"
+                stroke="black"
+                fill="transparent"
+                strokeWidth="2"
+              />
+              <line
+                x2={110}
+                y1={210}
+                x1={210}
+                y2={210}
+                stroke="red"
+                strokeWidth={3}
+              />
+              <line
+                x2={210}
+                y1={110}
+                x1={210}
+                y2={210}
+                stroke="red"
+                strokeWidth={3}
+              />
+              <line
+                x2={110}
+                y1={110}
+                x1={210}
+                y2={210}
+                stroke="red"
+                strokeWidth={3}
+              />
+              <text
+                x={164}
+                y={205}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="red"
+              >
+                {data.breite / 2} m
+              </text>
+              <text
+                x={230}
+                y={175}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="red"
+              >
+                {data.breite / 2} m
+              </text>
+              <text
+                x={110}
+                y={230}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="black"
+              >
+                {data.breite} m
+              </text>
+            </svg>
+            <p>In diesem gilt:</p>
             {buildEquation([
               [
                 <>
@@ -554,7 +627,95 @@ export const exercise135: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <>Bild muss erstellt werden.</>
+        const meter = 328 / data.breite
+        return (
+          <>
+            <p>
+              Der ganze Garten ist <Color1>{data.breite} m</Color1> breit. Das
+              kreisförmige Beet hat einen Durchmesser von{' '}
+              <Color1>{data.radius * 2} m</Color1>.
+            </p>
+            <p>Im richtigen Maßstab sieht das kreisförmige Beet so aus:</p>
+            <svg width="328" height="368">
+              <circle
+                cx="164"
+                cy="164"
+                r={meter * data.radius}
+                fill="none"
+                stroke="black"
+                strokeWidth={3}
+              />
+              <line
+                x1={164 - meter * data.radius}
+                y1={164}
+                x2={164 + meter * data.radius}
+                y2={164}
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <text
+                x={164}
+                y={156}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="#007EC1"
+              >
+                {data.radius * 2} m
+              </text>
+              <text
+                x={164}
+                y={353}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="#007EC1"
+              >
+                {data.breite} m
+              </text>
+              {data.bildvariante == 1 && (
+                <image
+                  href="/content/NRW_EESA/135_garten_v1_4sym.svg"
+                  width={328}
+                />
+              )}
+              {data.bildvariante == 2 && (
+                <image
+                  href="/content/NRW_EESA/135_garten_v2_1sym.svg"
+                  width={328}
+                />
+              )}
+              {data.bildvariante == 3 && (
+                <image
+                  href="/content/NRW_EESA/135_garten_v3_4sym.svg"
+                  width={328}
+                />
+              )}
+              {data.bildvariante == 4 && (
+                <>
+                  {' '}
+                  <svg viewBox="0 0 328 328">
+                    <image
+                      href="/content/NRW_EESA/135_garten_v4_1sym.svg"
+                      height="328"
+                      width="328"
+                    />
+                  </svg>
+                </>
+              )}
+              {data.bildvariante == 5 && (
+                <image
+                  href="/content/NRW_EESA/135_garten_v5_1sym.svg"
+                  width={328}
+                />
+              )}
+              {data.bildvariante == 6 && (
+                <image
+                  href="/content/NRW_EESA/135_garten_v6_1sym.svg"
+                  width={328}
+                />
+              )}
+            </svg>
+          </>
+        )
       },
     },
     {
@@ -601,7 +762,7 @@ export const exercise135: Exercise<DATA> = {
               ['', '=', <>π · {data.radius}²</>],
               [
                 <></>,
-                '=',
+                '≈',
                 <>
                   {pp(roundToDigits(Math.PI * data.radius * data.radius, 2))}{' '}
                   [m²]
