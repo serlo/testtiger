@@ -285,6 +285,7 @@ export const exercise49: Exercise<DATA> = {
                   sich
                 </p>
                 <ul>
+                  <li>der Einkaufspreis (D3),</li>
                   <li>der Gewinn pro Stück (E3),</li>
                   <li> der Gesamtgewinn durch die Herzen (F3) und </li>
                   <li>der Gesamtgewinn der Verkaufsaktion (F4).</li>
@@ -295,6 +296,7 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>Ändert sich der Einkaufspreis der Blumen, ändern sich</p>
                 <ul>
+                  <li>der Einkaufspreis (D2),</li>
                   <li>der Gewinn pro Stück (E2),</li>
                   <li> der Gesamtgewinn durch die Blumen (F2) und </li>
                   <li>der Gesamtgewinn der Verkaufsaktion (F4).</li>
@@ -305,6 +307,7 @@ export const exercise49: Exercise<DATA> = {
               <>
                 <p>Ändert sich der Verkaufspreis der Blumen, verändert sich</p>
                 <ul>
+                  <li>der Verkaufspreis (C2),</li>
                   <li>der Gewinn pro Blume (E2),</li>
                   <li> der Gesamtgewinn der Blumen (F2) und </li>
                   <li>der Gesamtgewinn der Verkaufsaktion (F4).</li>
@@ -318,8 +321,9 @@ export const exercise49: Exercise<DATA> = {
                   sich
                 </p>
                 <ul>
-                  <li>der Gewinn pro Herz (E2), </li>
-                  <li>der Gesamtgewinn der Herzen (F2) und</li>
+                  <li>der Verkaufspreis pro Herz (D3),</li>
+                  <li>der Gewinn pro Herz (E3), </li>
+                  <li>der Gesamtgewinn der Herzen (F3) und</li>
                   <li> der Gesamtgewinn der Verkaufsaktion (F4). </li>
                 </ul>
               </>
