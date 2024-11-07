@@ -49,7 +49,7 @@ export const exercise101: Exercise<DATA> = {
           Umrechnungsfaktor 100:
         </p>
         <p>
-          {pp(data.m * 100)} cm = {pp(data.m * 100)} : 100 [m]
+          {pp(data.m * 100)} cm = {pp(data.m * 100)} : 100 m
         </p>
         <p>
           {pp(data.m * 100)} cm = <strong>{pp(data.m)} m</strong>
@@ -62,7 +62,7 @@ export const exercise101: Exercise<DATA> = {
           60:
         </p>
         <p>
-          {pp(data.h)} h = {pp(data.h)} · 60 [min]
+          {pp(data.h)} h = {pp(data.h)} · 60 min
         </p>
         <p>
           {pp(data.h)} h = <strong>{pp(data.h * 60)} min</strong>

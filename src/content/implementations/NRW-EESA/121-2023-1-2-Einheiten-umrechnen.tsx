@@ -65,7 +65,7 @@ export const exercise121: Exercise<DATA> = {
           1 Minute entspricht 60 Sekunden. Rechne mit dem Umrechnungsfaktor 60:
         </p>
         <p>
-          {pp(data.minutes)} min = {pp(data.minutes)} min · 60 [s]
+          {pp(data.minutes)} min = {pp(data.minutes)} · 60 [s]
         </p>
         <p>
           {pp(data.minutes)} min = <strong>{pp(data.minutes * 60)} s</strong>

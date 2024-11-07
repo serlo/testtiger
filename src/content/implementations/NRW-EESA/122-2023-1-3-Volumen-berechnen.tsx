@@ -15,8 +15,8 @@ export const exercise122: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      length: rng.randomIntBetween(25, 35),
-      width: rng.randomIntBetween(15, 25),
+      length: rng.randomItemFromArray([20, 30, 40]),
+      width: rng.randomItemFromArray([10, 20, 30]),
       height: rng.randomIntBetween(5, 15),
     }
   },
