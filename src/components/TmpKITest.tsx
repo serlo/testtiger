@@ -83,7 +83,7 @@ export function TmpKITest() {
       s.id = KiTests[index].exerciseId
       s.data = exercisesData[s.id].originalData!
       s.navIndicatorPosition = KiTests[index].index
-        ? KiTests[index].index.charCodeAt(0) - 'a'.charCodeAt(0)
+        ? KiTests[index].index!.charCodeAt(0) - 'a'.charCodeAt(0)
         : 0
 
       //@ts-ignore
@@ -115,10 +115,10 @@ export function TmpKITest() {
     KiTestStore.update(s => {
       if (s.results[index].response) {
         s.results[index].status = KiTests[index].success
-          ? s.results[index].response.category == 'success'
+          ? s.results[index].response!.category == 'success'
             ? 'ok'
             : 'fail'
-          : s.results[index].response.category != 'success'
+          : s.results[index].response!.category != 'success'
             ? 'ok'
             : 'fail'
       }
