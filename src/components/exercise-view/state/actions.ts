@@ -114,7 +114,7 @@ export async function analyseLastInput() {
 
       Kategorie "actionable-feedback": Die Eingabe hat einen Bezug zur Aufgabe und es ist ersichtliche, dass Teile der Rechnung angefangen wurde. Spreche ein kleines Lob aus. Fokussiere das Feedback darauf, was zu verbessern ist bzw. was der konkrete nächste Schritt beim Lösen der Aufgabe ist.
 
-      Kategorie "success": Die Aufgabe ist gelöst. Das Endergebnis ist korrekt und vorhanden. Wenn ein Lösungsweg oder eine Begründung in der Aufgabenstellung gefordert ist, dann erwarte auch, dass sie vorhanden ist. Sei dabei nicht zu streng mit Formalitäten. Es ist ok, wenn eine andere äquivalente Einheit verwendet wurde oder eine andere Rundung verwendet wurde. Es ist nicht schlimm, wenn kleine Details mit der Musterlösung nicht übereinstimmen. Spreche ein Lob aus und lobe den Fortschritt.
+      Kategorie "success": Die Aufgabe ist gelöst. Das Endergebnis ist korrekt und vorhanden. Wenn ein Lösungsweg oder eine Begründung in der Aufgabenstellung gefordert ist, dann erwarte auch, dass sie vorhanden ist. Bitte beachte unbedingt die Korrekturhinweise. Sei dabei nicht zu streng mit Formalitäten. Es ist ok, wenn eine andere äquivalente Einheit verwendet wurde oder eine andere Rundung verwendet wurde. Es ist nicht schlimm, wenn kleine Details mit der Musterlösung nicht übereinstimmen. Spreche ein Lob aus und lobe den Fortschritt.
 
       Wenn die Eingabe ein Bild ist, dann beschreibe das Bild möglichst vollständig in der Description.
       `,

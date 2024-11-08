@@ -17,6 +17,11 @@ export function extractor(exercise: Exercise<any>, data: object) {
         renderToStaticMarkup(t.task({ data })) +
         '\n\nLösung:\n\n' +
         renderToStaticMarkup(t.solution({ data }))
+      if (t.correctionHints) {
+        output +=
+          '\n\nKorrekturhinweise:\n\n' +
+          renderToStaticMarkup(t.correctionHints({ data }))
+      }
     })
     for (const t of exercise.tasks) {
     }
@@ -25,7 +30,13 @@ export function extractor(exercise: Exercise<any>, data: object) {
       renderToStaticMarkup(exercise.task({ data })) +
       '\n\nLösung:\n\n' +
       renderToStaticMarkup(exercise.solution({ data }))
+    if (exercise.correctionHints) {
+      output +=
+        '\n\nKorrekturhinweise:\n\n' +
+        renderToStaticMarkup(exercise.correctionHints({ data }))
+    }
   }
+  console.log(output)
   ExtractorStore.active = false
   return output
 }

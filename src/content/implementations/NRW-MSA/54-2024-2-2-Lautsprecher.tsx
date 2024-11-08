@@ -552,8 +552,10 @@ export const exercise54: Exercise<DATA> = {
       correctionHints() {
         return (
           <>
-            Die reine Angabe des Ergebnis reicht nicht. Es muss seine Begründung
-            stattfinden. Das Ergebnis darf gekürzt werden.
+            WICHTIG!!! Die reine Angabe des Ergebnis reicht nicht. Es muss seine
+            Begründung stattfinden. Ich wiederhole: Das Ergebnis ist nur
+            korrekt, wenn auch eine Begründung stattfindet. Das Ergebnis darf
+            gekürzt werden.
           </>
         )
       },
