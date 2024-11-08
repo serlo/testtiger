@@ -22,6 +22,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { analyseLastInput } from './state/actions'
 import { useRef } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
+import { exercisesData } from '@/content/exercises'
 
 defineCustomElements(window)
 
@@ -34,6 +35,8 @@ export function ExerciseViewFooter() {
   const chatHistory = ExerciseViewStore.useState(
     s => s.chatHistory[s.navIndicatorPosition],
   )
+  const id = ExerciseViewStore.useState(s => s.id)
+  const content = exercisesData[id]
 
   const takePhoto = async () => {
     try {
@@ -336,6 +339,22 @@ export function ExerciseViewFooter() {
                   <FaIcon icon={faQuestionCircle} /> Hilfe
                 </summary>
                 <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
+                  {content.originalData && (
+                    <li
+                      className="text-sm text-gray-200 rounded-md cursor-pointer hover:underline"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          s.data = content.originalData
+                          s.chatOverlay = null
+                        })
+                        if (helpDropdownRef.current) {
+                          helpDropdownRef.current.open = false
+                        }
+                      }}
+                    >
+                      Original-Variante
+                    </li>
+                  )}
                   <li
                     className="py-2 cursor-pointer hover:underline"
                     onClick={() => {

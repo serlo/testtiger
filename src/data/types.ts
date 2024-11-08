@@ -71,3 +71,10 @@ export interface Chat extends Record<string, any> {
   userId: string
   messages: IMessage[]
 }
+
+export interface KITestEntry {
+  exerciseId: number
+  index?: string
+  input: string
+  success: boolean
+}

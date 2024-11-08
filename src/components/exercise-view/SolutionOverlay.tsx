@@ -80,19 +80,6 @@ export function SolutionOverlay() {
   return (
     <>
       <div className="flex justify-between mx-3 pt-3">
-        {/*content.originalData && (
-          <button
-            className="text-sm text-gray-200 rounded-md ml-3"
-            onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.data = content.originalData
-                s.chatOverlay = null
-              })
-            }}
-          >
-            (Original-Variante)
-          </button>
-        )*/}
         <button
           onClick={() => {
             ExerciseViewStore.update(s => {

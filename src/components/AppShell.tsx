@@ -16,6 +16,7 @@ import { exercisesData } from '@/content/exercises'
 import { ExerciseView } from './exercise-view/ExerciseView'
 import { useEffect } from 'react'
 import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'
+import { TmpKITest } from './TmpKITest'
 
 setupIonicReact({})
 
@@ -47,6 +48,7 @@ export function AppShell() {
       <IonReactRouter>
         <IonRouterOutlet id="main">
           <Route path="/onboarding" render={() => <Onboarding />} />
+          <Route path="/ki-test" render={() => <TmpKITest />} />
           <Route path="/name" render={() => <Name />} />
           <Route path="/schoolform" render={() => <Schoolform />} />
           <Route path="/federal" render={() => <Federal />} />
