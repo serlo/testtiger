@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
 import { Color1, Color4, Color5 } from '@/helper/colors'
+import { getGcd } from '@/helper/get-gcd'
 import { buildEquation } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -24,7 +25,7 @@ export const exercise119: Exercise<DATA> = {
   duration: 30,
   generator(rng) {
     return {
-      wachsen: rng.randomIntBetween(3, 9) * 10,
+      wachsen: rng.randomIntBetween(3, 7) * 10,
       max: rng.randomIntBetween(20, 45),
       start: rng.randomIntBetween(1, 4),
       days: rng.randomIntBetween(8, 15),
@@ -131,6 +132,12 @@ export const exercise119: Exercise<DATA> = {
         return null
       },
       task({ data }) {
+        function toX(n: number) {
+          return 15 + n * (236 / 15)
+        }
+        function toY(n: number) {
+          return 194 - n * (236 / 15)
+        }
         return (
           <>
             <p>
@@ -139,16 +146,43 @@ export const exercise119: Exercise<DATA> = {
               {data.start} beschrieben werden.
             </p>
             <p>Zeichne die Gerade in ein Koordinatensystem ein.</p>
+            <svg viewBox="0 0 328 220">
+              <image
+                href="/content/NRW_EESA/119_KS.PNG"
+                height="220"
+                width="328"
+              />
+              <text
+                x={285}
+                y={188}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Zeit in Tagen
+              </text>
+              <text
+                x={45}
+                y={10}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Höhe in Metern
+              </text>
+            </svg>
           </>
         )
       },
       solution({ data }) {
         function toX(n: number) {
-          return 164 + n * 32.8
+          return 15 + n * (236 / 15)
         }
         function toY(n: number) {
-          return 210 - n * 32.8
+          return 194 - n * (236 / 15)
         }
+        const nenner = 100 / getGcd(data.wachsen, 100)
+        const zaehler = data.wachsen / getGcd(data.wachsen, 100)
         return (
           <>
             <p>
@@ -156,53 +190,73 @@ export const exercise119: Exercise<DATA> = {
               <Color1>{data.start}</Color1> anzufangen und die Gerade mit einem
               Steigungsdreieck zu zeichnen:
             </p>
-            <svg viewBox="0 0 328 300">
+            <p></p>
+            <svg viewBox="0 0 328 220">
               <image
-                href="/content/NRW_MSA/NRW_MSA_KS_Vorlage.png"
-                height="300"
+                href="/content/NRW_EESA/119_KS.PNG"
+                height="220"
                 width="328"
               />
               <text
-                x={179}
+                x={285}
+                y={188}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Zeit in Tagen
+              </text>
+              <text
+                x={45}
+                y={10}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Höhe in Metern
+              </text>
+              <text
+                x={toX(nenner / 2)}
                 y={toY(data.start) + 15}
                 fontSize="15"
                 textAnchor="middle"
                 fill="green"
               >
-                1
+                {nenner}
               </text>
               <text
-                x={210}
-                y={toY(data.start) - 2}
+                x={toX(nenner) + 10}
+                y={toY((2 * data.start + zaehler) / 2) - 2}
                 fontSize="15"
                 textAnchor="middle"
                 fill="green"
               >
-                {pp(data.wachsen / 100)}
+                {zaehler}
               </text>
+
               <line
-                x1={toX(-5) - 2}
-                y1={toY((-5 * data.wachsen) / 100 + data.start)}
-                x2={toX(5) - 2}
-                y2={toY((5 * data.wachsen) / 100 + data.start)}
+                x1={toX(-1) - 1}
+                y1={toY((-1 * data.wachsen) / 100 + data.start)}
+                x2={toX(19) - 1}
+                y2={toY((19 * data.wachsen) / 100 + data.start)}
                 stroke="blue"
-                strokeWidth={3}
+                strokeWidth={2}
               />
               <line
                 x1={toX(0) - 1}
                 y1={toY(data.start)}
-                x2={toX(1) - 1}
+                x2={toX(nenner) - 1}
                 y2={toY(data.start)}
                 stroke="green"
-                strokeWidth={3}
+                strokeWidth={2}
               />
               <line
-                x1={toX(1) - 1}
-                y1={toY(data.start)}
-                x2={toX(1) - 1}
-                y2={toY((1 * data.wachsen) / 100 + data.start)}
+                x1={toX(nenner) - 1}
+                y2={toY(data.start)}
+                x2={toX(nenner) - 1}
+                y1={toY(data.start + zaehler)}
                 stroke="green"
-                strokeWidth={3}
+                strokeWidth={2}
               />
             </svg>
           </>
