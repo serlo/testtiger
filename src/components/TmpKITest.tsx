@@ -3,19 +3,19 @@ import { KITestEntry } from '@/data/types'
 
 const tests: KITestEntry[] = [
   {
-    exerciseId: 4,
+    exerciseId: 4, // DEMO
     index: 'a',
     input: '1/5',
     success: false,
   },
   {
-    exerciseId: 5,
+    exerciseId: 5, // DEMO
     index: 'a',
     input: '1/5',
     success: false,
   },
   {
-    exerciseId: 7,
+    exerciseId: 7, // DEMO
     index: 'a',
     input: '1/5',
     success: false,
