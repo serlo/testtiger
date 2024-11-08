@@ -4,63 +4,66 @@ import clsx from 'clsx'
 import { KiTests } from '@/content/ki-tests'
 import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'
 import { analyseLastInput } from './exercise-view/state/actions'
+import { IonPage } from '@ionic/react'
 
 export function TmpKITest() {
   const results = KiTestStore.useState(s => s.results)
   return (
-    <div className="m-3">
-      <p className="max-w-[65ch] mb-3">
-        Das ist der KI Tester. Eingaben werden mit dem hinterlegten Prompt und
-        dem Kontext an die KI geschickt und bewertet. Das Ergebnis ist entweder
-        richtig oder verbesserungswürdig. Die Prompt laufen immer gegen die
-        Original-Prüfungsdaten.
-      </p>
-      <button className="px-2 py-0.5 bg-gray-100" onClick={runAllTests}>
-        Alle Tests ausführen
-      </button>
-      {KiTests.map((test, i) => {
-        const { status, response } = results[i]
-        return (
-          <div
-            key={i}
-            className={clsx(
-              'm-3 p-2 border',
-              status == 'ok'
-                ? 'bg-green-300'
-                : status == 'fail'
-                  ? 'bg-red-300'
-                  : status == 'running'
-                    ? 'bg-yellow-100'
-                    : 'bg-white',
-            )}
-          >
-            <p>
-              {test.exerciseId} - {exercisesData[test.exerciseId].title} -{' '}
-              {exercisesData[test.exerciseId].source} - {test.index}
-            </p>
-            <p>Input: {test.input}</p>
-            <p>
-              Erwartetes Ergebnis:{' '}
-              {test.success ? 'richtig' : 'Korrektur möglich'}
-            </p>
-            <p>Testergebnis: {status == 'none' ? '---' : status}</p>
-            {response && <p>{JSON.stringify(response)}</p>}
-            {status !== 'running' && (
-              <p className="mt-2">
-                <button
-                  className="underline"
-                  onClick={() => {
-                    runSingleTest(i)
-                  }}
-                >
-                  Einzeltest ausführen
-                </button>
+    <IonPage>
+      <div className="m-3 overflow-y-auto">
+        <p className="max-w-[65ch] mb-3">
+          Das ist der KI Tester. Eingaben werden mit dem hinterlegten Prompt und
+          dem Kontext an die KI geschickt und bewertet. Das Ergebnis ist
+          entweder richtig oder verbesserungswürdig. Die Prompt laufen immer
+          gegen die Original-Prüfungsdaten.
+        </p>
+        <button className="px-2 py-0.5 bg-gray-100" onClick={runAllTests}>
+          Alle Tests ausführen
+        </button>
+        {KiTests.map((test, i) => {
+          const { status, response } = results[i]
+          return (
+            <div
+              key={i}
+              className={clsx(
+                'm-3 p-2 border',
+                status == 'ok'
+                  ? 'bg-green-300'
+                  : status == 'fail'
+                    ? 'bg-red-300'
+                    : status == 'running'
+                      ? 'bg-yellow-100'
+                      : 'bg-white',
+              )}
+            >
+              <p>
+                {test.exerciseId} - {exercisesData[test.exerciseId].title} -{' '}
+                {exercisesData[test.exerciseId].source} - {test.index}
               </p>
-            )}
-          </div>
-        )
-      })}
-    </div>
+              <p>Input: {test.input}</p>
+              <p>
+                Erwartetes Ergebnis:{' '}
+                {test.success ? 'richtig' : 'Korrektur möglich'}
+              </p>
+              <p>Testergebnis: {status == 'none' ? '---' : status}</p>
+              {response && <p>{JSON.stringify(response)}</p>}
+              {status !== 'running' && (
+                <p className="mt-2">
+                  <button
+                    className="underline"
+                    onClick={() => {
+                      runSingleTest(i)
+                    }}
+                  >
+                    Einzeltest ausführen
+                  </button>
+                </p>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </IonPage>
   )
 
   async function runAllTests() {

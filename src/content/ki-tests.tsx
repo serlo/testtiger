@@ -2,6 +2,12 @@ import { KITestEntry } from '@/data/types'
 
 export const KiTests: KITestEntry[] = [
   {
+    exerciseId: 4,
+    index: 'a',
+    input: 'die erste Gleichung',
+    success: true,
+  },
+  {
     exerciseId: 17,
     index: 'b',
     input:
