@@ -2,6 +2,30 @@ import { KITestEntry } from '@/data/types'
 
 export const KiTests: KITestEntry[] = [
   {
+    exerciseId: 1,
+    index: 'a',
+    input: '-2/5 = -0,4, -0,45 -0,4 0,38',
+    success: true,
+  },
+  {
+    exerciseId: 1,
+    index: 'a',
+    input: '-0,45 -0,4 0,38',
+    success: true,
+  },
+  {
+    exerciseId: 1,
+    index: 'a',
+    input: '-0,45 -2/5 0,38',
+    success: true,
+  },
+  {
+    exerciseId: 1,
+    index: 'a',
+    input: '0,38, -2/5, -0,45',
+    success: false,
+  },
+  {
     exerciseId: 4,
     index: 'a',
     input: 'die erste Gleichung',
