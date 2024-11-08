@@ -99,6 +99,16 @@ export const exercise1: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints() {
+        return (
+          <>
+            Die Reihenfolge beginnt mit der kleinsten Zahl, es muss kein
+            Vergleichs-Operator angegeben werden. Die Zahlen dürfen auch in der
+            ursprünglichen Form im Ergebnis angegeben werden. (Die Umwandlung in
+            einen Bruch ist nicht zwingend!!)
+          </>
+        )
+      },
     },
     {
       points: 1,

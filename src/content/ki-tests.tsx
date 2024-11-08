@@ -4,7 +4,7 @@ export const KiTests: KITestEntry[] = [
   {
     exerciseId: 1,
     index: 'a',
-    input: '-2/5 = -0,4, -0,45 -0,4 0,38',
+    input: '-2/5 = -0,4 / -0,45 -0,4 0,38',
     success: true,
   },
   {
