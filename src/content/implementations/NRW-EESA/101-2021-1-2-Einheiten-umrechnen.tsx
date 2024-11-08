@@ -11,7 +11,7 @@ export const exercise101: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
   source: '2021 Teil 1 Aufgabe 2',
   useCalculator: false,
-  duration: 3,
+  duration: 2,
   points: 2,
   generator(rng) {
     return {

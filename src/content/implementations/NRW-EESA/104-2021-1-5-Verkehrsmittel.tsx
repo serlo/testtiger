@@ -13,9 +13,9 @@ interface DATA {
 
 export const exercise104: Exercise<DATA> = {
   title: 'Verkehrsmittel',
-  source: '2024 Teil 1 Aufgabe 5',
+  source: '2021 Teil 1 Aufgabe 5',
   useCalculator: true,
-  duration: 9,
+  duration: 6,
   generator(rng) {
     return {
       fuß: rng.randomIntBetween(15, 35),

@@ -82,7 +82,7 @@ import { exercise101 } from './implementations/NRW-EESA/101-2021-1-2-Einheiten-u
 import { exercise102 } from './implementations/NRW-EESA/102-2021-1-3-Zahlenrätsel'
 import { exercise103 } from './implementations/NRW-EESA/103-2021-1-4-Kugeln-ziehen'
 import { exercise104 } from './implementations/NRW-EESA/104-2021-1-5-Verkehrsmittel'
-import { exercise105 } from './implementations/NRW-EESA/105-2024-1-v2-4-Würfelkörper'
+import { exercise105 } from './implementations/NRW-EESA/105-2021-1-v2-4-Würfelkörper'
 import { exercise106 } from './implementations/NRW-EESA/106-2021-1-v2-5-Goldpreis'
 import { exercise115 } from './implementations/NRW-EESA/115-2022-1-v2-2-Dreieck'
 import { exercise116 } from './implementations/NRW-EESA/116-2022-1-v2-4-Füllgraphen'
