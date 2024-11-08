@@ -80,7 +80,7 @@ export function SolutionOverlay() {
   return (
     <>
       <div className="flex justify-between mx-3 pt-3">
-        {content.originalData && (
+        {/*content.originalData && (
           <button
             className="text-sm text-gray-200 rounded-md ml-3"
             onClick={() => {
@@ -92,7 +92,17 @@ export function SolutionOverlay() {
           >
             (Original-Variante)
           </button>
-        )}
+        )*/}
+        <button
+          onClick={() => {
+            ExerciseViewStore.update(s => {
+              s.chatOverlay = 'chat'
+            })
+          }}
+          className="text-gray-400"
+        >
+          zurück zum Chat
+        </button>
         <button
           className="px-2 py-0.5 bg-gray-100 rounded"
           onClick={() => {
@@ -123,54 +133,50 @@ export function SolutionOverlay() {
           )}
         </div>
         <div className="text-center mt-4 mb-4">
-          {canContinue ? (
-            <button
-              className={clsx(
-                'px-6 py-1 rounded-xl',
-                completed ? 'bg-green-200' : 'bg-gray-200 hover:bg-gray-300',
-              )}
-              onClick={() => {
-                ExerciseViewStore.update(s => {
-                  const wasNotDone =
-                    s.completed[s.navIndicatorPosition] == false
-                  s.completed[s.navIndicatorPosition] = true
-                  if (s.completed.every(x => x)) {
-                    setTimeout(() => {
-                      ExerciseViewStore.update(s => {
-                        s.showEndScreen = true
-                      })
-                    }, 1000)
-                  } else {
-                    if (s.navIndicatorPosition + 1 < s.navIndicatorLength) {
-                      if (wasNotDone) {
-                        setTimeout(() => {
-                          ExerciseViewStore.update(s => {
-                            s.navIndicatorExternalUpdate =
-                              s.navIndicatorPosition + 1
-                            s.chatOverlay = null
-                          })
-                        }, 500)
-                      }
+          <button
+            className={clsx(
+              'px-6 py-1 rounded-xl mb-3',
+              completed ? 'bg-green-200' : 'bg-gray-200 hover:bg-gray-300',
+            )}
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                const wasNotDone = s.completed[s.navIndicatorPosition] == false
+                s.completed[s.navIndicatorPosition] = true
+                if (s.completed.every(x => x)) {
+                  setTimeout(() => {
+                    ExerciseViewStore.update(s => {
+                      s.showEndScreen = true
+                    })
+                  }, 1000)
+                } else {
+                  if (s.navIndicatorPosition + 1 < s.navIndicatorLength) {
+                    if (wasNotDone) {
+                      setTimeout(() => {
+                        ExerciseViewStore.update(s => {
+                          s.navIndicatorExternalUpdate =
+                            s.navIndicatorPosition + 1
+                          s.chatOverlay = null
+                        })
+                      }, 500)
                     }
                   }
-                })
-              }}
-            >
-              Kann ich{completed && <FaIcon icon={faCheck} className="ml-2" />}
-            </button>
-          ) : (
-            <button
-              className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded"
-              onClick={() => {
-                ExerciseViewStore.update(s => {
-                  s.chatOverlay = null
-                })
-                reseed()
-              }}
-            >
-              <FaIcon icon={faWandMagicSparkles} /> Aufgabe neu generieren
-            </button>
-          )}
+                }
+              })
+            }}
+          >
+            Kann ich{completed && <FaIcon icon={faCheck} className="ml-2" />}
+          </button>
+          <button
+            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-xl"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+              reseed()
+            }}
+          >
+            <FaIcon icon={faWandMagicSparkles} /> Aufgabe neu generieren
+          </button>
         </div>
       </div>
     </>

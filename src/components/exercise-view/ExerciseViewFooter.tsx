@@ -137,37 +137,69 @@ export function ExerciseViewFooter() {
                   <div key={i} className="mb-4">
                     {el.content}
                     {el.category == 'actionable-feedback' && (
-                      <p className="text-xs text-gray-600 mt-2">
-                        Das Feedback ersetzt keine Korrektur. Vergleiche im
-                        Zweifel mit dem{' '}
-                        <button
-                          className="underline"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.chatOverlay = 'solution'
-                            })
-                          }}
-                        >
-                          Lösungsbeispiel
-                        </button>
-                        .
-                      </p>
+                      <>
+                        <p className="text-xs text-gray-600 mt-2">
+                          Das Feedback ersetzt keine Korrektur. Vergleiche im
+                          Zweifel mit dem{' '}
+                          <button
+                            className="underline"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösungsbeispiel
+                          </button>
+                          .
+                        </p>
+                        <p className="mt-3">
+                          <button
+                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösung anzeigen
+                          </button>
+                        </p>
+                      </>
                     )}
                     {el.category == 'success' && (
-                      <p className="mt-2">
-                        Vergleiche zum Abschluss mit dem{' '}
-                        <button
-                          className="underline"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.chatOverlay = 'solution'
-                            })
-                          }}
-                        >
-                          Lösungsbeispiel
-                        </button>
-                        .
-                      </p>
+                      <>
+                        <p className="text-xs text-gray-600 mt-2">
+                          Das Feedback ersetzt keine Korrektur. Vergleiche zum
+                          Abschluss mit dem{' '}
+                          <button
+                            className="underline"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösungsbeispiel
+                          </button>
+                          :
+                        </p>
+                        <p className="mt-3">
+                          <button
+                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösung anzeigen
+                          </button>
+                          <button className="px-2 py-0.5 bg-gray-100 rounded mr-4">
+                            Kann ich
+                          </button>
+                        </p>
+                      </>
                     )}
                   </div>
                 )
