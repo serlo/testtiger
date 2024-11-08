@@ -636,7 +636,16 @@ export const exercise107: Exercise<DATA> = {
                 </>
               )}{' '}
               Graph unter dem anderen Graphen und zeigt damit einen günstigeren
-              Preis an.
+              Preis an. Das ist das Angebot von{' '}
+              {schnitt_2_x > data.fahrt ? (
+                <>
+                  <Color1>Rollerverleih.</Color1>{' '}
+                </>
+              ) : (
+                <>
+                  <Color3>Easy Rent.</Color3>{' '}
+                </>
+              )}
             </p>
             <p>
               Das{' '}
