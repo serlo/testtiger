@@ -9,6 +9,7 @@ const App = dynamic(() => import('../../components/AppShell'), {
 
 export async function generateStaticParams() {
   return [
+    { all: ['ki-test'] },
     { all: ['onboarding'] },
     { all: ['name'] },
     { all: ['schoolform'] },

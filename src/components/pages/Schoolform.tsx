@@ -33,8 +33,8 @@ export function Schoolform() {
             value={'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)'}
           >
             {[
-              'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)',
-              'Bayern - qualifizierender Mittelschulabschluss (Quali)',
+              'Nordrhein-Westfalen - Mittlerer Schulabschuss (MSA)',
+              'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA).',
             ].map(n => (
               <IonItem key={n}>
                 <IonRadio key={n} value={n}>

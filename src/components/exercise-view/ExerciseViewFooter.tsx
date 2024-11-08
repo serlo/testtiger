@@ -22,6 +22,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { analyseLastInput } from './state/actions'
 import { useRef } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
+import { exercisesData } from '@/content/exercises'
 
 defineCustomElements(window)
 
@@ -34,6 +35,8 @@ export function ExerciseViewFooter() {
   const chatHistory = ExerciseViewStore.useState(
     s => s.chatHistory[s.navIndicatorPosition],
   )
+  const id = ExerciseViewStore.useState(s => s.id)
+  const content = exercisesData[id]
 
   const takePhoto = async () => {
     try {
@@ -137,37 +140,69 @@ export function ExerciseViewFooter() {
                   <div key={i} className="mb-4">
                     {el.content}
                     {el.category == 'actionable-feedback' && (
-                      <p className="text-xs text-gray-600 mt-2">
-                        Das Feedback ersetzt keine Korrektur. Vergleiche im
-                        Zweifel mit dem{' '}
-                        <button
-                          className="underline"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.chatOverlay = 'solution'
-                            })
-                          }}
-                        >
-                          Lösungsbeispiel
-                        </button>
-                        .
-                      </p>
+                      <>
+                        <p className="text-xs text-gray-600 mt-2">
+                          Das Feedback ersetzt keine Korrektur. Vergleiche im
+                          Zweifel mit dem{' '}
+                          <button
+                            className="underline"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösungsbeispiel
+                          </button>
+                          .
+                        </p>
+                        <p className="mt-3">
+                          <button
+                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösung anzeigen
+                          </button>
+                        </p>
+                      </>
                     )}
                     {el.category == 'success' && (
-                      <p className="mt-2">
-                        Vergleiche zum Abschluss mit dem{' '}
-                        <button
-                          className="underline"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.chatOverlay = 'solution'
-                            })
-                          }}
-                        >
-                          Lösungsbeispiel
-                        </button>
-                        .
-                      </p>
+                      <>
+                        <p className="text-xs text-gray-600 mt-2">
+                          Das Feedback ersetzt keine Korrektur. Vergleiche zum
+                          Abschluss mit dem{' '}
+                          <button
+                            className="underline"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösungsbeispiel
+                          </button>
+                          :
+                        </p>
+                        <p className="mt-3">
+                          <button
+                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.chatOverlay = 'solution'
+                              })
+                            }}
+                          >
+                            Lösung anzeigen
+                          </button>
+                          <button className="px-2 py-0.5 bg-gray-100 rounded mr-4">
+                            Kann ich
+                          </button>
+                        </p>
+                      </>
                     )}
                   </div>
                 )
@@ -304,6 +339,22 @@ export function ExerciseViewFooter() {
                   <FaIcon icon={faQuestionCircle} /> Hilfe
                 </summary>
                 <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
+                  {content.originalData && (
+                    <li
+                      className="text-sm text-gray-200 rounded-md cursor-pointer hover:underline"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          s.data = content.originalData
+                          s.chatOverlay = null
+                        })
+                        if (helpDropdownRef.current) {
+                          helpDropdownRef.current.open = false
+                        }
+                      }}
+                    >
+                      Original-Variante
+                    </li>
+                  )}
                   <li
                     className="py-2 cursor-pointer hover:underline"
                     onClick={() => {

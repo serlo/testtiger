@@ -549,6 +549,14 @@ export const exercise54: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints() {
+        return (
+          <>
+            Die reine Angabe des Ergebnis reicht nicht. Es muss seine Begründung
+            stattfinden. Das Ergebnis darf gekürzt werden.
+          </>
+        )
+      },
     },
     {
       points: 3,

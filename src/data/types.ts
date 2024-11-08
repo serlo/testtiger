@@ -12,6 +12,7 @@ export interface SingleExercise<T = unknown> {
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
   solution: (props: { data: T }) => JSX.Element
+  correctionHints?: (props: { data: T }) => JSX.Element
 }
 
 export interface ExerciseWithSubtasks<T = unknown> {
@@ -30,6 +31,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
     intro?: (props: { data: T }) => JSX.Element | null
     task: (props: { data: T }) => JSX.Element
     solution: (props: { data: T }) => JSX.Element
+    correctionHints?: (props: { data: T }) => JSX.Element
   }[]
 }
 
@@ -70,4 +72,11 @@ export interface Chat extends Record<string, any> {
   createdAt: Date
   userId: string
   messages: IMessage[]
+}
+
+export interface KITestEntry {
+  exerciseId: number
+  index?: string
+  input: string
+  success: boolean
 }
