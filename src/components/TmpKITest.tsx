@@ -45,18 +45,23 @@ export function TmpKITest() {
                 {test.exerciseId} - {exercisesData[test.exerciseId].title} -{' '}
                 {exercisesData[test.exerciseId].source} - {test.index}
               </p>
-              <p>
+              <div>
                 Input:{' '}
                 {test.input.endsWith('.jpg') ? (
-                  <img
-                    src={test.input}
-                    alt="Eingabe"
-                    className="max-h-[300px] max-w-[300px] border border-gray-600 border-2"
-                  />
+                  <>
+                    <br />
+                    <span className="inline-block">
+                      <img
+                        src={test.input}
+                        alt="Eingabe"
+                        className="border border-gray-600 border-2 w-[40%] h-[40%]"
+                      />
+                    </span>
+                  </>
                 ) : (
                   <strong>{test.input}</strong>
                 )}
-              </p>
+              </div>
               <p>
                 Erwartetes Ergebnis:{' '}
                 {test.success ? 'richtig' : 'Korrektur möglich'}

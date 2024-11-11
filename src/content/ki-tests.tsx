@@ -59,8 +59,13 @@ export const KiTests: KITestEntry[] = [
   {
     exerciseId: 17,
     index: 'b',
-    input:
-      'm = (2 - 3) / (0 - (-2)) = -1 / 2 = -0,5 und b = 2. Die Gleichung lautet y = -0,5x + 2',
+    input: 'tests/17b_correct.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 17,
+    index: 'b',
+    input: 'tests/17b_wrong.jpg',
     success: true,
   },
   {
@@ -72,14 +77,20 @@ export const KiTests: KITestEntry[] = [
   {
     exerciseId: 54,
     index: 'd',
-    input: '3/10',
+    input: '/tests/54d_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 54,
+    index: 'd',
+    input: '/tests/54d_feedback.jpg',
     success: false,
   },
   {
     exerciseId: 54,
     index: 'd',
-    input: '3/10, weil von 10 Liedern 3 von Ed Sheeran sind',
-    success: true,
+    input: '/tests/54d_wrong.jpg',
+    success: false,
   },
 ]
 
