@@ -62,13 +62,13 @@ export const KiTests: KITestEntry[] = [
     exerciseId: 17,
     index: 'b',
     input: 'tests/17b_correct.jpg',
-    success: false,
+    success: true,
   },
   {
     exerciseId: 17,
     index: 'b',
     input: 'tests/17b_wrong.jpg',
-    success: true,
+    success: false,
   },
   {
     exerciseId: 32,
