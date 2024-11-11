@@ -60,6 +60,14 @@ export const exercise11: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass das Ergebnis mit einer Einheit dargestellt wird.
+            Ein vollständiger Rechenweg soll dargestellt werden.
+          </>
+        )
+      },
       solution({ data }) {
         return (
           <>
