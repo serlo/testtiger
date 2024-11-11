@@ -109,4 +109,11 @@ export const exercise2: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints() {
+    return (
+      <>
+        Wenn Eingabe in dm³, bitte Hinweis dass Liter angegeben werden sollen.
+      </>
+    )
+  },
 }
