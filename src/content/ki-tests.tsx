@@ -77,6 +77,30 @@ export const KiTests: KITestEntry[] = [
     success: true,
   },
   {
+    exerciseId: 52,
+    index: 'a',
+    input: '/tests/52a_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 52,
+    index: 'a',
+    input: '/tests/52a_feedback.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 52,
+    index: 'b',
+    input: '/tests/52b_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 52,
+    index: 'b',
+    input: '/tests/52b_feedback.jpg',
+    success: false,
+  },
+  {
     exerciseId: 54,
     index: 'd',
     input: '/tests/54d_correct.jpg',
@@ -92,6 +116,36 @@ export const KiTests: KITestEntry[] = [
     exerciseId: 54,
     index: 'd',
     input: '/tests/54d_wrong.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 54,
+    index: 'e',
+    input: '/tests/54e_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 55,
+    index: 'f',
+    input: '/tests/55f_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 55,
+    index: 'f',
+    input: '/tests/55f_wrong3.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 55,
+    index: 'f',
+    input: '/tests/55f_wrong2.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 55,
+    index: 'f',
+    input: '/tests/55f_wrong.jpg',
     success: false,
   },
 ]

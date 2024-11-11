@@ -68,7 +68,7 @@ export function TmpKITest() {
               <p>
                 {test.exerciseId}
                 {test.index} - {exercisesData[test.exerciseId].title} -{' '}
-                {exercisesData[test.exerciseId].source} -
+                {exercisesData[test.exerciseId].source}
               </p>
               <div>
                 Input:{' '}
@@ -88,8 +88,7 @@ export function TmpKITest() {
                 )}
               </div>
               <p>
-                Erwartetes Ergebnis:{' '}
-                {test.success ? 'richtig' : 'Korrektur möglich'}
+                Erwartetes Ergebnis: {test.success ? 'richtig' : 'Korrektur'}
               </p>
               <p>Testergebnis: {status == 'none' ? '---' : status}</p>
               {response && <p>{JSON.stringify(response)}</p>}
