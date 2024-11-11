@@ -61,7 +61,7 @@ export const exercise123: Exercise<DATA> = {
         </p>
         <p>
           {' '}
-          Anders gesagt, man fängt rechts an, die Zahlen untereinander zu
+          Anders gesagt: Man fängt rechts an, die Zahlen untereinander zu
           schreiben und nicht links.
         </p>
         <p>Richtig gerechnet wäre die Rechnung so:</p>
