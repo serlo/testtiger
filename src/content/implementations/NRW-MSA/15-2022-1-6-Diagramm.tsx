@@ -456,6 +456,14 @@ export const exercise15: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass die Antwort einen vollständigen Rechenweg
+            enthält.
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
