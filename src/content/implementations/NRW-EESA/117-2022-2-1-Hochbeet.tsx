@@ -79,7 +79,7 @@ export const exercise117: Exercise<DATA> = {
             <p>
               a) Im Baumarkt kaufen Emma und Pierre Holzbretter für das
               Hochbeet. Die Holzbretter sind {((data.breite - 2) / 2) * 5} cm
-              lang und {data.brett} cm breit. Bestimme die Anzahl der
+              lang und {pp(data.brett)} cm breit. Bestimme die Anzahl der
               Holzbretter, die für den Bau des gesamten Hochbeets benötigt
               werden.
             </p>
