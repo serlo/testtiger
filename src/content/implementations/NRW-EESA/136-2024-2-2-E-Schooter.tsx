@@ -113,7 +113,7 @@ export const exercise136: Exercise<DATA> = {
             ])}
             <p>
               Tom braucht für seinen Arbeitsweg <br></br>
-              {time} Minuten.
+              <strong>{time} Minuten</strong>.
             </p>
           </>
         )

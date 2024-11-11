@@ -2,6 +2,7 @@ import { Exercise } from '@/data/types'
 import { Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   kante: number
@@ -307,7 +308,11 @@ export const exercise137: Exercise<DATA> = {
                   </Color4>
                 </>,
               ],
-              [<>{pp(data.ml / data.surface)} ml</>, <>≙</>, <>1 cm²</>],
+              [
+                <>{pp(roundToDigits(data.ml / data.surface, 4))} ml</>,
+                <>≙</>,
+                <>1 cm²</>,
+              ],
               [
                 '',
                 <>
@@ -332,11 +337,14 @@ export const exercise137: Exercise<DATA> = {
               [
                 <>
                   {pp(
-                    (6 *
-                      (data.kante * (2 + data.case)) *
-                      (data.kante * (2 + data.case)) *
-                      data.ml) /
-                      data.surface,
+                    roundToDigits(
+                      (6 *
+                        (data.kante * (2 + data.case)) *
+                        (data.kante * (2 + data.case)) *
+                        data.ml) /
+                        data.surface,
+                      4,
+                    ),
                   )}{' '}
                   ml
                 </>,
@@ -353,11 +361,14 @@ export const exercise137: Exercise<DATA> = {
               Selma benötigt{' '}
               <strong>
                 {pp(
-                  (6 *
-                    (data.kante * (2 + data.case)) *
-                    (data.kante * (2 + data.case)) *
-                    data.ml) /
-                    data.surface,
+                  roundToDigits(
+                    (6 *
+                      (data.kante * (2 + data.case)) *
+                      (data.kante * (2 + data.case)) *
+                      data.ml) /
+                      data.surface,
+                    4,
+                  ),
                 )}{' '}
                 ml
               </strong>{' '}
