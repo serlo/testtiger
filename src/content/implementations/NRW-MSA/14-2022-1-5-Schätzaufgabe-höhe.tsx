@@ -22,6 +22,9 @@ export const exercise14: Exercise<DATA> = {
     return true
   },
   points: 3,
+  correctionHints({ data }) {
+    return <>Verrate in deinem Feedback nicht das Ergebnis.</>
+  },
   task({ data }) {
     return (
       <>

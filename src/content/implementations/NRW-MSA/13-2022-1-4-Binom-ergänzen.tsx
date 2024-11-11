@@ -45,6 +45,14 @@ export const exercise13: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Achte darauf, dass das Ergebnis fehlerfrei dargestellt wird. Überprüfe
+        streng und jeden Term.
+      </>
+    )
+  },
   solution({ data }) {
     return (
       <>
