@@ -32,19 +32,19 @@ export const exercise123: Exercise<DATA> = {
           Julienco rechnet {pp(data.a)} + {pp(data.b)} schriftlich. Er hat einen
           Fehler gemacht. Gib an, worin der Fehler liegt und rechne richtig.
         </p>
-        <svg viewBox="0 0 289 589">
+        <svg viewBox="0 0 289 149">
           <image
             href="/content/NRW_EESA/123_schriftlich_addieren.jpg"
-            height="589"
+            height="149"
             width="289"
           />
-          <text x={36} y={260} fontSize={32} textAnchor="right" stroke="black">
+          <text x={33} y={40} fontSize={32} textAnchor="right" stroke="black">
             {pp(data.a)}
           </text>
-          <text x={36} y={292} fontSize={32} textAnchor="right" stroke="black">
+          <text x={31} y={72} fontSize={32} textAnchor="right" stroke="black">
             {pp(data.b)}
           </text>
-          <text x={36} y={355} fontSize={32} textAnchor="right" stroke="black">
+          <text x={33} y={135} fontSize={32} textAnchor="right" stroke="black">
             {pp(data.a + data.b * 10)}
           </text>
         </svg>
@@ -65,19 +65,19 @@ export const exercise123: Exercise<DATA> = {
           schreiben und nicht links.
         </p>
         <p>Richtig gerechnet wäre die Rechnung so:</p>
-        <svg viewBox="0 0 289 589">
+        <svg viewBox="0 0 289 189">
           <image
             href="/content/NRW_EESA/123_schriftlich_addieren.jpg"
-            height="589"
+            height="189"
             width="289"
           />
-          <text x={36} y={260} fontSize={32} textAnchor="right" stroke="black">
+          <text x={36} y={60} fontSize={32} textAnchor="right" stroke="black">
             {pp(data.a)}
           </text>
-          <text x={53} y={292} fontSize={32} textAnchor="right" stroke="black">
+          <text x={53} y={92} fontSize={32} textAnchor="right" stroke="black">
             {pp(data.b)}
           </text>
-          <text x={36} y={355} fontSize={32} textAnchor="right" stroke="black">
+          <text x={36} y={155} fontSize={32} textAnchor="right" stroke="black">
             {pp(data.a + data.b)}
           </text>
         </svg>
