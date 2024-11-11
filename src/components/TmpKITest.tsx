@@ -18,6 +18,11 @@ export function TmpKITest() {
           entweder richtig oder verbesserungswürdig. Die Prompt laufen immer
           gegen die Original-Prüfungsdaten.
         </p>
+        <p className="my-4">
+          5 6a 6b 7b 8a 9e 10 11a 11b 13 14 15b 17a 17b 20 21 23a 26a 29a 29b
+          34a 34b 35 37a 37e 37g 38a 38f 39a 39b 41a 42b 43 44a 45a 45b 45c 46f
+          47c 50 51a 51b 51c 52a 52b 54e 55f
+        </p>
         <button
           className="px-2 py-0.5 bg-gray-100 disabled:cursor-not-allowed"
           onClick={runAllTests}
@@ -42,8 +47,9 @@ export function TmpKITest() {
               )}
             >
               <p>
-                {test.exerciseId} - {exercisesData[test.exerciseId].title} -{' '}
-                {exercisesData[test.exerciseId].source} - {test.index}
+                {test.exerciseId}
+                {test.index} - {exercisesData[test.exerciseId].title} -{' '}
+                {exercisesData[test.exerciseId].source} -
               </p>
               <div>
                 Input:{' '}

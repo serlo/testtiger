@@ -28,25 +28,21 @@ export const KiTests: KITestEntry[] = [
   },
   {
     exerciseId: 2,
-    index: 'a',
     input: '60 l',
     success: true,
   },
   {
     exerciseId: 2,
-    index: 'a',
     input: '60 dm³',
     success: false,
   },
   {
     exerciseId: 2,
-    index: 'a',
     input: '60000 cm³',
     success: false,
   },
   {
     exerciseId: 2,
-    index: 'a',
     input: '60000',
     success: false,
   },
@@ -55,6 +51,12 @@ export const KiTests: KITestEntry[] = [
     index: 'a',
     input: 'die erste Gleichung',
     success: true,
+  },
+  {
+    exerciseId: 4,
+    index: 'a',
+    input: 'die zweite Gleichung',
+    success: false,
   },
   {
     exerciseId: 17,
