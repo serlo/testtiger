@@ -17,14 +17,14 @@ export const exercise100: Exercise<DATA> = {
   generator(rng) {
     return {
       a: rng.randomIntBetween(1, 9) / 10,
-      b: rng.randomIntBetween(1, 9) / 10,
+      b: rng.randomIntBetween(1, 9),
       c: rng.randomIntBetween(1, 9) / 10,
       d: rng.randomIntBetween(11, 20) / 10,
     }
   },
-  originalData: { a: 0.4, b: 0.6, c: 1.8, d: 0.8 },
+  originalData: { a: 0.4, b: 6, c: 0.8, d: 1.8 },
   constraint({ data }) {
-    return data.a - data.c > 0.2 && data.a != data.c && data.b != data.c
+    return data.a - data.c > 0.3 && data.a != data.c && data.b != data.c
   },
 
   task({ data }) {
@@ -34,7 +34,7 @@ export const exercise100: Exercise<DATA> = {
         <p>
           {pp(data.a)}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {ppFrac(data.b)}
+          {ppFrac([data.b, 10])}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {pp(data.d)}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -86,7 +86,7 @@ export const exercise100: Exercise<DATA> = {
             {pp(data.a)}
           </text>
           <text
-            x={toX(data.b)}
+            x={toX(data.b / 10)}
             y={56}
             fontSize={15}
             textAnchor="middle"
@@ -94,29 +94,11 @@ export const exercise100: Exercise<DATA> = {
           >
             ×
           </text>
-          <foreignObject x={toX(data.b) - 8} y="0" width={60} height={50}>
+          <foreignObject x={toX(data.b / 10) - 12} y="0" width={60} height={50}>
             <div style={{ fontSize: '12px', color: 'blue' }}>
-              {ppFrac(data.b)} = {pp(data.b)}
+              {ppFrac([data.b, 10])} = {pp(data.b / 10)}
             </div>
           </foreignObject>
-          <text
-            x={toX(data.c)}
-            y={56}
-            fontSize={15}
-            textAnchor="middle"
-            stroke="blue"
-          >
-            ×
-          </text>
-          <text
-            x={toX(data.c)}
-            y={73}
-            fontSize={14}
-            textAnchor="middle"
-            stroke="blue"
-          >
-            {pp(data.c)}
-          </text>
           <text
             x={toX(data.d)}
             y={56}
@@ -126,9 +108,27 @@ export const exercise100: Exercise<DATA> = {
           >
             ×
           </text>
-          <foreignObject x={toX(data.d) - 8} y="0" width={60} height={50}>
+          <text
+            x={toX(data.d)}
+            y={73}
+            fontSize={14}
+            textAnchor="middle"
+            stroke="blue"
+          >
+            {pp(data.d)}
+          </text>
+          <text
+            x={toX(data.c)}
+            y={56}
+            fontSize={15}
+            textAnchor="middle"
+            stroke="blue"
+          >
+            ×
+          </text>
+          <foreignObject x={toX(data.c) - 12} y="55" width={60} height={50}>
             <div style={{ fontSize: '12px', color: 'blue' }}>
-              {ppFrac(data.d)} = {pp(data.d)}
+              {ppFrac(data.c)} = {pp(data.c)}
             </div>
           </foreignObject>
         </svg>
