@@ -55,7 +55,7 @@ export const exercise121: Exercise<DATA> = {
           1000:
         </p>
         <p>
-          {pp(data.kilometers)} km = {pp(data.kilometers)} · 1000 [m]
+          {pp(data.kilometers)} km = {pp(data.kilometers)} · 1000 m
         </p>
         <p>
           {pp(data.kilometers)} km ={' '}
@@ -65,7 +65,7 @@ export const exercise121: Exercise<DATA> = {
           1 Minute entspricht 60 Sekunden. Rechne mit dem Umrechnungsfaktor 60:
         </p>
         <p>
-          {pp(data.minutes)} min = {pp(data.minutes)} · 60 [s]
+          {pp(data.minutes)} min = {pp(data.minutes)} · 60 s
         </p>
         <p>
           {pp(data.minutes)} min = <strong>{pp(data.minutes * 60)} s</strong>
@@ -79,8 +79,8 @@ export const exercise121: Exercise<DATA> = {
           dem Umrechnungsfaktor {buildInlineFrac(1, 1000)}:
         </p>
         <p>
-          {pp(data.millilitres)} ml = {pp(data.millilitres)} ml ·{' '}
-          {buildInlineFrac(1, 1000)} [l]
+          {pp(data.millilitres)} ml = {pp(data.millilitres)} ·{' '}
+          {buildInlineFrac(1, 1000)} l
         </p>
         <p>
           {pp(data.millilitres)} ml ={' '}
