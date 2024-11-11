@@ -74,7 +74,7 @@ export const exercise101: Exercise<DATA> = {
           Ein Liter entspricht genau einem Volumen von einem Kubikdezimeter.
         </p>
         <p>
-          {pp(data.ml / 1000)} ℓ = {pp(data.ml / 1000)} dm³
+          {pp(data.ml / 1000)} ℓ = <strong>{pp(data.ml / 1000)} dm³</strong>
         </p>
       </>
     )
