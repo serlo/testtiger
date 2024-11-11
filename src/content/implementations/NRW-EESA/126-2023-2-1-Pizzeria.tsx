@@ -456,8 +456,8 @@ export const exercise126: Exercise<DATA> = {
             ])}
             <p>Der neue Preis abzüglich des Rabatts beträgt:</p>
             <p>
-              {pp(data.small)} − {pp(data.small * 0.6)} = {pp(data.small * 0.4)}{' '}
-              [€]
+              {pp(data.small)} − {pp(data.small * 0.6)} ={' '}
+              <strong>{pp(data.small * 0.4)} [€]</strong>
             </p>
           </>
         )
