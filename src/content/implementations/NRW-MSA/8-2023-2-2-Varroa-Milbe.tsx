@@ -61,6 +61,15 @@ export const exercise8: Exercise<DATA> = {
     {
       points: 3,
       duration: 3,
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass sowohl der Maßstab mit einer Rechnung bestimmt
+            wird als auch die Länge und die Breite. Länge und Breite sollen
+            nicht verwechselt werden.
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
