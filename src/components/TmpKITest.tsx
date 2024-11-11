@@ -9,6 +9,8 @@ import { IonPage } from '@ionic/react'
 export function TmpKITest() {
   const results = KiTestStore.useState(s => s.results)
   const isRunning = results.some(r => r.status == 'running')
+  const successes = results.filter(r => r.status == 'ok').length
+  const fails = results.filter(r => r.status == 'fail').length
   return (
     <IonPage>
       <div className="m-3 overflow-y-auto">
@@ -30,6 +32,23 @@ export function TmpKITest() {
         >
           Alle Tests ausführen
         </button>
+        <p className="my-4">
+          Erfolgreich: {successes} (
+          {Math.round((successes * 100) / results.length)}%) / fehlgeschlagen:{' '}
+          {fails} ({Math.round((fails * 100) / results.length)}%) / nicht
+          ausgeführt: {results.length - successes - fails}
+          {successes + fails == results.length && (
+            <>
+              {' '}
+              [p-Wert:{' '}
+              {binomialPValue(results.length, successes, 0.5).toLocaleString(
+                'de-De',
+                { maximumFractionDigits: 5 },
+              )}
+              ]
+            </>
+          )}
+        </p>
         {KiTests.map((test, i) => {
           const { status, response } = results[i]
           return (
@@ -191,5 +210,25 @@ export function TmpKITest() {
       console.error('Error fetching the image:', error)
       return ''
     }
+  }
+
+  function factorial(n) {
+    return n <= 1 ? 1 : n * factorial(n - 1)
+  }
+
+  function binomialCoefficient(n, k) {
+    return factorial(n) / (factorial(k) * factorial(n - k))
+  }
+
+  function binomialProbability(n, k, p) {
+    return binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k)
+  }
+
+  function binomialPValue(trials, successes, prob) {
+    let pValue = 0
+    for (let k = successes; k <= trials; k++) {
+      pValue += binomialProbability(trials, k, prob)
+    }
+    return pValue
   }
 }
