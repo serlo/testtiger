@@ -212,19 +212,19 @@ export function TmpKITest() {
     }
   }
 
-  function factorial(n) {
+  function factorial(n: number): number {
     return n <= 1 ? 1 : n * factorial(n - 1)
   }
 
-  function binomialCoefficient(n, k) {
+  function binomialCoefficient(n: number, k: number) {
     return factorial(n) / (factorial(k) * factorial(n - k))
   }
 
-  function binomialProbability(n, k, p) {
+  function binomialProbability(n: number, k: number, p: number) {
     return binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k)
   }
 
-  function binomialPValue(trials, successes, prob) {
+  function binomialPValue(trials: number, successes: number, prob: number) {
     let pValue = 0
     for (let k = successes; k <= trials; k++) {
       pValue += binomialProbability(trials, k, prob)
