@@ -24,7 +24,7 @@ export const exercise100: Exercise<DATA> = {
   },
   originalData: { a: 0.4, b: 6, c: 0.8, d: 1.8 },
   constraint({ data }) {
-    return data.a - data.c > 0.3 && data.a != data.c && data.b != data.c
+    return data.a - data.c > 0.4 && data.a != data.c && data.b != data.c
   },
 
   task({ data }) {
