@@ -1,41 +1,29 @@
 import { KITestEntry } from '@/data/types'
+import { KiTestStore } from '../../store/ki-test-store'
 
 export const KiTests: KITestEntry[] = [
   {
     exerciseId: 1,
     index: 'a',
-    input: '-2/5 = -0,4 / -0,45 -0,4 0,38',
+    input: '/tests/1a_correct.jpg',
     success: true,
   },
   {
     exerciseId: 1,
     index: 'a',
-    input: '-0,45 -0,4 0,38',
-    success: true,
-  },
-  {
-    exerciseId: 1,
-    index: 'a',
-    input: '-0,45 -2/5 0,38',
-    success: true,
-  },
-  {
-    exerciseId: 1,
-    index: 'a',
-    input: '0,38, -2/5, -0,45',
+    input: '/tests/1a_feedback.jpg',
     success: false,
   },
   {
-    exerciseId: 2,
+    exerciseId: 1,
     index: 'a',
-    input: '60000',
+    input: '/tests/1a_wrong.jpg',
     success: false,
   },
-
   {
-    exerciseId: 2,
+    exerciseId: 1,
     index: 'a',
-    input: '60000 cm³',
+    input: '/tests/1a_wrong2.jpg',
     success: false,
   },
   {
@@ -48,6 +36,18 @@ export const KiTests: KITestEntry[] = [
     exerciseId: 2,
     index: 'a',
     input: '60 dm³',
+    success: false,
+  },
+  {
+    exerciseId: 2,
+    index: 'a',
+    input: '60000 cm³',
+    success: false,
+  },
+  {
+    exerciseId: 2,
+    index: 'a',
+    input: '60000',
     success: false,
   },
   {
@@ -82,3 +82,7 @@ export const KiTests: KITestEntry[] = [
     success: true,
   },
 ]
+
+KiTestStore.update(s => {
+  s.results = KiTests.map(() => ({ status: 'none' }))
+})

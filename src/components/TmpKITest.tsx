@@ -8,6 +8,7 @@ import { IonPage } from '@ionic/react'
 
 export function TmpKITest() {
   const results = KiTestStore.useState(s => s.results)
+  const isRunning = results.some(r => r.status == 'running')
   return (
     <IonPage>
       <div className="m-3 overflow-y-auto">
@@ -17,7 +18,11 @@ export function TmpKITest() {
           entweder richtig oder verbesserungswürdig. Die Prompt laufen immer
           gegen die Original-Prüfungsdaten.
         </p>
-        <button className="px-2 py-0.5 bg-gray-100" onClick={runAllTests}>
+        <button
+          className="px-2 py-0.5 bg-gray-100 disabled:cursor-not-allowed"
+          onClick={runAllTests}
+          disabled={isRunning}
+        >
           Alle Tests ausführen
         </button>
         {KiTests.map((test, i) => {
@@ -40,7 +45,18 @@ export function TmpKITest() {
                 {test.exerciseId} - {exercisesData[test.exerciseId].title} -{' '}
                 {exercisesData[test.exerciseId].source} - {test.index}
               </p>
-              <p>Input: {test.input}</p>
+              <p>
+                Input:{' '}
+                {test.input.endsWith('.jpg') ? (
+                  <img
+                    src={test.input}
+                    alt="Eingabe"
+                    className="max-h-[300px] max-w-[300px] border border-gray-600 border-2"
+                  />
+                ) : (
+                  <strong>{test.input}</strong>
+                )}
+              </p>
               <p>
                 Erwartetes Ergebnis:{' '}
                 {test.success ? 'richtig' : 'Korrektur möglich'}
@@ -50,10 +66,11 @@ export function TmpKITest() {
               {status !== 'running' && (
                 <p className="mt-2">
                   <button
-                    className="underline"
+                    className="underline disabled:cursor-not-allowed"
                     onClick={() => {
                       runSingleTest(i)
                     }}
+                    disabled={isRunning}
                   >
                     Einzeltest ausführen
                   </button>
@@ -82,6 +99,7 @@ export function TmpKITest() {
     KiTestStore.update(s => {
       s.results[index].status = 'running'
     })
+
     ExerciseViewStore.update(s => {
       s.id = KiTests[index].exerciseId
       s.data = exercisesData[s.id].originalData!
@@ -95,13 +113,30 @@ export function TmpKITest() {
           entries: [],
         }),
       )
-      s.chatHistory[s.navIndicatorPosition].entries = [
-        {
-          type: 'text',
-          content: KiTests[index].input,
-        },
-      ]
     })
+
+    if (KiTests[index].input.endsWith('.jpg')) {
+      const image = await fetchImageAsBase64(KiTests[index].input)
+      ExerciseViewStore.update(s => {
+        s.chatHistory[s.navIndicatorPosition].entries = [
+          {
+            type: 'image',
+            image,
+            description: '',
+          },
+        ]
+      })
+    } else {
+      ExerciseViewStore.update(s => {
+        s.chatHistory[s.navIndicatorPosition].entries = [
+          {
+            type: 'text',
+            content: KiTests[index].input,
+          },
+        ]
+      })
+    }
+
     await analyseLastInput()
     const response =
       ExerciseViewStore.getRawState().chatHistory[
@@ -126,5 +161,24 @@ export function TmpKITest() {
             : 'fail'
       }
     })
+  }
+
+  async function fetchImageAsBase64(url: string): Promise<string> {
+    try {
+      // Fetch the image as a Blob
+      const response = await fetch(url)
+      const blob = await response.blob()
+
+      // Create a FileReader to read the Blob as a data URL (base64 string)
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result?.toString() ?? '') // reader.result is the base64 string
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+      })
+    } catch (error) {
+      console.error('Error fetching the image:', error)
+      return ''
+    }
   }
 }
