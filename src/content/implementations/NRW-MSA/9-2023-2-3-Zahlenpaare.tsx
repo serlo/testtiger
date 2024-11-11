@@ -367,6 +367,15 @@ export const exercise9: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte auf einen vollständigen Rechenweg, es soll nicht nur das
+            Ergebnis angegeben werden. Überprüfe die Ergebnisse der Rechnung
+            genau mithilfe der Musterlösung.
+          </>
+        )
+      },
       solution({ data }) {
         const c = data.task_6 * 0.5 * data.task_6 + 0.5 * data.task_6
         return (
@@ -448,8 +457,9 @@ export const exercise9: Exercise<DATA> = {
             </strong>
             <p>
               Die beiden Lösungen der Gleichung sind n<sub>1</sub> und n
-              <sub>2</sub>, wobei in unserem Kontext n keine negative Zahl sein
-              kann. Damit ist die einzige sinnvolle Lösung{' '}
+              <sub>2</sub>. Da Merle mit positiven Zahlen experimentiert, ergibt
+              die negative Lösung in unserem Kontext keinen Sinn. Damit ist die
+              einzige sinnvolle Lösung{' '}
               <strong>
                 n<sub>1</sub> = {Math.pow(4 * c * 0.5 + 0.25, 0.5) - 0.5}
               </strong>
