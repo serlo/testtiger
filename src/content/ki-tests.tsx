@@ -86,42 +86,70 @@ export const KiTests: KITestEntry[] = [
     exerciseId: 6,
 
     input: 'tests/6a_correct.jpg',
+    index: 'a',
     success: true,
   },
   {
     exerciseId: 6,
 
     input: 'tests/6a_correct2.jpg',
+    index: 'a',
     success: true,
   },
   {
     exerciseId: 6,
 
     input: 'tests/6a_feedback.jpg',
+    index: 'a',
     success: false,
   },
   {
     exerciseId: 6,
 
     input: 'tests/6a_wrong.jpg',
+    index: 'a',
     success: false,
   },
   {
     exerciseId: 6,
 
     input: 'tests/6b_correct.jpg',
+    index: 'b',
     success: true,
   },
   {
     exerciseId: 6,
 
     input: 'tests/6b_feedback.jpg',
+    index: 'b',
     success: false,
   },
   {
     exerciseId: 6,
 
     input: 'tests/6b_feedback2.jpg',
+    index: 'b',
+    success: false,
+  },
+  {
+    exerciseId: 7,
+
+    input: 'tests/7b_correct.jpg',
+    index: 'b',
+    success: true,
+  },
+  {
+    exerciseId: 7,
+
+    input: 'tests/7b_feedback.jpg',
+    index: 'b',
+    success: false,
+  },
+  {
+    exerciseId: 7,
+
+    input: 'tests/7b_wrong.jpg',
+    index: 'b',
     success: false,
   },
   {

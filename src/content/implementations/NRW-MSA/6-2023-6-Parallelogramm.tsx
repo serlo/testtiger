@@ -86,6 +86,15 @@ export const exercise6: Exercise<DATA> = {
     {
       points: 2,
       duration: 3,
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass die Antwort die vollständige Begründung enthält:
+            Es muss begründet werden, dass h kleiner als die Breite ist und dass
+            damit die Fläche kleiner als in der Behauptung ist.
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
