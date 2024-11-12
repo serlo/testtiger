@@ -220,6 +220,15 @@ export const exercise37: Exercise<DATA> = {
     {
       duration: 1,
       points: 3,
+      correctionHints({ data }) {
+        return (
+          <>
+            Überprüfe, dass eine Begründung gegeben wird, warum der Punkt auf
+            der Parabel liegt. In der Antwort soll mithilfe der Symmetrie
+            argumentiert werden, nicht durch eine Rechnung.
+          </>
+        )
+      },
       skillIntro({ data }) {
         return (
           <>
@@ -843,7 +852,16 @@ export const exercise37: Exercise<DATA> = {
           </>
         )
       },
-
+      correctionHints({ data }) {
+        return (
+          <>
+            Überprüfe, dass ein vollständiger Rechenweg dargestellt wird.
+            Erlaube auch alternative Rechenwege, wie die quadratische Ergänzung,
+            überprüfe die einzelnen Rechenschritte aber genau. Gleiche das
+            Endergebnis mit der Musterlösung ab.{' '}
+          </>
+        )
+      },
       task({ data }) {
         const b = data.y + data.x * data.x * Math.abs(data.a)
         const c = 3.75
