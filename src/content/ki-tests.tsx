@@ -470,10 +470,88 @@ export const KiTests: KITestEntry[] = [
     success: false,
   },
   {
+    exerciseId: 29,
+    index: 'b',
+    input: 'tests/29b_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 29,
+    index: 'b',
+    input: 'tests/29b_feedback.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 29,
+    index: 'b',
+    input: 'tests/29b_feedback2.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 29,
+    index: 'b',
+    input: 'tests/29b_wrong.jpg',
+    success: false,
+  },
+  {
     exerciseId: 32,
     index: 'c',
     input: '1 und 24 sowie 2 und 12',
     success: true,
+  },
+  {
+    exerciseId: 34,
+    index: 'a',
+    input: 'tests/34a_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 34,
+    index: 'a',
+    input: 'tests/34a_feedback.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 34,
+    index: 'a',
+    input: 'tests/34a_wrong.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 34,
+    index: 'b',
+    input: 'tests/34b_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 34,
+    index: 'b',
+    input: 'tests/34b_correct2.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 34,
+    index: 'b',
+    input: 'tests/34b_feedback.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 35,
+
+    input: 'tests/35_correct.jpg',
+    success: true,
+  },
+  {
+    exerciseId: 35,
+
+    input: 'tests/35_feedback.jpg',
+    success: false,
+  },
+  {
+    exerciseId: 35,
+
+    input: 'tests/35_wrong.jpg',
+    success: false,
   },
   {
     exerciseId: 52,

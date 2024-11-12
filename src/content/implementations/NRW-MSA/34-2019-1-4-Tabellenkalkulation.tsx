@@ -192,6 +192,14 @@ export const exercise34: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass für jede Formel entschieden werden muss, ob sie
+            korrekt ist oder nicht.
+          </>
+        )
+      },
       solution({ data }) {
         return (
           <>

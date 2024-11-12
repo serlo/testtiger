@@ -48,8 +48,8 @@ export const exercise35: Exercise<DATA> = {
   },
   points: 4,
   task({ data }) {
-    const c = data.b * data.x - data.a * data.y
-    const e = data.d * data.x + data.faktor * data.a * data.y
+    const c = data.b * data.x + data.a * data.y
+    const e = data.d * data.x - data.faktor * data.a * data.y
     return (
       <>
         <p>Löse das lineare Gleichungssystem. Notiere deinen Lösungsweg.</p>
@@ -63,9 +63,19 @@ export const exercise35: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Wichtig: Überprüfe genau, dass ein vollständiger Rechenweg angegeben
+        wird, sonst ist die Aufgabe nicht gelöst. Weise auf mögliche Fehler beim
+        Übertragen von der Aufgabenstellung hin. Gebe eine Rückmeldung, wenn der
+        Rechenweg fehlt.
+      </>
+    )
+  },
   solution({ data }) {
-    const c = data.b * data.x - data.a * data.y
-    const e = data.d * data.x + data.faktor * data.a * data.y
+    const c = data.b * data.x + data.a * data.y
+    const e = data.d * data.x - data.faktor * data.a * data.y
     return (
       <>
         <p>
@@ -76,11 +86,11 @@ export const exercise35: Exercise<DATA> = {
         </p>
 
         <p>
-          {data.faktor} · I: &nbsp;&nbsp; {data.faktor * data.b}x −{' '}
+          {data.faktor} · I: &nbsp;&nbsp; {data.faktor * data.b}x +{' '}
           <Color1>{data.faktor * data.a}y</Color1> = {pp(data.faktor * c)}
         </p>
         <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;II: &nbsp;&nbsp;&nbsp; {data.d}x +{' '}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;II: &nbsp;&nbsp;&nbsp; {data.d}x −{' '}
           <Color1>{data.faktor * data.a}y</Color1> = {pp(e)}
         </p>
         <p>Addiere die Gleichungen {data.faktor} · I + II:</p>
@@ -123,7 +133,7 @@ export const exercise35: Exercise<DATA> = {
         {buildEquation([
           [
             <>
-              {data.b} · {data.x} − {data.a} · y
+              {data.b} · {data.x} + {data.a} · y
             </>,
             <>=</>,
             <>{pp(c)}</>,
@@ -144,20 +154,14 @@ export const exercise35: Exercise<DATA> = {
           ],
           [
             <>
-              {data.b * data.x} − {data.a} · y
+              {data.b * data.x} + {data.a} y
             </>,
             <>=</>,
             <>{pp(c)}</>,
 
             <>| − {data.b * data.x}</>,
           ],
-          [
-            <>− {data.a} · y</>,
-            <>=</>,
-            <>{pp(c - data.b * data.x)}</>,
-
-            <>| : (− {data.a})</>,
-          ],
+          [<> {data.a} y</>, <>=</>, <>{pp(c - data.b * data.x)}</>],
           [<>y</>, <>=</>, <>{pp(data.y)}</>],
         ])}
 
