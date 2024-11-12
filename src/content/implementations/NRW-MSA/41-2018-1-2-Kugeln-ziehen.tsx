@@ -30,6 +30,15 @@ export const exercise41: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Akzeptiere auch gekürzte Brüche beim Ergebnis. Überprüfe, dass auch ein
+        Rechenweg vorhanden ist, sonst ist die Aufgabe nicht korrekt gelöst
+        worden.
+      </>
+    )
+  },
   intro({ data }) {
     return (
       <>

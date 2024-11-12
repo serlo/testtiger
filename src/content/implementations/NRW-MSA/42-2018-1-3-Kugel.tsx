@@ -143,6 +143,15 @@ export const exercise42: Exercise<DATA> = {
     {
       points: 2,
       duration: 4,
+      correctionHints({ data }) {
+        return (
+          <>
+            Überprüfe genau, dass die Antwort eine vollständige Begründung
+            enthält und eine Aussage, ob Sine recht hat oder nicht. Wenn die
+            Antwort eines davon nicht enthält, ist sie unvollständig.
+          </>
+        )
+      },
       task({ data }) {
         const text1_case = ['verdopple', 'verdreifache', 'halbiere']
         const text_falsch = ['verdoppelt', 'verdreifacht', 'halbiert']
