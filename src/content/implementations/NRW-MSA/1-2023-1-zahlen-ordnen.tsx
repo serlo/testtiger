@@ -52,6 +52,14 @@ export const exercise1: Exercise<DATA> = {
     {
       points: 2,
       duration: 1,
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass die Zahlen aufsteigend geordnet sind. Überprüfe
+            das Ergebnis streng, sodass die Reihenfolge absolut korrekt ist.
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

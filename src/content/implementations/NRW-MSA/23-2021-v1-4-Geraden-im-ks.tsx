@@ -42,7 +42,7 @@ export const exercise23: Exercise<DATA> = {
     b_3: 3,
     m_b: 1.5,
     b_b: 2,
-    order: [],
+    order: [0, 1, 2],
   },
   constraint({ data }) {
     return (
@@ -83,6 +83,15 @@ export const exercise23: Exercise<DATA> = {
     {
       duration: 3,
       points: 2,
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte sehr streng darauf, die die Zuordnung wie in der Musterlösung
+            erfolgt. Kontrolliere jede Angabe mithilfe der Geraden in der
+            Aufgabenstellung.
+          </>
+        )
+      },
       task({ data }) {
         // Liste der Elemente
         const listItems = [

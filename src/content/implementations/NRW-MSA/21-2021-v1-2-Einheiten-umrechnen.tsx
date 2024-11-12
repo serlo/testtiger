@@ -42,6 +42,15 @@ export const exercise21: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Das hat hohe Priorität: Achte darauf, dass die Werte immer mit Einheiten
+        dargestellt werden müssen, ansonsten ist die Antwort nicht korrekt, auch
+        wenn die Umrechnung korrekt ist. Überprüfe jede Umrechnung.
+      </>
+    )
+  },
   solution({ data }) {
     return (
       <>

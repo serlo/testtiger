@@ -370,9 +370,9 @@ export const exercise9: Exercise<DATA> = {
       correctionHints({ data }) {
         return (
           <>
-            Achte auf einen vollständigen Rechenweg, es soll nicht nur das
-            Ergebnis angegeben werden. Überprüfe die Ergebnisse der Rechnung
-            genau mithilfe der Musterlösung.
+            Das hat hohe Priorität: es muss ein vollständiger Rechenweg
+            angegeben werden und nicht nur das Ergebnis der Rechnung. Überprüfe
+            die Ergebnisse der Rechnung genau mithilfe der Musterlösung.
           </>
         )
       },

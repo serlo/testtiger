@@ -22,6 +22,18 @@ export const exercise20: Exercise<DATA> = {
     return true
   },
   points: 2,
+  correctionHints({ data }) {
+    return (
+      <>
+        Bei dieser Schätzaufgabe sind kleine Abweichungen von der Lösung erlaubt
+        und können unkommentiert bleiben. Weise bei größeren Abweichungen (50
+        Röhrchen und mehr) darauf hin, dass nochmal genauer gezählt werden soll.
+        Wichtig ist, dass die Antwort eine vollständige Beschreibung des
+        Vorgehens enthält.
+      </>
+    )
+  },
+
   task({ data }) {
     return (
       <>

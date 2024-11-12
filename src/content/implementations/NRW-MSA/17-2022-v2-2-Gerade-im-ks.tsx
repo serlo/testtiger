@@ -58,7 +58,12 @@ export const exercise17: Exercise<DATA> = {
       duration: 2,
       points: 2,
       correctionHints({ data }) {
-        return <>Achte darauf, dass die Tabelle absolut vollständig ist.</>
+        return (
+          <>
+            Das hat hohe Priorität: Achte darauf, dass die Tabelle vollständig
+            ist und 4 Werte für y vorhanden sind.
+          </>
+        )
       },
       task({ data }) {
         return (

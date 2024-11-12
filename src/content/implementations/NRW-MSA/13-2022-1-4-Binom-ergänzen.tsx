@@ -49,7 +49,7 @@ export const exercise13: Exercise<DATA> = {
     return (
       <>
         Achte darauf, dass das Ergebnis fehlerfrei dargestellt wird. Überprüfe
-        streng und jeden Term.
+        jeden Term streng mit der Musterlösung.
       </>
     )
   },
