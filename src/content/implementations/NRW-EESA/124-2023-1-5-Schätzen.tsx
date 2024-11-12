@@ -33,7 +33,7 @@ export const exercise124: Exercise<DATA> = {
         {data.task === 1 && (
           <svg viewBox="0 0 1037 1469">
             <image
-              href="public/content/NRW_EESA/124_Kaffeebohnen.jpeg"
+              href="/content/NRW_EESA/124_Kaffeebohnen.jpeg"
               height="1469"
               width="1037"
             />
@@ -42,7 +42,7 @@ export const exercise124: Exercise<DATA> = {
         {data.task === 2 && (
           <svg viewBox="0 0 5234 3453">
             <image
-              href="public/content/NRW_EESA/124_Bälle.jpg"
+              href="/content/NRW_EESA/124_Bälle.jpg"
               height="3453"
               width="5234"
             />
@@ -51,7 +51,7 @@ export const exercise124: Exercise<DATA> = {
         {data.task === 3 && (
           <svg viewBox="0 0 3132 2072">
             <image
-              href="public/content/NRW_EESA/124_Beeren.jpg"
+              href="/content/NRW_EESA/124_Beeren.jpg"
               height="2072"
               width="3132"
             />
@@ -60,7 +60,7 @@ export const exercise124: Exercise<DATA> = {
         {data.task === 4 && (
           <svg viewBox="0 0 2448 3264">
             <image
-              href="public/content/NRW_EESA/124_Regen.jpg"
+              href="/content/NRW_EESA/124_Regen.jpg"
               height="3264"
               width="2448"
             />
