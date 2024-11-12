@@ -92,6 +92,7 @@ import { exercise113 } from './implementations/NRW-EESA/113-2022-1-4-Glücksrad'
 import { exercise112 } from './implementations/NRW-EESA/112-2022-1-3-Landtagswahl'
 import { exercise110 } from './implementations/NRW-EESA/110-2022-1-1-Zahlen-ordnen'
 import { exercise111 } from './implementations/NRW-EESA/111-2022-1-2-Quadrat'
+import { exercise124 } from './implementations/NRW-EESA/124-2023-1-5-Schätzen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -169,6 +170,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   119: exercise119,
   122: exercise122,
   123: exercise123,
+  124: exercise124,
   129: exercise129,
   130: exercise130,
   131: exercise131,
