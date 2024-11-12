@@ -88,6 +88,11 @@ export const exercise45: Exercise<DATA> = {
   },
   tasks: [
     {
+      correctionHints({ data }) {
+        return (
+          <>Achte darauf, dass ein vollständiger Rechenweg angegeben wird.</>
+        )
+      },
       points: 2,
       duration: 2,
       task({ data }) {
@@ -253,6 +258,15 @@ export const exercise45: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
+          </>
+        )
+      },
+      correctionHints({ data }) {
+        return (
+          <>
+            Bestimme den Abschnitt, dessen Gerade am steilsten verläuft.
+            Überprüfe genau, ob der Abschnitt, der in der Antwort genannt wird,
+            diesem entspricht.
           </>
         )
       },
