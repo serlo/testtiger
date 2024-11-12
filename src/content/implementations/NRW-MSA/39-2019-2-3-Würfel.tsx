@@ -243,7 +243,7 @@ export const exercise39: Exercise<DATA> = {
                 fontWeight="bold"
                 fill="black"
               >
-                Stadt
+                Figur
               </text>
               <text
                 x="50"
@@ -549,6 +549,9 @@ export const exercise39: Exercise<DATA> = {
     {
       points: 2,
       duration: 1,
+      correctionHints({ data }) {
+        return <>Überprüfe das Endergebnis genau mithilfe der Musterlösung.</>
+      },
       intro({ data }) {
         return (
           <>
