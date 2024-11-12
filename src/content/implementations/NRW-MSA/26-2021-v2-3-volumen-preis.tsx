@@ -69,6 +69,14 @@ export const exercise26: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return (
+          <>
+            Überprüfe, dass die Antwort einen vollständigen Rechenweg enthält
+            und nicht nur das Endergebnis.
+          </>
+        )
+      },
       solution({ data }) {
         return (
           <>

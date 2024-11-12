@@ -285,6 +285,18 @@ export const exercise29: Exercise<DATA> = {
     {
       duration: 6,
       points: 3,
+      correctionHints({ data }) {
+        return (
+          <>
+            Achte darauf, dass das Koordinatensystem richtig angelegt ist. Die
+            Skalierung und die Achsenbeschriftung dürfen nicht fehlen oder
+            falsch sein. Kontrolliere genau, ob die Beschriftung korrekt ist.
+            Wichtig: Die Punkte des Graphen müssen genau zu den y-Werten im
+            Koordinatensystem passen. Überprüfe mithilfe der Tabelle in der
+            Aufgabenstellung.
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>
