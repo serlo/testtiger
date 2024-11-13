@@ -93,6 +93,7 @@ import { exercise112 } from './implementations/NRW-EESA/112-2022-1-3-Landtagswah
 import { exercise110 } from './implementations/NRW-EESA/110-2022-1-1-Zahlen-ordnen'
 import { exercise111 } from './implementations/NRW-EESA/111-2022-1-2-Quadrat'
 import { exercise124 } from './implementations/NRW-EESA/124-2023-1-5-Schätzen'
+import { exercise125 } from './implementations/NRW-EESA/125-2023-1-6-Mittelwerte und Durchschnitt'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -171,6 +172,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   122: exercise122,
   123: exercise123,
   124: exercise124,
+  125: exercise125,
   129: exercise129,
   130: exercise130,
   131: exercise131,
