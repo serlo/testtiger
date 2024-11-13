@@ -434,6 +434,16 @@ export const exercise45: Exercise<DATA> = {
     {
       points: 4,
       duration: 3,
+      correctionHints({ data }) {
+        return (
+          <>
+            Das hat höchste Priorität: Überprüfe, dass der Graph korrekt
+            eingezeichnet ist und entgegengesetzt zum Graphen des Zugs verläuft.
+            Das Koordinatensystem soll eine Achsenbeschriftung haben, ansonsten
+            ist die Antwort nicht korrekt.
+          </>
+        )
+      },
       intro({ data }) {
         return (
           <>

@@ -178,6 +178,15 @@ export const exercise50: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return (
+          <>
+            Überprüfe das Endergebnis der Rechnung. Ein Rechenweg muss in dieser
+            Aufgabe nicht angegeben werden. Auch ungekürzte Brüche sind ein
+            korrektes Ergebnis.
+          </>
+        )
+      },
       solution({ data }) {
         return (
           <>

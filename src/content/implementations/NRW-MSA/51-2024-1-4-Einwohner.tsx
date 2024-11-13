@@ -215,6 +215,14 @@ export const exercise51: Exercise<DATA> = {
     {
       points: 2,
       duration: 1,
+      correctionHints({ data }) {
+        return (
+          <>
+            Überprüfe, dass aus der Antwort klar wird, welcher Wert der median
+            hat und welcher Wert die Spannweite hat.
+          </>
+        )
+      },
       task({ data }) {
         return (
           <>

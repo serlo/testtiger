@@ -55,8 +55,9 @@ export const exercise1: Exercise<DATA> = {
       correctionHints({ data }) {
         return (
           <>
-            Achte darauf, dass die Zahlen aufsteigend geordnet sind. Überprüfe
-            das Ergebnis streng, sodass die Reihenfolge absolut korrekt ist.
+            Achte darauf, dass die Zahlen aufsteigend von links nach rechts
+            geordnet sind. Überprüfe das Ergebnis streng, sodass die Reihenfolge
+            absolut korrekt ist.
           </>
         )
       },

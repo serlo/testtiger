@@ -663,6 +663,9 @@ export const exercise46: Exercise<DATA> = {
           </>
         )
       },
+      correctionHints({ data }) {
+        return <>Überprüfe, dass die Antwort eine Begründung enthält.</>
+      },
       solution({ data }) {
         return (
           <>

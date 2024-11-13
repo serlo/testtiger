@@ -272,6 +272,14 @@ export const exercise47: Exercise<DATA> = {
     {
       points: 3,
       duration: 3,
+      correctionHints({ data }) {
+        return (
+          <>
+            Das ist sehr wichtig: Überprüfe, dass die Antwort eine vollstänige
+            Begründung enthält.
+          </>
+        )
+      },
       task({ data }) {
         const f0 =
           0.5 *
