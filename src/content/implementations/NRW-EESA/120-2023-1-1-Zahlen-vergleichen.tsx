@@ -88,7 +88,9 @@ export const exercise120: Exercise<DATA> = {
         </p>
         <p>
           Beachte: Die beiden Zahlen sind negativ. Deswegen gilt: {pp(data.a)}
-          {data.a > data.b ? ' > ' : ' < '}
+          {data.a > data.b && ' > '}
+          {data.a < data.b && ' < '}
+          {data.a == data.b && ' = '}
           {pp(data.b)}{' '}
         </p>
         <p>
@@ -132,8 +134,9 @@ export const exercise120: Exercise<DATA> = {
         </p>
         <p>
           Damit ist: {ppFrac([data.c, data.d])}{' '}
-          {data.c / data.d > data.e / data.f ? '>' : '<'}{' '}
-          {ppFrac([data.e, data.f])}
+          {data.c / data.d > data.e / data.f && '>'}{' '}
+          {data.c / data.d < data.e / data.f && '<'}{' '}
+          {data.c / data.d == data.e / data.f && '='} {ppFrac([data.e, data.f])}
         </p>
         <p>
           <strong>
@@ -185,7 +188,7 @@ export const exercise120: Exercise<DATA> = {
           )}
         </p>
         <p>
-          Jetzt kannst du den Bruch als Dezimalzahl schreiben:{' '}
+          Jetzt kannst du den Bruch als Dezimalzahl schreiben und vergleichen:{' '}
           {data.i == 4 && ppFrac([data.h * 25, data.i * 25])}
           {(data.i == 2 || data.i == 5) &&
             ppFrac([(data.h * 10) / data.i, (data.i * 10) / data.i])}
@@ -193,8 +196,9 @@ export const exercise120: Exercise<DATA> = {
           {pp(data.h / data.i)}
         </p>
         <p>
-          Damit ist: {pp(data.g)} {data.g > data.h / data.i ? '>' : '<'}{' '}
-          {ppFrac([data.h, data.i])}
+          Damit ist: {pp(data.g)} {data.g > data.h / data.i && '>'}
+          {data.g < data.h / data.i && '<'}
+          {data.g == data.h / data.i && '='} {ppFrac([data.h, data.i])}
         </p>
       </>
     )
