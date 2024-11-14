@@ -966,7 +966,8 @@ export const navigationData: { [key: number]: Navigation } = {
               {
                 id: 107,
                 pages: [
-                  { index: 'e', intro: ['global', 'skill'] },
+                  { index: 'd', intro: ['skill'] },
+                  { index: 'e' },
                   { index: 'f' },
                 ],
               },

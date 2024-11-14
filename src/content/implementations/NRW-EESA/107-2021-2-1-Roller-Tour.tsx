@@ -330,7 +330,7 @@ export const exercise107: Exercise<DATA> = {
           <>
             <p>
               c) Die Kosten bei {'"'}Easy Rent{'"'} können mit dem Term{' '}
-              {pp(data.gebühr_easy)} ⋅ x + {data.grund_easy} berechnet werden
+              {pp(data.gebühr_easy)} ⋅ x + {data.grund_easy} berechnet werden.
             </p>
             <p>
               Gib die Bedeutung von x, von {pp(data.gebühr_easy)} und von{' '}
@@ -365,6 +365,111 @@ export const exercise107: Exercise<DATA> = {
     {
       points: 2,
       duration: 3,
+      skillIntro({ data }) {
+        return (
+          <>
+            <p>
+              Für die Tour wollen Melike und Robin einen Motorroller für eine
+              Woche mieten. Robin findet zwei Angebote (Abbildung 2).
+            </p>
+            <center>
+              <svg viewBox="0 0 328 200">
+                <rect
+                  x="64"
+                  y="10"
+                  width="200"
+                  height="66"
+                  rx="4"
+                  ry="4"
+                  stroke="#007EC1"
+                  fill="transparent"
+                  strokeWidth="2"
+                />
+                <text
+                  x="164"
+                  y="24"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                >
+                  Angebot von {'"'}Easy Rent{'"'}
+                </text>
+                <text
+                  x="164"
+                  y="44"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Grundgebühr für eine Woche: {data.grund_easy} €
+                </text>
+                <text
+                  x="164"
+                  y="66"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Jeder km kostet {pp(data.gebühr_easy)} €
+                </text>
+                <rect
+                  x="64"
+                  y="90"
+                  width="200"
+                  height="88"
+                  rx="4"
+                  ry="4"
+                  stroke="#007EC1"
+                  fill="transparent"
+                  strokeWidth="2"
+                />
+                <text
+                  x="164"
+                  y="106"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                >
+                  Angebot von {'"'}Rollerverleih24{'"'}
+                </text>
+                <text
+                  x="164"
+                  y="126"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Grundgebühr für eine Woche: {data.grund_roller} €
+                </text>
+                <text
+                  x="164"
+                  y="146"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  {data.free} km frei
+                </text>
+                <text
+                  x="164"
+                  y="168"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Jeder km kostet {pp(data.gebühr_roller)} €
+                </text>
+              </svg>
+            </center>
+            <p>
+              Die Kosten bei {'"'}Easy Rent{'"'} können mit dem Term{' '}
+              {pp(data.gebühr_easy)} ⋅ x + {data.grund_easy} berechnet werden.
+            </p>
+          </>
+        )
+      },
       intro({ data }) {
         function toX(n: number) {
           return 20.5 + n * (287 / 20)
