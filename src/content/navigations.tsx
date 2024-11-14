@@ -791,7 +791,14 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             name: 'Prozentrechnung',
-            skillExercises: [{ id: 126, pages: [{ index: 'c' }] }],
+            skillExercises: [
+              {
+                id: 108,
+                pages: [{ index: 'e', intro: ['skill'] }],
+              },
+              { id: 126, pages: [{ index: 'c' }] },
+              { id: 132 },
+            ],
           },
         ],
       },
@@ -1020,6 +1027,10 @@ export const navigationData: { [key: number]: Navigation } = {
             name: 'Diagramme und Kenngrößen',
             skillExercises: [
               { id: 104, pages: [{ index: 'a', intro: ['global'] }] },
+              {
+                id: 131,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
               {
                 id: 112,
                 pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],

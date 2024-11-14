@@ -636,43 +636,54 @@ export const exercise108: Exercise<DATA> = {
                   ),
               )}{' '}
               + {pp(data.steine * data.preis_steine)} ={' '}
-              <strong>
-                {pp(
-                  data.preis_band *
-                    Math.ceil(
-                      roundToDigits(
-                        (Math.PI *
-                          Math.round(
-                            Math.sqrt(2 * data.breite * data.breite),
-                          )) /
-                          100,
-                        2,
-                      ),
-                    ) +
-                    data.steine * data.preis_steine,
-                )}{' '}
-                [€]
-              </strong>
+              {pp(
+                data.preis_band *
+                  Math.ceil(
+                    roundToDigits(
+                      (Math.PI *
+                        Math.round(Math.sqrt(2 * data.breite * data.breite))) /
+                        100,
+                      2,
+                    ),
+                  ) +
+                  data.steine * data.preis_steine,
+              )}{' '}
+              [€]
             </p>
             <p>
-              Maria und Leon bezahlen{' '}
+              Mit dem Gutschein bezahlen Maria und Leon nur noch{' '}
+              {100 - data.rabatt} % des ursprünglichen Preises:<br></br>
+              {pp(
+                data.preis_band *
+                  Math.ceil(
+                    roundToDigits(
+                      (Math.PI *
+                        Math.round(Math.sqrt(2 * data.breite * data.breite))) /
+                        100,
+                      2,
+                    ),
+                  ) +
+                  data.steine * data.preis_steine,
+              )}{' '}
+              · {pp(1 - data.rabatt / 100)} ={' '}
               <strong>
                 {pp(
-                  data.preis_band *
-                    Math.ceil(
-                      roundToDigits(
-                        (Math.PI *
-                          Math.round(
-                            Math.sqrt(2 * data.breite * data.breite),
-                          )) /
-                          100,
-                        2,
-                      ),
-                    ) +
-                    data.steine * data.preis_steine,
+                  (1 - data.rabatt / 100) *
+                    (data.preis_band *
+                      Math.ceil(
+                        roundToDigits(
+                          (Math.PI *
+                            Math.round(
+                              Math.sqrt(2 * data.breite * data.breite),
+                            )) /
+                            100,
+                          2,
+                        ),
+                      ) +
+                      data.steine * data.preis_steine),
                 )}{' '}
-                €
-              </strong>
+                [€]
+              </strong>{' '}
               .
             </p>
           </>
