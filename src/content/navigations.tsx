@@ -787,7 +787,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             name: 'Schätzen & Überschlagen',
-            skillExercises: [{ id: 114 }, { id: 133 }],
+            skillExercises: [{ id: 114 }, { id: 133 }, { id: 124 }],
           },
           {
             name: 'Prozentrechnung',
