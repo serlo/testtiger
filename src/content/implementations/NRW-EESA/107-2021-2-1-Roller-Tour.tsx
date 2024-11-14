@@ -424,6 +424,7 @@ export const exercise107: Exercise<DATA> = {
               >
                 Anzahl der Kilometer
               </text>
+
               <text
                 x={30}
                 y={10}
@@ -493,6 +494,7 @@ export const exercise107: Exercise<DATA> = {
                 height="220"
                 width="328"
               />
+
               <line
                 x1={toX(0)}
                 y1={toY(data.grund_roller / 10) - 1}

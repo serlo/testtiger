@@ -19,7 +19,7 @@ export const exercise125: Exercise<DATA> = {
   title: 'Mittelwerte und Durchschnitt',
   source: '2023 Teil 1 Aufgabe 6',
   useCalculator: false,
-  duration: 42,
+  duration: 4,
   generator(rng) {
     return {
       Spiel1: rng.randomIntBetween(5, 20),
@@ -37,7 +37,12 @@ export const exercise125: Exercise<DATA> = {
     Spiel5: 6,
   },
   constraint({ data }) {
-    return true
+    return (
+      ((data.Spiel1 + data.Spiel2 + data.Spiel3 + data.Spiel4 + data.Spiel5) /
+        5) %
+        1 ==
+      0
+    )
   },
   intro({ data }) {
     return (
@@ -47,7 +52,7 @@ export const exercise125: Exercise<DATA> = {
           erzielt. Die Anzahl der erzielten Tore hat sie in einer Tabelle
           notiert.
         </p>
-        <svg width="250" height="290" xmlns="http://www.w3.org/2000/svg">
+        <svg width="250" height="290">
           <rect
             x="10"
             y="10"
@@ -229,7 +234,8 @@ export const exercise125: Exercise<DATA> = {
   },
   tasks: [
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -251,7 +257,7 @@ export const exercise125: Exercise<DATA> = {
         return (
           <>
             <p>
-              <b>Spannweite:</b>Die Spannweite ist der Abstand zwischen dem
+              <b>Spannweite:</b> Die Spannweite ist der Abstand zwischen dem
               kleinsten und dem größten Messwert.
             </p>
             <p>
@@ -275,7 +281,8 @@ export const exercise125: Exercise<DATA> = {
       },
     },
     {
-      points: 42,
+      points: 2,
+      duration: 2,
       intro({ data }) {
         return null
       },
@@ -307,8 +314,8 @@ export const exercise125: Exercise<DATA> = {
                   <>
                     {buildInlineFrac(
                       <>
-                        {data.Spiel1} +{data.Spiel2} +{data.Spiel3} +
-                        {data.Spiel4} +{data.Spiel5}
+                        {data.Spiel1} + {data.Spiel2} + {data.Spiel3} +{' '}
+                        {data.Spiel4} + {data.Spiel5}
                       </>,
                       5,
                     )}
@@ -325,7 +332,11 @@ export const exercise125: Exercise<DATA> = {
                         data.Spiel5,
                       5,
                     )}{' '}
-                    ={' '}
+                  </>,
+                ],
+                [
+                  <>=</>,
+                  <>
                     {pp(
                       roundToDigits(
                         (data.Spiel1 +
