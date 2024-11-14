@@ -1027,6 +1027,10 @@ export const navigationData: { [key: number]: Navigation } = {
                 id: 104,
                 pages: [{ index: 'b', intro: ['global'] }],
               },
+              {
+                id: 125,
+                pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
             ],
           },
           {
