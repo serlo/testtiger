@@ -238,3 +238,6 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 
 // Polyline für svg-Umgebung
 // <polyline points={parabolaPoints} stroke="blue" strokeWidth="2" fill="none"/>
+
+// Line-Umgebung (für Geraden)
+// <line x1={33} y1={157} x2={toX((data.zeit_2 - data.zeit_1) / 10)} y2={toY(data.strecke_1 / 50)} stroke="blue" strokeWidth={2} />
