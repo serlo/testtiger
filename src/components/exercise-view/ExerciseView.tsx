@@ -27,14 +27,5 @@ export function ExerciseView({ id }: ExerciseViewProps) {
     return null
   }
 
-  return (
-    <>
-      <ExerciseViewLayout />
-      <style jsx global>{`
-        body {
-          background-color: #fef08a; /* placeholder color */
-        }
-      `}</style>
-    </>
-  )
+  return <ExerciseViewLayout />
 }

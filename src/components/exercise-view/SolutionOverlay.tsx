@@ -12,6 +12,7 @@ import { useRef, useEffect } from 'react'
 import { countLetter } from '@/helper/count-letter'
 import clsx from 'clsx'
 import { reseed } from './state/actions'
+import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 export function SolutionOverlay() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
@@ -148,6 +149,17 @@ export function SolutionOverlay() {
                     }
                   }
                 }
+              })
+              updatePlayerProfileStore(s => {
+                s.eventLog.push({
+                  type: 'kann-ich',
+                  id,
+                  ts: new Date().getTime(),
+                  index: pages
+                    ? pages[navIndicatorPosition].index.charCodeAt(0) -
+                      'a'.charCodeAt(0)
+                    : navIndicatorPosition,
+                })
               })
             }}
           >

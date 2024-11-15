@@ -13,10 +13,24 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { Store } from '../../../store'
+import { UiStore } from '../../../store'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../../store/player-profile-store'
+import { useState } from 'react'
+
+const examTitle: { [key: number]: string } = {
+  1: 'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)',
+  2: 'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA).',
+}
 
 export function Schoolform() {
-  const name = Store.useState(s => s.name)
+  const name = PlayerProfileStore.useState(s => s.name)
+  const [localExam, setLocalExam] = useState(1)
+  updatePlayerProfileStore(s => {
+    s.currentExam = localExam
+  })
   return (
     <IonPage>
       <IonHeader className="ion-no-border bg-white">
@@ -30,15 +44,15 @@ export function Schoolform() {
       <IonContent className="ion-padding">
         <IonList>
           <IonRadioGroup
-            value={'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)'}
+            value={localExam}
+            onIonChange={e => {
+              setLocalExam(parseInt(e.detail.value))
+            }}
           >
-            {[
-              'Nordrhein-Westfalen - Mittlerer Schulabschuss (MSA)',
-              'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA).',
-            ].map(n => (
+            {[1, 2].map(n => (
               <IonItem key={n}>
                 <IonRadio key={n} value={n}>
-                  {n}
+                  {examTitle[n]}
                 </IonRadio>
               </IonItem>
             ))}
