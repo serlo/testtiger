@@ -204,5 +204,35 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 // ≙ ≠ ⇒ ∈ ∉
 // ['',<> <Color4><span className="inline-block  scale-y-[1.5]">↓</span></Color4></>,<><Color4><span style={{ fontSize: 'small' }}>Hier Erklärtext</span></Color4></>,]
 // π ≈ √
+
+// SVG-Umgebung:
+//<svg viewBox="0 0 328 190"></svg>
+
+// Umgebung für Bild:
+// <image href="/content/NRW_MSA/NRW_MSA_Planfigur.PNG" height="190" width="328" />
+
+// Umgebung für Text in SVG:
+// <text x={140} y={185} fontSize={20} textAnchor="right" stroke="black">Hier Text</text>
+
+// Bildunterschrift:
 // <center><Color5><span style={{ fontSize: 'small' }}>Unterschrift</span></Color5></center>
+
+// Intro Codeblock:
 // intro({data}){return(<></>)},
+
+// Skalierungsfunktion für Koordinatensysteme:
+// function toX(n: number) {return 33 + n * 15.6}
+// function toY(n: number) {return 157 - n * 15.6}
+
+// Funktion, die Punkte von Graphen anlegt
+// function generateParabolaPoints(a: number,b: number,c: number,step: number,): string {
+// let points = ''
+// for (let x = -4; x <= 11; x += step) {
+// const y = a * (x - b) * (x - b) + c
+// points += `${toX(x)},${toY(y)} `} return points.trim() }
+
+// Variable, die Funktion abruft:
+// const parabolaPoints = generateParabolaPoints(data.a,data.x_s,data.y_s,0.1,)
+
+// Polyline für svg-Umgebung
+// <polyline points={parabolaPoints} stroke="blue" strokeWidth="2" fill="none"/>
