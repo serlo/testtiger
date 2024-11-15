@@ -241,3 +241,9 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 
 // Line-Umgebung (für Geraden)
 // <line x1={33} y1={157} x2={toX((data.zeit_2 - data.zeit_1) / 10)} y2={toY(data.strecke_1 / 50)} stroke="blue" strokeWidth={2} />
+
+// Shuffle
+// order: number[]
+// order: rng.shuffleArray([0, 1, 2]),
+// const listItems = [<li key="1"></li>,<li key="2"></li>,<li key="3"></li>,]
+// const shuffledItems = data.order.map(i => listItems[i])
