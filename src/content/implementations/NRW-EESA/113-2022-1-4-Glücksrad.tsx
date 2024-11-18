@@ -23,6 +23,7 @@ export const exercise113: Exercise<DATA> = {
   originalData: { nenner: 3, array: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0] },
   constraint({ data }) {
     return (
+      data.array.filter(element => element === 1).length != 0 &&
       data.array.filter(element => element === 1).length + 12 / data.nenner < 12
     )
   },
