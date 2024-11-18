@@ -11,6 +11,7 @@ export const exerciseXXX: Exercise<DATA> = {
   generator(rng) {
     return {}
   },
+  originalData: {},
   constraint({ data }) {
     return true
   },
