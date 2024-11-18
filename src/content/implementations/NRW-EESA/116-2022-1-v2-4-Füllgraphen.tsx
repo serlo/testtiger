@@ -15,8 +15,8 @@ export const exercise116: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      one: rng.randomIntBetween(1, 14),
-      two: rng.randomIntBetween(1, 14),
+      one: rng.randomIntBetween(1, 13),
+      two: rng.randomIntBetween(1, 13),
       three: rng.randomIntBetween(1, 14),
       four: rng.randomIntBetween(1, 14),
     }
