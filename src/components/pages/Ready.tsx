@@ -11,7 +11,7 @@ export function Ready() {
         </div>
       </IonContent>
       <IonFooter>
-        <div className="my-3 text-center bg-white">
+        <div className="py-3 text-center bg-white">
           <p className="mt-6 flex justify-around">
             <IonButton routerLink="/app/home">Los gehts!</IonButton>
           </p>

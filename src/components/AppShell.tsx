@@ -17,6 +17,11 @@ import { ExerciseView } from './exercise-view/ExerciseView'
 import { useEffect } from 'react'
 import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'
 import { TmpKITest } from './TmpKITest'
+import {
+  defaultPlayerProfileStoreValue,
+  PlayerProfileStore,
+  storageKey,
+} from '../../store/player-profile-store'
 
 setupIonicReact({})
 
@@ -35,6 +40,15 @@ export function AppShell() {
         history.goBack()
       })
     }
+
+    const persistence = sessionStorage.getItem(storageKey)
+
+    try {
+      const obj = JSON.parse(
+        persistence || JSON.stringify(defaultPlayerProfileStoreValue),
+      )
+      PlayerProfileStore.update(() => obj)
+    } catch {}
 
     document.addEventListener('ionBackButton', handler)
 

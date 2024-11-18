@@ -1,7 +1,7 @@
-import { Store } from '.'
+import { UiStore } from '.'
 
 export const setName = (name: string) => {
-  Store.update(s => {
+  UiStore.update(s => {
     s.name = name
   })
 }

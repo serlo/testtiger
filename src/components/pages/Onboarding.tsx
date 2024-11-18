@@ -7,8 +7,10 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 
 export function Onboarding() {
+  const username = PlayerProfileStore.useState(s => s.name)
   return (
     <IonPage>
       <IonContent className="ion-padding">
@@ -20,10 +22,12 @@ export function Onboarding() {
         <img src="/img/startscreen.jpg" className="mx-auto" alt=""></img>
       </IonContent>
       <IonFooter className="ion-no-border">
-        <div className="my-3 text-center bg-white">
-          <IonButton routerLink="/app/home" fill="clear">
-            Überspringen
-          </IonButton>
+        <div className="py-3 text-center bg-white">
+          {username && (
+            <IonButton routerLink="/app/home" fill="clear">
+              weiter als {username}
+            </IonButton>
+          )}
           <p className="mt-6">
             <IonButton routerLink="/name">Ich bin neu hier</IonButton>
           </p>

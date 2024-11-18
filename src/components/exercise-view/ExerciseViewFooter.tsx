@@ -23,6 +23,7 @@ import { analyseLastInput } from './state/actions'
 import { useRef } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { exercisesData } from '@/content/exercises'
+import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 defineCustomElements(window)
 
@@ -37,6 +38,10 @@ export function ExerciseViewFooter() {
   )
   const id = ExerciseViewStore.useState(s => s.id)
   const content = exercisesData[id]
+  const pages = ExerciseViewStore.useState(s => s.pages)
+  const navIndicatorPosition = ExerciseViewStore.useState(
+    s => s.navIndicatorPosition,
+  )
 
   const takePhoto = async () => {
     try {
@@ -198,7 +203,50 @@ export function ExerciseViewFooter() {
                           >
                             Lösung anzeigen
                           </button>
-                          <button className="px-2 py-0.5 bg-gray-100 rounded mr-4">
+                          <button
+                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                const wasNotDone =
+                                  s.completed[s.navIndicatorPosition] == false
+                                s.completed[s.navIndicatorPosition] = true
+                                if (s.completed.every(x => x)) {
+                                  setTimeout(() => {
+                                    ExerciseViewStore.update(s => {
+                                      s.showEndScreen = true
+                                    })
+                                  }, 1000)
+                                } else {
+                                  if (
+                                    s.navIndicatorPosition + 1 <
+                                    s.navIndicatorLength
+                                  ) {
+                                    if (wasNotDone) {
+                                      setTimeout(() => {
+                                        ExerciseViewStore.update(s => {
+                                          s.navIndicatorExternalUpdate =
+                                            s.navIndicatorPosition + 1
+                                          s.chatOverlay = null
+                                        })
+                                      }, 500)
+                                    }
+                                  }
+                                }
+                              })
+                              updatePlayerProfileStore(s => {
+                                s.eventLog.push({
+                                  type: 'kann-ich',
+                                  id,
+                                  ts: new Date().getTime(),
+                                  index: pages
+                                    ? pages[
+                                        navIndicatorPosition
+                                      ].index.charCodeAt(0) - 'a'.charCodeAt(0)
+                                    : navIndicatorPosition,
+                                })
+                              })
+                            }}
+                          >
                             Kann ich
                           </button>
                         </p>

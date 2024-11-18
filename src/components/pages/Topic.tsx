@@ -12,8 +12,10 @@ import { exercisesData } from '@/content/exercises'
 import { setupExercise } from '../exercise-view/state/actions'
 import { useState } from 'react'
 import { SkillGroup } from '@/data/types'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { countLetter } from '@/helper/count-letter'
 
 interface TopicProps {
   title: string
@@ -26,7 +28,7 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
   const [openIndex, setOpenIndex] = useState(0) // Default to the first section being open
 
   return (
-    <IonPage>
+    <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
         <IonToolbar color={color}>
           <IonButtons slot="start">
@@ -85,6 +87,23 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
                               )
                             }}
                           >
+                            {(ex.pages
+                              ? ex.pages.every(p =>
+                                  PlayerProfileStore.getRawState().eventLog.some(
+                                    e =>
+                                      e.type == 'kann-ich' &&
+                                      e.id == ex.id &&
+                                      countLetter('a', e.index) == p.index,
+                                  ),
+                                )
+                              : PlayerProfileStore.getRawState().eventLog.some(
+                                  e => e.type == 'kann-ich' && e.id == ex.id,
+                                )) && (
+                              <FaIcon
+                                icon={faCheckCircle}
+                                className="text-green-500"
+                              />
+                            )}{' '}
                             {exercisesData[ex.id].source}
                             {ex.pages && (
                               <> / {ex.pages.map(p => p.index).join(', ')}</>

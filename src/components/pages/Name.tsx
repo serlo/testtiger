@@ -6,13 +6,15 @@ import {
   IonPage,
 } from '@ionic/react'
 import { useHistory } from 'react-router'
-import { selectName } from '../../../store/selectors'
-import { Store } from '../../../store'
-import { setName } from '../../../store/actions'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../../store/player-profile-store'
+import { useState } from 'react'
 
 export function Name() {
   const history = useHistory()
-  const name = Store.useState(s => s.name)
+  const [localName, setLocalName] = useState('')
   return (
     <IonPage>
       <IonContent className="ion-padding">
@@ -26,16 +28,19 @@ export function Name() {
             }}
           >
             <IonInput
-              value={name}
+              value={localName}
               onIonInput={e => {
-                setName(e.target.value?.toString() || '')
+                updatePlayerProfileStore(s => {
+                  s.name = e.target.value?.toString() || ''
+                })
+                setLocalName(PlayerProfileStore.getRawState().name)
               }}
             ></IonInput>
           </form>
         </div>
       </IonContent>
       <IonFooter>
-        <div className="my-3 text-center bg-white">
+        <div className="py-3 text-center bg-white">
           <p className="mt-6">
             <IonButton routerLink="/schoolform">weiter</IonButton>
           </p>
