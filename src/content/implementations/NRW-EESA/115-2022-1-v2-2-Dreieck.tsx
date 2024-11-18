@@ -12,7 +12,7 @@ interface DATA {
 
 export const exercise115: Exercise<DATA> = {
   title: 'Dreieck',
-  source: '2022 Teil 1 Variante 2 Aufgabe 4',
+  source: '2022 Teil 1 Variante 2 Aufgabe 2',
   useCalculator: false,
   duration: 42,
   generator(rng) {
@@ -74,7 +74,9 @@ export const exercise115: Exercise<DATA> = {
                 {pp(data.c)} cm
               </text>
             </svg>
-            <p>Zeichne die Seite b im Winkel {data.alpha}° vom Punkt A aus.</p>
+            <p>
+              Zeichne die Seite b im Winkel {data.alpha_1}° vom Punkt A aus.
+            </p>
             <svg viewBox="0 0 328 100">
               <image
                 href="/content/NRW_EESA/115_Dreieck2.PNG"
