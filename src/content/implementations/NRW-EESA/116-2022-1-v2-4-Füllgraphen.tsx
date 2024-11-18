@@ -16,8 +16,8 @@ export const exercise116: Exercise<DATA> = {
   generator(rng) {
     return {
       one: rng.randomIntBetween(1, 14),
-      two: rng.randomIntBetween(1, 11),
-      three: rng.randomIntBetween(1, 11),
+      two: rng.randomIntBetween(1, 14),
+      three: rng.randomIntBetween(1, 14),
       four: rng.randomIntBetween(1, 14),
     }
   },
@@ -29,7 +29,11 @@ export const exercise116: Exercise<DATA> = {
       data.three != data.two &&
       data.four != data.one &&
       data.four != data.two &&
-      data.four != data.three
+      data.four != data.three &&
+      data.one != 12 &&
+      data.one != 14 &&
+      data.two != 12 &&
+      data.two != 14
     )
   },
   task({ data }) {
