@@ -94,7 +94,6 @@ import { exercise110 } from './implementations/NRW-EESA/110-2022-1-1-Zahlen-ordn
 import { exercise111 } from './implementations/NRW-EESA/111-2022-1-2-Quadrat'
 import { exercise124 } from './implementations/NRW-EESA/124-2023-1-5-Schätzen'
 import { exercise125 } from './implementations/NRW-EESA/125-2023-1-6-Mittelwerte und Durchschnitt'
-import { exercise138 } from './implementations/NRW-EESA/138-Test'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -191,7 +190,6 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   112: exercise112,
   110: exercise110,
   111: exercise111,
-  138: exercise138,
 }
 
 // symbols:
