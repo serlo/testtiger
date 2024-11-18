@@ -105,7 +105,7 @@ export const exercise103: Exercise<DATA> = {
                     </>,
                   ],
                   [
-                    <></>,
+                    <>p</>,
                     <>=</>,
                     <>
                       {ppFrac(
@@ -140,15 +140,8 @@ export const exercise103: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Wahrscheinlichkeit eine blaue Kugel zu ziehen beträgt laut a)
-              p = {ppFrac(data.blue / (data.black + data.white + data.blue))}.
-            </p>
-            <p>
-              <strong>Wahrscheinlichkeit für schwarz</strong>
-            </p>
-            <p>
-              Berechne mit der gleichen Rechnung die Wahrscheinlichkeit, eine
-              schwarze Kugel zu ziehen:
+              Berechne die Wahrscheinlichkeit mit der Formel für das
+              Laplace-Experiment:
             </p>
             {buildEquation([
               [
@@ -156,8 +149,21 @@ export const exercise103: Exercise<DATA> = {
                 <>=</>,
                 <>
                   {buildInlineFrac(
-                    <>Anzahl schwarze Kugeln</>,
+                    <>blaue Kugeln + schwarze Kugeln</>,
                     <>Anzahl aller Kugeln</>,
+                  )}
+                </>,
+              ],
+              [
+                <>p</>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>
+                      {' '}
+                      {data.blue} + {data.black}
+                    </>,
+                    <>{data.black + data.white + data.blue}</>,
                   )}
                 </>,
               ],
@@ -165,82 +171,21 @@ export const exercise103: Exercise<DATA> = {
                 <></>,
                 <>=</>,
                 <>
-                  {ppFrac([data.black, data.black + data.white + data.blue])}
-                </>,
-              ],
-            ])}
-            {getGcd(data.black, data.black + data.white + data.blue) != 1 && (
-              <>
-                {buildEquation([
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>Kürzen</span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <></>,
-                    <>=</>,
-                    <>
-                      {ppFrac(
-                        data.black / (data.black + data.white + data.blue),
-                      )}
-                    </>,
-                  ],
-                ])}
-              </>
-            )}
-            <p>
-              <strong>Wahrscheinlichkeit insgesamt</strong>
-            </p>
-            <p>
-              Addiere beide Brüche um die Wahrscheinlichkeit für beide
-              Möglichkeiten zu berechnen.
-            </p>
-            {}
-            {buildEquation([
-              [
-                <>
-                  P({'"'}blau oder schwarz{'"'})
-                </>,
-                <>=</>,
-                <>
-                  {ppFrac([data.blue, data.black + data.white + data.blue])} +{' '}
-                  {ppFrac([data.black, data.black + data.white + data.blue])}
-                </>,
-              ],
-              [
-                <></>,
-                <>=</>,
-                <>
                   {ppFrac([
-                    data.black + data.blue,
+                    data.blue + data.black,
                     data.black + data.white + data.blue,
                   ])}
                 </>,
               ],
-              [<></>, <></>, <></>],
             ])}
             {getGcd(
-              data.black + data.blue,
+              data.blue + data.black,
               data.black + data.white + data.blue,
             ) != 1 && (
               <>
                 {buildEquation([
                   [
-                    <>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                    </>,
+                    <> </>,
                     <>
                       {' '}
                       <Color4>
@@ -254,11 +199,11 @@ export const exercise103: Exercise<DATA> = {
                     </>,
                   ],
                   [
-                    <></>,
+                    'p',
                     <>=</>,
                     <>
                       {ppFrac(
-                        (data.black + data.blue) /
+                        (data.blue + data.black) /
                           (data.black + data.white + data.blue),
                       )}
                     </>,

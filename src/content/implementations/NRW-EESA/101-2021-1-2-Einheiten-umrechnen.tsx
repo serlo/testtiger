@@ -45,7 +45,7 @@ export const exercise101: Exercise<DATA> = {
           <strong>Zentimeter (cm) in Meter (m)</strong>
         </p>
         <p>
-          1 Meter enthält 100 Zentimetern. <br></br>Rechne mit dem
+          1 Meter enthält 100 Zentimeter. <br></br>Rechne mit dem
           Umrechnungsfaktor 100:
         </p>
         <p>
