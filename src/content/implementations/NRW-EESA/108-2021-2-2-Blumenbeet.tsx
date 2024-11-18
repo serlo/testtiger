@@ -428,7 +428,7 @@ export const exercise108: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die mit Kieselsteinen bedeckten Fläche ist die Fläche des Kreises,
+              Die mit Kieselsteinen bedeckte Fläche ist die Fläche des Kreises,
               abzüglich der Fläche des Quadrats.
             </p>
             <p> Berechne die Kreisfläche mit der Formel:</p>
@@ -479,8 +479,10 @@ export const exercise108: Exercise<DATA> = {
             <p>
               {pp(roundToDigits((d / 2) * (d / 2) * Math.PI, 2))} −{' '}
               {data.breite * data.breite} ={' '}
-              {roundToDigits((d / 2) * (d / 2) * Math.PI, 2) -
-                data.breite * data.breite}{' '}
+              {roundToDigits(
+                (d / 2) * (d / 2) * Math.PI - data.breite * data.breite,
+                2,
+              )}{' '}
               [cm²] ≈{' '}
               <strong>
                 {pp(
