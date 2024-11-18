@@ -458,7 +458,7 @@ export const exercise109: Exercise<DATA> = {
                 <>
                   <Color4>
                     <span style={{ fontSize: 'small' }}>
-                      Werte aus c) und d) einsetzen
+                      setze die Dreiecksfläche und die Höhe ein
                     </span>
                   </Color4>
                 </>,
