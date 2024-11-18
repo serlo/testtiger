@@ -82,6 +82,7 @@ export const exercise100: Exercise<DATA> = {
             fontSize={14}
             textAnchor="middle"
             stroke="blue"
+            strokeWidth={0.1}
           >
             {pp(data.a)}
           </text>
@@ -114,6 +115,7 @@ export const exercise100: Exercise<DATA> = {
             fontSize={14}
             textAnchor="middle"
             stroke="blue"
+            strokeWidth={0.1}
           >
             {pp(data.d)}
           </text>
