@@ -312,7 +312,8 @@ export const exercise126: Exercise<DATA> = {
           <>
             <p>
               Auf den blauen Feldern gewinnt Mehmet nichts. Die
-              Wahrscheinlichkeit dafür beträgt mit der Laplace-Formel:
+              Wahrscheinlichkeit nichts zu gewinnen beträgt mit der
+              Laplace-Formel:
             </p>
             {buildEquation([
               [
@@ -320,7 +321,7 @@ export const exercise126: Exercise<DATA> = {
                 <>=</>,
                 <>
                   {buildInlineFrac(
-                    <>Anzahl der grünen Felder</>,
+                    <>Anzahl der blauen Felder</>,
                     <>Anzahl aller Felder</>,
                   )}
                 </>,
@@ -356,7 +357,11 @@ export const exercise126: Exercise<DATA> = {
                   1 − P({'"'}kein Gewinn{'"'})
                 </>,
               ],
-
+              [
+                <></>,
+                <>{getGcd(count, 12) != 1 && <>=</>}</>,
+                <>{getGcd(count, 12) != 1 && <>1 - {ppFrac(count / 12)}</>}</>,
+              ],
               [
                 <></>,
                 <>
