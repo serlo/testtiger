@@ -541,20 +541,38 @@ export const exercise109: Exercise<DATA> = {
       task({ data }) {
         const listItems = [
           <li key="1">
-            <svg viewBox="0 0 328 120">
-              <image href={richtig[data.item_1]} height="120" width="328" />
-            </svg>
+            {data.item_1 == 0 ? (
+              <svg viewBox="0 0 328 50">
+                <image href={richtig[data.item_1]} height="50" width="328" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 120">
+                <image href={richtig[data.item_1]} height="120" width="328" />
+              </svg>
+            )}
           </li>,
           <li key="2">
-            <svg viewBox="0 0 328 120">
-              <image href={falsch[data.item_2]} height="120" width="328" />
-            </svg>
+            {data.item_2 == 3 ? (
+              <svg viewBox="0 0 328 50">
+                <image href={falsch[data.item_2]} height="50" width="328" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 120">
+                <image href={falsch[data.item_2]} height="120" width="328" />
+              </svg>
+            )}
           </li>,
 
           <li key="3">
-            <svg viewBox="0 0 328 120">
-              <image href={falsch[data.item_3]} height="120" width="328" />
-            </svg>
+            {data.item_3 == 3 ? (
+              <svg viewBox="0 0 328 50">
+                <image href={falsch[data.item_3]} height="50" width="328" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 120">
+                <image href={falsch[data.item_3]} height="120" width="328" />
+              </svg>
+            )}
           </li>,
         ]
         const shuffledItems = data.order.map(i => listItems[i])
@@ -573,17 +591,35 @@ export const exercise109: Exercise<DATA> = {
         return (
           <>
             <p>Das Netz</p>
-            <svg viewBox="0 0 328 100">
-              <image href={richtig[data.item_1]} height="100" width="328" />
-            </svg>
+            {data.item_1 == 0 ? (
+              <svg viewBox="0 0 328 50">
+                <image href={richtig[data.item_1]} height="50" width="328" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 120">
+                <image href={richtig[data.item_1]} height="120" width="328" />
+              </svg>
+            )}
             <p>beschreibt tatsächlich einen Tetraeder.</p>
             <p>Die Netze</p>
-            <svg viewBox="0 0 328 100">
-              <image href={falsch[data.item_2]} height="100" width="328" />
-            </svg>
-            <svg viewBox="0 0 328 100">
-              <image href={falsch[data.item_3]} height="100" width="328" />
-            </svg>
+            {data.item_2 == 3 ? (
+              <svg viewBox="0 0 328 50">
+                <image href={falsch[data.item_2]} height="50" width="328" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 120">
+                <image href={falsch[data.item_2]} height="120" width="328" />
+              </svg>
+            )}
+            {data.item_3 == 3 ? (
+              <svg viewBox="0 0 328 50">
+                <image href={falsch[data.item_3]} height="50" width="328" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 328 120">
+                <image href={falsch[data.item_3]} height="120" width="328" />
+              </svg>
+            )}
             <p>beschreiben keine Tetraeder.</p>
           </>
         )
