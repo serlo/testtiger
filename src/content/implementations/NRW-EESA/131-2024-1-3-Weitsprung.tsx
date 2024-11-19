@@ -202,7 +202,7 @@ export const exercise131: Exercise<DATA> = {
               </li>
               <li>
                 Die <strong>Spannweite</strong> ist die Differenz des größten
-                Wertes und des kleinsten Wertes.<br></br> <br></br>
+                Wertes und des kleinsten Wertes:<br></br>
                 {pp(array[4])} − {pp(array[0])} ={' '}
                 <strong>{pp(array[4] - array[0])} [m]</strong>.
               </li>
@@ -238,8 +238,8 @@ export const exercise131: Exercise<DATA> = {
         return (
           <>
             <p>
-              Um das arithmetische Mittel zu berechnen, addierst du alle Werte
-              und teilst das Ergebnis durch die Anzahl der Werte:
+              Um den Durchschnitt zu berechnen, addierst du alle Werte und
+              teilst das Ergebnis durch die Anzahl der Werte:
             </p>
             <p>
               {buildFrac(
