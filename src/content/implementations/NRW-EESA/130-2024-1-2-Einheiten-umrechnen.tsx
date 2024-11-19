@@ -49,10 +49,10 @@ export const exercise130: Exercise<DATA> = {
           Umrechnungsfaktor 100:
         </p>
         <p>
-          {pp(data.m * 100)} cm = {pp(data.m * 100)} : 100 [m]
+          {pp(data.m * 100)} cm = {pp(data.m * 100)} : 100 m
         </p>
         <p>
-          {pp(data.m * 100)} cm = <strong>{pp(data.m)} [m]</strong>
+          {pp(data.m * 100)} cm = <strong>{pp(data.m)} m</strong>
         </p>
         <p>
           <strong>Sekunden (s) in Minuten (min)</strong>
@@ -62,10 +62,10 @@ export const exercise130: Exercise<DATA> = {
           Umrechnungsfaktor 60:
         </p>
         <p>
-          {pp(data.min * 60)} s = {pp(data.min * 60)} : 60 [min]
+          {pp(data.min * 60)} s = {pp(data.min * 60)} : 60 min
         </p>
         <p>
-          {pp(data.min * 60)} s = <strong>{pp(data.min)} [min]</strong>
+          {pp(data.min * 60)} s = <strong>{pp(data.min)} min</strong>
         </p>
         <p>
           <strong>Liter (ℓ) in Milliliter (ml)</strong>
@@ -75,10 +75,10 @@ export const exercise130: Exercise<DATA> = {
           Umrechnungsfaktor 1000:
         </p>
         <p>
-          {pp(data.ml / 1000)} ℓ = {pp(data.ml / 1000)} · 1000 [ml]
+          {pp(data.ml / 1000)} ℓ = {pp(data.ml / 1000)} · 1000 ml
         </p>
         <p>
-          {pp(data.ml / 1000)} ℓ = <strong>{pp(data.ml)} [ml]</strong>
+          {pp(data.ml / 1000)} ℓ = <strong>{pp(data.ml)} ml</strong>
         </p>
       </>
     )
