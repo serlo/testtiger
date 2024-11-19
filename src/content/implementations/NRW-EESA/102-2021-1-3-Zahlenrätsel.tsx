@@ -7,6 +7,7 @@ interface DATA {
   x_input: number
   x_sol: number
   summand: number
+  case: number
 }
 
 export const exercise102: Exercise<DATA> = {
@@ -20,9 +21,10 @@ export const exercise102: Exercise<DATA> = {
       x_input: rng.randomIntBetween(3, 8),
       x_sol: rng.randomIntBetween(2, 7),
       summand: rng.randomIntBetween(11, 25),
+      case: rng.randomIntBetween(1, 3),
     }
   },
-  originalData: { faktor: 3, x_input: 6, x_sol: 2, summand: 19 },
+  originalData: { case: 1, faktor: 3, x_input: 6, x_sol: 2, summand: 19 },
   constraint({ data }) {
     return data.x_input != data.x_sol
   },
@@ -139,23 +141,68 @@ export const exercise102: Exercise<DATA> = {
               b) Pia setzt für x eine Zahl ein und erhält das Ergebnis {rechts}.
               Tom möchte Pias Zahl finden und notiert die folgende Rechnung:
             </p>
-            {buildEquation([
-              [
-                <>
-                  (x + {data.summand}) · {data.faktor}
-                </>,
-                <>=</>,
-                <>{rechts}</>,
-                <>| : {data.faktor}</>,
-              ],
-              [
-                <>x + {data.summand}</>,
-                <>=</>,
-                <>{rechts}</>,
-                <>| − {data.summand}</>,
-              ],
-              [<>x</>, <>=</>, <>{rechts - data.summand}</>],
-            ])}
+            {data.case == 1 && (
+              <>
+                {buildEquation([
+                  [
+                    <>
+                      (x + {data.summand}) · {data.faktor}
+                    </>,
+                    <>=</>,
+                    <>{rechts}</>,
+                    <>| : {data.faktor}</>,
+                  ],
+                  [
+                    <>x + {data.summand}</>,
+                    <>=</>,
+                    <>{rechts}</>,
+                    <>| − {data.summand}</>,
+                  ],
+                  [<>x</>, <>=</>, <>{rechts - data.summand}</>],
+                ])}
+              </>
+            )}
+            {data.case == 2 && (
+              <>
+                {buildEquation([
+                  [
+                    <>
+                      (x + {data.summand}) · {data.faktor}
+                    </>,
+                    <>=</>,
+                    <>{rechts}</>,
+                    <>| : {data.faktor}</>,
+                  ],
+                  [
+                    <>x + {data.summand}</>,
+                    <>=</>,
+                    <>{rechts / data.faktor}</>,
+                    <>| − {data.summand}</>,
+                  ],
+                  [<>x</>, <>=</>, <>{rechts / data.faktor}</>],
+                ])}
+              </>
+            )}
+            {data.case == 3 && (
+              <>
+                {buildEquation([
+                  [
+                    <>
+                      (x + {data.summand}) · {data.faktor}
+                    </>,
+                    <>=</>,
+                    <>{rechts}</>,
+                  ],
+                  [
+                    <>x + {data.faktor * data.summand}</>,
+                    <>=</>,
+                    <>{rechts}</>,
+                    <>| − {data.faktor * data.summand}</>,
+                  ],
+                  [<>x</>, <>=</>, <>{rechts - data.faktor * data.summand}</>],
+                ])}
+              </>
+            )}
             <p>
               Pia stellt fest: {'"'}Die Rechnung ist falsch.{'"'}
               Markiere den Fehler und bestimme Pias Zahl.
@@ -168,8 +215,25 @@ export const exercise102: Exercise<DATA> = {
         return (
           <>
             <p>
-              Tom hat nur die linke Seite durch {data.faktor} geteilt. Er hätte
-              beide Seiten durch {data.faktor} teilen müssen.
+              {data.case == 1 && (
+                <>
+                  Tom hat nur die linke Seite durch {data.faktor} geteilt. Er
+                  hätte beide Seiten durch {data.faktor} teilen müssen.
+                </>
+              )}
+              {data.case == 2 && (
+                <>
+                  Tom hat nur die linke Seite mit {data.summand} subtrahiert. Er
+                  hätte {data.summand} von beiden Seiten abziehen müssen.
+                </>
+              )}
+              {data.case == 3 && (
+                <>
+                  Tom hat die Klammer auf der linken Seite falsch aufgelöst.
+                  Besser wäre, beide Seiten durch den Faktor {data.faktor} zu
+                  teilen.
+                </>
+              )}
             </p>
             {buildEquation([
               [
