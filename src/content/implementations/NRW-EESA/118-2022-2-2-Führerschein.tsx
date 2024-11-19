@@ -16,6 +16,7 @@ interface DATA {
   item_3: number
   order: number[]
   rabatt: number
+  case: number
 }
 const richtig = ['=B5*C5']
 
@@ -40,10 +41,12 @@ export const exercise118: Exercise<DATA> = {
       item_2: rng.randomIntBetween(0, 2),
       item_3: rng.randomIntBetween(0, 2),
       order: rng.shuffleArray([0, 1, 2]),
+      case: rng.randomIntBetween(1, 3),
     }
   },
 
   originalData: {
+    case: 1,
     rabatt: 100,
     grundbetrag: 300,
     more_stunden: 15,
@@ -339,13 +342,39 @@ export const exercise118: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
+            <p>d)</p>
             <p>
-              d) Alina vermutet, dass sie mehr als zehn Übungsstunden benötigt.
-            </p>
-            <p>
-              Welche Werte ändern sich in der Tabellenkalkulation, wenn Alina
-              mehr als zehn Übungsstunden benötigt? Gib alle Zellen an, deren
-              Wert sich ändert.
+              {data.case == 1 && (
+                <>
+                  Alina vermutet, dass sie mehr als zehn Übungsstunden benötigt.
+                  <br></br>
+                  <br></br>
+                  Welche Werte ändern sich in der Tabellenkalkulation, wenn
+                  Alina mehr als zehn Übungsstunden benötigt? Gib alle Zellen
+                  an, deren Wert sich ändert.
+                </>
+              )}
+              {data.case == 2 && (
+                <>
+                  Die Fahrschule erhöht den Einzelpreis der Übungsstunden.
+                  <br></br>
+                  <br></br>
+                  Welche Werte ändern sich in der Tabellenkalkulation, wenn eine
+                  Übungsstunde teurer wird? Gib alle Zellen an, deren Wert sich
+                  ändert.
+                </>
+              )}
+              {data.case == 3 && (
+                <>
+                  Aufgrund einer Aktion bietet die Fahrschule Sonderfahrten
+                  günstiger an.
+                  <br></br>
+                  <br></br>
+                  Welche Werte ändern sich in der Tabellenkalkulation, wenn
+                  Sonderfahrten günstiger werden? Gib alle Zellen an, deren Wert
+                  sich ändert.
+                </>
+              )}
             </p>
           </>
         )
@@ -353,20 +382,57 @@ export const exercise118: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              Wenn Alina mehr Übungsstunden benötigt, ändern sich die Zellen:
-            </p>
-            <ul>
-              <li>
-                <strong>B4</strong>, die Anzahl der Übungsstunden
-              </li>
-              <li>
-                <strong>D4</strong>, der Gesamtpreis der Übungsstunden
-              </li>
-              <li>
-                <strong>D6</strong>, die Gesamtkosten insgesamt
-              </li>
-            </ul>
+            {data.case == 1 && (
+              <>
+                <p>
+                  Wenn Alina mehr Übungsstunden benötigt, ändern sich die
+                  Zellen:
+                </p>
+                <ul>
+                  <li>
+                    <strong>B4</strong>, die Anzahl der Übungsstunden
+                  </li>
+                  <li>
+                    <strong>D4</strong>, der Gesamtpreis der Übungsstunden
+                  </li>
+                  <li>
+                    <strong>D6</strong>, die Gesamtkosten insgesamt
+                  </li>
+                </ul>
+              </>
+            )}
+            {data.case == 2 && (
+              <>
+                <p>Wenn eine Übungsstunde teurer wird, ändern sich:</p>
+                <ul>
+                  <li>
+                    <strong>C4</strong>, der Einzelpreis der Übungsstunden
+                  </li>
+                  <li>
+                    <strong>D4</strong>, der Gesamtpreis der Übungsstunden
+                  </li>
+                  <li>
+                    <strong>D6</strong>, die Gesamtkosten insgesamt
+                  </li>
+                </ul>
+              </>
+            )}
+            {data.case == 3 && (
+              <>
+                <p>Wenn eine Sonderfahrt günstiger wird, ändern sich:</p>
+                <ul>
+                  <li>
+                    <strong>C5</strong>, der Einzelpreis der Sonderfahrten
+                  </li>
+                  <li>
+                    <strong>D5</strong>, der Gesamtpreis der Sonderfahrten
+                  </li>
+                  <li>
+                    <strong>D6</strong>, die Gesamtkosten insgesamt
+                  </li>
+                </ul>
+              </>
+            )}
           </>
         )
       },
