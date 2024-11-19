@@ -185,7 +185,8 @@ export const exercise127: Exercise<DATA> = {
               ],
             ])}
             <p>
-              Die Hypotenuse ist etwa <strong>{hypo} cm</strong> lang.
+              Die längste Seite des Tisches ist etwa <strong>{hypo} cm</strong>{' '}
+              lang.
             </p>
           </>
         )
@@ -255,33 +256,24 @@ export const exercise127: Exercise<DATA> = {
         const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
         return (
           <>
-            <p>Die Fläche des Quadrats kann mit der Formel berechnet werden:</p>
+            <p>
+              Die Seitenlänge des Quadrats beträgt {hypo} cm = {pp(hypo / 100)}{' '}
+              m. Setze dies in die Formel für den Flächeninhalt eines Quadrats
+              ein:
+            </p>
             {buildEquation([
               [<>A</>, <>=</>, <>a²</>],
-              [
-                '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
-                <>
-                  <Color4>
-                    <span style={{ fontSize: 'small' }}>
-                      Seitenlänge des Quadrats einsetzen
-                    </span>
-                  </Color4>
-                </>,
-              ],
-              [<></>, <>=</>, <>{hypo}²</>],
+
+              [<></>, <>=</>, <>{pp(hypo / 100)}²</>],
               [
                 <></>,
                 <>
-                  <strong>=</strong>
+                  <strong>≈</strong>
                 </>,
                 <>
-                  <strong>{hypo * hypo} [cm²]</strong>
+                  <strong>
+                    {pp(roundToDigits((hypo * hypo) / 10000, 2))} [m²]
+                  </strong>
                 </>,
               ],
             ])}
@@ -377,7 +369,7 @@ export const exercise127: Exercise<DATA> = {
               </text>
             </svg>
             <p>
-              Verbinde die Diagonalen, um die Tischgruppe fertig zu zeichnen.
+              Zeichne die Diagonalen, um die Tischgruppe fertig zu zeichnen.
             </p>
             <svg viewBox="0 0 328 200">
               <image
