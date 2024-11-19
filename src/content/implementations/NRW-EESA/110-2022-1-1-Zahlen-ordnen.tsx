@@ -13,7 +13,7 @@ interface DATA {
 export const exercise110: Exercise<DATA> = {
   title: 'Zahlen ordnen',
   source: '2022 Teil 1 Aufgabe 1',
-  useCalculator: false,
+  useCalculator: true,
   duration: 2,
   points: 3,
   generator(rng) {
