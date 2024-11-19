@@ -627,7 +627,7 @@ export const exercise127: Exercise<DATA> = {
         return (
           <>
             <p>
-              D8 enthält der Bruttobetrag, der sich aus dem Nettobetrag (D6) und
+              D8 enthält den Bruttobetrag, der sich aus dem Nettobetrag (D6) und
               den Steuern zusammensetzt.
             </p>
             <p>
