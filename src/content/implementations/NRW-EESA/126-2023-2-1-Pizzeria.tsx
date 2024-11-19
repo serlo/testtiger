@@ -568,7 +568,9 @@ export const exercise126: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}>Radius einsetzen</span>
+                    <span style={{ fontSize: 'small' }}>
+                      halben Durchmesser als Radius einsetzen
+                    </span>
                   </Color4>
                 </>,
               ],
