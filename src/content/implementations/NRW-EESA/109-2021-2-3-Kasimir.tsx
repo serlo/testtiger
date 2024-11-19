@@ -583,7 +583,7 @@ export const exercise109: Exercise<DATA> = {
               stellt ebenfalls das Netz eines Tetraeders dar? Entscheide
               jeweils.
             </p>
-            <ul>{shuffledItems}</ul>
+            <ol>{shuffledItems}</ol>
           </>
         )
       },
