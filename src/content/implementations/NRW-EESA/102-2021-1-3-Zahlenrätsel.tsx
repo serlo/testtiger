@@ -204,7 +204,7 @@ export const exercise102: Exercise<DATA> = {
               </>
             )}
             <p>
-              Pia stellt fest: {'"'}Die Rechnung ist falsch.{'"'}
+              Pia stellt fest: {'"'}Die Rechnung ist falsch. {'"'}
               Markiere den Fehler und bestimme Pias Zahl.
             </p>
           </>
