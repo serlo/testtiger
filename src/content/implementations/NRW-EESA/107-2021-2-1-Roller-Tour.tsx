@@ -489,6 +489,15 @@ export const exercise107: Exercise<DATA> = {
                 height="220"
                 width="328"
               />
+              <text
+                x={toX(2.6)}
+                y={toY(data.grund_roller / 10) - 5}
+                fontSize="10"
+                textAnchor="middle"
+                fill="blue"
+              >
+                Rollerverleih24
+              </text>
               <line
                 x1={toX(0)}
                 y1={toY(data.grund_roller / 10) - 1}
@@ -510,6 +519,15 @@ export const exercise107: Exercise<DATA> = {
                 stroke="blue"
                 strokeWidth={2}
               />
+              <text
+                x={toX(2.6)}
+                y={toY(data.grund_easy / 10) + 10}
+                fontSize="10"
+                textAnchor="middle"
+                fill="orange"
+              >
+                Easy Rent
+              </text>
               <line
                 x1={toX(0)}
                 y1={toY(data.grund_easy / 10) - 1}
