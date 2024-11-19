@@ -342,8 +342,8 @@ export const exercise118: Exercise<DATA> = {
       task({ data }) {
         return (
           <>
-            <p>d)</p>
             <p>
+              d){' '}
               {data.case == 1 && (
                 <>
                   Alina vermutet, dass sie mehr als zehn Übungsstunden benötigt.
