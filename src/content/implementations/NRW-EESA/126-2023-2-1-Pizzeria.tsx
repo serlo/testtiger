@@ -362,16 +362,47 @@ export const exercise126: Exercise<DATA> = {
                 <>{getGcd(count, 12) != 1 && <>=</>}</>,
                 <>{getGcd(count, 12) != 1 && <>1 - {ppFrac(count / 12)}</>}</>,
               ],
-              [
-                <></>,
-                <>
-                  <strong>=</strong>
-                </>,
-                <>
-                  <strong>{buildInlineFrac(<>{12 - count}</>, <>12</>)}</strong>
-                </>,
-              ],
             ])}
+            {getGcd(12 - count, 12) == 1 && (
+              <>
+                {' '}
+                {buildEquation([
+                  [
+                    <>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </>,
+                    <>
+                      <strong>=</strong>
+                    </>,
+                    <>
+                      <strong>
+                        {buildInlineFrac(<>{12 - count}</>, <>12</>)}
+                      </strong>
+                    </>,
+                  ],
+                ])}{' '}
+              </>
+            )}
+            {getGcd(12 - count, 12) != 1 && (
+              <>
+                {buildEquation([
+                  [
+                    <></>,
+                    <>=</>,
+                    <>{buildInlineFrac(<>{12 - count}</>, <>12</>)}</>,
+                  ],
+                  [
+                    <>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </>,
+                    <>=</>,
+                    <>
+                      <strong>{ppFrac((12 - count) / 12)}</strong>
+                    </>,
+                  ],
+                ])}
+              </>
+            )}
           </>
         )
       },
@@ -419,10 +450,26 @@ export const exercise126: Exercise<DATA> = {
                       Preis der Pizza
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      {pp(data.small)} €
+                      {data.small % 1 == 0 && pp(data.small) + ',00'}
+                      {data.small % 1 != 0 &&
+                        (data.small * 10) % 1 == 0 &&
+                        pp(data.small) + '0'}
+                      {data.small % 1 != 0 &&
+                        (data.small * 10) % 1 != 0 &&
+                        (data.small * 100) % 1 == 0 &&
+                        pp(data.small)}{' '}
+                      €
                     </td>
                     <td className="py-1 border text-center font-bold p-1  text-black">
-                      {pp(2 * data.small)} €
+                      {(2 * data.small) % 1 == 0 && pp(2 * data.small) + ',00'}
+                      {(2 * data.small) % 1 != 0 &&
+                        (2 * data.small * 10) % 1 == 0 &&
+                        pp(2 * data.small) + '0'}
+                      {(2 * data.small) % 1 != 0 &&
+                        (2 * data.small * 10) % 1 != 0 &&
+                        (2 * data.small * 100) % 1 == 0 &&
+                        pp(2 * data.small)}{' '}
+                      €
                     </td>
                   </tr>
                   <tr>
@@ -431,7 +478,16 @@ export const exercise126: Exercise<DATA> = {
                     </td>
                     <td className="py-1 border text-center font-bold p-1  text-black"></td>
                     <td className="py-1 border text-center font-bold p-1  text-black">
-                      {pp(2 * data.small * 0.4)} €
+                      {(2 * data.small * 0.4) % 1 == 0 &&
+                        pp(2 * data.small * 0.4) + ',00'}
+                      {(2 * data.small * 0.4) % 1 != 0 &&
+                        (2 * data.small * 10 * 0.4) % 1 == 0 &&
+                        pp(2 * data.small * 0.4) + '0'}{' '}
+                      {(2 * data.small * 0.4) % 1 != 0 &&
+                        (2 * data.small * 10 * 0.4) % 1 != 0 &&
+                        (2 * data.small * 100 * 0.4) % 1 == 0 &&
+                        pp(2 * data.small * 0.4)}{' '}
+                      €
                     </td>
                   </tr>
                 </tbody>
