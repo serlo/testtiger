@@ -387,11 +387,6 @@ export const exercise126: Exercise<DATA> = {
               <>
                 {buildEquation([
                   [
-                    <></>,
-                    <>=</>,
-                    <>{buildInlineFrac(<>{12 - count}</>, <>12</>)}</>,
-                  ],
-                  [
                     <>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </>,
