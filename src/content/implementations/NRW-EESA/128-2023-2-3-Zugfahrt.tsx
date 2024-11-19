@@ -31,7 +31,7 @@ const richtig = [
 const falsch = [
   'Von Lüttich nach Brüssel fährt der Zug schneller als von Brüssel nach Paris.',
   '40 Minuten nach der Abfahrt in Brüssel ist der Zug mehr als 200 km von seiner Gesamtstrecke gefahren.',
-  'Die Fahrt von Lüttich nach Paris dauer genau 2 Stunden.',
+  'Die Fahrt von Lüttich nach Paris dauert genau 2 Stunden.',
   'Die Distanz von Brüssel nach Paris beträgt etwa 430 km.',
 ]
 export const exercise128: Exercise<DATA> = {
@@ -789,7 +789,7 @@ export const exercise128: Exercise<DATA> = {
           <>
             <p>
               f) Welche Aussagen zum Graphen stimmen bzw. stimmen nicht? Wähle
-              aus. an.
+              aus.
             </p>
             <ul>{shuffledItems}</ul>
           </>
