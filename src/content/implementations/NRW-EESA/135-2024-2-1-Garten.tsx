@@ -238,7 +238,7 @@ export const exercise135: Exercise<DATA> = {
               {data.bildvariante == 3 &&
                 '4 Symmetrieachsen. Diese sind in der Abbildung rot eingezeichnet:'}
               {data.bildvariante == 4 &&
-                '2 Symmetrieachsen. Diese ist in der Abbildung rot eingezeichnet:'}
+                '2 Symmetrieachsen. Diese sind in der Abbildung rot eingezeichnet:'}
               {data.bildvariante == 5 &&
                 '1 Symmetrieachse. Diese ist in der Abbildung rot eingezeichnet:'}
               {data.bildvariante == 6 &&
