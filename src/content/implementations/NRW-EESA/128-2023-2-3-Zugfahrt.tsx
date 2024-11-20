@@ -76,7 +76,7 @@ export const exercise128: Exercise<DATA> = {
     zeit_6: 5,
   },
   constraint({ data }) {
-    return true
+    return data.item_2 != data.item_3
   },
   intro({ data }) {
     return (
@@ -687,9 +687,9 @@ export const exercise128: Exercise<DATA> = {
               )}
               {data.case == 3 && (
                 <>
-                  Zwischen Brüssel und Paris fährt der Zug schneller als 150
-                  {buildInlineFrac('km', 'h')}. Erkläre anhand der Werte des
-                  Graphen.
+                  Erkläre woran man erkennt, ob der Zug in einem
+                  Streckenabschnitt schneller gefahren ist, als in einem anderen
+                  Streckenabschnitt.
                 </>
               )}
               {data.case == 4 && (
@@ -717,8 +717,9 @@ export const exercise128: Exercise<DATA> = {
             {data.case == 2 && (
               <>
                 <p>
-                  In Lüttich verläuft der Graph waagerecht. Dort wird keine
-                  Strecke zurückgelegt, weil der Zug am Bahnhof steht.
+                  Die Steigung der Geraden gibt die Geschwindigkeit des Zuges
+                  an. Ist die Steigung der Geraden größer als in einem anderen
+                  Streckenabschnitt, fährt der Zug im Vergleich schneller.
                 </p>
               </>
             )}
