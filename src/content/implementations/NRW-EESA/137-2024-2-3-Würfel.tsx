@@ -194,7 +194,13 @@ export const exercise137: Exercise<DATA> = {
             <p>
               Die kleinen Würfel sind bei den Körpern unterschiedlich angeordnet
               und zeigen unterschiedliche Teile ihrer Oberfläche. Damit ist die
-              Oberfläche der Körper insgesamt nicht gleich.
+              Oberfläche der Körper insgesamt nicht gleich. und zeigen
+              unterschiedliche Teile ihrer Oberfläche.
+            </p>
+            <p>
+              Die Oberfläche des Würfels besteht aus 24 Quadraten, die
+              Oberfläche des Quaders besteht aus 28 Quadraten. Daher ist die
+              Oberfläche des Quaders größer.
             </p>
             <ul>
               <li>
@@ -358,7 +364,7 @@ export const exercise137: Exercise<DATA> = {
               ],
             ])}
             <p>
-              Selma benötigt{' '}
+              Selma benötigt ca.{' '}
               <strong>
                 {pp(
                   roundToDigits(
@@ -367,7 +373,7 @@ export const exercise137: Exercise<DATA> = {
                       (data.kante * (2 + data.case)) *
                       data.ml) /
                       data.surface,
-                    4,
+                    2,
                   ),
                 )}{' '}
                 ml
