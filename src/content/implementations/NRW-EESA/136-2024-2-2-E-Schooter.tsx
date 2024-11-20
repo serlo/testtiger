@@ -249,9 +249,8 @@ export const exercise136: Exercise<DATA> = {
         return (
           <>
             <p>
-              b) Tom nutzt den E-Scooter für den Hin- und Rück- weg und muss
-              daher zweimal die Startgebühr bezahlen. Berechne seine Kosten pro
-              Tag.
+              b) Tom nutzt den E-Scooter für den Hin- und Rückweg und muss daher
+              zweimal die Startgebühr bezahlen. Berechne seine Kosten pro Tag.
             </p>
           </>
         )
@@ -264,15 +263,15 @@ export const exercise136: Exercise<DATA> = {
             <ul>
               <li>2 mal die Startgebühr: {pp(data.fixkosten * 2)} €</li>
               <li>
-                Die Gebühr pro Minute für {time} Minuten:<br></br>
-                {pp(data.zeitkosten)} · {time} = {pp(data.zeitkosten * time)}{' '}
-                [€]
+                Die Gebühr pro Minute für 2 mal {time} Minuten:<br></br>2 ·{' '}
+                {pp(data.zeitkosten)} · {time} ={' '}
+                {pp(2 * data.zeitkosten * time)} [€]
               </li>
             </ul>
             <p>
               Damit bezahlt Tom{' '}
               <strong>
-                {pp(data.zeitkosten * time + data.fixkosten * 2)} €
+                {pp(2 * data.zeitkosten * time + data.fixkosten * 2)} €
               </strong>{' '}
               pro Tag.
             </p>
