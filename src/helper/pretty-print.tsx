@@ -40,7 +40,7 @@ export function pp(x: number, mode: Mode = 'normal'): string {
 /** pretty print a polynom */
 export function ppPolynom(polynom: [number, string, number][]): JSX.Element {
   if (polynom.every(x => x[0] === 0)) {
-    return <>0</>
+    return <></>
   }
   let isFirstElement = true
   return (
