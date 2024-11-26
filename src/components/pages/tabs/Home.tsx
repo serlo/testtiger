@@ -19,6 +19,7 @@ import {
   faCircleArrowDown,
 } from '@fortawesome/free-solid-svg-icons'
 import { countLetter } from '@/helper/count-letter'
+import { SkillExercise } from '@/data/types'
 
 export function Home() {
   const history = useHistory()
@@ -95,6 +96,24 @@ export function Home() {
 
   const percentage = Math.round((visited * 100) / allExercises)
 
+  function generateRecommands() {
+    const pool: { exercise: SkillExercise; score: number }[] = []
+    navigationData[exam].topics.forEach(t => {
+      t.skillGroups.forEach(g => {
+        g.skillExercises.forEach(e => {
+          const exercise: SkillExercise = JSON.parse(JSON.stringify(e))
+          exercise.groupName = g.name
+          exercise.topicColor = t.twColor
+          pool.push({ exercise, score: 0 })
+        })
+      })
+    })
+    pool.sort((a, b) => Math.random() - 0.5)
+    return pool.slice(0, 3).map(el => el.exercise)
+  }
+
+  const [recommands, setRecommands] = useState(generateRecommands())
+
   return (
     <>
       <IonPage className="sm:max-w-[375px] mx-auto">
@@ -168,20 +187,48 @@ export function Home() {
               </div>
             </div>
             <div className="flex justify-between mt-8">
-              <h2 className="font-bold">Vorschläge für dich</h2>
+              <h2 className="font-bold">Jetzt üben</h2>
               <button
                 className="text-sm"
                 onClick={() => {
-                  setShowAllTopics(val => !val)
+                  setRecommands(generateRecommands())
                 }}
               >
-                neue Auswahl
+                neue Vorschläge
               </button>
             </div>
             <div>
-              <div className="mt-4 bg-gray-100">adfssfdsfdsf</div>
-              <div className="mt-4 bg-gray-100">adfssfdsfdsf</div>
-              <div className="mt-4 bg-gray-100">adfssfdsfdsf</div>
+              {recommands.map((r, i) => {
+                return (
+                  <button
+                    className={clsx(
+                      'mt-4 w-full py-2 bg-opacity-30 rounded',
+                      r.topicColor,
+                    )}
+                    key={i}
+                    onClick={() => {
+                      setupExercise(r.id, r.groupName, r.pages)
+                      history.push(
+                        '/exercise/' +
+                          r.id +
+                          '#' +
+                          encodeURIComponent(
+                            JSON.stringify({
+                              name: r.groupName,
+                              pages: r.pages,
+                            }),
+                          ),
+                      )
+                    }}
+                  >
+                    {r.groupName}
+                    <br />
+                    <small className="text-gray-600">
+                      {exercisesData[r.id].source}
+                    </small>
+                  </button>
+                )
+              })}
             </div>
             <div className="flex justify-between mt-8">
               <h2 className="font-bold">Aufgaben nach Thema</h2>

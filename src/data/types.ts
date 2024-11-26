@@ -54,6 +54,10 @@ export interface SkillGroup {
 export interface SkillExercise {
   id: number
   pages?: SkillExercisePage[]
+
+  // tmp
+  groupName?: string
+  topicColor?: string
 }
 
 export interface SkillExercisePage {
