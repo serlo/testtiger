@@ -717,56 +717,28 @@ export const exercise128: Exercise<DATA> = {
             {data.case == 2 && (
               <>
                 <p>
-                  Die Steigung der Geraden gibt die Geschwindigkeit des Zuges
-                  an. Ist die Steigung der Geraden größer als in einem anderen
-                  Streckenabschnitt, fährt der Zug im Vergleich schneller.
+                  In Lüttich verläuft der Graph für eine kurze Zeit waagerecht.
+                  Dort wird keine Strecke zurückgelegt, weil der Zug am Bahnhof
+                  steht.
                 </p>
               </>
             )}
             {data.case == 3 && (
               <>
                 <p>
-                  Die Strecke von Brüssel nach Paris ist{' '}
-                  {data.strecke_3 - data.strecke_2} km lang. Die Strecke wird in
-                  <br></br> {data.zeit_6 + 120 - data.zeit_5} Minuten ≙{' '}
-                  {pp(roundToDigits((data.zeit_6 + 120 - data.zeit_5) / 60, 2))}{' '}
-                  h zurückgelegt.
-                </p>
-                <p></p>
-                <p>Das entspricht einer Geschwindigkeit von:</p>
-                <p>
-                  {buildInlineFrac(
-                    <>{data.strecke_3 - data.strecke_2} km</>,
-                    <>
-                      {pp(
-                        roundToDigits(
-                          (data.zeit_6 + 120 - data.zeit_5) / 60,
-                          2,
-                        ),
-                      )}{' '}
-                      h
-                    </>,
-                  )}{' '}
-                  ≈{' '}
-                  {pp(
-                    roundToDigits(
-                      (data.strecke_3 - data.strecke_2) /
-                        roundToDigits(
-                          (data.zeit_6 + 120 - data.zeit_5) / 60,
-                          2,
-                        ),
-                      2,
-                    ),
-                  )}{' '}
-                  {buildInlineFrac('km', 'h')}
+                  Die Geschwindigkeit des Zuges wird durch die Steigung der
+                  Gerade in diesem Streckenabschnitt angegeben. Verläuft eine
+                  Gerade steiler als eine andere, ist der Zug schneller
+                  gefahren.
                 </p>
               </>
             )}
             {data.case == 4 && (
               <>
                 <p>
-                  In Brüssel verläuft der Graph waagerecht. Dort wird keine
-                  Strecke zurückgelegt, weil der Zug am Bahnhof steht.
+                  In Brüssel verläuft der Graph für eine kurze Zeit waagerecht.
+                  Dort wird keine Strecke zurückgelegt, weil der Zug am Bahnhof
+                  steht.
                 </p>
               </>
             )}
