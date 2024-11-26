@@ -223,7 +223,7 @@ export function Home() {
                   >
                     {r.groupName}
                     <br />
-                    <small className="text-gray-600">
+                    <small className="italic">
                       {exercisesData[r.id].source}
                     </small>
                   </button>
@@ -284,28 +284,26 @@ export function Home() {
                 <div
                   key={i}
                   className={clsx(
-                    'w-[calc((100%-20px)/2)] bg-opacity-70 rounded mb-6',
+                    'w-[calc((100%-20px)/2)] bg-opacity-70 rounded mb-6 cursor-pointer',
                     navigationData[exam].topics[i].twColor,
                   )}
+                  onClick={() => {
+                    history.push(`/topic/${i + (exam == 1 ? 1 : 101)}`)
+                    updatePlayerProfileStore(s => {
+                      s.progress[exam].selectedTopics = s.progress[
+                        exam
+                      ].selectedTopics.filter(x => x != i)
+                      s.progress[exam].selectedTopics.unshift(i)
+                    })
+                    setShowAllTopics(false)
+                  }}
                 >
                   <h2 className="font-bold mt-4 ml-3">
                     {navigationData[exam].topics[i].title}
                   </h2>
                   <div className="mt-7 text-right mr-4 pb-5">
-                    <button
-                      className="px-2 py-0.5 rounded-full bg-white text-sm"
-                      onClick={() => {
-                        history.push(`/topic/${i + (exam == 1 ? 1 : 101)}`)
-                        updatePlayerProfileStore(s => {
-                          s.progress[exam].selectedTopics = s.progress[
-                            exam
-                          ].selectedTopics.filter(x => x != i)
-                          s.progress[exam].selectedTopics.unshift(i)
-                        })
-                        setShowAllTopics(false)
-                      }}
-                    >
-                      bearbeiten
+                    <button className="px-2 py-0.5 rounded-full bg-white text-sm">
+                      öffnen
                     </button>
                   </div>
                 </div>
