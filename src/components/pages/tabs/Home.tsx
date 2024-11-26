@@ -13,7 +13,11 @@ import {
   updatePlayerProfileStore,
 } from '../../../../store/player-profile-store'
 import { FaIcon } from '@/components/ui/FaIcon'
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCaretDown,
+  faCaretUp,
+  faCircleArrowDown,
+} from '@fortawesome/free-solid-svg-icons'
 import { countLetter } from '@/helper/count-letter'
 
 export function Home() {
@@ -86,6 +90,11 @@ export function Home() {
     }
   })
 
+  const allExercises = fullNumberOfExercisesPerTopic.reduce((p, c) => p + c, 0)
+  const visited = visitedNumberOfExercisesPerTopic.reduce((p, c) => p + c, 0)
+
+  const percentage = Math.round((visited * 100) / allExercises)
+
   return (
     <>
       <IonPage className="sm:max-w-[375px] mx-auto">
@@ -109,7 +118,16 @@ export function Home() {
                 Was ist das?
               </div>
             </div>
-            <div className="mt-1 bg-gray-100 rounded">
+            <div className="mt-1 bg-gray-100 rounded pt-2">
+              <div className="mx-3 mb-2 h-8 rounded-xl bg-white overflow-hidden relative">
+                <div
+                  className="bg-green-300 h-full"
+                  style={{ width: `${percentage}%` }}
+                ></div>
+                <div className="absolute inset-0 text-center pt-1">
+                  {percentage} %
+                </div>
+              </div>
               <div className="flex justify-between py-4 items-center px-2 ">
                 {navigationData[exam].topics.map((topic, i) => (
                   <div
@@ -139,7 +157,7 @@ export function Home() {
                   </div>
                 ))}
               </div>
-              <p className="text-center">
+              <p className="text-center hidden">
                 <small>Todo: vorschläge</small>
               </p>
               <div className="h-16 flex justify-between mt-4 hidden">
@@ -150,9 +168,25 @@ export function Home() {
               </div>
             </div>
             <div className="flex justify-between mt-8">
-              <h2 className="font-bold">Aufgaben nach Thema</h2>
+              <h2 className="font-bold">Vorschläge für dich</h2>
               <button
                 className="text-sm"
+                onClick={() => {
+                  setShowAllTopics(val => !val)
+                }}
+              >
+                neue Auswahl
+              </button>
+            </div>
+            <div>
+              <div className="mt-4 bg-gray-100">adfssfdsfdsf</div>
+              <div className="mt-4 bg-gray-100">adfssfdsfdsf</div>
+              <div className="mt-4 bg-gray-100">adfssfdsfdsf</div>
+            </div>
+            <div className="flex justify-between mt-8">
+              <h2 className="font-bold">Aufgaben nach Thema</h2>
+              <button
+                className="text-sm hidden"
                 onClick={() => {
                   setShowAllTopics(val => !val)
                 }}
@@ -170,7 +204,7 @@ export function Home() {
             </div>
             <div
               className={clsx(
-                'rounded mt-2',
+                'rounded mt-2 hidden',
                 navigationData[exam].topics[selectedTopics[0]].twColor,
                 'bg-opacity-70',
               )}
@@ -199,10 +233,7 @@ export function Home() {
               </div>
             </div>
             <div className="flex flex-wrap justify-between mt-4 items-stretch">
-              {(showAllTopics
-                ? selectedTopics.slice(1)
-                : selectedTopics.slice(1, 3)
-              ).map(i => (
+              {[0, 1, 2, 3, 4, 5].map(i => (
                 <div
                   key={i}
                   className={clsx(

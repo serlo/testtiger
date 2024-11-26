@@ -22,7 +22,7 @@ import { useState } from 'react'
 
 const examTitle: { [key: number]: string } = {
   1: 'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)',
-  2: 'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA).',
+  2: 'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA)',
 }
 
 export function Schoolform() {
