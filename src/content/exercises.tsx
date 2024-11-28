@@ -94,6 +94,22 @@ import { exercise110 } from './implementations/NRW-EESA/110-2022-1-1-Zahlen-ordn
 import { exercise111 } from './implementations/NRW-EESA/111-2022-1-2-Quadrat'
 import { exercise124 } from './implementations/NRW-EESA/124-2023-1-5-Schätzen'
 import { exercise125 } from './implementations/NRW-EESA/125-2023-1-6-Mittelwerte und Durchschnitt'
+import { exercise215 } from './implementations/BW_Realschule/215-2024-B-3-Angelspiel+Tennishalle'
+import { exercise200 } from './implementations/BW_Realschule/200-2024-A1-1-Pyramide'
+import { exercise201 } from './implementations/BW_Realschule/201-2024-A1-2-Kugeln-ziehen'
+import { exercise202 } from './implementations/BW_Realschule/202-2024-A1-3-Zehnerpotenzen'
+import { exercise203 } from './implementations/BW_Realschule/203-2024-A1-4-Muster'
+import { exercise204 } from './implementations/BW_Realschule/204-2024-A1-5-Sinus'
+import { exercise205 } from './implementations/BW_Realschule/205-2024-A1-6-Boxplot'
+import { exercise206 } from './implementations/BW_Realschule/206-2024-A1-7-Diagramm'
+import { exercise207 } from './implementations/BW_Realschule/207-2024-A2-1-Viereck'
+import { exercise208 } from './implementations/BW_Realschule/208-2024-A2-2-Fünfseitige-Pyramide'
+import { exercise209 } from './implementations/BW_Realschule/209-2024-A2-3-Parabeln'
+import { exercise210 } from './implementations/BW_Realschule/210-2024-A2-4-Sammelbilder'
+import { exercise211 } from './implementations/BW_Realschule/211-2024-A2-5-Quadratische-Gleichung'
+import { exercise212 } from './implementations/BW_Realschule/212-2024-A2-6-Diagramm'
+import { exercise213 } from './implementations/BW_Realschule/213-2024-B-1-Drachenviereck+Parabeln'
+import { exercise214 } from './implementations/BW_Realschule/214-2024-B-2-Funktionen+Zusammengesetzter-Körper'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
