@@ -190,6 +190,22 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   112: exercise112,
   110: exercise110,
   111: exercise111,
+  200: exercise200,
+  201: exercise201,
+  202: exercise202,
+  203: exercise203,
+  204: exercise204,
+  205: exercise205,
+  206: exercise206,
+  207: exercise207,
+  208: exercise208,
+  209: exercise209,
+  210: exercise210,
+  211: exercise211,
+  212: exercise212,
+  213: exercise213,
+  214: exercise214,
+  215: exercise215,
 }
 
 // symbols:
