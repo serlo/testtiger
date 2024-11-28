@@ -1,23 +1,11 @@
 import { IonPage, IonHeader, IonContent } from '@ionic/react'
-import { UiStore } from '../../../../store'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
-import { useEffect, useState } from 'react'
-import { setName } from '../../../../store/actions'
+import { useState } from 'react'
 import { exercisesData } from '@/content/exercises'
 import { setupExercise } from '@/components/exercise-view/state/actions'
-import {
-  PlayerProfileStore,
-  storageKey,
-  updatePlayerProfileStore,
-} from '../../../../store/player-profile-store'
-import { FaIcon } from '@/components/ui/FaIcon'
-import {
-  faCaretDown,
-  faCaretUp,
-  faCircleArrowDown,
-} from '@fortawesome/free-solid-svg-icons'
+import { PlayerProfileStore } from '../../../../store/player-profile-store'
 import { countLetter } from '@/helper/count-letter'
 import { SkillExercise } from '@/data/types'
 
@@ -28,8 +16,6 @@ export function Home() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
 
   const eventLog = PlayerProfileStore.useState(s => s.eventLog)
-
-  const [showAllTopics, setShowAllTopics] = useState(false)
 
   /*useEffect(() => {
     if (!name) {
@@ -138,7 +124,7 @@ export function Home() {
               </div>
             </div>
             <div className="mt-1 bg-gray-100 rounded pt-2">
-              <div className="mx-3 mb-2 h-8 rounded-xl bg-white overflow-hidden relative">
+              <div className="mx-3 mb-1 h-8 rounded-xl bg-white overflow-hidden relative">
                 <div
                   className="bg-green-300 h-full"
                   style={{ width: `${percentage}%` }}
@@ -147,7 +133,8 @@ export function Home() {
                   {percentage} %
                 </div>
               </div>
-              <div className="flex justify-between py-4 items-center px-2 ">
+              <div className="h-1"></div>
+              <div className="flex justify-between py-4 items-center px-2 hidden">
                 {navigationData[exam].topics.map((topic, i) => (
                   <div
                     key={i}
@@ -176,20 +163,13 @@ export function Home() {
                   </div>
                 ))}
               </div>
-              <p className="text-center hidden">
-                <small>Todo: vorschläge</small>
-              </p>
-              <div className="h-16 flex justify-between mt-4 hidden">
-                <div>Vorschlag 1</div>
-                <div>Vorschlag 2</div>
-                <div>Vorschlag 3</div>
-                <button>Vorschläge neu generieren</button>
-              </div>
             </div>
             <div className="flex justify-between mt-8">
-              <h2 className="font-bold">Jetzt üben</h2>
+              <h2 className="font-bold">
+                Lernpfad für {exam == 1 ? 'MSA' : 'EESA'}
+              </h2>
               <button
-                className="text-sm"
+                className="text-sm hidden"
                 onClick={() => {
                   setRecommands(generateRecommands())
                 }}
@@ -197,7 +177,12 @@ export function Home() {
                 neue Vorschläge
               </button>
             </div>
-            <div>
+            <img
+              src="/learning-path-placeholder.jpg"
+              alt="Platzhalter"
+              className="mt-8"
+            />
+            <div className="hidden">
               {recommands.map((r, i) => {
                 return (
                   <button
@@ -230,151 +215,7 @@ export function Home() {
                 )
               })}
             </div>
-            <div className="flex justify-between mt-8">
-              <h2 className="font-bold">Aufgaben nach Thema</h2>
-              <button
-                className="text-sm hidden"
-                onClick={() => {
-                  setShowAllTopics(val => !val)
-                }}
-              >
-                {showAllTopics ? (
-                  <>
-                    einklappen <FaIcon icon={faCaretUp} />
-                  </>
-                ) : (
-                  <>
-                    alle Themen <FaIcon icon={faCaretDown} />
-                  </>
-                )}
-              </button>
-            </div>
-            <div
-              className={clsx(
-                'rounded mt-2 hidden',
-                navigationData[exam].topics[selectedTopics[0]].twColor,
-                'bg-opacity-70',
-              )}
-            >
-              <h2 className="font-bold pt-6 ml-3">
-                {navigationData[exam].topics[selectedTopics[0]].title}
-              </h2>
-              <div className="mt-7 text-right mr-4 pb-5">
-                <button
-                  className="px-2 py-0.5 rounded-full bg-white"
-                  onClick={() => {
-                    history.push(
-                      `/topic/${selectedTopics[0] + (exam == 1 ? 1 : 101)}`,
-                    )
-                    updatePlayerProfileStore(s => {
-                      s.progress[exam].selectedTopics = s.progress[
-                        exam
-                      ].selectedTopics.filter(x => x != selectedTopics[0])
-                      s.progress[exam].selectedTopics.unshift(selectedTopics[0])
-                    })
-                    setShowAllTopics(false)
-                  }}
-                >
-                  weiter bearbeiten
-                </button>
-              </div>
-            </div>
-            <div className="flex flex-wrap justify-between mt-4 items-stretch">
-              {[0, 1, 2, 3, 4, 5].map(i => (
-                <div
-                  key={i}
-                  className={clsx(
-                    'w-[calc((100%-20px)/2)] bg-opacity-70 rounded mb-6 cursor-pointer',
-                    navigationData[exam].topics[i].twColor,
-                  )}
-                  onClick={() => {
-                    history.push(`/topic/${i + (exam == 1 ? 1 : 101)}`)
-                    updatePlayerProfileStore(s => {
-                      s.progress[exam].selectedTopics = s.progress[
-                        exam
-                      ].selectedTopics.filter(x => x != i)
-                      s.progress[exam].selectedTopics.unshift(i)
-                    })
-                    setShowAllTopics(false)
-                  }}
-                >
-                  <h2 className="font-bold mt-4 ml-3">
-                    {navigationData[exam].topics[i].title}
-                  </h2>
-                  <div className="mt-7 text-right mr-4 pb-5">
-                    <button className="px-2 py-0.5 rounded-full bg-white text-sm">
-                      öffnen
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
 
-            <div className="border-t-4 mt-24 text-center">
-              --- INTERN 🚧 ---
-            </div>
-            <div className="flex flex-col space-y-2 mt-4">
-              <label className="text-lg font-semibold" htmlFor="exam-select">
-                Prüfung
-              </label>
-              <select
-                id="exam-select"
-                value={exam}
-                onChange={e => {
-                  updatePlayerProfileStore(s => {
-                    s.currentExam = parseInt(e.target.value)
-                  })
-                }}
-                className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="1">MSA</option>
-                <option value="2">EESA</option>
-              </select>
-            </div>
-            <div className="mt-8">
-              Liste aller Aufgaben:
-              {exercises.map(([id, content]) => {
-                if (exam == 1 && parseInt(id) > 99) return null
-                if (exam == 2 && parseInt(id) < 100) return null
-                return (
-                  <div
-                    key={id}
-                    className="my-3 cursor-pointer hover:bg-gray-100 rounded-lg p-1"
-                    onClick={() => {
-                      setupExercise(parseInt(id))
-                      history.push('/exercise/' + id)
-                    }}
-                  >
-                    <div>
-                      {content.source && (
-                        <span className="text-fuchsia-900">
-                          [{content.source}]{' '}
-                        </span>
-                      )}
-                      {content.title}{' '}
-                      <small className="text-gray-400">({id})</small>
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      {content.duration} min,{' '}
-                      {'tasks' in content ? (
-                        <>, {content.tasks.length} Teilaufgaben</>
-                      ) : null}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-            <div>
-              <button
-                className="px-2 py-0.5 bg-red-200 hover:bg-red-300 ml-1 mt-3 rounded"
-                onClick={() => {
-                  sessionStorage.removeItem(storageKey)
-                  window.location.href = '/'
-                }}
-              >
-                Fortschritt zurücksetzen
-              </button>
-            </div>
             <div className="h-24"></div>
           </div>
         </IonContent>

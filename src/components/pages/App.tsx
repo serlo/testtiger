@@ -17,6 +17,8 @@ import {
   searchOutline,
   gridOutline,
   copyOutline,
+  analyticsOutline,
+  readerOutline,
 } from 'ionicons/icons'
 import { Route } from 'react-router'
 import { Focus } from './Focus'
@@ -46,24 +48,28 @@ export function App() {
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/app/home">
-          <IonIcon icon={homeOutline} />
-          <IonLabel>Home</IonLabel>
+          <IonIcon icon={analyticsOutline} />
+          <IonLabel>Lernpfad</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab2" href="/app/superskills">
+        <IonTabButton tab="tab2" href="/app/participate">
           <IonIcon icon={gridOutline} />
+          <IonLabel>Themen</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="tab3" href="/app/superskills">
+          <IonIcon icon={copyOutline} />
           <IonLabel>Superskills</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab3" href="/app/search">
-          <IonIcon icon={searchOutline} />
-          <IonLabel>Suche</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab4" href="/app/participate">
+        {/*<IonTabButton tab="tab4" href="/app/superskills">
           <IonIcon icon={copyOutline} />
-          <IonLabel>Gestalten</IonLabel>
-        </IonTabButton>
+          <IonLabel>Meta</IonLabel>
+        </IonTabButton>*/}
         <IonTabButton tab="tab5" href="/app/profile">
-          <div className="w-6 h-6 bg-green-200 rounded-full mb-1"></div>
-          <IonLabel>Ich</IonLabel>
+          <img
+            src="/profile-placeholder.jpg"
+            className="w-6 h-6 bg-green-200 rounded-full mb-1"
+            alt="Profil"
+          />
+          <IonLabel>Profil</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

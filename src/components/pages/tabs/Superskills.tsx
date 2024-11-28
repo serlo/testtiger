@@ -8,7 +8,7 @@ import {
 
 export function Superskills() {
   return (
-    <IonPage>
+    <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
         <IonToolbar>
           <IonTitle>Superskills</IonTitle>
