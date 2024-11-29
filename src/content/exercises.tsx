@@ -110,6 +110,10 @@ import { exercise211 } from './implementations/BW_Realschule/211-2024-A2-5-Quadr
 import { exercise212 } from './implementations/BW_Realschule/212-2024-A2-6-Diagramm'
 import { exercise213 } from './implementations/BW_Realschule/213-2024-B-1-Drachenviereck+Parabeln'
 import { exercise214 } from './implementations/BW_Realschule/214-2024-B-2-Funktionen+Zusammengesetzter-Körper'
+import { exercise230 } from './implementations/BW_Realschule/230-2023-B-1-Trapez+Parabel'
+import { exercise231 } from './implementations/BW_Realschule/231-2023-B-2-Parabel+Körper'
+import { exercise232 } from './implementations/BW_Realschule/232-2023-B-3-Gewinnlose+Parabel'
+import { exercise233 } from './implementations/BW_Realschule/233-2023-B-4-Parabel+Prisma'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -222,6 +226,10 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   213: exercise213,
   214: exercise214,
   215: exercise215,
+  230: exercise230,
+  231: exercise231,
+  232: exercise232,
+  233: exercise233,
 }
 
 // symbols:
