@@ -82,49 +82,67 @@ export const exercise215: Exercise<DATA> = {
               </li>
             </ul>
             <p>Für ein Glückspiel wird der gegebene Gewinnplan eingesetzt.</p>
-            <svg viewBox="0 0 328 110">
-              <image
-                href="/content/BW_Realschule/215_Gewinnplan.jpg"
-                height="110"
-                width="328"
-              />
-              <text
-                x={194}
-                y={40}
-                fontSize={13}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.win_1} €
-              </text>
-              <text
-                x={194}
-                y={60}
-                fontSize={13}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.win_2} €
-              </text>
-              <text
-                x={194}
-                y={80}
-                fontSize={13}
-                textAnchor="right"
-                stroke="black"
-              >
-                {pp(data.win_3)} €
-              </text>
-              <text
-                x={144}
-                y={103}
-                fontSize={13}
-                textAnchor="right"
-                stroke="black"
-              >
-                {data.bet} €
-              </text>
-            </svg>
+
+            <div
+              className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto "
+              style={{
+                transform: 'scale(1)',
+                transformOrigin: 'top left',
+              }}
+            >
+              <table className="table-auto rounded-lg shadow-md w-full text-left text-[9px] ">
+                <thead
+                  className="uppercase bg-[#D2ECF6] text-[#404040]"
+                  style={{ backgroundColor: '#D2ECF6', color: '#404040' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      Ereignis
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
+                      Gewinn
+                    </td>
+                  </tr>
+                </thead>
+                <tbody
+                  className="bg-white text-gray-500"
+                  style={{ backgroundColor: '#FFFFFF', color: '#6b7280' }}
+                >
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E] ">
+                      zweimal Muschel
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      {data.win_1} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E] ">
+                      zweimal Seestern
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      {data.win_2} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E] ">
+                      Muschel und Seestern
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      {data.win_3} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E] ">
+                      Einsatz
+                    </td>
+                    <td className="py-1 border text-center font-bold p-1 text-black">
+                      {data.bet} €
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <ul>
               <li>Berechne den Erwartungswert.</li>
             </ul>
