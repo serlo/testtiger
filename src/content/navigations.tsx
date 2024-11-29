@@ -2,6 +2,8 @@ import { Navigation } from '@/data/types'
 
 export const navigationData: { [key: number]: Navigation } = {
   1: {
+    longTitle: 'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)',
+    shortTitle: 'NRW - MSA',
     topics: [
       {
         title: 'Grundlagen - Zahlen und Größen',
@@ -753,6 +755,8 @@ export const navigationData: { [key: number]: Navigation } = {
     ],
   },
   2: {
+    longTitle: 'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA)',
+    shortTitle: 'NRW - EESA',
     topics: [
       {
         title: 'Grundlagen - Zahlen und Größen',
@@ -1095,6 +1099,27 @@ export const navigationData: { [key: number]: Navigation } = {
               {
                 id: 134,
                 pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  3: {
+    longTitle: 'Baden-Württemberg - Realschulabschluss',
+    shortTitle: 'BW - RS',
+    topics: [
+      {
+        title: 'TestTopic',
+        headerColor: 'medium',
+        twColor: 'bg-fuchsia-500',
+        skillGroups: [
+          {
+            name: 'TestSkill',
+            skillExercises: [
+              {
+                id: 200,
               },
             ],
           },

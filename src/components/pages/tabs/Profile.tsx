@@ -10,6 +10,7 @@ import {
   storageKey,
   updatePlayerProfileStore,
 } from '../../../../store/player-profile-store'
+import { navigationData } from '@/content/navigations'
 
 export function Profile() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -36,8 +37,13 @@ export function Profile() {
               }}
               className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="1">MSA</option>
-              <option value="2">EESA</option>
+              {Object.keys(navigationData)
+                .map(x => parseInt(x))
+                .map(n => (
+                  <option value={n} key={n}>
+                    {navigationData[n].shortTitle}
+                  </option>
+                ))}
             </select>
           </div>
           <div>

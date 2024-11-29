@@ -6,6 +6,7 @@ import {
   IonContent,
 } from '@ionic/react'
 import { PlayerProfileStore } from '../../../../store/player-profile-store'
+import { navigationData } from '@/content/navigations'
 
 export function Search() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -13,7 +14,9 @@ export function Search() {
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Original-Prüfungen ({exam == 1 ? 'MSA' : 'EESA'})</IonTitle>
+          <IonTitle>
+            Original-Prüfungen ({navigationData[exam].shortTitle})
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>TODO</IonContent>

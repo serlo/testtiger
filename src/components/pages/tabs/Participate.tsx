@@ -27,7 +27,7 @@ export function Participate() {
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Themen des {exam == 1 ? 'MSA' : 'EESA'}</IonTitle>
+          <IonTitle>Themen des {navigationData[exam].shortTitle}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -52,15 +52,17 @@ export function Participate() {
             </button>
           </div>
           <div className="flex flex-wrap justify-between mt-4 items-stretch">
-            {[0, 1, 2, 3, 4, 5].map(i => (
+            {navigationData[exam].topics.map((t, i) => (
               <div
                 key={i}
                 className={clsx(
                   'w-[calc((100%-20px)/2)] bg-opacity-70 rounded mb-6 cursor-pointer',
-                  navigationData[exam].topics[i].twColor,
+                  t.twColor,
                 )}
                 onClick={() => {
-                  history.push(`/topic/${i + (exam == 1 ? 1 : 101)}`)
+                  history.push(
+                    `/topic/${i + (exam == 1 ? 1 : exam == 2 ? 101 : 201)}`,
+                  )
                   updatePlayerProfileStore(s => {
                     s.progress[exam].selectedTopics = s.progress[
                       exam
@@ -70,9 +72,7 @@ export function Participate() {
                   setShowAllTopics(false)
                 }}
               >
-                <h2 className="font-bold mt-4 ml-3">
-                  {navigationData[exam].topics[i].title}
-                </h2>
+                <h2 className="font-bold mt-4 ml-3">{t.title}</h2>
                 <div className="mt-7 text-right mr-4 pb-5">
                   <button className="px-2 py-0.5 rounded-full bg-white text-sm">
                     öffnen
