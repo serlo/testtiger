@@ -38,6 +38,8 @@ export interface ExerciseWithSubtasks<T = unknown> {
 export type Exercise<T = unknown> = SingleExercise<T> | ExerciseWithSubtasks<T>
 
 export interface Navigation {
+  longTitle: string
+  shortTitle: string
   topics: {
     title: string
     headerColor: string

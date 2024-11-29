@@ -26,10 +26,19 @@ export function EndScreen() {
               const i2 = navigationData[2].topics.findIndex(t =>
                 t.skillGroups.some(g => g.name == skill),
               )
+              const i3 = navigationData[3].topics.findIndex(t =>
+                t.skillGroups.some(g => g.name == skill),
+              )
               // scroll restoration is buggy and will fix later
               history.push(
                 skill
-                  ? '/topic/' + (i1 >= 0 ? i1 + 1 : i2 + 101).toString()
+                  ? '/topic/' +
+                      (i1 >= 0
+                        ? i1 + 1
+                        : i2 >= 0
+                          ? i2 + 101
+                          : i3 + 201
+                      ).toString()
                   : '/app/home',
               )
             }}

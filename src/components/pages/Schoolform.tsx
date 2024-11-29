@@ -19,11 +19,7 @@ import {
   updatePlayerProfileStore,
 } from '../../../store/player-profile-store'
 import { useState } from 'react'
-
-const examTitle: { [key: number]: string } = {
-  1: 'Nordrhein-Westfalen - mittlerer Schulabschuss (MSA)',
-  2: 'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA)',
-}
+import { navigationData } from '@/content/navigations'
 
 export function Schoolform() {
   const name = PlayerProfileStore.useState(s => s.name)
@@ -49,13 +45,15 @@ export function Schoolform() {
               setLocalExam(parseInt(e.detail.value))
             }}
           >
-            {[1, 2].map(n => (
-              <IonItem key={n}>
-                <IonRadio key={n} value={n}>
-                  {examTitle[n]}
-                </IonRadio>
-              </IonItem>
-            ))}
+            {Object.keys(navigationData)
+              .map(x => parseInt(x))
+              .map(n => (
+                <IonItem key={n}>
+                  <IonRadio key={n} value={n}>
+                    {navigationData[n].longTitle}
+                  </IonRadio>
+                </IonItem>
+              ))}
           </IonRadioGroup>
         </IonList>
       </IonContent>

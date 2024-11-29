@@ -166,7 +166,7 @@ export function Home() {
             </div>
             <div className="flex justify-between mt-8">
               <h2 className="font-bold">
-                Lernpfad für {exam == 1 ? 'MSA' : 'EESA'}
+                Lernpfad für {navigationData[exam].shortTitle}
               </h2>
               <button
                 className="text-sm hidden"
