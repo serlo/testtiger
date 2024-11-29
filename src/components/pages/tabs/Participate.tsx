@@ -87,7 +87,10 @@ export function Participate() {
             Liste aller Aufgaben:
             {exercises.map(([id, content]) => {
               if (exam == 1 && parseInt(id) > 99) return null
-              if (exam == 2 && parseInt(id) < 100) return null
+              if (exam == 2 && (parseInt(id) < 100 || parseInt(id) >= 199))
+                return null
+              if (exam == 3 && (parseInt(id) < 200 || parseInt(id) >= 299))
+                return null
               return (
                 <div
                   key={id}
