@@ -335,7 +335,9 @@ export const exercise232: Exercise<DATA> = {
                       <>=</>,
                       <>
                         {buildInlineFrac(
-                          <>Anzahl von "6"</>,
+                          <>
+                            Anzahl von {'"'}6{'"'}
+                          </>,
                           <>Anzahl aller Felder</>,
                         )}
                       </>,
@@ -365,7 +367,9 @@ export const exercise232: Exercise<DATA> = {
                       <>=</>,
                       <>
                         {buildInlineFrac(
-                          <>Anzahl von nicht "6"</>,
+                          <>
+                            Anzahl von nicht {'"'}6{'"'}
+                          </>,
                           <>Anzahl aller Felder</>,
                         )}
                       </>,
@@ -395,7 +399,9 @@ export const exercise232: Exercise<DATA> = {
                       <>=</>,
                       <>
                         {buildInlineFrac(
-                          <>Anzahl von nicht "1"</>,
+                          <>
+                            Anzahl von nicht {'"'}1{'"'}
+                          </>,
                           <>Anzahl aller Felder</>,
                         )}
                       </>,
@@ -474,7 +480,10 @@ export const exercise232: Exercise<DATA> = {
             <p>
               <strong>Vertauschte Streifen</strong>
             </p>
-            <p>Beim Vertauschen der '6' und '3' ergeben sich die Streifen:</p>
+            <p>
+              Beim Vertauschen der {"'"}6{"'"} und {"'"}3{"'"} ergeben sich die
+              Streifen:
+            </p>
             <svg viewBox="0 0 328 50">
               <image
                 href="/content/BW_Realschule/232_Streifen.jpg"
@@ -530,13 +539,15 @@ export const exercise232: Exercise<DATA> = {
             <p>
               {anzahl_3 == swapped_anzahl_3 ? (
                 <>
-                  Die Anzahl der '3' und '6' ändert sich dabei nicht. <br></br>
+                  Die Anzahl der {"'"}3{"'"} und {"'"}6{"'"} ändert sich dabei
+                  nicht. <br></br>
                   So ändert sich auch die Wahrscheinlichkeit und der
                   Erwartungswert nicht.
                 </>
               ) : (
                 <>
-                  Die Wahrscheinlichkeit für die Kombination '33' beträgt jetzt:
+                  Die Wahrscheinlichkeit für die Kombination {"'"}33{"'"}{' '}
+                  beträgt jetzt:
                   {buildEquation([
                     [
                       <>
