@@ -46,6 +46,18 @@ export interface Navigation {
     twColor: string
     skillGroups: SkillGroup[]
   }[]
+  path: Part[]
+}
+
+export interface Part {
+  title: string
+  lessons: Lesson[]
+}
+
+export interface Lesson {
+  type: 'new-skill' | 'challenge' | 'repetition'
+  title: string
+  steps: { exercise: SkillExercise }[]
 }
 
 export interface SkillGroup {

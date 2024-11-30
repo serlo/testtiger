@@ -2,12 +2,14 @@ import { IonPage, IonHeader, IonContent } from '@ionic/react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { exercisesData } from '@/content/exercises'
 import { setupExercise } from '@/components/exercise-view/state/actions'
 import { PlayerProfileStore } from '../../../../store/player-profile-store'
 import { countLetter } from '@/helper/count-letter'
 import { SkillExercise } from '@/data/types'
+import { FaIcon } from '@/components/ui/FaIcon'
+import { faCircle, faRepeat, faStar } from '@fortawesome/free-solid-svg-icons'
 
 export function Home() {
   const history = useHistory()
@@ -177,44 +179,84 @@ export function Home() {
                 neue Vorschläge
               </button>
             </div>
-            <img
-              src="/learning-path-placeholder.jpg"
-              alt="Platzhalter"
-              className="mt-8"
-            />
-            <div className="hidden">
-              {recommands.map((r, i) => {
-                return (
-                  <button
-                    className={clsx(
-                      'mt-4 w-full py-2 bg-opacity-30 rounded',
-                      r.topicColor,
-                    )}
-                    key={i}
-                    onClick={() => {
-                      setupExercise(r.id, r.groupName, r.pages)
-                      history.push(
-                        '/exercise/' +
-                          r.id +
-                          '#' +
-                          encodeURIComponent(
-                            JSON.stringify({
-                              name: r.groupName,
-                              pages: r.pages,
-                            }),
-                          ),
-                      )
-                    }}
-                  >
-                    {r.groupName}
-                    <br />
-                    <small className="italic">
-                      {exercisesData[r.id].source}
-                    </small>
-                  </button>
-                )
-              })}
-            </div>
+            {navigationData[exam].path.length > 0 ? (
+              <>
+                {navigationData[exam].path.map((part, i) => (
+                  <Fragment key={i}>
+                    <h2 className="text-center text-4xl mt-6 pb-1 mb-5 border-b">
+                      {part.title}
+                    </h2>
+                    {part.lessons.map((lesson, i) => (
+                      <div key={i} className="flex items-stretch">
+                        <div className="w-12">
+                          <FaIcon
+                            icon={
+                              lesson.type == 'challenge'
+                                ? faStar
+                                : lesson.type == 'new-skill'
+                                  ? faCircle
+                                  : faRepeat
+                            }
+                            className={clsx(
+                              'text-3xl',
+                              lesson.type == 'challenge'
+                                ? 'text-gray-300'
+                                : 'text-purple-100',
+                            )}
+                          />
+                        </div>
+                        <div>
+                          <div
+                            className={clsx(
+                              'text-lg',
+                              lesson.type == 'challenge' && 'font-bold',
+                            )}
+                          >
+                            {lesson.title}
+                          </div>
+                          <div className="flex">
+                            {lesson.steps.map((step, i) => (
+                              <button
+                                className="h-12 w-12 bg-gray-100 rounded-full mr-5 mt-3 mb-6"
+                                key={i}
+                                onClick={() => {
+                                  setupExercise(
+                                    step.exercise.id,
+                                    lesson.title,
+                                    step.exercise.pages,
+                                    true,
+                                  )
+                                  history.push(
+                                    '/exercise/' +
+                                      step.exercise.id +
+                                      '#' +
+                                      encodeURIComponent(
+                                        JSON.stringify({
+                                          name: lesson.title,
+                                          pages: step.exercise.pages,
+                                          toHome: true,
+                                        }),
+                                      ),
+                                  )
+                                }}
+                              >
+                                {i + 1}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </Fragment>
+                ))}
+              </>
+            ) : (
+              <img
+                src="/learning-path-placeholder.jpg"
+                alt="Platzhalter"
+                className="mt-8"
+              />
+            )}
 
             <div className="h-24"></div>
           </div>

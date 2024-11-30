@@ -8,6 +8,7 @@ import { navigationData } from '@/content/navigations'
 export function ExerciseViewHeader() {
   const id = ExerciseViewStore.useState(s => s.id)
   const skill = ExerciseViewStore.useState(s => s.skill)
+  const toHome = ExerciseViewStore.useState(s => s.toHome)
   const content = exercisesData[id]
   const history = useHistory()
 
@@ -16,6 +17,10 @@ export function ExerciseViewHeader() {
       <button
         className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block"
         onClick={() => {
+          if (toHome) {
+            history.push('/app/home')
+            return
+          }
           const i1 = navigationData[1].topics.findIndex(t =>
             t.skillGroups.some(g => g.name == skill),
           )

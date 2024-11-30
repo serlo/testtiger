@@ -13,6 +13,7 @@ export function setupExercise(
   id: number,
   skill?: string,
   pages?: SkillExercisePage[],
+  toHome?: boolean,
 ) {
   const content = exercisesData[id]
   ExerciseViewStore.update(s => {
@@ -49,6 +50,7 @@ export function setupExercise(
     s.cropImage = false
     s.completed = s.checks.map(() => false)
     s.showEndScreen = false
+    s.toHome = !!toHome
   })
 }
 

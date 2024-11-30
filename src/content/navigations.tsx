@@ -753,6 +753,107 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
+    path: [
+      {
+        title: 'Teil 1 - Grundlagen',
+        lessons: [
+          {
+            type: 'new-skill',
+            title: 'Zahlen und Größen',
+            steps: [
+              { exercise: { id: 48 } },
+              { exercise: { id: 16 } },
+              { exercise: { id: 50 } },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Schätzen und Überschlagen',
+            steps: [{ exercise: { id: 20 } }, { exercise: { id: 14 } }],
+          },
+          {
+            type: 'new-skill',
+            title: 'Prozentrechnung',
+            steps: [
+              { exercise: { id: 5 } },
+              {
+                exercise: {
+                  id: 15,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 1',
+            steps: [
+              { exercise: { id: 40 } },
+              { exercise: { id: 20 } },
+              { exercise: { id: 5 } },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Proportionalität',
+            steps: [
+              {
+                exercise: {
+                  id: 45,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 18,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Umgang mit Formeln und Termen',
+            steps: [
+              {
+                exercise: {
+                  id: 39,
+                  pages: [{ index: 'b', intro: [] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 9,
+                  pages: [{ index: 'd', intro: [] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Zahlen und Einheiten',
+            steps: [
+              { exercise: { id: 1, pages: [{ index: 'a' }, { index: 'b' }] } },
+              {
+                exercise: { id: 21 },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 2',
+            steps: [
+              {
+                exercise: {
+                  id: 46,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   2: {
     longTitle: 'Nordrhein-Westfalen - Erweiterte Erste Schulabschluss (EESA)',
@@ -1105,6 +1206,7 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
+    path: [],
   },
   3: {
     longTitle: 'Baden-Württemberg - Realschulabschluss',
@@ -1126,5 +1228,6 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
+    path: [],
   },
 }

@@ -53,6 +53,7 @@ export type IExerciseViewStore = {
   cropImage: boolean
   completed: boolean[]
   showEndScreen: boolean
+  toHome: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -68,4 +69,5 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   completed: [],
   showEndScreen: false,
   chatHistory: [],
+  toHome: false,
 })
