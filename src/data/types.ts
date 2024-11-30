@@ -57,7 +57,11 @@ export interface Part {
 export interface Lesson {
   type: 'new-skill' | 'challenge' | 'repetition'
   title: string
-  steps: { exercise: SkillExercise }[]
+  steps: Step[]
+}
+
+export interface Step {
+  exercise: SkillExercise
 }
 
 export interface SkillGroup {

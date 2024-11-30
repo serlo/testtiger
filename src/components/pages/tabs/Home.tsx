@@ -7,7 +7,7 @@ import { exercisesData } from '@/content/exercises'
 import { setupExercise } from '@/components/exercise-view/state/actions'
 import { PlayerProfileStore } from '../../../../store/player-profile-store'
 import { countLetter } from '@/helper/count-letter'
-import { SkillExercise } from '@/data/types'
+import { SkillExercise, Step } from '@/data/types'
 import { FaIcon } from '@/components/ui/FaIcon'
 import { faCircle, faRepeat, faStar } from '@fortawesome/free-solid-svg-icons'
 
@@ -78,6 +78,21 @@ export function Home() {
       }
     }
   })
+
+  function isStepCompleted(step: Step) {
+    return step.exercise.pages
+      ? step.exercise.pages.every(p =>
+          PlayerProfileStore.getRawState().eventLog.some(
+            e =>
+              e.type == 'kann-ich' &&
+              e.id == step.exercise.id &&
+              countLetter('a', e.index) == p.index,
+          ),
+        )
+      : PlayerProfileStore.getRawState().eventLog.some(
+          e => e.type == 'kann-ich' && e.id == step.exercise.id,
+        )
+  }
 
   const allExercises = fullNumberOfExercisesPerTopic.reduce((p, c) => p + c, 0)
   const visited = visitedNumberOfExercisesPerTopic.reduce((p, c) => p + c, 0)
@@ -199,9 +214,13 @@ export function Home() {
                             }
                             className={clsx(
                               'text-3xl',
-                              lesson.type == 'challenge'
-                                ? 'text-gray-300'
-                                : 'text-purple-100',
+                              lesson.steps.every(isStepCompleted)
+                                ? lesson.type == 'challenge'
+                                  ? 'text-yellow-300'
+                                  : 'text-purple-400'
+                                : lesson.type == 'challenge'
+                                  ? 'text-gray-300'
+                                  : 'text-purple-100',
                             )}
                           />
                         </div>
@@ -217,7 +236,12 @@ export function Home() {
                           <div className="flex">
                             {lesson.steps.map((step, i) => (
                               <button
-                                className="h-12 w-12 bg-gray-100 rounded-full mr-5 mt-3 mb-6"
+                                className={clsx(
+                                  'h-12 w-12 rounded-full mr-5 mt-3 mb-6',
+                                  isStepCompleted(step)
+                                    ? 'bg-green-300'
+                                    : 'bg-gray-100',
+                                )}
                                 key={i}
                                 onClick={() => {
                                   setupExercise(

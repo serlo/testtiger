@@ -7,6 +7,7 @@ export function EndScreen() {
   const showEndScreen = ExerciseViewStore.useState(s => s.showEndScreen)
   const skill = ExerciseViewStore.useState(s => s.skill)
   const history = useHistory()
+  const toHome = ExerciseViewStore.useState(s => s.toHome)
   if (!showEndScreen) return null
   return (
     <>
@@ -20,6 +21,10 @@ export function EndScreen() {
               ExerciseViewStore.update(s => {
                 s.showEndScreen = false
               })
+              if (toHome) {
+                history.push('/app/home')
+                return
+              }
               const i1 = navigationData[1].topics.findIndex(t =>
                 t.skillGroups.some(g => g.name == skill),
               )
