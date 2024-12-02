@@ -1,10 +1,12 @@
 import { Exercise } from '@/data/types'
+import { Color1 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
   buildOverline,
 } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   slot1: number
@@ -16,6 +18,12 @@ interface DATA {
   gewinn_1: number
   gewinn_2: number
   case: number
+  weite: number
+  höhe: number
+  distanz: number
+  schilf: number
+  a_2: number
+  c_2: number
 }
 
 export const exercise232: Exercise<DATA> = {
@@ -34,6 +42,12 @@ export const exercise232: Exercise<DATA> = {
       gewinn_1: rng.randomIntBetween(1, 4),
       gewinn_2: rng.randomIntBetween(3, 7),
       case: rng.randomIntBetween(1, 3),
+      weite: rng.randomIntBetween(8, 15) * 20,
+      höhe: rng.randomIntBetween(110, 160),
+      distanz: rng.randomIntBetween(7, 15) * 10,
+      schilf: rng.randomIntBetween(60, 95),
+      a_2: rng.randomIntBetween(-30, -10) / 1000,
+      c_2: rng.randomIntBetween(25, 35) * 5,
     }
   },
   originalData: {
@@ -46,6 +60,12 @@ export const exercise232: Exercise<DATA> = {
     gewinn_1: 3,
     gewinn_2: 6,
     case: 1,
+    weite: 220,
+    höhe: 139,
+    distanz: 150,
+    schilf: 94,
+    a_2: -1.5,
+    c_2: 165,
   },
   constraint({ data }) {
     const array = [data.slot1, data.slot2, data.slot3, data.slot4, data.slot5]
@@ -653,10 +673,201 @@ export const exercise232: Exercise<DATA> = {
         return null
       },
       task({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Die Abbildung zeigt den Sprung eines Frosches, der annähernd die
+              Form einer Parabel mit der Gleichung y = ax² + c hat.
+            </p>
+            <p>
+              Die maximale Höhe des Sprungs ist {data.höhe} cm. Die Sprungweite
+              beträgt {data.weite} cm.{' '}
+            </p>
+            <svg viewBox="0 0 328 110">
+              <image
+                href="/content/BW_Realschule/232_Frosch.jpg"
+                height="110"
+                width="328"
+              />
+            </svg>
+            <ul>
+              <li>Gib eine mögliche Gleichung der zugehörigen Parabel an.</li>
+            </ul>
+            <p>
+              In einer horizontalen Entfernung von {data.distanz} cm nach dem
+              Absprung befindet sich ein Schilfrohr, das {data.schilf} cm aus
+              dem Wasser ragt.{' '}
+            </p>
+            <ul>
+              <li>In welchem Abstand springt der Frosch darüber?</li>
+            </ul>
+            <p>
+              Der Sprung eines zweiten Frosches kann mit der Gleichung y ={' '}
+              {ppFrac(data.a_2)}x² +{data.c_2} dargestellt werden.{' '}
+            </p>
+            <ul>
+              <li>
+                Welcher der beiden Frösche springt weiter? Berechne die
+                Differenz der Sprungweiten.
+              </li>
+            </ul>
+          </>
+        )
       },
       solution({ data }) {
-        return <></>
+        const a = roundToDigits(
+          -data.höhe / ((data.weite / 2) * (data.weite / 2)),
+          4,
+        )
+        const x_wert = data.distanz - data.weite / 2
+        const x1 = roundToDigits(Math.sqrt(-data.c_2 / data.a_2), 2)
+
+        return (
+          <>
+            <p>
+              <strong>Gleichung der Parabel</strong>
+            </p>
+            <p>
+              Der Funktionsterm y = ax² + c gibt eine Parabel an, deren
+              Scheitelpunkt auf der y-Achse liegt. Der höchste Punkt des Sprungs
+              gibt dabei den Parameter c an:
+            </p>
+            <p>
+              S(0|<Color1>{data.höhe}</Color1>
+              )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              ⇒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y = ax² +{' '}
+              <Color1>{data.höhe}</Color1>
+            </p>
+            <p>
+              Bei einer Sprungweite von {data.weite} cm, liegen Start- und
+              Landepunkt des Froschs {pp(data.weite / 2)} cm vom Scheitelpunkt
+              weg.
+            </p>
+            <p>Setze den Punkt ({pp(data.weite / 2)}|0) ein und berechne a:</p>
+            {buildEquation([
+              [<>y</>, <>=</>, <>ax² + {pp(data.höhe)}</>],
+              [
+                <>0</>,
+                <>=</>,
+                <>
+                  a · {pp(data.weite / 2)}² + {pp(data.höhe)}
+                </>,
+                <>| − {pp(data.höhe)}</>,
+              ],
+              [
+                <>{pp(-data.höhe)}</>,
+                <>=</>,
+                <>a · {pp(data.weite / 2)}²</>,
+                <>| : {pp(data.weite / 2)}²</>,
+              ],
+              [<>a</>, <>≈</>, <>{pp(a)}</>],
+            ])}
+            <p>Damit lautet der Funktionsterm:</p>
+            <p>
+              <strong>
+                y = {pp(a)}x² + {data.höhe}
+              </strong>
+            </p>
+            <p>
+              <strong>Abstand zum Schilfrohr</strong>
+            </p>
+            <p>
+              {data.distanz} cm nach dem Absprung befindet sich der Frosch bei x
+              = {x_wert}.
+            </p>
+            <p>Berechne die Flughöge des Froschs bei {data.distanz} cm:</p>
+            {buildEquation([
+              [
+                <>y</>,
+                <>=</>,
+                <>
+                  {pp(a)}x² + {data.höhe}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {pp(a)} · {x_wert}² + {data.höhe}
+                </>,
+              ],
+              [<></>, <>=</>, <>{pp(a * x_wert * x_wert + data.höhe)} cm</>],
+            ])}
+            <p>Bestimme den Abstand zum Schilfrohr:</p>
+            <p>
+              {pp(a * x_wert * x_wert + data.höhe)} cm − {data.schilf} cm ={' '}
+              <strong>
+                {pp(a * x_wert * x_wert + data.höhe - data.schilf)} cm
+              </strong>
+            </p>
+            <p>
+              <strong>Sprungweiten der Frösche</strong>
+            </p>
+            <p>Der erste Frosch hat eine Sprungweite von {data.weite} cm.</p>
+            <p>
+              Berechne die Nullstellen der Funktion, die den zweiten Frosch
+              beschreibt:
+            </p>
+            {buildEquation([
+              [
+                <>y</>,
+                <>=</>,
+                <>
+                  {ppFrac(data.a_2)}x² + {data.c_2}
+                </>,
+              ],
+              [
+                <>0</>,
+                <>=</>,
+                <>
+                  {ppFrac(data.a_2)}x² + {data.c_2}
+                </>,
+                <>| {pp(-data.c_2)}</>,
+              ],
+              [
+                <>{pp(-data.c_2)}</>,
+                <>=</>,
+                <>{ppFrac(data.a_2)}x²</>,
+                <>| : ({ppFrac(data.a_2)})</>,
+              ],
+              [<>{pp(-data.c_2 / data.a_2)}</>, <>=</>, <>x²</>, <>| √</>],
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>{pp(-data.c_2 / data.a_2)}</>,
+              ],
+              [
+                <>
+                  x<sub>1</sub>
+                </>,
+                <>=</>,
+                <>{pp(x1)}</>,
+              ],
+              [
+                <>
+                  x<sub>2</sub>
+                </>,
+                <>=</>,
+                <>{pp(-x1)}</>,
+              ],
+            ])}
+            <p>
+              Die Nullstellen geben Start- und Landeposition an. Bestimme die
+              Distanz dazwischen:
+            </p>
+            <p>
+              {pp(x1)} cm − ({pp(-x1)} cm) = <strong>{pp(2 * x1)} cm</strong>
+            </p>
+            <p>
+              <strong>
+                Damit springt der{' '}
+                {data.weite > 2 * x1 ? <>erste</> : <>zweite</>} Frosch weiter.
+              </strong>
+            </p>
+          </>
+        )
       },
     },
   ],
