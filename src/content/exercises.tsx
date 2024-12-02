@@ -114,6 +114,12 @@ import { exercise230 } from './implementations/BW_Realschule/230-2023-B-1-Trapez
 import { exercise231 } from './implementations/BW_Realschule/231-2023-B-2-Parabel+Körper'
 import { exercise232 } from './implementations/BW_Realschule/232-2023-B-3-Gewinnlose+Parabel'
 import { exercise233 } from './implementations/BW_Realschule/233-2023-B-4-Parabel+Prisma'
+import { exercise224 } from './implementations/BW_Realschule/224-2023-A2-1-Dreieck'
+import { exercise225 } from './implementations/BW_Realschule/225-2023-A2-2-Zusammengesetzter-Körper'
+import { exercise226 } from './implementations/BW_Realschule/226-2023-A2-3-Lineares Gleichungssystem'
+import { exercise227 } from './implementations/BW_Realschule/227-2023-A2-4-Parabel'
+import { exercise228 } from './implementations/BW_Realschule/228-2023-A2-5-Kreisel'
+import { exercise229 } from './implementations/BW_Realschule/229-2023-A2-6-Diagramm'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -226,6 +232,12 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   213: exercise213,
   214: exercise214,
   215: exercise215,
+  224: exercise224,
+  225: exercise225,
+  226: exercise226,
+  227: exercise227,
+  228: exercise228,
+  229: exercise229,
   230: exercise230,
   231: exercise231,
   232: exercise232,
