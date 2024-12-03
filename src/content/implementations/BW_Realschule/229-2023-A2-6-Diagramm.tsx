@@ -1,6 +1,10 @@
 import { Exercise } from '@/data/types'
+import { buildOverline } from '@/helper/math-builder'
 
-interface DATA {}
+interface DATA {
+  cd: number
+  gamma: number
+}
 
 export const exercise229: Exercise<DATA> = {
   title: 'Diagramm',
@@ -9,9 +13,12 @@ export const exercise229: Exercise<DATA> = {
   duration: 42,
   points: 3,
   generator(rng) {
-    return {}
+    return {
+      cd: rng.randomIntBetween(40, 80) / 10,
+      gamma: rng.randomIntBetween(380, 440) / 10,
+    }
   },
-  originalData: {},
+  originalData: { cd: 6.3, gamma: 41.8 },
   constraint({ data }) {
     return true
   },
@@ -78,6 +85,13 @@ export const exercise229: Exercise<DATA> = {
     )
   },
   solution({ data }) {
-    return <></>
+    return (
+      <>
+        <p>Das Dreieck CDB ist gleichschenklig. Damit gilt:</p>
+        <p>
+          {buildOverline('CD')} = {data.cd} cm = {buildOverline('BD')}
+        </p>
+      </>
+    )
   },
 }
