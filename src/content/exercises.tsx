@@ -120,6 +120,12 @@ import { exercise226 } from './implementations/BW_Realschule/226-2023-A2-3-Linea
 import { exercise227 } from './implementations/BW_Realschule/227-2023-A2-4-Parabel'
 import { exercise228 } from './implementations/BW_Realschule/228-2023-A2-5-Kreisel'
 import { exercise229 } from './implementations/BW_Realschule/229-2023-A2-6-Diagramm'
+import { exercise242 } from './implementations/BW_Realschule/242-2022-A2-2-Gussform'
+import { exercise241 } from './implementations/BW_Realschule/241-2022-A2-1-Dreieck'
+import { exercise243 } from './implementations/BW_Realschule/243-2022-A2-3-Quadratische-Gleichung'
+import { exercise244 } from './implementations/BW_Realschule/244-2022-A2-4-Parabel'
+import { exercise245 } from './implementations/BW_Realschule/245-2022-A2-5-Losverkauf'
+import { exercise246 } from './implementations/BW_Realschule/246-2022-A2-6-Paketdiagramm'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -242,6 +248,12 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   231: exercise231,
   232: exercise232,
   233: exercise233,
+  241: exercise241,
+  242: exercise242,
+  243: exercise243,
+  244: exercise244,
+  245: exercise245,
+  246: exercise246,
 }
 
 // symbols:
