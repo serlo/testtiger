@@ -851,90 +851,122 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-        ],
-      },
-      {
-        title: 'Skill-Profi',
-        lessons: [
           {
-            type: 'new-skill',
-            title: 'Zahlen und Größen',
+            type: 'challenge',
+            title: 'Challenge 3',
             steps: [
-              { exercise: { id: 48 } },
-              { exercise: { id: 16 } },
-              { exercise: { id: 50 } },
-            ],
-          },
-          {
-            type: 'new-skill',
-            title: 'Schätzen und Überschlagen',
-            steps: [{ exercise: { id: 20 } }, { exercise: { id: 14 } }],
-          },
-          {
-            type: 'new-skill',
-            title: 'Prozentrechnung',
-            steps: [
-              { exercise: { id: 5 } },
               {
                 exercise: {
-                  id: 15,
-                  pages: [{ index: 'b', intro: ['global'] }],
+                  id: 9,
+                  pages: [
+                    { index: 'c', intro: ['global'] },
+                    { index: 'd' },
+                    { index: 'e' },
+                  ],
                 },
               },
             ],
           },
           {
             type: 'challenge',
-            title: 'Challenge 1',
-            steps: [
-              { exercise: { id: 40 } },
-              { exercise: { id: 20 } },
-              { exercise: { id: 5 } },
-            ],
-          },
-          {
-            type: 'new-skill',
-            title: 'Proportionalität',
+            title: 'Challenge 4',
             steps: [
               {
                 exercise: {
-                  id: 45,
-                  pages: [{ index: 'a', intro: ['global'] }],
+                  id: 12,
                 },
               },
               {
                 exercise: {
-                  id: 18,
+                  id: 38,
+                  pages: [{ index: 'b', intro: ['global', 'skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 30,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 5',
+            steps: [
+              {
+                exercise: {
+                  id: 53,
                   pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
                 },
               },
             ],
           },
           {
-            type: 'new-skill',
-            title: 'Umgang mit Formeln und Termen',
+            type: 'challenge',
+            title: 'Challenge 6',
             steps: [
               {
                 exercise: {
-                  id: 39,
-                  pages: [{ index: 'b', intro: [] }],
-                },
-              },
-              {
-                exercise: {
-                  id: 9,
-                  pages: [{ index: 'd', intro: [] }],
+                  id: 37,
+                  pages: [
+                    { index: 'b', intro: ['global', 'skill'] },
+                    { index: 'c' },
+                    { index: 'd' },
+                  ],
                 },
               },
             ],
           },
           {
-            type: 'repetition',
-            title: 'Zahlen und Einheiten',
+            type: 'challenge',
+            title: 'Challenge 7',
             steps: [
-              { exercise: { id: 1, pages: [{ index: 'a' }, { index: 'b' }] } },
               {
-                exercise: { id: 21 },
+                exercise: {
+                  id: 31,
+                },
+              },
+              {
+                exercise: {
+                  id: 32,
+                },
+              },
+              {
+                exercise: {
+                  id: 33,
+                },
+              },
+              {
+                exercise: {
+                  id: 34,
+                },
+              },
+              {
+                exercise: {
+                  id: 35,
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Skill-Profi',
+        lessons: [
+          {
+            type: 'challenge',
+            title: 'Challenge 1',
+            steps: [
+              {
+                exercise: {
+                  id: 18,
+                  pages: [
+                    { index: 'e', intro: ['skill'] },
+                    { index: 'f' },
+                    { index: 'g' },
+                  ],
+                },
               },
             ],
           },
@@ -944,8 +976,77 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 46,
-                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                  id: 28,
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 3',
+            steps: [
+              {
+                exercise: {
+                  id: 45,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
+                    { index: 'd' },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 4',
+            steps: [
+              {
+                exercise: {
+                  id: 48,
+                },
+              },
+              {
+                exercise: {
+                  id: 49,
+                },
+              },
+              {
+                exercise: {
+                  id: 50,
+                },
+              },
+              {
+                exercise: {
+                  id: 51,
+                },
+              },
+              {
+                exercise: {
+                  id: 52,
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 5',
+            steps: [
+              {
+                exercise: {
+                  id: 29,
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 6',
+            steps: [
+              {
+                exercise: {
+                  id: 8,
                 },
               },
             ],
@@ -956,98 +1057,34 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Prüfungsfit',
         lessons: [
           {
-            type: 'new-skill',
-            title: 'Zahlen und Größen',
-            steps: [
-              { exercise: { id: 48 } },
-              { exercise: { id: 16 } },
-              { exercise: { id: 50 } },
-            ],
-          },
-          {
-            type: 'new-skill',
-            title: 'Schätzen und Überschlagen',
-            steps: [{ exercise: { id: 20 } }, { exercise: { id: 14 } }],
-          },
-          {
-            type: 'new-skill',
-            title: 'Prozentrechnung',
-            steps: [
-              { exercise: { id: 5 } },
-              {
-                exercise: {
-                  id: 15,
-                  pages: [{ index: 'b', intro: ['global'] }],
-                },
-              },
-            ],
-          },
-          {
             type: 'challenge',
             title: 'Challenge 1',
-            steps: [
-              { exercise: { id: 40 } },
-              { exercise: { id: 20 } },
-              { exercise: { id: 5 } },
-            ],
-          },
-          {
-            type: 'new-skill',
-            title: 'Proportionalität',
-            steps: [
-              {
-                exercise: {
-                  id: 45,
-                  pages: [{ index: 'a', intro: ['global'] }],
-                },
-              },
-              {
-                exercise: {
-                  id: 18,
-                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
-                },
-              },
-            ],
-          },
-          {
-            type: 'new-skill',
-            title: 'Umgang mit Formeln und Termen',
-            steps: [
-              {
-                exercise: {
-                  id: 39,
-                  pages: [{ index: 'b', intro: [] }],
-                },
-              },
-              {
-                exercise: {
-                  id: 9,
-                  pages: [{ index: 'd', intro: [] }],
-                },
-              },
-            ],
-          },
-          {
-            type: 'repetition',
-            title: 'Zahlen und Einheiten',
-            steps: [
-              { exercise: { id: 1, pages: [{ index: 'a' }, { index: 'b' }] } },
-              {
-                exercise: { id: 21 },
-              },
-            ],
+            steps: [{ exercise: { id: 7 } }],
           },
           {
             type: 'challenge',
             title: 'Challenge 2',
-            steps: [
-              {
-                exercise: {
-                  id: 46,
-                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
-                },
-              },
-            ],
+            steps: [{ exercise: { id: 55 } }],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 3',
+            steps: [{ exercise: { id: 37 } }],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 4',
+            steps: [{ exercise: { id: 30 } }],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 5',
+            steps: [{ exercise: { id: 38 } }],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 6',
+            steps: [{ exercise: { id: 47 } }],
           },
         ],
       },
