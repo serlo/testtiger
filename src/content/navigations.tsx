@@ -1203,27 +1203,27 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 31,
+                  id: 48,
                 },
               },
               {
                 exercise: {
-                  id: 32,
+                  id: 49,
                 },
               },
               {
                 exercise: {
-                  id: 33,
+                  id: 50,
                 },
               },
               {
                 exercise: {
-                  id: 34,
+                  id: 51,
                 },
               },
               {
                 exercise: {
-                  id: 35,
+                  id: 52,
                 },
               },
             ],
@@ -1542,27 +1542,27 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 48,
+                  id: 31,
                 },
               },
               {
                 exercise: {
-                  id: 49,
+                  id: 32,
                 },
               },
               {
                 exercise: {
-                  id: 50,
+                  id: 33,
                 },
               },
               {
                 exercise: {
-                  id: 51,
+                  id: 34,
                 },
               },
               {
                 exercise: {
-                  id: 52,
+                  id: 35,
                 },
               },
             ],
