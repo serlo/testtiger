@@ -126,6 +126,10 @@ import { exercise243 } from './implementations/BW_Realschule/243-2022-A2-3-Quadr
 import { exercise244 } from './implementations/BW_Realschule/244-2022-A2-4-Parabel'
 import { exercise245 } from './implementations/BW_Realschule/245-2022-A2-5-Losverkauf'
 import { exercise246 } from './implementations/BW_Realschule/246-2022-A2-6-Paketdiagramm'
+import { exercise247 } from './implementations/BW_Realschule/247-2022-B-1-Figuren+Funktionen'
+import { exercise248 } from './implementations/BW_Realschule/248-2022-B-2-Parabeln+Körper'
+import { exercise249 } from './implementations/BW_Realschule/249-2022-B-3-Zufall+Tiny-House'
+import { exercise250 } from './implementations/BW_Realschule/250-2022-B-4-Parabeln+Sechseck'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -254,6 +258,10 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   244: exercise244,
   245: exercise245,
   246: exercise246,
+  247: exercise247,
+  248: exercise248,
+  249: exercise249,
+  250: exercise250,
 }
 
 // symbols:
@@ -273,7 +281,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 //<svg viewBox="0 0 328 190"></svg>
 
 // Umgebung für Bild:
-// <image href="/content/NRW_MSA/NRW_MSA_Planfigur.PNG" height="190" width="328" />
+// <image href="/content/content/BW_Realschule/" height="190" width="328" />
 
 // Umgebung für Text in SVG:
 // <text x={140} y={185} fontSize={20} textAnchor="right" stroke="black">Hier Text</text>
