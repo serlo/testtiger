@@ -896,12 +896,8 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 9,
-                  pages: [
-                    { index: 'c', intro: ['global'] },
-                    { index: 'd' },
-                    { index: 'e' },
-                  ],
+                  id: 92,
+                  pages: [{ index: 'c' }, { index: 'd' }, { index: 'e' }],
                 },
               },
             ],

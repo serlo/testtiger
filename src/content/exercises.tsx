@@ -130,6 +130,7 @@ import { exercise247 } from './implementations/BW_Realschule/247-2022-B-1-Figure
 import { exercise248 } from './implementations/BW_Realschule/248-2022-B-2-Parabeln+Körper'
 import { exercise249 } from './implementations/BW_Realschule/249-2022-B-3-Zufall+Tiny-House'
 import { exercise250 } from './implementations/BW_Realschule/250-2022-B-4-Parabeln+Sechseck'
+import { exercise92 } from './implementations/NRW-MSA/9_2-2023-2-3-Zahlenpaare'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -188,6 +189,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   53: exercise53,
   55: exercise55,
   54: exercise54,
+  92: exercise92,
   100: exercise100,
   101: exercise101,
   102: exercise102,
