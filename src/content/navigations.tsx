@@ -761,7 +761,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'new-skill',
             title: 'Zahlen und Einheiten',
             steps: [
-              { exercise: { id: 48 } },
+              { exercise: { id: 31 } },
               { exercise: { id: 16 } },
               { exercise: { id: 50 } },
             ],
@@ -1181,7 +1181,7 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 49,
+                  id: 34,
                   pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
                 },
               },
@@ -1686,7 +1686,7 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 34,
+                  id: 49,
                   pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
                 },
               },
