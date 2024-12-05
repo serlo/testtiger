@@ -373,7 +373,7 @@ export const exercise244: Exercise<DATA> = {
         </p>
         <p>
           y<sub>1</sub> = {pp(data.m)} ·{' '}
-          {pp(roundToDigits(x1, 2), 'embrace_neg')} + {data.b} =
+          {pp(roundToDigits(x1, 2), 'embrace_neg')} + {data.b} ={' '}
           {pp(data.m * roundToDigits(x1, 2) + data.b)}
         </p>
         <p>
