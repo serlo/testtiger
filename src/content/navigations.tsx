@@ -759,7 +759,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'new-skill',
-            title: 'Zahlen und Größen',
+            title: 'Zahlen und Einheiten',
             steps: [
               { exercise: { id: 48 } },
               { exercise: { id: 16 } },
@@ -852,6 +852,45 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
           {
+            type: 'new-skill',
+            title: 'Lineare Gleichungssysteme',
+            steps: [
+              {
+                exercise: {
+                  id: 43,
+                },
+              },
+              {
+                exercise: {
+                  id: 3,
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Quadratische Gleichungen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 52,
+                  pages: [{ index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 37,
+                  pages: [{ index: 'g', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Schätzen und Überschlagen',
+            steps: [{ exercise: { id: 14 } }],
+          },
+          {
             type: 'challenge',
             title: 'Challenge 3',
             steps: [
@@ -863,6 +902,59 @@ export const navigationData: { [key: number]: Navigation } = {
                     { index: 'd' },
                     { index: 'e' },
                   ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Oberfläche und Volumen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 26,
+                  pages: [{ index: 'a' }, { index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 42,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 22,
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Geometrische Sätze 1',
+            steps: [
+              {
+                exercise: {
+                  id: 6,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 32,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Proportionalität',
+            steps: [
+              {
+                exercise: {
+                  id: 7,
+                  pages: [{ index: 'c', intro: ['skill'] }],
                 },
               },
             ],
@@ -891,12 +983,131 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
           {
+            type: 'new-skill',
+            title: 'Länge von Strecken',
+            steps: [
+              {
+                exercise: {
+                  id: 8,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Wertetabellen',
+            steps: [
+              {
+                exercise: {
+                  id: 17,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 29,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Prozentrechnung',
+            steps: [
+              {
+                exercise: {
+                  id: 5,
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Punktproben und Funktionswerte',
+            steps: [
+              {
+                exercise: {
+                  id: 52,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 8,
+                  pages: [{ index: 'd', intro: ['global', 'skill'] }],
+                },
+              },
+            ],
+          },
+          {
             type: 'challenge',
             title: 'Challenge 5',
             steps: [
               {
                 exercise: {
                   id: 53,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Lineare Gleichungssysteme',
+            steps: [
+              {
+                exercise: {
+                  id: 27,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Lineare Funktionen',
+            steps: [
+              {
+                exercise: {
+                  id: 23,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 27,
+                  pages: [{ index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 17,
+                  pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Graphen',
+            steps: [
+              {
+                exercise: {
+                  id: 45,
+                  pages: [{ index: 'b', intro: ['skill'] }, { index: 'c' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Laplace-Experimente',
+            steps: [
+              {
+                exercise: {
+                  id: 41,
                   pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
                 },
               },
@@ -913,6 +1124,74 @@ export const navigationData: { [key: number]: Navigation } = {
                     { index: 'b', intro: ['global', 'skill'] },
                     { index: 'c' },
                     { index: 'd' },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Lineare Funktionen',
+            steps: [
+              {
+                exercise: {
+                  id: 44,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Quadratische Funktionen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 4,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Diagramme und Kenngrößen',
+            steps: [
+              {
+                exercise: {
+                  id: 51,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
+                  ],
+                },
+              },
+              {
+                exercise: {
+                  id: 15,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Tabellenkalkulation',
+            steps: [
+              {
+                exercise: {
+                  id: 49,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 24,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
                   ],
                 },
               },
@@ -955,6 +1234,71 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Skill-Profi',
         lessons: [
           {
+            type: 'repetition',
+            title: 'Laplace Experimente',
+            steps: [
+              {
+                exercise: {
+                  id: 54,
+                  pages: [{ index: 'd' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Baumdiagramm und Pfadregeln',
+            steps: [
+              {
+                exercise: {
+                  id: 54,
+                  pages: [{ index: 'e', intro: ['skill'] }, { index: 'f' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 36,
+                  pages: [{ index: 'e', intro: ['skill'] }, { index: 'f' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Umgang mit Formeln und Termen',
+            steps: [
+              {
+                exercise: {
+                  id: 39,
+                  pages: [{ index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Termumformungen',
+            steps: [
+              {
+                exercise: {
+                  id: 37,
+                  pages: [{ index: 'f', intro: ['skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 13,
+                },
+              },
+              {
+                exercise: {
+                  id: 39,
+                  pages: [{ index: 'e', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
             type: 'challenge',
             title: 'Challenge 1',
             steps: [
@@ -971,12 +1315,159 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
           {
+            type: 'repetition',
+            title: 'Oberfläche und Volumen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 2,
+                },
+              },
+              {
+                exercise: {
+                  id: 42,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Oberfläche und Volumen 2',
+            steps: [
+              {
+                exercise: {
+                  id: 36,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 54,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 46,
+                  pages: [{ index: 'd' }, { index: 'e' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Länge von Strecken',
+            steps: [
+              {
+                exercise: {
+                  id: 7,
+                  pages: [{ index: 'e', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Einfluss von Parameteränderungen',
+            steps: [
+              {
+                exercise: {
+                  id: 32,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 42,
+                  pages: [{ index: 'b', intro: ['global', 'skill'] }],
+                },
+              },
+            ],
+          },
+          {
             type: 'challenge',
             title: 'Challenge 2',
             steps: [
               {
                 exercise: {
                   id: 28,
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Geometrische Sätze 1',
+            steps: [
+              {
+                exercise: {
+                  id: 11,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Geometrische Sätze 2',
+            steps: [
+              {
+                exercise: {
+                  id: 11,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 47,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 30,
+                  pages: [{ index: 'c', intro: ['global', 'skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Fläche und Umfang',
+            steps: [
+              {
+                exercise: {
+                  id: 6,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 46,
+                  pages: [{ index: 'c' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 7,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Diagramme und Kenngrößen',
+            steps: [
+              {
+                exercise: {
+                  id: 51,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
+                  ],
                 },
               },
             ],
@@ -993,6 +1484,53 @@ export const navigationData: { [key: number]: Navigation } = {
                     { index: 'b' },
                     { index: 'c' },
                     { index: 'd' },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Figuren zeichnen',
+            steps: [
+              {
+                exercise: {
+                  id: 7,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Quadratische Funktionen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 33,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Quadratische Funktionen 2',
+            steps: [
+              {
+                exercise: {
+                  id: 45,
+                  pages: [{ index: 'e' }, { index: 'f' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 29,
+                  pages: [
+                    { index: 'c', intro: ['global'] },
+                    { index: 'd' },
+                    { index: 'f', intro: ['skill'] },
+                    { index: 'g' },
                   ],
                 },
               },
@@ -1030,12 +1568,159 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
           {
+            type: 'repetition',
+            title: 'Wertetabellen',
+            steps: [
+              {
+                exercise: {
+                  id: 29,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Wachstum',
+            steps: [
+              {
+                exercise: {
+                  id: 29,
+                  pages: [{ index: 'b', intro: ['skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 19,
+                  pages: [{ index: 'f', intro: ['skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 38,
+                  pages: [{ index: 'f', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Punktproben und Funktionswerte',
+            steps: [
+              {
+                exercise: {
+                  id: 38,
+                  pages: [{ index: 'e', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Exponentialfunktion',
+            steps: [
+              {
+                exercise: {
+                  id: 38,
+                  pages: [{ index: 'd' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 46,
+                  pages: [{ index: 'f' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 53,
+                  pages: [{ index: 'd', intro: ['skill'] }, { index: 'e' }],
+                },
+              },
+            ],
+          },
+          {
             type: 'challenge',
             title: 'Challenge 5',
             steps: [
               {
                 exercise: {
                   id: 29,
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Quadratische Gleichungen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 37,
+                  pages: [{ index: 'g', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Exponentialgleichungen',
+            steps: [
+              {
+                exercise: {
+                  id: 53,
+                  pages: [{ index: 'c', intro: ['global', 'skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 47,
+                  pages: [{ index: 'c' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Tabellenkalkulation',
+            steps: [
+              {
+                exercise: {
+                  id: 34,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Muster erkennen und anwenden',
+            steps: [
+              {
+                exercise: {
+                  id: 19,
+                  pages: [{ index: 'e' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 9,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
+                  ],
+                },
+              },
+              {
+                exercise: {
+                  id: 39,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'c', intro: ['skill'] },
+                    { index: 'd' },
+                    { index: 'f' },
+                  ],
                 },
               },
             ],
@@ -1100,7 +1785,7 @@ export const navigationData: { [key: number]: Navigation } = {
         twColor: 'bg-blue-300',
         skillGroups: [
           {
-            name: 'Zahlen & Einheiten',
+            name: 'Zahlen und Einheiten',
             skillExercises: [
               { id: 100 },
               { id: 110 },
@@ -1126,7 +1811,7 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
           {
-            name: 'Schätzen & Überschlagen',
+            name: 'Schätzen und Überschlagen',
             skillExercises: [{ id: 114 }, { id: 133 }, { id: 124 }],
           },
           {
@@ -1278,7 +1963,7 @@ export const navigationData: { [key: number]: Navigation } = {
             ],
           },
           {
-            name: 'Körpernetz & Symmetrie',
+            name: 'Körpernetz und Symmetrie',
             skillExercises: [
               { id: 109, pages: [{ index: 'f', intro: ['skill'] }] },
               { id: 135, pages: [{ index: 'a', intro: ['global'] }] },
