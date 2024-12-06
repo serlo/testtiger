@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
 import { Color4 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -72,7 +72,7 @@ export const exercise200: Exercise<DATA> = {
           ],
           [<></>, <>=</>, <>{data.a * data.b * data.c} cm³</>],
         ])}
-        <p>Setze das Volumen für das Volumen der Pyramide ein:</p>
+        <p>Setze das Ergebnis für das Volumen der Pyramide ein:</p>
         {buildEquation([
           [
             <>{data.a * data.b * data.c} cm³</>,
@@ -108,7 +108,26 @@ export const exercise200: Exercise<DATA> = {
             <>
               {ppFrac(1 / 3)} · {data.pyr * data.pyr} cm² · h
             </>,
-            <>| · 3 &nbsp;&nbsp;&nbsp;| : {data.pyr * data.pyr}</>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>zusammenfassen </span>
+              </Color4>
+            </>,
+          ],
+          [
+            <>{data.a * data.b * data.c} cm³</>,
+            <>=</>,
+            <>{(1 / 3) * data.pyr * data.pyr} cm² · h</>,
+            <>| : {(1 / 3) * data.pyr * data.pyr} cm² </>,
           ],
           [
             <>

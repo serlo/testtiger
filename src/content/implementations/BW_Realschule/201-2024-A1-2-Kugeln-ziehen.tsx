@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { ppFrac } from '@/helper/pretty-print'
+import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
   kugeln: number
@@ -21,7 +21,10 @@ export const exercise201: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.g + (data.percent / 100) * data.kugeln < data.kugeln
+    return (
+      data.g + (data.percent / 100) * data.kugeln < data.kugeln,
+      data.percent == 25 && data.kugeln == 20
+    )
   },
   task({ data }) {
     return (
@@ -66,7 +69,7 @@ export const exercise201: Exercise<DATA> = {
         </p>
         <p>Wandle die Prozentangabe für die roten Kugeln um:</p>
         <p>
-          {data.percent} % = {ppFrac([data.percent, 100])} ={' '}
+          {data.percent} % = {data.percent} % = {ppFrac([data.percent, 100])} ={' '}
           {ppFrac([data.percent / (100 / data.kugeln), data.kugeln])}
         </p>
         <p>
@@ -87,7 +90,7 @@ export const exercise201: Exercise<DATA> = {
           <strong>Wahrscheinlichkeit im 2. Zug</strong>
         </p>
         <p>
-          Im zweiten Zug sind 19 Kugeln übrig.{' '}
+          Im zweiten Zug sind {data.kugeln - 1} Kugeln übrig.{' '}
           {data.percent / (100 / data.kugeln)} davon sind rot.
         </p>
         <p>
