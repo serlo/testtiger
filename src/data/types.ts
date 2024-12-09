@@ -56,6 +56,7 @@ export interface Part {
 
 export interface Lesson {
   type: 'new-skill' | 'challenge' | 'repetition'
+  position?: { x: number; y: number }
   title: string
   steps: Step[]
 }
