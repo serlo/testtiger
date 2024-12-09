@@ -2,6 +2,8 @@ import { Exercise } from '@/data/types'
 import { Color1 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac, ppPolynom } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
+import { routeModule } from 'next/dist/build/templates/app-page'
 
 interface DATA {
   n1: number
@@ -10,6 +12,9 @@ interface DATA {
   xr: number
   yr: number
   a: number
+  s: number
+  epsilon: number
+  höhe: number
 }
 
 export const exercise248: Exercise<DATA> = {
@@ -25,9 +30,22 @@ export const exercise248: Exercise<DATA> = {
       xr: rng.randomIntBetween(4, 8),
       yr: rng.randomIntBetween(3, 6),
       a: rng.randomItemFromArray([-0.25, -0.5, -1, -2]),
+      s: rng.randomIntBetween(100, 140) / 10,
+      epsilon: rng.randomIntBetween(25, 45),
+      höhe: rng.randomIntBetween(40, 80) / 10,
     }
   },
-  originalData: { n1: -1, n2: 3, ys2: 6, xr: 4, yr: 5, a: -0.25 },
+  originalData: {
+    n1: -1,
+    n2: 3,
+    ys2: 6,
+    xr: 4,
+    yr: 5,
+    a: -0.25,
+    s: 12.6,
+    epsilon: 33,
+    höhe: 5.6,
+  },
   constraint({ data }) {
     const y1 =
       -data.n1 * -data.n2 -
@@ -578,7 +596,351 @@ export const exercise248: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const x = roundToDigits(
+          Math.sin((data.epsilon * 2 * Math.PI) / 360) * data.s,
+          2,
+        )
+        const a = roundToDigits(2 * Math.sin((36 * 2 * Math.PI) / 360) * x, 2)
+        const hdreieck = roundToDigits(
+          Math.cos((36 * 2 * Math.PI) / 360) * x,
+          2,
+        )
+        const hs = roundToDigits(
+          Math.sqrt(data.s * data.s - (a / 2) * (a / 2)),
+          2,
+        )
+        return (
+          <>
+            <p>
+              Die Oberfläche setzt sich aus der Mantelfläche der Pyramide, der
+              Mantelfläche des Prismas und einer Grundfläche des Prismas
+              zusammen.
+            </p>
+            <p>
+              <strong>Mantelfläche der Pyramide</strong>
+            </p>
+            <p>
+              Berechne die Länge der der Strecke x vom Mittelpunkt de Körpers
+              zum Eckpunkt der Pyramide:
+            </p>
+
+            {buildEquation([
+              [<>sin(ε)</>, <>=</>, <>{buildInlineFrac(<>x</>, <>s</>)}</>],
+              [
+                <>sin({pp(data.epsilon)}°)</>,
+                <>=</>,
+                <>{buildInlineFrac(<>x</>, <>{pp(data.s)} cm</>)}</>,
+                <>| · {pp(data.s)} cm</>,
+              ],
+              [
+                <>
+                  sin({pp(data.epsilon)}°) · {pp(data.s)} cm
+                </>,
+                <>=</>,
+                <>x</>,
+              ],
+              [<>x</>, <>≈</>, <>{pp(x)} cm</>],
+            ])}
+            <p>
+              Im regelmäßigen Fünfeck kann mithilfe von x die Kantenlänge a
+              berechnet werden.
+            </p>
+            <svg viewBox="0 0 328 140">
+              <image
+                href="/content/BW_Realschule/248_Körper2.jpg"
+                height="140"
+                width="328"
+              />
+            </svg>
+            {buildEquation([
+              [
+                <>sin(36°)</>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>{buildInlineFrac(<>a</>, <>2</>)}</>,
+                    <>x</>,
+                  )}
+                </>,
+              ],
+              [
+                <>sin(36°)</>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>{buildInlineFrac(<>a</>, <>2</>)}</>,
+                    <>{pp(x)} cm</>,
+                  )}
+                </>,
+                <>| · {pp(x)} cm</>,
+              ],
+              [
+                <>sin(36°) · {pp(x)} cm</>,
+                <>=</>,
+                <>{buildInlineFrac(<>a</>, <>2</>)}</>,
+                <>| · 2</>,
+              ],
+              [<>a</>, <>=</>, <>2 · sin(36°) · {pp(x)} cm</>],
+              [<>a</>, <>=</>, <>{pp(a)} cm</>],
+            ])}
+            <p>Berechne damit die Höhe der dreieckigen Seitenflächen:</p>
+            <div>
+              <span style={{ fontSize: '0.8em' }}>
+                {buildEquation([
+                  [
+                    <>
+                      <span className="inline-block  scale-y-[2]">(</span>
+                      {buildInlineFrac(<>a</>, <>2</>)}
+                      <span className="inline-block  scale-y-[2]">)</span>² + h
+                      <sub>s</sub>²
+                    </>,
+                    <>=</>,
+                    <>s²</>,
+                  ],
+                  [
+                    <>
+                      <span className="inline-block  scale-y-[2]">(</span>
+                      {buildInlineFrac(<>{pp(a)} cm</>, <>2</>)}
+                      <span className="inline-block  scale-y-[2]">)</span>² + h
+                      <sub>s</sub>²
+                    </>,
+                    <>=</>,
+                    <>({pp(data.s)} cm)²</>,
+                  ],
+                  [
+                    <>
+                      h<sub>s</sub>²
+                    </>,
+                    <>=</>,
+                    <>
+                      ({pp(data.s)} cm)² −{' '}
+                      <span className="inline-block  scale-y-[2]">(</span>
+                      {buildInlineFrac(<>{pp(a)} cm</>, <>2</>)}
+                      <span className="inline-block  scale-y-[2]">)</span>²
+                    </>,
+                  ],
+                  [
+                    <>
+                      h<sub>s</sub>
+                    </>,
+                    <>≈</>,
+                    <>{pp(hs)} cm</>,
+                  ],
+                ])}
+              </span>
+            </div>
+            <p>Berechne abschließend die Mantelfläche:</p>
+            {buildEquation([
+              [
+                <>
+                  M<sub>Pyramide</sub>
+                </>,
+                <>=</>,
+                <>
+                  5 ·{' '}
+                  {buildInlineFrac(
+                    <>
+                      a · h<sub>s</sub>
+                    </>,
+                    <>2</>,
+                  )}
+                </>,
+              ],
+              [
+                <>
+                  M<sub>Pyramide</sub>
+                </>,
+                <>=</>,
+                <>
+                  5 ·{' '}
+                  {buildInlineFrac(
+                    <>
+                      {pp(a)} cm · {pp(hs)} cm
+                    </>,
+                    <>2</>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(roundToDigits((5 * a * hs) / 2, 2))} cm²</strong>
+                </>,
+              ],
+            ])}
+            <p>
+              <strong>Mantelfläche des Prismas</strong>
+            </p>
+            <p>
+              Die Seitenflächen sind Rechtecke mit den Seitenlängen a und h
+              <sub>2</sub>:
+            </p>
+            {buildEquation([
+              [
+                <>
+                  M<sub>Prisma</sub>
+                </>,
+                <>=</>,
+                <>
+                  5 · a · h<sub>2</sub>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  5 · {pp(a)} cm · {pp(data.höhe)} cm
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(roundToDigits(5 * a * data.höhe, 2))} cm²</strong>
+                </>,
+              ],
+            ])}
+            <p>
+              <strong>Grundfläche des Prismas</strong>
+            </p>
+            <p>
+              Die Grundfläche besteht aus 5 gleichschenkligen Dreiecken.
+              Berechne die Höhe dieser Dreiecke:
+            </p>
+            <div>
+              <span style={{ fontSize: '0.8em' }}>
+                {buildEquation([
+                  [
+                    <>cos(36°)</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>
+                          h<sub>Dreieck</sub>
+                        </>,
+                        <>x</>,
+                      )}
+                    </>,
+                  ],
+                  [
+                    <>cos(36°)</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>
+                          h<sub>Dreieck</sub>
+                        </>,
+                        <>{pp(x)} cm</>,
+                      )}
+                    </>,
+                    <>| · {pp(x)} cm</>,
+                  ],
+                  [
+                    <>cos(36°) · {pp(x)} cm</>,
+                    <>=</>,
+                    <>
+                      h<sub>Dreieck</sub>
+                    </>,
+                  ],
+                  [
+                    <>
+                      h<sub>Dreieck</sub>
+                    </>,
+                    <>=</>,
+                    <>cos(36°) · {pp(x)} cm</>,
+                  ],
+                  [
+                    <>
+                      h<sub>Dreieck</sub>
+                    </>,
+                    <>≈</>,
+                    <>{pp(hdreieck)} cm</>,
+                  ],
+                ])}
+              </span>
+            </div>
+            <p>Berechne damit die Grundfläche:</p>
+            {buildEquation([
+              [
+                <>G</>,
+                <>=</>,
+                <>
+                  5 ·{' '}
+                  {buildInlineFrac(
+                    <>
+                      a · h<sub>Dreieck</sub>
+                    </>,
+                    <>2</>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  5 ·{' '}
+                  {buildInlineFrac(
+                    <>
+                      {pp(a)} cm · {pp(hdreieck)} cm
+                    </>,
+                    <>2</>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {' '}
+                  <strong>
+                    {pp(roundToDigits((5 * a * hdreieck) / 2, 2))} cm²{' '}
+                  </strong>
+                </>,
+              ],
+            ])}
+            <p>
+              <strong>Oberfläche berechnen</strong>
+            </p>
+            <div>
+              <span style={{ fontSize: '0.8em' }}>
+                {buildEquation([
+                  [
+                    <>O</>,
+                    <>=</>,
+                    <>
+                      M<sub>Pyramide</sub> + M<sub>Prisma</sub> + G
+                    </>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      {pp(roundToDigits((5 * a * hs) / 2, 2))} cm² +{' '}
+                      {pp(roundToDigits(5 * a * data.höhe, 2))} cm² +{' '}
+                      {pp(roundToDigits((5 * a * hdreieck) / 2, 2))} cm²
+                    </>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      <strong>
+                        {' '}
+                        {pp(
+                          roundToDigits((5 * a * hs) / 2, 2) +
+                            roundToDigits(5 * a * data.höhe, 2) +
+                            roundToDigits((5 * a * hdreieck) / 2, 2),
+                        )}{' '}
+                        cm²
+                      </strong>
+                    </>,
+                  ],
+                ])}
+              </span>
+            </div>
+          </>
+        )
       },
     },
   ],
