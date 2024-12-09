@@ -1,6 +1,13 @@
 import { Exercise } from '@/data/types'
 
-interface DATA {}
+interface DATA {
+  red: number
+  blue: number
+  green: number
+  gewinn1: number
+  gewinn2: number
+  bet: number
+}
 
 export const exercise249: Exercise<DATA> = {
   title: 'Zufall + Tiny-House',
@@ -8,9 +15,23 @@ export const exercise249: Exercise<DATA> = {
   useCalculator: true,
   duration: 42,
   generator(rng) {
-    return {}
+    return {
+      red: rng.randomIntBetween(4, 8),
+      blue: rng.randomIntBetween(4, 8),
+      green: rng.randomIntBetween(4, 8),
+      gewinn1: rng.randomIntBetween(4, 10),
+      gewinn2: rng.randomIntBetween(4, 10),
+      bet: rng.randomIntBetween(1, 3),
+    }
   },
-  originalData: {},
+  originalData: {
+    red: 4,
+    blue: 3,
+    green: 1,
+    gewinn1: 4,
+    gewinn2: 10,
+    bet: 2.5,
+  },
   constraint({ data }) {
     return true
   },
@@ -24,11 +45,13 @@ export const exercise249: Exercise<DATA> = {
         return null
       },
       task({ data }) {
+        const gesamt = data.red + data.blue + data.green
         return (
           <>
             <p>
-              In einem Gefäß liegen acht Kugeln, die rot, blau und grün gefärbt
-              sind. Es werden zwei Kugeln ohne Zurücklegen gezogen.{' '}
+              In einem Gefäß liegen {gesamt} Kugeln, wovon {data.red} rot,{' '}
+              {data.blue} blau und {data.green} grün gefärbt sind. Es werden
+              zwei Kugeln ohne Zurücklegen gezogen.{' '}
             </p>
             <ul>
               <li>
@@ -70,7 +93,7 @@ export const exercise249: Exercise<DATA> = {
                       zwei gleichfarbige Kugeln
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      €
+                      {data.gewinn1} €
                     </td>
                   </tr>
                   <tr>
@@ -78,7 +101,7 @@ export const exercise249: Exercise<DATA> = {
                       eine grüne und eine blaue Kugel
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      €
+                      {data.gewinn2} €
                     </td>
                   </tr>
                   <tr></tr>
@@ -87,7 +110,7 @@ export const exercise249: Exercise<DATA> = {
                       Einsatz
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black ">
-                      2,5 €
+                      {data.bet} €
                     </td>
                   </tr>
                 </tbody>
@@ -110,7 +133,13 @@ export const exercise249: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              <strong></strong>
+            </p>
+          </>
+        )
       },
     },
     {
