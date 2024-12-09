@@ -1,7 +1,7 @@
 import { Exercise } from '@/data/types'
 import { Color1 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
-import { pp, ppPolynom } from '@/helper/pretty-print'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import { pp, ppFrac, ppPolynom } from '@/helper/pretty-print'
 
 interface DATA {
   n1: number
@@ -29,7 +29,12 @@ export const exercise248: Exercise<DATA> = {
   },
   originalData: { n1: -1, n2: 3, ys2: 6, xr: 4, yr: 5, a: -0.25 },
   constraint({ data }) {
-    return true
+    const y1 =
+      -data.n1 * -data.n2 -
+      ((-data.n1 - data.n2) / 2) * ((-data.n1 - data.n2) / 2)
+    const x1 = -(-data.n1 - data.n2) / 2
+    const m = (data.ys2 - y1) / -x1
+    return m % 1 == 0
   },
   intro({ data }) {
     return null
@@ -209,6 +214,11 @@ export const exercise248: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const y1 =
+          -data.n1 * -data.n2 -
+          ((-data.n1 - data.n2) / 2) * ((-data.n1 - data.n2) / 2)
+        const x1 = -(-data.n1 - data.n2) / 2
+        const m = (data.ys2 - y1) / -x1
         return (
           <>
             <p>
@@ -351,6 +361,189 @@ export const exercise248: Exercise<DATA> = {
                 y = {ppPolynom([[data.a, 'x', 2]])} + {data.ys2}
               </strong>
             </p>
+            <p>
+              <strong>Funktionsgleichung von g</strong>
+            </p>
+            <p>
+              Die Gerade g verläuft durch die Scheitelpunkte der Parabeln.
+              Bestimme die Scheitelform von p<sub>1</sub>:
+            </p>
+            {buildEquation([
+              [
+                <>y</>,
+                <>=</>,
+                <>
+                  x² {pp(-data.n1 - data.n2, 'koeff')}x{' '}
+                  {pp(-data.n1 * -data.n2, 'koeff')}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  x² {pp(-data.n1 - data.n2, 'koeff')}x +
+                  {pp((-data.n1 - data.n2) / 2, 'embrace_neg')}²{' '}
+                  {pp(-data.n1 * -data.n2, 'koeff')} −
+                  {pp((-data.n1 - data.n2) / 2, 'embrace_neg')}²
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  (x {pp((-data.n1 - data.n2) / 2, 'merge_op')})
+                  {pp(
+                    -data.n1 * -data.n2 -
+                      ((-data.n1 - data.n2) / 2) * ((-data.n1 - data.n2) / 2),
+                    'merge_op',
+                  )}
+                  ²
+                </>,
+              ],
+            ])}
+            <p>
+              Der Scheitelpunkt lautet: S<sub>1</sub>({pp(x1)}|{pp(y1)})
+            </p>
+            <p>
+              Bestimme die Steigung der Geraden g durch die beiden Punkte mit
+              der Formel:
+            </p>
+            {buildEquation([
+              [
+                <>m</>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>
+                      y<sub>2</sub> − y<sub>1</sub>
+                    </>,
+                    <>
+                      x<sub>2</sub> − x<sub>1</sub>
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>
+                      {pp(data.ys2)} − {pp(y1, 'embrace_neg')}
+                    </>,
+                    <>0 − {pp(x1, 'embrace_neg')}</>,
+                  )}
+                </>,
+              ],
+              [<></>, <>=</>, <>{ppFrac((data.ys2 - y1) / -x1)}</>],
+            ])}
+            <p>
+              Da die Gerade durch den Punkt (0|{pp(data.ys2)}) verläuft kann der
+              ganze Funktionsterm angegeben werden als:
+            </p>
+            <p>
+              <strong>
+                y = {ppFrac((data.ys2 - y1) / -x1)}x {pp(data.ys2, 'merge_op')}
+              </strong>
+            </p>
+            <p>
+              <strong>Gerade h</strong>
+            </p>
+            <p>h verläuft senkrecht zu g. Für die beiden Steigungen gilt:</p>
+            {buildEquation([
+              [
+                <>
+                  m<sub>h</sub> · m<sub>g</sub>
+                </>,
+                <>=</>,
+                <>−1</>,
+              ],
+              [
+                <>
+                  m<sub>h</sub> · {ppFrac(m, 'embrace_neg')}
+                </>,
+                <>=</>,
+                <>−1</>,
+                <>| : {ppFrac(m, 'embrace_neg')}</>,
+              ],
+              [
+                <>
+                  m<sub>h</sub>
+                </>,
+                <>=</>,
+                <>{ppFrac(-1 / m)}</>,
+              ],
+            ])}
+            <p>
+              Die Gerade h verläuft durch R({pp(data.xr)}|{pp(data.yr)}). Setze
+              den Punkt in die Funktionsgleichung ein:
+            </p>
+            {buildEquation([
+              [<>y</>, <>=</>, <>{ppFrac(-1 / m)}x + b</>],
+              [
+                <>{pp(data.yr)}</>,
+                <>=</>,
+                <>
+                  {ppFrac(-1 / m)} · {pp(data.xr)} + b
+                </>,
+                <>| − {ppFrac([-1 * data.xr, m])}</>,
+              ],
+              [<>b</>, <>=</>, <>{ppFrac(data.yr - -data.xr / m)}</>],
+            ])}
+            <p>Der Funktionsterm lautet damit:</p>
+            <p>
+              <strong>
+                y = {ppFrac(-1 / m)}x{' '}
+                {ppFrac(data.yr - -data.xr / m, 'merge_op')}
+              </strong>
+            </p>
+            <p>
+              <strong>
+                Funktionsterm von p<sub>3</sub>
+              </strong>
+            </p>
+            <p>
+              Der Scheitel von p<sub>3</sub> sollte oberhalb des Scheitels von p
+              <sub>2</sub> liegen und mittig in p<sub>1</sub>:
+            </p>
+            <p>
+              S<sub>3</sub>({pp((data.n1 + data.n2) / 2)}|{pp(data.ys2 + 1)})
+              erfüllt diese Eigenschaften.
+            </p>
+            <p>Setze den Scheitel in die Scheitelform ein:</p>
+            {buildEquation([
+              [
+                <>y</>,
+                <>=</>,
+                <>
+                  (x − {pp((data.n1 + data.n2) / 2)})²{' '}
+                  {pp(data.ys2 + 1, 'merge_op')}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  (x − {pp(data.n1 + data.n2)}x +{' '}
+                  {pp(((data.n1 + data.n2) / 2) * ((data.n1 + data.n2) / 2))}){' '}
+                  {pp(data.ys2 + 1, 'merge_op')}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>
+                    x² − {pp(data.n1 + data.n2)}x +{' '}
+                    {pp(
+                      ((data.n1 + data.n2) / 2) * ((data.n1 + data.n2) / 2) +
+                        data.ys2 +
+                        1,
+                    )}
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
