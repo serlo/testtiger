@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonPage } from '@ionic/react'
 import { useEffect, useRef } from 'react'
 import { LearningPathHeader } from './LearningPathHeader'
 import { LearningPathMap } from './LearningPathMap'
+import { LearningPathStore } from './state/learning-path-store'
 
 export function LearningPath() {
   const scrollDiv = useRef<HTMLDivElement>(null)
@@ -18,7 +19,19 @@ export function LearningPath() {
       </IonHeader>
 
       <IonContent>
-        <div className="h-full bg-pink overflow-y-auto" ref={scrollDiv}>
+        <div
+          className="h-full max-h-full bg-pink overflow-y-auto"
+          ref={scrollDiv}
+          onScroll={() => {
+            if (scrollDiv.current) {
+              const scrollTop = scrollDiv.current.scrollTop
+              const visiblePart = scrollTop > 5000 ? 0 : scrollTop > 600 ? 1 : 2
+              LearningPathStore.update(s => {
+                s.part = visiblePart
+              })
+            }
+          }}
+        >
           <LearningPathMap />
         </div>
       </IonContent>

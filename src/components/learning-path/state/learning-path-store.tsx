@@ -1,5 +1,7 @@
 import { Store } from 'pullstate'
 
-interface ILearningPathStore {}
+interface ILearningPathStore {
+  part: number
+}
 
-export const LearningPathStore = new Store<ILearningPathStore>({})
+export const LearningPathStore = new Store<ILearningPathStore>({ part: 0 })

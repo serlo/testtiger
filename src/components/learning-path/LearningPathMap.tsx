@@ -1,9 +1,11 @@
 import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
+import { useState } from 'react'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
+  const [lessonDetails, setLessonDetails] = useState<Lesson | null>(null)
 
   const path = navigationData[exam].path
 
@@ -23,7 +25,7 @@ export function LearningPathMap() {
     }
   }
   return (
-    <div className="bg-gradient-to-t from-green-300 to-blue-300 relative">
+    <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox="0 0 375 10000">
         {lines.map((l, i) => (
           <line
@@ -36,6 +38,14 @@ export function LearningPathMap() {
             strokeWidth={5}
           ></line>
         ))}
+        {lessonDetails && (
+          <circle
+            cx={lessonDetails.position!.x}
+            cy={10000 - lessonDetails.position!.y}
+            r={35}
+            fill={'red'}
+          ></circle>
+        )}
         {elements.map((el, i) => (
           <circle
             key={i}
@@ -50,6 +60,9 @@ export function LearningPathMap() {
                   : 'gray'
             }
             className="cursor-pointer"
+            onClick={() => {
+              setLessonDetails(el.source)
+            }}
           ></circle>
         ))}
         {elements.map((el, i) => {
@@ -70,6 +83,16 @@ export function LearningPathMap() {
           return null
         })}
       </svg>
+      {lessonDetails && (
+        <div className="absolute bottom-3 left-3 right-3 bg-white h-24 rounded">
+          <p className="ml-3 mt-3">{lessonDetails.title}</p>
+          <div className="text-right mr-3 mt-4">
+            <button className="px-2 py-0.5 bg-green-200 hover:bg-grenn-300 rounded">
+              Starten
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
