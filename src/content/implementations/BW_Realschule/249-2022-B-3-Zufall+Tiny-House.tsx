@@ -1,4 +1,8 @@
 import { Exercise } from '@/data/types'
+import { getGcd } from '@/helper/get-gcd'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import { pp, ppFrac } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   red: number
@@ -19,8 +23,8 @@ export const exercise249: Exercise<DATA> = {
       red: rng.randomIntBetween(4, 8),
       blue: rng.randomIntBetween(4, 8),
       green: rng.randomIntBetween(4, 8),
-      gewinn1: rng.randomIntBetween(4, 10),
-      gewinn2: rng.randomIntBetween(4, 10),
+      gewinn1: rng.randomIntBetween(2, 5),
+      gewinn2: rng.randomIntBetween(2, 5),
       bet: rng.randomIntBetween(1, 3),
     }
   },
@@ -33,7 +37,31 @@ export const exercise249: Exercise<DATA> = {
     bet: 2.5,
   },
   constraint({ data }) {
-    return true
+    const gesamt = data.red + data.blue + data.green
+    const farben =
+      (data.red * (data.red - 1) +
+        data.blue * (data.blue - 1) +
+        data.green * (data.green - 1)) /
+      (gesamt * (gesamt - 1))
+    const erwartungswert = roundToDigits(
+      data.gewinn1 * farben +
+        data.gewinn2 *
+          ((2 * data.blue * data.green) / (gesamt * (gesamt - 1))) -
+        data.bet,
+      2,
+    )
+    const farben_zähler =
+      data.red * (data.red - 1) +
+      data.blue * (data.blue - 1) +
+      data.green * (data.green - 1)
+    const soll = roundToDigits(
+      (2 * erwartungswert +
+        data.bet -
+        (data.gewinn1 * farben_zähler) / (gesamt * (gesamt - 1))) *
+        ((gesamt * (gesamt - 1)) / (2 * data.blue * data.green)),
+      2,
+    )
+    return erwartungswert < -0.1 && soll > 0
   },
   intro({ data }) {
     return null
@@ -133,10 +161,252 @@ export const exercise249: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const gesamt = data.red + data.blue + data.green
+        const farben =
+          (data.red * (data.red - 1) +
+            data.blue * (data.blue - 1) +
+            data.green * (data.green - 1)) /
+          (gesamt * (gesamt - 1))
+        const farben_zähler =
+          data.red * (data.red - 1) +
+          data.blue * (data.blue - 1) +
+          data.green * (data.green - 1)
+        const erwartungswert = roundToDigits(
+          data.gewinn1 * farben +
+            data.gewinn2 *
+              ((2 * data.blue * data.green) / (gesamt * (gesamt - 1))) -
+            data.bet,
+          2,
+        )
+        const soll = roundToDigits(
+          (2 * erwartungswert +
+            data.bet -
+            (data.gewinn1 * farben_zähler) / (gesamt * (gesamt - 1))) *
+            ((gesamt * (gesamt - 1)) / (2 * data.blue * data.green)),
+          2,
+        )
         return (
           <>
             <p>
-              <strong></strong>
+              <strong>Wahrscheinlichkeit für gleichfarbige Kugeln</strong>
+            </p>
+            <p>
+              Für dieses Ereignisses gibt es die Kombinationen rot-rot (rr),
+              blau-blau (bb) und grün-grün (gg). <br></br>
+              <br></br>Das zufällige Ziehen der Kugeln entspricht hierbei einem
+              Laplace-Experiment. Berechne die Wahrscheinlichkeiten mit der
+              Formel:
+            </p>
+            {buildEquation([
+              [
+                <>
+                  p<sub>rr</sub>
+                </>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(<>Rote Kugeln</>, <>Anzahl Kugeln</>)} ·{' '}
+                  {buildInlineFrac(<>Rote Kugeln-1</>, <>Anzahl Kugeln-1</>)}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(<>{data.red}</>, <>{gesamt}</>)} ·{' '}
+                  {buildInlineFrac(<>{data.red - 1}</>, <>{gesamt - 1}</>)} ={' '}
+                  {ppFrac([data.red * (data.red - 1), gesamt * (gesamt - 1)])}{' '}
+                </>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>
+                  p<sub>bb</sub>
+                </>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(<>Blaue Kugeln</>, <>Anzahl Kugeln</>)} ·{' '}
+                  {buildInlineFrac(<>Blaue Kugeln-1</>, <>Anzahl Kugeln-1</>)}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(<>{data.blue}</>, <>{gesamt}</>)} ·{' '}
+                  {buildInlineFrac(<>{data.blue - 1}</>, <>{gesamt - 1}</>)} ={' '}
+                  {ppFrac([data.blue * (data.blue - 1), gesamt * (gesamt - 1)])}
+                </>,
+              ],
+            ])}
+            {buildEquation([
+              [
+                <>
+                  p<sub>gg</sub>
+                </>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(<>Grüne Kugeln</>, <>Anzahl Kugeln</>)} ·{' '}
+                  {buildInlineFrac(<>Grüne Kugeln-1</>, <>Anzahl Kugeln-1</>)}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(<>{data.green}</>, <>{gesamt}</>)} ·{' '}
+                  {buildInlineFrac(<>{data.green - 1}</>, <>{gesamt - 1}</>)} ={' '}
+                  {ppFrac([
+                    data.green * (data.green - 1),
+                    gesamt * (gesamt - 1),
+                  ])}
+                </>,
+              ],
+            ])}
+            <p>
+              Insgesamt ist die Wahrscheinlichkeit für die gleichfarbigen
+              Kugeln:
+            </p>
+            <p>
+              p = {ppFrac([data.red * (data.red - 1), gesamt * (gesamt - 1)])} +{' '}
+              {ppFrac([data.blue * (data.blue - 1), gesamt * (gesamt - 1)])} +{' '}
+              {ppFrac([data.green * (data.green - 1), gesamt * (gesamt - 1)])} ={' '}
+              <strong>{ppFrac([farben_zähler, gesamt * (gesamt - 1)])}</strong>
+            </p>
+            <p>
+              <strong>Erwartungswert</strong>
+            </p>
+            <p>
+              Berechne zuerst die Wahrscheinlichkeit für das Ziehen einer grünen
+              und einer blauen Kugel:
+            </p>
+            {buildEquation([
+              [
+                <>p</>,
+                <>=</>,
+                <>
+                  p<sub>gb</sub> + p<sub>bg</sub>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {ppFrac([data.green, gesamt])} ·{' '}
+                  {ppFrac([data.blue, gesamt - 1])} +{' '}
+                  {ppFrac([data.blue, gesamt])} ·{' '}
+                  {ppFrac([data.green, gesamt - 1])}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {ppFrac([2 * data.blue * data.green, gesamt * (gesamt - 1)])}
+                </>,
+              ],
+            ])}
+            <p>
+              Berechne den Erwartungswert aus den Wahrscheinlichkeiten und den
+              dazugehörigen Gewinnen:
+            </p>
+            {buildEquation([
+              [
+                <>E</>,
+                <>=</>,
+                <>
+                  {data.gewinn1} € ·{' '}
+                  {ppFrac([farben_zähler, gesamt * (gesamt - 1)])} +{' '}
+                  {data.gewinn2} € ·{' '}
+                  {ppFrac([2 * data.blue * data.green, gesamt * (gesamt - 1)])}{' '}
+                  − {data.bet} €
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(erwartungswert)} €</strong>
+                </>,
+              ],
+            ])}
+            <p>
+              Die Betreiber des Glückspiels machen auf lange Sicht{' '}
+              {pp(erwartungswert)} € pro Spiel.
+            </p>
+            <p>
+              <strong>Doppelter Gewinn</strong>
+            </p>
+            <p>
+              Die Betreiber des Glückspiels wollen auf lange Sicht{' '}
+              {pp(2 * erwartungswert)} € pro Spiel erzielen.
+            </p>
+            <p>
+              Setze den Gewinn für das Ziehen der grünen und blauen Kugel {'"'}x
+              {'"'} und berechne mithilfe des Erwartungswerts:
+            </p>
+            <div>
+              <span style={{ fontSize: '0.8em' }}>
+                {buildEquation([
+                  [
+                    <>{pp(2 * erwartungswert)} €</>,
+                    <>=</>,
+                    <>
+                      {data.gewinn1} € ·{' '}
+                      {ppFrac([farben_zähler, gesamt * (gesamt - 1)])} + x ·{' '}
+                      {ppFrac([
+                        2 * data.blue * data.green,
+                        gesamt * (gesamt - 1),
+                      ])}{' '}
+                      − {data.bet} €
+                    </>,
+                  ],
+                  [
+                    <>{pp(2 * erwartungswert + data.bet)} €</>,
+                    <>=</>,
+                    <>
+                      {' '}
+                      {data.gewinn1} € ·{' '}
+                      {ppFrac([farben_zähler, gesamt * (gesamt - 1)])} + x ·{' '}
+                      {ppFrac([
+                        2 * data.blue * data.green,
+                        gesamt * (gesamt - 1),
+                      ])}{' '}
+                    </>,
+                  ],
+                  [
+                    <>
+                      {pp(
+                        2 * erwartungswert +
+                          data.bet -
+                          (data.gewinn1 * farben_zähler) /
+                            (gesamt * (gesamt - 1)),
+                      )}{' '}
+                      €
+                    </>,
+                    <>=</>,
+                    <>
+                      x ·{' '}
+                      {ppFrac([
+                        2 * data.blue * data.green,
+                        gesamt * (gesamt - 1),
+                      ])}{' '}
+                    </>,
+                  ],
+                  [
+                    <>x</>,
+                    <>=</>,
+                    <>
+                      <strong>{pp(soll)} €</strong>
+                    </>,
+                  ],
+                ])}
+              </span>
+            </div>
+            <p>
+              Der Gewinn für das Ereignis müsste {pp(soll)} € anstatt{' '}
+              {pp(data.gewinn2)} € betragen, damit der Betreiber auf lange Sicht
+              den doppelten Gewinn erhält.
             </p>
           </>
         )

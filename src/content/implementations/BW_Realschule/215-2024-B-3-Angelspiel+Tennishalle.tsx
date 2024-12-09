@@ -272,7 +272,7 @@ export const exercise215: Exercise<DATA> = {
                   {data.win_1} € · {ppFrac(((muscle - 1) * muscle) / 90)} +{' '}
                   {data.win_2} € ·{' '}
                   {ppFrac(((data.seestar - 1) * data.seestar) / 90)} +{' '}
-                  {data.win_3} € · {ppFrac((2 * muscle * data.seestar) / 90)} -{' '}
+                  {data.win_3} € · {ppFrac((2 * muscle * data.seestar) / 90)} −{' '}
                   {data.bet} €
                 </>,
               ],
