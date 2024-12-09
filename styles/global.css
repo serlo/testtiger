@@ -11,6 +11,13 @@ body {
   background-color: #fef08a; /* placeholder color */
 }
 
+@media (min-width: 640px) {
+  ion-tab-bar {
+    width: 375px;
+    align-self: center;
+  }
+}
+
 :root,
 html {
   --ion-default-font: var(--font-inter) !important;
