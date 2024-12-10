@@ -1,7 +1,13 @@
 import { Exercise } from '@/data/types'
-import { buildOverline } from '@/helper/math-builder'
+import { buildEquation, buildOverline } from '@/helper/math-builder'
+import { pp } from '@/helper/pretty-print'
 
-interface DATA {}
+interface DATA {
+  b: number
+  c: number
+  xs: number
+  ys: number
+}
 
 export const exercise250: Exercise<DATA> = {
   title: 'Parabeln + Sechseck',
@@ -9,9 +15,14 @@ export const exercise250: Exercise<DATA> = {
   useCalculator: true,
   duration: 42,
   generator(rng) {
-    return {}
+    return {
+      b: rng.randomIntBetween(-10, -2),
+      c: rng.randomIntBetween(8, 14),
+      xs: rng.randomIntBetween(1, 4),
+      ys: rng.randomIntBetween(-10, -4),
+    }
   },
-  originalData: {},
+  originalData: { b: -8, c: 12, xs: 1, ys: -7 },
   constraint({ data }) {
     return true
   },
@@ -28,12 +39,13 @@ export const exercise250: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Parabel p<sub>1</sub> hat die Funktionsgleichung y = x² - 8x +
-              12.
+              Die Parabel p<sub>1</sub> hat die Funktionsgleichung <br></br>y =
+              x² {pp(data.b, 'merge_op')}x + {pp(data.c)}.
             </p>
             <p>
               Die verschobene nach oben geöffnete Normalparabel p<sub>2</sub>{' '}
-              hat den Scheitelpunkt S<sub>2</sub>(1|-7).
+              hat den Scheitelpunkt <br></br>S<sub>2</sub>({pp(data.xs)}|
+              {pp(data.ys)}).
             </p>
             <ul>
               <li>
@@ -76,7 +88,72 @@ export const exercise250: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        return (
+          <>
+            <p>
+              Die Parabel p<sub>2</sub> hat die Scheitelform:
+            </p>
+            <p>
+              y = (x − {pp(data.xs)})² {pp(data.ys, 'merge_op')}
+            </p>
+            <p>
+              Verwende die binomische Formel und bestimme die Funktionsgleichung
+              von p<sub>2</sub>:
+            </p>
+            <p>
+              y = (x² − {pp(2 * data.xs)}x + {pp(data.xs * data.xs)}){' '}
+              {pp(data.ys, 'merge_op')}
+            </p>
+            <p>
+              y = x² − {pp(2 * data.xs)}x{' '}
+              {pp(data.xs * data.xs + data.ys, 'merge_op')}{' '}
+            </p>
+            <p>
+              <strong>
+                Koordinaten des Schnittpunkts Q<sub>1</sub>
+              </strong>
+            </p>
+            <p>
+              Setze die Funktionsgleichungen gleich und berechne die Lösung der
+              Gleichung:
+            </p>
+            {buildEquation([
+              [
+                <>
+                  x² {pp(data.b, 'merge_op')}x + {pp(data.c)}
+                </>,
+                <>=</>,
+                <>
+                  x² − {pp(2 * data.xs)}x{' '}
+                  {pp(data.xs * data.xs + data.ys, 'merge_op')}
+                </>,
+              ],
+              [<></>, <></>, <></>],
+              [<></>, <></>, <></>],
+            ])}
+            <p>
+              <strong>
+                Koordinaten von N<sub>1</sub> und N<sub>2</sub>
+              </strong>
+            </p>
+
+            <p>
+              <strong>
+                Flächeninhalt von N<sub>1</sub>Q<sub>1</sub>N<sub>2</sub>
+              </strong>
+            </p>
+
+            <p>
+              <strong>
+                Q<sub>2</sub> für größtmögliche Fläche
+              </strong>
+            </p>
+
+            <p>
+              <strong>Maximaler Flächeninhalt</strong>
+            </p>
+          </>
+        )
       },
     },
     {
