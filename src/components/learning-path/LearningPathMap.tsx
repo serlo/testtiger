@@ -1,11 +1,20 @@
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import {
+  isStepDone,
+  PlayerProfileStore,
+} from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { useState } from 'react'
+import { FaIcon } from '../ui/FaIcon'
+import { faCircleDot, faMinus } from '@fortawesome/free-solid-svg-icons'
+import clsx from 'clsx'
+import { setupExercise } from '../exercise-view/state/actions'
+import { useHistory } from 'react-router'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const [lessonDetails, setLessonDetails] = useState<Lesson | null>(null)
+  const history = useHistory()
 
   const path = navigationData[exam].path
 
@@ -24,6 +33,7 @@ export function LearningPathMap() {
       prev = lesson
     }
   }
+
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox="0 0 375 10000">
@@ -86,10 +96,59 @@ export function LearningPathMap() {
       {lessonDetails && (
         <div className="absolute bottom-3 left-3 right-3 bg-white h-24 rounded">
           <p className="ml-3 mt-3">{lessonDetails.title}</p>
-          <div className="text-right mr-3 mt-4">
-            <button className="px-2 py-0.5 bg-green-200 hover:bg-grenn-300 rounded">
-              Starten
-            </button>
+          <div className="ml-6">
+            {lessonDetails.steps.map((el, i) => (
+              <span key={i}>
+                <FaIcon
+                  key={i}
+                  icon={faCircleDot}
+                  className={clsx('ml-3', isStepDone(el) && 'text-green-300')}
+                />
+                {el.exercise.pages &&
+                  el.exercise.pages
+                    .slice(1)
+                    .map((_, i) => (
+                      <FaIcon icon={faMinus} key={i} className="ml-2" />
+                    ))}
+              </span>
+            ))}
+          </div>
+          <div className="text-right mr-3 mt-1">
+            {lessonDetails.steps.every(isStepDone) ? (
+              <small>fertig :)</small>
+            ) : (
+              <button
+                className="px-2 py-0.5 bg-green-200 hover:bg-grenn-300 rounded"
+                onClick={() => {
+                  for (let step of lessonDetails.steps) {
+                    if (isStepDone(step)) {
+                      continue
+                    }
+                    setupExercise(
+                      step.exercise.id,
+                      lessonDetails.title,
+                      step.exercise.pages,
+                      true,
+                    )
+                    history.push(
+                      '/exercise/' +
+                        step.exercise.id +
+                        '#' +
+                        encodeURIComponent(
+                          JSON.stringify({
+                            name: lessonDetails.title,
+                            pages: step.exercise.pages,
+                            toHome: true,
+                          }),
+                        ),
+                    )
+                    break
+                  }
+                }}
+              >
+                {lessonDetails.steps.some(isStepDone) ? 'Weiter' : 'Starten'}
+              </button>
+            )}
           </div>
         </div>
       )}

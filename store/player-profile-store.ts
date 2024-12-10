@@ -1,3 +1,5 @@
+import { Step } from '@/data/types'
+import { countLetter } from '@/helper/count-letter'
 import { Store } from 'pullstate'
 
 export const storageKey = 'testtiger_player_progress_v0'
@@ -35,4 +37,23 @@ export function updatePlayerProfileStore(
     storageKey,
     JSON.stringify(PlayerProfileStore.getRawState()),
   )
+}
+
+export function isStepDone(step: Step) {
+  if (step.exercise.pages) {
+    return step.exercise.pages.every(page => {
+      PlayerProfileStore.getRawState().eventLog.some(el => {
+        return (
+          el.id == step.exercise.id &&
+          el.type == 'kann-ich' &&
+          countLetter('a', el.index) == page.index
+        )
+      })
+    })
+  } else {
+    return PlayerProfileStore.getRawState().eventLog.some(
+      el => el.id == step.exercise.id && el.type == 'kann-ich',
+    )
+  }
+  return false
 }
