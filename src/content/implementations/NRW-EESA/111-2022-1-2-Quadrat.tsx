@@ -21,7 +21,25 @@ export const exercise111: Exercise<DATA> = {
     return true
   },
   intro({ data }) {
-    return null
+    return (
+      <svg width="320" height="170" xmlns="http://www.w3.org/2000/svg">
+        <image
+          href="/content/NRW_EESA/111_Quadrat.PNG"
+          width="328"
+          height="150"
+        />
+        <text
+          x="164"
+          y="160"
+          fontSize="15"
+          textAnchor="middle"
+          fontWeight="bold"
+          fill="black"
+        >
+          {data.seite} cm
+        </text>
+      </svg>
+    )
   },
   tasks: [
     {
