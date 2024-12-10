@@ -2122,7 +2122,650 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
-    path: [],
+    path: [
+      {
+        title: 'Grundlagen',
+        lessons: [
+          {
+            type: 'new-skill',
+            title: 'Zahlen und Einheiten',
+            steps: [{ exercise: { id: 110 } }, { exercise: { id: 130 } }],
+          },
+          {
+            type: 'new-skill',
+            title: 'Schriftliches Addieren',
+            steps: [{ exercise: { id: 123 } }],
+          },
+          {
+            type: 'new-skill',
+            title: 'Schätzen & Überschlagen',
+            steps: [{ exercise: { id: 114 } }],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 1',
+            steps: [
+              { exercise: { id: 129 } },
+              { exercise: { id: 123 } },
+              { exercise: { id: 133 } },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Proportionalität',
+            steps: [
+              {
+                exercise: {
+                  id: 106,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 119,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Prozentrechnung',
+            steps: [
+              {
+                exercise: {
+                  id: 126,
+                  pages: [{ index: 'c' }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 2',
+            steps: [
+              {
+                exercise: {
+                  id: 136,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Umgang mit Formeln und Termen',
+            steps: [
+              {
+                exercise: {
+                  id: 102,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Lineare Gleichungen',
+            steps: [
+              {
+                exercise: {
+                  id: 102,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 3',
+            steps: [
+              {
+                exercise: {
+                  id: 132,
+                },
+              },
+              {
+                exercise: {
+                  id: 102,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Fläche & Umfang simpel',
+            steps: [
+              {
+                exercise: {
+                  id: 127,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 109,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Figuren zeichnen',
+            steps: [
+              {
+                exercise: {
+                  id: 115,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 4',
+            steps: [
+              {
+                exercise: {
+                  id: 109,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
+                    { index: 'd' },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Oberfläche und Volumen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 117,
+                  pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Diagramme und Kenngrößen',
+            steps: [
+              {
+                exercise: {
+                  id: 112,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 131,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 5',
+            steps: [
+              {
+                exercise: {
+                  id: 120,
+                },
+              },
+              {
+                exercise: {
+                  id: 121,
+                },
+              },
+              {
+                exercise: {
+                  id: 122,
+                },
+              },
+              {
+                exercise: {
+                  id: 123,
+                },
+              },
+              {
+                exercise: {
+                  id: 124,
+                },
+              },
+              {
+                exercise: {
+                  id: 125,
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'new-skill',
+            title: 'Graphen',
+            steps: [
+              {
+                exercise: {
+                  id: 116,
+                },
+              },
+              {
+                exercise: {
+                  id: 128,
+                  pages: [
+                    { index: 'd', intro: ['global'] },
+                    { index: 'e' },
+                    { index: 'f' },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Laplace Experimente',
+            steps: [
+              {
+                exercise: {
+                  id: 113,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 6',
+            steps: [
+              {
+                exercise: {
+                  id: 100,
+                },
+              },
+              {
+                exercise: {
+                  id: 101,
+                },
+              },
+              {
+                exercise: {
+                  id: 102,
+                },
+              },
+              {
+                exercise: {
+                  id: 103,
+                },
+              },
+              {
+                exercise: {
+                  id: 104,
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Skill-Profi',
+        lessons: [
+          {
+            type: 'repetition',
+            title: 'Graphen',
+            steps: [
+              {
+                exercise: {
+                  id: 136,
+                  pages: [{ index: 'd', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Lineare Funktionen',
+            steps: [
+              {
+                exercise: {
+                  id: 136,
+                  pages: [
+                    { index: 'c', intro: ['global'] },
+                    { index: 'e' },
+                    { index: 'f' },
+                  ],
+                },
+              },
+              {
+                exercise: {
+                  id: 119,
+                  pages: [{ index: 'b', intro: ['global'] }, { index: 'c' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Tabellen',
+            steps: [
+              {
+                exercise: {
+                  id: 128,
+                  pages: [
+                    { index: 'a', intro: ['global'] },
+                    { index: 'b' },
+                    { index: 'c' },
+                  ],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 1',
+            steps: [
+              {
+                exercise: {
+                  id: 107,
+                  pages: [
+                    { index: 'b', intro: ['global'] },
+                    { index: 'c' },
+                    { index: 'd' },
+                    { index: 'e' },
+                    { index: 'f' },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Fläche & Umfang 1',
+            steps: [
+              {
+                exercise: {
+                  id: 111,
+                  pages: [{ index: 'a' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Satz des Pythagoras',
+            steps: [
+              {
+                exercise: {
+                  id: 111,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 135,
+                  pages: [{ index: 'b', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Fläche und Umfang - Kreis',
+            steps: [
+              {
+                exercise: {
+                  id: 108,
+                  pages: [{ index: 'c', intro: ['skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 126,
+                  pages: [{ index: 'd', intro: ['skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 119,
+                  pages: [{ index: 'e', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 2',
+            steps: [
+              {
+                exercise: {
+                  id: 108,
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Mit Längen argumentieren',
+            steps: [
+              {
+                exercise: {
+                  id: 119,
+                  pages: [{ index: 'd' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Oberfläche und Volumen 1',
+            steps: [
+              {
+                exercise: {
+                  id: 122,
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Oberfläche und Volumen 2',
+            steps: [
+              { exercise: { id: 105 } },
+              { exercise: { id: 106, pages: [{ index: 'b' }] } },
+              {
+                exercise: {
+                  id: 109,
+                  pages: [{ index: 'e', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 3',
+            steps: [
+              {
+                exercise: {
+                  id: 137,
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Figuren zeichnen',
+            steps: [
+              {
+                exercise: {
+                  id: 115,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Maßstab',
+            steps: [
+              {
+                exercise: {
+                  id: 127,
+                  pages: [{ index: 'c', intro: ['skill'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 107,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Körpernetz & Symmetrie',
+            steps: [
+              {
+                exercise: {
+                  id: 135,
+                  pages: [{ index: 'a', intro: ['global'] }],
+                },
+              },
+              {
+                exercise: {
+                  id: 109,
+                  pages: [{ index: 'f', intro: ['skill'] }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 4',
+            steps: [
+              {
+                exercise: {
+                  id: 117,
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Diagramme und Kenngrößen',
+            steps: [
+              {
+                exercise: {
+                  id: 104,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Tabellenkalkulation',
+            steps: [
+              {
+                exercise: {
+                  id: 134,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+              {
+                exercise: {
+                  id: 127,
+                  pages: [{ index: 'd', intro: ['global'] }, { index: 'e' }],
+                },
+              },
+            ],
+          },
+          {
+            type: 'repetition',
+            title: 'Laplace Experimente',
+            steps: [
+              {
+                exercise: {
+                  id: 126,
+                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 5',
+            steps: [
+              {
+                exercise: {
+                  id: 135,
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Prüfungsfit',
+        lessons: [
+          {
+            type: 'challenge',
+            title: 'Challenge 1',
+            steps: [{ exercise: { id: 119 } }],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 2',
+            steps: [
+              {
+                exercise: {
+                  id: 118,
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 3',
+            steps: [
+              {
+                exercise: {
+                  id: 127,
+                },
+              },
+            ],
+          },
+
+          {
+            type: 'challenge',
+            title: 'Challenge 4',
+            steps: [
+              {
+                exercise: {
+                  id: 109,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   3: {
     longTitle: 'Baden-Württemberg - Realschulabschluss',
