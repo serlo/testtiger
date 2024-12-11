@@ -1,10 +1,17 @@
 import { Exercise } from '@/data/types'
-import { buildEquation, buildOverline } from '@/helper/math-builder'
-import { pp } from '@/helper/pretty-print'
+import { Color1 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  buildOverline,
+  buildSqrt,
+} from '@/helper/math-builder'
+import { pp, ppPolynom } from '@/helper/pretty-print'
+import { infiniteOutline } from 'ionicons/icons'
 
 interface DATA {
-  b: number
-  c: number
+  n1: number
+  n2: number
   xs: number
   ys: number
 }
@@ -16,15 +23,19 @@ export const exercise250: Exercise<DATA> = {
   duration: 42,
   generator(rng) {
     return {
-      b: rng.randomIntBetween(-10, -2),
-      c: rng.randomIntBetween(8, 14),
+      n1: rng.randomIntBetween(1, 5),
+      n2: rng.randomIntBetween(6, 10),
       xs: rng.randomIntBetween(1, 4),
       ys: rng.randomIntBetween(-10, -4),
     }
   },
-  originalData: { b: -8, c: 12, xs: 1, ys: -7 },
+  originalData: { n1: 2, n2: 6, xs: 1, ys: -7 },
   constraint({ data }) {
-    return true
+    const x =
+      (data.xs * data.xs + data.ys - data.n1 * data.n2) /
+      (-data.n1 - data.n2 + 2 * data.xs)
+    const y = x * x + (-data.n1 - data.n2) * x + data.n1 * data.n2
+    return x % 1 == 0 && x > 0 && x != data.n1 && x != data.n2
   },
   intro({ data }) {
     return null
@@ -40,7 +51,8 @@ export const exercise250: Exercise<DATA> = {
           <>
             <p>
               Die Parabel p<sub>1</sub> hat die Funktionsgleichung <br></br>y =
-              x² {pp(data.b, 'merge_op')}x + {pp(data.c)}.
+              x² {pp(-data.n1 - data.n2, 'merge_op')}x + {pp(data.n1 * data.n2)}
+              .
             </p>
             <p>
               Die verschobene nach oben geöffnete Normalparabel p<sub>2</sub>{' '}
@@ -88,6 +100,45 @@ export const exercise250: Exercise<DATA> = {
         )
       },
       solution({ data }) {
+        const x =
+          (data.xs * data.xs + data.ys - data.n1 * data.n2) /
+          (-data.n1 - data.n2 + 2 * data.xs)
+        const y = x * x + (-data.n1 - data.n2) * x + data.n1 * data.n2
+        const p = -data.n1 - data.n2
+        const q = data.n1 * data.n2
+        function toX(n: number) {
+          return 98 + (n * 313) / 20
+        }
+        function toY(n: number) {
+          return 136 - (n * 313) / 20
+        }
+        function generateParabolaPoints(): string {
+          let points = ''
+          for (let x = -6; x <= 14; x += 0.1) {
+            const y = (x - data.n1) * (x - data.n2)
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        function generateParabolaPoints2(): string {
+          let points = ''
+          for (let x = -6; x <= 14; x += 0.1) {
+            const y = (x - data.xs) * (x - data.xs) + data.ys
+            points += `${toX(x)},${toY(y)} `
+          }
+          return points.trim()
+        }
+        const parabolaPoints = generateParabolaPoints()
+        const parabolaPoints2 = generateParabolaPoints2()
+        const p2 = -2 * data.xs
+        const q2 = data.xs * data.xs + data.ys - 7
+        const x2 = -p2 / 2 + Math.sqrt((p2 / 2) * (p2 / 2) - q2)
+
+        const p3 = -data.n1 - data.n2
+        const q3 = data.n1 * data.n2 - 7
+        const x3 = -p3 / 2 + Math.sqrt((p3 / 2) * (p3 / 2) - q3)
+        const xs = (data.n1 + data.n2) / 2
+        const ys = xs * xs + xs * (-data.n1 - data.n2) + data.n1 * data.n2
         return (
           <>
             <p>
@@ -105,8 +156,11 @@ export const exercise250: Exercise<DATA> = {
               {pp(data.ys, 'merge_op')}
             </p>
             <p>
-              y = x² − {pp(2 * data.xs)}x{' '}
-              {pp(data.xs * data.xs + data.ys, 'merge_op')}{' '}
+              y = x²{' '}
+              {ppPolynom([
+                [-2 * data.xs, 'x', 1],
+                [data.xs * data.xs + data.ys, 'x', 0],
+              ])}{' '}
             </p>
             <p>
               <strong>
@@ -120,38 +174,528 @@ export const exercise250: Exercise<DATA> = {
             {buildEquation([
               [
                 <>
-                  x² {pp(data.b, 'merge_op')}x + {pp(data.c)}
+                  x² {pp(-data.n1 - data.n2, 'merge_op')}x +{' '}
+                  {pp(data.n1 * data.n2)}
                 </>,
                 <>=</>,
                 <>
-                  x² − {pp(2 * data.xs)}x{' '}
-                  {pp(data.xs * data.xs + data.ys, 'merge_op')}
+                  x²{' '}
+                  {ppPolynom([
+                    [-2 * data.xs, 'x', 1],
+                    [data.xs * data.xs + data.ys, 'x', 0],
+                  ])}
+                </>,
+                <>− x²</>,
+              ],
+              [
+                <>
+                  {pp(-data.n1 - data.n2)}x + {pp(data.n1 * data.n2)}
+                </>,
+                <>=</>,
+                <>
+                  {ppPolynom([
+                    [-2 * data.xs, 'x', 1],
+                    [data.xs * data.xs + data.ys, 'x', 0],
+                  ])}
+                </>,
+                <>|{pp(2 * data.xs, 'merge_op')}x</>,
+              ],
+              [
+                <>
+                  {pp(-data.n1 - data.n2 + 2 * data.xs)}x +{' '}
+                  {pp(data.n1 * data.n2)}
+                </>,
+                <>=</>,
+                <>{pp(data.xs * data.xs + data.ys)}</>,
+                <>| − {pp(data.n1 * data.n2)}</>,
+              ],
+              [
+                <>{pp(-data.n1 - data.n2 + 2 * data.xs)}x</>,
+                <>=</>,
+                <>
+                  {pp(
+                    data.xs * data.xs + data.ys - data.n1 * data.n2,
+                    'merge_op',
+                  )}
+                </>,
+                <>| : {pp(-data.n1 - data.n2 + 2 * data.xs, 'embrace_neg')}</>,
+              ],
+              [<>x</>, <>=</>, <>{pp(x)}</>],
+            ])}
+            <p>Berechne den Funktionswert an der Stelle x = {pp(x)}:</p>
+            {buildEquation([
+              [
+                <>y</>,
+                <>=</>,
+                <>
+                  x² {pp(-data.n1 - data.n2, 'merge_op')}x +{' '}
+                  {pp(data.n1 * data.n2)}
                 </>,
               ],
-              [<></>, <></>, <></>],
-              [<></>, <></>, <></>],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {pp(x)}² {pp(-data.n1 - data.n2, 'merge_op')} · {pp(x)} +{' '}
+                  {pp(data.n1 * data.n2)}
+                </>,
+              ],
+              [<></>, <>=</>, <>{pp(y)}</>],
             ])}
+            <p>
+              Der Schnittpunkt ist{' '}
+              <strong>
+                Q<sub>1</sub>({pp(x)}|{pp(y)})
+              </strong>
+              .
+            </p>
             <p>
               <strong>
                 Koordinaten von N<sub>1</sub> und N<sub>2</sub>
               </strong>
             </p>
-
+            <p>
+              Berechne die Nullstellen der Parabel p<sub>1</sub>, indem du die
+              Funktionsgleichung 0 setzt:
+            </p>
+            {buildEquation([
+              [
+                <>0</>,
+                <>=</>,
+                <>
+                  x² {pp(-data.n1 - data.n2, 'merge_op')}x +{' '}
+                  {pp(data.n1 * data.n2)}
+                </>,
+              ],
+            ])}
+            <p>Löse die Gleichung mithilfe der pq-Formel:</p>
+            {buildEquation([
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  −{buildInlineFrac('p', 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac('p', 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      q
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  −{buildInlineFrac(p, 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac(p, 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −{' '}
+                      {q < 0 && <>(</>}
+                      {pp(q)}
+                      {q < 0 && <>)</>}
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <>
+                    <span style={{ verticalAlign: 'middle' }}>
+                      {pp(-p / 2)} ±{' '}
+                    </span>
+                    {buildSqrt(pp((p / 2) * (p / 2) - q))}
+                  </>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <>
+                    <span style={{ verticalAlign: 'middle' }}>
+                      {pp(-p / 2)} ±{' '}
+                    </span>
+                    {pp(Math.sqrt((p / 2) * (p / 2) - q))}
+                  </>
+                </>,
+              ],
+            ])}
+            <strong>
+              <p>
+                x<sub>1</sub> = {pp(data.n2)}
+              </p>
+              <p>
+                x<sub>2</sub> = {pp(data.n1)}
+              </p>
+            </strong>
+            <p>Gib die Nullstellen vollständig an:</p>
+            <p>
+              <strong>
+                N<sub>1</sub>({pp(data.n2)}
+                |0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N<sub>2</sub>(
+                {pp(data.n1)}|0)
+              </strong>
+            </p>
             <p>
               <strong>
                 Flächeninhalt von N<sub>1</sub>Q<sub>1</sub>N<sub>2</sub>
               </strong>
             </p>
-
+            <svg viewBox="0 0 328 270">
+              <image
+                href="/content/BW_Realschule/Grosses_KS.png"
+                height="270"
+                width="328"
+              />
+              <text
+                x={toX(0.5)}
+                y={toY(8)}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="black"
+              >
+                x
+              </text>
+              <text
+                x={toX(14)}
+                y={toY(0.5)}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="black"
+              >
+                y
+              </text>
+              <polyline
+                points={parabolaPoints}
+                stroke="blue"
+                strokeWidth="1"
+                fill="none"
+              />
+              <polyline
+                points={parabolaPoints2}
+                stroke="blue"
+                strokeWidth="1"
+                fill="none"
+              />
+              <text
+                x={toX(data.n1) - 8}
+                y={toY(0) + 2}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="black"
+              >
+                N2 x
+              </text>
+              <text
+                x={toX(data.n2) - 7.5}
+                y={toY(0) + 2}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="black"
+              >
+                N1 x
+              </text>
+              <text
+                x={toX(x) - 7.5}
+                y={toY(y) + 2}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="black"
+              >
+                Q1 x
+              </text>
+              <line
+                x1={toX(x)}
+                y1={toY(y)}
+                x2={toX(data.n1)}
+                y2={toY(0)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(x)}
+                y1={toY(y)}
+                x2={toX(data.n2)}
+                y2={toY(0)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(data.n1)}
+                y1={toY(0)}
+                x2={toX(data.n2)}
+                y2={toY(0)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={toX(x2) - 10}
+                y={toY(7)}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                p2
+              </text>
+              <text
+                x={toX(x3) + 10}
+                y={toY(7)}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                p1
+              </text>
+            </svg>
+            <p>
+              Das Dreieck N<sub>1</sub>Q<sub>1</sub>N<sub>2</sub> hat die
+              Grundlinie N<sub>1</sub>N<sub>2</sub> mit der Länge:
+            </p>
+            <p>
+              {pp(data.n2)} − {pp(data.n1)} = {pp(data.n2 - data.n1)}
+            </p>
+            <p>
+              Die Höhe von Q<sub>1</sub> auf der Grundlinie hat die Länge:{' '}
+              {pp(Math.abs(y))}
+            </p>
+            <p>Berechne damit die Fläche des Dreiecks:</p>
+            {buildEquation([
+              [<>A</>, <>=</>, <>{buildInlineFrac(<>g · h</>, 2)}</>],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>
+                      {pp(data.n2 - data.n1)} · {pp(Math.abs(y))}
+                    </>,
+                    2,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>
+                    {pp(((data.n2 - data.n1) * Math.abs(y)) / 2)} FE
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
               <strong>
                 Q<sub>2</sub> für größtmögliche Fläche
               </strong>
             </p>
-
+            <svg viewBox="0 0 328 270">
+              <image
+                href="/content/BW_Realschule/Grosses_KS.png"
+                height="270"
+                width="328"
+              />
+              <text
+                x={toX(0.5)}
+                y={toY(8)}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="black"
+              >
+                x
+              </text>
+              <text
+                x={toX(14)}
+                y={toY(0.5)}
+                fontSize={15}
+                textAnchor="middle"
+                stroke="black"
+              >
+                y
+              </text>
+              <polyline
+                points={parabolaPoints}
+                stroke="blue"
+                strokeWidth="1"
+                fill="none"
+              />
+              <polyline
+                points={parabolaPoints2}
+                stroke="blue"
+                strokeWidth="1"
+                fill="none"
+              />
+              <text
+                x={toX(data.n1) - 8}
+                y={toY(0) + 2}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="black"
+              >
+                N2 x
+              </text>
+              <text
+                x={toX(data.n2) - 7.5}
+                y={toY(0) + 2}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="black"
+              >
+                N1 x
+              </text>
+              <text
+                x={toX(x) - 7.5}
+                y={toY(y) + 2}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="black"
+              >
+                Q1 x
+              </text>
+              <line
+                x1={toX(x)}
+                y1={toY(y)}
+                x2={toX(data.n1)}
+                y2={toY(0)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(x)}
+                y1={toY(y)}
+                x2={toX(data.n2)}
+                y2={toY(0)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(data.n1)}
+                y1={toY(0)}
+                x2={toX(data.n2)}
+                y2={toY(0)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={toX(x2) - 10}
+                y={toY(7)}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                p2
+              </text>
+              <text
+                x={toX(x3) + 10}
+                y={toY(7)}
+                fontSize={10}
+                textAnchor="middle"
+                stroke="blue"
+              >
+                p1
+              </text>
+            </svg>
+            <p>
+              Damit der Flächeninhalt maximal ist, muss sich Q<sub>2</sub> im
+              Scheitelpunkt der Parabel p<sub>1</sub> befinden.
+            </p>
+            <p>
+              Genau dann hat das Dreieck die größtmögliche Höhe und damit auch
+              den maximalen Flächeninhalt.
+            </p>
+            <p>
+              Bestimme den Scheitelpunkt von p<sub>1</sub>. Er liegt zwischen
+              den Nullstellen:
+            </p>
+            <p>
+              x<sub>s</sub> ={' '}
+              {buildInlineFrac(
+                <>
+                  n<sub>1</sub> + n<sub>2</sub>
+                </>,
+                2,
+              )}{' '}
+              ={' '}
+              {buildInlineFrac(
+                <>
+                  {pp(data.n1)} + {pp(data.n2)}
+                </>,
+                2,
+              )}{' '}
+              = {pp(xs)}
+            </p>
+            <p>Berechne den y-Wert:</p>
+            {buildEquation([
+              [
+                <>y</>,
+                <>=</>,
+                <>
+                  x² {pp(-data.n1 - data.n2, 'merge_op')}x +{' '}
+                  {pp(data.n1 * data.n2)}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {pp(xs)}² {pp(-data.n1 - data.n2, 'merge_op')} · {pp(xs)} +{' '}
+                  {pp(data.n1 * data.n2)}
+                </>,
+              ],
+              [<></>, <>=</>, <>{pp(ys)}</>],
+            ])}
+            <p>
+              Der Scheitel von p<sub>2</sub> liegt im Punkt{' '}
+              <strong>
+                Q<sub>2</sub>({xs}|{ys})
+              </strong>
+              . In diesem Punkt hat das Dreieck N<sub>1</sub>Q<sub>2</sub>N
+              <sub>2</sub> den größtmöglichen Flächeninhalt.
+            </p>
             <p>
               <strong>Maximaler Flächeninhalt</strong>
             </p>
+            <p>
+              Das Dreieck N<sub>1</sub>Q<sub>2</sub>N<sub>2</sub> hat immer noch
+              die gleiche Grundlinie mit der Länge: {pp(data.n2 - data.n1)}
+            </p>
+            <p>
+              Die Höhe zu Q<sub>2</sub>({xs}|<Color1>{ys}</Color1>) hat jetzt
+              die Länge: {Math.abs(ys)}
+            </p>
+            <p>Berechne den Flächeninhalt des Dreiecks:</p>
+            {buildEquation([
+              [<>A</>, <>=</>, <>{buildInlineFrac(<>g · h</>, 2)}</>],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>
+                      {pp(data.n2 - data.n1)} · {Math.abs(ys)}
+                    </>,
+                    2,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>
+                    {pp(((data.n2 - data.n1) * Math.abs(ys)) / 2)} FE
+                  </strong>
+                </>,
+              ],
+            ])}
           </>
         )
       },
