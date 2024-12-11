@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
@@ -11,6 +12,11 @@ interface DATA {
   gewinn1: number
   gewinn2: number
   bet: number
+  höhe: number
+  breite: number
+  tür: number
+  tür2: number
+  abstand: number
 }
 
 export const exercise249: Exercise<DATA> = {
@@ -26,6 +32,11 @@ export const exercise249: Exercise<DATA> = {
       gewinn1: rng.randomIntBetween(2, 5),
       gewinn2: rng.randomIntBetween(2, 5),
       bet: rng.randomIntBetween(1, 3),
+      höhe: rng.randomIntBetween(25, 35) / 10,
+      breite: rng.randomIntBetween(30, 40) / 10,
+      tür: rng.randomIntBetween(18, 23) / 10,
+      tür2: rng.randomIntBetween(8, 13) / 10,
+      abstand: rng.randomIntBetween(9, 13) / 10,
     }
   },
   originalData: {
@@ -35,6 +46,11 @@ export const exercise249: Exercise<DATA> = {
     gewinn1: 4,
     gewinn2: 10,
     bet: 2.5,
+    höhe: 3,
+    breite: 2.7,
+    tür: 2,
+    tür2: 1,
+    abstand: 0.7,
   },
   constraint({ data }) {
     const gesamt = data.red + data.blue + data.green
@@ -421,9 +437,10 @@ export const exercise249: Exercise<DATA> = {
         return (
           <>
             <p>
-              Das Foto zeigt ein {'"'} Tiny House{'"'} . Die Vorderseite des
+              Das Foto zeigt ein {'"'}Tiny House{'"'} . Die Vorderseite des
               Hauses ist annähernd parabelförmig. Die maximale Höhe des Hauses
-              beträgt 3,00 m. Am Boden ist es 2,70 m breit.{' '}
+              beträgt {pp(data.höhe)} m. Am Boden ist es {pp(data.breite)} m
+              breit.{' '}
             </p>
             <svg viewBox="0 0 328 150">
               <image
@@ -439,7 +456,7 @@ export const exercise249: Exercise<DATA> = {
               </li>
             </ul>
             <p>
-              Die 2,00 m hohe Eingangstür befindet sich mittig auf der
+              Die {pp(data.tür)} m hohe Eingangstür befindet sich mittig auf der
               Vorderseite des Hauses. Am oberen Ende der Eingangstür befindet
               sich ein Vordach, das von Außenkante zu Außenkante reicht.
             </p>
@@ -447,8 +464,8 @@ export const exercise249: Exercise<DATA> = {
               <li>Berechne die Länge dieses Vordachs.</li>
             </ul>
             <p>
-              In 1,00 m Höhe hat der Türrahmen eine waagrechte Entfernung von
-              0,70 m zu den Außenkanten.
+              In {pp(data.tür2)} m Höhe hat der Türrahmen eine waagrechte
+              Entfernung von {pp(data.abstand)} m zu den Außenkanten.
             </p>
             <ul>
               <li>Berechne den Flächeninhalt der Tür.</li>
@@ -457,7 +474,210 @@ export const exercise249: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const a = -data.höhe / ((data.breite / 2) * (data.breite / 2))
+        const x1tür = Math.sqrt((data.tür - data.höhe) / a)
+        const x2tür = -Math.sqrt((data.tür - data.höhe) / a)
+        const x1tür2 = Math.sqrt((data.tür2 - data.höhe) / a)
+        const x2tür2 = -Math.sqrt((data.tür2 - data.höhe) / a)
+        return (
+          <>
+            <p>
+              <strong>Funktionsgleichung der Parabel</strong>
+            </p>
+            <p>Beschreibe die Parabel mithilfe eines Koordinatensystems:</p>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/BW_Realschule/249_Tinyhouse.jpg"
+                height="150"
+                width="328"
+              />
+              <line
+                x1={179}
+                y1={10}
+                x2={179}
+                y2={140}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <polygon points="176,12 179,4 182,12" fill="blue" />
+              <line
+                x1={110}
+                y1={124}
+                x2={238}
+                y2={117}
+                stroke="blue"
+                strokeWidth={2}
+              />
+              <polygon points="236,115 246,117 236,119" fill="blue" />
+              <text x="185" y="15" font-size="10" fill="blue">
+                y
+              </text>
+              <text x="248" y="122" font-size="10" fill="blue">
+                x
+              </text>
+              <text x="160" y="22" font-size="15" fill="black">
+                S ×
+              </text>
+              <text x="203" y="122" font-size="15" fill="black">
+                N ×
+              </text>
+            </svg>
+            <p>
+              In diesem Koordinatensystem hat die Parabel den Scheitel S(0|
+              <Color1>{pp(data.höhe)}</Color1>) und verläuft durch die
+              Nullstelle N(
+              {pp(data.breite / 2)}|0).
+            </p>
+            <p>Die Funktionsgleichung hat die Form:</p>
+            <p>
+              y = ax² + <Color1>{pp(data.höhe)}</Color1>
+            </p>
+            <p>Setze den Punkt N ein und bestimme a:</p>
+            {buildEquation([
+              [<>y</>, <>=</>, <>ax² + {pp(data.höhe)}</>],
+              [
+                <>0</>,
+                <>=</>,
+                <>
+                  a · {pp(data.breite / 2)}² + {pp(data.höhe)}
+                </>,
+                <>| − {pp(data.höhe)}</>,
+              ],
+              [
+                <>{pp(-data.höhe)}</>,
+                <>=</>,
+                <>a · {pp(data.breite / 2)}²</>,
+                <>| : {pp(data.breite / 2)}²</>,
+              ],
+              [<>a</>, <>=</>, <>{ppFrac(a)}</>],
+            ])}
+            <p>Damit ist die Funktionsgleichung der Parabel:</p>
+            <p>
+              <strong>
+                y = {ppFrac(a)}x² + {pp(data.höhe)}
+              </strong>
+            </p>
+            <p>
+              <strong>Länge des Vordachs</strong>
+            </p>
+            <p>
+              Die Tür befindet sich in der Höhe y = {pp(data.tür)}. Berechne, an
+              welchen Stellen x<sub>1/2</sub> die Parabel am Vordach entlang
+              läuft:
+            </p>
+            {buildEquation([
+              [
+                <>{pp(data.tür)}</>,
+                <>=</>,
+                <>
+                  {ppFrac(a)}x² + {pp(data.höhe)}
+                </>,
+                <>| − {pp(data.höhe)}</>,
+              ],
+              [
+                <>{pp(data.tür - data.höhe)}</>,
+                <>=</>,
+                <>{ppFrac(a)}x²</>,
+                <>| : {ppFrac(a, 'embrace_neg')}</>,
+              ],
+              [
+                <>x²</>,
+                <>=</>,
+                <>{pp((data.tür - data.höhe) / a)}</>,
+                <>| √</>,
+              ],
+              [
+                <>
+                  x<sub>1</sub>
+                </>,
+                <>=</>,
+                <>{pp(roundToDigits(x1tür, 4))}</>,
+              ],
+              [
+                <>
+                  x<sub>2</sub>
+                </>,
+                <>=</>,
+                <>{pp(roundToDigits(x2tür, 4))}</>,
+              ],
+            ])}
+            <p>Berechne die Distanz zwischen diesen Stellen:</p>
+            <p>
+              {pp(roundToDigits(x1tür, 4))} m −{' '}
+              {pp(roundToDigits(x2tür, 4), 'embrace_neg')} m ={' '}
+              {pp(roundToDigits(2 * x1tür, 4))} m
+            </p>
+            <p>
+              Das Vordach hat eine Länge von{' '}
+              <strong>{pp(roundToDigits(2 * x1tür, 4))} m</strong>.
+            </p>
+            <p>
+              <strong>Flächeninhalt der Tür</strong>
+            </p>
+            <p>
+              Berechne wie beim Vordach, an welchen Stellen sich die Parabel in
+              der Höhe y = {data.tür2} befindet.
+            </p>
+            {buildEquation([
+              [
+                <>{pp(data.tür2)}</>,
+                <>=</>,
+                <>
+                  {ppFrac(a)}x² + {pp(data.höhe)}
+                </>,
+                <>| − {pp(data.höhe)}</>,
+              ],
+              [
+                <>{pp(data.tür2 - data.höhe)}</>,
+                <>=</>,
+                <>{ppFrac(a)}x²</>,
+                <>| : {ppFrac(a, 'embrace_neg')}</>,
+              ],
+              [
+                <>x²</>,
+                <>=</>,
+                <>{pp((data.tür2 - data.höhe) / a)}</>,
+                <>| √</>,
+              ],
+              [
+                <>
+                  x<sub>1</sub>
+                </>,
+                <>=</>,
+                <>{pp(roundToDigits(x1tür2, 4))}</>,
+              ],
+              [
+                <>
+                  x<sub>2</sub>
+                </>,
+                <>=</>,
+                <>{pp(roundToDigits(x2tür2, 4))}</>,
+              ],
+            ])}
+            <p>Berechne die Distanz zwischen diesen Stellen:</p>
+            <p>
+              {pp(roundToDigits(x1tür2, 4))} m −{' '}
+              {pp(roundToDigits(x2tür2, 4), 'embrace_neg')} m ={' '}
+              {pp(roundToDigits(2 * x1tür2, 4))} m
+            </p>
+            <p>
+              Die Tür hat links und rechts einen Abstand von jeweils{' '}
+              {pp(data.abstand)} m. Abzüglich des Abstands hat die Tür eine
+              Breite von:
+            </p>
+            <p>
+              {pp(roundToDigits(2 * x1tür2, 4))} m − 2 · {pp(data.abstand)} m ={' '}
+              {pp(roundToDigits(2 * x1tür2 - 2 * data.abstand, 4))} m
+            </p>
+            <p>
+              Die Tür hat eine Breite von{' '}
+              <strong>
+                {pp(100 * roundToDigits(2 * x1tür2 - 2 * data.abstand, 4))} cm
+              </strong>
+              .
+            </p>
+          </>
+        )
       },
     },
   ],
