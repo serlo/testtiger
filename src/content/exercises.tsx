@@ -131,6 +131,16 @@ import { exercise248 } from './implementations/BW_Realschule/248-2022-B-2-Parabe
 import { exercise249 } from './implementations/BW_Realschule/249-2022-B-3-Zufall+Tiny-House'
 import { exercise250 } from './implementations/BW_Realschule/250-2022-B-4-Parabeln+Sechseck'
 import { exercise92 } from './implementations/NRW-MSA/9_2-2023-2-3-Zahlenpaare'
+import { exercise258 } from './implementations/BW_Realschule/258-2021-A2-1-Figur'
+import { exercise259 } from './implementations/BW_Realschule/259-2021-A2-2-Körper'
+import { exercise260 } from './implementations/BW_Realschule/260-2021-A2-3-Glücksrad'
+import { exercise261 } from './implementations/BW_Realschule/261-2021-A2-4-Diagramme'
+import { exercise262 } from './implementations/BW_Realschule/262-2021-A2-5-Funktionen'
+import { exercise263 } from './implementations/BW_Realschule/263-2021-A2-6-Boxplots'
+import { exercise264 } from './implementations/BW_Realschule/264-2021-B-1-Figur+Funktionen'
+import { exercise265 } from './implementations/BW_Realschule/265-2021-B-2-Funktionen+Körper'
+import { exercise266 } from './implementations/BW_Realschule/266-2021-B-3-Glücksspiel+Parabel'
+import { exercise267 } from './implementations/BW_Realschule/267-2021-B-4-Parabel+Figur'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -264,6 +274,16 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   248: exercise248,
   249: exercise249,
   250: exercise250,
+  258: exercise258,
+  259: exercise259,
+  260: exercise260,
+  261: exercise261,
+  262: exercise262,
+  263: exercise263,
+  264: exercise264,
+  265: exercise265,
+  266: exercise266,
+  267: exercise267,
 }
 
 // symbols:
@@ -283,7 +303,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
 //<svg viewBox="0 0 328 190"></svg>
 
 // Umgebung für Bild:
-// <image href="/content/content/BW_Realschule/" height="190" width="328" />
+// <image href="/content/BW_Realschule/" height="190" width="328" />
 
 // Umgebung für Text in SVG:
 // <text x={140} y={185} fontSize={20} textAnchor="right" stroke="black">Hier Text</text>
