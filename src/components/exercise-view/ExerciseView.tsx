@@ -13,6 +13,7 @@ export function ExerciseView({ id }: ExerciseViewProps) {
       const hash = window.location.hash
       if (hash) {
         const obj = JSON.parse(decodeURIComponent(hash.substring(1)))
+        console.log('parse it', obj)
         setupExercise(id, obj.name, obj.pages, !!obj.toHome)
       } else {
         setupExercise(id)

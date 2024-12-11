@@ -10,6 +10,7 @@ import { countLetter } from '@/helper/count-letter'
 import { SkillExercise, Step } from '@/data/types'
 import { FaIcon } from '@/components/ui/FaIcon'
 import { faCircle, faRepeat, faStar } from '@fortawesome/free-solid-svg-icons'
+import { LearningPath } from '@/components/learning-path/LearningPath'
 
 export function Home() {
   const history = useHistory()
@@ -116,6 +117,8 @@ export function Home() {
   }
 
   const [recommands, setRecommands] = useState(generateRecommands())
+
+  return <LearningPath />
 
   return (
     <>

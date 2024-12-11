@@ -465,20 +465,14 @@ export const exercise19: Exercise<DATA> = {
                 strokeWidth="1"
               />
 
-              <text
-                x="15"
-                y="30"
-                font-size="10"
-                text-anchor="start"
-                fill="black"
-              >
+              <text x="15" y="30" fontSize="10" textAnchor="start" fill="black">
                 Beobachtungswoche
               </text>
               <text
                 x="155"
                 y="30"
-                font-size="10"
-                text-anchor="middle"
+                fontSize="10"
+                textAnchor="middle"
                 fill="black"
               >
                 0
@@ -486,8 +480,8 @@ export const exercise19: Exercise<DATA> = {
               <text
                 x="205"
                 y="30"
-                font-size="10"
-                text-anchor="middle"
+                fontSize="10"
+                textAnchor="middle"
                 fill="black"
               >
                 1
@@ -495,8 +489,8 @@ export const exercise19: Exercise<DATA> = {
               <text
                 x="255"
                 y="30"
-                font-size="10"
-                text-anchor="middle"
+                fontSize="10"
+                textAnchor="middle"
                 fill="black"
               >
                 2
@@ -504,28 +498,22 @@ export const exercise19: Exercise<DATA> = {
               <text
                 x="295"
                 y="30"
-                font-size="10"
-                text-anchor="middle"
+                fontSize="10"
+                textAnchor="middle"
                 fill="black"
               >
                 ...
               </text>
 
-              <text
-                x="15"
-                y="60"
-                font-size="10"
-                text-anchor="start"
-                fill="black"
-              >
+              <text x="15" y="60" fontSize="10" textAnchor="start" fill="black">
                 Gewicht in g
               </text>
               <text
                 x="155"
                 y="60"
-                font-size="10"
-                font-weight="bold"
-                text-anchor="middle"
+                fontSize="10"
+                fontWeight="bold"
+                textAnchor="middle"
                 fill="black"
               >
                 {data.gewicht}
@@ -533,9 +521,9 @@ export const exercise19: Exercise<DATA> = {
               <text
                 x="205"
                 y="60"
-                font-size="10"
-                font-weight="bold"
-                text-anchor="middle"
+                fontSize="10"
+                fontWeight="bold"
+                textAnchor="middle"
                 fill="black"
               >
                 {data.gewicht * 2}
@@ -543,9 +531,9 @@ export const exercise19: Exercise<DATA> = {
               <text
                 x="255"
                 y="60"
-                font-size="10"
-                font-weight="bold"
-                text-anchor="middle"
+                fontSize="10"
+                fontWeight="bold"
+                textAnchor="middle"
                 fill="black"
               >
                 {data.gewicht * 4}
@@ -553,8 +541,8 @@ export const exercise19: Exercise<DATA> = {
               <text
                 x="295"
                 y="60"
-                font-size="10"
-                text-anchor="middle"
+                fontSize="10"
+                textAnchor="middle"
                 fill="black"
               >
                 ...
