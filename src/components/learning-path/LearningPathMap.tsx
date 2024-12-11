@@ -10,6 +10,7 @@ import { faCircleDot, faMinus } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
 import { setupExercise } from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
+import { exercisesData } from '@/content/exercises'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -105,11 +106,18 @@ export function LearningPathMap() {
                   className={clsx('ml-3', isStepDone(el) && 'text-green-300')}
                 />
                 {el.exercise.pages &&
-                  el.exercise.pages
-                    .slice(1)
-                    .map((_, i) => (
-                      <FaIcon icon={faMinus} key={i} className="ml-2" />
-                    ))}
+                  el.exercise.pages.slice(1).map((_, i) => (
+                    <span key={i}>
+                      <FaIcon icon={faMinus} className="ml-2" />
+                    </span>
+                  ))}
+                {!el.exercise.pages &&
+                  getExercisePagesCount(el.exercise.id) > 1 &&
+                  Array.from({
+                    length: getExercisePagesCount(el.exercise.id) - 1,
+                  }).map((_, i) => (
+                    <FaIcon icon={faMinus} className="ml-2" key={i} />
+                  ))}
               </span>
             ))}
           </div>
@@ -154,4 +162,12 @@ export function LearningPathMap() {
       )}
     </div>
   )
+}
+
+function getExercisePagesCount(id: number) {
+  const ex = exercisesData[id]
+  if ('tasks' in ex) {
+    return ex.tasks.length
+  }
+  return 1
 }
