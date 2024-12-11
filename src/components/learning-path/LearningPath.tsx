@@ -8,10 +8,26 @@ export function LearningPath() {
   const scrollDiv = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (scrollDiv.current) {
-      scrollDiv.current.scrollTop = scrollDiv.current.scrollHeight
-      console.log('scrolling', scrollDiv)
+      scrollDiv.current.scrollTop =
+        LearningPathStore.getRawState().scrollPosition
+      console.log('scrolling to bottm')
+      setTimeout(() => {
+        scrollDiv.current!.scrollTop =
+          LearningPathStore.getRawState().scrollPosition
+        console.log('scrolling to bottm after 100ms')
+      }, 100)
+      setTimeout(() => {
+        scrollDiv.current!.scrollTop =
+          LearningPathStore.getRawState().scrollPosition
+        console.log('scrolling to bottm after 200ms')
+      }, 200)
+    } else {
+      console.log('PROBLEM: no ref')
     }
   }) // TODO: this looks a bit buggy
+
+  console.log('rendering learning path main component')
+
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader className="bg-white">
@@ -20,7 +36,7 @@ export function LearningPath() {
 
       <IonContent>
         <div
-          className="h-full max-h-full bg-pink overflow-y-auto"
+          className="h-full overflow-y-auto"
           ref={scrollDiv}
           onScroll={() => {
             if (scrollDiv.current) {
@@ -28,6 +44,7 @@ export function LearningPath() {
               const visiblePart = scrollTop > 5000 ? 0 : scrollTop > 600 ? 1 : 2
               LearningPathStore.update(s => {
                 s.part = visiblePart
+                s.scrollPosition = scrollTop
               })
             }
           }}
