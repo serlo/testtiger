@@ -7,6 +7,7 @@ import {
   buildSqrt,
 } from '@/helper/math-builder'
 import { pp, ppPolynom } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 import { infiniteOutline } from 'ionicons/icons'
 
 interface DATA {
@@ -14,6 +15,7 @@ interface DATA {
   n2: number
   xs: number
   ys: number
+  ab: number
 }
 
 export const exercise250: Exercise<DATA> = {
@@ -27,9 +29,10 @@ export const exercise250: Exercise<DATA> = {
       n2: rng.randomIntBetween(6, 10),
       xs: rng.randomIntBetween(1, 4),
       ys: rng.randomIntBetween(-10, -4),
+      ab: rng.randomIntBetween(100, 140) / 10,
     }
   },
-  originalData: { n1: 2, n2: 6, xs: 1, ys: -7 },
+  originalData: { n1: 2, n2: 6, xs: 1, ys: -7, ab: 12.4 },
   constraint({ data }) {
     const x =
       (data.xs * data.xs + data.ys - data.n1 * data.n2) /
@@ -719,7 +722,9 @@ export const exercise250: Exercise<DATA> = {
                 width="328"
               />
             </svg>
-            <p>Es gilt: {buildOverline('AB')} cm</p>
+            <p>
+              Es gilt: {buildOverline('AB')} = {pp(data.ab)} cm
+            </p>
             <ul>
               <li>Berechne den Umfang des Dreiecks ABC.</li>
             </ul>
@@ -737,7 +742,150 @@ export const exercise250: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const bf = roundToDigits(
+          Math.sqrt(data.ab * data.ab - (data.ab / 2) * (data.ab / 2)),
+          2,
+        )
+        const ac = roundToDigits(
+          Math.sqrt(4 * bf * bf + (data.ab / 2) * (data.ab / 2)),
+          2,
+        )
+        return (
+          <>
+            <p>
+              <strong>Umfang von ABC</strong>
+            </p>
+            <p>Berechne zuerst die Höhe des Sechsecks {buildOverline('CD')}.</p>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/BW_Realschule/250_Sechseck2.jpg"
+                height="150"
+                width="328"
+              />
+            </svg>
+            <p>
+              Bestimme dazu {buildOverline('BF')} im rechtwinkligen Dreieck BEF.
+              Es gilt:
+            </p>
+            <p>
+              {buildOverline('BE')} = {buildOverline('AB')} = {pp(data.ab)} cm
+              <br></br>
+              {buildOverline('EF')} ={' '}
+              {buildInlineFrac(<>{buildOverline('AB')}</>, 2)} ={' '}
+              {pp(data.ab / 2)} cm
+            </p>
+            <p>Mit dem Satz des Pythagoras gilt:</p>
+            <div>
+              <span style={{ fontSize: '0.7em' }}>
+                {buildEquation([
+                  [
+                    <>
+                      {buildOverline('BF')}² + {buildOverline('EF')}²
+                    </>,
+                    <>=</>,
+                    <>{buildOverline('BE')}²</>,
+                  ],
+                  [
+                    <>
+                      {buildOverline('BF')}² + ({pp(data.ab / 2)} cm)²
+                    </>,
+                    <>=</>,
+                    <>({pp(data.ab)} cm)²</>,
+                    <>| − ({pp(data.ab / 2)} cm)²</>,
+                  ],
+                  [
+                    <>{buildOverline('BF')}²</>,
+                    <>=</>,
+                    <>
+                      ({pp(data.ab)} cm)² − ({pp(data.ab / 2)} cm)²
+                    </>,
+                    <>| √</>,
+                  ],
+                  [<>{buildOverline('BF')}</>, <>≈</>, <>{pp(bf)} cm</>],
+                ])}
+              </span>
+            </div>
+            <p>Damit beträgt die gesamte Höhe:</p>
+            <p>
+              {buildOverline('CD')} = 2 · {buildOverline('BF')} = {pp(2 * bf)}{' '}
+              cm
+            </p>
+            <p>Berechne {buildOverline('AC')} im rechtwinkligen Dreieck ADC:</p>
+            <div>
+              <span style={{ fontSize: '0.7em' }}>
+                {buildEquation([
+                  [
+                    <>{buildOverline('AC')}²</>,
+                    <>=</>,
+                    <>
+                      {buildOverline('AD')}² + {buildOverline('CD')}²
+                    </>,
+                  ],
+                  [
+                    <>{buildOverline('AC')}²</>,
+                    <>=</>,
+                    <>
+                      ({pp(data.ab / 2)} cm)² + ({pp(2 * bf)} cm)²
+                    </>,
+                    <>| √</>,
+                  ],
+                  [<>{buildOverline('AC')}</>, <>≈</>, <>{pp(ac)} cm</>],
+                ])}
+              </span>
+            </div>
+            <p>Berechne den Umfang:</p>
+            {buildEquation([
+              [
+                <>U</>,
+                <>=</>,
+                <>
+                  {buildOverline('AB')} + {buildOverline('BC')} +{' '}
+                  {buildOverline('AC')}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {pp(data.ab)} cm + {pp(ac)} cm + {pp(ac)} cm
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>{pp(data.ab + ac + ac)} cm</strong>
+                </>,
+              ],
+            ])}
+            <p>
+              <strong>Flächeninhalt des Sechsecks</strong>
+            </p>
+            <p>
+              Die Fläche des Sechsecks kann berechnet und mit der Dreiecksfläche
+              verglichen werden. Alternativ kann argumentiert werden:
+            </p>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/BW_Realschule/250_Sechseck3.jpg"
+                height="150"
+                width="328"
+              />
+            </svg>
+            <p>
+              Verschiebt man den Punkt C nach links und rechts, bleibt der
+              Flächeninhalt von ABC immer noch gleich.
+            </p>
+            <p>Das Sechseck lässt sich so in gleichgroße Dreiecke aufteilen:</p>
+            <ul>
+              <li>Das Dreieck ABC enthält 4 kleine Dreiecke.</li>
+              <li>Das Sechseck enthält insgesamt 12 kleine Dreiecke.</li>
+            </ul>
+            <p>
+              <strong>Damit hat Tom recht.</strong>
+            </p>
+          </>
+        )
       },
     },
   ],
