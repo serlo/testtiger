@@ -16,7 +16,28 @@ export const exercise262: Exercise<DATA> = {
     return true
   },
   task({ data }) {
-    return <></>
+    return (
+      <>
+        <p>
+          Die Parabel p hat die Funktionsgleichung <br></br>y = x² - 6x + 10.
+        </p>
+        <p>Eine Gerade g besitzt die Steigung m = -2.</p>
+        <p>Sie geht durch den Scheitelpunkt S der Parabel p.</p>
+        <ul>
+          <li>
+            Berechne die Koordinaten des zweiten Schnittpunkts Q der Parabel p
+            mit der Geraden g.
+          </li>
+        </ul>
+        <p>
+          Die Gerade h verläuft senkrecht zur Geraden g und geht durch den Punkt
+          Q.
+        </p>
+        <ul>
+          <li>Berechne die Funktionsgleichung der Geraden h.</li>
+        </ul>
+      </>
+    )
   },
   solution({ data }) {
     return <></>
