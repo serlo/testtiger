@@ -421,6 +421,18 @@ export const exercise212: Exercise<DATA> = {
           >
             {data.nutzer_2019}
           </text>
+
+          <rect
+            x={52}
+            y={52}
+            width="60"
+            height={52}
+            fill="gray"
+            stroke="black"
+          />
+          <text x={40} y={180} fontSize={10} textAnchor="middle" stroke="black">
+            .
+          </text>
         </svg>
 
         <p>
