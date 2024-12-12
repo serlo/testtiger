@@ -244,6 +244,16 @@ export function ExerciseViewFooter() {
                                       ].index.charCodeAt(0) - 'a'.charCodeAt(0)
                                     : navIndicatorPosition,
                                 })
+                                if (ExerciseViewStore.getRawState().tag) {
+                                  s.progress[
+                                    s.currentExam
+                                  ].learningPathTags.push(
+                                    ExerciseViewStore.getRawState().tag +
+                                      (pages
+                                        ? pages[navIndicatorPosition].index
+                                        : ''),
+                                  )
+                                }
                               })
                             }}
                           >

@@ -16,7 +16,7 @@ export function Name() {
   const history = useHistory()
   const [localName, setLocalName] = useState('')
   return (
-    <IonPage>
+    <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
         <div className="text-center text-5xl mt-10">👋😄</div>
         <div className="text-center text-4xl mt-6">Hi, wie heißt du?</div>

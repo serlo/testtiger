@@ -160,6 +160,12 @@ export function SolutionOverlay() {
                       'a'.charCodeAt(0)
                     : navIndicatorPosition,
                 })
+                if (ExerciseViewStore.getRawState().tag) {
+                  s.progress[s.currentExam].learningPathTags.push(
+                    ExerciseViewStore.getRawState().tag +
+                      (pages ? pages[navIndicatorPosition].index : ''),
+                  )
+                }
               })
             }}
           >

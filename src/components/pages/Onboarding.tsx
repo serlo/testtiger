@@ -12,7 +12,7 @@ import { PlayerProfileStore } from '../../../store/player-profile-store'
 export function Onboarding() {
   const username = PlayerProfileStore.useState(s => s.name)
   return (
-    <IonPage>
+    <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
         <div className="text-center text-5xl mt-10">🐯</div>
         <div className="text-center text-4xl mt-6">TestTiger</div>
