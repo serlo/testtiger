@@ -28,7 +28,7 @@ export function Schoolform() {
     s.currentExam = localExam
   })
   return (
-    <IonPage>
+    <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader className="ion-no-border bg-white">
         <h1 className="text-center mx-3 mt-4 text-xl mb-3 font-bold">
           Hallo {name}! Für welche Prüfung möchtest du lernen?

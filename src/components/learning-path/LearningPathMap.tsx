@@ -1,20 +1,23 @@
 import { navigationData } from '@/content/navigations'
 import {
-  isStepDone,
+  isStepOfLessonDone,
   PlayerProfileStore,
 } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { FaIcon } from '../ui/FaIcon'
 import { faCircleDot, faMinus } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
 import { setupExercise } from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
+import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
-  const [lessonDetails, setLessonDetails] = useState<Lesson | null>(null)
+  const [lessonDetails, setLessonDetails] = useState<Lesson | null>(
+    navigationData[exam].path[0].lessons[0],
+  )
   const history = useHistory()
 
   const path = navigationData[exam].path
@@ -58,23 +61,36 @@ export function LearningPathMap() {
           ></circle>
         )}
         {elements.map((el, i) => (
-          <circle
-            key={i}
-            cx={el.source.position!.x}
-            cy={10000 - el.source.position!.y}
-            r={25}
-            fill={
-              el.source.type == 'new-skill'
-                ? 'rebeccapurple'
-                : el.source.type == 'challenge'
-                  ? 'yellow'
-                  : 'gray'
-            }
-            className="cursor-pointer"
-            onClick={() => {
-              setLessonDetails(el.source)
-            }}
-          ></circle>
+          <Fragment key={i}>
+            <circle
+              cx={el.source.position!.x}
+              cy={10000 - el.source.position!.y}
+              r={25}
+              fill={
+                el.source.type == 'new-skill'
+                  ? 'rebeccapurple'
+                  : el.source.type == 'challenge'
+                    ? 'yellow'
+                    : 'gray'
+              }
+              className="cursor-pointer"
+              onClick={() => {
+                setLessonDetails(el.source)
+              }}
+            ></circle>
+            {el.source.steps.every(step =>
+              isStepOfLessonDone(el.source, step),
+            ) && (
+              <text
+                x={el.source.position!.x - 6}
+                y={10000 - el.source.position!.y + 18}
+                fontSize={32}
+                className="fill-green-400 font-bold"
+              >
+                ✓
+              </text>
+            )}
+          </Fragment>
         ))}
         {elements.map((el, i) => {
           if (el.source.type == 'challenge') {
@@ -103,7 +119,10 @@ export function LearningPathMap() {
                 <FaIcon
                   key={i}
                   icon={faCircleDot}
-                  className={clsx('ml-3', isStepDone(el) && 'text-green-300')}
+                  className={clsx(
+                    'ml-3',
+                    isStepOfLessonDone(lessonDetails, el) && 'text-green-300',
+                  )}
                 />
                 {el.exercise.pages &&
                   el.exercise.pages.slice(1).map((_, i) => (
@@ -116,20 +135,30 @@ export function LearningPathMap() {
                   Array.from({
                     length: getExercisePagesCount(el.exercise.id) - 1,
                   }).map((_, i) => (
-                    <FaIcon icon={faMinus} className="ml-2" key={i} />
+                    <FaIcon
+                      icon={faMinus}
+                      className={clsx(
+                        'ml-2',
+                        isStepOfLessonDone(lessonDetails, el) &&
+                          'text-green-300',
+                      )}
+                      key={i}
+                    />
                   ))}
               </span>
             ))}
           </div>
           <div className="text-right mr-3 mt-1">
-            {lessonDetails.steps.every(isStepDone) ? (
+            {lessonDetails.steps.every(step =>
+              isStepOfLessonDone(lessonDetails, step),
+            ) ? (
               <small>fertig :)</small>
             ) : (
               <button
                 className="px-2 py-0.5 bg-green-200 hover:bg-grenn-300 rounded"
                 onClick={() => {
                   for (let step of lessonDetails.steps) {
-                    if (isStepDone(step)) {
+                    if (isStepOfLessonDone(lessonDetails, step)) {
                       continue
                     }
                     setupExercise(
@@ -138,6 +167,9 @@ export function LearningPathMap() {
                       step.exercise.pages,
                       true,
                     )
+                    ExerciseViewStore.update(s => {
+                      s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                    })
                     history.push(
                       '/exercise/' +
                         step.exercise.id +
@@ -154,7 +186,11 @@ export function LearningPathMap() {
                   }
                 }}
               >
-                {lessonDetails.steps.some(isStepDone) ? 'Weiter' : 'Starten'}
+                {lessonDetails.steps.some(step =>
+                  isStepOfLessonDone(lessonDetails, step),
+                )
+                  ? 'Weiter'
+                  : 'Starten'}
               </button>
             )}
           </div>

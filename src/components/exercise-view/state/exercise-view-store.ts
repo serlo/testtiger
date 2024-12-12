@@ -54,6 +54,7 @@ export type IExerciseViewStore = {
   completed: boolean[]
   showEndScreen: boolean
   toHome: boolean
+  tag: string
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -70,4 +71,5 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   showEndScreen: false,
   chatHistory: [],
   toHome: false,
+  tag: '',
 })

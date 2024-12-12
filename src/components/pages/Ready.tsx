@@ -2,7 +2,7 @@ import { IonButton, IonContent, IonFooter, IonPage } from '@ionic/react'
 
 export function Ready() {
   return (
-    <IonPage>
+    <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
         <div className="text-center text-3xl mt-16">Bereit!</div>
         <img src="/img/ready.jpg" className="mx-auto max-w-full" alt=""></img>

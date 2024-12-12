@@ -1,4 +1,4 @@
-import { Step } from '@/data/types'
+import { Lesson, Step } from '@/data/types'
 import { countLetter } from '@/helper/count-letter'
 import { Store } from 'pullstate'
 
@@ -14,15 +14,16 @@ export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
   name: '',
   currentExam: 1,
   progress: {
-    1: { selectedTopics: [] },
-    2: { selectedTopics: [] },
-    3: { selectedTopics: [] },
+    1: { selectedTopics: [], learningPathTags: [] },
+    2: { selectedTopics: [], learningPathTags: [] },
+    3: { selectedTopics: [], learningPathTags: [] },
   },
   eventLog: [],
 }
 
 interface ExamProgress {
   selectedTopics: number[]
+  learningPathTags: string[]
 }
 
 export const PlayerProfileStore = new Store<PlayerProfileStoreProps>(
@@ -55,5 +56,17 @@ export function isStepDone(step: Step) {
       el => el.id == step.exercise.id && el.type == 'kann-ich',
     )
   }
-  return false
+}
+
+export function isStepOfLessonDone(lesson: Lesson, step: Step) {
+  const state = PlayerProfileStore.getRawState()
+  if (step.exercise.pages) {
+    return step.exercise.pages.every(page => {
+      const key = `${lesson.title}#${step.exercise.id}#${page.index}`
+      state.progress[state.currentExam].learningPathTags.includes(key)
+    })
+  } else {
+    const key = `${lesson.title}#${step.exercise.id}#`
+    return state.progress[state.currentExam].learningPathTags.includes(key)
+  }
 }

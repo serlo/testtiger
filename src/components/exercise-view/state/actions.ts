@@ -51,6 +51,7 @@ export function setupExercise(
     s.completed = s.checks.map(() => false)
     s.showEndScreen = false
     s.toHome = !!toHome
+    s.tag = ''
   })
 }
 

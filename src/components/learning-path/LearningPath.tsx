@@ -12,14 +12,18 @@ export function LearningPath() {
         LearningPathStore.getRawState().scrollPosition
       console.log('scrolling to bottm')
       setTimeout(() => {
-        scrollDiv.current!.scrollTop =
-          LearningPathStore.getRawState().scrollPosition
-        console.log('scrolling to bottm after 100ms')
+        if (scrollDiv.current) {
+          scrollDiv.current.scrollTop =
+            LearningPathStore.getRawState().scrollPosition
+          console.log('scrolling to bottm after 100ms')
+        }
       }, 100)
       setTimeout(() => {
-        scrollDiv.current!.scrollTop =
-          LearningPathStore.getRawState().scrollPosition
-        console.log('scrolling to bottm after 200ms')
+        if (scrollDiv.current) {
+          scrollDiv.current.scrollTop =
+            LearningPathStore.getRawState().scrollPosition
+          console.log('scrolling to bottm after 200ms')
+        }
       }, 200)
     } else {
       console.log('PROBLEM: no ref')
