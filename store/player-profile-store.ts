@@ -63,7 +63,7 @@ export function isStepOfLessonDone(lesson: Lesson, step: Step) {
   if (step.exercise.pages) {
     return step.exercise.pages.every(page => {
       const key = `${lesson.title}#${step.exercise.id}#${page.index}`
-      state.progress[state.currentExam].learningPathTags.includes(key)
+      return state.progress[state.currentExam].learningPathTags.includes(key)
     })
   } else {
     const key = `${lesson.title}#${step.exercise.id}#`
