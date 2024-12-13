@@ -1,5 +1,7 @@
 import { Exercise } from '@/data/types'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   handel2013: number
@@ -15,6 +17,7 @@ interface DATA {
   wohnen: number
   gesundheit: number
   büro: number
+  smart: number
 }
 
 export const exercise261: Exercise<DATA> = {
@@ -38,6 +41,7 @@ export const exercise261: Exercise<DATA> = {
       wohnen: rng.randomIntBetween(120, 150) / 10,
       gesundheit: rng.randomIntBetween(40, 70) / 10,
       büro: rng.randomIntBetween(10, 20) / 10,
+      smart: rng.randomIntBetween(40, 70),
     }
   },
   originalData: {
@@ -54,6 +58,7 @@ export const exercise261: Exercise<DATA> = {
     wohnen: 13.4,
     gesundheit: 6.2,
     büro: 1.7,
+    smart: 53,
   },
   constraint({ data }) {
     return true
@@ -731,6 +736,9 @@ export const exercise261: Exercise<DATA> = {
           Gesamtumsatz des Onlinehandels im Jahr 2017.
         </p>
         <svg width="328" height="270">
+          <text x={164} y={15} fontSize={15} textAnchor="middle" stroke="black">
+            Umsatzanteile am Onlinehandel 2017
+          </text>
           {PieChart()}
         </svg>
         <ul>
@@ -740,8 +748,9 @@ export const exercise261: Exercise<DATA> = {
           </li>
         </ul>
         <p>
-          Laut einer Untersuchung entfielen im Jahr 2017 allein 53,0 % des
-          Bereichs {'"'}Elektronik{'"'} auf den Onlinehandel mit Smartphones.{' '}
+          Laut einer Untersuchung entfielen im Jahr 2017 allein {data.smart} %
+          des Bereichs {'"'}Elektronik{'"'} auf den Onlinehandel mit
+          Smartphones.{' '}
         </p>
         <ul>
           <li>
@@ -753,6 +762,135 @@ export const exercise261: Exercise<DATA> = {
     )
   },
   solution({ data }) {
-    return <></>
+    return (
+      <>
+        <p>
+          <strong>Zuwachs in Prozent</strong>
+        </p>
+        <ul>
+          <li>
+            Im Jahr 2016 wurden {pp(data.handel2016)} Mrd. € Umsatz erzielt.
+          </li>
+          <li>
+            Im Jahr 2019 wurden {pp(data.handel2019)} Mrd. € Umsatz erzielt.
+          </li>
+        </ul>
+        <p>Berechne den Prozentsatz mit der Formel:</p>
+        {buildEquation([
+          [<>p</>, <>=</>, <>{buildInlineFrac(<>W</>, <>G</>)}</>],
+          [
+            <></>,
+            <>=</>,
+            <>
+              {buildInlineFrac(
+                <>{pp(data.handel2019)} Mrd. €</>,
+                <>{pp(data.handel2016)} Mrd. €</>,
+              )}
+            </>,
+          ],
+          [
+            <></>,
+            <>≈</>,
+            <>{pp(roundToDigits(data.handel2019 / data.handel2016, 4))}</>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              {pp(100 * roundToDigits(data.handel2019 / data.handel2016, 4))} %
+            </>,
+          ],
+        ])}
+        <p>Der Zuwachs beträgt damit:</p>
+        <p>
+          {pp(100 * roundToDigits(data.handel2019 / data.handel2016, 4))} % −
+          100 % ={' '}
+          <strong>
+            {pp(
+              100 * roundToDigits(data.handel2019 / data.handel2016, 4) - 100,
+            )}{' '}
+            %
+          </strong>
+        </p>
+        <p>
+          <strong>
+            Umsatz im Bereich {'"'}Freizeit und Hobby{'"'}
+          </strong>
+        </p>
+        <p>
+          In 2017 beträgt der Umsatz {pp(data.handel2017)} Mrd. €. Im Bereiech{' '}
+          {'"'}Freizeit und Hobby{'"'} wurden <br></br>
+          {pp(data.freizeit)} % des Umsatzes erzielt.
+        </p>
+        <p>
+          Wandle den Prozentsatz in eine Dezimalzahl um: <br></br>
+          {pp(data.freizeit)} % ≙ {pp(data.freizeit / 100)}
+        </p>
+        <p>Berechne den Prozentwert mit der Formel:</p>
+        {buildEquation([
+          [<>W</>, <>=</>, <>G · p</>],
+          [
+            <></>,
+            <>=</>,
+            <>
+              {pp(data.handel2017)} Mrd. € · {pp(data.freizeit / 100)}
+            </>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              <strong>
+                {pp((data.handel2017 * data.freizeit) / 100)} Mrd. €
+              </strong>
+            </>,
+          ],
+        ])}
+        <p>
+          <strong>Ausgaben für Smartphones</strong>
+        </p>
+        <p>
+          Wandle den Prozentsatz des Bereichs {'"'}Elektronik
+          {'"'} in eine Dezimalzahl um: <br></br>
+          {pp(data.elektronik)} % ≙ {pp(data.elektronik / 100)}
+        </p>
+        <p>
+          Berechne den Prozentwert des Umsatzes, der im Bereich {'"'}Elektronik
+          {'"'} erzielt wurde.
+        </p>
+
+        {buildEquation([
+          [<>W</>, <>=</>, <>G · p</>],
+          [
+            <></>,
+            <>=</>,
+            <>
+              {pp(data.handel2017)} Mrd. € · {pp(data.elektronik / 100)}
+            </>,
+          ],
+          [
+            <></>,
+            <>=</>,
+            <>
+              <strong>
+                {pp((data.handel2017 * data.elektronik) / 100)} Mrd. €
+              </strong>
+            </>,
+          ],
+        ])}
+        <p>
+          Hiervon wurden {data.smart} % ≙ {pp(data.smart / 100)} mit Smartphones
+          erzielt. Berechne diesen Anteil:
+        </p>
+        <p>
+          {pp((data.handel2017 * data.elektronik) / 100)} Mrd. € ·{' '}
+          {pp(data.smart / 100)} ={' '}
+          <strong>
+            {pp((data.handel2017 * data.elektronik * data.smart) / 10000)} Mrd.
+            €
+          </strong>
+        </p>
+      </>
+    )
   },
 }
