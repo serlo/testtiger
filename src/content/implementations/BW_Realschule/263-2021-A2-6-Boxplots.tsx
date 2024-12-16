@@ -1,6 +1,9 @@
 import { Exercise } from '@/data/types'
+import { pp } from '@/helper/pretty-print'
 
 interface DATA {
+  order: number[]
+  random: number[]
   frau1: number
   frau2: number
   frau3: number
@@ -61,6 +64,8 @@ export const exercise263: Exercise<DATA> = {
   points: 42,
   generator(rng) {
     return {
+      random: rng.shuffleArray([0, 1]),
+      order: rng.shuffleArray([0, 1]),
       frau1: rng.randomIntBetween(4, 6),
       frau2: rng.randomIntBetween(4, 6),
       frau3: rng.randomIntBetween(4, 6),
@@ -114,6 +119,8 @@ export const exercise263: Exercise<DATA> = {
     }
   },
   originalData: {
+    random: [0, 1],
+    order: [0, 1],
     frau1: 1,
     frau2: 2,
     frau3: 2,
@@ -256,134 +263,8 @@ export const exercise263: Exercise<DATA> = {
     const männer14 = männer.filter(element => element === 14).length
     const männer15 = männer.filter(element => element === 15).length
     const männer16 = männer.filter(element => element === 16).length
-
-    function toX(n: number) {
-      return 46 + (n * 233) / 19
-    }
-    function toY(n: number) {
-      return (n * 112.5) / 5
-    }
-    return (
-      <>
-        <p>
-          Im Rahmen einer Umfrage wurden 25 Männer und 25 Frauen getrennt
-          voneinander befragt, wie viele Stunden sie pro Woche lesen. Die
-          Ergebnisse dieser Befragungen sind in den beiden Boxplots dargestellt.
-        </p>
-        <svg viewBox="0 0 328 110">
-          <image
-            href="/content/BW_Realschule/263_Boxplot.jpg"
-            height="110"
-            width="328"
-          />
-          <line
-            x1={toX(männer.sort((a, b) => a - b)[0])}
-            y1={10}
-            x2={toX(männer.sort((a, b) => a - b)[0])}
-            y2={30}
-            stroke="blue"
-            strokeWidth={2}
-          />
-          <line
-            x1={toX(männer.sort((a, b) => a - b)[24])}
-            y1={10}
-            x2={toX(männer.sort((a, b) => a - b)[24])}
-            y2={30}
-            stroke="blue"
-            strokeWidth={2}
-          />
-          <line
-            x1={toX(männer.sort((a, b) => a - b)[0])}
-            y1={20}
-            x2={toX(männer.sort((a, b) => a - b)[24])}
-            y2={20}
-            stroke="blue"
-            strokeWidth={1}
-          />
-          <rect
-            x={toX(männer.sort((a, b) => a - b)[5])}
-            y={10}
-            width={
-              toX(männer.sort((a, b) => a - b)[18]) -
-              toX(männer.sort((a, b) => a - b)[5])
-            }
-            height={20}
-            fill="lightblue"
-            stroke="blue"
-          />
-          <line
-            x1={toX(
-              (männer.sort((a, b) => a - b)[11] +
-                männer.sort((a, b) => a - b)[12]) /
-                2,
-            )}
-            y1={10}
-            x2={toX(
-              (männer.sort((a, b) => a - b)[11] +
-                männer.sort((a, b) => a - b)[12]) /
-                2,
-            )}
-            y2={30}
-            stroke="blue"
-            strokeWidth={2}
-          />
-          <line
-            x1={toX(frauen.sort((a, b) => a - b)[0])}
-            y1={80}
-            x2={toX(frauen.sort((a, b) => a - b)[0])}
-            y2={100}
-            stroke="blue"
-            strokeWidth={2}
-          />
-          <line
-            x1={toX(frauen.sort((a, b) => a - b)[24])}
-            y1={80}
-            x2={toX(frauen.sort((a, b) => a - b)[24])}
-            y2={100}
-            stroke="blue"
-            strokeWidth={2}
-          />
-          <line
-            x1={toX(frauen.sort((a, b) => a - b)[0])}
-            y1={90}
-            x2={toX(frauen.sort((a, b) => a - b)[24])}
-            y2={90}
-            stroke="blue"
-            strokeWidth={1}
-          />
-          <rect
-            x={toX(frauen.sort((a, b) => a - b)[5])}
-            y={80}
-            width={
-              toX(frauen.sort((a, b) => a - b)[18]) -
-              toX(frauen.sort((a, b) => a - b)[5])
-            }
-            height={20}
-            fill="lightblue"
-            stroke="blue"
-          />
-          <line
-            x1={toX(
-              (frauen.sort((a, b) => a - b)[11] +
-                frauen.sort((a, b) => a - b)[12]) /
-                2,
-            )}
-            y1={80}
-            x2={toX(
-              (frauen.sort((a, b) => a - b)[11] +
-                frauen.sort((a, b) => a - b)[12]) /
-                2,
-            )}
-            y2={100}
-            stroke="blue"
-            strokeWidth={2}
-          />
-        </svg>
-        <p>
-          Außerdem sind die Ergebnisse der Befragungen in den beiden
-          Säulendiagrammen abgebildet, wobei eines der Diagramme unvollständig
-          ist.{' '}
-        </p>
+    const listItems_vollständig = [
+      <li key="1">
         <svg viewBox="0 0 328 150">
           <image
             href="/content/BW_Realschule/263_Diagramm.jpg"
@@ -520,6 +401,8 @@ export const exercise263: Exercise<DATA> = {
             stroke="black"
           />
         </svg>
+      </li>,
+      <li key="2">
         <svg viewBox="0 0 328 150">
           <image
             href="/content/BW_Realschule/263_Diagramm.jpg"
@@ -655,6 +538,274 @@ export const exercise263: Exercise<DATA> = {
             stroke="black"
           />
         </svg>
+      </li>,
+    ]
+    const listItems_unvollständig = [
+      <li key="1">
+        <svg viewBox="0 0 328 150">
+          <image
+            href="/content/BW_Realschule/263_Diagramm.jpg"
+            height="150"
+            width="328"
+          />
+
+          <rect
+            x={60}
+            y={120 - toY(frauen1)}
+            width="10"
+            height={toY(frauen1)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={72}
+            y={120 - toY(frauen2)}
+            width="10"
+            height={toY(frauen2)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={84.5}
+            y={120 - toY(frauen3)}
+            width="10"
+            height={toY(frauen3)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={97}
+            y={120 - toY(frauen4)}
+            width="10"
+            height={toY(frauen4)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={110}
+            y={120 - toY(frauen5)}
+            width="10"
+            height={toY(frauen5)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={123}
+            y={120 - toY(frauen6)}
+            width="10"
+            height={toY(frauen6)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={135.5}
+            y={120 - toY(frauen7)}
+            width="10"
+            height={toY(frauen7)}
+            fill="gray"
+            stroke="black"
+          />
+        </svg>
+      </li>,
+      <li key="2">
+        <svg viewBox="0 0 328 150">
+          <image
+            href="/content/BW_Realschule/263_Diagramm.jpg"
+            height="150"
+            width="328"
+          />
+          <rect
+            x={60}
+            y={120 - toY(männer1)}
+            width="10"
+            height={toY(männer1)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={72}
+            y={120 - toY(männer2)}
+            width="10"
+            height={toY(männer2)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={84.5}
+            y={120 - toY(männer3)}
+            width="10"
+            height={toY(männer3)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={97}
+            y={120 - toY(männer4)}
+            width="10"
+            height={toY(männer4)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={110}
+            y={120 - toY(männer5)}
+            width="10"
+            height={toY(männer5)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={123}
+            y={120 - toY(männer6)}
+            width="10"
+            height={toY(männer6)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={135.5}
+            y={120 - toY(männer7)}
+            width="10"
+            height={toY(männer7)}
+            fill="gray"
+            stroke="black"
+          />
+        </svg>
+      </li>,
+    ]
+    const kombinierteItems = [
+      listItems_vollständig[data.random[0]],
+      listItems_unvollständig[data.random[1]],
+    ]
+    const shuffledItems = data.order.map(i => kombinierteItems[i])
+    function toX(n: number) {
+      return 46 + (n * 233) / 19
+    }
+    function toY(n: number) {
+      return (n * 112.5) / 5
+    }
+    return (
+      <>
+        <p>
+          Im Rahmen einer Umfrage wurden 25 Männer und 25 Frauen getrennt
+          voneinander befragt, wie viele Stunden sie pro Woche lesen. Die
+          Ergebnisse dieser Befragungen sind in den beiden Boxplots dargestellt.
+        </p>
+        <svg viewBox="0 0 328 110">
+          <image
+            href="/content/BW_Realschule/263_Boxplot.jpg"
+            height="110"
+            width="328"
+          />
+          <line
+            x1={toX(männer.sort((a, b) => a - b)[0])}
+            y1={10}
+            x2={toX(männer.sort((a, b) => a - b)[0])}
+            y2={30}
+            stroke="blue"
+            strokeWidth={2}
+          />
+          <line
+            x1={toX(männer.sort((a, b) => a - b)[24])}
+            y1={10}
+            x2={toX(männer.sort((a, b) => a - b)[24])}
+            y2={30}
+            stroke="blue"
+            strokeWidth={2}
+          />
+          <line
+            x1={toX(männer.sort((a, b) => a - b)[0])}
+            y1={20}
+            x2={toX(männer.sort((a, b) => a - b)[24])}
+            y2={20}
+            stroke="blue"
+            strokeWidth={1}
+          />
+          <rect
+            x={toX(männer.sort((a, b) => a - b)[5])}
+            y={10}
+            width={
+              toX(männer.sort((a, b) => a - b)[18]) -
+              toX(männer.sort((a, b) => a - b)[5])
+            }
+            height={20}
+            fill="lightblue"
+            stroke="blue"
+          />
+          <line
+            x1={toX(
+              (männer.sort((a, b) => a - b)[11] +
+                männer.sort((a, b) => a - b)[12]) /
+                2,
+            )}
+            y1={10}
+            x2={toX(
+              (männer.sort((a, b) => a - b)[11] +
+                männer.sort((a, b) => a - b)[12]) /
+                2,
+            )}
+            y2={30}
+            stroke="blue"
+            strokeWidth={2}
+          />
+          <line
+            x1={toX(frauen.sort((a, b) => a - b)[0])}
+            y1={80}
+            x2={toX(frauen.sort((a, b) => a - b)[0])}
+            y2={100}
+            stroke="blue"
+            strokeWidth={2}
+          />
+          <line
+            x1={toX(frauen.sort((a, b) => a - b)[24])}
+            y1={80}
+            x2={toX(frauen.sort((a, b) => a - b)[24])}
+            y2={100}
+            stroke="blue"
+            strokeWidth={2}
+          />
+          <line
+            x1={toX(frauen.sort((a, b) => a - b)[0])}
+            y1={90}
+            x2={toX(frauen.sort((a, b) => a - b)[24])}
+            y2={90}
+            stroke="blue"
+            strokeWidth={1}
+          />
+          <rect
+            x={toX(frauen.sort((a, b) => a - b)[5])}
+            y={80}
+            width={
+              toX(frauen.sort((a, b) => a - b)[18]) -
+              toX(frauen.sort((a, b) => a - b)[5])
+            }
+            height={20}
+            fill="lightblue"
+            stroke="blue"
+          />
+          <line
+            x1={toX(
+              (frauen.sort((a, b) => a - b)[11] +
+                frauen.sort((a, b) => a - b)[12]) /
+                2,
+            )}
+            y1={80}
+            x2={toX(
+              (frauen.sort((a, b) => a - b)[11] +
+                frauen.sort((a, b) => a - b)[12]) /
+                2,
+            )}
+            y2={100}
+            stroke="blue"
+            strokeWidth={2}
+          />
+        </svg>
+        <p>
+          Außerdem sind die Ergebnisse der Befragungen in den beiden
+          Säulendiagrammen abgebildet, wobei eines der Diagramme unvollständig
+          ist.{' '}
+        </p>
+        {shuffledItems}
         <ul>
           <li>
             Welcher Boxplot gehört zum vollständigen Diagramm? Begründe mithilfe
@@ -682,6 +833,584 @@ export const exercise263: Exercise<DATA> = {
     )
   },
   solution({ data }) {
-    return <></>
+    const frauen = [
+      data.frau1,
+      data.frau2,
+      data.frau3,
+      data.frau4,
+      data.frau5,
+      data.frau6,
+      data.frau7,
+      data.frau8,
+      data.frau9,
+      data.frau10,
+      data.frau11,
+      data.frau12,
+      data.frau13,
+      data.frau14,
+      data.frau15,
+      data.frau16,
+      data.frau17,
+      data.frau18,
+      data.frau19,
+      data.frau20,
+      data.frau21,
+      data.frau22,
+      data.frau23,
+      data.frau24,
+      data.frau25,
+    ]
+    const männer = [
+      data.mann1,
+      data.mann2,
+      data.mann3,
+      data.mann4,
+      data.mann5,
+      data.mann6,
+      data.mann7,
+      data.mann8,
+      data.mann9,
+      data.mann10,
+      data.mann11,
+      data.mann12,
+      data.mann13,
+      data.mann14,
+      data.mann15,
+      data.mann16,
+      data.mann17,
+      data.mann18,
+      data.mann19,
+      data.mann20,
+      data.mann21,
+      data.mann22,
+      data.mann23,
+      data.mann24,
+      data.mann25,
+    ]
+    const frauen1 = frauen.filter(element => element === 1).length
+    const frauen2 = frauen.filter(element => element === 2).length
+    const frauen3 = frauen.filter(element => element === 3).length
+    const frauen4 = frauen.filter(element => element === 4).length
+    const frauen5 = frauen.filter(element => element === 5).length
+    const frauen6 = frauen.filter(element => element === 6).length
+    const frauen7 = frauen.filter(element => element === 7).length
+    const frauen8 = frauen.filter(element => element === 8).length
+    const frauen9 = frauen.filter(element => element === 9).length
+    const frauen10 = frauen.filter(element => element === 10).length
+    const frauen11 = frauen.filter(element => element === 11).length
+    const frauen12 = frauen.filter(element => element === 12).length
+    const frauen13 = frauen.filter(element => element === 13).length
+    const frauen14 = frauen.filter(element => element === 14).length
+    const frauen15 = frauen.filter(element => element === 15).length
+    const frauen16 = frauen.filter(element => element === 16).length
+
+    const männer1 = männer.filter(element => element === 1).length
+    const männer2 = männer.filter(element => element === 2).length
+    const männer3 = männer.filter(element => element === 3).length
+    const männer4 = männer.filter(element => element === 4).length
+    const männer5 = männer.filter(element => element === 5).length
+    const männer6 = männer.filter(element => element === 6).length
+    const männer7 = männer.filter(element => element === 7).length
+    const männer8 = männer.filter(element => element === 8).length
+    const männer9 = männer.filter(element => element === 9).length
+    const männer10 = männer.filter(element => element === 10).length
+    const männer11 = männer.filter(element => element === 11).length
+    const männer12 = männer.filter(element => element === 12).length
+    const männer13 = männer.filter(element => element === 13).length
+    const männer14 = männer.filter(element => element === 14).length
+    const männer15 = männer.filter(element => element === 15).length
+    const männer16 = männer.filter(element => element === 16).length
+    const listItems_vollständig = [
+      <li key="1">
+        <svg viewBox="0 0 328 150">
+          <image
+            href="/content/BW_Realschule/263_Diagramm.jpg"
+            height="150"
+            width="328"
+          />
+
+          <rect
+            x={60}
+            y={120 - toY(frauen1)}
+            width="10"
+            height={toY(frauen1)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={72}
+            y={120 - toY(frauen2)}
+            width="10"
+            height={toY(frauen2)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={84.5}
+            y={120 - toY(frauen3)}
+            width="10"
+            height={toY(frauen3)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={97}
+            y={120 - toY(frauen4)}
+            width="10"
+            height={toY(frauen4)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={110}
+            y={120 - toY(frauen5)}
+            width="10"
+            height={toY(frauen5)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={123}
+            y={120 - toY(frauen6)}
+            width="10"
+            height={toY(frauen6)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={135.5}
+            y={120 - toY(frauen7)}
+            width="10"
+            height={toY(frauen7)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={147.5}
+            y={120 - toY(frauen8)}
+            width="10"
+            height={toY(frauen8)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={159.5}
+            y={120 - toY(frauen9)}
+            width="10"
+            height={toY(frauen9)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={175}
+            y={120 - toY(frauen10)}
+            width="10"
+            height={toY(frauen10)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={190.5}
+            y={120 - toY(frauen11)}
+            width="10"
+            height={toY(frauen11)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={208}
+            y={120 - toY(frauen12)}
+            width="10"
+            height={toY(frauen12)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={226}
+            y={120 - toY(frauen13)}
+            width="10"
+            height={toY(frauen13)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={244}
+            y={120 - toY(frauen14)}
+            width="10"
+            height={toY(frauen14)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={261}
+            y={120 - toY(frauen15)}
+            width="10"
+            height={toY(frauen15)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={279.5}
+            y={120 - toY(frauen16)}
+            width="10"
+            height={toY(frauen16)}
+            fill="gray"
+            stroke="black"
+          />
+        </svg>
+      </li>,
+      <li key="2">
+        <svg viewBox="0 0 328 150">
+          <image
+            href="/content/BW_Realschule/263_Diagramm.jpg"
+            height="150"
+            width="328"
+          />
+          <rect
+            x={60}
+            y={120 - toY(männer1)}
+            width="10"
+            height={toY(männer1)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={72}
+            y={120 - toY(männer2)}
+            width="10"
+            height={toY(männer2)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={84.5}
+            y={120 - toY(männer3)}
+            width="10"
+            height={toY(männer3)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={97}
+            y={120 - toY(männer4)}
+            width="10"
+            height={toY(männer4)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={110}
+            y={120 - toY(männer5)}
+            width="10"
+            height={toY(männer5)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={123}
+            y={120 - toY(männer6)}
+            width="10"
+            height={toY(männer6)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={135.5}
+            y={120 - toY(männer7)}
+            width="10"
+            height={toY(männer7)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={147.5}
+            y={120 - toY(männer8)}
+            width="10"
+            height={toY(männer8)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={159.5}
+            y={120 - toY(männer9)}
+            width="10"
+            height={toY(männer9)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={175}
+            y={120 - toY(männer10)}
+            width="10"
+            height={toY(männer10)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={190.5}
+            y={120 - toY(männer11)}
+            width="10"
+            height={toY(männer11)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={208}
+            y={120 - toY(männer12)}
+            width="10"
+            height={toY(männer12)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={226}
+            y={120 - toY(männer13)}
+            width="10"
+            height={toY(männer13)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={244}
+            y={120 - toY(männer14)}
+            width="10"
+            height={toY(männer14)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={261}
+            y={120 - toY(männer15)}
+            width="10"
+            height={toY(männer15)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={279.5}
+            y={120 - toY(männer16)}
+            width="10"
+            height={toY(männer16)}
+            fill="gray"
+            stroke="black"
+          />
+        </svg>
+      </li>,
+    ]
+    const listItems_unvollständig = [
+      <li key="1">
+        <svg viewBox="0 0 328 150">
+          <image
+            href="/content/BW_Realschule/263_Diagramm.jpg"
+            height="150"
+            width="328"
+          />
+
+          <rect
+            x={60}
+            y={120 - toY(frauen1)}
+            width="10"
+            height={toY(frauen1)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={72}
+            y={120 - toY(frauen2)}
+            width="10"
+            height={toY(frauen2)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={84.5}
+            y={120 - toY(frauen3)}
+            width="10"
+            height={toY(frauen3)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={97}
+            y={120 - toY(frauen4)}
+            width="10"
+            height={toY(frauen4)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={110}
+            y={120 - toY(frauen5)}
+            width="10"
+            height={toY(frauen5)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={123}
+            y={120 - toY(frauen6)}
+            width="10"
+            height={toY(frauen6)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={135.5}
+            y={120 - toY(frauen7)}
+            width="10"
+            height={toY(frauen7)}
+            fill="gray"
+            stroke="black"
+          />
+        </svg>
+      </li>,
+      <li key="2">
+        <svg viewBox="0 0 328 150">
+          <image
+            href="/content/BW_Realschule/263_Diagramm.jpg"
+            height="150"
+            width="328"
+          />
+          <rect
+            x={60}
+            y={120 - toY(männer1)}
+            width="10"
+            height={toY(männer1)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={72}
+            y={120 - toY(männer2)}
+            width="10"
+            height={toY(männer2)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={84.5}
+            y={120 - toY(männer3)}
+            width="10"
+            height={toY(männer3)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={97}
+            y={120 - toY(männer4)}
+            width="10"
+            height={toY(männer4)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={110}
+            y={120 - toY(männer5)}
+            width="10"
+            height={toY(männer5)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={123}
+            y={120 - toY(männer6)}
+            width="10"
+            height={toY(männer6)}
+            fill="gray"
+            stroke="black"
+          />
+          <rect
+            x={135.5}
+            y={120 - toY(männer7)}
+            width="10"
+            height={toY(männer7)}
+            fill="gray"
+            stroke="black"
+          />
+        </svg>
+      </li>,
+    ]
+    const kennwerte = [
+      [
+        frauen.sort((a, b) => a - b)[0],
+        frauen.sort((a, b) => a - b)[24],
+        (frauen.sort((a, b) => a - b)[11] + frauen.sort((a, b) => a - b)[12]) /
+          2,
+        frauen.sort((a, b) => a - b)[18],
+        frauen.sort((a, b) => a - b)[5],
+      ],
+      [
+        männer.sort((a, b) => a - b)[0],
+        männer.sort((a, b) => a - b)[24],
+        (männer.sort((a, b) => a - b)[11] + männer.sort((a, b) => a - b)[12]) /
+          2,
+        männer.sort((a, b) => a - b)[18],
+        männer.sort((a, b) => a - b)[5],
+      ],
+    ]
+    const kombinierteItems = [
+      listItems_vollständig[data.random[0]],
+      listItems_unvollständig[data.random[1]],
+    ]
+    const shuffledItems = data.order.map(i => kombinierteItems[i])
+    function toX(n: number) {
+      return 46 + (n * 233) / 19
+    }
+    function toY(n: number) {
+      return (n * 112.5) / 5
+    }
+    return (
+      <>
+        <p>
+          <strong>Boxplot des vollständigen Diagramms</strong>
+        </p>
+        <p>Bestimme die Kennwerte des vollständigen Diagramms:</p>
+        {listItems_vollständig[data.random[0]]}
+        <ul>
+          <li>Minimum: {kennwerte[data.random[0]][0]}</li>
+          <li>Maximum: {kennwerte[data.random[0]][1]}</li>
+          <li>Zentralwert: {pp(kennwerte[data.random[0]][2])}</li>
+          <li>Oberes Quartil: {kennwerte[data.random[0]][3]}</li>
+          <li>Unteres Quartil: {kennwerte[data.random[0]][4]}</li>
+        </ul>
+        <p>
+          Das Diagramm passt zum Boxplot der{' '}
+          <strong>{data.random[0] == 0 ? <>Frauen</> : <>Männer</>}</strong>.
+        </p>
+        <p>
+          <strong>Unvollständiges Diagramm</strong>
+        </p>
+        <p>Verwende den Boxplot der Frauen und deren Kennwerte:</p>
+        <ul>
+          <li>Minimum: {kennwerte[data.random[1]][0]}</li>
+          <li>Maximum: {kennwerte[data.random[1]][1]}</li>
+          <li>Zentralwert: {pp(kennwerte[data.random[1]][2])}</li>
+          <li>Oberes Quartil: {kennwerte[data.random[1]][3]}</li>
+          <li>Unteres Quartil: {kennwerte[data.random[1]][4]}</li>
+        </ul>
+        <p>Ein mögliches Diagramm könnte so aussehen:</p>
+        {listItems_vollständig[data.random[1]]}
+        <p>
+          <strong>Finns Aussage</strong>
+        </p>
+        <p>Der Zentralwert ist die genaue Mitte der Rangliste der Daten.</p>
+        <p>
+          Der Zentralwert der Männer ist: {pp(kennwerte[data.random[0]][2])}
+        </p>
+        <p>
+          {kennwerte[data.random[0]][2] >= 7 ? (
+            <>
+              Damit <strong>hat Finn recht</strong>, denn die Hälfte der Männer
+              liest genau 7 Stunden und mehr.
+            </>
+          ) : (
+            <>
+              <strong>Finn hat nicht recht.</strong> Denn die Hälfte der Männer
+              liest {kennwerte[data.random[0]][2]} Stunden und noch weniger.
+            </>
+          )}
+        </p>
+      </>
+    )
   },
 }
