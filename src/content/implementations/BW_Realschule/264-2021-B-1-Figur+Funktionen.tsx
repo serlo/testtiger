@@ -12,6 +12,10 @@ interface DATA {
   ab: number
   alpha: number
   ce: number
+  x1: number
+  x2: number
+  n1: number
+  n2: number
 }
 
 export const exercise264: Exercise<DATA> = {
@@ -24,9 +28,13 @@ export const exercise264: Exercise<DATA> = {
       ab: rng.randomIntBetween(100, 150) / 10,
       alpha: rng.randomIntBetween(50, 75),
       ce: rng.randomIntBetween(60, 90) / 10,
+      x1: rng.randomIntBetween(1, 4),
+      x2: rng.randomIntBetween(5, 8),
+      n1: rng.randomIntBetween(1, 4),
+      n2: rng.randomIntBetween(6, 9),
     }
   },
-  originalData: { ab: 13.2, alpha: 55, ce: 8 },
+  originalData: { ab: 13.2, alpha: 55, ce: 8, x1: 1, x2: 3, n1: -1, n2: 5 },
   constraint({ data }) {
     return true
   },
@@ -272,11 +280,16 @@ export const exercise264: Exercise<DATA> = {
         return null
       },
       task({ data }) {
+        const x1 = data.x1
+        const x2 = data.x2
+        const y1 = (data.x1 - data.n1) * (data.x1 - data.n2)
+        const y2 = (data.x2 - data.n1) * (data.x2 - data.n2)
         return (
           <>
             <p>
-              Die Punkte A(1|-8) und B(3|-8) liegen auf einer nach oben
-              geöffneten verschobenen Normalparabel p.
+              Die Punkte A({pp(data.x1)}|{pp(y1)}) und B({pp(data.x2)}|{pp(y2)})
+              liegen auf einer nach oben geöffneten verschobenen Normalparabel
+              p.
             </p>
             <ul>
               <li>
@@ -302,7 +315,96 @@ export const exercise264: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        return <></>
+        const x1 = data.x1
+        const x2 = data.x2
+        const y1 = (data.x1 - data.n1) * (data.x1 - data.n2)
+        const y2 = (data.x2 - data.n1) * (data.x2 - data.n2)
+        const b = (y1 - y2 - (x1 * x1 - x2 * x2)) / (x1 - x2)
+        return (
+          <>
+            <p>
+              Die Parabel p<sub>2</sub> verläuft durch die Punkte A(
+              {pp(x1)}|{pp(y1)}) und B({pp(x2)}|{pp(y2)}
+              ).
+            </p>
+            <p>
+              Setze die Punkte jeweils in die allgemeine Form y = x² + bx + c
+              ein:
+            </p>
+            <p>
+              I &nbsp;&nbsp;&nbsp; {pp(y1)} = {pp(x1, 'embrace_neg')}² + b ·{' '}
+              {pp(x1, 'embrace_neg')} + c<br></br>II &nbsp;&nbsp;&nbsp; {pp(y2)}{' '}
+              = {pp(x2, 'embrace_neg')}² + b · {pp(x2, 'embrace_neg')} + c
+            </p>
+            <p>
+              Die Gleichungen I und II beschreiben ein lineares
+              Gleichungssystem. Löse es, um die Parameter b und c der Parabel zu
+              bestimmen:
+            </p>
+            <p>
+              I &nbsp;&nbsp;&nbsp; {pp(y1)} = {pp(x1 * x1)} {pp(x1, 'merge_op')}
+              b + c<br></br>II &nbsp;&nbsp;&nbsp; {pp(y2)} = {pp(x2 * x2)}{' '}
+              {pp(x2, 'merge_op')}b + c
+            </p>
+            <p>
+              Subtrahiere die Gleichungen voneinander, um c aus dem Gleichungen
+              zu entfernen:
+            </p>
+            <p>
+              I - II: {pp(y1)} − {pp(y2, 'embrace_neg')} = {pp(x1 * x1)} −{' '}
+              {pp(x2 * x2)} {pp(x1, 'merge_op')}b {pp(-x2, 'merge_op')}b
+            </p>
+            <p>Fasse die Terme zusammen und löse die Gleichung nach b:</p>
+            {buildEquation([
+              [
+                <>{pp(y1 - y2)}</>,
+                <>=</>,
+                <>
+                  {pp(x1 * x1 - x2 * x2)} {pp(x1 - x2, 'merge_op')}b
+                </>,
+                <>| {pp(-(x1 * x1 - x2 * x2), 'merge_op')}</>,
+              ],
+              [
+                <>{pp(y1 - y2 - (x1 * x1 - x2 * x2))}</>,
+                <>=</>,
+                <>{pp(x1 - x2)}b</>,
+                <>| : {pp(x1 - x2, 'embrace_neg')}</>,
+              ],
+              [
+                <>b</>,
+                <>=</>,
+                <>{pp((y1 - y2 - (x1 * x1 - x2 * x2)) / (x1 - x2))}</>,
+              ],
+            ])}
+            <p>
+              Sezte den Wert für b in eine der Gleichungen ein. In I eingesetzt:
+            </p>
+            {buildEquation([
+              [
+                <>{pp(y1)} </>,
+                <>=</>,
+                <>
+                  {pp(x1 * x1)} {pp(x1, 'merge_op')} · {pp(b, 'embrace_neg')} +
+                  c
+                </>,
+              ],
+              [
+                <>{pp(y1)}</>,
+                <>=</>,
+                <>{pp(x1 * x1 + x1 * b)} + c</>,
+                <>| {pp(-(x1 * x1 + x1 * b), 'merge_op')}</>,
+              ],
+              [<>c</>, <>=</>, <>{pp(y1 - (x1 * x1 + x1 * b))}</>],
+            ])}
+            <p>Damit lautet der Funktionsterm:</p>
+            <p>
+              <strong>
+                y = x² {pp(b, 'merge_op')}x{' '}
+                {pp(y1 - (x1 * x1 + x1 * b), 'merge_op')}
+              </strong>
+            </p>
+          </>
+        )
       },
     },
   ],
