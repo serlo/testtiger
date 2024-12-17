@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -189,7 +189,8 @@ export const exercise215: Exercise<DATA> = {
             ])}
             <p>
               Die Muschel wird nicht zurückgelegt. Beim nächsten Zug ist also
-              eine weniger vorhanden. Damit ist die Wahrscheinlichkeit:
+              eine weniger vorhanden. Damit ist die Wahrscheinlichkeit beim
+              zweiten Zug eine Muschel zu ziehen:
             </p>
             <p>p = {buildInlineFrac(<>{muscle - 1}</>, <>9</>)}</p>
             <p>
@@ -224,38 +225,21 @@ export const exercise215: Exercise<DATA> = {
                 <>=</>,
                 <>{ppFrac(((data.seestar - 1) * data.seestar) / 90)}</>,
               ],
-              [
-                '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
-                <>
-                  <Color4>
-                    <span style={{ fontSize: 'small' }}>
-                      Es gibt 2 Möglichkeiten Muschel und Seestern zu ziehen
-                    </span>
-                  </Color4>
-                </>,
-              ],
+            ])}
+
+            <p>
+              Es gibt <Color1>2</Color1> Möglichkeiten Muschel und Seestern zu
+              ziehen:
+            </p>
+            {buildEquation([
               [
                 <>
                   p<sub>Muschel & Seestern</sub>
                 </>,
                 <>=</>,
                 <>
-                  2 · {buildInlineFrac(<>{muscle}</>, <>10</>)} ·{' '}
-                  {buildInlineFrac(<>{data.seestar}</>, <>9</>)}
-                </>,
-              ],
-              [
-                <></>,
-                <>=</>,
-                <>
-                  2 · {buildInlineFrac(<>{muscle}</>, <>10</>)} ·{' '}
-                  {buildInlineFrac(<>{data.seestar}</>, <>9</>)}
+                  <Color1>2</Color1> · {buildInlineFrac(<>{muscle}</>, <>10</>)}{' '}
+                  · {buildInlineFrac(<>{data.seestar}</>, <>9</>)}
                 </>,
               ],
               [<></>, <>=</>, <>{ppFrac((2 * data.seestar * muscle) / 90)}</>],
@@ -300,26 +284,11 @@ export const exercise215: Exercise<DATA> = {
             <p>
               Ein Spiel ist fair, wenn der Erwartungswert 0 ergibt. Setze diesen
               also 0 und bestimme den Gewinn für {'"'}zweimal Muschel{'"'}.
+              Dafür setzt du x für den Gewinn bei zweimal Muschel ein:
             </p>
             <div>
               <span style={{ fontSize: '0.8em' }}>
                 {buildEquation([
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>
-                          Gewinn {'"'}zweimal Muschel{'"'} x setzen
-                        </span>
-                      </Color4>
-                    </>,
-                  ],
                   [
                     <>0</>,
                     <>=</>,
@@ -553,10 +522,26 @@ export const exercise215: Exercise<DATA> = {
               (0|
               {data.höhe_max}), weshalb gilt:
             </p>
-            <p>y = a · x² + {data.höhe_max}</p>
-            <p>Setze eine der Nullstellen ein und berechne a:</p>
             {buildEquation([
               [<>y</>, <>=</>, <>a · x² + {data.höhe_max}</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Setze eine der Nullstellen ein:
+                    </span>
+                  </Color4>
+                </>,
+              ],
+            ])}
+            {buildEquation([
               [
                 <>0</>,
                 <>=</>,
