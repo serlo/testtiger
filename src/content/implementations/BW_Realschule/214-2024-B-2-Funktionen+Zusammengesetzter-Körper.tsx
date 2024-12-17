@@ -134,7 +134,7 @@ export const exercise214: Exercise<DATA> = {
               <strong>Funktionsgleichung der Parabel p</strong>
             </p>
             <p>Allgemein kann der Funktionsterm geschrieben werden als:</p>
-            <p>y = x² + bx + c</p>
+            <p>p : y = x² + bx + c</p>
             <p>Die Parabel verläuft durch B(0|{pp(data.b)}):</p>
             {buildEquation([
               [<>y</>, <>=</>, <>x² + bx + c</>],
@@ -142,7 +142,7 @@ export const exercise214: Exercise<DATA> = {
               [<>c</>, <>=</>, <>{pp(data.b)}</>],
             ])}
             <p>
-              Setze den Puntk A({pp(-data.b / data.m)}|0) in die
+              Setze den Punkt A({pp(-data.b / data.m)}|0) in die
               Funktionsgleichung y = x² + bx {pp(data.b)} ein und bestimme b:
             </p>
             {buildEquation([
@@ -206,7 +206,8 @@ export const exercise214: Exercise<DATA> = {
             <p>
               Damit ist die Funktionsgleichung<br></br>{' '}
               <strong>
-                y = x² {b > 0 && '+ '} {ppPolynom([[b, 'x', 1]])} {pp(data.b)}
+                p : y = x² {b > 0 && '+ '} {ppPolynom([[b, 'x', 1]])}{' '}
+                {pp(data.b)}
               </strong>
             </p>
             <p>

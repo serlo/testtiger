@@ -103,172 +103,107 @@ export const exercise213: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              <strong>Größe von ϕ</strong>
-            </p>
-            <p>Bestimme ϕ mithilfe der anderen Winkel in der Skizze:</p>
-            <svg viewBox="0 0 328 150">
-              <image
-                href="/content/BW_realschule/213_Skizze2.jpg"
-                height="150"
-                width="328"
-              />
-            </svg>
+            <div>
+              <span style={{ fontSize: '0.8em' }}>
+                <p>
+                  <strong>Größe von ϕ</strong>
+                </p>
+                <p>Bestimme ϕ mithilfe der anderen Winkel in der Skizze:</p>
+                <svg viewBox="0 0 328 150">
+                  <image
+                    href="/content/BW_realschule/213_Skizze2.jpg"
+                    height="150"
+                    width="328"
+                  />
+                </svg>
 
-            <p>
-              Im Dreieck EBG kann α mithilfe der Winkelsumme bestimmt werden:
-            </p>
-            <p>α = 180° − 90° − ε = {90 - data.epsilon}°</p>
-            <p>β bildet mit α einen Winkel von 180°:</p>
-            <p>β = 180° − α = {180 - (90 - data.epsilon)}°</p>
-            <p>
-              β befindet sich im Drachenviereck auch im Punkt F und bildet mit ϕ
-              einen Winkel von 180°:
-            </p>
-            <p>
-              ϕ = 180° − β = <strong>{90 - data.epsilon}°</strong>
-            </p>
+                <p>
+                  Im Dreieck EBG kann α mithilfe der Winkelsumme bestimmt
+                  werden:
+                </p>
+                <p>α = 180° − 90° − ε = {90 - data.epsilon}°</p>
+                <p>β bildet mit α einen Winkel von 180°:</p>
+                <p>β = 180° − α = {180 - (90 - data.epsilon)}°</p>
+                <p>
+                  β befindet sich im Drachenviereck auch im Punkt F und bildet
+                  mit ϕ einen Winkel von 180°:
+                </p>
+                <p>
+                  ϕ = 180° − β = <strong>{90 - data.epsilon}°</strong>
+                </p>
 
-            <p>
-              <strong>Umfang des Vierecks AEFD</strong>
-            </p>
-            <p>
-              Für den Umfang werden die Seitenlängen {buildOverline('AE')},{' '}
-              {buildOverline('EF')}, {buildOverline('DF')} und{' '}
-              {buildOverline('AD')} benötigt.
-            </p>
-            <p>
-              <strong>{buildOverline('AE')} berechnen</strong>
-            </p>
-            <p>
-              Für {buildOverline('AE')} gilt:<br></br>
-              {buildEquation([
-                [
-                  <>{buildOverline('AE')}</>,
-                  <>=</>,
-                  <>
-                    {buildOverline('AB')} − {buildOverline('BE')}
-                  </>,
-                ],
-                [
-                  <></>,
-                  <>=</>,
-                  <>
-                    {pp(data.ab)} cm − {pp(data.be)} cm
-                  </>,
-                ],
-                [<></>, <>=</>, <>{pp(data.ab - data.be)} cm</>],
-              ])}
-            </p>
-            <p>
-              <strong>{buildOverline('EF')} berechnen</strong>
-            </p>
-            <p>
-              Die Länge von {buildOverline('EF')} ist die gleiche, wie{' '}
-              {buildOverline('EG')}. Berechne {buildOverline('EG')} im
-              rechtwinkligen Dreieck EBG:
-            </p>
-            {buildEquation([
-              [
-                <>cos(ε)</>,
-                <>=</>,
-                <>
-                  {buildInlineFrac(
-                    <>{buildOverline('BE')}</>,
-                    <>{buildOverline('EG')}</>,
-                  )}
-                </>,
-              ],
-              [
-                <>cos({data.epsilon}°)</>,
-                <>=</>,
-                <>
-                  {buildInlineFrac(
+                <p>
+                  <strong>Umfang des Vierecks AEFD</strong>
+                </p>
+                <p>
+                  Für den Umfang werden die Seitenlängen {buildOverline('AE')},{' '}
+                  {buildOverline('EF')}, {buildOverline('DF')} und{' '}
+                  {buildOverline('AD')} benötigt.
+                </p>
+                <p>
+                  <strong>{buildOverline('AE')} berechnen</strong>
+                </p>
+                <p>
+                  Für {buildOverline('AE')} gilt:<br></br>
+                  {buildEquation([
+                    [
+                      <>{buildOverline('AE')}</>,
+                      <>=</>,
+                      <>
+                        {buildOverline('AB')} − {buildOverline('BE')}
+                      </>,
+                    ],
+                    [
+                      <></>,
+                      <>=</>,
+                      <>
+                        {pp(data.ab)} cm − {pp(data.be)} cm
+                      </>,
+                    ],
+                    [<></>, <>=</>, <>{pp(data.ab - data.be)} cm</>],
+                  ])}
+                </p>
+                <p>
+                  <strong>{buildOverline('EF')} berechnen</strong>
+                </p>
+                <p>
+                  Die Länge von {buildOverline('EF')} ist die gleiche, wie{' '}
+                  {buildOverline('EG')}. Berechne {buildOverline('EG')} im
+                  rechtwinkligen Dreieck EBG:
+                </p>
+                {buildEquation([
+                  [
+                    <>cos(ε)</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>{buildOverline('BE')}</>,
+                        <>{buildOverline('EG')}</>,
+                      )}
+                    </>,
+                  ],
+                  [
+                    <>cos({data.epsilon}°)</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>{pp(data.be)} cm</>,
+                        <>{buildOverline('EG')}</>,
+                      )}
+                    </>,
+                    <>| · {buildOverline('EG')}</>,
+                  ],
+                  [
+                    <>
+                      cos({data.epsilon}°) · {buildOverline('EG')}
+                    </>,
+                    <>=</>,
                     <>{pp(data.be)} cm</>,
+                    <>| : cos({data.epsilon}°)</>,
+                  ],
+                  [
                     <>{buildOverline('EG')}</>,
-                  )}
-                </>,
-                <>| · {buildOverline('EG')}</>,
-              ],
-              [
-                <>
-                  cos({data.epsilon}°) · {buildOverline('EG')}
-                </>,
-                <>=</>,
-                <>{pp(data.be)} cm</>,
-                <>| : cos({data.epsilon}°)</>,
-              ],
-              [
-                <>{buildOverline('EG')}</>,
-                <>≈</>,
-                <>
-                  {pp(
-                    roundToDigits(
-                      data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                      2,
-                    ),
-                  )}{' '}
-                  cm
-                </>,
-              ],
-            ])}
-            <p>
-              Damit ist auch {buildOverline('EF')} ={' '}
-              {pp(
-                roundToDigits(
-                  data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                  2,
-                ),
-              )}{' '}
-              cm.
-            </p>
-            <p>
-              <strong>{buildOverline('AD')} bestimmen</strong>
-            </p>
-            <p>
-              Die Länge {buildOverline('AD')} kann mit einer Hilfslinie bestimmt
-              werden:
-            </p>
-            <svg viewBox="0 0 328 140">
-              <image
-                href="/content/BW_realschule/213_Skizze3.jpg"
-                height="140"
-                width="328"
-              />
-            </svg>
-            <p>
-              Weil EGCF ein Drachenviereck ist, bilden EBCH ein Quadrat.{' '}
-              {buildOverline('EH')} hat die gleiche Länge wie{' '}
-              {buildOverline('EB')}. Damit gilt:
-            </p>
-            <p>
-              {buildOverline('AD')} = {buildOverline('EH')} = {pp(data.be)} cm
-            </p>
-            <p>
-              <strong>{buildOverline('DF')} berechnen</strong>
-            </p>
-            <p>
-              {buildOverline('DF')} ist zusammengesetzt aus{' '}
-              {buildOverline('DH')} und {buildOverline('HF')}. Berechne{' '}
-              {buildOverline('HF')} im rechtwinkligen Dreieck EFH:
-            </p>
-            {buildEquation([
-              [
-                <>cos(ϕ)</>,
-                <>=</>,
-                <>
-                  {buildInlineFrac(
-                    <>{buildOverline('HF')}</>,
-                    <>{buildOverline('EF')}</>,
-                  )}
-                </>,
-              ],
-              [
-                <>cos({90 - data.epsilon}°)</>,
-                <>=</>,
-                <>
-                  {buildInlineFrac(
-                    <>{buildOverline('HF')}</>,
+                    <>≈</>,
                     <>
                       {pp(
                         roundToDigits(
@@ -279,37 +214,136 @@ export const exercise213: Exercise<DATA> = {
                       )}{' '}
                       cm
                     </>,
-                  )}
-                </>,
-                <>
-                  | ·{' '}
+                  ],
+                ])}
+                <p>
+                  Damit ist auch {buildOverline('EF')} ={' '}
                   {pp(
                     roundToDigits(
                       data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
                       2,
                     ),
                   )}{' '}
+                  cm.
+                </p>
+                <p>
+                  <strong>{buildOverline('AD')} bestimmen</strong>
+                </p>
+                <p>
+                  Die Länge {buildOverline('AD')} kann mit einer Hilfslinie
+                  bestimmt werden:
+                </p>
+                <svg viewBox="0 0 328 140">
+                  <image
+                    href="/content/BW_realschule/213_Skizze3.jpg"
+                    height="140"
+                    width="328"
+                  />
+                </svg>
+                <p>
+                  Weil EGCF ein Drachenviereck ist, bilden EBCH ein Quadrat.{' '}
+                  {buildOverline('EH')} hat die gleiche Länge wie{' '}
+                  {buildOverline('EB')}. Damit gilt:
+                </p>
+                <p>
+                  {buildOverline('AD')} = {buildOverline('EH')} = {pp(data.be)}{' '}
                   cm
-                </>,
-              ],
-              [
-                <>
-                  cos({data.epsilon}°) ·{' '}
-                  {pp(
-                    roundToDigits(
-                      data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                      2,
-                    ),
+                </p>
+                <p>
+                  <strong>{buildOverline('DF')} berechnen</strong>
+                </p>
+                <p>
+                  {buildOverline('DF')} ist zusammengesetzt aus{' '}
+                  {buildOverline('DH')} und {buildOverline('HF')}. Berechne{' '}
+                  {buildOverline('HF')} im rechtwinkligen Dreieck EFH:
+                </p>
+                {buildEquation([
+                  [
+                    <>cos(ϕ)</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>{buildOverline('HF')}</>,
+                        <>{buildOverline('EF')}</>,
+                      )}
+                    </>,
+                  ],
+                  [
+                    <>cos({90 - data.epsilon}°)</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>{buildOverline('HF')}</>,
+                        <>
+                          {pp(
+                            roundToDigits(
+                              data.be /
+                                Math.cos((2 * Math.PI * data.epsilon) / 360),
+                              2,
+                            ),
+                          )}{' '}
+                          cm
+                        </>,
+                      )}
+                    </>,
+                    <>
+                      | ·{' '}
+                      {pp(
+                        roundToDigits(
+                          data.be /
+                            Math.cos((2 * Math.PI * data.epsilon) / 360),
+                          2,
+                        ),
+                      )}{' '}
+                      cm
+                    </>,
+                  ],
+                  [
+                    <>
+                      cos({data.epsilon}°) ·{' '}
+                      {pp(
+                        roundToDigits(
+                          data.be /
+                            Math.cos((2 * Math.PI * data.epsilon) / 360),
+                          2,
+                        ),
+                      )}{' '}
+                      cm
+                    </>,
+                    <>=</>,
+                    <>{buildOverline('HF')}</>,
+                  ],
+                  [
+                    <>{buildOverline('HF')}</>,
+                    <>≈</>,
+                    <>
+                      {pp(
+                        roundToDigits(
+                          roundToDigits(
+                            data.be /
+                              Math.cos((2 * Math.PI * data.epsilon) / 360),
+                            2,
+                          ) *
+                            Math.cos((2 * Math.PI * (90 - data.epsilon)) / 360),
+                          2,
+                        ),
+                      )}{' '}
+                      cm
+                    </>,
+                  ],
+                ])}
+                <p>
+                  {buildOverline('DH')} hat die gleiche Länge wie{' '}
+                  {buildOverline('AE')}. Damit lässt sich {buildOverline('DF')}{' '}
+                  nun bestimmen:
+                </p>
+                <p>
+                  {buildOverline('DF')} = {buildOverline('DH')} +{' '}
+                  {buildOverline('HF')} <br></br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {pp(
+                    data.ab - data.be,
                   )}{' '}
-                  cm
-                </>,
-                <>=</>,
-                <>{buildOverline('HF')}</>,
-              ],
-              [
-                <>{buildOverline('HF')}</>,
-                <>≈</>,
-                <>
+                  cm +{' '}
                   {pp(
                     roundToDigits(
                       roundToDigits(
@@ -319,67 +353,7 @@ export const exercise213: Exercise<DATA> = {
                       2,
                     ),
                   )}{' '}
-                  cm
-                </>,
-              ],
-            ])}
-            <p>
-              {buildOverline('DH')} hat die gleiche Länge wie{' '}
-              {buildOverline('AE')}. Damit lässt sich {buildOverline('DF')} nun
-              bestimmen:
-            </p>
-            <p>
-              {buildOverline('DF')} = {buildOverline('DH')} +{' '}
-              {buildOverline('HF')} <br></br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {pp(data.ab - data.be)} cm +{' '}
-              {pp(
-                roundToDigits(
-                  roundToDigits(
-                    data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                    2,
-                  ) * Math.cos((2 * Math.PI * (90 - data.epsilon)) / 360),
-                  2,
-                ),
-              )}{' '}
-              cm <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;={' '}
-              {pp(
-                data.ab -
-                  data.be +
-                  roundToDigits(
-                    roundToDigits(
-                      data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                      2,
-                    ) * Math.cos((2 * Math.PI * (90 - data.epsilon)) / 360),
-                    2,
-                  ),
-              )}{' '}
-              cm.
-            </p>
-            <p>
-              <strong>Umfang von AEFD</strong>
-            </p>
-            <p>Berechne den Umfang des Vierecks:</p>
-            {buildEquation([
-              [
-                <>U</>,
-                <>=</>,
-                <>
-                  {buildOverline('AE')} + {buildOverline('EF')} +{' '}
-                  {buildOverline('DF')} + {buildOverline('AD')}
-                </>,
-              ],
-              [
-                <></>,
-                <>=</>,
-                <>
-                  {pp(data.ab - data.be)} cm +{' '}
-                  {pp(
-                    roundToDigits(
-                      data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                      2,
-                    ),
-                  )}{' '}
-                  cm +
+                  cm <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;={' '}
                   {pp(
                     data.ab -
                       data.be +
@@ -392,36 +366,85 @@ export const exercise213: Exercise<DATA> = {
                         2,
                       ),
                   )}{' '}
-                  cm + {pp(data.be)} cm
-                </>,
-              ],
-              [
-                <></>,
-                <>=</>,
-                <>
-                  {pp(
-                    data.ab -
-                      data.be +
-                      roundToDigits(
-                        data.be / Math.cos((2 * Math.PI * data.epsilon) / 360),
-                        2,
-                      ) +
-                      data.ab -
-                      data.be +
-                      roundToDigits(
+                  cm.
+                </p>
+                <p>
+                  <strong>Umfang von AEFD</strong>
+                </p>
+                <p>Berechne den Umfang des Vierecks:</p>
+                {buildEquation([
+                  [
+                    <>U</>,
+                    <>=</>,
+                    <>
+                      {buildOverline('AE')} + {buildOverline('EF')} +{' '}
+                      {buildOverline('DF')} + {buildOverline('AD')}
+                    </>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      {pp(data.ab - data.be)} cm +{' '}
+                      {pp(
                         roundToDigits(
                           data.be /
                             Math.cos((2 * Math.PI * data.epsilon) / 360),
                           2,
-                        ) * Math.cos((2 * Math.PI * (90 - data.epsilon)) / 360),
-                        2,
-                      ) +
-                      data.be,
-                  )}{' '}
-                  cm
-                </>,
-              ],
-            ])}
+                        ),
+                      )}{' '}
+                      cm +
+                      {pp(
+                        data.ab -
+                          data.be +
+                          roundToDigits(
+                            roundToDigits(
+                              data.be /
+                                Math.cos((2 * Math.PI * data.epsilon) / 360),
+                              2,
+                            ) *
+                              Math.cos(
+                                (2 * Math.PI * (90 - data.epsilon)) / 360,
+                              ),
+                            2,
+                          ),
+                      )}{' '}
+                      cm + {pp(data.be)} cm
+                    </>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      {pp(
+                        data.ab -
+                          data.be +
+                          roundToDigits(
+                            data.be /
+                              Math.cos((2 * Math.PI * data.epsilon) / 360),
+                            2,
+                          ) +
+                          data.ab -
+                          data.be +
+                          roundToDigits(
+                            roundToDigits(
+                              data.be /
+                                Math.cos((2 * Math.PI * data.epsilon) / 360),
+                              2,
+                            ) *
+                              Math.cos(
+                                (2 * Math.PI * (90 - data.epsilon)) / 360,
+                              ),
+                            2,
+                          ) +
+                          data.be,
+                      )}{' '}
+                      cm
+                    </>,
+                  ],
+                ])}
+              </span>
+            </div>
           </>
         )
       },
@@ -499,10 +522,17 @@ export const exercise213: Exercise<DATA> = {
               </strong>
             </p>
             <p>
-              Setze den Scheitelpunkt S<sub>1</sub> in die Scheitelform ein:{' '}
+              Setze den Scheitelpunkt S<sub>1</sub> von p<sub>1</sub> in die
+              Scheitelform ein:{' '}
             </p>
             {buildEquation([
-              [<>y</>, <>=</>, <>(x − d)² + e</>],
+              [
+                <>
+                  p<sub>1</sub> : y
+                </>,
+                <>=</>,
+                <>(x − d)² + e</>,
+              ],
               [
                 <></>,
                 <>=</>,
@@ -551,7 +581,9 @@ export const exercise213: Exercise<DATA> = {
             </p>
             {buildEquation([
               [
-                <>y</>,
+                <>
+                  p<sub>2</sub> : y
+                </>,
                 <>=</>,
                 <>
                   (x − n<sub>1</sub>)(x − n<sub>2</sub>)
@@ -638,7 +670,7 @@ export const exercise213: Exercise<DATA> = {
             ])}
             <p>Die Geradengleichung ist damit:</p>
             <p>
-              y = {ppPolynom([[m, 'x', 1]])}{' '}
+              g : y = {ppPolynom([[m, 'x', 1]])}{' '}
               {-m * data.xs_1 + data.ys_1 > 0 && '+ '}
               {ppPolynom([[-m * data.xs_1 + data.ys_1, 'x', 0]])}
             </p>
@@ -684,7 +716,7 @@ export const exercise213: Exercise<DATA> = {
               </strong>
             </p>
             <p>
-              Berechne die Entfernung zwischen den Scheitepunkten mit der
+              Berechne die Entfernung zwischen den Scheitelpunkten mit der
               Formel:
             </p>
             {buildEquation([
