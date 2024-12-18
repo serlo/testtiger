@@ -3,6 +3,7 @@ import {
   buildEquation,
   buildInlineFrac,
   buildOverline,
+  buildSqrt,
 } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -12,8 +13,8 @@ interface DATA {
   ab: number
   alpha: number
   ce: number
-  x1: number
-  x2: number
+  xd: number
+
   n1: number
   n2: number
 }
@@ -28,13 +29,13 @@ export const exercise264: Exercise<DATA> = {
       ab: rng.randomIntBetween(100, 150) / 10,
       alpha: rng.randomIntBetween(50, 75),
       ce: rng.randomIntBetween(60, 90) / 10,
-      x1: rng.randomIntBetween(1, 4),
-      x2: rng.randomIntBetween(5, 8),
+      xd: rng.randomIntBetween(1, 4),
+
       n1: rng.randomIntBetween(1, 4),
       n2: rng.randomIntBetween(6, 9),
     }
   },
-  originalData: { ab: 13.2, alpha: 55, ce: 8, x1: 1, x2: 3, n1: -1, n2: 5 },
+  originalData: { ab: 13.2, alpha: 55, ce: 8, xd: 1, n1: -1, n2: 5 },
   constraint({ data }) {
     return true
   },
@@ -280,16 +281,15 @@ export const exercise264: Exercise<DATA> = {
         return null
       },
       task({ data }) {
-        const x1 = data.x1
-        const x2 = data.x2
-        const y1 = (data.x1 - data.n1) * (data.x1 - data.n2)
-        const y2 = (data.x2 - data.n1) * (data.x2 - data.n2)
+        const x1 = (data.n1 + data.n2) / 2 - data.xd
+        const x2 = (data.n1 + data.n2) / 2 + data.xd
+        const y1 = (x1 - data.n1) * (x1 - data.n2)
+        const y2 = (x2 - data.n1) * (x2 - data.n2)
         return (
           <>
             <p>
-              Die Punkte A({pp(data.x1)}|{pp(y1)}) und B({pp(data.x2)}|{pp(y2)})
-              liegen auf einer nach oben geöffneten verschobenen Normalparabel
-              p.
+              Die Punkte A({pp(x1)}|{pp(y1)}) und B({pp(x2)}|{pp(y2)}) liegen
+              auf einer nach oben geöffneten verschobenen Normalparabel p.
             </p>
             <ul>
               <li>
@@ -315,11 +315,18 @@ export const exercise264: Exercise<DATA> = {
         )
       },
       solution({ data }) {
-        const x1 = data.x1
-        const x2 = data.x2
-        const y1 = (data.x1 - data.n1) * (data.x1 - data.n2)
-        const y2 = (data.x2 - data.n1) * (data.x2 - data.n2)
+        const x1 = (data.n1 + data.n2) / 2 - data.xd
+        const x2 = (data.n1 + data.n2) / 2 + data.xd
+        const y1 = (x1 - data.n1) * (x1 - data.n2)
+        const y2 = (x2 - data.n1) * (x2 - data.n2)
         const b = (y1 - y2 - (x1 * x1 - x2 * x2)) / (x1 - x2)
+        const p = b
+        const q = y1 - (x1 * x1 + x1 * b)
+        const n1x = -p / 2 + Math.sqrt((p / 2) * (p / 2) - q)
+        const n2x = -p / 2 - Math.sqrt((p / 2) * (p / 2) - q)
+        const xq = (n1x + n2x) / 2
+        const mg = -y2 / (n2x - x2)
+        const bg = mg * n2x
         return (
           <>
             <p>
@@ -401,6 +408,224 @@ export const exercise264: Exercise<DATA> = {
               <strong>
                 y = x² {pp(b, 'merge_op')}x{' '}
                 {pp(y1 - (x1 * x1 + x1 * b), 'merge_op')}
+              </strong>
+            </p>
+            <p>
+              <strong>Flächeninhalt des Vierecks</strong>
+            </p>
+            <p>Berechne die Schnittpunkte der Parabel mit der x-Achse:</p>
+            <p>Löse die Gleichung mithilfe der pq-Formel:</p>
+            {buildEquation([
+              [
+                <>
+                  x<sub>1/2</sub>
+                </>,
+                <>=</>,
+                <>
+                  −{buildInlineFrac('p', 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac('p', 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −
+                      q
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  −{buildInlineFrac(<>{pp(p, 'embrace_neg')}</>, 2)} ±{' '}
+                  {buildSqrt(
+                    <>
+                      <span className="inline-block  scale-y-[2.6]">(</span>
+                      {buildInlineFrac(p, 2)}
+                      <span className="inline-block  scale-y-[2.6]">)</span>² −{' '}
+                      {q < 0 && <>(</>}
+                      {pp(q)}
+                      {q < 0 && <>)</>}
+                    </>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <>
+                    <span style={{ verticalAlign: 'middle' }}>
+                      {pp(-p / 2)} ±{' '}
+                    </span>
+                    {buildSqrt(pp((p / 2) * (p / 2) - q))}
+                  </>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <>
+                    <span style={{ verticalAlign: 'middle' }}>
+                      {pp(-p / 2)} ±{' '}
+                    </span>
+                    {pp(Math.sqrt((p / 2) * (p / 2) - q))}
+                  </>
+                </>,
+              ],
+            ])}
+
+            <strong>
+              <p>
+                x<sub>1</sub> = {pp(n1x)}
+              </p>
+              <p>
+                x<sub>2</sub> = {pp(n2x)}
+              </p>
+            </strong>
+            <p>
+              Die Nullstellen sind N<sub>1</sub>({pp(n2x)}|0) und N<sub>2</sub>(
+              {pp(n1x)}|0).
+            </p>
+            <svg viewBox="0 0 328 190">
+              <image
+                href="/content/BW_Realschule/264_Parabel.jpg"
+                height="190"
+                width="328"
+              />
+            </svg>
+            <p>
+              Die Punkte bilden ein Trapez. Berechne den Flächeninhalt mit der
+              Formel:
+            </p>
+            {buildEquation([
+              [
+                <>A</>,
+                <>=</>,
+                <>{buildInlineFrac(<>(a + c) · h</>, <>2</>)}</>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {buildInlineFrac(
+                    <>
+                      ({pp(n1x - n2x)} LE + {pp(2 * data.xd)} LE) ·{' '}
+                      {pp(Math.abs(y1))} LE
+                    </>,
+                    <>2</>,
+                  )}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  <strong>
+                    {pp(((n1x - n2x + 2 * data.xd) * Math.abs(y1)) / 2)} FE
+                  </strong>
+                </>,
+              ],
+            ])}
+            <p>
+              <strong>Koordinaten von Q</strong>
+            </p>
+            <p>
+              Stelle die Funktionsgleichung von einer der beiden Geraden auf.
+              Setze für g zum Beispiel die Punkte N<sub>1</sub> und B in die
+              allgemeine Geradengleichung ein:
+            </p>
+            <p>
+              I &nbsp;&nbsp;&nbsp; {pp(0)} = m · {pp(n2x, 'embrace_neg')} + b
+              <br></br>
+              II &nbsp;&nbsp;&nbsp; {pp(y2)} = m · {pp(x2, 'embrace_neg')} + b
+            </p>
+            <p>Subtrahiere die Gleichungen voneinander, um b zu eliminieren:</p>
+            <p>
+              I − II:&nbsp;&nbsp; {pp(-y2)} = {pp(n2x)}m −{' '}
+              {pp(x2, 'embrace_neg')}m
+            </p>
+            <p>
+              {pp(-y2)} = {pp(n2x - x2)}m &nbsp;&nbsp;&nbsp;&nbsp;| :{' '}
+              {pp(n2x - x2, 'embrace_neg')}
+            </p>
+            <p>m = {pp(mg)}</p>
+            <p>Setze m in eine der Gleichungen ein und bestimme b:</p>
+            <p>
+              I &nbsp;&nbsp;&nbsp; {pp(0)} = {pp(mg)} · {pp(n2x, 'embrace_neg')}{' '}
+              + b &nbsp;&nbsp;| − {pp(bg)}
+            </p>
+            <p>b = {pp(-bg)}</p>
+            <p>
+              <strong>
+                y<sub>g</sub> = {pp(mg)}x {pp(-bg, 'merge_op')}
+              </strong>
+            </p>
+
+            <p>
+              Der Schnittpunkt Q könnte man durch Gleichsetzen der beiden
+              Geraden berechnen. Alternativ kann argumentiert werden, dass der
+              Schnittpunkt aufgrund der Symmetrie in der Mitte des Trapezes
+              liegt:
+            </p>
+            <p>
+              {buildEquation([
+                [
+                  <>
+                    x<sub>Q</sub>
+                  </>,
+                  <>=</>,
+                  <>
+                    {buildInlineFrac(
+                      <>
+                        {' '}
+                        x<sub>N1</sub> + x<sub>N2</sub>
+                      </>,
+                      <>2</>,
+                    )}
+                  </>,
+                ],
+                [
+                  <></>,
+                  <>=</>,
+                  <>
+                    {buildInlineFrac(
+                      <>
+                        {' '}
+                        {n1x} + {n2x}
+                      </>,
+                      <>2</>,
+                    )}
+                  </>,
+                ],
+                [<></>, <>=</>, <>{pp(xq)}</>],
+              ])}
+            </p>
+            <p>Berechne den y-Wert der Gerade g an dieser Stelle:</p>
+            {buildEquation([
+              [
+                <>
+                  y<sub>Q</sub>
+                </>,
+                <>=</>,
+                <>
+                  {pp(mg)} · x {pp(-bg, 'merge_op')}
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {pp(mg)} · {pp(xq)} {pp(-bg, 'merge_op')}
+                </>,
+              ],
+              [<></>, <>=</>, <>{pp(mg * xq - bg)}</>],
+            ])}
+            <p>
+              Der Schnittpunkt Q ist:{' '}
+              <strong>
+                Q({pp(xq)}|{pp(mg * xq - bg)})
               </strong>
             </p>
           </>
