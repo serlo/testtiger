@@ -121,14 +121,15 @@ export const exercise262: Exercise<DATA> = {
             <></>,
             <>=</>,
             <>
-              (x {pp(data.b / 2)})² + {pp(data.c)} {pp(-Math.abs(data.b / 2))}²
+              (x {pp(data.b / 2, 'merge_op')})² + {pp(data.c)}{' '}
+              {pp(-Math.abs(data.b / 2))}²
             </>,
           ],
           [
             <></>,
             <>=</>,
             <>
-              (x {pp(data.b / 2)})²{' '}
+              (x {pp(data.b / 2, 'merge_op')})²{' '}
               {pp(data.c - (data.b / 2) * (data.b / 2), 'merge_op')}
             </>,
           ],
