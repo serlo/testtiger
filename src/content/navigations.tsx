@@ -762,7 +762,7 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Zahlen und Einheiten',
             position: { x: 100, y: 200 },
             steps: [
-              { exercise: { id: 31 } },
+              { exercise: { id: 1, pages: [{ index: 'a' }] } },
               { exercise: { id: 16 } },
               { exercise: { id: 50 } },
             ],
@@ -840,7 +840,7 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Zahlen und Einheiten',
             position: { x: 100, y: 1100 },
             steps: [
-              { exercise: { id: 1, pages: [{ index: 'a' }, { index: 'b' }] } },
+              { exercise: { id: 1, pages: [{ index: 'b' }] } },
               {
                 exercise: { id: 21 },
               },
