@@ -18,7 +18,7 @@ export const exercise5: Exercise<DATA> = {
   generator(rng) {
     return {
       preis: rng.randomIntBetween(60, 120),
-      rabatt: rng.randomIntBetween(4, 12) * 5,
+      rabatt: rng.randomItemFromArray([10, 20, 25, 30, 40, 50, 60]),
     }
   },
   originalData: {
@@ -26,7 +26,7 @@ export const exercise5: Exercise<DATA> = {
     rabatt: 25,
   },
   constraint({ data }) {
-    return true
+    return ((data.preis * data.rabatt) / 100) % 1 == 0
   },
   points: 3,
   task({ data }) {
@@ -86,6 +86,35 @@ export const exercise5: Exercise<DATA> = {
             '=',
             <>
               {data.preis} · {pp(data.rabatt / 100)}
+            </>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              {data.rabatt != 25 ? (
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Tipp: {data.preis} durch 10 teilen und mit{' '}
+                      {pp(data.rabatt / 10)} multiplizieren.
+                    </span>
+                  </Color4>
+                </>
+              ) : (
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      Tipp: {data.preis} durch 4 teilen
+                    </span>
+                  </Color4>
+                </>
+              )}
             </>,
           ],
           ['', '=', <>{pp((data.preis * data.rabatt) / 100)}</>],
