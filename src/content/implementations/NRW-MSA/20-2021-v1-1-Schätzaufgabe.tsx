@@ -29,7 +29,8 @@ export const exercise20: Exercise<DATA> = {
         und können unkommentiert bleiben. Weise bei größeren Abweichungen (50
         Röhrchen und mehr) darauf hin, dass nochmal genauer gezählt werden soll.
         Wichtig ist, dass die Antwort eine vollständige Beschreibung des
-        Vorgehens enthält.
+        Vorgehens enthält. Akzeptiere alle Werte, die auf plausiblen Annahmen
+        und angemessenen Begründungen basieren.
       </>
     )
   },
