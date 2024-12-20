@@ -57,9 +57,11 @@ export const exercise1: Exercise<DATA> = {
           <>
             Achte darauf, dass die Zahlen aufsteigend von links nach rechts
             geordnet sind. Nur absolut horizontale Anordnungen von links nach
-            rechts dürfen akzeptiert werden. Überprüfe das Ergebnis streng,
-            sodass die Reihenfolge absolut korrekt ist. Die negative Zahl mit
-            dem größten Betrag muss unbedingt ganz links stehen.
+            rechts dürfen akzeptiert werden. Gib bei anderen Anordnungen den
+            Hinweis, dass die Zahlen von links nach rechts angeordnet werden
+            müssen. Überprüfe das Ergebnis streng, sodass die Reihenfolge
+            absolut korrekt ist. Die negative Zahl mit dem größten Betrag muss
+            unbedingt ganz links stehen.
           </>
         )
       },
