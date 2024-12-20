@@ -23,7 +23,16 @@ export const exercise14: Exercise<DATA> = {
   },
   points: 3,
   correctionHints({ data }) {
-    return <>Verrate in deinem Feedback nicht das Ergebnis.</>
+    return (
+      <>
+        Bei dieser Schätzaufgabe sind kleine Abweichungen von der Lösung erlaubt
+        und können unkommentiert bleiben. Weise bei größeren Abweichungen darauf
+        hin, dass nochmal genauer gezählt werden soll. Wichtig ist, dass die
+        Antwort eine vollständige Beschreibung des Vorgehens enthält. Akzeptiere
+        alle Werte, die auf plausiblen Annahmen und angemessenen Begründungen
+        basieren. Verrate in deinem Feedback nicht das Ergebnis.
+      </>
+    )
   },
   task({ data }) {
     return (
