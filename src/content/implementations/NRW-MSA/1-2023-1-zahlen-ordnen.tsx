@@ -56,8 +56,10 @@ export const exercise1: Exercise<DATA> = {
         return (
           <>
             Achte darauf, dass die Zahlen aufsteigend von links nach rechts
-            geordnet sind. Überprüfe das Ergebnis streng, sodass die Reihenfolge
-            absolut korrekt ist.
+            geordnet sind. Nur Anordnungen von links nach rechts dürfen
+            akzeptiert werden. Überprüfe das Ergebnis streng, sodass die
+            Reihenfolge absolut korrekt ist. Negative Zahlen mit dem größten
+            Betrag müssen ganz links stehen.
           </>
         )
       },
