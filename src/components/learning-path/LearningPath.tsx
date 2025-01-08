@@ -3,8 +3,11 @@ import { useEffect, useRef } from 'react'
 import { LearningPathHeader } from './LearningPathHeader'
 import { LearningPathMap } from './LearningPathMap'
 import { LearningPathStore } from './state/learning-path-store'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { navigationData } from '@/content/navigations'
 
 export function LearningPath() {
+  const exam = PlayerProfileStore.useState(s => s.currentExam)
   const scrollDiv = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (scrollDiv.current) {
@@ -45,7 +48,12 @@ export function LearningPath() {
           onScroll={() => {
             if (scrollDiv.current) {
               const scrollTop = scrollDiv.current.scrollTop
-              const visiblePart = scrollTop > 5000 ? 0 : scrollTop > 600 ? 1 : 2
+              const visiblePart =
+                scrollTop > navigationData[exam].breakPoints[0]
+                  ? 0
+                  : scrollTop > navigationData[exam].breakPoints[1]
+                    ? 1
+                    : 2
               LearningPathStore.update(s => {
                 s.part = visiblePart
                 s.scrollPosition = scrollTop

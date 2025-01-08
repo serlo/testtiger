@@ -753,6 +753,8 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
+    mapHeight: 10000,
+    breakPoints: [5000, 600],
     path: [
       {
         title: 'Grundlagen',
@@ -2188,6 +2190,8 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
+    mapHeight: 6700,
+    breakPoints: [3300, 500],
     path: [
       {
         title: 'Grundlagen',
@@ -2896,6 +2900,8 @@ export const navigationData: { [key: number]: Navigation } = {
         ],
       },
     ],
+    mapHeight: 0,
+    breakPoints: [0, 0],
     path: [],
   },
 }
