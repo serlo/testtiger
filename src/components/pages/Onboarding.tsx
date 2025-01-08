@@ -37,6 +37,15 @@ export function Onboarding() {
         <div className="text-center text-lg mt-6 italic text-blue-600">
           Freies lernen. Für immer
         </div>
+        <div className="text-center mt-10 text-gray-700 mx-2">
+          Bereite dich vor auf die Matheprüfung für den{' '}
+          <strong>Erweiteren Ersten Schul-Abschluss</strong> in
+          Nordrhein-Westfalen (NRW - EESA)
+        </div>
+        <div className="mt-20 text-xs mx-2 text-center text-gray-400">
+          Das ist eine Entwicklungsversion. Name, Gestaltung und Funktionsumfang
+          der App können sich bis zum Ende der Pilotphase noch verändern.
+        </div>
       </IonContent>
       <IonFooter className="ion-no-border">
         <div className="py-3 text-center bg-white">
