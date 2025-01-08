@@ -12,7 +12,7 @@ export type PlayerProfileStoreProps = {
 
 export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
   name: '',
-  currentExam: 1,
+  currentExam: 2,
   progress: {
     1: { selectedTopics: [], learningPathTags: [] },
     2: { selectedTopics: [], learningPathTags: [] },
