@@ -38,13 +38,11 @@ export function Profile() {
               }}
               className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              {Object.keys(navigationData)
-                .map(x => parseInt(x))
-                .map(n => (
-                  <option value={n} key={n}>
-                    {navigationData[n].shortTitle}
-                  </option>
-                ))}
+              {[2, 1, 3].map(n => (
+                <option value={n} key={n}>
+                  {navigationData[n].shortTitle}
+                </option>
+              ))}
             </select>
           </div>
           <div>
