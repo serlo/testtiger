@@ -15,7 +15,7 @@ export const exercise129: Exercise<DATA> = {
   points: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(-9, 9) / 10,
+      a: rng.randomIntBetween(-9, 2) / 10,
       b: rng.randomBoolean(),
       c: rng.randomIntBetween(11, 99) / 100,
     }
@@ -69,11 +69,11 @@ export const exercise129: Exercise<DATA> = {
         <p>Ordne die Zahlen der Größe nach. Beginne mit der kleinsten Zahl.</p>
         <p>
           {pp(data.a)}{' '}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
           {pp(data.c)}{' '}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
           {data.b ? pp(data.a + 0.01) : pp(data.a - 0.01)}{' '}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
           {pp(swapDecimalPlaces(data.c))}
         </p>
       </>

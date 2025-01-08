@@ -26,11 +26,11 @@ export const exercise120: Exercise<DATA> = {
     return {
       a: rng.randomIntBetween(10, 100) / -100,
       b: rng.randomIntBetween(10, 100) / -100,
-      c: rng.randomItemFromArray([30, 40, 60, 70, 80, 90]),
-      d: rng.randomItemFromArray([50, 100]),
-      e: rng.randomItemFromArray([1, 3, 6, 7, 8, 9]),
+      c: rng.randomItemFromArray([20, 25, 40, 60, 70, 75, 80, 90]),
+      d: rng.randomItemFromArray([100]),
+      e: rng.randomItemFromArray([1, 2, 3, 4]),
       f: rng.randomItemFromArray([2, 4, 5]),
-      g: rng.randomIntBetween(10, 100) / 100,
+      g: rng.randomIntBetween(10, 90) / 100,
       h: rng.randomItemFromArray([1, 2, 3, 4, 5, 6]),
       i: rng.randomItemFromArray([2, 4, 5, 8]),
     }

@@ -14,7 +14,7 @@ export const exercise123: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(2000, 3000) / 100,
+      a: rng.randomIntBetween(2000, 3500) / 100,
       b: rng.randomIntBetween(100, 1000) / 100,
     }
   },
