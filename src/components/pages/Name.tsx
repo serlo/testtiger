@@ -10,11 +10,18 @@ import {
   PlayerProfileStore,
   updatePlayerProfileStore,
 } from '../../../store/player-profile-store'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function Name() {
   const history = useHistory()
   const [localName, setLocalName] = useState('')
+  const inputRef = useRef<HTMLIonInputElement>(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      inputRef.current?.setFocus()
+    }, 100)
+  }, []) // Add an empty dependency array to run the effect only once
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
@@ -28,6 +35,7 @@ export function Name() {
             }}
           >
             <IonInput
+              ref={inputRef} // Use the ref here
               value={localName}
               onIonInput={e => {
                 updatePlayerProfileStore(s => {
