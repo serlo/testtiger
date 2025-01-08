@@ -23,6 +23,7 @@ export async function generateStaticParams() {
     { all: ['app', 'participate'] },
     { all: ['app', 'profile'] },
     { all: ['feed'] },
+    { all: ['contact'] },
     { all: ['lists'] },
     ...lists.map(list => ({ all: ['lists', list.id] })),
     { all: ['settings'] },
