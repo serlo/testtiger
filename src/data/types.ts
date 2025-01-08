@@ -47,6 +47,8 @@ export interface Navigation {
     skillGroups: SkillGroup[]
   }[]
   path: Part[]
+  mapHeight: number
+  breakPoints: number[]
 }
 
 export interface Part {

@@ -21,6 +21,7 @@ export function LearningPathMap() {
   const history = useHistory()
 
   const path = navigationData[exam].path
+  const mapHeight = navigationData[exam].mapHeight
 
   const elements: { source: Lesson }[] = []
   const lines: { start: Lesson; end: Lesson }[] = []
@@ -40,14 +41,14 @@ export function LearningPathMap() {
 
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
-      <svg viewBox="0 0 375 10000">
+      <svg viewBox={`0 0 375 ${mapHeight}`}>
         {lines.map((l, i) => (
           <line
             key={i}
             x1={l.start.position!.x}
-            y1={10000 - l.start.position!.y}
+            y1={mapHeight - l.start.position!.y}
             x2={l.end.position!.x}
-            y2={10000 - l.end.position!.y}
+            y2={mapHeight - l.end.position!.y}
             stroke="gray"
             strokeWidth={5}
           ></line>
@@ -55,7 +56,7 @@ export function LearningPathMap() {
         {lessonDetails && (
           <circle
             cx={lessonDetails.position!.x}
-            cy={10000 - lessonDetails.position!.y}
+            cy={mapHeight - lessonDetails.position!.y}
             r={35}
             fill={'red'}
           ></circle>
@@ -64,7 +65,7 @@ export function LearningPathMap() {
           <Fragment key={i}>
             <circle
               cx={el.source.position!.x}
-              cy={10000 - el.source.position!.y}
+              cy={mapHeight - el.source.position!.y}
               r={25}
               fill={
                 el.source.type == 'new-skill'
@@ -83,7 +84,7 @@ export function LearningPathMap() {
             ) && (
               <text
                 x={el.source.position!.x - 6}
-                y={10000 - el.source.position!.y + 18}
+                y={mapHeight - el.source.position!.y + 18}
                 fontSize={32}
                 className="fill-green-400 font-bold"
               >
@@ -98,7 +99,7 @@ export function LearningPathMap() {
               <text
                 key={i}
                 x={el.source.position!.x}
-                y={10000 - el.source.position!.y + 5}
+                y={mapHeight - el.source.position!.y + 5}
                 textAnchor="middle"
                 fontSize={18}
                 className="pointer-events-none"
