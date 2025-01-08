@@ -2195,21 +2195,25 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zahlen und Einheiten',
+            position: { x: 100, y: 200 },
             steps: [{ exercise: { id: 110 } }, { exercise: { id: 130 } }],
           },
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
+            position: { x: 250, y: 350 },
             steps: [{ exercise: { id: 123 } }],
           },
           {
             type: 'new-skill',
             title: 'Schätzen & Überschlagen',
+            position: { x: 100, y: 500 },
             steps: [{ exercise: { id: 114 } }],
           },
           {
             type: 'challenge',
             title: 'Challenge 1',
+            position: { x: 250, y: 650 },
             steps: [
               { exercise: { id: 129 } },
               { exercise: { id: 123 } },
@@ -2219,6 +2223,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Proportionalität',
+            position: { x: 100, y: 800 },
             steps: [
               {
                 exercise: {
@@ -2237,6 +2242,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Prozentrechnung',
+            position: { x: 250, y: 950 },
             steps: [
               {
                 exercise: {
@@ -2250,6 +2256,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 2',
+            position: { x: 100, y: 1100 },
             steps: [
               {
                 exercise: {
@@ -2262,6 +2269,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Umgang mit Formeln und Termen',
+            position: { x: 250, y: 1250 },
             steps: [
               {
                 exercise: {
@@ -2274,6 +2282,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Gleichungen',
+            position: { x: 100, y: 1400 },
             steps: [
               {
                 exercise: {
@@ -2287,6 +2296,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 3',
+            position: { x: 250, y: 1550 },
             steps: [
               {
                 exercise: {
@@ -2304,6 +2314,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Fläche & Umfang simpel',
+            position: { x: 100, y: 1700 },
             steps: [
               {
                 exercise: {
@@ -2322,6 +2333,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Figuren zeichnen',
+            position: { x: 250, y: 1850 },
             steps: [
               {
                 exercise: {
@@ -2335,6 +2347,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 4',
+            position: { x: 100, y: 2000 },
             steps: [
               {
                 exercise: {
@@ -2352,6 +2365,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Oberfläche und Volumen 1',
+            position: { x: 250, y: 2150 },
             steps: [
               {
                 exercise: {
@@ -2364,6 +2378,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Diagramme und Kenngrößen',
+            position: { x: 100, y: 2300 },
             steps: [
               {
                 exercise: {
@@ -2383,6 +2398,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 5',
+            position: { x: 250, y: 2450 },
             steps: [
               {
                 exercise: {
@@ -2420,6 +2436,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Graphen',
+            position: { x: 100, y: 2600 },
             steps: [
               {
                 exercise: {
@@ -2441,6 +2458,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Laplace Experimente',
+            position: { x: 250, y: 2750 },
             steps: [
               {
                 exercise: {
@@ -2454,6 +2472,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 6',
+            position: { x: 100, y: 2900 },
             steps: [
               {
                 exercise: {
@@ -2490,6 +2509,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Graphen',
+            position: { x: 250, y: 3050 },
             steps: [
               {
                 exercise: {
@@ -2502,6 +2522,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Funktionen',
+            position: { x: 100, y: 3200 },
             steps: [
               {
                 exercise: {
@@ -2524,6 +2545,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellen',
+            position: { x: 250, y: 3350 },
             steps: [
               {
                 exercise: {
@@ -2541,6 +2563,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 1',
+            position: { x: 100, y: 3500 },
             steps: [
               {
                 exercise: {
@@ -2559,6 +2582,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Fläche & Umfang 1',
+            position: { x: 250, y: 3650 },
             steps: [
               {
                 exercise: {
@@ -2571,6 +2595,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
+            position: { x: 100, y: 3800 },
             steps: [
               {
                 exercise: {
@@ -2589,6 +2614,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Fläche und Umfang - Kreis',
+            position: { x: 250, y: 3950 },
             steps: [
               {
                 exercise: {
@@ -2614,6 +2640,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 2',
+            position: { x: 100, y: 4100 },
             steps: [
               {
                 exercise: {
@@ -2625,6 +2652,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Mit Längen argumentieren',
+            position: { x: 250, y: 4250 },
             steps: [
               {
                 exercise: {
@@ -2637,6 +2665,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Oberfläche und Volumen 1',
+            position: { x: 100, y: 4400 },
             steps: [
               {
                 exercise: {
@@ -2648,6 +2677,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Oberfläche und Volumen 2',
+            position: { x: 250, y: 4550 },
             steps: [
               { exercise: { id: 105 } },
               { exercise: { id: 106, pages: [{ index: 'b' }] } },
@@ -2662,6 +2692,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 3',
+            position: { x: 100, y: 4700 },
             steps: [
               {
                 exercise: {
@@ -2673,6 +2704,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Figuren zeichnen',
+            position: { x: 250, y: 4850 },
             steps: [
               {
                 exercise: {
@@ -2685,6 +2717,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Maßstab',
+            position: { x: 100, y: 5000 },
             steps: [
               {
                 exercise: {
@@ -2703,6 +2736,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Körpernetz & Symmetrie',
+            position: { x: 250, y: 5150 },
             steps: [
               {
                 exercise: {
@@ -2721,6 +2755,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 4',
+            position: { x: 100, y: 5300 },
             steps: [
               {
                 exercise: {
@@ -2732,6 +2767,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Diagramme und Kenngrößen',
+            position: { x: 250, y: 5450 },
             steps: [
               {
                 exercise: {
@@ -2744,6 +2780,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
+            position: { x: 100, y: 5600 },
             steps: [
               {
                 exercise: {
@@ -2762,6 +2799,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Laplace Experimente',
+            position: { x: 250, y: 5750 },
             steps: [
               {
                 exercise: {
@@ -2775,6 +2813,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 5',
+            position: { x: 100, y: 5900 },
             steps: [
               {
                 exercise: {
@@ -2791,12 +2830,14 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 1',
+            position: { x: 250, y: 6050 },
             steps: [{ exercise: { id: 119 } }],
           },
 
           {
             type: 'challenge',
             title: 'Challenge 2',
+            position: { x: 100, y: 6200 },
             steps: [
               {
                 exercise: {
@@ -2809,6 +2850,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 3',
+            position: { x: 250, y: 6350 },
             steps: [
               {
                 exercise: {
@@ -2821,6 +2863,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 4',
+            position: { x: 100, y: 6500 },
             steps: [
               {
                 exercise: {
