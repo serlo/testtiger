@@ -4,6 +4,7 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonButton,
 } from '@ionic/react'
 import {
   PlayerProfileStore,
@@ -56,6 +57,24 @@ export function Profile() {
             >
               Fortschritt zurücksetzen
             </button>
+          </div>
+          <div className="mt-6">
+            <IonButton
+              routerLink="/contact"
+              fill="clear"
+              size="small"
+              className="text-gray-500"
+            >
+              Kontakt
+            </IonButton>
+            <IonButton
+              routerLink="/privacy"
+              fill="clear"
+              size="small"
+              className="text-gray-500"
+            >
+              Datenschutz
+            </IonButton>
           </div>
         </div>
       </IonContent>
