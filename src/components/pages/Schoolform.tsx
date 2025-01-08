@@ -23,7 +23,7 @@ import { navigationData } from '@/content/navigations'
 
 export function Schoolform() {
   const name = PlayerProfileStore.useState(s => s.name)
-  const [localExam, setLocalExam] = useState(1)
+  const [localExam, setLocalExam] = useState(2)
   updatePlayerProfileStore(s => {
     s.currentExam = localExam
   })
