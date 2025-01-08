@@ -22,6 +22,7 @@ import {
   PlayerProfileStore,
   storageKey,
 } from '../../store/player-profile-store'
+import { Contact } from './pages/Contact'
 
 setupIonicReact({})
 
@@ -69,6 +70,7 @@ export function AppShell() {
           <Route path="/focus" render={() => <Focus />} />
           <Route path="/ready" render={() => <Ready />} />
           <Route path="/app" render={() => <App />} />
+          <Route path="/contact" render={() => <Contact />} />
           <Route
             path=""
             render={() => <Redirect to="/onboarding" />}
