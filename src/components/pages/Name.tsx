@@ -42,7 +42,7 @@ export function Name() {
       <IonFooter>
         <div className="py-3 text-center bg-white">
           <p className="mt-6">
-            <IonButton routerLink="/schoolform">weiter</IonButton>
+            <IonButton routerLink="/ready">weiter</IonButton>
           </p>
         </div>
       </IonFooter>
