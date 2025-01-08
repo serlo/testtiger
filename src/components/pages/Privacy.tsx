@@ -8,7 +8,7 @@ import {
   IonToolbar,
 } from '@ionic/react'
 
-export function Contact() {
+export function Privacy() {
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
@@ -16,12 +16,16 @@ export function Contact() {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/app/home"></IonBackButton>
           </IonButtons>
-          <IonTitle>Kontakt</IonTitle>
+          <IonTitle>Datenschutz</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        TODO: gesetzliche Angaben zum Betreiber (Name, Adresse, E-Mail reichen
-        für Minimalform)
+        <p>Angaben zum Datenschutz</p>
+        <p>Hosting: Vercel</p>
+        <p>KI: OpenAI</p>
+        <p>Backend: Uberspace</p>
+        <p>Diese Daten werden wo gespeichert</p>
+        <p>Diese Statistiken sammeln wir hier und da</p>
       </IonContent>
     </IonPage>
   )
