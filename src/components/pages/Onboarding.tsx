@@ -39,7 +39,7 @@ export function Onboarding() {
         </div>
         <div className="text-center mt-10 text-gray-700 mx-2">
           Bereite dich vor auf die Matheprüfung für den{' '}
-          <strong>Erweiteren Ersten Schul-Abschluss</strong> in
+          <strong>Erweiterten Ersten Schulabschluss</strong> in
           Nordrhein-Westfalen (NRW - EESA)
         </div>
         <div className="mt-20 text-xs mx-2 text-center text-gray-400">
