@@ -5,7 +5,7 @@ export function Ready() {
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
         <div className="text-center text-3xl mt-16">Bereit!</div>
-        <img src="/img/ready.jpg" className="mx-auto max-w-full" alt=""></img>
+        <div className="text-5xl text-center mt-16 mb-16">🎓</div>
         <div className="text-center text-gray-600 mt-6 max-w-[360px] mx-auto">
           Kein Stress - du wirst hier zum TestTiger 🙌
         </div>
