@@ -14,7 +14,25 @@ export function Onboarding() {
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
-        <div className="text-center text-5xl mt-10">🐯</div>
+        <div className="">
+          <IonButton
+            routerLink="/contact"
+            fill="clear"
+            size="small"
+            className="text-gray-500"
+          >
+            Kontakt
+          </IonButton>
+          <IonButton
+            routerLink="/privacy"
+            fill="clear"
+            size="small"
+            className="text-gray-500"
+          >
+            Datenschutz
+          </IonButton>
+        </div>
+        <div className="text-center text-5xl mt-20">🐯</div>
         <div className="text-center text-4xl mt-6">TestTiger</div>
         <div className="text-center text-lg mt-6 italic text-blue-600">
           Freies lernen. Für immer
