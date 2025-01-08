@@ -30,7 +30,7 @@ export function Name() {
         <div className="max-w-[360px] mx-auto mt-6 text-center text-blue-500 text-3xl bg-gray-50 rounded">
           <form
             onSubmit={e => {
-              history.push('/schoolform')
+              history.push('/ready')
               e.preventDefault()
             }}
           >
