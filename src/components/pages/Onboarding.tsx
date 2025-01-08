@@ -37,7 +37,6 @@ export function Onboarding() {
         <div className="text-center text-lg mt-6 italic text-blue-600">
           Freies lernen. Für immer
         </div>
-        <img src="/img/startscreen.jpg" className="mx-auto" alt=""></img>
       </IonContent>
       <IonFooter className="ion-no-border">
         <div className="py-3 text-center bg-white">
