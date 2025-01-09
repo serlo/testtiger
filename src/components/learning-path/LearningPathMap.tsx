@@ -16,7 +16,7 @@ import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const [lessonDetails, setLessonDetails] = useState<Lesson | null>(
-    navigationData[exam].path[0].lessons[0],
+    navigationData[exam].path[0]?.lessons[0],
   )
   const history = useHistory()
 
