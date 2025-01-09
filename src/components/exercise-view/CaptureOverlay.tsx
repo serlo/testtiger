@@ -1,6 +1,6 @@
 import Webcam from 'react-webcam'
 import { ExerciseViewStore } from './state/exercise-view-store'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 const videoConstraints = {
   facingMode: 'environment',
@@ -9,12 +9,20 @@ const videoConstraints = {
 export function CaptureOverlay() {
   const takePhoto = ExerciseViewStore.useState(s => s.takePhoto)
   const webcamRef = useRef<Webcam>(null)
+  const [loading, setLoading] = useState(true)
 
   if (!takePhoto) return null
 
   return (
     <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center">
       <div className="">
+        <div className="text-center text-xl mt-6">
+          Mache ein Bild von deiner Antwort
+        </div>
+        {loading && (
+          <div className="text-center text-gray-400 mt-6">Lade Kamera ...</div>
+        )}
+
         <Webcam
           videoConstraints={videoConstraints}
           audio={false}
@@ -24,6 +32,9 @@ export function CaptureOverlay() {
           width={1280}
           onUserMediaError={e => {
             alert(e)
+          }}
+          onUserMedia={() => {
+            setLoading(false)
           }}
         />
         <div className="mt-4 flex justify-center">
@@ -37,6 +48,7 @@ export function CaptureOverlay() {
                   s.takePhoto = false
                   s.cropImage = true
                 })
+                setLoading(true)
               }
             }}
           >
