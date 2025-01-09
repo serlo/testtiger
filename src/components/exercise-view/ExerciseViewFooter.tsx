@@ -44,12 +44,12 @@ export function ExerciseViewFooter() {
   )
 
   const takePhoto = async () => {
-    try {
-      ExerciseViewStore.update(s => {
-        s.cropImage = true
-      })
+    // try {
+    ExerciseViewStore.update(s => {
+      s.takePhoto = true
+    })
 
-      const image = await Camera.getPhoto({
+    /*const image = await Camera.getPhoto({
         // If we want to save some money on tokens, we can probably get away
         // with choosing a lower quality
         quality: 95,
@@ -73,7 +73,7 @@ export function ExerciseViewFooter() {
       ExerciseViewStore.update(s => {
         s.cropImage = false
       })
-    }
+    }*/
   }
 
   const insertSymbolAtCursor = (symbol: string) => {
