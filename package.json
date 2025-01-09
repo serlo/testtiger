@@ -45,6 +45,7 @@
     "react-router-dom": "5.3.4",
     "react-textarea-autosize": "8.5.3",
     "react-virtuoso": "4.7.1",
+    "react-webcam": "7.2.0",
     "remark-gfm": "4.0.0",
     "remark-math": "6.0.0"
   },

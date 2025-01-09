@@ -5,6 +5,7 @@ import { ExerciseViewFooter } from './ExerciseViewFooter'
 import { ChatOverlay } from './ChatOverlay'
 import { CropImageOverlay } from './CropImageOverlay'
 import { EndScreen } from './EndScreen'
+import { CaptureOverlay } from './CaptureOverlay'
 
 export function ExerciseViewLayout() {
   return (
@@ -20,6 +21,7 @@ export function ExerciseViewLayout() {
       </IonFooter>
       <ChatOverlay />
       <CropImageOverlay />
+      <CaptureOverlay />
       <EndScreen />
     </IonPage>
   )
