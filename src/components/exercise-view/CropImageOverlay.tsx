@@ -24,43 +24,50 @@ export function CropImageOverlay() {
           <>Bild wird verarbeitet ...</>
         ) : (
           <>
-            Wähle deinen Bereich aus.{' '}
-            <button
-              onClick={() => {
-                // TODO
-                // call action to upload image and handle response in client
-                const cropper = cropperRef.current?.cropper
-                if (cropper) {
-                  ExerciseViewStore.update(s => {
-                    s.chatHistory[s.navIndicatorPosition].resultPending = true
-                  })
-                  setTimeout(() => {
+            <p className="mb-3">Wähle deinen Bereich aus.</p>
+            <div className="flex justify-center">
+              <button
+                className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded"
+                onClick={() => {
+                  // TODO
+                  // call action to upload image and handle response in client
+                  const cropper = cropperRef.current?.cropper
+                  if (cropper) {
                     ExerciseViewStore.update(s => {
-                      s.chatHistory[s.navIndicatorPosition].entries.push({
-                        type: 'image',
-                        image: (s.checks[s.navIndicatorPosition].croppedImage =
-                          cropper.getCroppedCanvas().toDataURL()),
-                        description: '',
-                      })
-                      s.cropImage = false
-                      s.chatOverlay = 'chat'
+                      s.chatHistory[s.navIndicatorPosition].resultPending = true
                     })
-                    void analyseLastInput()
-                  }, 200)
-                }
-              }}
-            >
-              [Fertig]
-            </button>{' '}
-            <button
-              onClick={() => {
-                ExerciseViewStore.update(s => {
-                  s.cropImage = false
-                })
-              }}
-            >
-              [Schließen]
-            </button>
+                    setTimeout(() => {
+                      ExerciseViewStore.update(s => {
+                        s.chatHistory[s.navIndicatorPosition].entries.push({
+                          type: 'image',
+                          image: (s.checks[
+                            s.navIndicatorPosition
+                          ].croppedImage = cropper
+                            .getCroppedCanvas()
+                            .toDataURL()),
+                          description: '',
+                        })
+                        s.cropImage = false
+                        s.chatOverlay = 'chat'
+                      })
+                      void analyseLastInput()
+                    }, 200)
+                  }
+                }}
+              >
+                Fertig
+              </button>{' '}
+              <button
+                className="px-2 py-0.5 bg-gray-200 hover:bg-gray-300 rounded ml-6"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    s.cropImage = false
+                  })
+                }}
+              >
+                Schließen
+              </button>
+            </div>
           </>
         )}
       </div>
