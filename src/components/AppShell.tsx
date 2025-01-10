@@ -44,7 +44,7 @@ export function AppShell() {
       })
     }
 
-    const persistence = sessionStorage.getItem(storageKey)
+    const persistence = localStorage.getItem(storageKey)
 
     try {
       const obj = JSON.parse(
