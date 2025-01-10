@@ -14,6 +14,7 @@ export function Superskills() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const exercises = Object.entries(exercisesData)
   const history = useHistory()
+  const original = PlayerProfileStore.useState(s => s.original)
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
@@ -25,6 +26,20 @@ export function Superskills() {
         <div className="mx-3">
           <div className="mt-8">
             <h2 className="font-bold">Liste aller Aufgaben nach Jahren</h2>
+            <p className="my-3">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={original}
+                  onChange={e => {
+                    PlayerProfileStore.update(s => {
+                      s.original = e.target.checked
+                    })
+                  }}
+                />{' '}
+                Original (keine dynamische Generierung)
+              </label>
+            </p>
             {exercises.map(([id, content]) => {
               if (exam == 1 && parseInt(id) > 99) return null
               if (exam == 2 && (parseInt(id) < 100 || parseInt(id) >= 199))

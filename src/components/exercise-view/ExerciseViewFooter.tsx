@@ -408,22 +408,6 @@ export function ExerciseViewFooter() {
                   <FaIcon icon={faQuestionCircle} /> Hilfe
                 </summary>
                 <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
-                  {content.originalData && (
-                    <li
-                      className="text-sm text-gray-200 rounded-md cursor-pointer hover:underline"
-                      onClick={() => {
-                        ExerciseViewStore.update(s => {
-                          s.data = content.originalData
-                          s.chatOverlay = null
-                        })
-                        if (helpDropdownRef.current) {
-                          helpDropdownRef.current.open = false
-                        }
-                      }}
-                    >
-                      Original-Variante
-                    </li>
-                  )}
                   <li
                     className="py-2 cursor-pointer hover:underline"
                     onClick={() => {
