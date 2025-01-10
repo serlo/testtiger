@@ -20,8 +20,25 @@ export function Contact() {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        TODO: gesetzliche Angaben zum Betreiber (Name, Adresse, E-Mail reichen
-        für Minimalform)
+        <div className="mt-6 mx-4 [&>p]:mb-4 select-text">
+          <p>
+            Anbieter dieser App ist der Serlo Education e. V., eingetragen beim
+            Amtsgericht München unter der Nummer: 202808.
+          </p>
+          <p>
+            Serlo Education
+            <br />
+            c/o Impact Hub München
+            <br />
+            Gotzinger Straße 8<br />
+            D-81371 München
+          </p>
+          <p>
+            E-Mail: de@serlo.org
+            <br />
+            Telefonnummer: +491629070168
+          </p>
+        </div>
       </IonContent>
     </IonPage>
   )

@@ -20,12 +20,30 @@ export function Privacy() {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <p>Angaben zum Datenschutz</p>
-        <p>Hosting: Vercel</p>
-        <p>KI: OpenAI</p>
-        <p>Backend: Uberspace</p>
-        <p>Diese Daten werden wo gespeichert</p>
-        <p>Diese Statistiken sammeln wir hier und da</p>
+        <div className="mt-6 mx-4 [&>p]:mb-4 select-text">
+          <p>
+            Die Nutzung der App erfolgt ohne Erfassung personenbezogener Daten.
+            Achte aber auch darauf, dass du bei der Einführung und in
+            Chat-Interaktionen keine persönliche Daten weitergibst.
+          </p>
+          <p>
+            Dein Fortschritt wird auf deinem Gerät gespeichert. Du kannst es im
+            Profil jederzeit löschen.
+          </p>
+          <p>
+            Zur Bereitstellung der App und der Funktionalität greifen wir auf
+            verschiedene Dienste zurück. Diese sind wie folgt:
+          </p>
+          <p>
+            Vercel liefert die Webseite aus. Unsere KI-Funktion wird über OpenAI
+            zur Verfügung gestellt. Für Backend-Funktionen nutzen wir den Hoster
+            Uberspace.
+          </p>
+          <p>
+            Zur Qualitätsmessung und Verbesserung der App sammeln wir
+            Statistiken zur Nutzungshäufigkeiten.
+          </p>
+        </div>
       </IonContent>
     </IonPage>
   )
