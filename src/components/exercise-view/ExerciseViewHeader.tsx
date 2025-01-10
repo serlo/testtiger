@@ -17,7 +17,6 @@ export function ExerciseViewHeader() {
       <button
         className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block"
         onClick={() => {
-          console.log('toHome', toHome)
           if (toHome) {
             history.push('/app/home')
             return
@@ -36,7 +35,7 @@ export function ExerciseViewHeader() {
             skill && (i1 >= 0 || i2 >= 0 || i3 >= 0)
               ? '/topic/' +
                   (i1 >= 0 ? i1 + 1 : i2 >= 0 ? i2 + 101 : i3 + 201).toString()
-              : '/app/home',
+              : '/app/superskills',
           )
         }}
       >
