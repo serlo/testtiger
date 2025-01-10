@@ -6,7 +6,7 @@
     "@ai-sdk/openai": "latest",
     "ai": "latest",
     "dotenv": "16.4.5",
-    "express": "^4.21.1"
+    "express": "^4.21.2"
   },
   "type": "module",
   "scripts": {
