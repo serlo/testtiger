@@ -20,7 +20,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
 import { analyseLastInput } from './state/actions'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { exercisesData } from '@/content/exercises'
 import { updatePlayerProfileStore } from '../../../store/player-profile-store'
@@ -32,6 +32,7 @@ export function ExerciseViewFooter() {
   const formulaDropdownRef = useRef<HTMLDetailsElement>(null)
   const helpDropdownRef = useRef<HTMLDetailsElement>(null)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
+  const chatHistoryRef = useRef<HTMLDivElement>(null)
 
   const chatHistory = ExerciseViewStore.useState(
     s => s.chatHistory[s.navIndicatorPosition],
@@ -42,6 +43,13 @@ export function ExerciseViewFooter() {
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
   )
+
+  useEffect(() => {
+    if (chatHistoryRef.current) {
+      console.log('scrolling')
+      chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight
+    }
+  }, [chatHistory.entries.length])
 
   const takePhoto = async () => {
     // try {
@@ -112,7 +120,10 @@ export function ExerciseViewFooter() {
       <div className="h-1"></div>
       {chatOverlay == 'chat' && (
         <>
-          <div className="max-h-[50vh] overflow-y-auto mx-3">
+          <div
+            className="max-h-[50vh] overflow-y-auto mx-3"
+            ref={chatHistoryRef} // Add ref here
+          >
             {chatHistory.entries.map((el, i) => {
               if (el.type == 'text') {
                 return (
