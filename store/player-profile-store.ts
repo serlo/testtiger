@@ -8,6 +8,7 @@ export type PlayerProfileStoreProps = {
   currentExam: number
   progress: { [key: number]: ExamProgress }
   eventLog: { id: number; index: number; ts: number; type: 'kann-ich' }[]
+  original: boolean
 }
 
 export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
@@ -19,6 +20,7 @@ export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
     3: { selectedTopics: [], learningPathTags: [] },
   },
   eventLog: [],
+  original: false,
 }
 
 interface ExamProgress {

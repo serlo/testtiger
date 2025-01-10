@@ -8,6 +8,7 @@ import { extractor } from '../extractor/extractor'
 import { IMessage, SkillExercise, SkillExercisePage } from '@/data/types'
 import { makePost } from '@/helper/make-post'
 import { countLetter } from '@/helper/count-letter'
+import { PlayerProfileStore } from '../../../../store/player-profile-store'
 
 export function setupExercise(
   id: number,
@@ -20,6 +21,16 @@ export function setupExercise(
     s.id = id
     s.seed = generateSeed()
     s.data = generateData(id, s.seed, content, true) as object
+    if (
+      PlayerProfileStore.getRawState().original &&
+      !skill &&
+      !pages &&
+      !toHome
+    ) {
+      if (content.originalData) {
+        s.data = content.originalData
+      }
+    }
     s.pages = pages
     s.navIndicatorLength = pages
       ? pages.length
