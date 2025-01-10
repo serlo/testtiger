@@ -27,6 +27,16 @@ export function CropImageOverlay() {
             <p className="mb-3">Wähle deinen Bereich aus.</p>
             <div className="flex justify-center">
               <button
+                className="px-2 py-0.5 bg-gray-200 hover:bg-gray-300 rounded mr-6"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    s.cropImage = false
+                  })
+                }}
+              >
+                Schließen
+              </button>
+              <button
                 className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded"
                 onClick={() => {
                   // TODO
@@ -56,16 +66,6 @@ export function CropImageOverlay() {
                 }}
               >
                 Fertig
-              </button>{' '}
-              <button
-                className="px-2 py-0.5 bg-gray-200 hover:bg-gray-300 rounded ml-6"
-                onClick={() => {
-                  ExerciseViewStore.update(s => {
-                    s.cropImage = false
-                  })
-                }}
-              >
-                Schließen
               </button>
             </div>
           </>
