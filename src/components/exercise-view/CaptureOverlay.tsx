@@ -14,7 +14,7 @@ export function CaptureOverlay() {
   if (!takePhoto) return null
 
   return (
-    <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center">
+    <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto">
       <div className="">
         <div className="absolute top-4 left-0 right-0 text-center text-xl mt-6">
           Mache ein Bild von deiner Antwort
@@ -45,6 +45,15 @@ export function CaptureOverlay() {
                 s.takePhoto = false
               })
               setLoading(true)
+              const stream = webcamRef.current?.stream
+              if (stream) {
+                if (stream.getVideoTracks && stream.getAudioTracks) {
+                  stream.getVideoTracks().map(track => track.stop())
+                  stream.getAudioTracks().map(track => track.stop())
+                } else {
+                  ;(stream as unknown as MediaStreamTrack).stop()
+                }
+              }
             }}
           >
             abbrechen

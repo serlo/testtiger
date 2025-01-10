@@ -24,6 +24,7 @@ import {
 } from '../../store/player-profile-store'
 import { Contact } from './pages/Contact'
 import { Privacy } from './pages/Privacy'
+import { CaptureOverlay } from './exercise-view/CaptureOverlay'
 
 setupIonicReact({})
 
@@ -62,6 +63,7 @@ export function AppShell() {
   return (
     <IonApp>
       <IonReactRouter>
+        <CaptureOverlay />
         <IonRouterOutlet id="main">
           <Route path="/onboarding" render={() => <Onboarding />} />
           <Route path="/ki-test" render={() => <TmpKITest />} />
