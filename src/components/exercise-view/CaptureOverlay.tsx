@@ -39,6 +39,17 @@ export function CaptureOverlay() {
         />
         <div className="flex justify-center absolute bottom-5 left-0 right-0">
           <button
+            className="px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded mr-6"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.takePhoto = false
+              })
+              setLoading(true)
+            }}
+          >
+            abbrechen
+          </button>
+          <button
             className="px-3 py-2 bg-green-200 hover:bg-green-300 rounded"
             onClick={() => {
               if (webcamRef.current) {
