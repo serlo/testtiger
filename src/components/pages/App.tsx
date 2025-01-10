@@ -19,6 +19,7 @@ import {
   copyOutline,
   analyticsOutline,
   readerOutline,
+  menuOutline,
 } from 'ionicons/icons'
 import { Route } from 'react-router'
 import { Focus } from './Focus'
@@ -56,8 +57,8 @@ export function App() {
           <IonLabel>Themen</IonLabel>
         </IonTabButton>
         <IonTabButton tab="tab3" href="/app/superskills">
-          <IonIcon icon={copyOutline} />
-          <IonLabel>Superskills</IonLabel>
+          <IonIcon icon={menuOutline} />
+          <IonLabel>Liste</IonLabel>
         </IonTabButton>
         {/*<IonTabButton tab="tab4" href="/app/superskills">
           <IonIcon icon={copyOutline} />
