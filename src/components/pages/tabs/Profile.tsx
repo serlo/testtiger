@@ -49,7 +49,7 @@ export function Profile() {
             <button
               className="px-2 py-0.5 bg-red-200 hover:bg-red-300 ml-1 mt-3 rounded"
               onClick={() => {
-                sessionStorage.removeItem(storageKey)
+                localStorage.removeItem(storageKey)
                 window.location.href = '/'
               }}
             >

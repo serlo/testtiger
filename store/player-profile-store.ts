@@ -34,7 +34,7 @@ export function updatePlayerProfileStore(
   f: Parameters<typeof PlayerProfileStore.update>['0'],
 ) {
   PlayerProfileStore.update(f)
-  sessionStorage.setItem(
+  localStorage.setItem(
     storageKey,
     JSON.stringify(PlayerProfileStore.getRawState()),
   )
