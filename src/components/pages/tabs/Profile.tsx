@@ -15,11 +15,12 @@ import { navigationData } from '@/content/navigations'
 
 export function Profile() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
+  const name = PlayerProfileStore.useState(s => s.name)
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Profil</IonTitle>
+          <IonTitle>Profil von {name}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
