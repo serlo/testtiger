@@ -17,7 +17,7 @@ export function ExerciseViewHeader() {
     pages && pages[navIndicatorPosition].context
       ? exercisesData[
           ExerciseViewStore.getRawState()._exerciseIDs[
-            parseInt(pages[navIndicatorPosition].context) - 1
+            parseInt(pages[navIndicatorPosition].context!) - 1
           ]
         ]
       : exercisesData[id]
