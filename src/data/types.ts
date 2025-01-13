@@ -85,6 +85,7 @@ export interface SkillExercisePage {
   index: string
   intro?: ('global' | 'local' | 'skill')[]
   disableDefaultLocalIntro?: boolean
+  context?: string
 }
 
 export type IMessage = CoreMessage & {

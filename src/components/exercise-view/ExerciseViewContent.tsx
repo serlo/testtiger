@@ -10,10 +10,11 @@ import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef } from 'react'
+import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 
 export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)
-  const data = ExerciseViewStore.useState(s => s.data)
+  let data = ExerciseViewStore.useState(s => s.data)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const pages = ExerciseViewStore.useState(s => s.pages)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
@@ -38,10 +39,13 @@ export function ExerciseViewContent() {
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
 
-  const content = exercisesData[id]
-  const withSubtasks = 'tasks' in content
+  const context = pages && pages[navIndicatorPosition].context
 
-  const multiPage = withSubtasks && (!pages || pages.length > 1)
+  if (context) {
+    data = ExerciseViewStore.getRawState().dataPerExercise[context]
+  }
+
+  const multiPage = pages.length > 1
   return (
     <div
       className="w-full h-full bg-gray-100"
@@ -76,61 +80,74 @@ export function ExerciseViewContent() {
         }}
       >
         {multiPage && <div className="flex-shrink-0 w-[20%] snap-none"></div>}
-        {pages && withSubtasks
-          ? pages.map((page, i) => {
-              const subexercise = content.tasks.find(
-                (t, j) => countLetter('a', j) == page.index,
-              )!
-              const intros = (page.intro ?? []).slice()
-              if (!page.disableDefaultLocalIntro && subexercise.intro) {
-                intros.push('local')
-              }
-              return renderContentCard(
-                i,
-                subexercise.duration ?? '?',
-                subexercise.points ?? '?',
-                <>
-                  {intros.map((intro, i) =>
-                    renderContentElement(
-                      <>
-                        {intro == 'global' &&
-                          content.intro({
-                            data,
-                          })}
-                        {intro == 'local' &&
-                          subexercise.intro &&
-                          subexercise.intro({
-                            data,
-                          })}
-                        {intro == 'skill' &&
-                          subexercise.skillIntro &&
-                          subexercise.skillIntro({
-                            data,
-                          })}
-                      </>,
-                      i.toString(),
-                    ),
-                  )}
-                  {renderContentElement(subexercise.task({ data }))}
-                </>,
-              )
-            })
-          : (withSubtasks ? content.tasks : [content]).map((t, i) =>
-              renderContentCard(
-                i,
-                (withSubtasks ? t.duration : content.duration) ?? '?',
-                (withSubtasks ? t.points : content.points) ?? '?',
-                <>
-                  {i == 0 &&
-                    withSubtasks &&
-                    renderContentElement(content.intro({ data }))}
-                  {'intro' in t &&
-                    t.intro &&
-                    renderContentElement(t.intro({ data }))}
-                  {renderContentElement(t.task({ data }))}
-                </>,
-              ),
-            )}
+        {pages.map((page, i) => {
+          // TODO: find appropriate content for this page
+          const id = page.context
+            ? ExerciseViewStore.getRawState()._exerciseIDs[
+                parseInt(page.context) - 1
+              ]
+            : ExerciseViewStore.getRawState().id
+
+          const exercise = exercisesData[id]
+
+          if (page.index == 'single') {
+            // single page exercise
+            const singleExercise = exercise as SingleExercise<any>
+            return renderContentCard(
+              i,
+              singleExercise.duration ?? '?',
+              singleExercise.points ?? '?',
+              <>{renderContentElement(singleExercise.task({ data }))}</>,
+              singleExercise.useCalculator,
+            )
+          } else {
+            const subtasks = exercise as ExerciseWithSubtasks<any>
+
+            console.log(subtasks, page.index)
+            const task = subtasks.tasks.find(
+              (t, j) => countLetter('a', j) == page.index,
+            )!
+
+            const intros = (page.intro ?? []).slice()
+
+            if (page.index == 'a') {
+              intros.push('global')
+            }
+            if (!page.disableDefaultLocalIntro) {
+              intros.push('local')
+            }
+            return renderContentCard(
+              i,
+              task.duration ?? '?',
+              task.points ?? '?',
+              <>
+                {intros.map((intro, i) =>
+                  renderContentElement(
+                    <>
+                      {intro == 'global' &&
+                        subtasks.intro({
+                          data,
+                        })}
+                      {intro == 'local' &&
+                        task.intro &&
+                        task.intro({
+                          data,
+                        })}
+                      {intro == 'skill' &&
+                        task.skillIntro &&
+                        task.skillIntro({
+                          data,
+                        })}
+                    </>,
+                    i.toString(),
+                  ),
+                )}
+                {renderContentElement(task.task({ data }))}
+              </>,
+              subtasks.useCalculator,
+            )
+          }
+        })}
         {multiPage && <div className="flex-shrink-0 w-[5%] snap-none"></div>}
       </div>
     </div>
@@ -141,6 +158,7 @@ export function ExerciseViewContent() {
     duration: number | string,
     points: number | string,
     contentEl: JSX.Element,
+    useCalculator: boolean,
   ) {
     return (
       <div
@@ -153,11 +171,11 @@ export function ExerciseViewContent() {
             <div>
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
-                {pages ? (
-                  <> {pages[i].index + ')'}</>
-                ) : (
-                  withSubtasks && <> {countLetter('a', i) + ')'}</>
-                )}
+                {
+                  pages ? (
+                    <> {pages[i].index + ')'}</>
+                  ) : null /*withSubtasks && <> {countLetter('a', i) + ')'}</>*/
+                }
               </div>
             </div>
             <div>
@@ -165,7 +183,7 @@ export function ExerciseViewContent() {
                 <div className="inset-0 absolute">
                   <FaIcon icon={faCalculator} />
                 </div>
-                {!content.useCalculator && (
+                {useCalculator && (
                   <div className="absolute inset-0 -scale-x-100">
                     <FaIcon icon={faSlash} />
                   </div>

@@ -31,7 +31,7 @@ export type IExerciseViewStore = {
   _exerciseIDs: number[]
   seed: string
   data: object
-  dataPerExercise: object[]
+  dataPerExercise: { [key: string]: object }
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
@@ -50,7 +50,7 @@ export type IExerciseViewStore = {
     croppedImage: string
     fotoFeedback: string
   }[]
-  pages?: SkillExercisePage[]
+  pages: SkillExercisePage[]
   skill?: string
   cropImage: boolean
   completed: boolean[]
@@ -65,7 +65,8 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   _exerciseIDs: [],
   seed: '',
   data: {},
-  dataPerExercise: [],
+  pages: [],
+  dataPerExercise: {},
   navIndicatorLength: 0,
   navIndicatorPosition: 0,
   navIndicatorExternalUpdate: -1,

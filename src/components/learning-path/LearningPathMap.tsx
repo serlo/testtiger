@@ -10,6 +10,7 @@ import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 import { generateSeed } from '@/data/generate-seed'
+import { generateData } from '@/data/generate-data'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -110,14 +111,35 @@ export function LearningPathMap() {
                     s.seed = generateSeed()
 
                     // TODO fill in with correct values
+                    s._exerciseIDs = exerciseIds
+                    s.dataPerExercise = {}
 
-                    /*s.data = generateData(id, s.seed, content, true) as object
-                    s.pages = pages
-                    s.navIndicatorLength = pages
-                      ? pages.length
-                      : 'tasks' in content
-                        ? content.tasks.length
-                        : 0
+                    exerciseIds.forEach((id, i) => {
+                      s.dataPerExercise[i + 1] = generateData(
+                        id,
+                        s.seed,
+                        exercisesData[id],
+                        true,
+                      ) as object
+                    })
+
+                    s.pages = []
+                    let context = 1
+                    for (const step of lessonDetails.steps) {
+                      if (step.exercise.pages) {
+                        for (const page of step.exercise.pages) {
+                          s.pages.push({ context: context.toString(), ...page })
+                        }
+                      } else {
+                        s.pages.push({
+                          context: context.toString(),
+                          index: 'single',
+                        })
+                      }
+                      context++
+                    }
+
+                    s.navIndicatorLength = s.pages.length
                     s.navIndicatorPosition = 0
                     s.navIndicatorExternalUpdate = 0
                     s.checks = Array.from({
@@ -142,12 +164,12 @@ export function LearningPathMap() {
                       }
                     })
                     s.chatOverlay = null
-                    s.skill = skill
+                    s.skill = lessonDetails.title
                     s.cropImage = false
                     s.completed = s.checks.map(() => false)
                     s.showEndScreen = false
-                    s.toHome = !!toHome
-                    s.tag = ''*/
+                    s.toHome = true
+                    s.tag = lessonDetails.title + '#'
                   })
                   history.push('/exercise/123456')
                 }
