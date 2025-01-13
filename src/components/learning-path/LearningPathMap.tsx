@@ -112,7 +112,7 @@ export function LearningPathMap() {
           return null
         })}
       </svg>
-      {lessonDetails && (
+      {/*lessonDetails && (
         <div className="absolute bottom-3 left-3 right-3 bg-white h-24 rounded">
           <p className="ml-3 mt-3">{lessonDetails.title}</p>
           <div className="ml-6">
@@ -197,7 +197,7 @@ export function LearningPathMap() {
             )}
           </div>
         </div>
-      )}
+      )*/}
     </div>
   )
 }
