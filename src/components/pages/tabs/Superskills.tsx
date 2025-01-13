@@ -9,6 +9,7 @@ import {
 } from '@ionic/react'
 import { PlayerProfileStore } from '../../../../store/player-profile-store'
 import { useHistory } from 'react-router'
+import clsx from 'clsx'
 
 export function Superskills() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -26,8 +27,10 @@ export function Superskills() {
         <div className="mx-3">
           <div className="mt-8">
             <h2 className="font-bold">Liste aller Aufgaben nach Jahren</h2>
-            <p className="my-3">
-              <label>
+            <p
+              className={clsx('my-3 top-0 bg-white py-2', original && 'sticky')}
+            >
+              <label className="cursor-pointer">
                 <input
                   type="checkbox"
                   checked={original}
