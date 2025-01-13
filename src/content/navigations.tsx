@@ -2241,6 +2241,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'a', intro: ['global'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Proportionalität',
+            position: { x: 50, y: 900 },
+            steps: [
               {
                 exercise: {
                   id: 119,
@@ -2332,6 +2339,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'b', intro: ['global'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Fläche & Umfang simpel',
+            position: { x: 250, y: 1750 },
+            steps: [
               {
                 exercise: {
                   id: 109,
@@ -2396,6 +2410,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Diagramme und Kenngrößen',
+            position: { x: 200, y: 2360 },
+            steps: [
               {
                 exercise: {
                   id: 131,
@@ -2453,6 +2474,14 @@ export const navigationData: { [key: number]: Navigation } = {
                   id: 116,
                 },
               },
+            ],
+          },
+
+          {
+            type: 'new-skill',
+            title: 'Graphen',
+            position: { x: 200, y: 2650 },
+            steps: [
               {
                 exercise: {
                   id: 128,
@@ -2465,6 +2494,7 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
+
           {
             type: 'new-skill',
             title: 'Laplace Experimente',
@@ -2544,6 +2574,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   ],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Lineare Funktionen',
+            position: { x: 200, y: 3250 },
+            steps: [
               {
                 exercise: {
                   id: 119,
@@ -2613,6 +2650,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'b', intro: ['global'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Satz des Pythagoras',
+            position: { x: 200, y: 3850 },
+            steps: [
               {
                 exercise: {
                   id: 135,
@@ -2632,12 +2676,26 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'c', intro: ['skill'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Fläche und Umfang - Kreis',
+            position: { x: 150, y: 3950 },
+            steps: [
               {
                 exercise: {
                   id: 126,
                   pages: [{ index: 'd', intro: ['skill'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Fläche und Umfang - Kreis',
+            position: { x: 50, y: 3950 },
+            steps: [
               {
                 exercise: {
                   id: 119,
@@ -2688,9 +2746,19 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'new-skill',
             title: 'Oberfläche und Volumen 2',
             position: { x: 250, y: 4550 },
+            steps: [{ exercise: { id: 105 } }],
+          },
+          {
+            type: 'new-skill',
+            title: 'Oberfläche und Volumen 2',
+            position: { x: 150, y: 4550 },
+            steps: [{ exercise: { id: 106, pages: [{ index: 'b' }] } }],
+          },
+          {
+            type: 'new-skill',
+            title: 'Oberfläche und Volumen 2',
+            position: { x: 50, y: 4550 },
             steps: [
-              { exercise: { id: 105 } },
-              { exercise: { id: 106, pages: [{ index: 'b' }] } },
               {
                 exercise: {
                   id: 109,
@@ -2735,6 +2803,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'c', intro: ['skill'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Maßstab',
+            position: { x: 200, y: 5050 },
+            steps: [
               {
                 exercise: {
                   id: 107,
@@ -2754,6 +2829,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'a', intro: ['global'] }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Körpernetz & Symmetrie',
+            position: { x: 150, y: 5150 },
+            steps: [
               {
                 exercise: {
                   id: 109,
@@ -2798,6 +2880,13 @@ export const navigationData: { [key: number]: Navigation } = {
                   pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
                 },
               },
+            ],
+          },
+          {
+            type: 'new-skill',
+            title: 'Tabellenkalkulation',
+            position: { x: 200, y: 5650 },
+            steps: [
               {
                 exercise: {
                   id: 127,
