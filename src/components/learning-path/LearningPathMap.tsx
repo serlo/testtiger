@@ -4,10 +4,7 @@ import {
   PlayerProfileStore,
 } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
-import { Fragment, useState } from 'react'
-import { FaIcon } from '../ui/FaIcon'
-import { faCircleDot, faMinus } from '@fortawesome/free-solid-svg-icons'
-import clsx from 'clsx'
+import { Fragment } from 'react'
 import { setupExercise } from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
@@ -15,9 +12,7 @@ import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
-  const [lessonDetails, setLessonDetails] = useState<Lesson | null>(
-    navigationData[exam].path[0]?.lessons[0],
-  )
+
   const history = useHistory()
 
   const path = navigationData[exam].path
@@ -54,14 +49,14 @@ export function LearningPathMap() {
             strokeWidth={5}
           ></line>
         ))}
-        {lessonDetails && (
+        {/*lessonDetails && (
           <circle
             cx={lessonDetails.position!.x}
             cy={mapHeight - lessonDetails.position!.y}
             r={35}
             fill={'red'}
           ></circle>
-        )}
+        )*/}
         {elements.map((el, i) => (
           <Fragment key={i}>
             <circle
