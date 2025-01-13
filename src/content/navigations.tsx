@@ -2200,7 +2200,13 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'new-skill',
             title: 'Zahlen und Einheiten',
             position: { x: 100, y: 200 },
-            steps: [{ exercise: { id: 110 } }, { exercise: { id: 130 } }],
+            steps: [{ exercise: { id: 110 } }],
+          },
+          {
+            type: 'new-skill',
+            title: 'Zahlen und Einheiten',
+            position: { x: 200, y: 200 },
+            steps: [{ exercise: { id: 130 } }],
           },
           {
             type: 'new-skill',
