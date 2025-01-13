@@ -9,7 +9,18 @@ export function ExerciseViewHeader() {
   const id = ExerciseViewStore.useState(s => s.id)
   const skill = ExerciseViewStore.useState(s => s.skill)
   const toHome = ExerciseViewStore.useState(s => s.toHome)
-  const content = exercisesData[id]
+  const navIndicatorPosition = ExerciseViewStore.useState(
+    s => s.navIndicatorPosition,
+  )
+  const pages = ExerciseViewStore.useState(s => s.pages)
+  const content =
+    pages && pages[navIndicatorPosition].context
+      ? exercisesData[
+          ExerciseViewStore.getRawState()._exerciseIDs[
+            parseInt(pages[navIndicatorPosition].context!) - 1
+          ]
+        ]
+      : exercisesData[id]
   const history = useHistory()
 
   return (

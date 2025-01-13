@@ -9,6 +9,9 @@ import { setupExercise } from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
+import { generateSeed } from '@/data/generate-seed'
+import { generateData } from '@/data/generate-data'
+import { countLetter } from '@/helper/count-letter'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -77,28 +80,111 @@ export function LearningPathMap() {
                 /*if (isStepOfLessonDone(lessonDetails, step)) {
                     continue
                   }*/
-                const step = lessonDetails.steps[0]
-                setupExercise(
-                  step.exercise.id,
-                  lessonDetails.title,
-                  step.exercise.pages,
-                  true,
-                )
-                ExerciseViewStore.update(s => {
-                  s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                })
-                history.push(
-                  '/exercise/' +
-                    step.exercise.id +
-                    '#' +
-                    encodeURIComponent(
-                      JSON.stringify({
-                        name: lessonDetails.title,
-                        pages: step.exercise.pages,
-                        toHome: true,
-                      }),
-                    ),
-                )
+                if (lessonDetails.steps.length == 1) {
+                  const step = lessonDetails.steps[0]
+                  setupExercise(
+                    step.exercise.id,
+                    lessonDetails.title,
+                    step.exercise.pages,
+                    true,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                  })
+                  history.push(
+                    '/exercise/' +
+                      step.exercise.id +
+                      '#' +
+                      encodeURIComponent(
+                        JSON.stringify({
+                          name: lessonDetails.title,
+                          pages: step.exercise.pages,
+                          toHome: true,
+                        }),
+                      ),
+                  )
+                } else {
+                  const exerciseIds = lessonDetails.steps.map(
+                    s => s.exercise.id,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.id = 123456
+                    s.seed = generateSeed()
+
+                    // TODO fill in with correct values
+                    s._exerciseIDs = exerciseIds
+                    s.dataPerExercise = {}
+
+                    exerciseIds.forEach((id, i) => {
+                      s.dataPerExercise[i + 1] = generateData(
+                        id,
+                        s.seed,
+                        exercisesData[id],
+                        true,
+                      ) as object
+                    })
+
+                    s.pages = []
+                    let context = 1
+                    for (const step of lessonDetails.steps) {
+                      if (step.exercise.pages) {
+                        for (const page of step.exercise.pages) {
+                          s.pages.push({ context: context.toString(), ...page })
+                        }
+                      } else {
+                        const exercise = exercisesData[step.exercise.id]
+                        if ('tasks' in exercise) {
+                          exercise.tasks.forEach((_, index) => {
+                            s.pages.push({
+                              index: countLetter('a', index),
+                              context: context.toString(),
+                            })
+                          })
+                        } else {
+                          s.pages.push({
+                            context: context.toString(),
+                            index: 'single',
+                          })
+                        }
+                      }
+                      context++
+                    }
+                    console.log('debug pages', s.pages, exerciseIds)
+
+                    s.navIndicatorLength = s.pages.length
+                    s.navIndicatorPosition = 0
+                    s.navIndicatorExternalUpdate = 0
+                    s.checks = Array.from({
+                      length: Math.max(1, s.navIndicatorLength),
+                    }).map(_ => {
+                      return {
+                        answerInput: '',
+                        result: '',
+                        resultPending: false,
+                        fotoFeedback: '',
+                        croppedImage: '',
+                        uploadedImage: '',
+                      }
+                    })
+                    s.chatHistory = Array.from({
+                      length: Math.max(1, s.navIndicatorLength),
+                    }).map(_ => {
+                      return {
+                        entries: [],
+                        resultPending: false,
+                        answerInput: '',
+                      }
+                    })
+                    s.chatOverlay = null
+                    s.skill = lessonDetails.title
+                    s.cropImage = false
+                    s.completed = s.checks.map(() => false)
+                    s.showEndScreen = false
+                    s.toHome = true
+                    s.tag = lessonDetails.title + '#'
+                  })
+                  history.push('/exercise/123456')
+                }
               }}
             ></circle>
             {el.source.steps.every(step =>

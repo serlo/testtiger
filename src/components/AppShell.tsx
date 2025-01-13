@@ -128,6 +128,11 @@ export function AppShell() {
                 render={() => <ExerciseView id={id} />}
               />
             ))}
+          <Route
+            path={`/exercise/123456`}
+            key={123456}
+            render={() => <ExerciseView id={123456} />}
+          />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

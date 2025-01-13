@@ -17,6 +17,17 @@ export function setupExercise(
   toHome?: boolean,
 ) {
   const content = exercisesData[id]
+  if (!pages && 'tasks' in content) {
+    // ensure that pages are populated
+    pages = content.tasks.map((task, index) => {
+      return {
+        index: countLetter('a', index),
+      }
+    })
+  }
+  if (!pages) {
+    pages = [{ index: 'single' }]
+  }
   ExerciseViewStore.update(s => {
     s.id = id
     s.seed = generateSeed()
