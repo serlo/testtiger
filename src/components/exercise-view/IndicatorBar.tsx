@@ -32,7 +32,8 @@ export function IndicatorBar() {
                     completed[j] ? 'bg-green-700' : 'bg-black',
                   )}
                 >
-                  {pages ? pages[j].index : countLetter('a', j)}
+                  {pages[j].context}
+                  {pages[j].index == 'single' ? null : pages[j].index}
                 </div>
               ) : (
                 <div

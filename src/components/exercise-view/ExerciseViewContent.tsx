@@ -167,9 +167,16 @@ export function ExerciseViewContent() {
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
                 {
-                  pages ? (
-                    <> {pages[i].index + ')'}</>
-                  ) : null /*withSubtasks && <> {countLetter('a', i) + ')'}</>*/
+                  <>
+                    {' '}
+                    {!pages[i].context && pages[i].index == 'single' ? null : (
+                      <>
+                        {pages[i].context}
+                        {(pages[i].index == 'single' ? '' : pages[i].index) +
+                          ')'}
+                      </>
+                    )}
+                  </>
                 }
               </div>
             </div>
