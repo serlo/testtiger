@@ -28,8 +28,10 @@ type ChatHistoryEntry = TextChatMessage | ImageChatMeessage | SystemResponse
 
 export type IExerciseViewStore = {
   id: number
+  _exerciseIDs: number[]
   seed: string
   data: object
+  dataPerExercise: object[]
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
@@ -60,8 +62,10 @@ export type IExerciseViewStore = {
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
   id: -1,
+  _exerciseIDs: [],
   seed: '',
   data: {},
+  dataPerExercise: [],
   navIndicatorLength: 0,
   navIndicatorPosition: 0,
   navIndicatorExternalUpdate: -1,

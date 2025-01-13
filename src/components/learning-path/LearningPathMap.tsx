@@ -9,6 +9,7 @@ import { setupExercise } from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
+import { generateSeed } from '@/data/generate-seed'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -77,28 +78,79 @@ export function LearningPathMap() {
                 /*if (isStepOfLessonDone(lessonDetails, step)) {
                     continue
                   }*/
-                const step = lessonDetails.steps[0]
-                setupExercise(
-                  step.exercise.id,
-                  lessonDetails.title,
-                  step.exercise.pages,
-                  true,
-                )
-                ExerciseViewStore.update(s => {
-                  s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                })
-                history.push(
-                  '/exercise/' +
-                    step.exercise.id +
-                    '#' +
-                    encodeURIComponent(
-                      JSON.stringify({
-                        name: lessonDetails.title,
-                        pages: step.exercise.pages,
-                        toHome: true,
-                      }),
-                    ),
-                )
+                if (lessonDetails.steps.length == 1) {
+                  const step = lessonDetails.steps[0]
+                  setupExercise(
+                    step.exercise.id,
+                    lessonDetails.title,
+                    step.exercise.pages,
+                    true,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                  })
+                  history.push(
+                    '/exercise/' +
+                      step.exercise.id +
+                      '#' +
+                      encodeURIComponent(
+                        JSON.stringify({
+                          name: lessonDetails.title,
+                          pages: step.exercise.pages,
+                          toHome: true,
+                        }),
+                      ),
+                  )
+                } else {
+                  const exerciseIds = lessonDetails.steps.map(
+                    s => s.exercise.id,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.id = 123456
+                    s.seed = generateSeed()
+
+                    // TODO fill in with correct values
+
+                    /*s.data = generateData(id, s.seed, content, true) as object
+                    s.pages = pages
+                    s.navIndicatorLength = pages
+                      ? pages.length
+                      : 'tasks' in content
+                        ? content.tasks.length
+                        : 0
+                    s.navIndicatorPosition = 0
+                    s.navIndicatorExternalUpdate = 0
+                    s.checks = Array.from({
+                      length: Math.max(1, s.navIndicatorLength),
+                    }).map(_ => {
+                      return {
+                        answerInput: '',
+                        result: '',
+                        resultPending: false,
+                        fotoFeedback: '',
+                        croppedImage: '',
+                        uploadedImage: '',
+                      }
+                    })
+                    s.chatHistory = Array.from({
+                      length: Math.max(1, s.navIndicatorLength),
+                    }).map(_ => {
+                      return {
+                        entries: [],
+                        resultPending: false,
+                        answerInput: '',
+                      }
+                    })
+                    s.chatOverlay = null
+                    s.skill = skill
+                    s.cropImage = false
+                    s.completed = s.checks.map(() => false)
+                    s.showEndScreen = false
+                    s.toHome = !!toHome
+                    s.tag = ''*/
+                  })
+                  history.push('/exercise/123456')
+                }
               }}
             ></circle>
             {el.source.steps.every(step =>
