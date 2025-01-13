@@ -40,18 +40,59 @@ export function LearningPathMap() {
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox={`0 0 375 ${mapHeight}`}>
-        <image href="/learning-path/gras.svg" x={20} y={6400} width={50} />
-        {lines.map((l, i) => (
-          <line
-            key={i}
-            x1={l.start.position!.x}
-            y1={mapHeight - l.start.position!.y}
-            x2={l.end.position!.x}
-            y2={mapHeight - l.end.position!.y}
-            stroke="gray"
-            strokeWidth={5}
-          ></line>
-        ))}
+      <image href="/learning-path/stage1.svg" x={-50} y={1810} width={500} />
+      <image href="/learning-path/gs1.svg" x={-130} y={6240} width={260} />
+      <image href="/learning-path/gs2.svg" x={160} y={6430} width={70} />
+      <image href="/learning-path/gs3.svg" x={250} y={6400} width={180} />
+      <image href="/learning-path/gs4.svg" x={80} y={5970} width={300} />
+      
+      <image href="/learning-path/bigbush.svg" x={-70} y={6310} width={180} />
+      <image href="/learning-path/gras2.svg" x={340} y={6450} width={80} />
+      <image href="/learning-path/grass.svg" x={275} y={6440} width={60} />
+
+      <image href="/learning-path/tree2.svg" x={275} y={6140} width={120} />
+      <image href="/learning-path/tree1.svg" x={-70} y={5990} width={180} />
+      
+      
+        
+      {lines.map((l, i) => {
+  const x1 = l.start.position!.x;
+  const y1 = mapHeight - l.start.position!.y;
+  const x2 = l.end.position!.x;
+  const y2 = mapHeight - l.end.position!.y;
+
+  if (y1 === y2) {
+    // Zeichne eine gerade Linie
+    return (
+      <line
+        key={i}
+        x1={x1}
+        y1={y1}
+        x2={x2}
+        y2={y2}
+        stroke="gray"
+        strokeWidth={8}
+      />
+    );
+  } else {
+    // Zeichne eine gebogene Linie (Quadratische Bezier-Kurve)
+    const midX = (x1 + x2) / 2;
+    const midY = (y1 + y2) / 2;
+    const offset = 50; 
+
+    return (
+      <path
+        key={i}
+        d={`M ${x1} ${y1} Q ${midX} ${midY + offset} ${x2} ${y2}`}
+        stroke="gray"
+        strokeWidth={8}
+        fill="none"
+      />
+    );
+  }
+})}
+
+
         {/*lessonDetails && (
           <circle
             cx={lessonDetails.position!.x}
@@ -65,7 +106,7 @@ export function LearningPathMap() {
             <circle
               cx={el.source.position!.x}
               cy={mapHeight - el.source.position!.y}
-              r={25}
+              r={35}
               fill={
                 el.source.type == 'new-skill'
                   ? 'rebeccapurple'
