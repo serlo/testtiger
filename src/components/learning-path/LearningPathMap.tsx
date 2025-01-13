@@ -77,7 +77,35 @@ export function LearningPathMap() {
               }
               className="cursor-pointer"
               onClick={() => {
-                setLessonDetails(el.source)
+                const lessonDetails = el.source
+
+                for (let step of lessonDetails.steps) {
+                  if (isStepOfLessonDone(lessonDetails, step)) {
+                    continue
+                  }
+                  setupExercise(
+                    step.exercise.id,
+                    lessonDetails.title,
+                    step.exercise.pages,
+                    true,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                  })
+                  history.push(
+                    '/exercise/' +
+                      step.exercise.id +
+                      '#' +
+                      encodeURIComponent(
+                        JSON.stringify({
+                          name: lessonDetails.title,
+                          pages: step.exercise.pages,
+                          toHome: true,
+                        }),
+                      ),
+                  )
+                  break
+                }
               }}
             ></circle>
             {el.source.steps.every(step =>
