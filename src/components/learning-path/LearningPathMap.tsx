@@ -74,33 +74,31 @@ export function LearningPathMap() {
               onClick={() => {
                 const lessonDetails = el.source
 
-                for (let step of lessonDetails.steps) {
-                  if (isStepOfLessonDone(lessonDetails, step)) {
+                /*if (isStepOfLessonDone(lessonDetails, step)) {
                     continue
-                  }
-                  setupExercise(
-                    step.exercise.id,
-                    lessonDetails.title,
-                    step.exercise.pages,
-                    true,
-                  )
-                  ExerciseViewStore.update(s => {
-                    s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                  })
-                  history.push(
-                    '/exercise/' +
-                      step.exercise.id +
-                      '#' +
-                      encodeURIComponent(
-                        JSON.stringify({
-                          name: lessonDetails.title,
-                          pages: step.exercise.pages,
-                          toHome: true,
-                        }),
-                      ),
-                  )
-                  break
-                }
+                  }*/
+                const step = lessonDetails.steps[0]
+                setupExercise(
+                  step.exercise.id,
+                  lessonDetails.title,
+                  step.exercise.pages,
+                  true,
+                )
+                ExerciseViewStore.update(s => {
+                  s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                })
+                history.push(
+                  '/exercise/' +
+                    step.exercise.id +
+                    '#' +
+                    encodeURIComponent(
+                      JSON.stringify({
+                        name: lessonDetails.title,
+                        pages: step.exercise.pages,
+                        toHome: true,
+                      }),
+                    ),
+                )
               }}
             ></circle>
             {el.source.steps.every(step =>
@@ -110,7 +108,7 @@ export function LearningPathMap() {
                 x={el.source.position!.x - 6}
                 y={mapHeight - el.source.position!.y + 18}
                 fontSize={32}
-                className="fill-green-400 font-bold"
+                className="fill-green-400 font-bold pointer-events-none"
               >
                 ✓
               </text>
