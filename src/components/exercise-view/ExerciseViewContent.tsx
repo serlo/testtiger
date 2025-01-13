@@ -14,7 +14,6 @@ import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 
 export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)
-  let data = ExerciseViewStore.useState(s => s.data)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const pages = ExerciseViewStore.useState(s => s.pages)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
@@ -38,12 +37,6 @@ export function ExerciseViewContent() {
       })
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
-
-  const context = pages && pages[navIndicatorPosition].context
-
-  if (context) {
-    data = ExerciseViewStore.getRawState().dataPerExercise[context]
-  }
 
   const multiPage = pages.length > 1
   return (
@@ -89,6 +82,9 @@ export function ExerciseViewContent() {
             : ExerciseViewStore.getRawState().id
 
           const exercise = exercisesData[id]
+          const data = page.context
+            ? ExerciseViewStore.getRawState().dataPerExercise[page.context]
+            : ExerciseViewStore.getRawState().data
 
           if (page.index == 'single') {
             // single page exercise
@@ -103,7 +99,6 @@ export function ExerciseViewContent() {
           } else {
             const subtasks = exercise as ExerciseWithSubtasks<any>
 
-            console.log(subtasks, page.index)
             const task = subtasks.tasks.find(
               (t, j) => countLetter('a', j) == page.index,
             )!

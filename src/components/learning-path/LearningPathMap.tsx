@@ -11,6 +11,7 @@ import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 import { generateSeed } from '@/data/generate-seed'
 import { generateData } from '@/data/generate-data'
+import { countLetter } from '@/helper/count-letter'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -131,13 +132,24 @@ export function LearningPathMap() {
                           s.pages.push({ context: context.toString(), ...page })
                         }
                       } else {
-                        s.pages.push({
-                          context: context.toString(),
-                          index: 'single',
-                        })
+                        const exercise = exercisesData[step.exercise.id]
+                        if ('tasks' in exercise) {
+                          exercise.tasks.forEach((_, index) => {
+                            s.pages.push({
+                              index: countLetter('a', index),
+                              context: context.toString(),
+                            })
+                          })
+                        } else {
+                          s.pages.push({
+                            context: context.toString(),
+                            index: 'single',
+                          })
+                        }
                       }
                       context++
                     }
+                    console.log('debug pages', s.pages, exerciseIds)
 
                     s.navIndicatorLength = s.pages.length
                     s.navIndicatorPosition = 0
