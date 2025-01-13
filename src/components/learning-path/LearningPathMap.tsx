@@ -42,6 +42,7 @@ export function LearningPathMap() {
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox={`0 0 375 ${mapHeight}`}>
+        <image href="/learning-path/gras.svg" x={20} y={6400} width={50} />
         {lines.map((l, i) => (
           <line
             key={i}
