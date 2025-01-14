@@ -126,7 +126,7 @@ export function SolutionOverlay() {
                 exercisesData[
                   pages[navIndicatorPosition].context
                     ? ExerciseViewStore.getRawState()._exerciseIDs[
-                        parseInt(pages[navIndicatorPosition].context) - 1
+                        parseInt(pages[navIndicatorPosition].context!) - 1
                       ]
                     : id
                 ]
