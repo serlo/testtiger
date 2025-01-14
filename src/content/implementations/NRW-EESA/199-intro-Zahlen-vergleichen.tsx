@@ -30,15 +30,15 @@ export const exercise199: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.c - data.d > 1 && data.e - data.f > 0.2 && data.a - data.b > 1
+    return data.a != data.b && data.d != data.c && data.e != data.f
   },
-  originalData: {
-    a: -1.2,
-    b: -0.8,
-    c: 80,
-    d: 100,
-    e: 4,
-    f: 5,
+  learningPathData: {
+    a: 1.2,
+    b: 4.5,
+    c: 3.5,
+    d: -1.7,
+    e: -4,
+    f: -5,
   },
   task({ data }) {
     return (
