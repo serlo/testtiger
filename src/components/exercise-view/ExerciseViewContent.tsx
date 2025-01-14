@@ -38,7 +38,6 @@ export function ExerciseViewContent() {
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
 
-  const multiPage = pages.length > 1
   return (
     <div
       className="w-full h-full bg-gray-100"
@@ -52,10 +51,7 @@ export function ExerciseViewContent() {
     >
       <div
         ref={ref}
-        className={clsx(
-          'flex overflow-x-scroll snap-x snap-mandatory gap-2 items-stretch w-full h-full',
-          !multiPage && 'justify-center',
-        )}
+        className=""
         onScroll={e => {
           const [distance, offset] = calculateSnapPoints()
           const scrollLeft = (e.target as HTMLDivElement).scrollLeft
@@ -72,7 +68,12 @@ export function ExerciseViewContent() {
           })
         }}
       >
-        {multiPage && <div className="flex-shrink-0 w-[20%] snap-none"></div>}
+        <div className="h-6"></div>
+        <div className="mb-9 mx-4 bg-white p-4 rounded-lg shadow-lg text-sm">
+          Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
+          <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg ein,
+          oder <strong>tippe</strong> deine Lösung in den Chat.
+        </div>
         {pages.map((page, i) => {
           // TODO: find appropriate content for this page
           const id = page.context
@@ -105,7 +106,7 @@ export function ExerciseViewContent() {
 
             const intros = (page.intro ?? []).slice()
 
-            if (page.index == 'a') {
+            if (page.index == 'a' && !intros.includes('global')) {
               intros.push('global')
             }
             if (!page.disableDefaultLocalIntro) {
@@ -143,7 +144,7 @@ export function ExerciseViewContent() {
             )
           }
         })}
-        {multiPage && <div className="flex-shrink-0 w-[5%] snap-none"></div>}
+        <div className="h-12"></div>
       </div>
     </div>
   )
@@ -157,12 +158,24 @@ export function ExerciseViewContent() {
   ) {
     return (
       <div
-        className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
+        className={clsx(
+          'w-[calc(100%-24px)] flex-shrink-0  cursor-pointer mx-auto',
+        )}
         style={{ scrollbarWidth: 'thin' }}
         key={i}
+        onClick={() => {
+          ExerciseViewStore.update(s => {
+            s.navIndicatorPosition = i
+          })
+        }}
       >
-        <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
-          <div className="flex justify-between p-[3px] w-full sticky bg-white top-0">
+        <div
+          className={clsx(
+            'flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center',
+            navIndicatorPosition == i && 'border-2 border-blue-500',
+          )}
+        >
+          <div className="flex justify-between p-[3px] w-full bg-white top-0">
             <div>
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
