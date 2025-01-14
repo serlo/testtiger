@@ -42,6 +42,9 @@ export function setupExercise(
         s.data = content.originalData
       }
     }
+    if (toHome && content.learningPathData) {
+      s.data = content.learningPathData
+    }
     s.pages = pages
     s.navIndicatorLength = pages
       ? pages.length
