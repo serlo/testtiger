@@ -2198,6 +2198,13 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'new-skill',
+            title: 'Intro: Zahlen vergleichen',
+            icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
+            position: { x: 70, y: 10 },
+            steps: [{ exercise: { id: 199 } }],
+          },
+          {
+            type: 'new-skill',
             title: 'Zahlen und Einheiten',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
             position: { x: 80, y: 170 },
