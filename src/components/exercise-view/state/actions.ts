@@ -103,7 +103,18 @@ export async function analyseLastInput() {
     s.chatHistory[s.navIndicatorPosition].resultPending = false
   })*/
   const state = ExerciseViewStore.getRawState()
-  const exerciseContext = extractor(exercisesData[state.id], state.data)
+  const exerciseContext = extractor(
+    exercisesData[
+      state.pages[state.navIndicatorPosition].context
+        ? state._exerciseIDs[
+            parseInt(state.pages[state.navIndicatorPosition].context!) - 1
+          ]
+        : state.id
+    ],
+    state.pages[state.navIndicatorPosition].context
+      ? state.dataPerExercise[state.pages[state.navIndicatorPosition].context!]
+      : state.data,
+  )
   const messages: IMessage[] = []
   messages.push({
     role: 'system',
@@ -113,11 +124,13 @@ export async function analyseLastInput() {
   messages.push({
     role: 'system',
     content: `
-      Du befindest dich bei der Teilaufgabe ${
-        state.pages
-          ? state.pages[state.navIndicatorPosition].index
-          : countLetter('a', state.navIndicatorPosition)
-      }).
+      ${
+        state.pages[state.navIndicatorPosition].index == 'single'
+          ? ''
+          : 'Du befindest dich bei der Teilaufgabe ' +
+            state.pages[state.navIndicatorPosition].index +
+            ')'
+      }.
 
       Analysiere die Eingabe der SchülerIn. Diese befindest sich in der nächsten Nachricht. Die Eingabe ist ein Text oder ein Bild.
 
