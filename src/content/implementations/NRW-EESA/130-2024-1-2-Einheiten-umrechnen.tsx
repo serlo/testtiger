@@ -25,6 +25,11 @@ export const exercise130: Exercise<DATA> = {
     min: 4,
     ml: 800,
   },
+  learningPathData: {
+    m: 6,
+    min: 3,
+    ml: 600,
+  },
   constraint({ data }) {
     return true
   },
