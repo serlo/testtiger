@@ -2200,7 +2200,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
-            position: { x: 70, y: 70 },
+            position: { x: 100, y: 80 },
             steps: [{ exercise: { id: 199 } }],
           },
           {
@@ -2240,7 +2240,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Proportionalität',
+            title: 'Proportionale Zuordnung',
             position: { x: 100, y: 800 },
             steps: [
               {
@@ -2253,7 +2253,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Proportionalität',
+            title: 'Rechnen mit proportionalen Größen',
             position: { x: 50, y: 900 },
             steps: [
               {
@@ -2293,7 +2293,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Umgang mit Formeln und Termen',
+            title: 'Termwert bestimmen',
             position: { x: 250, y: 1250 },
             steps: [
               {
@@ -2338,7 +2338,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Fläche & Umfang simpel',
+            title: 'Rechtwinkliges Dreieck',
             position: { x: 100, y: 1700 },
             steps: [
               {
@@ -2351,7 +2351,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Fläche & Umfang simpel',
+            title: 'Dreiecksfläche',
             position: { x: 250, y: 1750 },
             steps: [
               {
@@ -2364,7 +2364,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Figuren zeichnen',
+            title: 'Dreieck zeichnen',
             position: { x: 250, y: 1850 },
             steps: [
               {
@@ -2396,7 +2396,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Oberfläche und Volumen 1',
+            title: 'Oberfläche und Volumen Quader',
             position: { x: 250, y: 2150 },
             steps: [
               {
@@ -2409,7 +2409,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Diagramme und Kenngrößen',
+            title: 'Balkendiagramm',
             position: { x: 100, y: 2300 },
             steps: [
               {
@@ -2422,7 +2422,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Diagramme und Kenngrößen',
+            title: 'Statistik',
             position: { x: 200, y: 2360 },
             steps: [
               {
@@ -2474,7 +2474,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
-            title: 'Graphen',
+            title: 'Graphen zuordnen',
             position: { x: 100, y: 2600 },
             steps: [
               {
@@ -2487,7 +2487,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
-            title: 'Graphen',
+            title: 'Informationen aus Graph ablesen',
             position: { x: 200, y: 2650 },
             steps: [
               {
@@ -2556,7 +2556,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'repetition',
-            title: 'Graphen',
+            title: 'Informationen aus Graph ablesen',
             position: { x: 250, y: 3050 },
             steps: [
               {
@@ -2599,7 +2599,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Tabellen',
+            title: 'Tabelle auswerten',
             position: { x: 250, y: 3350 },
             steps: [
               {
@@ -2636,7 +2636,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
-            title: 'Fläche & Umfang 1',
+            title: 'Fläche Quadrat',
             position: { x: 250, y: 3650 },
             steps: [
               {
@@ -2675,7 +2675,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Fläche und Umfang - Kreis',
+            title: 'Kreisumfang',
             position: { x: 250, y: 3950 },
             steps: [
               {
@@ -2688,7 +2688,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Fläche und Umfang - Kreis',
+            title: 'Kreisfläche',
             position: { x: 150, y: 3950 },
             steps: [
               {
@@ -2701,7 +2701,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Fläche und Umfang - Kreis',
+            title: 'Kreisring',
             position: { x: 50, y: 3950 },
             steps: [
               {
@@ -2740,7 +2740,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
-            title: 'Oberfläche und Volumen 1',
+            title: 'Quadervolumen',
             position: { x: 100, y: 4400 },
             steps: [
               {
@@ -2752,19 +2752,19 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Oberfläche und Volumen 2',
+            title: 'Zusammengesetzter Körper',
             position: { x: 250, y: 4550 },
             steps: [{ exercise: { id: 105 } }],
           },
           {
             type: 'new-skill',
-            title: 'Oberfläche und Volumen 2',
+            title: 'Kugelvolumen',
             position: { x: 150, y: 4550 },
             steps: [{ exercise: { id: 106, pages: [{ index: 'b' }] } }],
           },
           {
             type: 'new-skill',
-            title: 'Oberfläche und Volumen 2',
+            title: 'Volumen Tetraeder',
             position: { x: 50, y: 4550 },
             steps: [
               {
@@ -2789,7 +2789,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
-            title: 'Figuren zeichnen',
+            title: 'Dreieck zeichnen',
             position: { x: 250, y: 4850 },
             steps: [
               {
@@ -2802,7 +2802,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Maßstab',
+            title: 'Im richtigen Maßstab zeichnen',
             position: { x: 100, y: 5000 },
             steps: [
               {
@@ -2815,7 +2815,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Maßstab',
+            title: 'Messen und Anwenden des Maßstabs',
             position: { x: 200, y: 5050 },
             steps: [
               {
@@ -2828,7 +2828,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Körpernetz & Symmetrie',
+            title: 'Symmetrie',
             position: { x: 250, y: 5150 },
             steps: [
               {
@@ -2841,7 +2841,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Körpernetz & Symmetrie',
+            title: 'Körpernetz',
             position: { x: 150, y: 5150 },
             steps: [
               {
@@ -2866,7 +2866,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
-            title: 'Diagramme und Kenngrößen',
+            title: 'Tabelle auswerten & Kreisdiagramm',
             position: { x: 250, y: 5450 },
             steps: [
               {
@@ -2938,13 +2938,45 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'challenge',
             title: 'Challenge 1',
             position: { x: 250, y: 6050 },
+            steps: [
+              {
+                exercise: {
+                  id: 110,
+                },
+              },
+              {
+                exercise: {
+                  id: 111,
+                },
+              },
+              {
+                exercise: {
+                  id: 112,
+                },
+              },
+              {
+                exercise: {
+                  id: 113,
+                },
+              },
+              {
+                exercise: {
+                  id: 114,
+                },
+              },
+            ],
+          },
+          {
+            type: 'challenge',
+            title: 'Challenge 2',
+            position: { x: 100, y: 6200 },
             steps: [{ exercise: { id: 119 } }],
           },
 
           {
             type: 'challenge',
-            title: 'Challenge 2',
-            position: { x: 100, y: 6200 },
+            title: 'Challenge 3',
+            position: { x: 250, y: 6350 },
             steps: [
               {
                 exercise: {
@@ -2956,8 +2988,8 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 3',
-            position: { x: 250, y: 6350 },
+            title: 'Challenge 4',
+            position: { x: 100, y: 6500 },
             steps: [
               {
                 exercise: {
@@ -2969,8 +3001,8 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 4',
-            position: { x: 100, y: 6500 },
+            title: 'Challenge 5',
+            position: { x: 250, y: 6650 },
             steps: [
               {
                 exercise: {
