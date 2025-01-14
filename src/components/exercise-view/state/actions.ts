@@ -17,6 +17,17 @@ export function setupExercise(
   toHome?: boolean,
 ) {
   const content = exercisesData[id]
+  if (!pages && 'tasks' in content) {
+    // ensure that pages are populated
+    pages = content.tasks.map((task, index) => {
+      return {
+        index: countLetter('a', index),
+      }
+    })
+  }
+  if (!pages) {
+    pages = [{ index: 'single' }]
+  }
   ExerciseViewStore.update(s => {
     s.id = id
     s.seed = generateSeed()
@@ -30,6 +41,9 @@ export function setupExercise(
       if (content.originalData) {
         s.data = content.originalData
       }
+    }
+    if (toHome && content.learningPathData) {
+      s.data = content.learningPathData
     }
     s.pages = pages
     s.navIndicatorLength = pages
@@ -68,17 +82,27 @@ export function setupExercise(
 
 export function reseed() {
   const s = ExerciseViewStore.getRawState()
-  const currentData = generateData(s.id, s.seed, exercisesData[s.id])
+  const context = s.pages[s.navIndicatorPosition].context
+  const id = context ? s._exerciseIDs[parseInt(context) - 1] : s.id
+  const currentData = context ? s.dataPerExercise[context] : s.data
   const newSeed = constrainedGeneration(
     () => generateSeed(),
     seed => {
-      const newData = generateData(s.id, seed, exercisesData[s.id])
+      const newData = generateData(id, seed, exercisesData[id])
       return !isDeepEqual(currentData, newData)
     },
   )
   ExerciseViewStore.update(s => {
     s.seed = newSeed
-    s.data = generateData(s.id, newSeed, exercisesData[s.id]) as object
+    if (context) {
+      s.dataPerExercise[context] = generateData(
+        id,
+        newSeed,
+        exercisesData[id],
+      ) as object
+    } else {
+      s.data = generateData(id, newSeed, exercisesData[id]) as object
+    }
   })
 }
 
@@ -92,7 +116,18 @@ export async function analyseLastInput() {
     s.chatHistory[s.navIndicatorPosition].resultPending = false
   })*/
   const state = ExerciseViewStore.getRawState()
-  const exerciseContext = extractor(exercisesData[state.id], state.data)
+  const exerciseContext = extractor(
+    exercisesData[
+      state.pages[state.navIndicatorPosition].context
+        ? state._exerciseIDs[
+            parseInt(state.pages[state.navIndicatorPosition].context!) - 1
+          ]
+        : state.id
+    ],
+    state.pages[state.navIndicatorPosition].context
+      ? state.dataPerExercise[state.pages[state.navIndicatorPosition].context!]
+      : state.data,
+  )
   const messages: IMessage[] = []
   messages.push({
     role: 'system',
@@ -102,11 +137,13 @@ export async function analyseLastInput() {
   messages.push({
     role: 'system',
     content: `
-      Du befindest dich bei der Teilaufgabe ${
-        state.pages
-          ? state.pages[state.navIndicatorPosition].index
-          : countLetter('a', state.navIndicatorPosition)
-      }).
+      ${
+        state.pages[state.navIndicatorPosition].index == 'single'
+          ? ''
+          : 'Du befindest dich bei der Teilaufgabe ' +
+            state.pages[state.navIndicatorPosition].index +
+            ')'
+      }.
 
       Analysiere die Eingabe der SchülerIn. Diese befindest sich in der nächsten Nachricht. Die Eingabe ist ein Text oder ein Bild.
 

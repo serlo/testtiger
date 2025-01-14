@@ -28,8 +28,10 @@ type ChatHistoryEntry = TextChatMessage | ImageChatMeessage | SystemResponse
 
 export type IExerciseViewStore = {
   id: number
+  _exerciseIDs: number[]
   seed: string
   data: object
+  dataPerExercise: { [key: string]: object }
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
@@ -48,7 +50,7 @@ export type IExerciseViewStore = {
     croppedImage: string
     fotoFeedback: string
   }[]
-  pages?: SkillExercisePage[]
+  pages: SkillExercisePage[]
   skill?: string
   cropImage: boolean
   completed: boolean[]
@@ -60,8 +62,11 @@ export type IExerciseViewStore = {
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
   id: -1,
+  _exerciseIDs: [],
   seed: '',
   data: {},
+  pages: [],
+  dataPerExercise: {},
   navIndicatorLength: 0,
   navIndicatorPosition: 0,
   navIndicatorExternalUpdate: -1,

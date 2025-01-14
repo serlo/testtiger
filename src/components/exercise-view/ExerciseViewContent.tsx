@@ -10,10 +10,10 @@ import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef } from 'react'
+import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 
 export function ExerciseViewContent() {
   const id = ExerciseViewStore.useState(s => s.id)
-  const data = ExerciseViewStore.useState(s => s.data)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const pages = ExerciseViewStore.useState(s => s.pages)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
@@ -38,10 +38,6 @@ export function ExerciseViewContent() {
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
 
-  const content = exercisesData[id]
-  const withSubtasks = 'tasks' in content
-
-  const multiPage = withSubtasks && (!pages || pages.length > 1)
   return (
     <div
       className="w-full h-full bg-gray-100"
@@ -55,10 +51,7 @@ export function ExerciseViewContent() {
     >
       <div
         ref={ref}
-        className={clsx(
-          'flex overflow-x-scroll snap-x snap-mandatory gap-2 items-stretch w-full h-full',
-          !multiPage && 'justify-center',
-        )}
+        className=""
         onScroll={e => {
           const [distance, offset] = calculateSnapPoints()
           const scrollLeft = (e.target as HTMLDivElement).scrollLeft
@@ -75,63 +68,83 @@ export function ExerciseViewContent() {
           })
         }}
       >
-        {multiPage && <div className="flex-shrink-0 w-[20%] snap-none"></div>}
-        {pages && withSubtasks
-          ? pages.map((page, i) => {
-              const subexercise = content.tasks.find(
-                (t, j) => countLetter('a', j) == page.index,
-              )!
-              const intros = (page.intro ?? []).slice()
-              if (!page.disableDefaultLocalIntro && subexercise.intro) {
-                intros.push('local')
-              }
-              return renderContentCard(
-                i,
-                subexercise.duration ?? '?',
-                subexercise.points ?? '?',
-                <>
-                  {intros.map((intro, i) =>
-                    renderContentElement(
-                      <>
-                        {intro == 'global' &&
-                          content.intro({
-                            data,
-                          })}
-                        {intro == 'local' &&
-                          subexercise.intro &&
-                          subexercise.intro({
-                            data,
-                          })}
-                        {intro == 'skill' &&
-                          subexercise.skillIntro &&
-                          subexercise.skillIntro({
-                            data,
-                          })}
-                      </>,
-                      i.toString(),
-                    ),
-                  )}
-                  {renderContentElement(subexercise.task({ data }))}
-                </>,
-              )
-            })
-          : (withSubtasks ? content.tasks : [content]).map((t, i) =>
-              renderContentCard(
-                i,
-                (withSubtasks ? t.duration : content.duration) ?? '?',
-                (withSubtasks ? t.points : content.points) ?? '?',
-                <>
-                  {i == 0 &&
-                    withSubtasks &&
-                    renderContentElement(content.intro({ data }))}
-                  {'intro' in t &&
-                    t.intro &&
-                    renderContentElement(t.intro({ data }))}
-                  {renderContentElement(t.task({ data }))}
-                </>,
-              ),
-            )}
-        {multiPage && <div className="flex-shrink-0 w-[5%] snap-none"></div>}
+        <div className="h-6"></div>
+        <div className="mb-9 mx-4 bg-white p-4 rounded-lg shadow-lg text-sm">
+          Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
+          <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg ein,
+          oder <strong>tippe</strong> deine Lösung in den Chat.
+        </div>
+        {pages.map((page, i) => {
+          // TODO: find appropriate content for this page
+          const id = page.context
+            ? ExerciseViewStore.getRawState()._exerciseIDs[
+                parseInt(page.context) - 1
+              ]
+            : ExerciseViewStore.getRawState().id
+
+          const exercise = exercisesData[id]
+          const data = page.context
+            ? ExerciseViewStore.getRawState().dataPerExercise[page.context]
+            : ExerciseViewStore.getRawState().data
+
+          if (page.index == 'single') {
+            // single page exercise
+            const singleExercise = exercise as SingleExercise<any>
+            return renderContentCard(
+              i,
+              singleExercise.duration ?? '?',
+              singleExercise.points ?? '?',
+              <>{renderContentElement(singleExercise.task({ data }))}</>,
+              singleExercise.useCalculator,
+            )
+          } else {
+            const subtasks = exercise as ExerciseWithSubtasks<any>
+
+            const task = subtasks.tasks.find(
+              (t, j) => countLetter('a', j) == page.index,
+            )!
+
+            const intros = (page.intro ?? []).slice()
+
+            if (page.index == 'a' && !intros.includes('global')) {
+              intros.push('global')
+            }
+            if (!page.disableDefaultLocalIntro) {
+              intros.push('local')
+            }
+            return renderContentCard(
+              i,
+              task.duration ?? '?',
+              task.points ?? '?',
+              <>
+                {intros.map((intro, i) =>
+                  renderContentElement(
+                    <>
+                      {intro == 'global' &&
+                        subtasks.intro({
+                          data,
+                        })}
+                      {intro == 'local' &&
+                        task.intro &&
+                        task.intro({
+                          data,
+                        })}
+                      {intro == 'skill' &&
+                        task.skillIntro &&
+                        task.skillIntro({
+                          data,
+                        })}
+                    </>,
+                    i.toString(),
+                  ),
+                )}
+                {renderContentElement(task.task({ data }))}
+              </>,
+              subtasks.useCalculator,
+            )
+          }
+        })}
+        <div className="h-12"></div>
       </div>
     </div>
   )
@@ -141,23 +154,43 @@ export function ExerciseViewContent() {
     duration: number | string,
     points: number | string,
     contentEl: JSX.Element,
+    useCalculator: boolean,
   ) {
     return (
       <div
-        className="w-[calc(100%-24px)] flex-shrink-0 snap-always snap-center overflow-y-auto h-full"
+        className={clsx(
+          'w-[calc(100%-24px)] flex-shrink-0  cursor-pointer mx-auto',
+        )}
         style={{ scrollbarWidth: 'thin' }}
         key={i}
+        onClick={() => {
+          ExerciseViewStore.update(s => {
+            s.navIndicatorPosition = i
+          })
+        }}
       >
-        <div className="flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg min-h-[calc(100%-72px)] mb-12 mt-2 px-[1px] items-center">
-          <div className="flex justify-between p-[3px] w-full sticky bg-white top-0">
+        <div
+          className={clsx(
+            'flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center',
+            navIndicatorPosition == i && 'border-2 border-blue-500',
+          )}
+        >
+          <div className="flex justify-between p-[3px] w-full bg-white top-0">
             <div>
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
-                {pages ? (
-                  <> {pages[i].index + ')'}</>
-                ) : (
-                  withSubtasks && <> {countLetter('a', i) + ')'}</>
-                )}
+                {
+                  <>
+                    {' '}
+                    {!pages[i].context && pages[i].index == 'single' ? null : (
+                      <>
+                        {pages[i].context}
+                        {(pages[i].index == 'single' ? '' : pages[i].index) +
+                          ')'}
+                      </>
+                    )}
+                  </>
+                }
               </div>
             </div>
             <div>
@@ -165,7 +198,7 @@ export function ExerciseViewContent() {
                 <div className="inset-0 absolute">
                   <FaIcon icon={faCalculator} />
                 </div>
-                {!content.useCalculator && (
+                {useCalculator && (
                   <div className="absolute inset-0 -scale-x-100">
                     <FaIcon icon={faSlash} />
                   </div>

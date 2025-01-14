@@ -8,6 +8,7 @@ export interface SingleExercise<T = unknown> {
   duration: number
   points?: number
   originalData?: T
+  learningPathData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
@@ -21,6 +22,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
   useCalculator: boolean
   duration: number
   originalData?: T
+  learningPathData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   intro: (props: { data: T }) => JSX.Element | null
@@ -59,6 +61,7 @@ export interface Part {
 export interface Lesson {
   type: 'new-skill' | 'challenge' | 'repetition'
   position?: { x: number; y: number }
+  icon?: string
   title: string
   steps: Step[]
 }
@@ -85,6 +88,7 @@ export interface SkillExercisePage {
   index: string
   intro?: ('global' | 'local' | 'skill')[]
   disableDefaultLocalIntro?: boolean
+  context?: string
 }
 
 export type IMessage = CoreMessage & {

@@ -9,6 +9,9 @@ import { setupExercise } from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
+import { generateSeed } from '@/data/generate-seed'
+import { generateData } from '@/data/generate-data'
+import { countLetter } from '@/helper/count-letter'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -37,18 +40,56 @@ export function LearningPathMap() {
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox={`0 0 375 ${mapHeight}`}>
-        <image href="/learning-path/gras.svg" x={20} y={6400} width={50} />
-        {lines.map((l, i) => (
-          <line
-            key={i}
-            x1={l.start.position!.x}
-            y1={mapHeight - l.start.position!.y}
-            x2={l.end.position!.x}
-            y2={mapHeight - l.end.position!.y}
-            stroke="gray"
-            strokeWidth={5}
-          ></line>
-        ))}
+        <image href="/learning-path/stage1.svg" x={-50} y={1810} width={500} />
+        <image href="/learning-path/gs1.svg" x={-130} y={6240} width={260} />
+        <image href="/learning-path/gs2.svg" x={160} y={6430} width={70} />
+        <image href="/learning-path/gs3.svg" x={250} y={6400} width={180} />
+        <image href="/learning-path/gs4.svg" x={80} y={5970} width={300} />
+
+        <image href="/learning-path/bigbush.svg" x={-70} y={6310} width={180} />
+        <image href="/learning-path/gras2.svg" x={340} y={6450} width={80} />
+        <image href="/learning-path/grass.svg" x={275} y={6440} width={60} />
+
+        <image href="/learning-path/tree2.svg" x={275} y={6140} width={120} />
+        <image href="/learning-path/tree1.svg" x={-70} y={5990} width={180} />
+
+        {lines.map((l, i) => {
+          const x1 = l.start.position!.x
+          const y1 = mapHeight - l.start.position!.y
+          const x2 = l.end.position!.x
+          const y2 = mapHeight - l.end.position!.y
+
+          if (y1 === y2) {
+            // Zeichne eine gerade Linie
+            return (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="gray"
+                strokeWidth={8}
+              />
+            )
+          } else {
+            // Zeichne eine gebogene Linie (Quadratische Bezier-Kurve)
+            const midX = (x1 + x2) / 2
+            const midY = (y1 + y2) / 2
+            const offset = 50
+
+            return (
+              <path
+                key={i}
+                d={`M ${x1} ${y1} Q ${midX} ${midY + offset} ${x2} ${y2}`}
+                stroke="gray"
+                strokeWidth={8}
+                fill="none"
+              />
+            )
+          }
+        })}
+
         {/*lessonDetails && (
           <circle
             cx={lessonDetails.position!.x}
@@ -62,7 +103,7 @@ export function LearningPathMap() {
             <circle
               cx={el.source.position!.x}
               cy={mapHeight - el.source.position!.y}
-              r={25}
+              r={35}
               fill={
                 el.source.type == 'new-skill'
                   ? 'rebeccapurple'
@@ -77,36 +118,130 @@ export function LearningPathMap() {
                 /*if (isStepOfLessonDone(lessonDetails, step)) {
                     continue
                   }*/
-                const step = lessonDetails.steps[0]
-                setupExercise(
-                  step.exercise.id,
-                  lessonDetails.title,
-                  step.exercise.pages,
-                  true,
-                )
-                ExerciseViewStore.update(s => {
-                  s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                })
-                history.push(
-                  '/exercise/' +
-                    step.exercise.id +
-                    '#' +
-                    encodeURIComponent(
-                      JSON.stringify({
-                        name: lessonDetails.title,
-                        pages: step.exercise.pages,
-                        toHome: true,
-                      }),
-                    ),
-                )
+                if (lessonDetails.steps.length == 1) {
+                  const step = lessonDetails.steps[0]
+                  setupExercise(
+                    step.exercise.id,
+                    lessonDetails.title,
+                    step.exercise.pages,
+                    true,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                  })
+                  history.push(
+                    '/exercise/' +
+                      step.exercise.id +
+                      '#' +
+                      encodeURIComponent(
+                        JSON.stringify({
+                          name: lessonDetails.title,
+                          pages: step.exercise.pages,
+                          toHome: true,
+                        }),
+                      ),
+                  )
+                } else {
+                  const exerciseIds = lessonDetails.steps.map(
+                    s => s.exercise.id,
+                  )
+                  ExerciseViewStore.update(s => {
+                    s.id = 123456
+                    s.seed = generateSeed()
+
+                    // TODO fill in with correct values
+                    s._exerciseIDs = exerciseIds
+                    s.dataPerExercise = {}
+
+                    exerciseIds.forEach((id, i) => {
+                      s.dataPerExercise[i + 1] = generateData(
+                        id,
+                        s.seed,
+                        exercisesData[id],
+                        true,
+                      ) as object
+                    })
+
+                    s.pages = []
+                    let context = 1
+                    for (const step of lessonDetails.steps) {
+                      if (step.exercise.pages) {
+                        for (const page of step.exercise.pages) {
+                          s.pages.push({ context: context.toString(), ...page })
+                        }
+                      } else {
+                        const exercise = exercisesData[step.exercise.id]
+                        if ('tasks' in exercise) {
+                          exercise.tasks.forEach((_, index) => {
+                            s.pages.push({
+                              index: countLetter('a', index),
+                              context: context.toString(),
+                            })
+                          })
+                        } else {
+                          s.pages.push({
+                            context: context.toString(),
+                            index: 'single',
+                          })
+                        }
+                      }
+                      context++
+                    }
+                    console.log('debug pages', s.pages, exerciseIds)
+
+                    s.navIndicatorLength = s.pages.length
+                    s.navIndicatorPosition = 0
+                    s.navIndicatorExternalUpdate = 0
+                    s.checks = Array.from({
+                      length: Math.max(1, s.navIndicatorLength),
+                    }).map(_ => {
+                      return {
+                        answerInput: '',
+                        result: '',
+                        resultPending: false,
+                        fotoFeedback: '',
+                        croppedImage: '',
+                        uploadedImage: '',
+                      }
+                    })
+                    s.chatHistory = Array.from({
+                      length: Math.max(1, s.navIndicatorLength),
+                    }).map(_ => {
+                      return {
+                        entries: [],
+                        resultPending: false,
+                        answerInput: '',
+                      }
+                    })
+                    s.chatOverlay = null
+                    s.skill = lessonDetails.title
+                    s.cropImage = false
+                    s.completed = s.checks.map(() => false)
+                    s.showEndScreen = false
+                    s.toHome = true
+                    s.tag = lessonDetails.title + '#'
+                  })
+                  history.push('/exercise/123456')
+                }
               }}
             ></circle>
+            {el.source.icon && (
+              <image
+                href={el.source.icon}
+                x={el.source.position!.x - 13}
+                y={mapHeight - el.source.position!.y - 13}
+                width={26}
+                height={26}
+                fill="white"
+                className="pointer-events-none"
+              />
+            )}
             {el.source.steps.every(step =>
               isStepOfLessonDone(el.source, step),
             ) && (
               <text
-                x={el.source.position!.x - 6}
-                y={mapHeight - el.source.position!.y + 18}
+                x={el.source.position!.x + 4}
+                y={mapHeight - el.source.position!.y + 26}
                 fontSize={32}
                 className="fill-green-400 font-bold pointer-events-none"
               >

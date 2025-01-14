@@ -2199,19 +2199,20 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zahlen und Einheiten',
-            position: { x: 100, y: 200 },
+            icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
+            position: { x: 80, y: 170 },
             steps: [{ exercise: { id: 110 } }],
           },
           {
             type: 'new-skill',
             title: 'Zahlen und Einheiten',
-            position: { x: 200, y: 200 },
+            position: { x: 210, y: 220 },
             steps: [{ exercise: { id: 130 } }],
           },
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
-            position: { x: 250, y: 350 },
+            position: { x: 250, y: 385 },
             steps: [{ exercise: { id: 123 } }],
           },
           {

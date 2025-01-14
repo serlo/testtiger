@@ -17,7 +17,6 @@ import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 export function SolutionOverlay() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const id = ExerciseViewStore.useState(s => s.id)
-  const data = ExerciseViewStore.useState(s => s.data)
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
   )
@@ -78,6 +77,12 @@ export function SolutionOverlay() {
     return null
   }
 
+  const data = pages[navIndicatorPosition].context
+    ? ExerciseViewStore.getRawState().dataPerExercise[
+        pages[navIndicatorPosition].context!
+      ]
+    : ExerciseViewStore.getRawState().data
+
   return (
     <>
       <div className="flex justify-between mx-3 pt-3">
@@ -108,14 +113,39 @@ export function SolutionOverlay() {
       >
         <div className="max-w-[328px] mx-auto">
           {proseWrapper(
-            ('tasks' in content
+            (() => {
+              /*'tasks' in content
               ? pages
                 ? content.tasks.find(
                     (el, i) =>
                       countLetter('a', i) == pages[navIndicatorPosition].index,
                   )!.solution
                 : content.tasks[navIndicatorPosition].solution
-              : content.solution)({
+              : content.solution*/
+              const exercise =
+                exercisesData[
+                  pages[navIndicatorPosition].context
+                    ? ExerciseViewStore.getRawState()._exerciseIDs[
+                        parseInt(pages[navIndicatorPosition].context!) - 1
+                      ]
+                    : id
+                ]
+
+              if (
+                pages[navIndicatorPosition].index == 'single' &&
+                'solution' in exercise
+              ) {
+                return exercise.solution!
+              } else if ('tasks' in exercise) {
+                return exercise.tasks.find(
+                  (el, i) =>
+                    countLetter('a', i) == pages[navIndicatorPosition].index,
+                )!.solution
+              }
+
+              // eslint-disable-next-line react/display-name
+              return () => <></> // should not happen
+            })()({
               data,
             }),
           )}
