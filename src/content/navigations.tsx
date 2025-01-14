@@ -2200,7 +2200,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
-            position: { x: 100, y: 80 },
+            position: { x: 150, y: 100 },
             steps: [{ exercise: { id: 199 } }],
           },
           {
