@@ -233,6 +233,7 @@ export function LearningPathMap() {
                 width={26}
                 height={26}
                 fill="white"
+                className="pointer-events-none"
               />
             )}
             {el.source.steps.every(step =>
