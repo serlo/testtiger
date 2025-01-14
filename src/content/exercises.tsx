@@ -94,6 +94,7 @@ import { exercise110 } from './implementations/NRW-EESA/110-2022-1-1-Zahlen-ordn
 import { exercise111 } from './implementations/NRW-EESA/111-2022-1-2-Quadrat'
 import { exercise124 } from './implementations/NRW-EESA/124-2023-1-5-Schätzen'
 import { exercise125 } from './implementations/NRW-EESA/125-2023-1-6-Mittelwerte und Durchschnitt'
+import { exercise199 } from './implementations/NRW-EESA/199-intro-Zahlen-vergleichen'
 import { exercise215 } from './implementations/BW_Realschule/215-2024-B-3-Angelspiel+Tennishalle'
 import { exercise200 } from './implementations/BW_Realschule/200-2024-A1-1-Pyramide'
 import { exercise201 } from './implementations/BW_Realschule/201-2024-A1-2-Kugeln-ziehen'
@@ -238,6 +239,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   112: exercise112,
   110: exercise110,
   111: exercise111,
+  199: exercise199,
   200: exercise200,
   201: exercise201,
   202: exercise202,
