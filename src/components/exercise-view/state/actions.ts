@@ -79,17 +79,27 @@ export function setupExercise(
 
 export function reseed() {
   const s = ExerciseViewStore.getRawState()
-  const currentData = generateData(s.id, s.seed, exercisesData[s.id])
+  const context = s.pages[s.navIndicatorPosition].context
+  const id = context ? s._exerciseIDs[parseInt(context) - 1] : s.id
+  const currentData = context ? s.dataPerExercise[context] : s.data
   const newSeed = constrainedGeneration(
     () => generateSeed(),
     seed => {
-      const newData = generateData(s.id, seed, exercisesData[s.id])
+      const newData = generateData(id, seed, exercisesData[id])
       return !isDeepEqual(currentData, newData)
     },
   )
   ExerciseViewStore.update(s => {
     s.seed = newSeed
-    s.data = generateData(s.id, newSeed, exercisesData[s.id]) as object
+    if (context) {
+      s.dataPerExercise[context] = generateData(
+        id,
+        newSeed,
+        exercisesData[id],
+      ) as object
+    } else {
+      s.data = generateData(id, newSeed, exercisesData[id]) as object
+    }
   })
 }
 
