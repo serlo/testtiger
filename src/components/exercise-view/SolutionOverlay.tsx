@@ -11,7 +11,7 @@ import { createGesture } from '@ionic/react'
 import { useRef, useEffect } from 'react'
 import { countLetter } from '@/helper/count-letter'
 import clsx from 'clsx'
-import { reseed } from './state/actions'
+import { markCurrentExerciseAsComplete, reseed } from './state/actions'
 import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 export function SolutionOverlay() {
@@ -180,23 +180,7 @@ export function SolutionOverlay() {
                   }
                 }
               })
-              updatePlayerProfileStore(s => {
-                s.eventLog.push({
-                  type: 'kann-ich',
-                  id,
-                  ts: new Date().getTime(),
-                  index: pages
-                    ? pages[navIndicatorPosition].index.charCodeAt(0) -
-                      'a'.charCodeAt(0)
-                    : navIndicatorPosition,
-                })
-                if (ExerciseViewStore.getRawState().tag) {
-                  s.progress[s.currentExam].learningPathTags.push(
-                    ExerciseViewStore.getRawState().tag +
-                      (pages ? pages[navIndicatorPosition].index : ''),
-                  )
-                }
-              })
+              markCurrentExerciseAsComplete()
             }}
           >
             Kann ich{completed && <FaIcon icon={faCheck} className="ml-2" />}

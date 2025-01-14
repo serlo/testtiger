@@ -1,6 +1,7 @@
 import { navigationData } from '@/content/navigations'
 import {
   isStepOfLessonDone,
+  isWholeLessonDone,
   PlayerProfileStore,
 } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
@@ -236,9 +237,7 @@ export function LearningPathMap() {
                 className="pointer-events-none"
               />
             )}
-            {el.source.steps.every(step =>
-              isStepOfLessonDone(el.source, step),
-            ) && (
+            {isWholeLessonDone(el.source) && (
               <text
                 x={el.source.position!.x + 4}
                 y={mapHeight - el.source.position!.y + 26}
