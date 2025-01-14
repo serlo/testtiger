@@ -79,7 +79,7 @@ export function SolutionOverlay() {
 
   const data = pages[navIndicatorPosition].context
     ? ExerciseViewStore.getRawState().dataPerExercise[
-        pages[navIndicatorPosition].context
+        pages[navIndicatorPosition].context!
       ]
     : ExerciseViewStore.getRawState().data
 
