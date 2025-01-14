@@ -8,7 +8,10 @@ import { extractor } from '../extractor/extractor'
 import { IMessage, SkillExercise, SkillExercisePage } from '@/data/types'
 import { makePost } from '@/helper/make-post'
 import { countLetter } from '@/helper/count-letter'
-import { PlayerProfileStore } from '../../../../store/player-profile-store'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../../../store/player-profile-store'
 
 export function setupExercise(
   id: number,
@@ -102,6 +105,28 @@ export function reseed() {
       ) as object
     } else {
       s.data = generateData(id, newSeed, exercisesData[id]) as object
+    }
+  })
+}
+
+export function markCurrentExerciseAsComplete() {
+  const state = ExerciseViewStore.getRawState()
+  updatePlayerProfileStore(s => {
+    s.eventLog.push({
+      type: 'kann-ich',
+      id: state.id,
+      ts: new Date().getTime(),
+      index:
+        state.pages[state.navIndicatorPosition].index.charCodeAt(0) -
+        'a'.charCodeAt(0),
+    })
+    if (ExerciseViewStore.getRawState().tag) {
+      s.progress[s.currentExam].learningPathTags.push(
+        ExerciseViewStore.getRawState().tag +
+          state.pages[state.navIndicatorPosition].index +
+          '#' +
+          (state.pages[state.navIndicatorPosition].context ?? ''),
+      )
     }
   })
 }

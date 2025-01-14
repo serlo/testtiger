@@ -19,7 +19,10 @@ import {
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
-import { analyseLastInput } from './state/actions'
+import {
+  analyseLastInput,
+  markCurrentExerciseAsComplete,
+} from './state/actions'
 import { useRef, useEffect } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { exercisesData } from '@/content/exercises'
@@ -244,28 +247,7 @@ export function ExerciseViewFooter() {
                                   }
                                 }
                               })
-                              updatePlayerProfileStore(s => {
-                                s.eventLog.push({
-                                  type: 'kann-ich',
-                                  id,
-                                  ts: new Date().getTime(),
-                                  index: pages
-                                    ? pages[
-                                        navIndicatorPosition
-                                      ].index.charCodeAt(0) - 'a'.charCodeAt(0)
-                                    : navIndicatorPosition,
-                                })
-                                if (ExerciseViewStore.getRawState().tag) {
-                                  s.progress[
-                                    s.currentExam
-                                  ].learningPathTags.push(
-                                    ExerciseViewStore.getRawState().tag +
-                                      (pages
-                                        ? pages[navIndicatorPosition].index
-                                        : ''),
-                                  )
-                                }
-                              })
+                              markCurrentExerciseAsComplete()
                             }}
                           >
                             Kann ich

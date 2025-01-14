@@ -2,7 +2,11 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { LearningPathStore } from './state/learning-path-store'
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import {
+  isWholeLessonDone,
+  PlayerProfileStore,
+} from '../../../store/player-profile-store'
+import clsx from 'clsx'
 
 export function LearningPathHeader() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -14,7 +18,15 @@ export function LearningPathHeader() {
         {navigationData[exam].path[part]?.lessons
           .filter(l => l.type == 'challenge')
           .map((l, i) => (
-            <FaIcon icon={faStar} key={i} className="mr-1 text-gray-400" />
+            <FaIcon
+              icon={faStar}
+              key={i}
+              className={clsx(
+                'mr-1',
+                isWholeLessonDone(l) && 'text-yellow-400',
+                'text-gray-400',
+              )}
+            />
           ))}
       </div>
     </div>

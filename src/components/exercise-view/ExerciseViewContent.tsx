@@ -171,8 +171,12 @@ export function ExerciseViewContent() {
       >
         <div
           className={clsx(
-            'flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center',
-            navIndicatorPosition == i && 'border-2 border-blue-500',
+            'flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',
+            navIndicatorPosition == i
+              ? 'border-blue-500'
+              : ExerciseViewStore.getRawState().completed[i]
+                ? 'border-green-500'
+                : 'border-transparent',
           )}
         >
           <div className="flex justify-between p-[3px] w-full bg-white top-0">
