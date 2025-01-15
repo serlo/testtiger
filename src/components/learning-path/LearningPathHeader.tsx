@@ -2,11 +2,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { LearningPathStore } from './state/learning-path-store'
 import { navigationData } from '@/content/navigations'
-import {
-  isWholeLessonDonePercentage,
-  PlayerProfileStore,
-} from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 import clsx from 'clsx'
+import { isWholeLessonDonePercentage } from '../../../store/actions'
 
 export function LearningPathHeader() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
