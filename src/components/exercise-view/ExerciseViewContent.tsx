@@ -144,7 +144,10 @@ export function ExerciseViewContent() {
               singleExercise.duration ?? '?',
               singleExercise.points ?? '?',
               <>{renderContentElement(singleExercise.task({ data }))}</>,
-              singleExercise.useCalculator,
+              pages.length < 2
+                ? ''
+                : (page.context ? page.context : '') +
+                    (page.index == 'single' ? '' : page.index),
             )
           } else {
             const subtasks = exercise as ExerciseWithSubtasks<any>
@@ -191,7 +194,10 @@ export function ExerciseViewContent() {
                   <div className="bg-blue-100">{task.task({ data })}</div>,
                 )}
               </>,
-              subtasks.useCalculator,
+              pages.length < 2
+                ? ''
+                : (page.context ? page.context : '') +
+                    (page.index == 'single' ? '' : page.index),
             )
           }
         })}
@@ -205,12 +211,12 @@ export function ExerciseViewContent() {
     duration: number | string,
     points: number | string,
     contentEl: JSX.Element,
-    useCalculator: boolean,
+    numbering?: string,
   ) {
     return (
       <div
         className={clsx(
-          'w-[calc(100%-24px)] flex-shrink-0  cursor-pointer mx-auto',
+          'w-[calc(100%-24px)] flex-shrink-0 cursor-pointer mx-auto relative',
         )}
         style={{ scrollbarWidth: 'thin' }}
         key={i}
@@ -222,6 +228,11 @@ export function ExerciseViewContent() {
         }}
         id={`exercise-${i}`}
       >
+        {toHome && numbering && (
+          <div className="absolute -top-5 left-4 font-bold font-xl">
+            {numbering}
+          </div>
+        )}
         <div
           className={clsx(
             'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',
