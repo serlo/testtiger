@@ -79,7 +79,7 @@ export function findRelevantKeys(lesson: Lesson) {
   if (lesson.steps.length == 1) {
     const step = lesson.steps[0]
     if (step.exercise.pages) {
-      step.exercise.pages.every(page => {
+      step.exercise.pages.forEach(page => {
         relevantKeys.push(`${lesson.title}#${step.exercise.id}#${page.index}#`)
       })
     } else {
