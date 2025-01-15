@@ -1,8 +1,5 @@
 import { navigationData } from '@/content/navigations'
-import {
-  isWholeLessonDonePercentage,
-  PlayerProfileStore,
-} from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { Fragment } from 'react'
 import { setupExercise } from '../exercise-view/state/actions'
@@ -12,6 +9,7 @@ import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 import { generateSeed } from '@/data/generate-seed'
 import { generateData } from '@/data/generate-data'
 import { countLetter } from '@/helper/count-letter'
+import { isWholeLessonDonePercentage } from '../../../store/actions'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
