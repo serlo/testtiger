@@ -59,7 +59,7 @@ export function LearningPathMap() {
           <>
             <rect
               x={200 + 0}
-              y={5900}
+              y={5800}
               width={200}
               height={50}
               radius={10}
@@ -73,7 +73,7 @@ export function LearningPathMap() {
             />
             <text
               x={200 + 100}
-              y={5900 + 30}
+              y={5800 + 30}
               fontSize={20}
               fill="black"
               textAnchor="middle"
