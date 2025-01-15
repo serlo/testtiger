@@ -181,15 +181,16 @@ export function ExerciseViewContent() {
       >
         <div
           className={clsx(
-            'flex flex-col justify-start pt-2 bg-white rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',
+            'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',
             navIndicatorPosition == i
               ? 'border-blue-500'
-              : ExerciseViewStore.getRawState().completed[i]
-                ? 'border-green-500'
-                : 'border-transparent',
+              : 'border-transparent',
+            ExerciseViewStore.getRawState().completed[i]
+              ? 'bg-green-100'
+              : 'bg-white',
           )}
         >
-          <div className="flex justify-between p-[3px] w-full bg-white top-0">
+          <div className="flex justify-between p-[3px] w-full top-0">
             <div>
               <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
                 Aufgabe
