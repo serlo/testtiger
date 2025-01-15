@@ -84,6 +84,26 @@ export function setupExercise(
   })
 }
 
+export function setDisplayIndices() {
+  ExerciseViewStore.update(s => {
+    if (s.pages.length > 1) {
+      let counter = 0
+      let context = ''
+      s.pages.forEach(page => {
+        const currentContext = page.context ?? ''
+        if (currentContext != context) {
+          counter = 0
+          context = currentContext
+        }
+        page.displayIndex =
+          currentContext +
+          (page.index == 'single' ? '' : countLetter('a', counter))
+        counter++
+      })
+    }
+  })
+}
+
 export function reseed() {
   const s = ExerciseViewStore.getRawState()
   const context = s.pages[s.navIndicatorPosition].context

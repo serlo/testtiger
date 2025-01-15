@@ -2,7 +2,10 @@ import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { Fragment } from 'react'
-import { setupExercise } from '../exercise-view/state/actions'
+import {
+  setDisplayIndices,
+  setupExercise,
+} from '../exercise-view/state/actions'
 import { useHistory } from 'react-router'
 import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
@@ -298,6 +301,7 @@ export function LearningPathMap() {
                   })
                   history.push('/exercise/123456')
                 }
+                setDisplayIndices()
               }}
             ></circle>
             {el.source.icon && (
