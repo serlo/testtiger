@@ -156,10 +156,16 @@ export function LearningPathMap() {
                   ? 'rebeccapurple'
                   : el.source.type == 'challenge'
                     ? '#f7bc02'
-                    : 'gray'
+                    : el.source.type == 'video'
+                      ? '#a78bfa'
+                      : 'gray'
               }
               className="cursor-pointer"
               onClick={() => {
+                if (el.source.type == 'video') {
+                  history.push('/video')
+                  return
+                }
                 const lessonDetails = el.source
 
                 /*if (isStepOfLessonDone(lessonDetails, step)) {
@@ -312,6 +318,17 @@ export function LearningPathMap() {
                 y={mapHeight - el.source.position!.y - 25}
                 width={50}
                 height={50}
+                fill="white"
+                className="pointer-events-none"
+              />
+            )}
+            {el.source.type == 'video' && (
+              <image
+                href="/learning-path/video.svg"
+                x={el.source.position!.x - 20}
+                y={mapHeight - el.source.position!.y - 20}
+                width={40}
+                height={40}
                 fill="white"
                 className="pointer-events-none"
               />

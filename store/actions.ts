@@ -11,6 +11,7 @@ export const setName = (name: string) => {
 }
 
 export function isWholeLessonDonePercentage(lesson: Lesson) {
+  if (lesson.steps.length == 0) return 0
   let relevantKeys = findRelevantKeys(lesson)
 
   return (

@@ -26,6 +26,7 @@ export async function generateStaticParams() {
     { all: ['contact'] },
     { all: ['privacy'] },
     { all: ['feedback'] },
+    { all: ['video'] },
     { all: ['lists'] },
     { all: ['exercise', '123456'] },
     ...lists.map(list => ({ all: ['lists', list.id] })),

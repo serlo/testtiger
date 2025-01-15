@@ -2197,6 +2197,12 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Grundlagen',
         lessons: [
           {
+            type: 'video',
+            title: 'Intro: Zahlen vergleichen',
+            position: { x: 140, y: 60 },
+            steps: [],
+          },
+          {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
