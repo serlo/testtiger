@@ -34,6 +34,13 @@ export function ExerciseViewFooter() {
   )
   const id = ExerciseViewStore.useState(s => s.id)
   const toHome = ExerciseViewStore.useState(s => s.toHome)
+  const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
+
+  useEffect(() => {
+    ExerciseViewStore.update(s => {
+      s.needReset2 = false
+    })
+  }, [needReset2])
 
   useEffect(() => {
     if (chatHistoryRef.current) {
@@ -451,20 +458,22 @@ export function ExerciseViewFooter() {
             />
           </div>
           <div className="flex items-end pb-6 mt-3 mx-2 sm:mx-3 gap-3">
-            <TextareaAutosize
-              ref={textareaRef}
-              value={chatHistory.answerInput}
-              onChange={e =>
-                ExerciseViewStore.update(s => {
-                  s.chatHistory[s.navIndicatorPosition].answerInput =
-                    e.target.value
-                })
-              }
-              placeholder="Gib deine Antwort oder Frage ein ..."
-              minRows={1}
-              maxRows={5}
-              className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
-            />
+            {!needReset2 && (
+              <TextareaAutosize
+                ref={textareaRef}
+                value={chatHistory.answerInput}
+                onChange={e =>
+                  ExerciseViewStore.update(s => {
+                    s.chatHistory[s.navIndicatorPosition].answerInput =
+                      e.target.value
+                  })
+                }
+                placeholder="Gib deine Antwort oder Frage ein ..."
+                minRows={1}
+                maxRows={5}
+                className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
+              />
+            )}
             <button
               className="flex-shrink-0 w-10 h-10 bg-gray-500 text-white rounded-full flex items-center justify-center hover:bg-gray-600"
               onClick={() => {
