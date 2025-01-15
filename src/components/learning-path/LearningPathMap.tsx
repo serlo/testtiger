@@ -1,7 +1,6 @@
 import { navigationData } from '@/content/navigations'
 import {
-  isStepOfLessonDone,
-  isWholeLessonDone,
+  isWholeLessonDonePercentage,
   PlayerProfileStore,
 } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
@@ -101,6 +100,22 @@ export function LearningPathMap() {
         )*/}
         {elements.map((el, i) => (
           <Fragment key={i}>
+            {
+              <circle
+                cx={el.source.position!.x}
+                cy={mapHeight - el.source.position!.y}
+                r={39}
+                fill="none"
+                className="stroke-green-500"
+                strokeWidth={8}
+                strokeDasharray={
+                  Math.round(
+                    isWholeLessonDonePercentage(el.source) * 246,
+                  ).toString() + ' 1000'
+                }
+                transform={`rotate(-90 ${el.source.position!.x} ${mapHeight - el.source.position!.y})`}
+              ></circle>
+            }
             <circle
               cx={el.source.position!.x}
               cy={mapHeight - el.source.position!.y}
@@ -248,7 +263,7 @@ export function LearningPathMap() {
                 className="pointer-events-none"
               />
             )}
-            {isWholeLessonDone(el.source) && (
+            {isWholeLessonDonePercentage(el.source) == 1 && (
               <text
                 x={el.source.position!.x + 4}
                 y={mapHeight - el.source.position!.y + 26}
