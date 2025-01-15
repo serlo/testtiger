@@ -157,6 +157,7 @@ export function LearningPathMap() {
                         ].learningPathTags.includes(relevantKeys[i]),
                       )
                     }
+                    s.needReset2 = true
                   })
                   history.push(
                     '/exercise/' +
@@ -222,6 +223,7 @@ export function LearningPathMap() {
                     s.navIndicatorLength = s.pages.length
                     s.navIndicatorPosition = 0
                     s.needReset = true
+                    s.needReset2 = true
                     s.navIndicatorExternalUpdate = 0
                     s.checks = Array.from({
                       length: Math.max(1, s.navIndicatorLength),

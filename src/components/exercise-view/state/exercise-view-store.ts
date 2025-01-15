@@ -59,12 +59,14 @@ export type IExerciseViewStore = {
   toHome: boolean
   tag: string
   needReset: boolean
+  needReset2: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
   id: -1,
   _exerciseIDs: [],
   needReset: false,
+  needReset2: false,
   seed: '',
   data: {},
   pages: [],
