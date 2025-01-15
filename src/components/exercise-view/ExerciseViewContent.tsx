@@ -13,7 +13,7 @@ import { useEffect, useRef } from 'react'
 import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 
 export function ExerciseViewContent() {
-  const id = ExerciseViewStore.useState(s => s.id)
+  const toHome = ExerciseViewStore.useState(s => s.toHome)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const pages = ExerciseViewStore.useState(s => s.pages)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
@@ -64,6 +64,15 @@ export function ExerciseViewContent() {
     }
   }, [needReset])
 
+  const useCalculator =
+    exercisesData[
+      pages[0].context
+        ? ExerciseViewStore.getRawState()._exerciseIDs[
+            parseInt(pages[0].context) - 1
+          ]
+        : ExerciseViewStore.getRawState().id
+    ].useCalculator
+
   return (
     <div
       ref={ref}
@@ -96,6 +105,20 @@ export function ExerciseViewContent() {
       >
         <div className="h-6"></div>
         <div className="mb-9 mx-4 bg-white p-4 rounded-lg shadow-lg text-sm">
+          <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+            <div className="inset-0 absolute">
+              <FaIcon icon={faCalculator} />
+            </div>
+            {!useCalculator && (
+              <div className="absolute inset-0 -scale-x-100">
+                <FaIcon icon={faSlash} />
+              </div>
+            )}
+          </button>
+          Taschenrechner ist
+          {useCalculator ? '' : ' nicht'} erlaubt.
+          <br />
+          <br />
           Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
           <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg ein,
           oder <strong>tippe</strong> deine Lösung in den Chat.
@@ -208,9 +231,18 @@ export function ExerciseViewContent() {
               : 'bg-white',
           )}
         >
-          <div className="flex justify-between p-[3px] w-full top-0">
+          <div
+            className={clsx(
+              'flex justify-between p-[3px] w-full top-0',
+              toHome && 'hidden',
+            )}
+          >
             <div>
-              <div className="px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2">
+              <div
+                className={clsx(
+                  'px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2',
+                )}
+              >
                 Aufgabe
                 {
                   <>
@@ -231,7 +263,7 @@ export function ExerciseViewContent() {
                 <div className="inset-0 absolute">
                   <FaIcon icon={faCalculator} />
                 </div>
-                {useCalculator && (
+                {!useCalculator && (
                   <div className="absolute inset-0 -scale-x-100">
                     <FaIcon icon={faSlash} />
                   </div>
