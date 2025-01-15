@@ -37,9 +37,11 @@ export function ExerciseViewFooter() {
   const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
 
   useEffect(() => {
-    ExerciseViewStore.update(s => {
-      s.needReset2 = false
-    })
+    setTimeout(() => {
+      ExerciseViewStore.update(s => {
+        s.needReset2 = false
+      })
+    }, 10)
   }, [needReset2])
 
   useEffect(() => {

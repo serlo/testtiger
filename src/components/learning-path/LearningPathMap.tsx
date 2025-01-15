@@ -157,7 +157,6 @@ export function LearningPathMap() {
                         ].learningPathTags.includes(relevantKeys[i]),
                       )
                     }
-                    s.needReset2 = true
                   })
                   history.push(
                     '/exercise/' +
@@ -171,6 +170,9 @@ export function LearningPathMap() {
                         }),
                       ),
                   )
+                  ExerciseViewStore.update(s => {
+                    s.needReset2 = true
+                  })
                 } else {
                   const exerciseIds = lessonDetails.steps.map(
                     s => s.exercise.id,
