@@ -470,7 +470,7 @@ export function ExerciseViewFooter() {
                     e.target.value
                 })
               }
-              placeholder="Gib deine Antwort oder Frage ein ..."
+              placeholder="Gib deine Antwort oder Frage ein..."
               minRows={1}
               maxRows={5}
               className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
