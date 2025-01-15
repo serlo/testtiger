@@ -30,10 +30,19 @@ export function ExerciseViewContent() {
       navIndicatorPosition != navIndicatorExternalUpdate &&
       ref.current
     ) {
-      const [distance, offset] = calculateSnapPoints()
-      ref.current.scrollLeft = offset + distance * navIndicatorExternalUpdate
+      /*const [distance, offset] = calculateSnapPoints()
+      ref.current.scrollLeft = offset + distance * navIndicatorExternalUpdate*/
+
+      document
+        .getElementById(`exercise-${navIndicatorExternalUpdate}`)
+        ?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
+        })
       ExerciseViewStore.update(s => {
         s.navIndicatorExternalUpdate = -1
+        s.navIndicatorPosition = navIndicatorExternalUpdate
       })
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
@@ -168,6 +177,7 @@ export function ExerciseViewContent() {
             s.navIndicatorPosition = i
           })
         }}
+        id={`exercise-${i}`}
       >
         <div
           className={clsx(
