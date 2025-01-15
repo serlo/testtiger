@@ -10,12 +10,6 @@ import {
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { FotoOverlay } from './FotoOverlay'
-import {
-  Camera,
-  CameraResultType,
-  CameraSource,
-  CameraDirection,
-} from '@capacitor/camera'
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -25,8 +19,6 @@ import {
 } from './state/actions'
 import { useRef, useEffect } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
-import { exercisesData } from '@/content/exercises'
-import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 defineCustomElements(window)
 
@@ -468,8 +460,8 @@ export function ExerciseViewFooter() {
                     e.target.value
                 })
               }
-              placeholder="Gib deine Antwort oder Frage ein..."
-              minRows={1}
+              placeholder="Gib deine Antwort oder Frage ein ..."
+              minRows={2}
               maxRows={5}
               className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
             />
