@@ -9,7 +9,10 @@ import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 import { generateSeed } from '@/data/generate-seed'
 import { generateData } from '@/data/generate-data'
 import { countLetter } from '@/helper/count-letter'
-import { isWholeLessonDonePercentage } from '../../../store/actions'
+import {
+  findRelevantKeys,
+  isWholeLessonDonePercentage,
+} from '../../../store/actions'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -140,8 +143,15 @@ export function LearningPathMap() {
                     step.exercise.pages,
                     true,
                   )
+
+                  const relevantKeys = findRelevantKeys(lessonDetails)
                   ExerciseViewStore.update(s => {
                     s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                    s.completed = s.checks.map((_, i) =>
+                      PlayerProfileStore.getRawState().progress[
+                        exam
+                      ].learningPathTags.includes(relevantKeys[i]),
+                    )
                   })
                   history.push(
                     '/exercise/' +
@@ -159,6 +169,7 @@ export function LearningPathMap() {
                   const exerciseIds = lessonDetails.steps.map(
                     s => s.exercise.id,
                   )
+                  const relevantKeys = findRelevantKeys(lessonDetails)
                   ExerciseViewStore.update(s => {
                     s.id = 123456
                     s.seed = generateSeed()
@@ -231,7 +242,11 @@ export function LearningPathMap() {
                     s.chatOverlay = null
                     s.skill = lessonDetails.title
                     s.cropImage = false
-                    s.completed = s.checks.map(() => false)
+                    s.completed = s.checks.map((_, i) =>
+                      PlayerProfileStore.getRawState().progress[
+                        exam
+                      ].learningPathTags.includes(relevantKeys[i]),
+                    )
                     s.showEndScreen = false
                     s.toHome = true
                     s.tag = lessonDetails.title + '#'
