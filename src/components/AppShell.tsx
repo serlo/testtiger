@@ -25,6 +25,7 @@ import {
 import { Contact } from './pages/Contact'
 import { Privacy } from './pages/Privacy'
 import { CaptureOverlay } from './exercise-view/CaptureOverlay'
+import { Feedback } from './pages/Feedback'
 
 setupIonicReact({})
 
@@ -75,6 +76,7 @@ export function AppShell() {
           <Route path="/app" render={() => <App />} />
           <Route path="/contact" render={() => <Contact />} />
           <Route path="/privacy" render={() => <Privacy />} />
+          <Route path="/feedback" render={() => <Feedback />} />
           <Route
             path=""
             render={() => <Redirect to="/onboarding" />}

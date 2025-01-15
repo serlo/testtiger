@@ -54,6 +54,36 @@ export function LearningPathMap() {
         <image href="/learning-path/tree2.svg" x={275} y={6140} width={120} />
         <image href="/learning-path/tree1.svg" x={-70} y={5990} width={180} />
 
+        {exam ==
+          2 /* add feedback button without!!! external image using text and rectangle*/ && (
+          <>
+            <rect
+              x={200 + 0}
+              y={5900}
+              width={200}
+              height={50}
+              radius={10}
+              fill="white"
+              stroke="black"
+              strokeWidth={1}
+              className="cursor-pointer"
+              onClick={() => {
+                history.push('/feedback')
+              }}
+            />
+            <text
+              x={200 + 100}
+              y={5900 + 30}
+              fontSize={20}
+              fill="black"
+              textAnchor="middle"
+              className="pointer-events-none"
+            >
+              Feedback
+            </text>
+          </>
+        )}
+
         {lines.map((l, i) => {
           const x1 = l.start.position!.x
           const y1 = mapHeight - l.start.position!.y
