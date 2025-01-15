@@ -187,7 +187,9 @@ export function ExerciseViewContent() {
                     i.toString(),
                   ),
                 )}
-                {renderContentElement(task.task({ data }))}
+                {renderContentElement(
+                  <div className="bg-blue-100">{task.task({ data })}</div>,
+                )}
               </>,
               subtasks.useCalculator,
             )
