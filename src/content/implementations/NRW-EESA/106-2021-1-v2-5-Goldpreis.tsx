@@ -18,7 +18,7 @@ export const exercise106: Exercise<DATA> = {
   duration: 5,
   generator(rng) {
     return {
-      preis: rng.randomIntBetween(4000, 5000) / 100,
+      preis: rng.randomIntBetween(2000, 2500) / 50,
       faktor: 2,
       weight: rng.randomIntBetween(180, 200) / 10,
       radius: rng.randomIntBetween(3, 9),
@@ -28,6 +28,7 @@ export const exercise106: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  learningPathData: { preis: 42.28, faktor: 2, weight: 17.7, radius: 4 },
   intro({ data }) {
     return (
       <>
