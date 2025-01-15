@@ -214,17 +214,19 @@ export function LearningPathMap() {
                       solvedPercentage < 1,
                     )
 
-                    const relevantKeys = findRelevantKeys(lessonDetails)
-                    ExerciseViewStore.update(s => {
-                      s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                      if (solvedPercentage < 1) {
-                        s.completed = s.checks.map((_, i) =>
-                          PlayerProfileStore.getRawState().progress[
-                            exam
-                          ].learningPathTags.includes(relevantKeys[i]),
-                        )
-                      }
-                    })
+                    if (solvedPercentage < 1) {
+                      const relevantKeys = findRelevantKeys(lessonDetails)
+                      ExerciseViewStore.update(s => {
+                        s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                        if (solvedPercentage < 1) {
+                          s.completed = s.checks.map((_, i) =>
+                            PlayerProfileStore.getRawState().progress[
+                              exam
+                            ].learningPathTags.includes(relevantKeys[i]),
+                          )
+                        }
+                      })
+                    }
                     history.push(
                       '/exercise/' +
                         step.exercise.id +
@@ -321,10 +323,12 @@ export function LearningPathMap() {
                       s.chatOverlay = null
                       s.skill = lessonDetails.title
                       s.cropImage = false
-                      s.completed = s.checks.map((_, i) =>
-                        PlayerProfileStore.getRawState().progress[
-                          exam
-                        ].learningPathTags.includes(relevantKeys[i]),
+                      s.completed = s.checks.map(
+                        (_, i) =>
+                          solvedPercentage < 1 &&
+                          PlayerProfileStore.getRawState().progress[
+                            exam
+                          ].learningPathTags.includes(relevantKeys[i]),
                       )
                       s.showEndScreen = false
                       s.toHome = true
