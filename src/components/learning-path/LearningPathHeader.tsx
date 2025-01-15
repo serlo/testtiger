@@ -3,7 +3,7 @@ import { FaIcon } from '../ui/FaIcon'
 import { LearningPathStore } from './state/learning-path-store'
 import { navigationData } from '@/content/navigations'
 import {
-  isWholeLessonDone,
+  isWholeLessonDonePercentage,
   PlayerProfileStore,
 } from '../../../store/player-profile-store'
 import clsx from 'clsx'
@@ -23,7 +23,7 @@ export function LearningPathHeader() {
               key={i}
               className={clsx(
                 'mr-1',
-                isWholeLessonDone(l) && 'text-yellow-400',
+                isWholeLessonDonePercentage(l) == 1 && 'text-yellow-400',
                 'text-gray-400',
               )}
             />
