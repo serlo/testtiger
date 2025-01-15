@@ -76,7 +76,7 @@ export function ExerciseViewContent() {
   return (
     <div
       ref={ref}
-      className="w-full h-ful bg-gray-100 overflow-y-auto"
+      className="w-full h-full bg-gray-100 overflow-y-auto"
       onClick={() => {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -144,10 +144,7 @@ export function ExerciseViewContent() {
               singleExercise.duration ?? '?',
               singleExercise.points ?? '?',
               <>{renderContentElement(singleExercise.task({ data }))}</>,
-              pages.length < 2
-                ? ''
-                : (page.context ? page.context : '') +
-                    (page.index == 'single' ? '' : page.index),
+              page.displayIndex,
             )
           } else {
             const subtasks = exercise as ExerciseWithSubtasks<any>
@@ -166,7 +163,7 @@ export function ExerciseViewContent() {
             }
             return (
               <>
-                <div className="mx-5">
+                <div className="px-5 bg-white mb-6">
                   {intros.map((intro, i) =>
                     renderContentElement(
                       <>
@@ -194,10 +191,7 @@ export function ExerciseViewContent() {
                   task.duration ?? '?',
                   task.points ?? '?',
                   <>{renderContentElement(<div>{task.task({ data })}</div>)}</>,
-                  pages.length < 2
-                    ? ''
-                    : (page.context ? page.context : '') +
-                        (page.index == 'single' ? '' : page.index),
+                  page.displayIndex,
                 )}
               </>
             )
@@ -231,7 +225,7 @@ export function ExerciseViewContent() {
         id={`exercise-${i}`}
       >
         {toHome && numbering && (
-          <div className="absolute top-1 left-4 font-bold font-xl">
+          <div className="absolute top-1 left-2 font-bold font-xl">
             {numbering})
           </div>
         )}
