@@ -42,6 +42,7 @@ export function LearningPathMap() {
   }
 
   let allSolved = true
+  let isMuted = false
 
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
@@ -135,6 +136,11 @@ export function LearningPathMap() {
           ></circle>
         )*/}
         {elements.map((el, i) => {
+          let notMutedYet = false
+          if (el.source.type == 'challenge' && !allSolved && !isMuted) {
+            isMuted = true
+            notMutedYet = true
+          }
           let thisIsHighlighted = false
           if (isWholeLessonDonePercentage(el.source) < 1 && allSolved) {
             allSolved = false
@@ -168,6 +174,7 @@ export function LearningPathMap() {
                   strokeWidth={13}
                 ></circle>
               )}
+
               <circle
                 cx={el.source.position!.x}
                 cy={mapHeight - el.source.position!.y}
@@ -367,6 +374,14 @@ export function LearningPathMap() {
                 >
                   ✓
                 </text>
+              )}
+              {isMuted && !notMutedYet && (
+                <circle
+                  cx={el.source.position!.x}
+                  cy={mapHeight - el.source.position!.y}
+                  r={40}
+                  className="fill-gray-600/60 pointer-events-none"
+                ></circle>
               )}
             </Fragment>
           )
