@@ -461,7 +461,7 @@ export function ExerciseViewFooter() {
                 })
               }
               placeholder="Gib deine Antwort oder Frage ein ..."
-              minRows={2}
+              minRows={1}
               maxRows={5}
               className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
             />
