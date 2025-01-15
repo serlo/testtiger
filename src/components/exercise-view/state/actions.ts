@@ -18,6 +18,7 @@ export function setupExercise(
   skill?: string,
   pages?: SkillExercisePage[],
   toHome?: boolean,
+  useStartData?: boolean,
 ) {
   const content = exercisesData[id]
   if (!pages && 'tasks' in content) {
@@ -45,7 +46,7 @@ export function setupExercise(
         s.data = content.originalData
       }
     }
-    if (toHome && content.learningPathData) {
+    if (useStartData && content.learningPathData) {
       s.data = content.learningPathData
     }
     s.pages = pages

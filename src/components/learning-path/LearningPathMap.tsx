@@ -135,6 +135,8 @@ export function LearningPathMap() {
                 /*if (isStepOfLessonDone(lessonDetails, step)) {
                     continue
                   }*/
+                const solvedPercentage =
+                  isWholeLessonDonePercentage(lessonDetails)
                 if (lessonDetails.steps.length == 1) {
                   const step = lessonDetails.steps[0]
                   setupExercise(
@@ -142,16 +144,19 @@ export function LearningPathMap() {
                     lessonDetails.title,
                     step.exercise.pages,
                     true,
+                    solvedPercentage < 1,
                   )
 
                   const relevantKeys = findRelevantKeys(lessonDetails)
                   ExerciseViewStore.update(s => {
                     s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                    s.completed = s.checks.map((_, i) =>
-                      PlayerProfileStore.getRawState().progress[
-                        exam
-                      ].learningPathTags.includes(relevantKeys[i]),
-                    )
+                    if (solvedPercentage < 1) {
+                      s.completed = s.checks.map((_, i) =>
+                        PlayerProfileStore.getRawState().progress[
+                          exam
+                        ].learningPathTags.includes(relevantKeys[i]),
+                      )
+                    }
                   })
                   history.push(
                     '/exercise/' +
