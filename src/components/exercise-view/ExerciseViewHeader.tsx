@@ -53,7 +53,12 @@ export function ExerciseViewHeader() {
         <FaIcon icon={faArrowLeft} />{' '}
         {skill ? (
           <>
-            <b>{skill}</b> - {content.source}: {content.title}
+            <b>{skill}</b>{' '}
+            {toHome ? null : (
+              <>
+                - {content.source}: {content.title}
+              </>
+            )}
           </>
         ) : (
           <>
