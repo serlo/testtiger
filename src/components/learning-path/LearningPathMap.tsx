@@ -109,7 +109,7 @@ export function LearningPathMap() {
                 el.source.type == 'new-skill'
                   ? 'rebeccapurple'
                   : el.source.type == 'challenge'
-                    ? 'yellow'
+                    ? '#f7bc02'
                     : 'gray'
               }
               className="cursor-pointer"
@@ -237,6 +237,17 @@ export function LearningPathMap() {
                 className="pointer-events-none"
               />
             )}
+            {el.source.type == 'challenge' && (
+              <image
+                href="/learning-path/star.svg"
+                x={el.source.position!.x - 25}
+                y={mapHeight - el.source.position!.y - 25}
+                width={50}
+                height={50}
+                fill="white"
+                className="pointer-events-none"
+              />
+            )}
             {isWholeLessonDone(el.source) && (
               <text
                 x={el.source.position!.x + 4}
@@ -255,7 +266,7 @@ export function LearningPathMap() {
               <text
                 key={i}
                 x={el.source.position!.x}
-                y={mapHeight - el.source.position!.y + 5}
+                y={mapHeight - el.source.position!.y + 9}
                 textAnchor="middle"
                 fontSize={18}
                 className="pointer-events-none"
