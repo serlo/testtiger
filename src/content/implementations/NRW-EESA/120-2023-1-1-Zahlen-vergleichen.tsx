@@ -55,6 +55,17 @@ export const exercise120: Exercise<DATA> = {
     h: 3,
     i: 4,
   },
+  learningPathData: {
+    a: -0.9,
+    b: -0.5,
+    c: 75,
+    d: 100,
+    e: 3,
+    f: 4,
+    g: 0.9,
+    h: 4,
+    i: 5,
+  },
   task({ data }) {
     return (
       <>

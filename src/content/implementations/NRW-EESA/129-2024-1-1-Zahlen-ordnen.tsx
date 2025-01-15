@@ -25,6 +25,11 @@ export const exercise129: Exercise<DATA> = {
     b: false,
     c: 0.35,
   },
+  learningPathData: {
+    a: -0.3,
+    b: false,
+    c: 0.46,
+  },
   constraint({ data }) {
     function swapDecimalPlaces(c: number): number {
       // Konvertiere die Zahl zu einem String

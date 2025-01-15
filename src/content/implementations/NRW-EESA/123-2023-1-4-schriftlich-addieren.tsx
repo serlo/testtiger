@@ -22,6 +22,10 @@ export const exercise123: Exercise<DATA> = {
     a: 32.73,
     b: 4.21,
   },
+  learningPathData: {
+    a: 25.75,
+    b: 4.22,
+  },
   constraint({ data }) {
     return true
   },
