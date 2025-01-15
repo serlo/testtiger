@@ -27,8 +27,7 @@ export function ExerciseViewContent() {
   useEffect(() => {
     if (
       navIndicatorExternalUpdate >= 0 &&
-      navIndicatorPosition != navIndicatorExternalUpdate &&
-      ref.current
+      navIndicatorPosition != navIndicatorExternalUpdate
     ) {
       /*const [distance, offset] = calculateSnapPoints()
       ref.current.scrollLeft = offset + distance * navIndicatorExternalUpdate*/
@@ -175,6 +174,7 @@ export function ExerciseViewContent() {
         onClick={() => {
           ExerciseViewStore.update(s => {
             s.navIndicatorPosition = i
+            s.navIndicatorExternalUpdate = i
           })
         }}
         id={`exercise-${i}`}
