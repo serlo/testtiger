@@ -11,6 +11,14 @@ export const setName = (name: string) => {
 }
 
 export function isWholeLessonDonePercentage(lesson: Lesson) {
+  if (lesson.videoUrl) {
+    console.log('check video')
+    return PlayerProfileStore.getRawState().progress[
+      PlayerProfileStore.getRawState().currentExam
+    ].learningPathTags.includes(lesson.title)
+      ? 1
+      : 0
+  }
   if (lesson.steps.length == 0) return 0
   let relevantKeys = findRelevantKeys(lesson)
 

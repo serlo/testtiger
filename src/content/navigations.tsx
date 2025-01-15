@@ -2198,46 +2198,61 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'video',
-            title: 'Intro: Zahlen vergleichen',
-            position: { x: 140, y: 60 },
+            title: 'Video 1',
+            videoUrl: '123',
+            position: { x: 80, y: 170 },
             steps: [],
           },
           {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
-            position: { x: 80, y: 170 },
+            position: { x: 190, y: 210 },
             steps: [{ exercise: { id: 199 } }],
+          },
+          {
+            type: 'video',
+            title: 'Video 2',
+            videoUrl: '123',
+            position: { x: 150, y: 320 },
+            steps: [],
           },
           {
             type: 'new-skill',
             title: 'Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
-            position: { x: 210, y: 220 },
+            position: { x: 280, y: 340 },
             steps: [{ exercise: { id: 120 } }],
+          },
+          {
+            type: 'video',
+            title: 'Video 3',
+            videoUrl: '123',
+            position: { x: 210, y: 440 },
+            steps: [],
           },
           {
             type: 'new-skill',
             title: 'Einheiten',
-            position: { x: 290, y: 375 },
+            position: { x: 90, y: 500 },
             steps: [{ exercise: { id: 130 } }],
           },
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
-            position: { x: 170, y: 395 },
+            position: { x: 200, y: 575 },
             steps: [{ exercise: { id: 123 } }],
           },
           {
             type: 'new-skill',
             title: 'Schätzen & Überschlagen',
-            position: { x: 100, y: 520 },
+            position: { x: 290, y: 650 },
             steps: [{ exercise: { id: 114 } }],
           },
           {
             type: 'challenge',
             title: 'Challenge 1',
-            position: { x: 250, y: 650 },
+            position: { x: 240, y: 760 },
             steps: [
               { exercise: { id: 129 } },
               { exercise: { id: 123 } },
@@ -2247,7 +2262,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Proportionale Zuordnung',
-            position: { x: 120, y: 760 },
+            position: { x: 120, y: 790 },
             steps: [
               {
                 exercise: {

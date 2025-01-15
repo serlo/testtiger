@@ -136,15 +136,15 @@ export function LearningPathMap() {
           ></circle>
         )*/}
         {elements.map((el, i) => {
-          let notMutedYet = false
-          if (el.source.type == 'challenge' && !allSolved && !isMuted) {
-            isMuted = true
-            notMutedYet = true
-          }
           let thisIsHighlighted = false
           if (isWholeLessonDonePercentage(el.source) < 1 && allSolved) {
             allSolved = false
             thisIsHighlighted = true
+          }
+          let notMutedYet = false
+          if (el.source.type == 'challenge' && !allSolved && !isMuted) {
+            isMuted = true
+            notMutedYet = true
           }
           return (
             <Fragment key={i}>
@@ -191,6 +191,9 @@ export function LearningPathMap() {
                 className="cursor-pointer"
                 onClick={() => {
                   if (el.source.type == 'video') {
+                    PlayerProfileStore.update(s => {
+                      s.progress[exam].learningPathTags.push(el.source.title)
+                    })
                     history.push('/video')
                     return
                   }
