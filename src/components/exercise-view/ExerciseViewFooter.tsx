@@ -41,11 +41,7 @@ export function ExerciseViewFooter() {
     s => s.chatHistory[s.navIndicatorPosition],
   )
   const id = ExerciseViewStore.useState(s => s.id)
-  const content = exercisesData[id]
-  const pages = ExerciseViewStore.useState(s => s.pages)
-  const navIndicatorPosition = ExerciseViewStore.useState(
-    s => s.navIndicatorPosition,
-  )
+  const toHome = ExerciseViewStore.useState(s => s.toHome)
 
   useEffect(() => {
     if (chatHistoryRef.current) {
@@ -403,33 +399,35 @@ export function ExerciseViewFooter() {
                   >
                     Lösung anzeigen
                   </li>
-                  <li
-                    className="py-2 cursor-pointer hover:underline"
-                    onClick={() => {
-                      ExerciseViewStore.update(s => {
-                        if (
-                          !s.chatHistory[s.navIndicatorPosition].resultPending
-                        ) {
-                          s.chatOverlay = 'chat'
-                          s.chatHistory[s.navIndicatorPosition].entries.push({
-                            type: 'text',
-                            content: 'Wie lerne ich?',
-                          })
-                          s.chatHistory[s.navIndicatorPosition].entries.push({
-                            type: 'response',
-                            content:
-                              'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
-                            category: 'none',
-                          })
+                  {!toHome && (
+                    <li
+                      className="py-2 cursor-pointer hover:underline"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          if (
+                            !s.chatHistory[s.navIndicatorPosition].resultPending
+                          ) {
+                            s.chatOverlay = 'chat'
+                            s.chatHistory[s.navIndicatorPosition].entries.push({
+                              type: 'text',
+                              content: 'Wie lerne ich?',
+                            })
+                            s.chatHistory[s.navIndicatorPosition].entries.push({
+                              type: 'response',
+                              content:
+                                'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
+                              category: 'none',
+                            })
+                          }
+                        })
+                        if (helpDropdownRef.current) {
+                          helpDropdownRef.current.open = false
                         }
-                      })
-                      if (helpDropdownRef.current) {
-                        helpDropdownRef.current.open = false
-                      }
-                    }}
-                  >
-                    Wie lerne ich?
-                  </li>
+                      }}
+                    >
+                      Wie lerne ich?
+                    </li>
+                  )}
                 </ul>
               </details>
             </div>
