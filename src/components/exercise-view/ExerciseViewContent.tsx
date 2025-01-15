@@ -76,7 +76,7 @@ export function ExerciseViewContent() {
   return (
     <div
       ref={ref}
-      className="w-full h-full bg-gray-100 overflow-y-auto"
+      className="w-full h-ful bg-gray-100 overflow-y-auto"
       onClick={() => {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -164,40 +164,42 @@ export function ExerciseViewContent() {
             if (!page.disableDefaultLocalIntro) {
               intros.push('local')
             }
-            return renderContentCard(
-              i,
-              task.duration ?? '?',
-              task.points ?? '?',
+            return (
               <>
-                {intros.map((intro, i) =>
-                  renderContentElement(
-                    <>
-                      {intro == 'global' &&
-                        subtasks.intro({
-                          data,
-                        })}
-                      {intro == 'local' &&
-                        task.intro &&
-                        task.intro({
-                          data,
-                        })}
-                      {intro == 'skill' &&
-                        task.skillIntro &&
-                        task.skillIntro({
-                          data,
-                        })}
-                    </>,
-                    i.toString(),
-                  ),
+                <div className="mx-5">
+                  {intros.map((intro, i) =>
+                    renderContentElement(
+                      <>
+                        {intro == 'global' &&
+                          subtasks.intro({
+                            data,
+                          })}
+                        {intro == 'local' &&
+                          task.intro &&
+                          task.intro({
+                            data,
+                          })}
+                        {intro == 'skill' &&
+                          task.skillIntro &&
+                          task.skillIntro({
+                            data,
+                          })}
+                      </>,
+                      i.toString(),
+                    ),
+                  )}
+                </div>
+                {renderContentCard(
+                  i,
+                  task.duration ?? '?',
+                  task.points ?? '?',
+                  <>{renderContentElement(<div>{task.task({ data })}</div>)}</>,
+                  pages.length < 2
+                    ? ''
+                    : (page.context ? page.context : '') +
+                        (page.index == 'single' ? '' : page.index),
                 )}
-                {renderContentElement(
-                  <div className="bg-blue-100">{task.task({ data })}</div>,
-                )}
-              </>,
-              pages.length < 2
-                ? ''
-                : (page.context ? page.context : '') +
-                    (page.index == 'single' ? '' : page.index),
+              </>
             )
           }
         })}
@@ -229,8 +231,8 @@ export function ExerciseViewContent() {
         id={`exercise-${i}`}
       >
         {toHome && numbering && (
-          <div className="absolute -top-5 left-4 font-bold font-xl">
-            {numbering}
+          <div className="absolute top-1 left-4 font-bold font-xl">
+            {numbering})
           </div>
         )}
         <div
