@@ -58,11 +58,13 @@ export type IExerciseViewStore = {
   takePhoto: boolean
   toHome: boolean
   tag: string
+  needReset: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
   id: -1,
   _exerciseIDs: [],
+  needReset: false,
   seed: '',
   data: {},
   pages: [],

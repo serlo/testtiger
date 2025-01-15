@@ -22,12 +22,15 @@ export function ExerciseViewContent() {
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
   )
+  const needReset = ExerciseViewStore.useState(s => s.needReset)
+
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (
       navIndicatorExternalUpdate >= 0 &&
-      navIndicatorPosition != navIndicatorExternalUpdate
+      navIndicatorPosition != navIndicatorExternalUpdate &&
+      ref.current
     ) {
       /*const [distance, offset] = calculateSnapPoints()
       ref.current.scrollLeft = offset + distance * navIndicatorExternalUpdate*/
@@ -46,9 +49,25 @@ export function ExerciseViewContent() {
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
 
+  useEffect(() => {
+    if (needReset && ref.current) {
+      ref.current.scrollTop = 0
+      setTimeout(() => {
+        if (ref.current) ref.current.scrollTop = 0
+      }, 20)
+      setTimeout(() => {
+        if (ref.current) ref.current.scrollTop = 0
+      }, 100)
+      ExerciseViewStore.update(s => {
+        s.needReset = false
+      })
+    }
+  }, [needReset])
+
   return (
     <div
-      className="w-full h-full bg-gray-100"
+      ref={ref}
+      className="w-full h-full bg-gray-100 overflow-y-auto"
       onClick={() => {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -58,8 +77,7 @@ export function ExerciseViewContent() {
       }}
     >
       <div
-        ref={ref}
-        className=""
+        id="exercise-view-content"
         onScroll={e => {
           const [distance, offset] = calculateSnapPoints()
           const scrollLeft = (e.target as HTMLDivElement).scrollLeft
