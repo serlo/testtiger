@@ -25,6 +25,7 @@ export const exercise102: Exercise<DATA> = {
     }
   },
   originalData: { case: 1, faktor: 3, x_input: 6, x_sol: 2, summand: 19 },
+  learningPathData: { case: 1, faktor: 2, x_input: 3, x_sol: 2, summand: 17 },
   constraint({ data }) {
     return data.x_input != data.x_sol
   },

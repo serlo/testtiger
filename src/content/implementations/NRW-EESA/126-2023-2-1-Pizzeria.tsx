@@ -101,6 +101,25 @@ export const exercise126: Exercise<DATA> = {
       'green',
     ],
   },
+  learningPathData: {
+    case: 1,
+    dia: 17,
+    small: 5.5,
+    colors: [
+      'blue',
+      'orange',
+      'red',
+      'blue',
+      'orange',
+      'blue',
+      'red',
+      'orange',
+      'blue',
+      'orange',
+      'blue',
+      'green',
+    ],
+  },
   constraint({ data }) {
     return true
   },

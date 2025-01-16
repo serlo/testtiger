@@ -5,6 +5,7 @@ import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   weg: number
+  pacecase: number
   pace: number
   fixkosten: number
   zeitkosten: number
@@ -18,9 +19,12 @@ export const exercise136: Exercise<DATA> = {
   useCalculator: true,
   duration: 30,
   generator(rng) {
+    const weg = rng.randomIntBetween(2, 8)
+    const pacecase = rng.randomIntBetween(2, 4)
     return {
-      weg: rng.randomIntBetween(2, 8),
-      pace: rng.randomItemFromArray([10, 15, 20]),
+      weg,
+      pacecase,
+      pace: weg * pacecase, // pace direkt berechnen
       fixkosten: rng.randomIntBetween(1, 4) * 0.5,
       zeitkosten: rng.randomIntBetween(2, 5) * 0.05,
       months: rng.randomIntBetween(3, 9) * 0.5,
@@ -29,14 +33,24 @@ export const exercise136: Exercise<DATA> = {
   },
   originalData: {
     weg: 5,
+    pacecase: 3,
     pace: 15,
     fixkosten: 1,
     zeitkosten: 0.15,
     months: 2.5,
     cost: 750,
   },
+  learningPathData: {
+    weg: 4,
+    pacecase: 4,
+    pace: 16,
+    fixkosten: 2,
+    zeitkosten: 0.1,
+    months: 2.5,
+    cost: 750,
+  },
   constraint({ data }) {
-    return true
+    return data.pace < 21 && data.pace > 9
   },
   intro({ data }) {
     return (

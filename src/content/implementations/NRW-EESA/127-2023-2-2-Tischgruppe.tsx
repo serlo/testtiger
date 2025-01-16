@@ -64,6 +64,21 @@ export const exercise127: Exercise<DATA> = {
     preis_tisch_l: 450,
     order: [2, 1, 0],
   },
+  learningPathData: {
+    item_1: 1,
+    item_2: 0,
+    item_3: 0,
+    kathete: 50,
+    menge_stuhl: 90,
+    menge_tisch: 90,
+    menge_stuhl_l: 3,
+    menge_tisch_l: 3,
+    preis_stuhl: 106,
+    preis_tisch: 141,
+    preis_stuhl_l: 139,
+    preis_tisch_l: 450,
+    order: [2, 1, 0],
+  },
   constraint({ data }) {
     return data.item_1 != data.item_2
   },
