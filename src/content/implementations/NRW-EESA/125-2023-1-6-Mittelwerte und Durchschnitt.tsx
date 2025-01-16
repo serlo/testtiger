@@ -241,8 +241,9 @@ export const exercise125: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Gib die Spannweite und den Median der erzielten Tore an.</p>
+            <p>Gib die Spannweite und den Median der erzielten Tore an.</p>
           </>
         )
       },
@@ -288,8 +289,9 @@ export const exercise125: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
-            <p>b) Berechne den Durchschnitt der erzielten Tore (pro Spiel).</p>
+            <p>Berechne den Durchschnitt der erzielten Tore (pro Spiel).</p>
           </>
         )
       },

@@ -221,8 +221,9 @@ export const exercise135: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Gib die Anzahl der Symmetrieachsen des Gartens an.</p>
+            <p>Gib die Anzahl der Symmetrieachsen des Gartens an.</p>
           </>
         )
       },
@@ -312,9 +313,10 @@ export const exercise135: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Bestätige durch eine Rechnung, dass die Seitenlänge des inneren
+              Bestätige durch eine Rechnung, dass die Seitenlänge des inneren
               Quadrats ca.{' '}
               {pp(
                 roundToDigits(
@@ -490,10 +492,11 @@ export const exercise135: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Auf den Seiten des inneren Quadrats werden Buchsbäume im
-              Abstand von{' '}
+              Auf den Seiten des inneren Quadrats werden Buchsbäume im Abstand
+              von{' '}
               {pp(
                 roundToDigits(
                   (100 *
@@ -634,8 +637,9 @@ export const exercise135: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
-            <p>d) Zeichne dieses Beet maßstabsgetreu in Abbildung 1 ein.</p>
+            <p>Zeichne dieses Beet maßstabsgetreu in Abbildung 1 ein.</p>
           </>
         )
       },
@@ -746,12 +750,12 @@ export const exercise135: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) In dem kreisförmigen Beet möchte sie eine Blumenwiese anlegen.
-              Für einen Quadratmeter benötigt sie {data.samen} Gramm
-              Blumensamen. Berechne, wie viel Gramm Blumensamen sie benötigt.
-              Runde sinnvoll.
+              In dem kreisförmigen Beet möchte sie eine Blumenwiese anlegen. Für
+              einen Quadratmeter benötigt sie {data.samen} Gramm Blumensamen.
+              Berechne, wie viel Gramm Blumensamen sie benötigt. Runde sinnvoll.
             </p>
           </>
         )

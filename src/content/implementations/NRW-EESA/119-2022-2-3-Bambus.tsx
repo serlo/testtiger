@@ -102,9 +102,10 @@ export const exercise119: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Eine Bambuspflanze hat eine Höhe von <br></br>
+              Eine Bambuspflanze hat eine Höhe von <br></br>
               {data.start} m. Bestimme die Höhe dieser Bambuspflanze nach{' '}
               {data.days} Tagen unter idealen Bedingungen.
             </p>
@@ -151,11 +152,12 @@ export const exercise119: Exercise<DATA> = {
           return 194 - n * (236 / 15)
         }
         return (
+          //b)
           <>
             <p>
-              b) Unter idealen Bedingungen kann das Wachstum der Bambuspflanze
-              mit der Gleichung y = {ppFrac(data.wachsen / 100)} ​x +{' '}
-              {data.start} beschrieben werden.
+              Unter idealen Bedingungen kann das Wachstum der Bambuspflanze mit
+              der Gleichung y = {ppFrac(data.wachsen / 100)} ​x + {data.start}{' '}
+              beschrieben werden.
             </p>
             <p>Zeichne die Gerade in ein Koordinatensystem ein.</p>
             <svg viewBox="0 0 328 220">
@@ -291,9 +293,10 @@ export const exercise119: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Berechne mithilfe der Gleichung, nach wie vielen Tagen die
+              Berechne mithilfe der Gleichung, nach wie vielen Tagen die
               Bambuspflanze eine Höhe von {pp(data.height)} m erreicht.
             </p>
           </>
@@ -387,9 +390,10 @@ export const exercise119: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d) Berechne die Anzahl an Bambusrohren, die für den Zaun benötigt
+              Berechne die Anzahl an Bambusrohren, die für den Zaun benötigt
               werden.
             </p>
           </>
@@ -495,10 +499,11 @@ export const exercise119: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Zeige durch eine Rechnung, dass der Flächeninhalt des
-              Kreisrings A ≈{' '}
+              Zeige durch eine Rechnung, dass der Flächeninhalt des Kreisrings A
+              ≈{' '}
               {pp(
                 roundToDigits(
                   Math.PI *
@@ -641,9 +646,10 @@ export const exercise119: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //f)
           <>
             <p>
-              f) Herr Paulsen kauft {data.rohre} Bambusrohre, die jeweils eine
+              Herr Paulsen kauft {data.rohre} Bambusrohre, die jeweils eine
               Länge von {data.länge} cm haben.{' '}
             </p>
             <p>

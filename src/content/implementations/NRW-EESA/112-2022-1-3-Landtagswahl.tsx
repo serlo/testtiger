@@ -274,10 +274,11 @@ export const exercise112: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Bei der Landtagswahl gaben {data.stimmen} Personen ihre Stimme
-              ab. Berechne, wie viele Stimmen die {data.partei} erhielt.
+              Bei der Landtagswahl gaben {data.stimmen} Personen ihre Stimme ab.
+              Berechne, wie viele Stimmen die {data.partei} erhielt.
             </p>
           </>
         )
@@ -388,8 +389,9 @@ export const exercise112: Exercise<DATA> = {
           'Alle Parteien (außer "Andere") haben zusammen mehr als 80 % der Stimmen.',
         ]
         return (
+          //b)
           <>
-            <p>b) Entscheide jeweils, ob die Aussagen wahr oder falsch sind:</p>
+            <p>Entscheide jeweils, ob die Aussagen wahr oder falsch sind:</p>
             <ul>
               <li>{aussagen[data.item_1]}</li>
               <li>{aussagen[data.item_2]}</li>

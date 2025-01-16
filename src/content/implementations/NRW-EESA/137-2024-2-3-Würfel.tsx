@@ -62,8 +62,9 @@ export const exercise137: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Berechne das Volumen eines kleinen Würfels.</p>
+            <p>Berechne das Volumen eines kleinen Würfels.</p>
           </>
         )
       },
@@ -147,10 +148,11 @@ export const exercise137: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Das Volumen des Quaders und das Volumen des größeren Würfels
-              sind gleich groß. Begründe.
+              Das Volumen des Quaders und das Volumen des größeren Würfels sind
+              gleich groß. Begründe.
             </p>
           </>
         )
@@ -180,9 +182,10 @@ export const exercise137: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Die Oberflächen der beiden Körper sind unterschiedlich groß.
+              Die Oberflächen der beiden Körper sind unterschiedlich groß.
               Begründe.
             </p>
           </>
@@ -258,10 +261,11 @@ export const exercise137: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d) {data.ml} ml Lack reichen etwa für {data.surface} cm².
-              Berechne, wie viel Milliliter (ml) Lack sie benötigt.
+              {data.ml} ml Lack reichen etwa für {data.surface} cm². Berechne,
+              wie viel Milliliter (ml) Lack sie benötigt.
             </p>
           </>
         )
@@ -431,8 +435,9 @@ export const exercise137: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
-            <p>e) Vervollständige Selmas Tabelle.</p>
+            <p>Vervollständige Selmas Tabelle.</p>
             <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="10"
@@ -821,9 +826,10 @@ export const exercise137: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //f)
           <>
             <p>
-              f) Selma mischt die {data.case == 1 ? <>27</> : <>64</>} kleinen
+              Selma mischt die {data.case == 1 ? <>27</> : <>64</>} kleinen
               Würfel und nimmt ohne hinzusehen einen Würfel. Bestimme die
               Wahrscheinlichkeit, dass der Würfel genau zwei blaue Außenflächen
               hat.

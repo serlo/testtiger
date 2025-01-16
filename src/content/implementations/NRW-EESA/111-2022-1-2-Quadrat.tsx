@@ -70,8 +70,9 @@ export const exercise111: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Berechne den Flächeninhalt des abgebildeten Quadrats.</p>
+            <p>Berechne den Flächeninhalt des abgebildeten Quadrats.</p>
           </>
         )
       },
@@ -138,8 +139,9 @@ export const exercise111: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
-            <p>b) Berechne die Länge der Diagonalen d.</p>
+            <p>Berechne die Länge der Diagonalen d.</p>
           </>
         )
       },

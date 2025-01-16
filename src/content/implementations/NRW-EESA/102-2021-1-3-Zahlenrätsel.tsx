@@ -50,9 +50,10 @@ export const exercise102: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Tom setzt x = {data.x_input} in den Term ein. Berechne den Wert
+              Tom setzt x = {data.x_input} in den Term ein. Berechne den Wert
               des Terms.
             </p>
           </>
@@ -137,9 +138,10 @@ export const exercise102: Exercise<DATA> = {
       task({ data }) {
         const rechts = (data.x_sol + data.summand) * data.faktor
         return (
+          //b)
           <>
             <p>
-              b) Pia setzt für x eine Zahl ein und erhält das Ergebnis {rechts}.
+              Pia setzt für x eine Zahl ein und erhält das Ergebnis {rechts}.
               Tom möchte Pias Zahl finden und notiert die folgende Rechnung:
             </p>
             {data.case == 1 && (

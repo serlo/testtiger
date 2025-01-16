@@ -200,9 +200,10 @@ export const exercise104: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Berechne, wie viele der gefragten Personen mit öffentlichen
+              Berechne, wie viele der gefragten Personen mit öffentlichen
               Verkehrsmitteln zur Arbeit fahren.
             </p>
           </>
@@ -378,8 +379,10 @@ export const exercise104: Exercise<DATA> = {
         }
 
         return (
+          //b)
           <>
             <p>Die Ergebnisse werden in einem Kreisdiagramm dargestellt.</p>
+            <p>Vervollständige das Kreisdiagramm.</p>
             <svg width="328" height="270">
               <circle
                 cx="164"
@@ -398,7 +401,6 @@ export const exercise104: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
-            <p>b) Vervollständige das Kreisdiagramm.</p>
           </>
         )
       },

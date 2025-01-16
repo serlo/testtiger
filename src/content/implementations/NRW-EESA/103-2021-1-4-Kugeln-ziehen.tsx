@@ -49,10 +49,10 @@ export const exercise103: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Die Wahrscheinlichkeit, dass Pedro eine blaue Kugel zieht,
-              beträgt{' '}
+              Die Wahrscheinlichkeit, dass Pedro eine blaue Kugel zieht, beträgt{' '}
               {ppFrac(data.blue / (data.black + data.white + data.blue))}.
             </p>
             <p>Bestätige dies durch eine Rechnung.</p>
@@ -128,9 +128,10 @@ export const exercise103: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Bestimme die Wahrscheinlichkeit, eine schwarze oder eine blaue
+              Bestimme die Wahrscheinlichkeit, eine schwarze oder eine blaue
               Kugel zu ziehen.
             </p>
           </>

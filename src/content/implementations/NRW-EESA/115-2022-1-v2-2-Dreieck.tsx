@@ -41,12 +41,13 @@ export const exercise115: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>Im Folgenden gelten die im Dreieck üblichen Bezeichnungen.</p>
 
             <p>
-              a) Zeichne ein Dreieck ΔABC mit den Seitenlängen b = {pp(data.b)}{' '}
-              cm, c = {pp(data.c)} cm und dem Winkel α = {data.alpha_1}°.
+              Zeichne ein Dreieck ΔABC mit den Seitenlängen b = {pp(data.b)} cm,
+              c = {pp(data.c)} cm und dem Winkel α = {data.alpha_1}°.
             </p>
           </>
         )
@@ -195,10 +196,11 @@ export const exercise115: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Kann das oben abgebildete Dreieck mit den angegebenen
-              Winkelmaßen gezeichnet werden?
+              Kann das oben abgebildete Dreieck mit den angegebenen Winkelmaßen
+              gezeichnet werden?
             </p>{' '}
             <p>Entscheide und begründe deine Entscheidung.</p>
           </>

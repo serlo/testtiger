@@ -201,10 +201,11 @@ export const exercise128: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Wie lange dauert die Fahrt von Aachen nach Paris? Bestimme mit
-              der Tabelle.
+              Wie lange dauert die Fahrt von Aachen nach Paris? Bestimme mit der
+              Tabelle.
             </p>
           </>
         )
@@ -235,8 +236,8 @@ export const exercise128: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
-            b){' '}
             <ol>
               <li>Gib die längste Teilstrecke an. </li>
               <li>Berechne die Länge dieser Teilstrecke.</li>
@@ -270,9 +271,10 @@ export const exercise128: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Bestimme die durchschnittliche Geschwindigkeit des Zuges von
+              Bestimme die durchschnittliche Geschwindigkeit des Zuges von
               Aachen nach Lüttich und gib diese in Kilometer pro Stunde{' '}
               <span className="inline-block  scale-y-[2.6]">(</span>
               {buildInlineFrac('km', 'h')}
@@ -486,9 +488,10 @@ export const exercise128: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d) Lies am Graphen ab, wie viele Kilometer der Zug nach 50 Minuten
+              Lies am Graphen ab, wie viele Kilometer der Zug nach 50 Minuten
               zurückgelegt hat.
             </p>
           </>
@@ -670,9 +673,9 @@ export const exercise128: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e){' '}
               {data.case == 1 && (
                 <>
                   In Lüttich und in Brüssel hält der Zug an. Erkläre, woran du
@@ -760,10 +763,10 @@ export const exercise128: Exercise<DATA> = {
         ]
         const shuffledItems = data.order.map(i => listItems[i])
         return (
+          //f)
           <>
             <p>
-              f) Welche Aussagen zum Graphen stimmen bzw. stimmen nicht? Wähle
-              aus.
+              Welche Aussagen zum Graphen stimmen bzw. stimmen nicht? Wähle aus.
             </p>
             <ul>{shuffledItems}</ul>
           </>

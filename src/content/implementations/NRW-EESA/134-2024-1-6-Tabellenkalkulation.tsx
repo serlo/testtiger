@@ -150,8 +150,9 @@ export const exercise134: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Berechne den Wert für Zelle B3.</p>
+            <p>Berechne den Wert für Zelle B3.</p>
           </>
         )
       },
@@ -191,10 +192,9 @@ export const exercise134: Exercise<DATA> = {
         ]
         const shuffledItems2 = data.order.map(i => listItems2[i])
         return (
+          //b)
           <>
-            <p>
-              b) Welche Formel kann in Zelle {data.bool ? 'D4' : 'D3'} stehen?
-            </p>
+            <p>Welche Formel kann in Zelle {data.bool ? 'D4' : 'D3'} stehen?</p>
             <p>
               Entscheide jeweils, ob die Formel geeignet oder nicht geeignet
               ist.

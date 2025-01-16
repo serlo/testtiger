@@ -57,8 +57,9 @@ export const exercise105: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Berechne das Volumen des abgebildeten Körpers.</p>
+            <p>Berechne das Volumen des abgebildeten Körpers.</p>
             <p>Alle Maße sind in cm.</p>
             <svg viewBox="0 0 328 250">
               <image
@@ -319,9 +320,10 @@ export const exercise105: Exercise<DATA> = {
       task({ data }) {
         const hrefs = '/content/NRW_EESA/105_Würfelkörper' + data.case + '.PNG'
         return (
+          //b)
           <>
             <p>
-              b) Welcher der beiden Würfelkörper hat das größere Volumen?
+              Welcher der beiden Würfelkörper hat das größere Volumen?
               Entscheide.
             </p>
             <svg viewBox="0 0 328 150">

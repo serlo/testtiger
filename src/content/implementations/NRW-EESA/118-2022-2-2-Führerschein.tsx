@@ -210,9 +210,10 @@ export const exercise118: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Alina hat bereits{' '}
+              Alina hat bereits{' '}
               {data.stunden * data.stundenpreis +
                 data.grundbetrag +
                 data.prüfung +
@@ -271,8 +272,9 @@ export const exercise118: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
-            <p>b) Berechne den Gesamtpreis für die Übungsstunden.</p>
+            <p>Berechne den Gesamtpreis für die Übungsstunden.</p>
           </>
         )
       },
@@ -305,9 +307,10 @@ export const exercise118: Exercise<DATA> = {
         ]
         const shuffledItems = data.order.map(i => listItems[i])
         return (
+          //c)
           <>
             <p>
-              c) Mit welcher Formel kann der Wert in Zelle D5 berechnet werden?
+              Mit welcher Formel kann der Wert in Zelle D5 berechnet werden?
               Entscheide für jede Formel.
             </p>
             <ul>{shuffledItems}</ul>
@@ -341,9 +344,9 @@ export const exercise118: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d){' '}
               {data.case == 1 && (
                 <>
                   Alina vermutet, dass sie mehr als zehn Übungsstunden benötigt.
@@ -445,9 +448,10 @@ export const exercise118: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Alina nimmt an, dass sie {data.more_stunden} Übungsstunden
+              Alina nimmt an, dass sie {data.more_stunden} Übungsstunden
               benötigt.
             </p>
             <p>
@@ -677,9 +681,10 @@ export const exercise118: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //f)
           <>
             <p>
-              f) Alina behauptet: {'"'}Ich spare damit etwa{' '}
+              Alina behauptet: {'"'}Ich spare damit etwa{' '}
               {pp(Math.round((100 * data.rabatt) / data.grundbetrag))} % der
               Gesamtkosten für meinen Führerschein.{'"'} Hat Alina recht?
             </p>
