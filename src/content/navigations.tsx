@@ -2197,41 +2197,62 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Grundlagen',
         lessons: [
           {
+            type: 'video',
+            title: 'Video 1',
+            videoUrl: '123',
+            position: { x: 80, y: 170 },
+            steps: [],
+          },
+          {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
-            position: { x: 80, y: 170 },
+            position: { x: 190, y: 210 },
             steps: [{ exercise: { id: 199 } }],
+          },
+          {
+            type: 'video',
+            title: 'Video 2',
+            videoUrl: '123',
+            position: { x: 150, y: 320 },
+            steps: [],
           },
           {
             type: 'new-skill',
             title: 'Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
-            position: { x: 210, y: 220 },
+            position: { x: 280, y: 340 },
             steps: [{ exercise: { id: 120 } }],
+          },
+          {
+            type: 'video',
+            title: 'Video 3',
+            videoUrl: '123',
+            position: { x: 210, y: 440 },
+            steps: [],
           },
           {
             type: 'new-skill',
             title: 'Einheiten',
-            position: { x: 290, y: 375 },
+            position: { x: 90, y: 500 },
             steps: [{ exercise: { id: 130 } }],
           },
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
-            position: { x: 170, y: 395 },
+            position: { x: 200, y: 575 },
             steps: [{ exercise: { id: 123 } }],
           },
           {
             type: 'new-skill',
             title: 'Schätzen & Überschlagen',
-            position: { x: 100, y: 520 },
+            position: { x: 290, y: 650 },
             steps: [{ exercise: { id: 114 } }],
           },
           {
             type: 'challenge',
             title: 'Challenge 1',
-            position: { x: 250, y: 650 },
+            position: { x: 240, y: 760 },
             steps: [
               { exercise: { id: 129 } },
               { exercise: { id: 123 } },
@@ -2241,7 +2262,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Proportionale Zuordnung',
-            position: { x: 100, y: 800 },
+            position: { x: 120, y: 790 },
             steps: [
               {
                 exercise: {
@@ -2254,7 +2275,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Rechnen mit proportionalen Größen',
-            position: { x: 50, y: 900 },
+            position: { x: 60, y: 930 },
             steps: [
               {
                 exercise: {
@@ -2267,7 +2288,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Prozentrechnung',
-            position: { x: 250, y: 950 },
+            position: { x: 200, y: 1050 },
             steps: [
               {
                 exercise: {
@@ -2281,7 +2302,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 2',
-            position: { x: 100, y: 1100 },
+            position: { x: 100, y: 1180 },
             steps: [
               {
                 exercise: {
@@ -2294,7 +2315,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Termwert bestimmen',
-            position: { x: 250, y: 1250 },
+            position: { x: 250, y: 1310 },
             steps: [
               {
                 exercise: {
@@ -2307,7 +2328,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Gleichungen',
-            position: { x: 100, y: 1400 },
+            position: { x: 100, y: 1420 },
             steps: [
               {
                 exercise: {
@@ -2339,7 +2360,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Rechtwinkliges Dreieck',
-            position: { x: 100, y: 1700 },
+            position: { x: 100, y: 1670 },
             steps: [
               {
                 exercise: {
@@ -2352,7 +2373,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreiecksfläche',
-            position: { x: 250, y: 1750 },
+            position: { x: 310, y: 1750 },
             steps: [
               {
                 exercise: {
@@ -2365,7 +2386,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
-            position: { x: 250, y: 1850 },
+            position: { x: 230, y: 1890 },
             steps: [
               {
                 exercise: {
@@ -2397,7 +2418,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Oberfläche und Volumen Quader',
-            position: { x: 250, y: 2150 },
+            position: { x: 250, y: 2100 },
             steps: [
               {
                 exercise: {
@@ -2410,7 +2431,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Balkendiagramm',
-            position: { x: 100, y: 2300 },
+            position: { x: 100, y: 2210 },
             steps: [
               {
                 exercise: {
@@ -2423,7 +2444,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Statistik',
-            position: { x: 200, y: 2360 },
+            position: { x: 290, y: 2300 },
             steps: [
               {
                 exercise: {
@@ -2475,7 +2496,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Graphen zuordnen',
-            position: { x: 100, y: 2600 },
+            position: { x: 100, y: 2530 },
             steps: [
               {
                 exercise: {
@@ -2488,7 +2509,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Informationen aus Graph ablesen',
-            position: { x: 200, y: 2650 },
+            position: { x: 180, y: 2660 },
             steps: [
               {
                 exercise: {
@@ -2506,7 +2527,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Laplace Experimente',
-            position: { x: 250, y: 2750 },
+            position: { x: 270, y: 2800 },
             steps: [
               {
                 exercise: {
@@ -2570,7 +2591,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Funktionen',
-            position: { x: 100, y: 3200 },
+            position: { x: 100, y: 3180 },
             steps: [
               {
                 exercise: {
@@ -2587,7 +2608,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Funktionen',
-            position: { x: 200, y: 3250 },
+            position: { x: 240, y: 3250 },
             steps: [
               {
                 exercise: {
@@ -2600,7 +2621,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabelle auswerten',
-            position: { x: 250, y: 3350 },
+            position: { x: 280, y: 3390 },
             steps: [
               {
                 exercise: {
@@ -2637,7 +2658,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Fläche Quadrat',
-            position: { x: 250, y: 3650 },
+            position: { x: 220, y: 3650 },
             steps: [
               {
                 exercise: {
@@ -2650,7 +2671,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
-            position: { x: 100, y: 3800 },
+            position: { x: 100, y: 3700 },
             steps: [
               {
                 exercise: {
@@ -2663,7 +2684,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
-            position: { x: 200, y: 3850 },
+            position: { x: 200, y: 3800 },
             steps: [
               {
                 exercise: {
@@ -2676,7 +2697,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Kreisumfang',
-            position: { x: 250, y: 3950 },
+            position: { x: 300, y: 3900 },
             steps: [
               {
                 exercise: {
@@ -2689,7 +2710,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Kreisfläche',
-            position: { x: 150, y: 3950 },
+            position: { x: 170, y: 3950 },
             steps: [
               {
                 exercise: {
@@ -2702,7 +2723,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Kreisring',
-            position: { x: 50, y: 3950 },
+            position: { x: 50, y: 4000 },
             steps: [
               {
                 exercise: {
@@ -2716,7 +2737,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 2',
-            position: { x: 100, y: 4100 },
+            position: { x: 100, y: 4130 },
             steps: [
               {
                 exercise: {
@@ -2728,7 +2749,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Mit Längen argumentieren',
-            position: { x: 250, y: 4250 },
+            position: { x: 250, y: 4220 },
             steps: [
               {
                 exercise: {
@@ -2741,7 +2762,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Quadervolumen',
-            position: { x: 100, y: 4400 },
+            position: { x: 100, y: 4300 },
             steps: [
               {
                 exercise: {
@@ -2753,19 +2774,19 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zusammengesetzter Körper',
-            position: { x: 250, y: 4550 },
+            position: { x: 300, y: 4430 },
             steps: [{ exercise: { id: 105 } }],
           },
           {
             type: 'new-skill',
             title: 'Kugelvolumen',
-            position: { x: 150, y: 4550 },
+            position: { x: 150, y: 4500 },
             steps: [{ exercise: { id: 106, pages: [{ index: 'b' }] } }],
           },
           {
             type: 'new-skill',
             title: 'Volumen Tetraeder',
-            position: { x: 50, y: 4550 },
+            position: { x: 80, y: 4600 },
             steps: [
               {
                 exercise: {
@@ -2778,7 +2799,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 3',
-            position: { x: 100, y: 4700 },
+            position: { x: 100, y: 4740 },
             steps: [
               {
                 exercise: {
@@ -2790,7 +2811,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Dreieck zeichnen',
-            position: { x: 250, y: 4850 },
+            position: { x: 270, y: 4800 },
             steps: [
               {
                 exercise: {
@@ -2803,7 +2824,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Im richtigen Maßstab zeichnen',
-            position: { x: 100, y: 5000 },
+            position: { x: 100, y: 4900 },
             steps: [
               {
                 exercise: {
@@ -2816,7 +2837,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Messen und Anwenden des Maßstabs',
-            position: { x: 200, y: 5050 },
+            position: { x: 200, y: 5000 },
             steps: [
               {
                 exercise: {
@@ -2829,7 +2850,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Symmetrie',
-            position: { x: 250, y: 5150 },
+            position: { x: 270, y: 5110 },
             steps: [
               {
                 exercise: {
@@ -2842,7 +2863,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Körpernetz',
-            position: { x: 150, y: 5150 },
+            position: { x: 120, y: 5170 },
             steps: [
               {
                 exercise: {
@@ -2855,7 +2876,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 4',
-            position: { x: 100, y: 5300 },
+            position: { x: 100, y: 5320 },
             steps: [
               {
                 exercise: {
@@ -2867,7 +2888,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Tabelle auswerten & Kreisdiagramm',
-            position: { x: 250, y: 5450 },
+            position: { x: 250, y: 5420 },
             steps: [
               {
                 exercise: {
@@ -2880,7 +2901,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
-            position: { x: 100, y: 5600 },
+            position: { x: 100, y: 5520 },
             steps: [
               {
                 exercise: {
@@ -2893,7 +2914,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
-            position: { x: 200, y: 5650 },
+            position: { x: 280, y: 5650 },
             steps: [
               {
                 exercise: {
@@ -2906,7 +2927,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Laplace Experimente',
-            position: { x: 250, y: 5750 },
+            position: { x: 240, y: 5800 },
             steps: [
               {
                 exercise: {
@@ -2969,7 +2990,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 2',
-            position: { x: 100, y: 6200 },
+            position: { x: 100, y: 6190 },
             steps: [{ exercise: { id: 119 } }],
           },
 
@@ -2989,7 +3010,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 4',
-            position: { x: 100, y: 6500 },
+            position: { x: 100, y: 6480 },
             steps: [
               {
                 exercise: {
@@ -3002,7 +3023,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Challenge 5',
-            position: { x: 250, y: 6650 },
+            position: { x: 250, y: 6620 },
             steps: [
               {
                 exercise: {

@@ -32,8 +32,7 @@ export function IndicatorBar() {
                     completed[j] ? 'bg-green-700' : 'bg-black',
                   )}
                 >
-                  {pages[j].context}
-                  {pages[j].index == 'single' ? null : pages[j].index}
+                  {pages[j].displayIndex}
                 </div>
               ) : (
                 <div

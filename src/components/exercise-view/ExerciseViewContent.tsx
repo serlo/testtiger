@@ -144,7 +144,7 @@ export function ExerciseViewContent() {
               singleExercise.duration ?? '?',
               singleExercise.points ?? '?',
               <>{renderContentElement(singleExercise.task({ data }))}</>,
-              singleExercise.useCalculator,
+              page.displayIndex,
             )
           } else {
             const subtasks = exercise as ExerciseWithSubtasks<any>
@@ -161,35 +161,39 @@ export function ExerciseViewContent() {
             if (!page.disableDefaultLocalIntro) {
               intros.push('local')
             }
-            return renderContentCard(
-              i,
-              task.duration ?? '?',
-              task.points ?? '?',
+            return (
               <>
-                {intros.map((intro, i) =>
-                  renderContentElement(
-                    <>
-                      {intro == 'global' &&
-                        subtasks.intro({
-                          data,
-                        })}
-                      {intro == 'local' &&
-                        task.intro &&
-                        task.intro({
-                          data,
-                        })}
-                      {intro == 'skill' &&
-                        task.skillIntro &&
-                        task.skillIntro({
-                          data,
-                        })}
-                    </>,
-                    i.toString(),
-                  ),
+                <div className="px-5 bg-white mb-6">
+                  {intros.map((intro, i) =>
+                    renderContentElement(
+                      <>
+                        {intro == 'global' &&
+                          subtasks.intro({
+                            data,
+                          })}
+                        {intro == 'local' &&
+                          task.intro &&
+                          task.intro({
+                            data,
+                          })}
+                        {intro == 'skill' &&
+                          task.skillIntro &&
+                          task.skillIntro({
+                            data,
+                          })}
+                      </>,
+                      i.toString(),
+                    ),
+                  )}
+                </div>
+                {renderContentCard(
+                  i,
+                  task.duration ?? '?',
+                  task.points ?? '?',
+                  <>{renderContentElement(<div>{task.task({ data })}</div>)}</>,
+                  page.displayIndex,
                 )}
-                {renderContentElement(task.task({ data }))}
-              </>,
-              subtasks.useCalculator,
+              </>
             )
           }
         })}
@@ -203,12 +207,12 @@ export function ExerciseViewContent() {
     duration: number | string,
     points: number | string,
     contentEl: JSX.Element,
-    useCalculator: boolean,
+    numbering?: string,
   ) {
     return (
       <div
         className={clsx(
-          'w-[calc(100%-24px)] flex-shrink-0  cursor-pointer mx-auto',
+          'w-[calc(100%-24px)] flex-shrink-0 cursor-pointer mx-auto relative',
         )}
         style={{ scrollbarWidth: 'thin' }}
         key={i}
@@ -220,6 +224,11 @@ export function ExerciseViewContent() {
         }}
         id={`exercise-${i}`}
       >
+        {toHome && numbering && (
+          <div className="absolute top-1 left-2 font-bold font-xl">
+            {numbering})
+          </div>
+        )}
         <div
           className={clsx(
             'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',

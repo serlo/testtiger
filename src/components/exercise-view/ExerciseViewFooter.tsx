@@ -10,12 +10,6 @@ import {
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { FotoOverlay } from './FotoOverlay'
-import {
-  Camera,
-  CameraResultType,
-  CameraSource,
-  CameraDirection,
-} from '@capacitor/camera'
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -25,8 +19,6 @@ import {
 } from './state/actions'
 import { useRef, useEffect } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
-import { exercisesData } from '@/content/exercises'
-import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 defineCustomElements(window)
 
@@ -41,11 +33,16 @@ export function ExerciseViewFooter() {
     s => s.chatHistory[s.navIndicatorPosition],
   )
   const id = ExerciseViewStore.useState(s => s.id)
-  const content = exercisesData[id]
-  const pages = ExerciseViewStore.useState(s => s.pages)
-  const navIndicatorPosition = ExerciseViewStore.useState(
-    s => s.navIndicatorPosition,
-  )
+  const toHome = ExerciseViewStore.useState(s => s.toHome)
+  const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
+
+  useEffect(() => {
+    setTimeout(() => {
+      ExerciseViewStore.update(s => {
+        s.needReset2 = false
+      })
+    }, 10)
+  }, [needReset2])
 
   useEffect(() => {
     if (chatHistoryRef.current) {
@@ -403,33 +400,35 @@ export function ExerciseViewFooter() {
                   >
                     Lösung anzeigen
                   </li>
-                  <li
-                    className="py-2 cursor-pointer hover:underline"
-                    onClick={() => {
-                      ExerciseViewStore.update(s => {
-                        if (
-                          !s.chatHistory[s.navIndicatorPosition].resultPending
-                        ) {
-                          s.chatOverlay = 'chat'
-                          s.chatHistory[s.navIndicatorPosition].entries.push({
-                            type: 'text',
-                            content: 'Wie lerne ich?',
-                          })
-                          s.chatHistory[s.navIndicatorPosition].entries.push({
-                            type: 'response',
-                            content:
-                              'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
-                            category: 'none',
-                          })
+                  {!toHome && (
+                    <li
+                      className="py-2 cursor-pointer hover:underline"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          if (
+                            !s.chatHistory[s.navIndicatorPosition].resultPending
+                          ) {
+                            s.chatOverlay = 'chat'
+                            s.chatHistory[s.navIndicatorPosition].entries.push({
+                              type: 'text',
+                              content: 'Wie lerne ich?',
+                            })
+                            s.chatHistory[s.navIndicatorPosition].entries.push({
+                              type: 'response',
+                              content:
+                                'Versuche dich gerne an der Aufgabe! Schreibe deine Lösung auf ein Papier und mach ein Foto davon, oder gib sie direkt ins Eingabefeld ein. Danach bekommst du hilfreiches Feedback. Deine Lösung muss nicht perfekt sein – wir sind da, um dir zu helfen, falls etwas noch nicht ganz klappt. Und falls du Fragen zur Aufgabe hast, stell sie einfach hier im Chat. Wir freuen uns, dich zu unterstützen!',
+                              category: 'none',
+                            })
+                          }
+                        })
+                        if (helpDropdownRef.current) {
+                          helpDropdownRef.current.open = false
                         }
-                      })
-                      if (helpDropdownRef.current) {
-                        helpDropdownRef.current.open = false
-                      }
-                    }}
-                  >
-                    Wie lerne ich?
-                  </li>
+                      }}
+                    >
+                      Wie lerne ich?
+                    </li>
+                  )}
                 </ul>
               </details>
             </div>
@@ -461,20 +460,22 @@ export function ExerciseViewFooter() {
             />
           </div>
           <div className="flex items-end pb-6 mt-3 mx-2 sm:mx-3 gap-3">
-            <TextareaAutosize
-              ref={textareaRef}
-              value={chatHistory.answerInput}
-              onChange={e =>
-                ExerciseViewStore.update(s => {
-                  s.chatHistory[s.navIndicatorPosition].answerInput =
-                    e.target.value
-                })
-              }
-              placeholder="Gib deine Antwort oder Frage ein ..."
-              minRows={1}
-              maxRows={5}
-              className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
-            />
+            {!needReset2 && (
+              <TextareaAutosize
+                ref={textareaRef}
+                value={chatHistory.answerInput}
+                onChange={e =>
+                  ExerciseViewStore.update(s => {
+                    s.chatHistory[s.navIndicatorPosition].answerInput =
+                      e.target.value
+                  })
+                }
+                placeholder="Gib deine Antwort oder Frage ein ..."
+                minRows={1}
+                maxRows={5}
+                className="flex-grow p-2 border rounded-md resize-none outline-gray-400"
+              />
+            )}
             <button
               className="flex-shrink-0 w-10 h-10 bg-gray-500 text-white rounded-full flex items-center justify-center hover:bg-gray-600"
               onClick={() => {

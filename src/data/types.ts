@@ -59,11 +59,12 @@ export interface Part {
 }
 
 export interface Lesson {
-  type: 'new-skill' | 'challenge' | 'repetition'
+  type: 'new-skill' | 'challenge' | 'repetition' | 'video'
   position?: { x: number; y: number }
   icon?: string
   title: string
   steps: Step[]
+  videoUrl?: string
 }
 
 export interface Step {
@@ -89,6 +90,7 @@ export interface SkillExercisePage {
   intro?: ('global' | 'local' | 'skill')[]
   disableDefaultLocalIntro?: boolean
   context?: string
+  displayIndex?: string
 }
 
 export type IMessage = CoreMessage & {

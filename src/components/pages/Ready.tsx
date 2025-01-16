@@ -7,7 +7,7 @@ export function Ready() {
         <div className="text-center text-3xl mt-16">Bereit!</div>
         <div className="text-5xl text-center mt-16 mb-16">🎓</div>
         <div className="text-center text-gray-600 mt-6 max-w-[360px] mx-auto">
-          Kein Stress - du wirst hier zum TestTiger 🙌
+          Kein Stress - du lernst du mit Fux 🙌
         </div>
       </IonContent>
       <IonFooter>
