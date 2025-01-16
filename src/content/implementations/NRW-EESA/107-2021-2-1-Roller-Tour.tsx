@@ -101,9 +101,10 @@ export const exercise107: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Die Strecke ist ungefähr {data.legende * 15} km lang. Bestätige
+              Die Strecke ist ungefähr {data.legende * 15} km lang. Bestätige
               dies durch Messen und mithilfe des Maßstabs.
             </p>
           </>
@@ -133,9 +134,10 @@ export const exercise107: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Melike und Robin gehen von einer durchschnittlichen
+              Melike und Robin gehen von einer durchschnittlichen
               Geschwindigkeit von <br></br>
               {data.pace} {buildInlineFrac(<>km</>, <>h</>)}​ aus. Berechne für
               die {data.legende * 15} km lange Strecke die Fahrzeit in Minuten.
@@ -327,9 +329,10 @@ export const exercise107: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Die Kosten bei {'"'}Easy Rent{'"'} können mit dem Term{' '}
+              Die Kosten bei {'"'}Easy Rent{'"'} können mit dem Term{' '}
               {pp(data.gebühr_easy)} ⋅ x + {data.grund_easy} berechnet werden.
             </p>
             <p>
@@ -571,9 +574,10 @@ export const exercise107: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d) Erkläre, warum der Graph zum Angebot von {'"'}Rollerverleih24
+              Erkläre, warum der Graph zum Angebot von {'"'}Rollerverleih24
               {'"'} im ersten Abschnitt waagerecht verläuft.
             </p>
           </>
@@ -663,10 +667,11 @@ export const exercise107: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Die beiden Graphen schneiden sich. Gib die Koordinaten der
-              beiden Schnittpunkte an.
+              Die beiden Graphen schneiden sich. Gib die Koordinaten der beiden
+              Schnittpunkte an.
             </p>
           </>
         )
@@ -722,9 +727,10 @@ export const exercise107: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //f)
           <>
             <p>
-              f) Insgesamt wollen Melike und Robin ungefähr {data.fahrt} km weit
+              Insgesamt wollen Melike und Robin ungefähr {data.fahrt} km weit
               fahren. Welches Angebot ist günstiger? Gib die Kosten für das
               günstigere Angebot an.
             </p>

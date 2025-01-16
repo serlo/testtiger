@@ -75,13 +75,13 @@ export const exercise117: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Im Baumarkt kaufen Emma und Pierre Holzbretter für das
-              Hochbeet. Die Holzbretter sind {((data.breite - 2) / 2) * 5} cm
-              lang und {pp(data.brett)} cm breit. Bestimme die Anzahl der
-              Holzbretter, die für den Bau des gesamten Hochbeets benötigt
-              werden.
+              Im Baumarkt kaufen Emma und Pierre Holzbretter für das Hochbeet.
+              Die Holzbretter sind {((data.breite - 2) / 2) * 5} cm lang und{' '}
+              {pp(data.brett)} cm breit. Bestimme die Anzahl der Holzbretter,
+              die für den Bau des gesamten Hochbeets benötigt werden.
             </p>
           </>
         )
@@ -119,11 +119,12 @@ export const exercise117: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Emma möchte die Außenflächen des Hochbeets mit Farbe
-              anstreichen. Ein Eimer Farbe reicht für eine Fläche von ca.{' '}
-              {pp(data.color)} m².
+              Emma möchte die Außenflächen des Hochbeets mit Farbe anstreichen.
+              Ein Eimer Farbe reicht für eine Fläche von ca. {pp(data.color)}{' '}
+              m².
             </p>
             <p>Entscheide durch eine Rechnung, ob ein Eimer Farbe ausreicht.</p>
           </>
@@ -221,8 +222,9 @@ export const exercise117: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
-            <p>c) Das Hochbeet wird zu einem Drittel mit Gartenerde befüllt.</p>
+            <p>Das Hochbeet wird zu einem Drittel mit Gartenerde befüllt.</p>
             <p>Berechne die benötigte Gartenerde in Kubikmeter (m³).</p>
           </>
         )
@@ -328,8 +330,9 @@ export const exercise117: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
-            <p>d) Zeichne die Skizze im Maßstab 1 : 20 ab.</p>
+            <p>Zeichne die Skizze im Maßstab 1 : 20 ab.</p>
           </>
         )
       },
@@ -484,10 +487,11 @@ export const exercise117: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Es können höchstens zehn Salate in dem Hochbeet gepflanzt
-              werden. Begründe diese maximale Anzahl.
+              Es können höchstens zehn Salate in dem Hochbeet gepflanzt werden.
+              Begründe diese maximale Anzahl.
             </p>
           </>
         )

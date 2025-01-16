@@ -48,10 +48,11 @@ export const exercise106: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Ergänze in der Tabelle die fehlenden Werte dieser
-              proportionalen Zuordnung.
+              Ergänze in der Tabelle die fehlenden Werte dieser proportionalen
+              Zuordnung.
             </p>
             <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
               <rect
@@ -504,11 +505,12 @@ export const exercise106: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Eine Kugel aus Gold hat einen Radius von {pp(data.radius)} cm.
-              Ein Kubikzentimeter [cm³] Gold wiegt {pp(data.weight)} g. Berechne
-              das Volumen dieser Kugel aus Gold.
+              Eine Kugel aus Gold hat einen Radius von {pp(data.radius)} cm. Ein
+              Kubikzentimeter [cm³] Gold wiegt {pp(data.weight)} g. Berechne das
+              Volumen dieser Kugel aus Gold.
             </p>
           </>
         )

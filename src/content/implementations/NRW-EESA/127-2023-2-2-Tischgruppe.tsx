@@ -130,10 +130,11 @@ export const exercise127: Exercise<DATA> = {
       task({ data }) {
         const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
         return (
+          //a)
           <>
             <p>
-              a) Bestätige durch eine Rechnung, dass die längste Seite des
-              Tisches etwa {pp(hypo)} cm lang ist.
+              Bestätige durch eine Rechnung, dass die längste Seite des Tisches
+              etwa {pp(hypo)} cm lang ist.
             </p>
           </>
         )
@@ -260,8 +261,9 @@ export const exercise127: Exercise<DATA> = {
       task({ data }) {
         const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
         return (
+          //b)
           <>
-            <p>b) Berechne den Flächeninhalt dieser Tischgruppe.</p>
+            <p>Berechne den Flächeninhalt dieser Tischgruppe.</p>
 
             <p>Gib das Ergebnis in Quadratmetern (m²) an.</p>
           </>
@@ -351,9 +353,10 @@ export const exercise127: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Zeichne die Tischgruppe im Maßstab <br></br>1 : 10.
+              Zeichne die Tischgruppe im Maßstab <br></br>1 : 10.
             </p>
           </>
         )
@@ -596,8 +599,9 @@ export const exercise127: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
-            <p>d) Berechne den Gesamtpreis für die dreieckigen Tische.</p>
+            <p>Berechne den Gesamtpreis für die dreieckigen Tische.</p>
           </>
         )
       },
@@ -629,9 +633,10 @@ export const exercise127: Exercise<DATA> = {
         ]
         const shuffledItems = data.order.map(i => listItems[i])
         return (
+          //e)
           <>
             <p>
-              e) Mit welchen Formeln kann der Wert in Zelle D8 berechnet werden?
+              Mit welchen Formeln kann der Wert in Zelle D8 berechnet werden?
               Wähle aus.
             </p>
             <ul>{shuffledItems}</ul>

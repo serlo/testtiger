@@ -236,9 +236,10 @@ export const exercise126: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Bestimme die Wahrscheinlichkeit für den Gewinn eines 60
+              Bestimme die Wahrscheinlichkeit für den Gewinn eines 60
               %-Rabatt-Gutscheins.
             </p>
           </>
@@ -316,10 +317,9 @@ export const exercise126: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
-            <p>
-              b) Bestimme die Wahrscheinlichkeit, dass Mehmet etwas gewinnt.
-            </p>
+            <p>Bestimme die Wahrscheinlichkeit, dass Mehmet etwas gewinnt.</p>
           </>
         )
       },
@@ -512,9 +512,10 @@ export const exercise126: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Bestätige durch eine Rechnung, dass Mehmet für die kleine Pizza{' '}
+              Bestätige durch eine Rechnung, dass Mehmet für die kleine Pizza{' '}
               {pp(data.small * 0.4)} € bezahlen müsste.
             </p>
           </>
@@ -609,9 +610,10 @@ export const exercise126: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d) Zeige durch eine Rechnung, dass der Flächeninhalt einer kleinen
+              Zeige durch eine Rechnung, dass der Flächeninhalt einer kleinen
               Pizza ungefähr{' '}
               {pp(Math.round(Math.PI * (data.dia / 2) * (data.dia / 2)))} cm²
               beträgt.
@@ -724,6 +726,7 @@ export const exercise126: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
               Sina behauptet: {'"'}Wenn ich eine große Pizza nehme, dann bekomme
@@ -731,7 +734,7 @@ export const exercise126: Exercise<DATA> = {
               {data.case == 2 && 'dreimal'}
               {data.case == 3 && 'doppelt'} so große Pizza.{'"'}
             </p>
-            <p>e) Hat Sina recht? Begründe deine Entscheidung.</p>
+            <p>Hat Sina recht? Begründe deine Entscheidung.</p>
           </>
         )
       },

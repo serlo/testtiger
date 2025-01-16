@@ -69,9 +69,10 @@ export const exercise136: Exercise<DATA> = {
       task({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
+          //a)
           <>
             <p>
-              a) Tom geht von einer durchschnittlichen Geschwindigkeit von{' '}
+              Tom geht von einer durchschnittlichen Geschwindigkeit von{' '}
               {data.pace} {buildInlineFrac('km', 'h')} aus. Bestätige durch eine
               Rechnung, dass Tom mit dem E-Scooter {time} Minuten bis zur Arbeit
               benötigt.
@@ -261,9 +262,10 @@ export const exercise136: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Tom nutzt den E-Scooter für den Hin- und Rückweg und muss daher
+              Tom nutzt den E-Scooter für den Hin- und Rückweg und muss daher
               zweimal die Startgebühr bezahlen. Berechne seine Kosten pro Tag.
             </p>
           </>
@@ -361,9 +363,10 @@ export const exercise136: Exercise<DATA> = {
         const time = data.weg / (data.pace / 60)
         const tag = data.zeitkosten * time + data.fixkosten * 2
         return (
+          //c)
           <>
             <p>
-              c) Gib die Bedeutung von y, von {pp(30 * tag)} und von x im
+              Gib die Bedeutung von y, von {pp(30 * tag)} und von x im
               Zusammenhang mit der Kostenberechnung an.
             </p>
           </>
@@ -451,8 +454,9 @@ export const exercise136: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
-            <p>d) Bestimme die Gesamtkosten nach {pp(data.months)} Monaten.</p>
+            <p>Bestimme die Gesamtkosten nach {pp(data.months)} Monaten.</p>
           </>
         )
       },
@@ -550,10 +554,11 @@ export const exercise136: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Zeichne den Graphen der Gesamtkosten für diesen E-Scooter in
-              das Koordinatensystem ein (Abbildung 1).
+              Zeichne den Graphen der Gesamtkosten für diesen E-Scooter in das
+              Koordinatensystem ein (Abbildung 1).
             </p>
           </>
         )
@@ -626,9 +631,10 @@ export const exercise136: Exercise<DATA> = {
       duration: 2,
       task({ data }) {
         return (
+          //f)
           <>
             <p>
-              f) Begründe, dass sich der Kauf des E-Scooters für ihn langfristig
+              Begründe, dass sich der Kauf des E-Scooters für ihn langfristig
               lohnt.
             </p>
           </>

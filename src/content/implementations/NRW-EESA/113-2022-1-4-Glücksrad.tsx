@@ -108,10 +108,11 @@ export const exercise113: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Das Glücksrad wird einmal gedreht. Gib die Wahrscheinlichkeit
-              für einen Hauptgewinn (H) an.
+              Das Glücksrad wird einmal gedreht. Gib die Wahrscheinlichkeit für
+              einen Hauptgewinn (H) an.
             </p>
           </>
         )
@@ -177,9 +178,10 @@ export const exercise113: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Das Glücksrad soll weiter beschriftet werden.{' '}
+              Das Glücksrad soll weiter beschriftet werden.{' '}
               {ppFrac(1 / data.nenner)}​ aller Felder sollen Nieten sein, die
               restlichen Felder sollen mit dem Wort {'"'}Trostpreis{'"'}{' '}
               beschriftet werden. Markiere im Glücksrad{' '}

@@ -176,8 +176,9 @@ export const exercise131: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
-            <p>a) Gib die Spannweite und den Median der fünf Sprünge an.</p>
+            <p>Gib die Spannweite und den Median der fünf Sprünge an.</p>
           </>
         )
       },
@@ -219,10 +220,10 @@ export const exercise131: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Berechne die durchschnittliche Sprungweite aus den fünf
-              Sprüngen.
+              Berechne die durchschnittliche Sprungweite aus den fünf Sprüngen.
             </p>
           </>
         )

@@ -101,11 +101,12 @@ export const exercise108: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //a)
           <>
             <p>
-              a) Bestätige durch eine Rechnung, dass die diagonale Abtrennung
-              ca. {roundToDigits(Math.sqrt(2 * data.breite * data.breite), 0)}{' '}
-              cm lang sein muss.
+              Bestätige durch eine Rechnung, dass die diagonale Abtrennung ca.{' '}
+              {roundToDigits(Math.sqrt(2 * data.breite * data.breite), 0)} cm
+              lang sein muss.
             </p>
           </>
         )
@@ -224,11 +225,12 @@ export const exercise108: Exercise<DATA> = {
           0.5 *
           Math.ceil((0.5 * (data.breite / 100) * (data.breite / 100)) / 0.5)
         return (
+          //b)
           <>
             <p>
-              b) In das obere Dreieck säen sie Samen von Sommerblumen. Eine
-              Packung Samen reicht für {pp(saat)} m². Zeige mit einer Rechnung,
-              dass eine Packung ausreicht.
+              In das obere Dreieck säen sie Samen von Sommerblumen. Eine Packung
+              Samen reicht für {pp(saat)} m². Zeige mit einer Rechnung, dass
+              eine Packung ausreicht.
             </p>
           </>
         )
@@ -310,9 +312,10 @@ export const exercise108: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //c)
           <>
             <p>
-              c) Zeige rechnerisch, dass das Metallband ca.{' '}
+              Zeige rechnerisch, dass das Metallband ca.{' '}
               {pp(
                 roundToDigits(
                   (Math.PI *
@@ -411,10 +414,10 @@ export const exercise108: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //d)
           <>
             <p>
-              d) Berechne den Flächeninhalt der mit Kieselsteinen bedeckten
-              Fläche.
+              Berechne den Flächeninhalt der mit Kieselsteinen bedeckten Fläche.
             </p>
           </>
         )
@@ -571,9 +574,10 @@ export const exercise108: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Berechne, wie viel Maria und Leon für {data.steine} Säcke
+              Berechne, wie viel Maria und Leon für {data.steine} Säcke
               Kieselsteine und{' '}
               {Math.ceil(
                 roundToDigits(

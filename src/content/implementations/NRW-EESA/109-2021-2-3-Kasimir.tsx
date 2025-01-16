@@ -90,10 +90,11 @@ export const exercise109: Exercise<DATA> = {
         )
         const surface = (h * data.a) / 2
         return (
+          //a)
           <>
             <p>
-              a) Bestätige durch eine Rechnung, dass der Flächeninhalt des
-              Dreiecks {pp(roundToDigits(surface, 2))} cm² beträgt.
+              Bestätige durch eine Rechnung, dass der Flächeninhalt des Dreiecks{' '}
+              {pp(roundToDigits(surface, 2))} cm² beträgt.
             </p>
           </>
         )
@@ -170,9 +171,10 @@ export const exercise109: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //b)
           <>
             <p>
-              b) Zeichne die Figur (Abbildung 2) mit den Originalmaßen auf ein
+              Zeichne die Figur (Abbildung 2) mit den Originalmaßen auf ein
               DIN-A4-Blatt.
             </p>
           </>
@@ -259,9 +261,10 @@ export const exercise109: Exercise<DATA> = {
         )
         const surface = (h * data.a) / 2
         return (
+          //c)
           <>
             <p>
-              c) Bestätige durch eine Rechnung, dass der Flächeninhalt eines
+              Bestätige durch eine Rechnung, dass der Flächeninhalt eines
               kleinen Dreiecks ca. {pp(roundToDigits(surface / 4, 1))} cm²
               beträgt.
             </p>
@@ -360,9 +363,10 @@ export const exercise109: Exercise<DATA> = {
       task({ data }) {
         const hk = (Math.sqrt(6) / 3) * (data.a / 2)
         return (
+          //d)
           <>
             <p>
-              d) Zeige mit der Formel, dass h<sub>K​</sub> ​≈{' '}
+              Zeige mit der Formel, dass h<sub>K​</sub> ​≈{' '}
               {pp(roundToDigits((Math.sqrt(6) / 3) * (data.a / 2), 1))} cm lang
               ist.
             </p>
@@ -449,9 +453,10 @@ export const exercise109: Exercise<DATA> = {
       },
       task({ data }) {
         return (
+          //e)
           <>
             <p>
-              e) Berechne mit der Körperhöhe h<sub>K​</sub>​ das Volumen des
+              Berechne mit der Körperhöhe h<sub>K​</sub>​ das Volumen des
               Tetraeders.
             </p>
           </>
@@ -578,9 +583,10 @@ export const exercise109: Exercise<DATA> = {
         ]
         const shuffledItems = data.order.map(i => listItems[i])
         return (
+          //f)
           <>
             <p>
-              f) Abbildung 2 stellt das Netz eines Tetraeders dar. Welches Netz
+              Abbildung 2 stellt das Netz eines Tetraeders dar. Welches Netz
               stellt ebenfalls das Netz eines Tetraeders dar? Entscheide
               jeweils.
             </p>
