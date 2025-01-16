@@ -115,14 +115,8 @@ import { exercise230 } from './implementations/BW_Realschule/230-2023-B-1-Trapez
 import { exercise231 } from './implementations/BW_Realschule/231-2023-B-2-Parabel+Körper'
 import { exercise232 } from './implementations/BW_Realschule/232-2023-B-3-Gewinnlose+Parabel'
 import { exercise233 } from './implementations/BW_Realschule/233-2023-B-4-Parabel+Prisma'
-import { exercise224 } from './implementations/BW_Realschule/224-2023-A2-1-Dreieck'
-import { exercise225 } from './implementations/BW_Realschule/225-2023-A2-2-Zusammengesetzter-Körper'
-import { exercise226 } from './implementations/BW_Realschule/226-2023-A2-3-Lineares Gleichungssystem'
-import { exercise227 } from './implementations/BW_Realschule/227-2023-A2-4-Parabel'
-import { exercise228 } from './implementations/BW_Realschule/228-2023-A2-5-Kreisel'
-import { exercise229 } from './implementations/BW_Realschule/229-2023-A2-6-Diagramm'
-import { exercise242 } from './implementations/BW_Realschule/242-2022-A2-2-Gussform'
 import { exercise241 } from './implementations/BW_Realschule/241-2022-A2-1-Dreieck'
+import { exercise242 } from './implementations/BW_Realschule/242-2022-A2-2-Gussform'
 import { exercise243 } from './implementations/BW_Realschule/243-2022-A2-3-Quadratische-Gleichung'
 import { exercise244 } from './implementations/BW_Realschule/244-2022-A2-4-Parabel'
 import { exercise245 } from './implementations/BW_Realschule/245-2022-A2-5-Losverkauf'
@@ -131,7 +125,6 @@ import { exercise247 } from './implementations/BW_Realschule/247-2022-B-1-Figure
 import { exercise248 } from './implementations/BW_Realschule/248-2022-B-2-Parabeln+Körper'
 import { exercise249 } from './implementations/BW_Realschule/249-2022-B-3-Zufall+Tiny-House'
 import { exercise250 } from './implementations/BW_Realschule/250-2022-B-4-Parabeln+Sechseck'
-import { exercise92 } from './implementations/NRW-MSA/9_2-2023-2-3-Zahlenpaare'
 import { exercise258 } from './implementations/BW_Realschule/258-2021-A2-1-Figur'
 import { exercise259 } from './implementations/BW_Realschule/259-2021-A2-2-Körper'
 import { exercise260 } from './implementations/BW_Realschule/260-2021-A2-3-Glücksrad'
@@ -142,6 +135,7 @@ import { exercise264 } from './implementations/BW_Realschule/264-2021-B-1-Figur+
 import { exercise265 } from './implementations/BW_Realschule/265-2021-B-2-Funktionen+Körper'
 import { exercise266 } from './implementations/BW_Realschule/266-2021-B-3-Glücksspiel+Parabel'
 import { exercise267 } from './implementations/BW_Realschule/267-2021-B-4-Parabel+Figur'
+import { exercise92 } from './implementations/NRW-MSA/9_2-2023-2-3-Zahlenpaare'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -256,12 +250,6 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   213: exercise213,
   214: exercise214,
   215: exercise215,
-  224: exercise224,
-  225: exercise225,
-  226: exercise226,
-  227: exercise227,
-  228: exercise228,
-  229: exercise229,
   230: exercise230,
   231: exercise231,
   232: exercise232,

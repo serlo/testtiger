@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { pp } from '@/helper/pretty-print'
 
 interface DATA {
   szenario: number
@@ -99,10 +100,10 @@ export const exercise203: Exercise<DATA> = {
               )}
               {data.szenario == 2 && (
                 <>
-                  Von Figur 1 zu Figur 2 kommen 7 Kärtchen, von Figur 2 zu Figur
-                  3 kommen 9 Kärtchen dazu. Die Kärtchen werden immer in
-                  ungeraden Zahlen mehr. <br></br>
-                  <br></br>Figur {data.muster} besitzt dann insgesamt{' '}
+                  Von Figur 1 zu Figur 2 kommen 7 Kärtchen dazu und von Figur 2
+                  zu Figur 3 kommen 9 Kärtchen dazu. Die Kärtchen werden also
+                  immer in ungeraden Zahlen mehr. <br></br>
+                  <br></br>Figur {data.muster} besitzt dann insgesamt 25 +
                   <strong>{4 * (data.muster + 1)} Kärtchen</strong>.
                 </>
               )}
@@ -120,9 +121,13 @@ export const exercise203: Exercise<DATA> = {
               )}
               {data.szenario == 4 && (
                 <>
-                  In den Figuren kommen in jedem Schritt 4 Kärtchen dazu.{' '}
+                  In den Figuren kommen in jedem Schritt 4 Kärtchen dazu. Von
+                  Figur 1 zu Figur {data.muster} müssen wir also{' '}
+                  {data.muster - 1} · 4 = {(data.muster - 1) * 4} Kärtchen
+                  dazurechnen.
                   <br></br>
                   <br></br>Damit sind es in Figur {data.muster} insgesamt{' '}
+                  <br></br> 6 + {(data.muster - 1) * 4} ={' '}
                   <strong>{6 + 4 * (data.muster - 1)} Kärtchen</strong>.
                 </>
               )}

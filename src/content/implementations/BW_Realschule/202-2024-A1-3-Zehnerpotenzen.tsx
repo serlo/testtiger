@@ -102,6 +102,10 @@ export const exercise202: Exercise<DATA> = {
     const maxIndex = array.indexOf(maxValue) // Index der größten Zahl
     return (
       <>
+        <p>
+          Verschiebe das Komma mit dem Wert der Zehnerpotenz nach rechts und ergänze
+          fehlende Stellen mit Nullen.
+        </p>
         <p>Berechne den Wert der Terme:</p>
         <ol>
           <li>
@@ -126,8 +130,8 @@ export const exercise202: Exercise<DATA> = {
           </li>
         </ol>
         <p>
-          Der größte Wert hat <strong>Term {maxIndex + 1}</strong> mit{' '}
-          {array[maxIndex]}.
+          Den größten Wert hat <strong>Term {maxIndex + 1}</strong> mit{' '}
+          <strong>{array[maxIndex]}</strong>.
         </p>
       </>
     )

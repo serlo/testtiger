@@ -25,6 +25,7 @@ export const exercise104: Exercise<DATA> = {
     }
   },
   originalData: { fuß: 25, fahrrad: 10, öffi: 34, personen: 550 },
+  learningPathData: { fuß: 35, fahrrad: 13, öffi: 40, personen: 400 },
   constraint({ data }) {
     return true
   },

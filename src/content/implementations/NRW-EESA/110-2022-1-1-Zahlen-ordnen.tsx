@@ -21,7 +21,7 @@ export const exercise110: Exercise<DATA> = {
       a: rng.randomIntBetween(-30, 30) / 10,
       b: rng.randomIntBetween(-300, 300) / 100,
       c: rng.randomIntBetween(-300, 300) / 100,
-      d: rng.randomIntBetween(1, 10),
+      d: rng.randomItemFromArray([2, 3, 5, 6, 7, 8, 10]),
     }
   },
   originalData: { a: -2.2, b: -2.57, c: 2.51, d: 5 },

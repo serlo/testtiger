@@ -34,6 +34,14 @@ export const exercise105: Exercise<DATA> = {
     length_2: 6,
     depth: 3,
   },
+  learningPathData: {
+    case: 5,
+    höhe_1: 12,
+    höhe_2: 8,
+    length_1: 7,
+    length_2: 4,
+    depth: 4,
+  },
   constraint({ data }) {
     return true
   },
