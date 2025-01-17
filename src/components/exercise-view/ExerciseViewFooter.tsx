@@ -4,6 +4,7 @@ import {
   faCameraAlt,
   faCaretDown,
   faCaretUp,
+  faExpand,
   faQuestionCircle,
   faSquareRootVariable,
 } from '@fortawesome/free-solid-svg-icons'
@@ -356,7 +357,7 @@ export function ExerciseViewFooter() {
               fileInput.click()*/
                 }}
               >
-                <FaIcon icon={faCameraAlt} /> Foto
+                <FaIcon icon={faExpand} /> Scan
               </button>
             </div>
             <div>
