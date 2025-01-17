@@ -37,7 +37,7 @@ export const exercise115: Exercise<DATA> = {
       points: 3,
       duration: 4,
       intro({ data }) {
-        return <></>
+        return null
       },
       task({ data }) {
         return (

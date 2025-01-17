@@ -216,7 +216,7 @@ export const exercise131: Exercise<DATA> = {
       points: 2,
       duration: 2,
       intro({ data }) {
-        return <></>
+        return null
       },
       task({ data }) {
         return (
