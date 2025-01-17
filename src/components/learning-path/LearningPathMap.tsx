@@ -25,14 +25,17 @@ export function LearningPathMap() {
   const path = navigationData[exam].path
   const mapHeight = navigationData[exam].mapHeight
 
-  const elements: { source: Lesson }[] = []
+  const elements: { source: Lesson; solvedPercentage: number }[] = []
   const lines: { start: Lesson; end: Lesson }[] = []
 
   for (const part of path) {
     let prev: Lesson | null = null
     for (const lesson of part.lessons) {
       if (lesson.position) {
-        elements.push({ source: lesson })
+        elements.push({
+          source: lesson,
+          solvedPercentage: isWholeLessonDonePercentage(lesson),
+        })
         if (prev && prev.position) {
           lines.push({ start: prev, end: lesson })
         }
@@ -137,12 +140,16 @@ export function LearningPathMap() {
         )*/}
         {elements.map((el, i) => {
           let thisIsHighlighted = false
-          if (isWholeLessonDonePercentage(el.source) < 1 && allSolved) {
+          if (el.solvedPercentage < 1 && allSolved) {
             allSolved = false
             thisIsHighlighted = true
           }
           let notMutedYet = false
-          if (el.source.type == 'challenge' && !allSolved && !isMuted) {
+          if (
+            el.source.type == 'challenge' &&
+            el.solvedPercentage < 1 &&
+            !isMuted
+          ) {
             isMuted = true
             notMutedYet = true
           }
@@ -157,9 +164,7 @@ export function LearningPathMap() {
                   className="stroke-green-500"
                   strokeWidth={8}
                   strokeDasharray={
-                    Math.round(
-                      isWholeLessonDonePercentage(el.source) * 246,
-                    ).toString() + ' 1000'
+                    Math.round(el.solvedPercentage * 246).toString() + ' 1000'
                   }
                   transform={`rotate(-90 ${el.source.position!.x} ${mapHeight - el.source.position!.y})`}
                 ></circle>
@@ -202,8 +207,7 @@ export function LearningPathMap() {
                   /*if (isStepOfLessonDone(lessonDetails, step)) {
                     continue
                   }*/
-                  const solvedPercentage =
-                    isWholeLessonDonePercentage(lessonDetails)
+                  const solvedPercentage = el.solvedPercentage
                   if (lessonDetails.steps.length == 1) {
                     const step = lessonDetails.steps[0]
                     setupExercise(
@@ -383,7 +387,7 @@ export function LearningPathMap() {
                   className="pointer-events-none"
                 />
               )}
-              {isWholeLessonDonePercentage(el.source) == 1 && (
+              {el.solvedPercentage == 1 && (
                 <text
                   x={el.source.position!.x + 4}
                   y={mapHeight - el.source.position!.y + 26}

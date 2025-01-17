@@ -190,6 +190,7 @@ export function ExerciseViewContent() {
                       }
                     </>,
                     page.displayIndex,
+                    `solution-${i}`,
                   )}
               </>
             )
@@ -279,6 +280,7 @@ export function ExerciseViewContent() {
     points: number | string,
     contentEl: JSX.Element,
     numbering?: string,
+    alternativeKey?: string,
   ) {
     const showNumbering = toHome && numbering
     return (
@@ -288,7 +290,7 @@ export function ExerciseViewContent() {
           showNumbering && 'mt-20',
         )}
         style={{ scrollbarWidth: 'thin' }}
-        key={i}
+        key={alternativeKey ?? i}
         onClick={() => {
           ExerciseViewStore.update(s => {
             s.navIndicatorPosition = i
