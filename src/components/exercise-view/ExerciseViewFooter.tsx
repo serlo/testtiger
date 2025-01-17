@@ -216,7 +216,7 @@ export function ExerciseViewFooter() {
                             Lösung anzeigen
                           </button>
                           <button
-                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                            className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded mr-4"
                             onClick={() => {
                               ExerciseViewStore.update(s => {
                                 const wasNotDone =
@@ -248,7 +248,7 @@ export function ExerciseViewFooter() {
                               markCurrentExerciseAsComplete()
                             }}
                           >
-                            Kann ich
+                            Fertig
                           </button>
                         </p>
                       </>
