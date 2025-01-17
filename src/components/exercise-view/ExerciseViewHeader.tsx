@@ -4,11 +4,13 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 
 export function ExerciseViewHeader() {
   const id = ExerciseViewStore.useState(s => s.id)
   const skill = ExerciseViewStore.useState(s => s.skill)
   const toHome = ExerciseViewStore.useState(s => s.toHome)
+  const exam = PlayerProfileStore.useState(s => s.currentExam)
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
   )
@@ -45,7 +47,12 @@ export function ExerciseViewHeader() {
           history.push(
             skill && (i1 >= 0 || i2 >= 0 || i3 >= 0)
               ? '/topic/' +
-                  (i1 >= 0 ? i1 + 1 : i2 >= 0 ? i2 + 101 : i3 + 201).toString()
+                  (exam == 1
+                    ? i1 + 1
+                    : exam == 2
+                      ? i2 + 101
+                      : i3 + 201
+                  ).toString()
               : '/app/superskills',
           )
         }}
