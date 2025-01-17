@@ -2225,23 +2225,23 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [{ exercise: { id: 120 } }],
           },
           {
-            type: 'video',
-            title: 'Video 3',
-            videoUrl: '123',
-            position: { x: 210, y: 440 },
-            steps: [],
-          },
-          {
             type: 'new-skill',
             title: 'Einheiten',
-            position: { x: 90, y: 500 },
+            position: { x: 210, y: 440 },
             steps: [{ exercise: { id: 130 } }],
           },
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
-            position: { x: 200, y: 575 },
+            position: { x: 90, y: 500 },
             steps: [{ exercise: { id: 123 } }],
+          },
+          {
+            type: 'video',
+            title: 'Video 3',
+            videoUrl: '123',
+            position: { x: 200, y: 575 },
+            steps: [],
           },
           {
             type: 'new-skill',
