@@ -12,6 +12,7 @@ export function IndicatorBar() {
   )
 
   const pages = ExerciseViewStore.useState(s => s.pages)
+  const toHome = ExerciseViewStore.useState(s => s.toHome)
 
   const completed = ExerciseViewStore.useState(s => s.completed)
 
@@ -32,7 +33,7 @@ export function IndicatorBar() {
                     completed[j] ? 'bg-green-700' : 'bg-black',
                   )}
                 >
-                  {pages[j].displayIndex}
+                  {toHome ? pages[j].displayIndex : pages[j].index}
                 </div>
               ) : (
                 <div
