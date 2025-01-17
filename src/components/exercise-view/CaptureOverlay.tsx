@@ -16,8 +16,8 @@ export function CaptureOverlay() {
   return (
     <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto">
       <div className="">
-        <div className="absolute top-4 left-0 right-0 text-center text-xl mt-6">
-          Mache ein Bild von deiner Antwort
+        <div className="absolute top-4 left-0 right-0 text-center text-xl mt-6 bg-white">
+          Scanne deinen Rechenweg
         </div>
         {loading && (
           <div className="text-center text-gray-400 mt-6">Lade Kamera ...</div>
