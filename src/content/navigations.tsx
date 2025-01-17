@@ -2229,6 +2229,7 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Einheiten',
             position: { x: 210, y: 440 },
             steps: [{ exercise: { id: 130 } }],
+            showExamplePrescreen: true,
           },
           {
             type: 'new-skill',

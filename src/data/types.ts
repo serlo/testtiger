@@ -9,6 +9,7 @@ export interface SingleExercise<T = unknown> {
   points?: number
   originalData?: T
   learningPathData?: T
+  exampleData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
@@ -23,6 +24,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
   duration: number
   originalData?: T
   learningPathData?: T
+  exampleData?: T
   generator: (rng: Rng) => T
   constraint?: (props: { data: T; rng: Rng }) => boolean
   intro: (props: { data: T }) => JSX.Element | null
@@ -65,6 +67,7 @@ export interface Lesson {
   title: string
   steps: Step[]
   videoUrl?: string
+  showExamplePrescreen?: boolean
 }
 
 export interface Step {

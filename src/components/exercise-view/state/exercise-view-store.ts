@@ -60,6 +60,8 @@ export type IExerciseViewStore = {
   tag: string
   needReset: boolean
   needReset2: boolean
+  examplePrescreen: boolean
+  hasExamplePrescreen: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -83,4 +85,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   toHome: false,
   tag: '',
   takePhoto: false,
+  examplePrescreen: false,
+  hasExamplePrescreen: false,
 })

@@ -31,6 +31,11 @@ export const exercise130: Exercise<DATA> = {
     min: 3,
     ml: 600,
   },
+  exampleData: {
+    m: 3,
+    min: 5,
+    ml: 200,
+  },
   constraint({ data }) {
     return true
   },
