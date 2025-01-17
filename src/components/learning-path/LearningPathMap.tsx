@@ -225,6 +225,10 @@ export function LearningPathMap() {
                             ].learningPathTags.includes(relevantKeys[i]),
                           )
                         }
+                        if (lessonDetails.showExamplePrescreen) {
+                          s.examplePrescreen = true
+                          s.hasExamplePrescreen = true
+                        }
                       })
                     }
                     history.push(
@@ -339,6 +343,7 @@ export function LearningPathMap() {
                       s.showEndScreen = false
                       s.toHome = true
                       s.tag = lessonDetails.title + '#'
+                      s.hasExamplePrescreen = false
                     })
                     history.push('/exercise/123456')
                   }

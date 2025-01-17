@@ -29,6 +29,10 @@ export function ExerciseViewFooter() {
   const helpDropdownRef = useRef<HTMLDetailsElement>(null)
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const chatHistoryRef = useRef<HTMLDivElement>(null)
+  const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
+  const hasExamplePrescreen = ExerciseViewStore.useState(
+    s => s.hasExamplePrescreen,
+  )
 
   const chatHistory = ExerciseViewStore.useState(
     s => s.chatHistory[s.navIndicatorPosition],
@@ -109,6 +113,8 @@ export function ExerciseViewFooter() {
       formulaDropdownRef.current.open = false
     }
   }
+
+  if (examplePrescreen) return null
 
   return (
     <div className="bg-white min-h-[65px] relative">
@@ -366,7 +372,22 @@ export function ExerciseViewFooter() {
                 <summary className="list-none cursor-pointer px-2 py-0.5 bg-gray-100 rounded">
                   <FaIcon icon={faQuestionCircle} /> Hilfe
                 </summary>
-                <ul className="dropdown-content w-[150px] bg-white p-2 rounded border">
+                <ul className="dropdown-content w-[200px] bg-white p-2 rounded border">
+                  {hasExamplePrescreen && (
+                    <li
+                      className="py-2 cursor-pointer hover:underline"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          s.examplePrescreen = true
+                        })
+                        if (helpDropdownRef.current) {
+                          helpDropdownRef.current.open = false
+                        }
+                      }}
+                    >
+                      Beispiel anzeigen
+                    </li>
+                  )}{' '}
                   <li
                     className="py-2 cursor-pointer hover:underline"
                     onClick={() => {
@@ -378,7 +399,7 @@ export function ExerciseViewFooter() {
                       }
                     }}
                   >
-                    Lösung anzeigen
+                    Mit Lösung vergleichen
                   </li>
                   {!toHome && (
                     <li

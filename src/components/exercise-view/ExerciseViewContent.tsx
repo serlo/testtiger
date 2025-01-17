@@ -26,6 +26,8 @@ export function ExerciseViewContent() {
 
   const ref = useRef<HTMLDivElement>(null)
 
+  const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
+
   useEffect(() => {
     if (
       navIndicatorExternalUpdate >= 0 &&
@@ -117,11 +119,21 @@ export function ExerciseViewContent() {
           </button>
           Taschenrechner ist
           {useCalculator ? '' : ' nicht'} erlaubt.
-          <br />
-          <br />
-          Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
-          <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg ein,
-          oder <strong>tippe</strong> deine Lösung in den Chat.
+          {!examplePrescreen ? (
+            <>
+              <br />
+              <br />
+              Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
+              <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg
+              ein, oder <strong>tippe</strong> deine Lösung in den Chat.
+            </>
+          ) : (
+            <>
+              <br />
+              <br />
+              Schaue dir das <strong>Beispiel</strong> an.
+            </>
+          )}
         </div>
         {pages.map((page, i) => {
           // TODO: find appropriate content for this page
@@ -139,12 +151,47 @@ export function ExerciseViewContent() {
           if (page.index == 'single') {
             // single page exercise
             const singleExercise = exercise as SingleExercise<any>
-            return renderContentCard(
-              i,
-              singleExercise.duration ?? '?',
-              singleExercise.points ?? '?',
-              <>{renderContentElement(singleExercise.task({ data }))}</>,
-              page.displayIndex,
+            return (
+              <>
+                {renderContentCard(
+                  i,
+                  singleExercise.duration ?? '?',
+                  singleExercise.points ?? '?',
+                  <>
+                    {
+                      <>
+                        {renderContentElement(
+                          singleExercise.task({
+                            data:
+                              examplePrescreen && singleExercise.exampleData
+                                ? singleExercise.exampleData
+                                : data,
+                          }),
+                        )}
+                      </>
+                    }
+                  </>,
+                  page.displayIndex,
+                )}
+                {examplePrescreen &&
+                  renderContentCard(
+                    i,
+                    singleExercise.duration ?? '?',
+                    singleExercise.points ?? '?',
+                    <>
+                      {
+                        <>
+                          {renderContentElement(
+                            singleExercise.solution({
+                              data: singleExercise.exampleData ?? data,
+                            }),
+                          )}
+                        </>
+                      }
+                    </>,
+                    page.displayIndex,
+                  )}
+              </>
             )
           } else {
             const subtasks = exercise as ExerciseWithSubtasks<any>
@@ -197,6 +244,22 @@ export function ExerciseViewContent() {
             )
           }
         })}
+        {examplePrescreen && (
+          <>
+            <div className="text-center">
+              <button
+                className="bg-green-200 hover:bg-green-300 px-4 py-2 rounded-lg"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    s.examplePrescreen = false
+                  })
+                }}
+              >
+                Selber rechnen
+              </button>
+            </div>
+          </>
+        )}
         <div className="h-12"></div>
       </div>
     </div>
@@ -213,7 +276,7 @@ export function ExerciseViewContent() {
     return (
       <div
         className={clsx(
-          'w-[calc(100%-24px)] flex-shrink-0 cursor-pointer mx-auto relative',
+          'w-[calc(100%-24px)] flex-shrink-0 mx-auto relative',
           showNumbering && 'mt-20',
         )}
         style={{ scrollbarWidth: 'thin' }}
@@ -236,8 +299,8 @@ export function ExerciseViewContent() {
         <div
           className={clsx(
             'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',
-            navIndicatorPosition == i
-              ? 'border-blue-500'
+            navIndicatorPosition == i && !examplePrescreen
+              ? 'border-blue-500 cursor-pointer'
               : 'border-transparent',
             ExerciseViewStore.getRawState().completed[i]
               ? 'bg-green-100'
