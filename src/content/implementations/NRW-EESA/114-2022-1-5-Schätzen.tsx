@@ -15,7 +15,7 @@ export const exercise114: Exercise<DATA> = {
     return { task: rng.randomIntBetween(1, 5) }
   },
   originalData: { task: 5 },
-  learningPathData: { task: 1 },
+  learningPathData: { task: 4 },
   constraint({ data }) {
     return true
   },

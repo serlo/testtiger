@@ -1,7 +1,7 @@
 import { Exercise } from '@/data/types'
 import { Color1 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -73,15 +73,23 @@ export const exercise120: Exercise<DATA> = {
           Vergleiche und setze in die Lücke jeweils das Zeichen {'"<"'}, {'">"'}
           oder {'"="'} ein.
         </p>
-        <p>
-          {pp(data.a)} ______ {pp(data.b)}
-        </p>
-        <p>
-          {ppFrac([data.c, data.d])} ______ {ppFrac([data.e, data.f])}
-        </p>
-        <p>
-          {pp(data.g)} ______ {ppFrac([data.h, data.i])}
-        </p>
+        {buildEquation([
+          [
+            <>{pp(data.a)}&nbsp;&nbsp;</>,
+            <>___&nbsp;&nbsp;</>,
+            <>{pp(data.b)}</>,
+          ],
+          [
+            <>{ppFrac([data.c, data.d])}&nbsp;&nbsp;</>,
+            <>___&nbsp;&nbsp;</>,
+            <>{ppFrac([data.e, data.f])}</>,
+          ],
+          [
+            <>{pp(data.g)}&nbsp;&nbsp;</>,
+            <>___&nbsp;&nbsp;</>,
+            <>{ppFrac([data.h, data.i])}</>,
+          ],
+        ])}
       </>
     )
   },
