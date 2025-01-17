@@ -153,8 +153,7 @@ export function SolutionOverlay() {
         <div className="text-center mt-4 mb-4">
           <button
             className={clsx(
-              'px-6 py-1 rounded-xl mb-3',
-              completed ? 'bg-green-200' : 'bg-gray-200 hover:bg-gray-300',
+              'px-6 py-2 rounded-xl mb-3 bg-green-200 hover:bg-green-300',
             )}
             onClick={() => {
               ExerciseViewStore.update(s => {
@@ -183,8 +182,9 @@ export function SolutionOverlay() {
               markCurrentExerciseAsComplete()
             }}
           >
-            Kann ich{completed && <FaIcon icon={faCheck} className="ml-2" />}
+            Fertig
           </button>
+          <br />
           <button
             className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-xl"
             onClick={() => {
