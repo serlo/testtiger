@@ -159,19 +159,7 @@ export function ExerciseViewFooter() {
                     {el.category == 'actionable-feedback' && (
                       <>
                         <p className="text-xs text-gray-600 mt-2">
-                          Das Feedback ersetzt keine Korrektur. Vergleiche im
-                          Zweifel mit dem{' '}
-                          <button
-                            className="underline"
-                            onClick={() => {
-                              ExerciseViewStore.update(s => {
-                                s.chatOverlay = 'solution'
-                              })
-                            }}
-                          >
-                            Lösungsbeispiel
-                          </button>
-                          .
+                          Das Feedback ersetzt keine Korrektur.
                         </p>
                         <p className="mt-3">
                           <button
@@ -190,19 +178,7 @@ export function ExerciseViewFooter() {
                     {el.category == 'success' && (
                       <>
                         <p className="text-xs text-gray-600 mt-2">
-                          Das Feedback ersetzt keine Korrektur. Vergleiche zum
-                          Abschluss mit dem{' '}
-                          <button
-                            className="underline"
-                            onClick={() => {
-                              ExerciseViewStore.update(s => {
-                                s.chatOverlay = 'solution'
-                              })
-                            }}
-                          >
-                            Lösungsbeispiel
-                          </button>
-                          :
+                          Das Feedback ersetzt keine Korrektur.
                         </p>
                         <p className="mt-3">
                           <button
