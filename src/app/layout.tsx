@@ -15,7 +15,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Fux',
+  title: 'TestTiger',
   description: 'technischer Prototyp',
 }
 
