@@ -2,6 +2,8 @@ import { IonModal } from '@ionic/react'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
+import { FaIcon } from '../ui/FaIcon'
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 export function EndScreen() {
   const showEndScreen = ExerciseViewStore.useState(s => s.showEndScreen)
@@ -48,8 +50,17 @@ export function EndScreen() {
               )
             }}
           >
-            weiter lernen
+            weiter
           </button>
+          <div className="mt-24">Fandest du diese Aufgabe hilfreich?</div>
+          <div className="text-center mt-4">
+            <button className="mr-8">
+              <FaIcon icon={faThumbsDown} />
+            </button>
+            <button>
+              <FaIcon icon={faThumbsUp} />
+            </button>
+          </div>
         </div>
       </IonModal>
     </>
