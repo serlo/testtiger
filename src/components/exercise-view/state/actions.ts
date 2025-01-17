@@ -77,6 +77,7 @@ export function setupExercise(
     s.toHome = !!toHome
     s.tag = ''
     s.hasExamplePrescreen = false
+    s.examplePrescreen = false
   })
 }
 
