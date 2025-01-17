@@ -1,7 +1,7 @@
 import { Exercise } from '@/data/types'
-import { Color1 } from '@/helper/colors'
+import { Color1, Color2, Color3 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -30,7 +30,12 @@ export const exercise199: Exercise<DATA> = {
     }
   },
   constraint({ data }) {
-    return data.a != data.b && data.d != data.c && data.e != data.f
+    return (
+      data.a != data.b &&
+      data.d != data.c &&
+      data.e != data.f &&
+      data.c * data.d < 0
+    )
   },
   learningPathData: {
     a: 1.2,
@@ -44,60 +49,115 @@ export const exercise199: Exercise<DATA> = {
     return (
       <>
         <p>
-          Vergleiche und setze in die Lücke jeweils das Zeichen {'"<"'}, {'">"'}
+          <b>Starte mit einer Aufgabe zum Aufwärmen:</b>
+        </p>
+        <p>
+          Vergleiche die Zahlen und setze in die Lücke jeweils das Zeichen{' '}
+          {'"<"'}, {'">"'}
           oder {'"="'} ein.
         </p>
-        <p>
-          {pp(data.a)} ______ {pp(data.b)}
-        </p>
-        <p>
-          {pp(data.c)} ______ {pp(data.d)}
-        </p>
-        <p>
-          {pp(data.e)} ______ {pp(data.f)}
-        </p>
+        {buildEquation([
+          [
+            <>{pp(data.a)}&nbsp;&nbsp;</>,
+            <>___&nbsp;&nbsp;</>,
+            <>{pp(data.b)}</>,
+          ],
+          [
+            <>{pp(data.c)}&nbsp;&nbsp;</>,
+            <>___&nbsp;&nbsp;</>,
+            <>{pp(data.d)}</>,
+          ],
+          [
+            <>{pp(data.e)}&nbsp;&nbsp;</>,
+            <>___&nbsp;&nbsp;</>,
+            <>{pp(data.f)}</>,
+          ],
+        ])}
       </>
     )
   },
   solution({ data }) {
     return (
       <>
+        <p></p>
+        <svg width="328" height="30">
+          <image
+            href="/content/NRW_EESA/199_zahlenstrahl_beschriftet.svg"
+            width={328}
+          />
+        </svg>
         <p>
-          <strong>
-            Vergleiche {pp(data.a)} und {pp(data.b)}:
-          </strong>
+          Überlege, wo die Zahlen auf einem Zahlenstrahl zu finden sind. Je
+          weiter rechts Zahlen auf dem Zahlenstrahl sind, umso größer sind sie.
         </p>
-        <p>
-          {pp(data.a)}
-          {data.a > data.b && ' > '}
-          {data.a < data.b && ' < '}
-          {data.a == data.b && ' = '}
-          {pp(data.b)}{' '}
-        </p>
-        <p>
-          <strong>
-            Vergleiche {pp(data.c)} und {pp(data.d)}:
-          </strong>
-        </p>
-        <p>
-          {pp(data.c)}
-          {data.c > data.d && ' > '}
-          {data.c < data.d && ' < '}
-          {data.c == data.d && ' = '}
-          {pp(data.d)}{' '}
-        </p>
-        <p>
-          <strong>
-            Vergleiche {pp(data.e)} und {pp(data.f)}:
-          </strong>
-        </p>
-        <p>
-          {pp(data.e)}
-          {data.e > data.f && ' > '}
-          {data.e < data.f && ' < '}
-          {data.e == data.f && ' = '}
-          {pp(data.f)}{' '}
-        </p>
+        {buildEquation([
+          [
+            <>
+              {pp(data.a)} ist{' '}
+              <Color1>{data.a > data.b && ' größer als '}</Color1>
+              <Color2>{data.a < data.b && ' kleiner als '}</Color2>
+              <Color3>{data.a == data.b && ' gleich '}</Color3> {pp(data.b)}
+              :&nbsp;&nbsp;
+            </>,
+            <>
+              <strong>{pp(data.a)}</strong>
+            </>,
+            <>
+              <strong>
+                <Color1>{data.a > data.b && ' > '}</Color1>
+                <Color2>{data.a < data.b && ' < '}</Color2>
+                <Color3>{data.a == data.b && ' = '}</Color3>
+              </strong>
+            </>,
+            <>
+              <strong>{pp(data.b)}</strong>
+            </>,
+          ],
+          [
+            <>
+              {pp(data.c)} ist{' '}
+              <Color1>{data.c > data.d && ' größer als '}</Color1>
+              <Color2>{data.c < data.d && ' kleiner als '}</Color2>
+              <Color3>{data.c == data.d && ' gleich '}</Color3> {pp(data.d)}
+              :&nbsp;&nbsp;
+            </>,
+            <>
+              <strong>{pp(data.c)}</strong>
+            </>,
+            <>
+              <strong>
+                <Color1>{data.c > data.d && ' > '}</Color1>
+                <Color2>{data.c < data.d && ' < '}</Color2>
+                <Color3>{data.c == data.d && ' = '}</Color3>
+              </strong>
+            </>,
+            <>
+              <strong>{pp(data.d)}</strong>
+            </>,
+          ],
+          [
+            <>
+              {pp(data.e)} ist{' '}
+              <Color1>{data.e > data.f && ' größer als '}</Color1>
+              <Color2>{data.e < data.f && ' kleiner als '}</Color2>
+              <Color3>{data.e == data.f && ' gleich '}</Color3> {pp(data.f)}
+              :&nbsp;&nbsp;
+            </>,
+            <>
+              <strong>{pp(data.e)}</strong>
+            </>,
+            <>
+              <strong>
+                <Color1>{data.e > data.f && ' > '}</Color1>
+                <Color2>{data.e < data.f && ' < '}</Color2>
+                <Color3>{data.e == data.f && ' = '}</Color3>
+              </strong>
+            </>,
+            <>
+              <strong>{pp(data.f)}</strong>
+            </>,
+          ],
+        ])}
       </>
     )
   },
