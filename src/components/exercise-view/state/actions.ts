@@ -36,12 +36,7 @@ export function setupExercise(
     s.id = id
     s.seed = generateSeed()
     s.data = generateData(id, s.seed, content, true) as object
-    if (
-      PlayerProfileStore.getRawState().original &&
-      !skill &&
-      !pages &&
-      !toHome
-    ) {
+    if (PlayerProfileStore.getRawState().original && !skill && !toHome) {
       if (content.originalData) {
         s.data = content.originalData
       }
