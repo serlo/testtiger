@@ -207,12 +207,26 @@ export const exercise114: Exercise<DATA> = {
             </svg>
             <p>
               Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
-              <br></br>
-              <br></br>Im oberen linken Bereich befinden sich etwa 32
-              Reiskörner.
-              <br></br>
-              <br></br> Damit sind insgesamt etwa 32 · 12 ={' '}
-              <b>384 Reiskörner</b> auf dem Bild.
+            </p>
+            <p>
+              Zähle die Reiskörner in einem der Bereiche: Im oberen rechten
+              Bereich befinden sich zum Beispiel etwa 31 Reiskörner.
+            </p>
+            <p>
+              Das Bild ist in 12 Bereiche eingeteilt. Multipliziere die Anzahl
+              der Reiskörner mit 31 Reiskörnern: 31 · 12 = 372
+            </p>
+            <p>
+              Im letzten Schritt runden wir die Lösung, da wir bei einer
+              Schätzung keine genauen Zahlen haben: 372 ≈ 370
+            </p>
+            <p>
+              Damit sind insgesamt etwa <b>370 Reiskörner</b> auf dem Bild.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis ein bisschen abweicht. Du
+              solltest aber auf eine Zahl <b>zwischen 340 und 400</b> kommen.
             </p>
           </>
         )}
