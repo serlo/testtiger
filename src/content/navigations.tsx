@@ -2255,7 +2255,7 @@ export const navigationData: { [key: number]: Navigation } = {
             position: { x: 240, y: 760 },
             steps: [
               { exercise: { id: 129 } },
-              { exercise: { id: 123 } },
+              { exercise: { id: 123 }, forceDynamic: true },
               { exercise: { id: 133 } },
             ],
           },

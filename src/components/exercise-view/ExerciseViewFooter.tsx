@@ -205,7 +205,7 @@ export function ExerciseViewFooter() {
                                       ExerciseViewStore.update(s => {
                                         s.showEndScreen = true
                                       })
-                                    }, 1000)
+                                    }, 600)
                                   } else {
                                     if (
                                       s.navIndicatorPosition + 1 <

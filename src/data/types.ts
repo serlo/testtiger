@@ -69,6 +69,7 @@ export interface Lesson {
 
 export interface Step {
   exercise: SkillExercise
+  forceDynamic?: boolean
 }
 
 export interface SkillGroup {

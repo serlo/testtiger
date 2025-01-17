@@ -256,12 +256,18 @@ export function LearningPathMap() {
                       s.dataPerExercise = {}
 
                       exerciseIds.forEach((id, i) => {
-                        s.dataPerExercise[i + 1] = generateData(
-                          id,
-                          s.seed,
-                          exercisesData[id],
-                          true,
-                        ) as object
+                        const content = exercisesData[id]
+                        s.dataPerExercise[i + 1] =
+                          content.learningPathData &&
+                          solvedPercentage < 1 &&
+                          !lessonDetails.steps[i].forceDynamic
+                            ? content.learningPathData
+                            : (generateData(
+                                id,
+                                s.seed,
+                                exercisesData[id],
+                                true,
+                              ) as object)
                       })
 
                       s.pages = []
