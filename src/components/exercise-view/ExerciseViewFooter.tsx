@@ -154,81 +154,84 @@ export function ExerciseViewFooter() {
               }
               if (el.type == 'response') {
                 return (
-                  <div key={i} className="mb-4">
-                    {el.content}
-                    {el.category == 'actionable-feedback' && (
-                      <>
-                        <p className="text-xs text-gray-600 mt-2">
-                          Das Feedback ersetzt keine Korrektur.
-                        </p>
-                        <p className="mt-3">
-                          <button
-                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
-                            onClick={() => {
-                              ExerciseViewStore.update(s => {
-                                s.chatOverlay = 'solution'
-                              })
-                            }}
-                          >
-                            Lösung anzeigen
-                          </button>
-                        </p>
-                      </>
-                    )}
-                    {el.category == 'success' && (
-                      <>
-                        <p className="text-xs text-gray-600 mt-2">
-                          Das Feedback ersetzt keine Korrektur.
-                        </p>
-                        <p className="mt-3">
-                          <button
-                            className="px-2 py-0.5 bg-gray-100 rounded mr-4"
-                            onClick={() => {
-                              ExerciseViewStore.update(s => {
-                                s.chatOverlay = 'solution'
-                              })
-                            }}
-                          >
-                            Lösung anzeigen
-                          </button>
-                          <button
-                            className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded mr-4"
-                            onClick={() => {
-                              ExerciseViewStore.update(s => {
-                                const wasNotDone =
-                                  s.completed[s.navIndicatorPosition] == false
-                                s.completed[s.navIndicatorPosition] = true
-                                if (s.completed.every(x => x)) {
-                                  setTimeout(() => {
-                                    ExerciseViewStore.update(s => {
-                                      s.showEndScreen = true
-                                    })
-                                  }, 1000)
-                                } else {
-                                  if (
-                                    s.navIndicatorPosition + 1 <
-                                    s.navIndicatorLength
-                                  ) {
-                                    if (wasNotDone) {
-                                      setTimeout(() => {
-                                        ExerciseViewStore.update(s => {
-                                          s.navIndicatorExternalUpdate =
-                                            s.navIndicatorPosition + 1
-                                          s.chatOverlay = null
-                                        })
-                                      }, 500)
+                  <div key={i} className="mb-4 flex">
+                    <div className="mr-3 text-2xl">🦊</div>
+                    <div>
+                      {el.content}
+                      {el.category == 'actionable-feedback' && (
+                        <>
+                          <p className="text-xs text-gray-600 mt-2">
+                            Das Feedback ersetzt keine Korrektur.
+                          </p>
+                          <p className="mt-3">
+                            <button
+                              className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                              onClick={() => {
+                                ExerciseViewStore.update(s => {
+                                  s.chatOverlay = 'solution'
+                                })
+                              }}
+                            >
+                              Lösung anzeigen
+                            </button>
+                          </p>
+                        </>
+                      )}
+                      {el.category == 'success' && (
+                        <>
+                          <p className="text-xs text-gray-600 mt-2">
+                            Das Feedback ersetzt keine Korrektur.
+                          </p>
+                          <p className="mt-3">
+                            <button
+                              className="px-2 py-0.5 bg-gray-100 rounded mr-4"
+                              onClick={() => {
+                                ExerciseViewStore.update(s => {
+                                  s.chatOverlay = 'solution'
+                                })
+                              }}
+                            >
+                              Lösung anzeigen
+                            </button>
+                            <button
+                              className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded mr-4"
+                              onClick={() => {
+                                ExerciseViewStore.update(s => {
+                                  const wasNotDone =
+                                    s.completed[s.navIndicatorPosition] == false
+                                  s.completed[s.navIndicatorPosition] = true
+                                  if (s.completed.every(x => x)) {
+                                    setTimeout(() => {
+                                      ExerciseViewStore.update(s => {
+                                        s.showEndScreen = true
+                                      })
+                                    }, 1000)
+                                  } else {
+                                    if (
+                                      s.navIndicatorPosition + 1 <
+                                      s.navIndicatorLength
+                                    ) {
+                                      if (wasNotDone) {
+                                        setTimeout(() => {
+                                          ExerciseViewStore.update(s => {
+                                            s.navIndicatorExternalUpdate =
+                                              s.navIndicatorPosition + 1
+                                            s.chatOverlay = null
+                                          })
+                                        }, 500)
+                                      }
                                     }
                                   }
-                                }
-                              })
-                              markCurrentExerciseAsComplete()
-                            }}
-                          >
-                            Fertig
-                          </button>
-                        </p>
-                      </>
-                    )}
+                                })
+                                markCurrentExerciseAsComplete()
+                              }}
+                            >
+                              Fertig
+                            </button>
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </div>
                 )
               }
@@ -256,7 +259,7 @@ export function ExerciseViewFooter() {
               <div className="mb-6 text-center flex items-center justify-center space-x-2">
                 <div className="w-5 h-5 border-2 border-t-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
                 <span className="text-gray-600 font-medium">
-                  Eingabe wird analysiert ...
+                  Fux denkt nach ...
                 </span>
               </div>
             ) : (
