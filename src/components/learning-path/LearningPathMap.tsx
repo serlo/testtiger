@@ -170,7 +170,7 @@ export function LearningPathMap() {
                   cy={mapHeight - el.source.position!.y}
                   r={39}
                   fill="none"
-                  className="stroke-white/60"
+                  className="stroke-white/60 animate-pulse"
                   strokeWidth={13}
                 ></circle>
               )}
