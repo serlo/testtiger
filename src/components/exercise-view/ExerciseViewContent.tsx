@@ -208,31 +208,39 @@ export function ExerciseViewContent() {
             if (!page.disableDefaultLocalIntro) {
               intros.push('local')
             }
+            const introComps = intros.map((intro, i) =>
+              intro == 'global'
+                ? subtasks.intro({
+                    data,
+                  })
+                : intro == 'local' && task.intro
+                  ? task.intro({
+                      data,
+                    })
+                  : intro == 'skill' && task.skillIntro
+                    ? task.skillIntro({
+                        data,
+                      })
+                    : null,
+            )
             return (
               <>
-                <div className="px-5 bg-white mb-6">
-                  {intros.map((intro, i) =>
-                    renderContentElement(
-                      <>
-                        {intro == 'global' &&
-                          subtasks.intro({
-                            data,
-                          })}
-                        {intro == 'local' &&
-                          task.intro &&
-                          task.intro({
-                            data,
-                          })}
-                        {intro == 'skill' &&
-                          task.skillIntro &&
-                          task.skillIntro({
-                            data,
-                          })}
-                      </>,
-                      i.toString(),
-                    ),
-                  )}
-                </div>
+                {introComps.length > 0 && introComps.some(e => e) && (
+                  <>
+                    {page.context && page.displayIndex?.includes('a') && (
+                      <div className="ml-3 font-bold font-xl w-24 h-8 overflow-clip -mb-3">
+                        <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
+                          <span className="mt-2 inline-block">
+                            {page.context}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    <div className="px-5 bg-white mb-6">
+                      {renderContentElement(<>{introComps}</>, i.toString())}
+                    </div>
+                  </>
+                )}
                 {renderContentCard(
                   i,
                   task.duration ?? '?',

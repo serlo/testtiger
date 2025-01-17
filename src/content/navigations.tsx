@@ -2392,7 +2392,7 @@ export const navigationData: { [key: number]: Navigation } = {
               {
                 exercise: {
                   id: 115,
-                  pages: [{ index: 'a', intro: ['global'] }, { index: 'b' }],
+                  pages: [{ index: 'a' }, { index: 'b' }],
                 },
               },
             ],
