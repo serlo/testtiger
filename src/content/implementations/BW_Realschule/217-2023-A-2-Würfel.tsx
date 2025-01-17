@@ -41,12 +41,12 @@ export const exercise217: Exercise<DATA> = {
         return (
           <>
             <p>
-              a) Berechne die Wahrscheinlichkeit für das Ereignis "
+              a) Berechne die Wahrscheinlichkeit für das Ereignis &quot;
               {data.task1 === 1 && 'Augensumme ungerade'}
               {data.task1 === 2 && 'Augensumme gerade'}
               {data.task1 === 3 && 'Augensumme zweistellig'}
               {data.task1 === 4 && 'Augensumme einstellig'}
-              {data.task2 === 5 && 'Augensumme 7'}".
+              {data.task2 === 5 && 'Augensumme 7'}&quot;.
             </p>
           </>
         )
