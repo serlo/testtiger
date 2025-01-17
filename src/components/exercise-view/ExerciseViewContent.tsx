@@ -209,10 +209,12 @@ export function ExerciseViewContent() {
     contentEl: JSX.Element,
     numbering?: string,
   ) {
+    const showNumbering = toHome && numbering
     return (
       <div
         className={clsx(
           'w-[calc(100%-24px)] flex-shrink-0 cursor-pointer mx-auto relative',
+          showNumbering && 'mt-20',
         )}
         style={{ scrollbarWidth: 'thin' }}
         key={i}
@@ -225,8 +227,10 @@ export function ExerciseViewContent() {
         id={`exercise-${i}`}
       >
         {toHome && numbering && (
-          <div className="absolute top-1 left-2 font-bold font-xl">
-            {numbering})
+          <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-clip">
+            <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
+              <span className="mt-2 inline-block">{numbering}</span>
+            </div>
           </div>
         )}
         <div
