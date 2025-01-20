@@ -46,6 +46,7 @@ export function LearningPathMap() {
 
   let allSolved = true
   let isMuted = false
+  let alreadyHighlighted = false
 
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
@@ -140,9 +141,16 @@ export function LearningPathMap() {
         )*/}
         {elements.map((el, i) => {
           let thisIsHighlighted = false
+          if (
+            el.solvedPercentage < 1 &&
+            elements.slice(i + 1).every(e => e.solvedPercentage < 1) &&
+            !alreadyHighlighted
+          ) {
+            thisIsHighlighted = true
+            alreadyHighlighted = true
+          }
           if (el.solvedPercentage < 1 && allSolved) {
             allSolved = false
-            thisIsHighlighted = true
           }
           let notMutedYet = false
           if (
@@ -514,12 +522,4 @@ export function LearningPathMap() {
       )*/}
     </div>
   )
-}
-
-function getExercisePagesCount(id: number) {
-  const ex = exercisesData[id]
-  if ('tasks' in ex) {
-    return ex.tasks.length
-  }
-  return 1
 }
