@@ -135,6 +135,22 @@ export function ExerciseViewContent() {
             </>
           )}
         </div>
+        {examplePrescreen && (
+          <>
+            <div className="text-center -mt-4 mb-6">
+              <button
+                className="bg-green-200 hover:bg-green-300 px-4 py-2 rounded-lg"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    s.examplePrescreen = false
+                  })
+                }}
+              >
+                Selber rechnen
+              </button>
+            </div>
+          </>
+        )}
         {pages.map((page, i) => {
           // TODO: find appropriate content for this page
           const id = page.context
@@ -255,7 +271,7 @@ export function ExerciseViewContent() {
         })}
         {examplePrescreen && (
           <>
-            <div className="text-center">
+            <div className="text-center -mt-4">
               <button
                 className="bg-green-200 hover:bg-green-300 px-4 py-2 rounded-lg"
                 onClick={() => {
