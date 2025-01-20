@@ -265,7 +265,7 @@ export function ExerciseViewFooter() {
               <div className="mb-6 text-center flex items-center justify-center space-x-2">
                 <div className="w-5 h-5 border-2 border-t-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
                 <span className="text-gray-600 font-medium">
-                  Fux denkt nach ...
+                  Tiger denkt nach ...
                 </span>
               </div>
             ) : (

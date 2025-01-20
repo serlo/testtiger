@@ -5,7 +5,7 @@ export function Ready() {
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
         <div className="text-center text-3xl mt-16">
-          Füge den TestTiger zum Startbildschirm:
+          Füge den TestTiger zum Startbildschirm hinzu:
         </div>
         <div className="mt-12 mx-4">
           Klicke auf das Browser-Menü (oben rechts oder unten in der Mitte)
