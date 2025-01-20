@@ -419,7 +419,7 @@ export function LearningPathMap() {
                 fontSize={18}
                 className="pointer-events-none"
               >
-                {el.source.title.replace('Challenge', '').trim()}
+                {parseInt(el.source.title.replace(/[^0-9]/g, ''))}
               </text>
             )
           }
