@@ -27,7 +27,30 @@ export const exercise123: Exercise<DATA> = {
     b: 4.22,
   },
   constraint({ data }) {
-    return true
+    const aDigits = data.a.toFixed(2).toString().split('') // Ziffern von a als String-Array
+    const bDigits = data.b.toFixed(2).toString().split('') // Ziffern von b als String-Array
+
+    // Beispiel: Zugriff auf die erste Ziffer von a (vor dem Komma)
+    const firstDigitA = parseInt(aDigits[0])
+    const secondDigitA = parseInt(aDigits[1])
+    const thirdDigitA = parseInt(aDigits[3])
+    const forthDigitA = parseInt(aDigits[4])
+
+    // Beispiel: Zugriff auf die erste Ziffer von b (vor dem Komma)
+    const firstDigitB = parseInt(bDigits[0])
+    const secondDigitB = parseInt(bDigits[2])
+    const thirdDigitB = parseInt(bDigits[3])
+
+    // Constraint mit Zugriff auf Ziffern
+    return (
+      firstDigitA + firstDigitB < 10 &&
+      secondDigitA + secondDigitB < 10 &&
+      thirdDigitA + thirdDigitB < 10 &&
+      secondDigitA + firstDigitB < 10 &&
+      thirdDigitA + secondDigitB < 10 &&
+      forthDigitA + thirdDigitB < 10 &&
+      data.a + 2 * data.b < 100
+    )
   },
   task({ data }) {
     return (
@@ -60,15 +83,10 @@ export const exercise123: Exercise<DATA> = {
       <>
         <p>
           Der Fehler ist, dass die Zahlen nicht richtig untereinander
-          geschrieben wurden. Beim schriftlichen Addieren müssen die Kommas
-          untereinander stehen.
+          geschrieben wurden. Beim schriftlichen Addieren müssen die{' '}
+          <b>Kommas immer genau untereinander</b> stehen.
         </p>
-        <p>
-          {' '}
-          Anders gesagt: Man fängt rechts an, die Zahlen untereinander zu
-          schreiben und nicht links.
-        </p>
-        <p>Richtig gerechnet wäre die Rechnung so:</p>
+        <p>Richtig wäre die Rechnung so:</p>
         <svg viewBox="0 0 289 189">
           <image
             href="/content/NRW_EESA/123_schriftlich_addieren.jpg"
