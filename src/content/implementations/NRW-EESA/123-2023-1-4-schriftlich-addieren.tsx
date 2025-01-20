@@ -53,6 +53,26 @@ export const exercise123: Exercise<DATA> = {
     )
   },
   task({ data }) {
+    const aDigits = data.a.toFixed(2).toString().split('') // Ziffern von a als String-Array
+    const bDigits = data.b.toFixed(2).toString().split('') // Ziffern von b als String-Array
+
+    const c = data.a + data.b * 10
+    const cDigits = c.toFixed(2).toString().split('') // Ziffern von b als String-Array
+
+    const firstDigitA = parseInt(aDigits[0])
+    const secondDigitA = parseInt(aDigits[1])
+    const thirdDigitA = parseInt(aDigits[3])
+    const fourthDigitA = parseInt(aDigits[4])
+
+    const firstDigitB = parseInt(bDigits[0])
+    const secondDigitB = parseInt(bDigits[2])
+    const thirdDigitB = parseInt(bDigits[3])
+
+    const firstDigitC = parseInt(cDigits[0])
+    const secondDigitC = parseInt(cDigits[1])
+    const thirdDigitC = parseInt(cDigits[3])
+    const fourthDigitC = parseInt(cDigits[4])
+
     return (
       <>
         <p>
@@ -65,20 +85,72 @@ export const exercise123: Exercise<DATA> = {
             height="149"
             width="289"
           />
-          <text x={33} y={40} fontSize={32} textAnchor="right" stroke="black">
-            {pp(data.a)}
+          <text x={31} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(firstDigitA)}
+          </text>
+          <text x={53} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(secondDigitA)}
+          </text>
+          <text x={71} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {','}
+          </text>
+          <text x={77} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(thirdDigitA)}
+          </text>
+          <text x={100} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(fourthDigitA)}
           </text>
           <text x={31} y={72} fontSize={32} textAnchor="right" stroke="black">
-            {pp(data.b)}
+            {pp(firstDigitB)}
           </text>
-          <text x={33} y={135} fontSize={32} textAnchor="right" stroke="black">
-            {pp(data.a + data.b * 10)}
+          <text x={49} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {','}
+          </text>
+          <text x={56} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {pp(secondDigitB)}
+          </text>
+          <text x={77} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {pp(thirdDigitB)}
+          </text>
+          <text x={31} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(firstDigitC)}
+          </text>
+          <text x={53} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(secondDigitC)}
+          </text>
+          <text x={71} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {','}
+          </text>
+          <text x={77} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(thirdDigitC)}
+          </text>
+          <text x={100} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(fourthDigitC)}
           </text>
         </svg>
       </>
     )
   },
   solution({ data }) {
+    const aDigits = data.a.toFixed(2).toString().split('') // Ziffern von a als String-Array
+    const bDigits = data.b.toFixed(2).toString().split('') // Ziffern von b als String-Array
+
+    const c = data.a + data.b
+    const cDigits = c.toFixed(2).toString().split('') // Ziffern von b als String-Array
+
+    const firstDigitA = parseInt(aDigits[0])
+    const secondDigitA = parseInt(aDigits[1])
+    const thirdDigitA = parseInt(aDigits[3])
+    const fourthDigitA = parseInt(aDigits[4])
+
+    const firstDigitB = parseInt(bDigits[0])
+    const secondDigitB = parseInt(bDigits[2])
+    const thirdDigitB = parseInt(bDigits[3])
+
+    const firstDigitC = parseInt(cDigits[0])
+    const secondDigitC = parseInt(cDigits[1])
+    const thirdDigitC = parseInt(cDigits[3])
+    const fourthDigitC = parseInt(cDigits[4])
     return (
       <>
         <p>
@@ -87,20 +159,53 @@ export const exercise123: Exercise<DATA> = {
           <b>Kommas immer genau untereinander</b> stehen.
         </p>
         <p>Richtig wäre die Rechnung so:</p>
-        <svg viewBox="0 0 289 189">
+        <svg viewBox="0 0 289 149">
           <image
             href="/content/NRW_EESA/123_schriftlich_addieren.jpg"
-            height="189"
+            height="149"
             width="289"
           />
-          <text x={36} y={60} fontSize={32} textAnchor="right" stroke="black">
-            {pp(data.a)}
+          <text x={31} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(firstDigitA)}
           </text>
-          <text x={53} y={92} fontSize={32} textAnchor="right" stroke="black">
-            {pp(data.b)}
+          <text x={53} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(secondDigitA)}
           </text>
-          <text x={36} y={155} fontSize={32} textAnchor="right" stroke="black">
-            {pp(data.a + data.b)}
+          <text x={71} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {','}
+          </text>
+          <text x={77} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(thirdDigitA)}
+          </text>
+          <text x={100} y={40} fontSize={32} textAnchor="right" stroke="black">
+            {pp(fourthDigitA)}
+          </text>
+          <text x={53} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {pp(firstDigitB)}
+          </text>
+          <text x={71} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {','}
+          </text>
+          <text x={77} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {pp(secondDigitB)}
+          </text>
+          <text x={100} y={72} fontSize={32} textAnchor="right" stroke="black">
+            {pp(thirdDigitB)}
+          </text>
+          <text x={31} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(firstDigitC)}
+          </text>
+          <text x={53} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(secondDigitC)}
+          </text>
+          <text x={71} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {','}
+          </text>
+          <text x={77} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(thirdDigitC)}
+          </text>
+          <text x={100} y={135} fontSize={32} textAnchor="right" stroke="black">
+            {pp(fourthDigitC)}
           </text>
         </svg>
       </>
