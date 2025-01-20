@@ -9,7 +9,7 @@ export function Video() {
         <div className="flex items-center relative h-full">
           <video controls className="w-full" autoPlay>
             <source
-              src="https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"
+              src="https://resource.flexclip.com/templates/video/720p/cake-food-recipe-social-reels.mp4"
               type="video/mp4"
             />
           </video>
