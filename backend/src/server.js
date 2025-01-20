@@ -2,8 +2,36 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { generateText } from 'ai'
 import 'dotenv/config'
 import express from 'express'
+import secrets from '../secrets.cjs'
+import { Sequelize } from 'sequelize'
 
 const app = express()
+
+const isUberspace = !!process.env.UBERSPACE
+
+if (isUberspace) {
+  console.log('INFO: using live database')
+}
+
+const db = isUberspace
+  ? {
+      database: 'testtige_backend',
+      username: 'testtige',
+      password: secrets.db_password,
+      dialect: 'mariadb',
+      dialectOptions: {
+        timezone: 'Europe/Berlin',
+      },
+      logging: false,
+    }
+  : {
+      dialect: 'sqlite',
+      storage: './db.sqlite',
+      logging: false,
+    }
+
+// setup database connection
+const sequelize = new Sequelize(db)
 
 app.use(express.json({ limit: '20mb' }))
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -39,6 +67,11 @@ app.post('/va89kjds', async (req, res) => {
   res.json({ text })
 })
 
-app.listen(8080, () => {
-  console.log(`Example app listening on port ${8080}`)
-})
+async function run() {
+  await sequelize.sync()
+  app.listen(8080, () => {
+    console.log(`Example app listening on port ${8080}`)
+  })
+}
+
+run()
