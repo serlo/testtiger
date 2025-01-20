@@ -62,9 +62,9 @@ export const exercise120: Exercise<DATA> = {
     d: 100,
     e: 3,
     f: 4,
-    g: 0.9,
-    h: 4,
-    i: 5,
+    g: 0.3,
+    h: 1,
+    i: 4,
   },
   task({ data }) {
     return (
