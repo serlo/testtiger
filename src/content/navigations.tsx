@@ -2252,7 +2252,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
-            title: 'Challenge 1',
+            title: 'Grundlagen - Challenge 1',
             position: { x: 240, y: 760 },
             steps: [
               { exercise: { id: 129 } },
@@ -2302,7 +2302,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 2',
+            title: 'Grundlagen - Challenge 2',
             position: { x: 100, y: 1180 },
             steps: [
               {
@@ -2342,7 +2342,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 3',
+            title: 'Grundlagen - Challenge 3',
             position: { x: 250, y: 1550 },
             steps: [
               {
@@ -2400,7 +2400,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 4',
+            title: 'Grundlagen - Challenge 4',
             position: { x: 100, y: 2000 },
             steps: [
               {
@@ -2458,7 +2458,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 5',
+            title: 'Grundlagen - Challenge 5',
             position: { x: 250, y: 2450 },
             steps: [
               {
@@ -2541,7 +2541,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 6',
+            title: 'Grundlagen - Challenge 6',
             position: { x: 100, y: 2900 },
             steps: [
               {
@@ -2639,7 +2639,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 1',
+            title: 'Skill-Profi - Challenge 1',
             position: { x: 100, y: 3500 },
             steps: [
               {
@@ -2737,7 +2737,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 2',
+            title: 'Skill-Profi - Challenge 2',
             position: { x: 100, y: 4130 },
             steps: [
               {
@@ -2799,7 +2799,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
-            title: 'Challenge 3',
+            title: 'Skill-Profi - Challenge 3',
             position: { x: 100, y: 4740 },
             steps: [
               {
@@ -2876,7 +2876,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
-            title: 'Challenge 4',
+            title: 'Skill-Profi - Challenge 4',
             position: { x: 100, y: 5320 },
             steps: [
               {
@@ -2941,7 +2941,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 5',
+            title: 'Skill-Profi - Challenge 5',
             position: { x: 100, y: 5900 },
             steps: [
               {
@@ -2958,7 +2958,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'challenge',
-            title: 'Challenge 1',
+            title: 'Prüfungsfit - Challenge 1',
             position: { x: 250, y: 6050 },
             steps: [
               {
@@ -2990,14 +2990,14 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
-            title: 'Challenge 2',
+            title: 'Prüfungsfit - Challenge 2',
             position: { x: 100, y: 6190 },
             steps: [{ exercise: { id: 119 } }],
           },
 
           {
             type: 'challenge',
-            title: 'Challenge 3',
+            title: 'Prüfungsfit - Challenge 3',
             position: { x: 250, y: 6350 },
             steps: [
               {
@@ -3010,7 +3010,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 4',
+            title: 'Prüfungsfit - Challenge 4',
             position: { x: 100, y: 6480 },
             steps: [
               {
@@ -3023,7 +3023,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
-            title: 'Challenge 5',
+            title: 'Prüfungsfit - Challenge 5',
             position: { x: 250, y: 6620 },
             steps: [
               {
