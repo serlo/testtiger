@@ -52,6 +52,20 @@ export const exercise112: Exercise<DATA> = {
     item_2: 1,
     item_3: 2,
   },
+  learningPathData: {
+    stimmen: 8739461,
+    spd: 28,
+    cdu: 30.4,
+    grüne: 7,
+    fdp: 12.7,
+    piraten: 1.4,
+    linke: 6.4,
+    stupids: 7.1,
+    partei: 'CDU',
+    item_1: 3,
+    item_2: 4,
+    item_3: 5,
+  },
   constraint({ data }) {
     return (
       data.item_1 != data.item_2 &&

@@ -21,6 +21,7 @@ export const exercise113: Exercise<DATA> = {
     return { nenner: rng.randomItemFromArray([2, 3, 4, 6]), array }
   },
   originalData: { nenner: 3, array: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0] },
+  learningPathData: { nenner: 4, array: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0] },
   constraint({ data }) {
     return (
       data.array.filter(element => element === 1).length != 0 &&

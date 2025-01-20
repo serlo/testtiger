@@ -22,6 +22,7 @@ export const exercise116: Exercise<DATA> = {
     }
   },
   originalData: { one: 14, two: 13, three: 11, four: 3 },
+  learningPathData: { one: 12, two: 10, three: 4, four: 9 },
   constraint({ data }) {
     return (
       data.one != data.two &&

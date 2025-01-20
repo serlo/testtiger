@@ -26,6 +26,14 @@ export const exercise115: Exercise<DATA> = {
     }
   },
   originalData: { alpha: 53, beta: 57, gamma: 40, alpha_1: 35, b: 3.7, c: 4 },
+  learningPathData: {
+    alpha: 57,
+    beta: 64,
+    gamma: 58,
+    alpha_1: 25,
+    b: 3.3,
+    c: 4.5,
+  },
   constraint({ data }) {
     return true
   },

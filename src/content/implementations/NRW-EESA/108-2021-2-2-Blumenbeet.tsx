@@ -42,6 +42,14 @@ export const exercise108: Exercise<DATA> = {
     preis_band: 3.8,
     steine: 2,
   },
+  learningPathData: {
+    breite: 140,
+    samen: 4,
+    rabatt: 15,
+    preis_steine: 5.44,
+    preis_band: 3.5,
+    steine: 4,
+  },
   constraint({ data }) {
     return true
   },
