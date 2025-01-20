@@ -73,7 +73,7 @@ export const exercise130: Exercise<DATA> = {
             </>,
           ],
         ])}
-
+        <hr />
         <p>
           <strong>1 Minute (min)</strong> enthält{' '}
           <strong>60 Sekunden (s)</strong>. <br></br>Rechne mit dem
@@ -97,7 +97,7 @@ export const exercise130: Exercise<DATA> = {
             </>,
           ],
         ])}
-
+        <hr />
         <p>
           <strong>1 Liter (ℓ)</strong> enthält{' '}
           <strong>1000 Milliliter (ml)</strong>. <br></br>Rechne mit dem
