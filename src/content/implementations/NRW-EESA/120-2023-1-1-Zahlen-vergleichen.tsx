@@ -31,8 +31,8 @@ export const exercise120: Exercise<DATA> = {
       e: rng.randomItemFromArray([1, 2, 3, 4]),
       f: rng.randomItemFromArray([2, 4, 5]),
       g: rng.randomIntBetween(10, 90) / 100,
-      h: rng.randomItemFromArray([1, 2, 3, 4, 5, 6]),
-      i: rng.randomItemFromArray([2, 4, 5, 8]),
+      h: rng.randomItemFromArray([1, 2, 3, 4, 5]),
+      i: rng.randomItemFromArray([2, 4, 5]),
     }
   },
   constraint({ data }) {
