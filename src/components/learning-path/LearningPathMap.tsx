@@ -207,6 +207,44 @@ export function LearningPathMap() {
                     PlayerProfileStore.update(s => {
                       s.progress[exam].learningPathTags.push(el.source.title)
                     })
+                    const lessonDetails = elements[i + 1].source
+                    const step = lessonDetails.steps[0]
+                    setupExercise(
+                      step.exercise.id,
+                      lessonDetails.title,
+                      step.exercise.pages,
+                      true,
+                      elements[i + 1].solvedPercentage < 1,
+                    )
+
+                    if (elements[i + 1].solvedPercentage < 1) {
+                      const relevantKeys = findRelevantKeys(lessonDetails)
+                      ExerciseViewStore.update(s => {
+                        s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                        if (elements[i + 1].solvedPercentage < 1) {
+                          s.completed = s.checks.map((_, i) =>
+                            PlayerProfileStore.getRawState().progress[
+                              exam
+                            ].learningPathTags.includes(relevantKeys[i]),
+                          )
+                        }
+                        if (lessonDetails.showExamplePrescreen) {
+                          s.examplePrescreen = true
+                          s.hasExamplePrescreen = true
+                        }
+                        s.videoRedirectUrl =
+                          '/exercise/' +
+                          step.exercise.id +
+                          '#' +
+                          encodeURIComponent(
+                            JSON.stringify({
+                              name: lessonDetails.title,
+                              pages: step.exercise.pages,
+                              toHome: true,
+                            }),
+                          )
+                      })
+                    }
                     history.push('/video')
                     return
                   }

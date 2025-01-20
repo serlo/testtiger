@@ -62,6 +62,7 @@ export type IExerciseViewStore = {
   needReset2: boolean
   examplePrescreen: boolean
   hasExamplePrescreen: boolean
+  videoRedirectUrl?: string
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
