@@ -3,7 +3,7 @@ import { generateText } from 'ai'
 import 'dotenv/config'
 import express from 'express'
 import secrets from '../secrets.cjs'
-import { Sequelize } from 'sequelize'
+import { Sequelize, DataTypes } from 'sequelize'
 
 const app = express()
 
@@ -32,6 +32,23 @@ const db = isUberspace
 
 // setup database connection
 const sequelize = new Sequelize(db)
+
+sequelize.Profile = sequelize.define('Profile', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  key: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  value: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+})
 
 app.use(express.json({ limit: '20mb' }))
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -67,6 +84,40 @@ app.post('/va89kjds', async (req, res) => {
   res.json({ text })
 })
 
+app.get('/newkey', async (req, res) => {
+  let key = generateFriendlyId()
+  // ensure key is unique and retry 10 times
+  for (let i = 0; i < 10; i++) {
+    const existing = await sequelize.Profile.findOne({
+      where: { key },
+    })
+    if (!existing) {
+      break
+    }
+    key = generateFriendlyId()
+  }
+  await sequelize.Profile.create({
+    key,
+    value: '{}',
+  })
+  res.send(key)
+})
+
+// post route to store profile data
+app.post('/profile/:key', async (req, res) => {
+  const key = req.params.key
+  const value = JSON.stringify(req.body)
+  const profile = await sequelize.Profile.findOne({
+    where: { key },
+  })
+  if (profile) {
+    await profile.update({ value })
+  } else {
+    return res.send('Profile not found')
+  }
+  res.send('ok')
+})
+
 async function run() {
   await sequelize.sync()
   app.listen(8080, () => {
@@ -75,3 +126,12 @@ async function run() {
 }
 
 run()
+
+function generateFriendlyId() {
+  const characters = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
+  let url = ''
+  for (let i = 0; i < 6; i++) {
+    url += characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+  return url
+}
