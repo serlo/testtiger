@@ -1,10 +1,10 @@
-import { backendEndpoint } from '@/helper/backend'
 import { IonButton, IonContent, IonFooter, IonPage } from '@ionic/react'
 import { useEffect, useState } from 'react'
 import {
   PlayerProfileStore,
   syncProfileWithBackend,
 } from '../../../store/player-profile-store'
+import { backendHost } from '@/helper/make-post'
 
 export function Ready() {
   const [showContinue, setShowContinue] = useState(false)
@@ -13,7 +13,7 @@ export function Ready() {
     // connect to backend
     async function connect() {
       if (!PlayerProfileStore.getRawState().key) {
-        const key = await (await fetch(`${backendEndpoint}/newkey`)).text()
+        const key = await (await fetch(`${backendHost}/newkey`)).text()
         PlayerProfileStore.update(s => {
           s.key = key
         })

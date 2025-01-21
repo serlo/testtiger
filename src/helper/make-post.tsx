@@ -1,6 +1,6 @@
 const localDev = false
 
-const host = localDev
+export const backendHost = localDev
   ? 'http://localhost:8080'
   : 'https://backend.testtige.uber.space'
 
@@ -9,7 +9,7 @@ export async function makePost(route: string, body: object) {
     console.log('makePost', route, body)
     return
   }*/
-  const res = await fetch(host + route, {
+  const res = await fetch(backendHost + route, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json', // Set the appropriate content type for your data

@@ -1,7 +1,4 @@
-import { exercisesData } from '@/content/exercises'
-import { Lesson, Step } from '@/data/types'
-import { backendEndpoint } from '@/helper/backend'
-import { countLetter } from '@/helper/count-letter'
+import { backendHost } from '@/helper/make-post'
 import { Store } from 'pullstate'
 
 export const storageKey = 'testtiger_player_progress_v0'
@@ -50,7 +47,7 @@ export async function syncProfileWithBackend() {
   // post to backend with json body
   const body = JSON.stringify(PlayerProfileStore.getRawState())
   await fetch(
-    `${backendEndpoint}/profile/${PlayerProfileStore.getRawState().key}`,
+    `${backendHost}/profile/${PlayerProfileStore.getRawState().key}`,
     {
       method: 'POST',
       body,
