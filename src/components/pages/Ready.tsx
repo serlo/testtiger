@@ -13,6 +13,9 @@ export function Ready() {
     // connect to backend
     async function connect() {
       if (!PlayerProfileStore.getRawState().key) {
+        PlayerProfileStore.update(s => {
+          s.key = 'pending'
+        })
         const key = await (await fetch(`${backendHost}/newkey`)).text()
         PlayerProfileStore.update(s => {
           s.key = key

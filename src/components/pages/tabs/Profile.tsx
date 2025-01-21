@@ -16,6 +16,7 @@ import { navigationData } from '@/content/navigations'
 export function Profile() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const name = PlayerProfileStore.useState(s => s.name)
+  const key = PlayerProfileStore.useState(s => s.key)
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
@@ -45,6 +46,9 @@ export function Profile() {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="mt-6 mb-4">
+            Dein Account-Code: <strong>{key}</strong>
           </div>
           <div>
             <button
