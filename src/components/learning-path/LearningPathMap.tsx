@@ -246,6 +246,7 @@ export function LearningPathMap() {
                               toHome: true,
                             }),
                           )
+                        s.videoUrl = el.source.videoUrl
                       })
                     }
                     history.push('/video')
