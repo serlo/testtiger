@@ -16,6 +16,7 @@ export const exercise124: Exercise<DATA> = {
     return { task }
   },
   originalData: { task: 1 },
+  learningPathData: { task: 4 },
   constraint({ data }) {
     return true
   },

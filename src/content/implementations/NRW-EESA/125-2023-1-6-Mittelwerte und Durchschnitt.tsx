@@ -36,6 +36,13 @@ export const exercise125: Exercise<DATA> = {
     Spiel4: 15,
     Spiel5: 6,
   },
+  learningPathData: {
+    Spiel1: 20,
+    Spiel2: 15,
+    Spiel3: 18,
+    Spiel4: 16,
+    Spiel5: 5,
+  },
   constraint({ data }) {
     return (
       ((data.Spiel1 + data.Spiel2 + data.Spiel3 + data.Spiel4 + data.Spiel5) /

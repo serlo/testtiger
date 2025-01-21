@@ -22,6 +22,7 @@ export const exercise117: Exercise<DATA> = {
     }
   },
   originalData: { brett: 14.5, breite: 82, color: 6.5 },
+  learningPathData: { brett: 18.5, breite: 88, color: 7.5 },
   constraint({ data }) {
     return true
   },

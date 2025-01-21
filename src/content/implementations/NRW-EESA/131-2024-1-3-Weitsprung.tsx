@@ -32,6 +32,13 @@ export const exercise131: Exercise<DATA> = {
     sprung4: 4.2,
     sprung5: 4.1,
   },
+  learningPathData: {
+    sprung1: 4.5,
+    sprung2: 3.5,
+    sprung3: 4.1,
+    sprung4: 3.9,
+    sprung5: 4.4,
+  },
   constraint({ data }) {
     return true
   },

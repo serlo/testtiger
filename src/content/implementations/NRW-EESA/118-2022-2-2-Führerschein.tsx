@@ -61,6 +61,22 @@ export const exercise118: Exercise<DATA> = {
     sparen: 4,
     month: 40,
   },
+  learningPathData: {
+    case: 1,
+    rabatt: 150,
+    grundbetrag: 400,
+    more_stunden: 13,
+    item_1: 0,
+    item_2: 0,
+    item_3: 1,
+    order: [0, 1, 2],
+    prüfung: 270,
+    stunden: 4,
+    stundenpreis: 40,
+    sonderpreis: 55,
+    sparen: 4,
+    month: 30,
+  },
   constraint({ data }) {
     return data.item_2 != data.item_3 && data.grundbetrag - data.rabatt > 0
   },
