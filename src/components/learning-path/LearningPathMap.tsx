@@ -1,5 +1,8 @@
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { Fragment } from 'react'
 import {
@@ -204,7 +207,7 @@ export function LearningPathMap() {
                 className="cursor-pointer"
                 onClick={() => {
                   if (el.source.type == 'video') {
-                    PlayerProfileStore.update(s => {
+                    updatePlayerProfileStore(s => {
                       s.progress[exam].learningPathTags.push(el.source.title)
                     })
                     const lessonDetails = elements[i + 1].source

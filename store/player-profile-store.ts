@@ -44,16 +44,16 @@ export function updatePlayerProfileStore(
 }
 
 export async function syncProfileWithBackend() {
+  const key = PlayerProfileStore.getRawState().key
+
+  if (!key || key == 'pending') return
   // post to backend with json body
   const body = JSON.stringify(PlayerProfileStore.getRawState())
-  await fetch(
-    `${backendHost}/profile/${PlayerProfileStore.getRawState().key}`,
-    {
-      method: 'POST',
-      body,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+  await fetch(`${backendHost}/profile/${key}`, {
+    method: 'POST',
+    body,
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+  })
 }
