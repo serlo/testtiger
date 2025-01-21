@@ -2199,7 +2199,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'video',
             title: 'Video 1',
-            videoUrl: '123',
+            videoUrl:
+              'https://testtige.uber.space/testtiger/Zahlen_vergleichen.mp4',
             position: { x: 80, y: 170 },
             steps: [],
           },

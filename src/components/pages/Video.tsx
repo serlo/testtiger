@@ -5,6 +5,7 @@ import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 
 export function Video() {
   const videoRedirectUrl = ExerciseViewStore.useState(s => s.videoRedirectUrl)
+  const videoUrl = ExerciseViewStore.useState(s => s.videoUrl)
   const history = useHistory()
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
@@ -12,7 +13,10 @@ export function Video() {
         <div className="flex items-center relative h-full">
           <video controls className="w-full" autoPlay>
             <source
-              src="https://resource.flexclip.com/templates/video/720p/cake-food-recipe-social-reels.mp4"
+              src={
+                videoUrl ??
+                'https://resource.flexclip.com/templates/video/720p/cake-food-recipe-social-reels.mp4'
+              }
               type="video/mp4"
             />
           </video>
