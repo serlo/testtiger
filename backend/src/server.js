@@ -118,6 +118,19 @@ app.post('/profile/:key', async (req, res) => {
   res.send('ok')
 })
 
+// get route to retrieve profile data
+app.get('/profile/load/:key', async (req, res) => {
+  const key = req.params.key
+  const profile = await sequelize.Profile.findOne({
+    where: { key },
+  })
+  if (profile) {
+    res.json(JSON.parse(profile.value))
+  } else {
+    res.send('Profile not found')
+  }
+})
+
 async function run() {
   await sequelize.sync()
   app.listen(8080, () => {
