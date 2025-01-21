@@ -24,8 +24,8 @@ export const exercise120: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(10, 100) / -100,
-      b: rng.randomIntBetween(10, 100) / -100,
+      a: rng.randomIntBetween(1, 15) / -10,
+      b: rng.randomIntBetween(1, 15) / -10,
       c: rng.randomItemFromArray([20, 25, 40, 60, 70, 75, 80, 90]),
       d: rng.randomItemFromArray([100]),
       e: rng.randomItemFromArray([1, 2, 3, 4]),
@@ -37,6 +37,9 @@ export const exercise120: Exercise<DATA> = {
   },
   constraint({ data }) {
     return (
+      Math.abs(data.a - data.b) < 0.4 &&
+      Math.abs(data.a - data.b) > 0.1 &&
+      data.a !== data.b &&
       data.c < data.d &&
       data.h < data.i &&
       data.e < data.f &&
@@ -101,46 +104,67 @@ export const exercise120: Exercise<DATA> = {
     return (
       <>
         <p>
+          Schau dir die Zahlen {pp(data.a)} und {pp(data.b)} auf dem
+          Zahlenstrahl an:
+        </p>
+        <svg width="328" height="60">
+          <image href="/content/NRW_EESA/120_zahlenstrahl.svg" width={328} />
+          {/* Markierung für data.a */}
+          <line
+            x1={285.6 + data.a * (285.6 - 131)} // Skalierung: Werte von data.a auf eine X-Position im SVG abbilden (mit einem Skalierungsfaktor)
+            y1="26" // Y-Position oben
+            x2={285.6 + data.a * (285.6 - 131)} // X-Position für die Linie
+            y2="40" // Y-Position unten (Höhe des SVG)
+            stroke="blue" // Farbe der Linie
+            strokeWidth="2" // Dicke der Linie
+          />
+          <text
+            x={285.6 + data.a * (285.6 - 131) - 15}
+            y={52}
+            textAnchor="right"
+            fontSize={12}
+            stroke="blue"
+          >
+            {pp(data.a)}
+          </text>
+
+          {/* Markierung für data.b */}
+          <line
+            x1={285.6 + data.b * (285.6 - 131)} // Skalierung: Werte von data.b auf eine X-Position im SVG abbilden (mit einem Skalierungsfaktor)
+            y1="26" // Y-Position oben
+            x2={285.6 + data.b * (285.6 - 131)} // X-Position für die Linie
+            y2="40" // Y-Position unten (Höhe des SVG)
+            stroke="blue" // Farbe der Linie
+            strokeWidth="2" // Dicke der Linie
+          />
+          <text
+            x={285.6 + data.b * (285.6 - 131) - 15}
+            y={52}
+            textAnchor="right"
+            fontSize={12}
+            stroke="blue"
+          >
+            {pp(data.b)}
+          </text>
+        </svg>
+        <p>
+          {pp(data.a)} ist {data.a > data.b && ' rechts '}
+          {data.a < data.b && ' links '} von {pp(data.b)}:{' '}
           <strong>
-            Vergleiche {pp(data.a)} und {pp(data.b)}:
+            {pp(data.a)}
+            {data.a > data.b && ' > '}
+            {data.a < data.b && ' < '}
+            {data.a == data.b && ' = '}
+            {pp(data.b)}{' '}
           </strong>
         </p>
+        <hr style={{ margin: '10px 0' }} />
         <p>
-          Beachte: Die beiden Zahlen sind negativ. Deswegen gilt: {pp(data.a)}
-          {data.a > data.b && ' > '}
-          {data.a < data.b && ' < '}
-          {data.a == data.b && ' = '}
-          {pp(data.b)}{' '}
+          Erweitere {ppFrac([data.e, data.f])} auf den Nenner 100, um es mit{' '}
+          {ppFrac([data.c, data.d])} zu vergleichen:
         </p>
         <p>
-          <strong>
-            Vergleiche {ppFrac([data.c, data.d])} und {ppFrac([data.e, data.f])}
-            :
-          </strong>
-        </p>
-        <p>
-          Bringe die beiden Brüche auf einen gemeinsamen Nenner. Der gemeinsame
-          Nenner ist {hauptnenner1}:
-        </p>
-        <p>
-          {data.d == 50 && (
-            <>
-              {buildInlineFrac(
-                <>
-                  {data.c} <Color1>· 2</Color1>
-                </>,
-                <>
-                  {data.d} <Color1>· 2</Color1>
-                </>,
-              )}
-            </>
-          )}{' '}
-          {data.d == 50 ? (
-            <>= {ppFrac([2 * data.c, 2 * data.d])}</>
-          ) : (
-            ppFrac([data.c, data.d])
-          )}{' '}
-          und{' '}
+          {ppFrac([data.e, data.f])} ={' '}
           {buildInlineFrac(
             <>
               {data.e} <Color1>· {hauptnenner1 / data.f}</Color1>
@@ -152,19 +176,27 @@ export const exercise120: Exercise<DATA> = {
           = {ppFrac([data.e * (hauptnenner1 / data.f), hauptnenner1])}
         </p>
         <p>
-          Damit ist: {ppFrac([data.c, data.d])}{' '}
-          {data.c / data.d > data.e / data.f && '>'}{' '}
-          {data.c / data.d < data.e / data.f && '<'}{' '}
-          {data.c / data.d == data.e / data.f && '='} {ppFrac([data.e, data.f])}
-        </p>
-        <p>
+          {ppFrac([data.c, data.d])}{' '}
+          {data.c / data.d > data.e / data.f && 'ist größer als'}{' '}
+          {data.c / data.d < data.e / data.f && 'ist kleiner als'}{' '}
+          {data.c / data.d == data.e / data.f && 'ist gleich'}{' '}
+          {ppFrac([data.e * (hauptnenner1 / data.f), hauptnenner1])}. Also ist:{' '}
           <strong>
-            Vergleiche {pp(data.g)} und {ppFrac([data.h, data.i])}:
+            {ppFrac([data.c, data.d])}{' '}
+            {data.c / data.d > data.e / data.f && '>'}{' '}
+            {data.c / data.d < data.e / data.f && '<'}{' '}
+            {data.c / data.d == data.e / data.f && '='}{' '}
+            {ppFrac([data.e, data.f])}
           </strong>
         </p>
+        <hr style={{ margin: '10px 0' }} />
         <p>
-          Wandle {ppFrac([data.h, data.i])} in eine Dezimalzahl um. Dafür
-          erweitere zunächst den Bruch:<br></br>
+          Schreibe {ppFrac([data.h, data.i])} als Dezimalzahl, um es mit{' '}
+          {pp(data.g)} zu vergleichen.
+        </p>{' '}
+        <p>
+          Dafür erweitere zunächst den Bruch:
+          <br></br>
           {ppFrac([data.h, data.i])} ={' '}
           {data.i == 8 && (
             <>
@@ -207,7 +239,8 @@ export const exercise120: Exercise<DATA> = {
           )}
         </p>
         <p>
-          Jetzt kannst du den Bruch als Dezimalzahl schreiben und vergleichen:{' '}
+          Jetzt kannst du den Bruch als Dezimalzahl schreiben:{' '}
+          {ppFrac([data.h, data.i])} ={' '}
           {data.i == 4 && ppFrac([data.h * 25, data.i * 25])}
           {(data.i == 2 || data.i == 5) &&
             ppFrac([(data.h * 10) / data.i, (data.i * 10) / data.i])}
@@ -215,9 +248,15 @@ export const exercise120: Exercise<DATA> = {
           {pp(data.h / data.i)}
         </p>
         <p>
-          Damit ist: {pp(data.g)} {data.g > data.h / data.i && '>'}
-          {data.g < data.h / data.i && '<'}
-          {data.g == data.h / data.i && '='} {ppFrac([data.h, data.i])}
+          {pp(data.g)} {data.g > data.h / data.i && 'ist größer als'}
+          {data.g < data.h / data.i && 'ist kleiner als'}
+          {data.g == data.h / data.i && 'ist gleich'} {pp(data.h / data.i)}.
+          Also ist:{' '}
+          <strong>
+            {pp(data.g)} {data.g > data.h / data.i && '>'}
+            {data.g < data.h / data.i && '<'}
+            {data.g == data.h / data.i && '='} {ppFrac([data.h, data.i])}
+          </strong>
         </p>
       </>
     )
