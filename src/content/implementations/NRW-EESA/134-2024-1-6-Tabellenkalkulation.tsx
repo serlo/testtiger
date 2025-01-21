@@ -41,6 +41,16 @@ export const exercise134: Exercise<DATA> = {
     order: [0, 1, 2],
     bool: true,
   },
+  learningPathData: {
+    anzahl: 15,
+    preis_tablets: 430,
+    preis_schutz: 15.99,
+    item_1: 0,
+    item_2: 0,
+    item_3: 1,
+    order: [0, 1, 2],
+    bool: true,
+  },
   constraint({ data }) {
     return data.item_2 != data.item_3
   },

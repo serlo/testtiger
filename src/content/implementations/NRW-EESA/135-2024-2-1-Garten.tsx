@@ -33,6 +33,13 @@ export const exercise135: Exercise<DATA> = {
     buchsbaeume: 38,
     samen: 3,
   },
+  learningPathData: {
+    bildvariante: 2,
+    breite: 6,
+    radius: 1,
+    buchsbaeume: 24,
+    samen: 5,
+  },
   constraint({ data }) {
     return data.breite != data.radius && data.buchsbaeume / data.breite < 7
   },

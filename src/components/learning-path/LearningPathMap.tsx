@@ -1,5 +1,8 @@
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { Fragment } from 'react'
 import {
@@ -46,6 +49,7 @@ export function LearningPathMap() {
 
   let allSolved = true
   let isMuted = false
+  let alreadyHighlighted = false
 
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
@@ -140,9 +144,16 @@ export function LearningPathMap() {
         )*/}
         {elements.map((el, i) => {
           let thisIsHighlighted = false
+          if (
+            el.solvedPercentage < 1 &&
+            elements.slice(i + 1).every(e => e.solvedPercentage < 1) &&
+            !alreadyHighlighted
+          ) {
+            thisIsHighlighted = true
+            alreadyHighlighted = true
+          }
           if (el.solvedPercentage < 1 && allSolved) {
             allSolved = false
-            thisIsHighlighted = true
           }
           let notMutedYet = false
           if (
@@ -196,9 +207,47 @@ export function LearningPathMap() {
                 className="cursor-pointer"
                 onClick={() => {
                   if (el.source.type == 'video') {
-                    PlayerProfileStore.update(s => {
+                    updatePlayerProfileStore(s => {
                       s.progress[exam].learningPathTags.push(el.source.title)
                     })
+                    const lessonDetails = elements[i + 1].source
+                    const step = lessonDetails.steps[0]
+                    setupExercise(
+                      step.exercise.id,
+                      lessonDetails.title,
+                      step.exercise.pages,
+                      true,
+                      elements[i + 1].solvedPercentage < 1,
+                    )
+
+                    if (elements[i + 1].solvedPercentage < 1) {
+                      const relevantKeys = findRelevantKeys(lessonDetails)
+                      ExerciseViewStore.update(s => {
+                        s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+                        if (elements[i + 1].solvedPercentage < 1) {
+                          s.completed = s.checks.map((_, i) =>
+                            PlayerProfileStore.getRawState().progress[
+                              exam
+                            ].learningPathTags.includes(relevantKeys[i]),
+                          )
+                        }
+                        if (lessonDetails.showExamplePrescreen) {
+                          s.examplePrescreen = true
+                          s.hasExamplePrescreen = true
+                        }
+                        s.videoRedirectUrl =
+                          '/exercise/' +
+                          step.exercise.id +
+                          '#' +
+                          encodeURIComponent(
+                            JSON.stringify({
+                              name: lessonDetails.title,
+                              pages: step.exercise.pages,
+                              toHome: true,
+                            }),
+                          )
+                      })
+                    }
                     history.push('/video')
                     return
                   }
@@ -514,12 +563,4 @@ export function LearningPathMap() {
       )*/}
     </div>
   )
-}
-
-function getExercisePagesCount(id: number) {
-  const ex = exercisesData[id]
-  if ('tasks' in ex) {
-    return ex.tasks.length
-  }
-  return 1
 }

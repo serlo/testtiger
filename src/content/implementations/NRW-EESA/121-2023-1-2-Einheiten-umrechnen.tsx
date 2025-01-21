@@ -27,6 +27,11 @@ export const exercise121: Exercise<DATA> = {
     minutes: 5,
     millilitres: 500,
   },
+  learningPathData: {
+    kilometers: 52,
+    minutes: 2,
+    millilitres: 750,
+  },
   constraint({ data }) {
     return true
   },

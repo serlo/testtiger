@@ -75,6 +75,22 @@ export const exercise128: Exercise<DATA> = {
     zeit_5: 43,
     zeit_6: 5,
   },
+  learningPathData: {
+    case: 1,
+    item_1: 0,
+    item_2: 0,
+    item_3: 1,
+    order: [1, 0, 2],
+    strecke_1: 58,
+    strecke_2: 101,
+    strecke_3: 400,
+    zeit_1: 28,
+    zeit_2: 48,
+    zeit_3: 59,
+    zeit_4: 40,
+    zeit_5: 47,
+    zeit_6: 4,
+  },
   constraint({ data }) {
     return data.item_2 != data.item_3
   },

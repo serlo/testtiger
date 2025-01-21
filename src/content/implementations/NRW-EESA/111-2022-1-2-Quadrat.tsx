@@ -17,6 +17,7 @@ export const exercise111: Exercise<DATA> = {
     return { seite: rng.randomIntBetween(2, 9) }
   },
   originalData: { seite: 3 },
+  learningPathData: { seite: 5 },
   constraint({ data }) {
     return true
   },

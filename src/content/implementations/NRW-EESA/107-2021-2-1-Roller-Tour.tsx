@@ -43,6 +43,16 @@ export const exercise107: Exercise<DATA> = {
     gebühr_roller: 0.4,
     fahrt: 170,
   },
+  learningPathData: {
+    legende: 4,
+    pace: 20,
+    free: 120,
+    grund_easy: 70,
+    grund_roller: 80,
+    gebühr_easy: 0.15,
+    gebühr_roller: 0.3,
+    fahrt: 150,
+  },
   constraint({ data }) {
     const schnitt_2_x =
       data.free +

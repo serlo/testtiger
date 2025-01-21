@@ -1,6 +1,4 @@
-import { exercisesData } from '@/content/exercises'
-import { Lesson, Step } from '@/data/types'
-import { countLetter } from '@/helper/count-letter'
+import { backendHost } from '@/helper/make-post'
 import { Store } from 'pullstate'
 
 export const storageKey = 'testtiger_player_progress_v0'
@@ -10,6 +8,7 @@ export type PlayerProfileStoreProps = {
   progress: { [key: number]: ExamProgress }
   eventLog: { id: number; index: number; ts: number; type: 'kann-ich' }[]
   original: boolean
+  key?: string
 }
 
 export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
@@ -41,4 +40,20 @@ export function updatePlayerProfileStore(
     storageKey,
     JSON.stringify(PlayerProfileStore.getRawState()),
   )
+  syncProfileWithBackend()
+}
+
+export async function syncProfileWithBackend() {
+  const key = PlayerProfileStore.getRawState().key
+
+  if (!key || key == 'pending') return
+  // post to backend with json body
+  const body = JSON.stringify(PlayerProfileStore.getRawState())
+  await fetch(`${backendHost}/profile/${key}`, {
+    method: 'POST',
+    body,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 }

@@ -18,13 +18,14 @@ export const exercise110: Exercise<DATA> = {
   points: 3,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(-30, 30) / 10,
-      b: rng.randomIntBetween(-300, 300) / 100,
-      c: rng.randomIntBetween(-300, 300) / 100,
+      a: rng.randomIntBetween(-30, -10) / 10,
+      b: rng.randomIntBetween(-300, -100) / 100,
+      c: rng.randomIntBetween(100, 300) / 100,
       d: rng.randomItemFromArray([2, 3, 5, 6, 7, 8, 10]),
     }
   },
   originalData: { a: -2.2, b: -2.57, c: 2.51, d: 5 },
+  learningPathData: { a: -1.8, b: -1.35, c: 2.13, d: 2 },
   constraint({ data }) {
     return (
       Math.abs(Math.abs(data.a) - Math.abs(data.b)) < 0.2 &&

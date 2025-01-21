@@ -25,6 +25,7 @@ export const exercise137: Exercise<DATA> = {
     }
   },
   originalData: { kante: 2, case: 1, ml: 250, surface: 5000 },
+  learningPathData: { kante: 4, case: 2, ml: 300, surface: 400 },
   constraint({ data }) {
     return data.ml != data.surface
   },

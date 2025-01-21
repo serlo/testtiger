@@ -27,6 +27,11 @@ export const exercise122: Exercise<DATA> = {
     width: 20,
     height: 6,
   },
+  learningPathData: {
+    length: 40,
+    width: 30,
+    height: 8,
+  },
   constraint({ data }) {
     return data.length > data.width
   },
