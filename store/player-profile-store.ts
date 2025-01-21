@@ -1,5 +1,6 @@
 import { exercisesData } from '@/content/exercises'
 import { Lesson, Step } from '@/data/types'
+import { backendEndpoint } from '@/helper/backend'
 import { countLetter } from '@/helper/count-letter'
 import { Store } from 'pullstate'
 
@@ -10,6 +11,7 @@ export type PlayerProfileStoreProps = {
   progress: { [key: number]: ExamProgress }
   eventLog: { id: number; index: number; ts: number; type: 'kann-ich' }[]
   original: boolean
+  key?: string
 }
 
 export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
@@ -40,5 +42,21 @@ export function updatePlayerProfileStore(
   localStorage.setItem(
     storageKey,
     JSON.stringify(PlayerProfileStore.getRawState()),
+  )
+  syncProfileWithBackend()
+}
+
+export async function syncProfileWithBackend() {
+  // post to backend with json body
+  const body = JSON.stringify(PlayerProfileStore.getRawState())
+  await fetch(
+    `${backendEndpoint}/profile/${PlayerProfileStore.getRawState().key}`,
+    {
+      method: 'POST',
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
   )
 }

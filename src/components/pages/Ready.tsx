@@ -1,6 +1,28 @@
+import { backendEndpoint } from '@/helper/backend'
 import { IonButton, IonContent, IonFooter, IonPage } from '@ionic/react'
+import { useEffect, useState } from 'react'
+import {
+  PlayerProfileStore,
+  syncProfileWithBackend,
+} from '../../../store/player-profile-store'
 
 export function Ready() {
+  const [showContinue, setShowContinue] = useState(false)
+
+  useEffect(() => {
+    // connect to backend
+    async function connect() {
+      if (!PlayerProfileStore.getRawState().key) {
+        const key = await (await fetch(`${backendEndpoint}/newkey`)).text()
+        PlayerProfileStore.update(s => {
+          s.key = key
+        })
+      }
+      await syncProfileWithBackend()
+      setShowContinue(true)
+    }
+    connect()
+  }, [])
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
@@ -25,7 +47,9 @@ export function Ready() {
       <IonFooter>
         <div className="py-3 text-center bg-white">
           <p className="mt-6 flex justify-around">
-            <IonButton routerLink="/app/home">Erledigt!</IonButton>
+            {showContinue && (
+              <IonButton routerLink="/app/home">Erledigt!</IonButton>
+            )}
           </p>
         </div>
       </IonFooter>
