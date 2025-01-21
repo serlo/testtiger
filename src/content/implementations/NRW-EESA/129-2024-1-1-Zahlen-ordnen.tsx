@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
 import { pp } from '@/helper/pretty-print'
+import { Key } from 'react'
 
 interface DATA {
   a: number
@@ -15,7 +16,7 @@ export const exercise129: Exercise<DATA> = {
   points: 2,
   generator(rng) {
     return {
-      a: rng.randomIntBetween(-9, 2) / 10,
+      a: rng.randomIntBetween(-4, -1) / 10,
       b: rng.randomBoolean(),
       c: rng.randomIntBetween(11, 99) / 100,
     }
@@ -86,65 +87,173 @@ export const exercise129: Exercise<DATA> = {
   },
   solution({ data }) {
     function swapDecimalPlaces(c: number): number {
-      // Konvertiere die Zahl zu einem String
       const cString = c.toFixed(2)
-
-      // Extrahiere den ganzzahligen und den Dezimalteil
       const [integerPart, decimalPart] = cString.split('.')
-
-      // Vertausche die Dezimalstellen
       const swappedDecimalPart = decimalPart[1] + decimalPart[0]
-
-      // Baue die neue Zahl zusammen und konvertiere sie zurück zu einer Zahl
-      const d = parseFloat(`${integerPart}.${swappedDecimalPart}`)
-
-      return d
+      return parseFloat(`${integerPart}.${swappedDecimalPart}`)
     }
+
     const zahl_3 = data.b ? data.a + 0.01 : data.a - 0.01
-    const array = [data.a, data.c, zahl_3, swapDecimalPlaces(data.c)].sort(
+    const sortedNegatives = [data.a, zahl_3].sort((a, b) => a - b)
+    const sortedPositives = [data.c, swapDecimalPlaces(data.c)].sort(
       (a, b) => a - b,
     )
+
+    const renderNumberLine = (
+      values: any[],
+      labelOffset: number,
+      isNegative: boolean,
+    ) => {
+      const min = Math.floor(Math.min(...values) * 10) / 10 - 0.1
+      const max = Math.ceil(Math.max(...values) * 10) / 10 + 0.1
+      const range = max - min
+      return (
+        <svg width="328" height="80">
+          {/* Hauptlinie */}
+          <line
+            x1="25"
+            y1="30"
+            x2="325"
+            y2="30"
+            stroke="black"
+            strokeWidth="2"
+          />
+
+          {/* Pfeile an den Enden */}
+          <line
+            x1="23"
+            y1="30"
+            x2="31"
+            y2="26"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <line
+            x1="23"
+            y1="30"
+            x2="31"
+            y2="34"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <line
+            x1="325"
+            y1="30"
+            x2="317"
+            y2="26"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <line
+            x1="325"
+            y1="30"
+            x2="317"
+            y2="34"
+            stroke="black"
+            strokeWidth="2"
+          />
+
+          {/* 0.1-Schritte */}
+          {Array.from({ length: Math.ceil((max - min) * 10) - 1 }, (_, i) => {
+            const step = min + (i + 1) * 0.1
+            const position = ((step - min) / range) * 288 + 25
+            return (
+              <g key={i}>
+                <line
+                  x1={position}
+                  y1="25"
+                  x2={position}
+                  y2="35"
+                  stroke="black"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x={position}
+                  y="22"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  {step.toFixed(1)}
+                </text>
+              </g>
+            )
+          })}
+
+          {/* 0.01-Schritte */}
+          {Array.from({ length: Math.ceil((max - min) * 100) - 1 }, (_, i) => {
+            const step = min + (i + 1) * 0.01
+            const position = ((step - min) / range) * 288 + 25
+            return (
+              <line
+                key={i}
+                x1={position}
+                y1="27"
+                x2={position}
+                y2="33"
+                stroke="black"
+                strokeWidth="0.5"
+              />
+            )
+          })}
+
+          {/* Markierungen für Zahlen */}
+          {values.map((value: number, index: Key | null | undefined) => {
+            const position = ((value - min) / range) * 288 + 25
+            const textYOffset = isNegative && index === 1 ? 10 : 0 // Leichte Verschiebung nur für die zweite Markierung bei negativen Zahlen
+            const markYOffset = isNegative && index === 1 ? 10 : 0 // Verschiebe den Strich bei der zweiten negativen Zahl
+            const textAdjustedPosition =
+              isNegative && index === 0
+                ? position - 5
+                : isNegative && index === 1
+                  ? position + 5
+                  : position // Verschiebe nur die Beschriftung
+            return (
+              <g key={index}>
+                <line
+                  x1={position}
+                  y1={40 + markYOffset}
+                  x2={position}
+                  y2="30"
+                  stroke="blue"
+                  strokeWidth="2"
+                />
+                <text
+                  x={textAdjustedPosition}
+                  y={54 + labelOffset + textYOffset}
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="blue"
+                >
+                  {value.toFixed(2)}
+                </text>
+              </g>
+            )
+          })}
+        </svg>
+      )
+    }
+
     return (
       <>
+        <p>Schau dir die beiden negativen Zahlen auf dem Zahlenstrahl an:</p>
+        {renderNumberLine(sortedNegatives, 0, true)}
+        <p>Schau dir die beiden positiven Zahlen auf dem Zahlenstrahl an:</p>
+        {renderNumberLine(sortedPositives, 0, false)}
         <p>
-          {data.a < 0 && (
-            <>
-              Vergleiche die negativen Zahlen miteinander und die positiven
-              Zahlen miteinander.
-              <ul>
-                <li>
-                  {data.b ? (
-                    <>
-                      {pp(data.a)} ist kleiner als {pp(data.a + 0.01)}
-                    </>
-                  ) : (
-                    <>
-                      {pp(data.a - 0.01)} ist kleiner als {pp(data.a)}
-                    </>
-                  )}
-                </li>
-                <li>
-                  {data.c < swapDecimalPlaces(data.c) ? (
-                    <>
-                      {data.c} ist kleiner als {pp(swapDecimalPlaces(data.c))}
-                    </>
-                  ) : (
-                    <>
-                      {pp(swapDecimalPlaces(data.c))} ist kleiner als{' '}
-                      {pp(data.c)}
-                    </>
-                  )}
-                </li>
-              </ul>
-            </>
-          )}
+          Kleinere Zahlen sind auf dem Zahlenstrahl immer weiter links als
+          größere Zahlen. Negative Zahlen sind immer kleiner als positive
+          Zahlen.
         </p>
-        <p>Ordne die Zahlen mit dem Operator {'"<"'}:</p>
+        <p>
+          Ordne nun die Zahlen. Beginne ganz links mit der kleinsten Zahl und
+          nutze das kleiner-Zeichen {'<'}:
+        </p>
         <p>
           <strong>
-            {pp(array[0])} &nbsp;&nbsp;{' < '} &nbsp;&nbsp;{pp(array[1])}{' '}
-            &nbsp;&nbsp;{' < '}&nbsp;&nbsp; {pp(array[2])}&nbsp;&nbsp; {' < '}{' '}
-            &nbsp;&nbsp;{pp(array[3])}
+            {sortedNegatives[0].toFixed(2)} &lt; {sortedNegatives[1].toFixed(2)}{' '}
+            &lt; {sortedPositives[0].toFixed(2)} &lt;{' '}
+            {sortedPositives[1].toFixed(2)}
           </strong>
         </p>
       </>
