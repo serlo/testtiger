@@ -47,7 +47,7 @@ export function Profile() {
               ))}
             </select>
           </div>
-          <div className="mt-6 mb-4">
+          <div className="mt-6 mb-4 select-text">
             Dein Account-Code: <strong>{key}</strong>
           </div>
           <div>
