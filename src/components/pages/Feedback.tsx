@@ -26,10 +26,13 @@ export function Feedback() {
       </IonHeader>
       <IonContent className="ion-padding">
         <div className="mt-6 mx-4 [&>p]:mb-4 select-text">
-          <p>Deine Mitteilung</p>
+          <p>
+            Hat dir die App gut gefallen? Möchtest du ein Problem melden? Wir
+            freuen uns üer deine Nachricht.
+          </p>
           <textarea
             className="w-full h-32 p-2 mt-2 border rounded-md"
-            placeholder="Dein Feedback"
+            placeholder="Deine Mitteilung"
             readOnly={done}
             value={feedback}
             onChange={e => setFeedback(e.target.value)}
