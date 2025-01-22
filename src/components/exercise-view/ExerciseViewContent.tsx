@@ -246,7 +246,7 @@ export function ExerciseViewContent() {
                   <>
                     {page.context && page.displayIndex?.includes('a') && (
                       <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
-                        <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
+                        <div className="text-center inset-0 h-24 w-24 rounded-full bg-gray-50">
                           <span className="mt-2 inline-block">
                             {page.context}
                           </span>
