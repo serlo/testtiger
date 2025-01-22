@@ -4,12 +4,16 @@ import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
 import { FaIcon } from '../ui/FaIcon'
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
+import clsx from 'clsx'
+import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 export function EndScreen() {
   const showEndScreen = ExerciseViewStore.useState(s => s.showEndScreen)
   const skill = ExerciseViewStore.useState(s => s.skill)
   const history = useHistory()
   const toHome = ExerciseViewStore.useState(s => s.toHome)
+  const [thumbsStats, setThumbsStats] = useState<'none' | 'up' | 'down'>('none')
   if (!showEndScreen) return null
   return (
     <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto">
@@ -54,10 +58,32 @@ export function EndScreen() {
         </button>
         <div className="mt-24">Fandest du diese Aufgabe hilfreich?</div>
         <div className="text-center mt-4">
-          <button className="mr-8">
+          <button
+            className={clsx('mr-8', thumbsStats === 'down' && 'text-red-500')}
+            onClick={() => {
+              setThumbsStats('down')
+
+              updatePlayerProfileStore(s => {
+                s.statsLog.push(
+                  'thumbsDown_' + ExerciseViewStore.getRawState().tag,
+                )
+              })
+            }}
+          >
             <FaIcon icon={faThumbsDown} />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setThumbsStats('up')
+
+              updatePlayerProfileStore(s => {
+                s.statsLog.push(
+                  'thumbsUp_' + ExerciseViewStore.getRawState().tag,
+                )
+              })
+            }}
+            className={clsx(thumbsStats === 'up' && 'text-green-500')}
+          >
             <FaIcon icon={faThumbsUp} />
           </button>
         </div>
