@@ -7,8 +7,10 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
+import { useState } from 'react'
 
 export function Feedback() {
+  const [done, setDone] = useState(false)
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonHeader>
@@ -21,7 +23,24 @@ export function Feedback() {
       </IonHeader>
       <IonContent className="ion-padding">
         <div className="mt-6 mx-4 [&>p]:mb-4 select-text">
-          <p>TODO: hier kannst du Feedback zur App geben</p>
+          <p>Deine Mitteilung</p>
+          <textarea
+            className="w-full h-32 p-2 mt-2 border rounded-md"
+            placeholder="Dein Feedback"
+            readOnly={done}
+          ></textarea>
+          {done ? (
+            <p className="mt-4 text-center text-green-700">
+              Danke für dein Feedback!
+            </p>
+          ) : (
+            <button
+              className="w-full mt-2 bg-indigo-600 text-white p-2 rounded-md"
+              onClick={() => setDone(true)}
+            >
+              Abschicken
+            </button>
+          )}
         </div>
       </IonContent>
     </IonPage>
