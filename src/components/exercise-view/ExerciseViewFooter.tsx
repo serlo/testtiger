@@ -161,7 +161,7 @@ export function ExerciseViewFooter() {
               if (el.type == 'response') {
                 return (
                   <div key={i} className="mb-4 flex">
-                    <div className="mr-3 text-2xl">🦊</div>
+                    <div className="mr-3 text-2xl">🐯</div>
                     <div>
                       {el.content}
                       {el.category == 'actionable-feedback' && (
