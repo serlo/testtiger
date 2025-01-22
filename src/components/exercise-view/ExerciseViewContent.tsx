@@ -245,7 +245,7 @@ export function ExerciseViewContent() {
                 {introComps.length > 0 && introComps.some(e => e) && (
                   <>
                     {page.context && page.displayIndex?.includes('a') && (
-                      <div className="ml-3 font-bold font-xl w-24 h-8 overflow-clip -mb-3">
+                      <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
                         <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
                           <span className="mt-2 inline-block">
                             {page.context}
@@ -316,7 +316,7 @@ export function ExerciseViewContent() {
         id={`exercise-${i}`}
       >
         {toHome && numbering && (
-          <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-clip">
+          <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-hidden">
             <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
               <span className="mt-2 inline-block">{numbering}</span>
             </div>

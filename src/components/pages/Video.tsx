@@ -22,7 +22,7 @@ export function Video() {
           </video>
           <div className="absolute bottom-3 flex justify-around w-full">
             <button
-              className="px-2 py-0.5 bg-gray-200 hover:bg-gray-300 rounded"
+              className="px-5 py-4 bg-gray-200 hover:bg-gray-300 rounded"
               onClick={() => {
                 document.querySelector('video')?.pause()
                 document.querySelector('video')!.currentTime = 0
@@ -32,7 +32,7 @@ export function Video() {
               zurück
             </button>{' '}
             <button
-              className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded"
+              className="px-5 py-4 bg-green-200 hover:bg-green-300 rounded"
               onClick={() => {
                 document.querySelector('video')?.pause()
                 document.querySelector('video')!.currentTime = 0
