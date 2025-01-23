@@ -25,10 +25,12 @@ export const exercise106: Exercise<DATA> = {
     }
   },
   originalData: { preis: 48.46, faktor: 2, weight: 19.8, radius: 2.5 },
+  learningPathData: { preis: 42.28, faktor: 2, weight: 17.7, radius: 4 },
+  exampleData: { preis: 20.42, faktor: 2, weight: 18.9, radius: 3 },
   constraint({ data }) {
     return true
   },
-  learningPathData: { preis: 42.28, faktor: 2, weight: 17.7, radius: 4 },
+
   intro({ data }) {
     return (
       <>
@@ -263,7 +265,9 @@ export const exercise106: Exercise<DATA> = {
                     </>,
                   ],
                   [
-                    <>0,5 g</>,
+                    <>
+                      <strong>0,5 g</strong>
+                    </>,
                     <>≙</>,
                     <>
                       <strong>{pp(roundToDigits(data.preis / 2, 2))} €</strong>
@@ -291,7 +295,9 @@ export const exercise106: Exercise<DATA> = {
                     </>,
                   ],
                   [
-                    <>1000 g</>,
+                    <>
+                      <strong>1000 g</strong>
+                    </>,
                     <>≙</>,
                     <>
                       <strong>
@@ -302,7 +308,12 @@ export const exercise106: Exercise<DATA> = {
                   [<></>, <></>, <></>],
                 ])}
               </li>
-              <p></p>
+            </ul>
+            <p>
+              {pp(data.preis)} € ist genau die Hälfte von {pp(data.preis * 2)}{' '}
+              €:{' '}
+            </p>
+            <ul>
               <li>
                 {buildEquation([
                   [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
@@ -327,7 +338,11 @@ export const exercise106: Exercise<DATA> = {
                       <strong>2 g</strong>
                     </>,
                     <>≙</>,
-                    <>{pp(roundToDigits(data.preis * data.faktor, 2))} €</>,
+                    <>
+                      <strong>
+                        {pp(roundToDigits(data.preis * data.faktor, 2))} €
+                      </strong>
+                    </>,
                   ],
                 ])}
               </li>
