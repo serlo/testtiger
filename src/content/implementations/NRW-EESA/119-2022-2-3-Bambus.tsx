@@ -61,6 +61,18 @@ export const exercise119: Exercise<DATA> = {
     rohre: 130,
     dichte: 0.7,
   },
+  exampleData: {
+    wachsen: 50,
+    max: 25,
+    start: 2.5,
+    days: 8,
+    height: 17.5,
+    length: 6.5,
+    dia: 5,
+    länge: 180,
+    rohre: 130,
+    dichte: 0.7,
+  },
   constraint({ data }) {
     return true
   },
