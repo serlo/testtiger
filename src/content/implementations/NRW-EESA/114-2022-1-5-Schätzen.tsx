@@ -1,5 +1,6 @@
 'use client'
 import { Exercise } from '@/data/types'
+import { Color1, Color2, Color3 } from '@/helper/colors'
 import { getImageAndDescription } from '@/helper/get-image-and-description'
 import { useState } from 'react'
 
@@ -121,39 +122,96 @@ export const exercise114: Exercise<DATA> = {
     return (
       <>
         {data.task === 1 && (
-          <p>
-            Schätze zuerst die Anzahl der Röhrchen in einem Kasten.<br></br>
-            <br></br>In der oberen Reihe im linken Kasten befinden sich 7
-            Röhrchen.
-            <br></br>An der linken Seite befinden sich 14 Röhrchen übereinander.
-            <br></br>
-            <br></br>
-            Damit sind im ersten Kasten etwa:<br></br> 7 · 14 = 98 Röhrchen.
-            <br></br>
-            <br></br> Im ganzen Insektenhotel sind damit<br></br> 98 · 3 ={' '}
-            <b>294 Röhrchen</b>.
-          </p>
+          <>
+            <svg viewBox="0 0 328 170">
+              <image
+                href="/content/NRW_EESA/114_schaetzen_roehrchen_loesung.svg"
+                width="328"
+              />
+            </svg>
+            <p>
+              Schätze zuerst die Anzahl der Röhrchen in{' '}
+              <Color3>einem der 3 Kästen</Color3>.<br></br>
+              <br></br>In der oberen Reihe im linken Kasten befinden sich{' '}
+              <Color1>7 Röhrchen</Color1>.<br></br>An der linken Seite befinden
+              sich <Color2>14 Röhrchen</Color2> übereinander.
+              <br></br>
+              <br></br>
+              Damit sind im ersten Kasten etwa:<br></br> <Color1>7</Color1> ·{' '}
+              <Color2>14 Röhrchen</Color2> = <b>98</b> Röhrchen.
+              <br></br>
+              <br></br> Im ganzen Insektenhotel sind damit ungefähr<br></br>{' '}
+              <b>
+                98 · <Color3>3</Color3> = 294 Röhrchen
+              </b>
+            </p>
+            <p>
+              Im letzten Schritt runden wir die Lösung, da wir bei einer
+              Schätzung keine genauen Zahlen haben: <b>294 ≈ 290</b>
+            </p>
+            <p>
+              Damit sind insgesamt etwa <b>290 Röhrchen</b> auf dem Bild.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis ein bisschen abweicht. Du
+              solltest aber auf eine Zahl <b>zwischen 280 und 330</b> kommen.
+            </p>
+          </>
         )}
         {data.task === 2 && (
-          <p>
-            Bestimme die Anzahl der Holzscheite in der obersten Reihe und am
-            linken Rand:<br></br>
-            <br></br>In der obersten Reihe befinden sich etwa 18 Holzscheite.
-            <br></br>Am linken Rand befinden sich etwa 13 Holzscheite.<br></br>
-            <br></br>Hochgerechnet auf den ganzen Stapel ergeben sich etwa{' '}
-            <br></br>18 · 13 = <b>234 Holzscheite</b>.
-          </p>
+          <>
+            <svg viewBox="0 0 328 220">
+              <image
+                href="/content/NRW_EESA/114_schaetzen_holzscheite_loesung.svg"
+                width="328"
+              />
+            </svg>
+            <p>
+              Bestimme die Anzahl der Holzscheite in der{' '}
+              <Color1>untersten Reihe</Color1> und am{' '}
+              <Color2>linken Rand</Color2>:<br></br>
+              <br></br>In der <Color1>untersten Reihe</Color1> befinden sich
+              etwa <Color1>18 Holzscheite</Color1>.<br></br>Am{' '}
+              <Color2>linken Rand</Color2> befinden sich etwa{' '}
+              <Color2>14 Holzscheite</Color2>.<br></br>
+              <br></br>Hochgerechnet auf den ganzen Stapel ergeben sich etwa{' '}
+              <br></br>
+              <Color1>18</Color1> · <Color2>14</Color2> = <b>252 Holzscheite</b>
+              .
+            </p>
+            <p>
+              Wir runden die Lösung, da wir bei einer Schätzung keine genauen
+              Zahlen haben: <b>252 ≈ 250</b>
+            </p>
+            <p>
+              Damit sind insgesamt etwa <b>250 Holzscheite</b> auf dem Bild.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis abweicht. Du solltest aber auf
+              eine Zahl <b>zwischen 200 und 310</b> kommen.
+            </p>
+          </>
         )}
         {data.task === 3 && (
-          <p>
-            Das Bild zeigt insgesamt 10 Fächer mit etwa gleich vielen Büchern
-            pro Fach.<br></br>
-            Zähle die Anzahl der Bücher in einem Fach.<br></br>
-            In rechten, unteren Fach befinden sich zum Beispiel 24 Bücher.
-            <br></br>
-            <br></br> Rechne damit die Gesamtzahl der Bücher hoch: 24 · 10 ={' '}
-            <b>240 Bücher</b>.
-          </p>
+          <>
+            <p>
+              Das Bild zeigt insgesamt <Color1>10 Fächer</Color1> mit etwa
+              gleich vielen Büchern pro Fach.<br></br>
+              Zähle die Anzahl der <Color2>Bücher in einem Fach</Color2>.
+              <br></br>
+              In rechten, unteren Fach befinden sich zum Beispiel{' '}
+              <Color2>24 Bücher</Color2>.<br></br>
+              <br></br> Rechne damit die Gesamtzahl der Bücher hoch:{' '}
+              <Color2>24</Color2> · <Color1>10</Color1> = <b>240 Bücher</b>.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis abweicht. Du solltest aber auf
+              eine Zahl <b>zwischen 210 und 270</b> kommen.
+            </p>
+          </>
         )}
         {data.task === 4 && (
           <>
@@ -207,18 +265,23 @@ export const exercise114: Exercise<DATA> = {
             </svg>
             <p>
               Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
+              Oben ist das Bild zum Beispiel in <Color1>12 Bereiche</Color1>{' '}
+              aufgeteilt.
             </p>
             <p>
-              Zähle die Reiskörner in einem der Bereiche: Im oberen rechten
-              Bereich befinden sich zum Beispiel etwa 31 Reiskörner.
+              Zähle die Reiskörner in einem der 12 Bereiche: Im Bereich oben
+              rechts befinden sich zum Beispiel etwa{' '}
+              <Color2>31 Reiskörner</Color2>.
             </p>
             <p>
-              Das Bild ist in 12 Bereiche eingeteilt. Multipliziere die Anzahl
-              der Reiskörner mit 31 Reiskörnern: 31 · 12 = 372
+              Damit kannst du schätzen:{' '}
+              <b>
+                <Color2>31</Color2> · <Color1>12</Color1> = 372
+              </b>
             </p>
             <p>
               Im letzten Schritt runden wir die Lösung, da wir bei einer
-              Schätzung keine genauen Zahlen haben: 372 ≈ 370
+              Schätzung keine genauen Zahlen haben: <b>372 ≈ 370</b>
             </p>
             <p>
               Damit sind insgesamt etwa <b>370 Reiskörner</b> auf dem Bild.
@@ -300,11 +363,30 @@ export const exercise114: Exercise<DATA> = {
             </svg>
             <p>
               Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
-              <br></br>
-              <br></br>Im oberen linken Bereich befinden sich 10 Nadeln.
-              <br></br>
-              <br></br> Damit sind insgesamt etwa 16 · 10 = <b>160 Nadeln</b>{' '}
-              auf dem Bild.
+              Oben ist das Bild zum Beispiel in <Color1>16 Bereiche</Color1>{' '}
+              aufgeteilt.
+            </p>
+            <p>
+              Zähle die Reiskörner in einem der 16 Bereiche: Im Bereich unten
+              rechts befinden sich zum Beispiel etwa <Color2>11 Nadeln</Color2>.
+            </p>
+            <p>
+              Damit kannst du schätzen:{' '}
+              <b>
+                <Color2>11</Color2> · <Color1>16</Color1> = 176
+              </b>
+            </p>
+            <p>
+              Im letzten Schritt runden wir die Lösung, da wir bei einer
+              Schätzung keine genauen Zahlen haben: <b>176 ≈ 180</b>
+            </p>
+            <p>
+              Damit sind insgesamt etwa <b>180 Nadeln</b> auf dem Bild.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis ein bisschen abweicht. Du
+              solltest aber auf eine Zahl <b>zwischen 150 und 230</b> kommen.
             </p>
           </>
         )}
