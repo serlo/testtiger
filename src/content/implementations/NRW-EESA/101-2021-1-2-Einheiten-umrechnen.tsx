@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -47,40 +48,68 @@ export const exercise101: Exercise<DATA> = {
     return (
       <>
         <p>
-          <strong>Zentimeter (cm) in Meter (m)</strong>
-        </p>
-        <p>
-          1 Meter enthält 100 Zentimeter. <br></br>Rechne mit dem
+          <strong>1 Meter (m)</strong> enthält{' '}
+          <strong>100 Zentimeter (cm)</strong>. <br></br>Rechne mit dem
           Umrechnungsfaktor 100:
         </p>
+        {buildEquation([
+          [
+            <>{pp(data.m * 100)} cm </>,
+            <>=</>,
+            <>{pp(data.m * 100)} : 100 m</>,
+          ],
+          [
+            <>
+              <strong>{pp(data.m * 100)} cm</strong>
+            </>,
+            <>
+              <strong>=</strong>
+            </>,
+            <>
+              <strong>{pp(data.m)} m</strong>
+            </>,
+          ],
+        ])}
+        <hr style={{ margin: '10px 0' }} />
+
         <p>
-          {pp(data.m * 100)} cm = {pp(data.m * 100)} : 100 m
+          <strong>1 Stunde (h)</strong> enthält <strong>60 Sekunden (s)</strong>
+          . <br></br>Rechne mit dem Umrechnungsfaktor 60:
         </p>
+        {buildEquation([
+          [<>{pp(data.h)} h</>, <>=</>, <>{pp(data.h)} · 60 min</>],
+          [
+            <>
+              <strong> {pp(data.h)} h </strong>
+            </>,
+            <>
+              <strong>=</strong>
+            </>,
+            <>
+              <strong>{pp(data.h * 60)} min</strong>
+            </>,
+          ],
+        ])}
+        <hr style={{ margin: '10px 0' }} />
+
         <p>
-          {pp(data.m * 100)} cm = <strong>{pp(data.m)} m</strong>
+          <strong>1 Liter (l)</strong> enthält{' '}
+          <strong>1 Kubikdezimeter (dm³)</strong>. <br></br>Rechne mit dem
+          Umrechnungsfaktor 60:
         </p>
-        <p>
-          <strong>Stunden (s) in Minuten (min)</strong>
-        </p>
-        <p>
-          1 Stunde enthält 60 Minuten. <br></br>Rechne mit dem Umrechnungsfaktor
-          60:
-        </p>
-        <p>
-          {pp(data.h)} h = {pp(data.h)} · 60 min
-        </p>
-        <p>
-          {pp(data.h)} h = <strong>{pp(data.h * 60)} min</strong>
-        </p>
-        <p>
-          <strong>Liter (ℓ) in Kubikdezimeter (dm³)</strong>
-        </p>
-        <p>
-          Ein Liter entspricht genau einem Volumen von einem Kubikdezimeter.
-        </p>
-        <p>
-          {pp(data.ml / 1000)} ℓ = <strong>{pp(data.ml / 1000)} dm³</strong>
-        </p>
+        {buildEquation([
+          [
+            <>
+              <strong> {pp(data.ml / 1000)} ℓ </strong>
+            </>,
+            <>
+              <strong>=</strong>
+            </>,
+            <>
+              <strong>{pp(data.ml / 1000)} dm</strong>
+            </>,
+          ],
+        ])}
       </>
     )
   },

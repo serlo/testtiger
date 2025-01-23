@@ -238,13 +238,16 @@ export const exercise129: Exercise<DATA> = {
       <>
         <p>Schau dir die beiden negativen Zahlen auf dem Zahlenstrahl an:</p>
         {renderNumberLine(sortedNegatives, 0, true)}
+        <hr style={{ margin: '10px 0' }} />
         <p>Schau dir die beiden positiven Zahlen auf dem Zahlenstrahl an:</p>
         {renderNumberLine(sortedPositives, 0, false)}
+        <hr style={{ margin: '10px 0' }} />
         <p>
           Kleinere Zahlen sind auf dem Zahlenstrahl immer weiter links als
           größere Zahlen. Negative Zahlen sind immer kleiner als positive
           Zahlen.
         </p>
+        <hr style={{ margin: '10px 0' }} />
         <p>
           Ordne nun die Zahlen. Beginne ganz links mit der kleinsten Zahl und
           nutze das kleiner-Zeichen {'<'}:

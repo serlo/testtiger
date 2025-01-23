@@ -52,45 +52,48 @@ export const exercise121: Exercise<DATA> = {
     return (
       <>
         <p>
-          <strong> Kilometer in Meter:</strong>
+          <strong> 1 Kilometer (km)</strong> enthält{' '}
+          <strong> 1000 Meter (m)</strong>
         </p>
-
-        <p>
-          1 Kilometer entspricht 1000 Metern. Rechne mit dem Umrechnungsfaktor
-          1000:
-        </p>
+        <p>Rechne mit dem Umrechnungsfaktor 1000:</p>
         <p>
           {pp(data.kilometers)} km = {pp(data.kilometers)} · 1000 m
         </p>
         <p>
-          {pp(data.kilometers)} km ={' '}
-          <strong>{pp(data.kilometers * 1000)} m</strong>
+          <strong>
+            {' '}
+            {pp(data.kilometers)} km = {pp(data.kilometers * 1000)} m{' '}
+          </strong>
         </p>
+        <hr style={{ margin: '10px 0' }} />
         <p>
-          1 Minute entspricht 60 Sekunden. Rechne mit dem Umrechnungsfaktor 60:
+          <strong> 1 Minute (min)</strong> enthält{' '}
+          <strong> 60 Sekunden (s)</strong>
         </p>
+        <p>Rechne mit dem Umrechnungsfaktor 60:</p>
         <p>
           {pp(data.minutes)} min = {pp(data.minutes)} · 60 s
         </p>
         <p>
-          {pp(data.minutes)} min = <strong>{pp(data.minutes * 60)} s</strong>
-        </p>
-        <p>
-          <strong> Milliliter in Liter:</strong>
-        </p>
-
-        <p>
-          1 Milliliter entspricht {buildInlineFrac(1, 1000)} Liter. Rechne mit
-          dem Umrechnungsfaktor {buildInlineFrac(1, 1000)}:
-        </p>
-        <p>
-          {pp(data.millilitres)} ml = {pp(data.millilitres)} ·{' '}
-          {buildInlineFrac(1, 1000)} l
-        </p>
-        <p>
-          {pp(data.millilitres)} ml ={' '}
           <strong>
-            {pp(roundToDigits((data.millilitres * 1) / 1000, 2))} l
+            {' '}
+            {pp(data.minutes)} min = {pp(data.minutes * 60)} s{' '}
+          </strong>
+        </p>
+        <hr style={{ margin: '10px 0' }} />
+        <p>
+          <strong> 1 Liter (l)</strong> enthält{' '}
+          <strong> 1000 Mililiter (ml)</strong>
+        </p>
+        <p>Rechne mit dem Umrechnungsfaktor 1000:</p>
+        <p>
+          {pp(data.millilitres)} ml = {pp(data.millilitres)} : 1000 l
+        </p>
+        <p>
+          <strong>
+            {' '}
+            {pp(data.millilitres)} ml ={' '}
+            {pp(roundToDigits((data.millilitres * 1) / 1000, 2))} l{' '}
           </strong>
         </p>
       </>
