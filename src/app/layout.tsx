@@ -6,12 +6,12 @@ import '@ionic/react/css/core.css'
 
 import '../../styles/global.css'
 
-import { Outfit } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-outfit',
+  variable: '--font-inter',
 })
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de" suppressHydrationWarning={true} className={outfit.variable}>
+    <html lang="de" suppressHydrationWarning={true} className={inter.variable}>
       <body>{children}</body>
     </html>
   )
