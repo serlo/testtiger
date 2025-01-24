@@ -524,16 +524,85 @@ export const exercise126: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Der Rabatt auf die kleine Pizza beträgt:</p>
-            {buildEquation([
-              [<>W</>, <>=</>, <>G · p</>],
-              [<></>, <>=</>, <>{pp(data.small)} · 0,6</>],
-              [<></>, <>=</>, <>{pp(data.small * 0.6)} [€]</>],
-            ])}
-            <p>Der neue Preis abzüglich des Rabatts beträgt:</p>
             <p>
-              {pp(data.small)} − {pp(data.small * 0.6)} ={' '}
-              <strong>{pp(data.small * 0.4)} [€]</strong>
+              Berechne den Rabatt auf die kleine Pizza mit der Formel für den
+              Prozentwert W:
+            </p>
+            {buildEquation([
+              [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Grundwert{' '}
+                      {data.small % 1 == 0 && pp(data.small) + ',00'}
+                      {data.small % 1 != 0 &&
+                        (data.small * 10) % 1 == 0 &&
+                        pp(data.small) + '0'}
+                      {data.small % 1 != 0 &&
+                        (data.small * 10) % 1 != 0 &&
+                        (data.small * 100) % 1 == 0 &&
+                        pp(data.small)}{' '}
+                      € ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Prozentsatz 60% = 0,6 ein{' '}
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  {data.small % 1 == 0 && pp(data.small) + ',00'}
+                  {data.small % 1 != 0 &&
+                    (data.small * 10) % 1 == 0 &&
+                    pp(data.small) + '0'}
+                  {data.small % 1 != 0 &&
+                    (data.small * 10) % 1 != 0 &&
+                    (data.small * 100) % 1 == 0 &&
+                    pp(data.small)}{' '}
+                  € · 0,6
+                </>,
+              ],
+              [<></>, <>=</>, <>{pp(data.small * 0.6)} €</>],
+            ])}
+            <p>
+              Der Rabatt beträgt {pp(data.small * 0.6)} €. Ziehe den Rabatt vom
+              Preis der kleinen Pizza ab:
+            </p>
+            <p>
+              {data.small % 1 == 0 && pp(data.small) + ',00'}
+              {data.small % 1 != 0 &&
+                (data.small * 10) % 1 == 0 &&
+                pp(data.small) + '0'}
+              {data.small % 1 != 0 &&
+                (data.small * 10) % 1 != 0 &&
+                (data.small * 100) % 1 == 0 &&
+                pp(data.small)}{' '}
+              € − {pp(data.small * 0.6)} € ={' '}
+              <strong>{pp(data.small * 0.4)} €</strong>
             </p>
           </>
         )

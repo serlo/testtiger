@@ -127,18 +127,19 @@ export const exercise119: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Berechne, wie viel die Pflanze in {data.days} Tagen wächst:</p>
             <p>
-              {' '}
+              Berechne, wie viel die Pflanze in {data.days} Tagen wächst:
+              <br></br>
               {data.days} · {data.wachsen} = {data.days * data.wachsen} [cm]
             </p>
             <p>
-              {data.days * data.wachsen} cm ≙{' '}
+              Rechne diesen Wert in Meter um:<br></br>
+              {data.days * data.wachsen} cm ={' '}
               {pp((data.days * data.wachsen) / 100)} m
             </p>
             <p>
-              Addiere die Starthöhe, um zu bestimmen, wie hoch die Pflanze
-              insgesamt gewachsen ist:
+              Addiere die Starthöhe von {pp(data.start)} m, um zu bestimmen, wie
+              hoch die Pflanze insgesamt gewachsen ist:
             </p>
             <p>
               {data.start} + {pp((data.days * data.wachsen) / 100)} ={' '}
