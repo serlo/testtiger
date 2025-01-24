@@ -464,15 +464,7 @@ export const exercise126: Exercise<DATA> = {
                       Preis der Pizza
                     </td>
                     <td className="py-1 border text-center font-bold p-1 text-black">
-                      {data.small % 1 == 0 && pp(data.small) + ',00'}
-                      {data.small % 1 != 0 &&
-                        (data.small * 10) % 1 == 0 &&
-                        pp(data.small) + '0'}
-                      {data.small % 1 != 0 &&
-                        (data.small * 10) % 1 != 0 &&
-                        (data.small * 100) % 1 == 0 &&
-                        pp(data.small)}{' '}
-                      €
+                      {data.small.toFixed(2).replace('.', ',')} €
                     </td>
                     <td className="py-1 border text-center font-bold p-1  text-black">
                       {(2 * data.small) % 1 == 0 && pp(2 * data.small) + ',00'}
@@ -516,7 +508,8 @@ export const exercise126: Exercise<DATA> = {
           <>
             <p>
               Bestätige durch eine Rechnung, dass Mehmet für die kleine Pizza{' '}
-              {pp(data.small * 0.4)} € bezahlen müsste.
+              {(data.small * 0.4).toFixed(2).replace('.', ',')} € bezahlen
+              müsste.
             </p>
           </>
         )
@@ -542,15 +535,7 @@ export const exercise126: Exercise<DATA> = {
                   <Color4>
                     <span style={{ fontSize: 'small' }}>
                       setze für den Grundwert{' '}
-                      {data.small % 1 == 0 && pp(data.small) + ',00'}
-                      {data.small % 1 != 0 &&
-                        (data.small * 10) % 1 == 0 &&
-                        pp(data.small) + '0'}
-                      {data.small % 1 != 0 &&
-                        (data.small * 10) % 1 != 0 &&
-                        (data.small * 100) % 1 == 0 &&
-                        pp(data.small)}{' '}
-                      € ein
+                      {data.small.toFixed(2).replace('.', ',')} € ein
                     </span>
                   </Color4>
                 </>,
@@ -574,35 +559,25 @@ export const exercise126: Exercise<DATA> = {
               [
                 <></>,
                 <>=</>,
-                <>
-                  {data.small % 1 == 0 && pp(data.small) + ',00'}
-                  {data.small % 1 != 0 &&
-                    (data.small * 10) % 1 == 0 &&
-                    pp(data.small) + '0'}
-                  {data.small % 1 != 0 &&
-                    (data.small * 10) % 1 != 0 &&
-                    (data.small * 100) % 1 == 0 &&
-                    pp(data.small)}{' '}
-                  € · 0,6
-                </>,
+                <>{data.small.toFixed(2).replace('.', ',')} € · 0,6</>,
               ],
-              [<></>, <>=</>, <>{pp(data.small * 0.6)} €</>],
+              [
+                <></>,
+                <>=</>,
+                <>{(data.small * 0.6).toFixed(2).replace('.', ',')} €</>,
+              ],
             ])}
             <p>
-              Der Rabatt beträgt {pp(data.small * 0.6)} €. Ziehe den Rabatt vom
-              Preis der kleinen Pizza ab:
+              Der Rabatt beträgt{' '}
+              {(data.small * 0.6).toFixed(2).replace('.', ',')} €. Ziehe den
+              Rabatt vom Preis der kleinen Pizza ab:
             </p>
             <p>
-              {data.small % 1 == 0 && pp(data.small) + ',00'}
-              {data.small % 1 != 0 &&
-                (data.small * 10) % 1 == 0 &&
-                pp(data.small) + '0'}
-              {data.small % 1 != 0 &&
-                (data.small * 10) % 1 != 0 &&
-                (data.small * 100) % 1 == 0 &&
-                pp(data.small)}{' '}
-              € − {pp(data.small * 0.6)} € ={' '}
-              <strong>{pp(data.small * 0.4)} €</strong>
+              {data.small.toFixed(2).replace('.', ',')} € −{' '}
+              {(data.small * 0.6).toFixed(2).replace('.', ',')} € ={' '}
+              <strong>
+                {(data.small * 0.4).toFixed(2).replace('.', ',')} €
+              </strong>
             </p>
           </>
         )
