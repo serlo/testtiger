@@ -274,9 +274,9 @@ export const exercise127: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Seitenlänge des Quadrats beträgt {hypo} cm = {pp(hypo / 100)}{' '}
-              m. Setze dies in die Formel für den Flächeninhalt eines Quadrats
-              ein:
+              Die Seitenlänge des Quadrats beträgt<br></br> {hypo} cm ={' '}
+              {pp(hypo / 100)} m. <br></br>Setze dies in die Formel für den
+              Flächeninhalt eines Quadrats ein:
             </p>
             {buildEquation([
               [<>A</>, <>=</>, <>a²</>],
