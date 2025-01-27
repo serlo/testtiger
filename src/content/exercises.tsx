@@ -136,6 +136,7 @@ import { exercise265 } from './implementations/BW_Realschule/265-2021-B-2-Funkti
 import { exercise266 } from './implementations/BW_Realschule/266-2021-B-3-Glücksspiel+Parabel'
 import { exercise267 } from './implementations/BW_Realschule/267-2021-B-4-Parabel+Figur'
 import { exercise92 } from './implementations/NRW-MSA/9_2-2023-2-3-Zahlenpaare'
+import { exercise198 } from './implementations/NRW-EESA/198-intro-lineare-Gleichungen'
 
 export const exercisesData: { [key: number]: Exercise<any> } = {
   1: exercise1,
@@ -233,6 +234,7 @@ export const exercisesData: { [key: number]: Exercise<any> } = {
   112: exercise112,
   110: exercise110,
   111: exercise111,
+  198: exercise198,
   199: exercise199,
   200: exercise200,
   201: exercise201,
