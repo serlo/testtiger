@@ -120,7 +120,9 @@ export const exercise109: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}>Werte einsetzen</span>
+                    <span style={{ fontSize: 'small' }}>
+                      setze a = {data.a} und h = {pp(h)} ein
+                    </span>
                   </Color4>
                 </>,
               ],
