@@ -2207,7 +2207,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
-            icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
+            icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
+            iconSize: 22,
             position: { x: 190, y: 210 },
             steps: [{ exercise: { id: 199 } }],
           },
@@ -2221,13 +2222,15 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zahlen vergleichen',
-            icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
+            icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
+            iconSize: 22,
             position: { x: 280, y: 340 },
             steps: [{ exercise: { id: 120 } }],
           },
           {
             type: 'new-skill',
             title: 'Einheiten',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 210, y: 440 },
             steps: [{ exercise: { id: 130 } }],
             showExamplePrescreen: true,
@@ -2235,6 +2238,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
+            icon: '/learning-path/NRW_EESA_icons/schriftliches-addieren.svg',
             position: { x: 90, y: 500 },
             steps: [{ exercise: { id: 123 } }],
           },
@@ -2248,6 +2252,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Schätzen & Überschlagen',
+            icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
+            iconSize: 30,
             position: { x: 290, y: 650 },
             steps: [{ exercise: { id: 114 } }],
           },
@@ -2264,6 +2270,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Proportionale Zuordnung',
+            icon: '/learning-path/NRW_EESA_icons/proportionale-zuordnung.svg',
+            iconSize: 45,
             position: { x: 120, y: 790 },
             steps: [
               {
@@ -2278,6 +2286,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Rechnen mit proportionalen Größen',
+            icon: '/learning-path/NRW_EESA_icons/proportionale-zuordnung.svg',
+            iconSize: 45,
             position: { x: 60, y: 930 },
             steps: [
               {
@@ -2292,6 +2302,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Prozentrechnung',
+            icon: '/learning-path/NRW_EESA_icons/prozentrechnung.svg',
+            iconSize: 30,
             position: { x: 200, y: 1050 },
             steps: [
               {
@@ -2319,6 +2331,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Termwert bestimmen',
+            icon: '/learning-path/NRW_EESA_icons/termwert.svg',
+            iconSize: 50,
             position: { x: 250, y: 1310 },
             steps: [
               {
@@ -2332,6 +2346,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Gleichungen',
+            icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
+            iconSize: 32,
             position: { x: 100, y: 1420 },
             steps: [
               {
