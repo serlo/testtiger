@@ -2207,7 +2207,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Intro: Zahlen vergleichen',
-            icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
+            icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
             position: { x: 190, y: 210 },
             steps: [{ exercise: { id: 199 } }],
           },
@@ -2221,13 +2221,14 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zahlen vergleichen',
-            icon: '/learning-path/NRW_EESA_icons/zahlen-ordnen.svg',
+            icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
             position: { x: 280, y: 340 },
             steps: [{ exercise: { id: 120 } }],
           },
           {
             type: 'new-skill',
             title: 'Einheiten',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 210, y: 440 },
             steps: [{ exercise: { id: 130 } }],
             showExamplePrescreen: true,
@@ -2235,6 +2236,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Schriftliches Addieren',
+            icon: '/learning-path/NRW_EESA_icons/schriftliches-addieren.svg',
             position: { x: 90, y: 500 },
             steps: [{ exercise: { id: 123 } }],
           },
@@ -2248,6 +2250,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Schätzen & Überschlagen',
+            icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
             position: { x: 290, y: 650 },
             steps: [{ exercise: { id: 114 } }],
           },
