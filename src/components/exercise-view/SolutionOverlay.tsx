@@ -182,11 +182,10 @@ export function SolutionOverlay() {
               markCurrentExerciseAsComplete()
             }}
           >
-            Fertig
+            Als gelöst markieren
           </button>
-          <br />
           <button
-            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-xl"
+            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-xl ml-3"
             onClick={() => {
               ExerciseViewStore.update(s => {
                 s.chatOverlay = null
@@ -194,7 +193,18 @@ export function SolutionOverlay() {
               reseed()
             }}
           >
-            <FaIcon icon={faWandMagicSparkles} /> Aufgabe neu generieren
+            <FaIcon icon={faWandMagicSparkles} /> Nochmal
+          </button>
+          <br />
+          <button
+            className="text-sm text-gray-700 underline"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+            }}
+          >
+            Lösung schließen
           </button>
         </div>
       </div>
