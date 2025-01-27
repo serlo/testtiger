@@ -105,8 +105,8 @@ export function ExerciseViewContent() {
           })
         }}
       >
-        <div className="h-6"></div>
-        <div className="mb-9 mx-4 p-4 rounded-lg">
+        <div className="h-2"></div>
+        <div className="mb-5 mx-2 p-4 rounded-lg">
           <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
             <div className="inset-0 absolute">
               <FaIcon icon={faCalculator} />
@@ -240,6 +240,7 @@ export function ExerciseViewContent() {
                       })
                     : null,
             )
+
             return (
               <>
                 {introComps.length > 0 && introComps.some(e => e) && (
@@ -262,9 +263,38 @@ export function ExerciseViewContent() {
                   i,
                   task.duration ?? '?',
                   task.points ?? '?',
-                  <>{renderContentElement(<div>{task.task({ data })}</div>)}</>,
+                  <>
+                    {renderContentElement(
+                      <div>
+                        {task.task({
+                          data:
+                            examplePrescreen && exercise.exampleData
+                              ? exercise.exampleData
+                              : data,
+                        })}
+                      </div>,
+                    )}
+                  </>,
                   page.displayIndex,
                 )}
+                {examplePrescreen &&
+                  renderContentCard(
+                    i,
+
+                    task.duration ?? '?',
+                    task.points ?? '?',
+                    <>
+                      {renderContentElement(
+                        <div>
+                          {task.solution({
+                            data: exercise.exampleData ?? data,
+                          })}
+                        </div>,
+                      )}
+                    </>,
+                    page.displayIndex,
+                    `solution-${i}`,
+                  )}
               </>
             )
           }
