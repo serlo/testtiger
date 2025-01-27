@@ -164,6 +164,7 @@ export function LearningPathMap() {
             isMuted = true
             notMutedYet = true
           }
+          const iconSize = el.source.iconSize || 26
           return (
             <Fragment key={i}>
               {
@@ -408,10 +409,10 @@ export function LearningPathMap() {
               {el.source.icon && (
                 <image
                   href={el.source.icon}
-                  x={el.source.position!.x - 13}
-                  y={mapHeight - el.source.position!.y - 13}
-                  width={26}
-                  height={26}
+                  x={el.source.position!.x - iconSize / 2}
+                  y={mapHeight - el.source.position!.y - iconSize / 2}
+                  width={iconSize}
+                  height={iconSize}
                   fill="white"
                   className="pointer-events-none"
                 />
