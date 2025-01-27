@@ -106,7 +106,7 @@ export function ExerciseViewContent() {
         }}
       >
         <div className="h-6"></div>
-        <div className="mb-9 mx-4 bg-white p-4 rounded-lg shadow-lg text-sm">
+        <div className="mb-9 mx-4 p-4 rounded-lg">
           <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
             <div className="inset-0 absolute">
               <FaIcon icon={faCalculator} />
