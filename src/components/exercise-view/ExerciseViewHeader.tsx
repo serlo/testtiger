@@ -26,37 +26,37 @@ export function ExerciseViewHeader() {
   const history = useHistory()
 
   return (
-    <div className="mt-3 mb-1 text-sm mx-3">
-      <button
-        className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block"
-        onClick={() => {
-          if (toHome) {
-            history.push('/app/home')
-            return
-          }
-          const i1 = navigationData[1].topics.findIndex(t =>
-            t.skillGroups.some(g => g.name == skill),
-          )
-          const i2 = navigationData[2].topics.findIndex(t =>
-            t.skillGroups.some(g => g.name == skill),
-          )
-          const i3 = navigationData[3].topics.findIndex(t =>
-            t.skillGroups.some(g => g.name == skill),
-          )
-          // scroll restoration is buggy and will fix later
-          history.push(
-            skill && (i1 >= 0 || i2 >= 0 || i3 >= 0)
-              ? '/topic/' +
-                  (exam == 1
-                    ? i1 + 1
-                    : exam == 2
-                      ? i2 + 101
-                      : i3 + 201
-                  ).toString()
-              : '/app/superskills',
-          )
-        }}
-      >
+    <div
+      className="mt-3 mb-1 mx-3 border shadow-md px-4 py-2 rounded-lg"
+      onClick={() => {
+        if (toHome) {
+          history.push('/app/home')
+          return
+        }
+        const i1 = navigationData[1].topics.findIndex(t =>
+          t.skillGroups.some(g => g.name == skill),
+        )
+        const i2 = navigationData[2].topics.findIndex(t =>
+          t.skillGroups.some(g => g.name == skill),
+        )
+        const i3 = navigationData[3].topics.findIndex(t =>
+          t.skillGroups.some(g => g.name == skill),
+        )
+        // scroll restoration is buggy and will fix later
+        history.push(
+          skill && (i1 >= 0 || i2 >= 0 || i3 >= 0)
+            ? '/topic/' +
+                (exam == 1
+                  ? i1 + 1
+                  : exam == 2
+                    ? i2 + 101
+                    : i3 + 201
+                ).toString()
+            : '/app/superskills',
+        )
+      }}
+    >
+      <button className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block">
         <FaIcon icon={faArrowLeft} />{' '}
         {skill ? (
           <>
