@@ -40,15 +40,10 @@ export const exercise132: Exercise<DATA> = {
     return (
       <>
         <p>
-          <strong>Rabatt berechnen</strong>
-        </p>
-        <p>
-          Wir berechnen zuerst den Rabatt mit der Formel des Prozentwerts.
-          Wandle dazu den Prozentwert in eine Dezimalzahl um: {data.rabatt} % ≙{' '}
-          {pp(data.rabatt / 100)}
+          <p>Berechne den Rabatt mit der Formel für den Prozentwert W:</p>
         </p>
         {buildEquation([
-          ['W', '=', 'G · p'],
+          [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
           [
             '',
             <>
@@ -59,7 +54,26 @@ export const exercise132: Exercise<DATA> = {
             </>,
             <>
               <Color4>
-                <span style={{ fontSize: 'small' }}>Einsetzen der Werte</span>
+                <span style={{ fontSize: 'small' }}>
+                  setze für den Grundwert {data.ball} € ein
+                </span>
+              </Color4>
+            </>,
+          ],
+          [
+            '',
+            <>
+              {' '}
+              <Color4>
+                <span className="inline-block  scale-y-[1.5]">↓</span>
+              </Color4>
+            </>,
+            <>
+              <Color4>
+                <span style={{ fontSize: 'small' }}>
+                  setze für den Prozentsatz {data.rabatt} % ={' '}
+                  {pp(data.rabatt / 100)} ein{' '}
+                </span>
               </Color4>
             </>,
           ],
@@ -67,20 +81,24 @@ export const exercise132: Exercise<DATA> = {
             '',
             '=',
             <>
-              {data.ball} · {pp(data.rabatt / 100)}
+              {data.ball} € · {pp(data.rabatt / 100)}
             </>,
           ],
-          ['', '=', <>{pp((data.ball * data.rabatt) / 100)}</>],
-          ['W', '=', <>{pp((data.ball * data.rabatt) / 100)} [€]</>],
+          ['W', '=', <>{pp((data.ball * data.rabatt) / 100)} €</>],
         ])}
         <p>Der Rabatt beträgt {pp((data.ball * data.rabatt) / 100)} €.</p>
         <p>
-          <strong>Neuer Preis berechnen</strong>
+          Ziehe den Rabatt vom ursprünglichen Preis ab:<br></br>
+          {data.ball} € − {pp((data.ball * data.rabatt) / 100)} € ={' '}
+          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>
         </p>
-        <p>Abzüglich des Rabatts beträgt der neue Verkaufspreis:</p>
         <p>
-          {data.ball} − {pp((data.ball * data.rabatt) / 100)} ={' '}
-          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} [€]</strong>
+          Der neue Kaufpreis beträgt{' '}
+          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>.
+        </p>
+        <p>
+          <b>Hinweis:</b> Alternativ kannst du den Rabatt auch mit dem Dreisatz
+          berechnen.
         </p>
       </>
     )

@@ -579,6 +579,10 @@ export const exercise126: Exercise<DATA> = {
                 {(data.small * 0.4).toFixed(2).replace('.', ',')} €
               </strong>
             </p>
+            <p>
+              <b>Hinweis:</b> Alternativ kannst du den Rabatt auch mit dem
+              Dreisatz berechnen.
+            </p>
           </>
         )
       },
