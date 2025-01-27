@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4, Color5 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
@@ -85,7 +85,8 @@ export const exercise136: Exercise<DATA> = {
         return (
           <>
             <p>
-              Tom fährt {data.pace} Kilometer in 60 Minuten. Verwende den
+              Tom fährt mit einer Geschwindigkeit von {data.pace} Kilometer pro
+              Stunde. Das sind {data.pace} Kilometer in 60 Minuten. Verwende den
               Dreisatz, um zu bestimmen, wie lange er für {data.weg} Kilometer
               braucht:
             </p>
@@ -105,7 +106,7 @@ export const exercise136: Exercise<DATA> = {
                   </Color4>
                 </>,
               ],
-              [<>1 km</>, <>≙</>, <>{60 / data.pace} min</>],
+              [<>1 km</>, <>≙</>, <>{pp(60 / data.pace)} min</>],
               [
                 '',
                 <>
@@ -277,13 +278,22 @@ export const exercise136: Exercise<DATA> = {
           <>
             <p>Die Gesamtkosten setzen sich zusammen aus:</p>
             <ul>
-              <li>2 mal die Startgebühr: {pp(data.fixkosten * 2)} €</li>
               <li>
-                Die Gebühr pro Minute für 2 mal {time} Minuten:<br></br>2 ·{' '}
-                {pp(data.zeitkosten)} · {time} ={' '}
-                {pp(2 * data.zeitkosten * time)} [€]
+                2 mal die <Color1>Startgebühr</Color1>: 2 ·{' '}
+                <Color1>{pp(data.fixkosten)} €</Color1> ={' '}
+                {pp(data.fixkosten * 2)} €
+              </li>
+              <li>
+                Die <Color2>Gebühr pro Minute</Color2> für 2 mal {time} Minuten:
+                <br></br>2 · {time} · <Color2>{pp(data.zeitkosten)} €</Color2> ={' '}
+                {pp(2 * data.zeitkosten * time)} €
               </li>
             </ul>
+            <p>
+              Addiere die Beträge: {pp(data.fixkosten * 2)} € +{' '}
+              {pp(2 * data.zeitkosten * time)} € ={' '}
+              {pp(2 * data.zeitkosten * time + data.fixkosten * 2)} €
+            </p>
             <p>
               Damit bezahlt Tom{' '}
               <strong>

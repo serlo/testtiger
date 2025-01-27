@@ -174,7 +174,7 @@ export const exercise129: Exercise<DATA> = {
                   textAnchor="middle"
                   fill="black"
                 >
-                  {step.toFixed(1)}
+                  {step.toFixed(1).replace('.', ',')}
                 </text>
               </g>
             )
@@ -225,7 +225,7 @@ export const exercise129: Exercise<DATA> = {
                   textAnchor="middle"
                   fill="blue"
                 >
-                  {value.toFixed(2)}
+                  {value.toFixed(2).replace('.', ',')}
                 </text>
               </g>
             )
@@ -242,11 +242,13 @@ export const exercise129: Exercise<DATA> = {
         <p>Schau dir die beiden positiven Zahlen auf dem Zahlenstrahl an:</p>
         {renderNumberLine(sortedPositives, 0, false)}
         <hr style={{ margin: '10px 0' }} />
-        <p>
-          Kleinere Zahlen sind auf dem Zahlenstrahl immer weiter links als
-          größere Zahlen. Negative Zahlen sind immer kleiner als positive
-          Zahlen.
-        </p>
+        <ul>
+          <li>
+            Kleinere Zahlen sind auf dem Zahlenstrahl immer weiter links als
+            größere Zahlen.
+          </li>
+          <li>Negative Zahlen sind immer kleiner als positive Zahlen.</li>
+        </ul>
         <hr style={{ margin: '10px 0' }} />
         <p>
           Ordne nun die Zahlen. Beginne ganz links mit der kleinsten Zahl und
@@ -254,9 +256,10 @@ export const exercise129: Exercise<DATA> = {
         </p>
         <p>
           <strong>
-            {sortedNegatives[0].toFixed(2)} &lt; {sortedNegatives[1].toFixed(2)}{' '}
-            &lt; {sortedPositives[0].toFixed(2)} &lt;{' '}
-            {sortedPositives[1].toFixed(2)}
+            {sortedNegatives[0].toFixed(2).replace('.', ',')} &lt;{' '}
+            {sortedNegatives[1].toFixed(2).replace('.', ',')} &lt;{' '}
+            {sortedPositives[0].toFixed(2).replace('.', ',')} &lt;{' '}
+            {sortedPositives[1].toFixed(2).replace('.', ',')}
           </strong>
         </p>
       </>
