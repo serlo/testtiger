@@ -142,7 +142,7 @@ export const exercise119: Exercise<DATA> = {
               hoch die Pflanze insgesamt gewachsen ist:
             </p>
             <p>
-              {data.start} + {pp((data.days * data.wachsen) / 100)} ={' '}
+              {pp(data.start)} + {pp((data.days * data.wachsen) / 100)} ={' '}
               <strong>
                 {pp(data.start + (data.days * data.wachsen) / 100)} [m]
               </strong>
