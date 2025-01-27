@@ -27,7 +27,7 @@ export function ExerciseViewHeader() {
 
   return (
     <div
-      className="mt-3 mb-1 mx-3 border shadow-md px-4 py-2 rounded-lg"
+      className="mt-3 mb-1 mx-3 border shadow-md px-4 py-2 rounded-lg bg-white"
       onClick={() => {
         if (toHome) {
           history.push('/app/home')
