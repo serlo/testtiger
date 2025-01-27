@@ -398,6 +398,7 @@ export function LearningPathMap() {
                       s.toHome = true
                       s.tag = lessonDetails.title + '#'
                       s.hasExamplePrescreen = false
+                      s.examplePrescreen = false
                     })
                     history.push('/exercise/123456')
                   }
