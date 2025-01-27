@@ -8,70 +8,73 @@ interface DATA {
   task: number
 }
 
-function GitterComponent() {
-  const [showGitter, setShowGitter] = useState(false)
+function ToggleableGrid({
+  imageHref,
+  imageWidth,
+  imageHeight,
+  columns,
+  rows,
+  strokeColor = 'white',
+  strokeWidth = 2,
+  taskName,
+}: {
+  imageHref: string
+  imageWidth: number
+  imageHeight: number
+  columns: number
+  rows: number
+  strokeColor?: string
+  strokeWidth?: number
+  taskName: string
+}) {
+  const [showGrid, setShowGrid] = useState(false)
+
   return (
     <>
-      <p> Schätze die Anzahl der Reiskörner. Notiere deinen Lösungsweg.</p>
-      {showGitter ? (
-        <svg viewBox="0 0 328 220" className="my-8">
-          <image
-            href="/content/NRW_EESA/133_Reis.PNG"
-            height="220"
-            width="328"
-          />
-          <line
-            x2={328 / 4}
-            y1={0}
-            x1={328 / 4}
-            y2={220}
-            stroke="white"
-            strokeWidth={2}
-          />
-          <line
-            x2={(2 * 328) / 4}
-            y1={0}
-            x1={(2 * 328) / 4}
-            y2={220}
-            stroke="white"
-            strokeWidth={2}
-          />
-          <line
-            x2={(3 * 328) / 4}
-            y1={0}
-            x1={(3 * 328) / 4}
-            y2={220}
-            stroke="white"
-            strokeWidth={2}
-          />
-
-          <line
-            x2={0}
-            y1={220 / 3}
-            x1={328}
-            y2={220 / 3}
-            stroke="white"
-            strokeWidth={2}
-          />
-          <line
-            x2={0}
-            y1={(2 * 220) / 3}
-            x1={328}
-            y2={(2 * 220) / 3}
-            stroke="white"
-            strokeWidth={2}
-          />
+      <p>Schätze die Anzahl der {taskName}. Notiere deinen Lösungsweg.</p>
+      {showGrid ? (
+        <svg viewBox={`0 0 ${imageWidth} ${imageHeight}`} className="my-8">
+          <image href={imageHref} height={imageHeight} width={imageWidth} />
+          {/* Vertical lines */}
+          {Array.from({ length: columns - 1 }).map((_, index) => {
+            const x = ((index + 1) * imageWidth) / columns
+            return (
+              <line
+                key={`v-${index}`}
+                x1={x}
+                y1={0}
+                x2={x}
+                y2={imageHeight}
+                stroke={strokeColor}
+                strokeWidth={strokeWidth}
+              />
+            )
+          })}
+          {/* Horizontal lines */}
+          {Array.from({ length: rows - 1 }).map((_, index) => {
+            const y = ((index + 1) * imageHeight) / rows
+            return (
+              <line
+                key={`h-${index}`}
+                x1={0}
+                y1={y}
+                x2={imageWidth}
+                y2={y}
+                stroke={strokeColor}
+                strokeWidth={strokeWidth}
+              />
+            )
+          })}
         </svg>
       ) : (
-        getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')
+        getImageAndDescription(imageHref, '')
       )}
       <div>
         <label className="cursor-pointer">
           <input
             type="checkbox"
-            onChange={() => {
-              setShowGitter(!showGitter)
-            }}
+            checked={showGrid}
+            onChange={() => setShowGrid(!showGrid)}
           />{' '}
           Gitterlinien anzeigen
         </label>
@@ -95,15 +98,36 @@ export const exercise114: Exercise<DATA> = {
     return true
   },
   task({ data }) {
-    if (data.task == 4) return <GitterComponent />
+    if ([4, 5].includes(data.task)) {
+      const config =
+        data.task === 4
+          ? {
+              imageHref: '/content/NRW_EESA/133_Reis.PNG',
+              imageWidth: 328,
+              imageHeight: 220,
+              columns: 4,
+              rows: 3,
+              strokeColor: 'white',
+              taskName: 'Reiskörner',
+            }
+          : {
+              imageHref: '/content/NRW_EESA/114_Schätzen.png',
+              imageWidth: 328,
+              imageHeight: 310,
+              columns: 4,
+              rows: 4,
+              strokeColor: 'black',
+              taskName: 'Pinnwand-Nadeln',
+            }
+      return <ToggleableGrid {...config} />
+    }
+
     return (
       <>
         <p>
           Schätze die Anzahl der {data.task === 1 && 'Röhrchen'}
           {data.task === 2 && 'Holzscheite'}
-          {data.task === 3 && 'Bücher'}
-          {data.task === 4 && 'Reiskörner'}
-          {data.task === 5 && 'Pinnwand-Nadeln'}. Notiere deinen Lösungsweg.
+          {data.task === 3 && 'Bücher'}. Notiere deinen Lösungsweg.
         </p>
         {data.task === 1 &&
           getImageAndDescription('/content/NRW_MSA/NRW_MSA_Schätzen_1.jpg', '')}
@@ -111,10 +135,6 @@ export const exercise114: Exercise<DATA> = {
           getImageAndDescription('/content/NRW_MSA/NRW_MSA_Schätzen_2.jpg', '')}
         {data.task === 3 &&
           getImageAndDescription('/content/NRW_MSA/NRW_MSA_Schätzen_3.jpg', '')}
-        {data.task === 4 &&
-          getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')}
-        {data.task === 5 &&
-          getImageAndDescription('/content/NRW_EESA/114_Schätzen.png', '')}
       </>
     )
   },
