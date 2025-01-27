@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color3, Color4 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 
 interface DATA {
@@ -81,7 +81,9 @@ export const exercise102: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}>Wert einsetzen</span>
+                    <span style={{ fontSize: 'small' }}>
+                      x = {data.x_input} einsetzen
+                    </span>
                   </Color4>
                 </>,
               ],
@@ -220,24 +222,183 @@ export const exercise102: Exercise<DATA> = {
             <p>
               {data.case == 1 && (
                 <>
-                  Tom hat nur die linke Seite durch {data.faktor} geteilt. Er
-                  hätte beide Seiten durch {data.faktor} teilen müssen.
+                  <p>
+                    Tom hat nur die linke Seite durch {data.faktor} geteilt. Er
+                    hätte beide Seiten durch {data.faktor} teilen müssen.
+                  </p>{' '}
+                  {buildEquation([
+                    [
+                      <>
+                        (x + {data.summand}) · {data.faktor}
+                      </>,
+                      <>=</>,
+                      <>{rechts}</>,
+                      <>| : {data.faktor}</>,
+                    ],
+                    [
+                      '',
+                      <>
+                        {' '}
+                        <Color4>
+                          <span className="inline-block  scale-y-[1.5]">↓</span>
+                        </Color4>
+                      </>,
+                      <>
+                        <Color4>
+                          <span style={{ fontSize: 'small' }}>
+                            <Color3>
+                              {' '}
+                              {rechts} : {data.faktor} = {rechts / data.faktor}
+                            </Color3>
+                          </span>
+                        </Color4>
+                      </>,
+                    ],
+                    [
+                      <>x + {data.summand}</>,
+                      <>=</>,
+                      <>
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            borderRadius: '50%',
+                            border: '2px solid red',
+                            padding: '2px 6px',
+                          }}
+                        >
+                          {rechts}
+                        </span>
+                      </>,
+                      <></>,
+                    ],
+                  ])}
+                  <p>
+                    Hier ist die <b>richtige Rechnung</b>:
+                  </p>
                 </>
               )}
               {data.case == 2 && (
                 <>
-                  Tom hat nur die linke Seite mit {data.summand} subtrahiert. Er
-                  hätte {data.summand} von beiden Seiten abziehen müssen.
+                  <p>
+                    Tom hat nur auf der linken Seite {data.summand} subtrahiert.
+                    Er hätte {data.summand} von beiden Seiten abziehen müssen.
+                  </p>
+                  {buildEquation([
+                    [
+                      <>
+                        (x + {data.summand}) · {data.faktor}
+                      </>,
+                      <>=</>,
+                      <>{rechts}</>,
+                      <>| : {data.faktor}</>,
+                    ],
+                    [
+                      <>x + {data.summand}</>,
+                      <>=</>,
+                      <>{rechts / data.faktor}</>,
+                      <>| − {data.summand}</>,
+                    ],
+                    [
+                      '',
+                      <>
+                        {' '}
+                        <Color4>
+                          <span className="inline-block  scale-y-[1.5]">↓</span>
+                        </Color4>
+                      </>,
+                      <>
+                        <Color4>
+                          <span style={{ fontSize: 'small' }}>
+                            <Color3>
+                              {' '}
+                              {rechts / data.faktor} - {data.summand} ={' '}
+                              {rechts / data.faktor - data.summand}
+                            </Color3>
+                          </span>
+                        </Color4>
+                      </>,
+                    ],
+                    [
+                      <>x</>,
+                      <>=</>,
+                      <>
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            borderRadius: '50%',
+                            border: '2px solid red',
+                            padding: '2px 6px',
+                          }}
+                        >
+                          {rechts / data.faktor}
+                        </span>
+                      </>,
+                    ],
+                  ])}
+                  <p>
+                    Hier ist die <b>richtige Rechnung</b>:
+                  </p>
                 </>
               )}
               {data.case == 3 && (
                 <>
-                  Tom hat die Klammer auf der linken Seite falsch aufgelöst.
-                  Besser wäre, beide Seiten durch den Faktor {data.faktor} zu
-                  teilen.
+                  <p>
+                    Tom hat die Klammer auf der linken Seite falsch aufgelöst.
+                  </p>
+                  {buildEquation([
+                    [
+                      <>
+                        (x + {data.summand}) · {data.faktor}
+                      </>,
+                      <>=</>,
+                      <>{rechts}</>,
+                    ],
+                    [
+                      '',
+                      <>
+                        {' '}
+                        <Color4>
+                          <span className="inline-block  scale-y-[1.5]">↓</span>
+                        </Color4>
+                      </>,
+                      <>
+                        <Color4>
+                          <span style={{ fontSize: 'small' }}>
+                            <Color3>
+                              {' '}
+                              (x + {data.summand}) · {data.faktor} ={' '}
+                              {data.faktor}x + {data.faktor * data.summand}
+                            </Color3>
+                          </span>
+                        </Color4>
+                      </>,
+                    ],
+                    [
+                      <>
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            borderRadius: '50%',
+                            border: '2px solid red',
+                            padding: '2px 6px',
+                          }}
+                        >
+                          x + {data.faktor * data.summand}
+                        </span>
+                      </>,
+                      <>=</>,
+                      <>{rechts}</>,
+                      <>| − {data.faktor * data.summand}</>,
+                    ],
+                  ])}
+                  <p>
+                    Einfacher wäre, im ersten Schritt beide Seiten durch{' '}
+                    {data.faktor} zu teilen:
+                  </p>
                 </>
               )}
             </p>
+
             {buildEquation([
               [
                 <>
