@@ -75,10 +75,10 @@ export const exercise115: Exercise<DATA> = {
               Beginne damit die Grundlinie c mit der Länge {pp(data.c)} cm zu
               konstruieren:
             </p>
-            <svg viewBox="0 0 328 30">
+            <svg viewBox="0 0 328 27">
               <image
-                href="/content/NRW_EESA/115_Dreieck1.PNG"
-                height="30"
+                href="/content/NRW_EESA/115_dreieck1.svg"
+                height="27"
                 width="328"
               />
               <text
@@ -91,16 +91,17 @@ export const exercise115: Exercise<DATA> = {
                 c = {pp(data.c)} cm
               </text>
             </svg>
+            <hr style={{ margin: '10px 0' }} />
             <p>Zeichne im Punkt A einen Winkel von {data.alpha_1}°:</p>
-            <svg viewBox="0 0 328 120">
+            <svg viewBox="0 0 328 150">
               <image
-                href="/content/NRW_EESA/Dreieck12.svg"
-                height="120"
+                href="/content/NRW_EESA/115_dreieck2.svg"
+                height="150"
                 width="328"
               />
               <text
-                x="144"
-                y="95"
+                x="114"
+                y="125"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
@@ -109,7 +110,7 @@ export const exercise115: Exercise<DATA> = {
               </text>
               <text
                 x="164"
-                y="115"
+                y="147"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
@@ -117,18 +118,19 @@ export const exercise115: Exercise<DATA> = {
                 c = {pp(data.c)} cm
               </text>
             </svg>
+            <hr style={{ margin: '10px 0' }} />
             <p>
-              Markiere Punkt C im Abstand von b = {pp(data.b)} cm zu Punkt A.
+              Markiere Punkt C im Abstand von b = {pp(data.b)} cm zu Punkt A:
             </p>
-            <svg viewBox="0 0 328 120">
+            <svg viewBox="0 0 328 150">
               <image
-                href="/content/NRW_EESA/Dreieck2neu.svg"
-                height="120"
+                href="/content/NRW_EESA/115_dreieck3.svg"
+                height="150"
                 width="328"
               />
               <text
                 x="164"
-                y="115"
+                y="147"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
@@ -136,17 +138,18 @@ export const exercise115: Exercise<DATA> = {
                 c = {pp(data.c)} cm
               </text>
               <text
-                x="120"
-                y="55"
+                x="125"
+                y="75"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
+                transform="rotate(-50, 125, 75)"
               >
                 b = {pp(data.b)} cm
               </text>
               <text
-                x="144"
-                y="95"
+                x="114"
+                y="125"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
@@ -154,16 +157,17 @@ export const exercise115: Exercise<DATA> = {
                 {pp(data.alpha_1)}°
               </text>
             </svg>
-            <p>Verbinde die Punkte B und C, um das Dreieck fertigzustellen.</p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Verbinde die Punkte B und C, um das Dreieck fertigzustellen:</p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/115_Dreieck3.PNG"
+                href="/content/NRW_EESA/115_dreieck4.svg"
                 height="140"
                 width="328"
               />
               <text
                 x="170"
-                y="130"
+                y="135"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
@@ -176,12 +180,13 @@ export const exercise115: Exercise<DATA> = {
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
+                transform="rotate(-50, 125, 60)"
               >
                 b = {pp(data.b)} cm
               </text>
               <text
-                x="130"
-                y="110"
+                x="112"
+                y="112"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
