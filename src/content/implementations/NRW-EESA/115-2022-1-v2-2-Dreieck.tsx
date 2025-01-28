@@ -21,8 +21,8 @@ export const exercise115: Exercise<DATA> = {
       beta: rng.randomIntBetween(55, 65),
       gamma: rng.randomIntBetween(35, 60),
       alpha_1: rng.randomIntBetween(6, 9) * 5,
-      b: rng.randomIntBetween(30, 40) / 10,
-      c: rng.randomIntBetween(35, 50) / 10,
+      b: rng.randomIntBetween(30, 38) / 10,
+      c: rng.randomIntBetween(39, 45) / 10,
     }
   },
   originalData: { alpha: 53, beta: 57, gamma: 40, alpha_1: 35, b: 3.7, c: 4 },
@@ -30,9 +30,17 @@ export const exercise115: Exercise<DATA> = {
     alpha: 57,
     beta: 64,
     gamma: 58,
-    alpha_1: 25,
-    b: 3.3,
-    c: 4.5,
+    alpha_1: 45,
+    b: 3.5,
+    c: 4.2,
+  },
+  exampleData: {
+    alpha: 57,
+    beta: 64,
+    gamma: 58,
+    alpha_1: 40,
+    b: 3.6,
+    c: 4.0,
   },
   constraint({ data }) {
     return true
@@ -65,7 +73,7 @@ export const exercise115: Exercise<DATA> = {
           <>
             <p>
               Beginne damit die Grundlinie c mit der Länge {pp(data.c)} cm zu
-              konstruieren.
+              konstruieren:
             </p>
             <svg viewBox="0 0 328 30">
               <image
@@ -80,39 +88,65 @@ export const exercise115: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                {pp(data.c)} cm
+                c = {pp(data.c)} cm
               </text>
             </svg>
-            <p>
-              Zeichne die Seite b im Winkel {data.alpha_1}° vom Punkt A aus.
-            </p>
-            <svg viewBox="0 0 328 100">
+            <p>Zeichne im Punkt A einen Winkel von {data.alpha_1}°:</p>
+            <svg viewBox="0 0 328 120">
               <image
-                href="/content/NRW_EESA/115_Dreieck2.PNG"
-                height="100"
+                href="/content/NRW_EESA/Dreieck12.svg"
+                height="120"
                 width="328"
               />
               <text
-                x="164"
+                x="144"
                 y="95"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
               >
-                {pp(data.c)} cm
+                {pp(data.alpha_1)}°
               </text>
               <text
-                x="120"
-                y="45"
+                x="164"
+                y="115"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
               >
-                {pp(data.b)} cm
+                c = {pp(data.c)} cm
+              </text>
+            </svg>
+            <p>
+              Markiere Punkt C im Abstand von b = {pp(data.b)} cm zu Punkt A.
+            </p>
+            <svg viewBox="0 0 328 120">
+              <image
+                href="/content/NRW_EESA/Dreieck2neu.svg"
+                height="120"
+                width="328"
+              />
+              <text
+                x="164"
+                y="115"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                c = {pp(data.c)} cm
+              </text>
+              <text
+                x="120"
+                y="55"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                b = {pp(data.b)} cm
               </text>
               <text
                 x="144"
-                y="70"
+                y="95"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
@@ -134,16 +168,16 @@ export const exercise115: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                {pp(data.c)} cm
+                c = {pp(data.c)} cm
               </text>
               <text
                 x="125"
-                y="65"
+                y="60"
                 fontSize="12"
                 textAnchor="middle"
                 fill="black"
               >
-                {pp(data.b)} cm
+                b = {pp(data.b)} cm
               </text>
               <text
                 x="130"

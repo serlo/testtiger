@@ -22,6 +22,7 @@ export const exercise132: Exercise<DATA> = {
   },
   originalData: { ball: 60, rabatt: 25 },
   learningPathData: { ball: 45, rabatt: 20 },
+  exampleData: { ball: 50, rabatt: 10 },
   constraint({ data }) {
     return true
   },

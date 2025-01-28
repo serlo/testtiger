@@ -2308,11 +2308,11 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 126,
-                  pages: [{ index: 'c' }],
+                  id: 132,
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
 
           {
@@ -2366,7 +2366,8 @@ export const navigationData: { [key: number]: Navigation } = {
             steps: [
               {
                 exercise: {
-                  id: 132,
+                  id: 126,
+                  pages: [{ index: 'c' }],
                 },
               },
               {
@@ -2406,18 +2407,38 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
+<<<<<<< Updated upstream
             icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
             iconSize: 50,
             position: { x: 230, y: 1890 },
+=======
+            position: { x: 230, y: 1850 },
+>>>>>>> Stashed changes
             steps: [
               {
                 exercise: {
                   id: 115,
-                  pages: [{ index: 'a' }, { index: 'b' }],
+                  pages: [{ index: 'a' }],
+                },
+              },
+            ],
+
+            showExamplePrescreen: true,
+          },
+          {
+            type: 'new-skill',
+            title: 'Dreieck zeichnen',
+            position: { x: 100, y: 1900 },
+            steps: [
+              {
+                exercise: {
+                  id: 115,
+                  pages: [{ index: 'b' }],
                 },
               },
             ],

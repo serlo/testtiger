@@ -44,6 +44,7 @@ export const exercise109: Exercise<DATA> = {
   },
   originalData: { item_1: 0, item_2: 2, item_3: 1, order: [1, 2, 0], a: 10 },
   learningPathData: { item_1: 0, item_2: 2, item_3: 1, order: [1, 2, 0], a: 8 },
+  exampleData: { item_1: 0, item_2: 2, item_3: 1, order: [1, 2, 0], a: 9 },
   constraint({ data }) {
     return data.item_2 != data.item_3
   },
