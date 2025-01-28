@@ -2380,6 +2380,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Rechtwinkliges Dreieck',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 100, y: 1670 },
             steps: [
               {
@@ -2393,6 +2395,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreiecksfläche',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 310, y: 1750 },
             steps: [
               {
@@ -2406,6 +2410,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 230, y: 1890 },
             steps: [
               {
@@ -2438,6 +2444,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Oberfläche und Volumen Quader',
+            icon: '/learning-path/NRW_EESA_icons/quader.svg',
+            iconSize: 30,
             position: { x: 250, y: 2100 },
             steps: [
               {
@@ -2451,6 +2459,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Balkendiagramm',
+            icon: '/learning-path/NRW_EESA_icons/diagramm.svg',
             position: { x: 100, y: 2210 },
             steps: [
               {
@@ -2464,6 +2473,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Statistik',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 290, y: 2300 },
             steps: [
               {
@@ -2516,6 +2526,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Graphen zuordnen',
+            icon: '/learning-path/NRW_EESA_icons/graph.svg',
+            iconSize: 28,
             position: { x: 100, y: 2530 },
             steps: [
               {
@@ -2529,6 +2541,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Informationen aus Graph ablesen',
+            icon: '/learning-path/NRW_EESA_icons/graph.svg',
+            iconSize: 28,
             position: { x: 180, y: 2660 },
             steps: [
               {
@@ -2547,6 +2561,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Laplace Experimente',
+            icon: '/learning-path/NRW_EESA_icons/kreisdiagramm.svg',
+            iconSize: 32,
             position: { x: 270, y: 2800 },
             steps: [
               {
@@ -2598,6 +2614,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Informationen aus Graph ablesen',
+            icon: '/learning-path/NRW_EESA_icons/graph.svg',
             position: { x: 250, y: 3050 },
             steps: [
               {
@@ -2611,6 +2628,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Funktionen',
+            icon: '/learning-path/NRW_EESA_icons/gerade.svg',
+            iconSize: 33,
             position: { x: 100, y: 3180 },
             steps: [
               {
@@ -2628,6 +2647,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Lineare Funktionen',
+            icon: '/learning-path/NRW_EESA_icons/gerade.svg',
+            iconSize: 33,
             position: { x: 240, y: 3250 },
             steps: [
               {
@@ -2641,6 +2662,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabelle auswerten',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 280, y: 3390 },
             steps: [
               {
@@ -2678,6 +2700,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Fläche Quadrat',
+            icon: '/learning-path/NRW_EESA_icons/quadrat.svg',
+            iconSize: 32,
             position: { x: 220, y: 3650 },
             steps: [
               {
@@ -2691,6 +2715,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 100, y: 3700 },
             steps: [
               {
@@ -2704,6 +2730,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 200, y: 3800 },
             steps: [
               {
@@ -2717,6 +2745,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Kreisumfang',
+            icon: '/learning-path/NRW_EESA_icons/kreis.svg',
+            iconSize: 32,
             position: { x: 300, y: 3900 },
             steps: [
               {
@@ -2730,6 +2760,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Kreisfläche',
+            icon: '/learning-path/NRW_EESA_icons/kreis.svg',
+            iconSize: 32,
             position: { x: 170, y: 3950 },
             steps: [
               {
@@ -2743,6 +2775,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Kreisring',
+            icon: '/learning-path/NRW_EESA_icons/kreis.svg',
+            iconSize: 32,
             position: { x: 50, y: 4000 },
             steps: [
               {
@@ -2769,6 +2803,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Mit Längen argumentieren',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 250, y: 4220 },
             steps: [
               {
@@ -2782,6 +2817,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Quadervolumen',
+            icon: '/learning-path/NRW_EESA_icons/quader.svg',
+            iconSize: 30,
             position: { x: 100, y: 4300 },
             steps: [
               {
@@ -2794,18 +2831,24 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zusammengesetzter Körper',
+            icon: '/learning-path/NRW_EESA_icons/viele-quader.svg',
+            iconSize: 32,
             position: { x: 300, y: 4430 },
             steps: [{ exercise: { id: 105 } }],
           },
           {
             type: 'new-skill',
             title: 'Kugelvolumen',
+            icon: '/learning-path/NRW_EESA_icons/kugel.svg',
+            iconSize: 33,
             position: { x: 150, y: 4500 },
             steps: [{ exercise: { id: 106, pages: [{ index: 'b' }] } }],
           },
           {
             type: 'new-skill',
             title: 'Volumen Tetraeder',
+            icon: '/learning-path/NRW_EESA_icons/tetraeder.svg',
+            iconSize: 60,
             position: { x: 80, y: 4600 },
             steps: [
               {
@@ -2831,6 +2874,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Dreieck zeichnen',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 270, y: 4800 },
             steps: [
               {
@@ -2844,6 +2889,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Im richtigen Maßstab zeichnen',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 100, y: 4900 },
             steps: [
               {
@@ -2857,6 +2903,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Messen und Anwenden des Maßstabs',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 200, y: 5000 },
             steps: [
               {
@@ -2870,6 +2917,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Symmetrie',
+            icon: '/learning-path/NRW_EESA_icons/symmetrie.svg',
             position: { x: 270, y: 5110 },
             steps: [
               {
@@ -2883,6 +2931,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Körpernetz',
+            icon: '/learning-path/NRW_EESA_icons/viele-quader.svg',
+            iconSize: 32,
             position: { x: 120, y: 5170 },
             steps: [
               {
@@ -2908,6 +2958,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Tabelle auswerten & Kreisdiagramm',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 250, y: 5420 },
             steps: [
               {
@@ -2921,6 +2972,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 100, y: 5520 },
             steps: [
               {
@@ -2934,6 +2986,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 280, y: 5650 },
             steps: [
               {
@@ -2947,6 +3000,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Laplace Experimente',
+            icon: '/learning-path/NRW_EESA_icons/kreisdiagramm.svg',
+            iconSize: 32,
             position: { x: 240, y: 5800 },
             steps: [
               {
