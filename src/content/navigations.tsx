@@ -2803,6 +2803,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Mit Längen argumentieren',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 250, y: 4220 },
             steps: [
               {
@@ -2816,6 +2817,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Quadervolumen',
+            icon: '/learning-path/NRW_EESA_icons/quader.svg',
+            iconSize: 30,
             position: { x: 100, y: 4300 },
             steps: [
               {
@@ -2828,18 +2831,24 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Zusammengesetzter Körper',
+            icon: '/learning-path/NRW_EESA_icons/viele-quader.svg',
+            iconSize: 32,
             position: { x: 300, y: 4430 },
             steps: [{ exercise: { id: 105 } }],
           },
           {
             type: 'new-skill',
             title: 'Kugelvolumen',
+            icon: '/learning-path/NRW_EESA_icons/kugel.svg',
+            iconSize: 33,
             position: { x: 150, y: 4500 },
             steps: [{ exercise: { id: 106, pages: [{ index: 'b' }] } }],
           },
           {
             type: 'new-skill',
             title: 'Volumen Tetraeder',
+            icon: '/learning-path/NRW_EESA_icons/tetraeder.svg',
+            iconSize: 60,
             position: { x: 80, y: 4600 },
             steps: [
               {
@@ -2865,6 +2874,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Dreieck zeichnen',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 270, y: 4800 },
             steps: [
               {
@@ -2878,6 +2889,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Im richtigen Maßstab zeichnen',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 100, y: 4900 },
             steps: [
               {
@@ -2891,6 +2903,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Messen und Anwenden des Maßstabs',
+            icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 200, y: 5000 },
             steps: [
               {
@@ -2904,6 +2917,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Symmetrie',
+            icon: '/learning-path/NRW_EESA_icons/symmetrie.svg',
             position: { x: 270, y: 5110 },
             steps: [
               {
@@ -2917,6 +2931,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Körpernetz',
+            icon: '/learning-path/NRW_EESA_icons/viele-quader.svg',
+            iconSize: 32,
             position: { x: 120, y: 5170 },
             steps: [
               {
@@ -2942,6 +2958,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Tabelle auswerten & Kreisdiagramm',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 250, y: 5420 },
             steps: [
               {
@@ -2955,6 +2972,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 100, y: 5520 },
             steps: [
               {
@@ -2968,6 +2986,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Tabellenkalkulation',
+            icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 280, y: 5650 },
             steps: [
               {
@@ -2981,6 +3000,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Laplace Experimente',
+            icon: '/learning-path/NRW_EESA_icons/kreisdiagramm.svg',
+            iconSize: 32,
             position: { x: 240, y: 5800 },
             steps: [
               {

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  
+  <!-- Tetraeder in Wireframe-Optik -->
+  <g transform="translate(50 50)">
+    <!-- 3D-Schatten-Effekt -->
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#FFB3D7"/>
+    </filter>
+
+    <!-- Geometrische Linien mit Verlauf -->
+    <defs>
+      <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="100%" stop-color="#E0E0E0"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Tetraeder-Kanten -->
+    <path d="M0,-30 L25,15 -25,15 0,-30" 
+          stroke="url(#edgeGradient)" 
+          stroke-width="3" 
+          fill="none"
+          filter="url(#shadow)"/>
+    
+    <path d="M-25,15 L0,30 25,15" 
+          stroke="url(#edgeGradient)" 
+          stroke-width="3" 
+          fill="none"
+          filter="url(#shadow)"/>
+    
+    <path d="M0,-30 L0,30" 
+          stroke="url(#edgeGradient)" 
+          stroke-width="3" 
+          fill="none"
+          filter="url(#shadow)"/>
+
+    <!-- Optional: Pulsierende Animation -->
+    <animate attributeName="opacity" values="1;0.9;1" dur="3s" repeatCount="indefinite"/>
+  </g>
+</svg>
