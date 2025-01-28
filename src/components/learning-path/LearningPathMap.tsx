@@ -31,13 +31,19 @@ export function LearningPathMap() {
   const elements: { source: Lesson; solvedPercentage: number }[] = []
   const lines: { start: Lesson; end: Lesson }[] = []
 
+  let somePartialSolved = false
+
   for (const part of path) {
     let prev: Lesson | null = null
     for (const lesson of part.lessons) {
       if (lesson.position) {
+        const solvedPercentage = isWholeLessonDonePercentage(lesson)
+        if (solvedPercentage < 1 && solvedPercentage > 0) {
+          somePartialSolved = true
+        }
         elements.push({
           source: lesson,
-          solvedPercentage: isWholeLessonDonePercentage(lesson),
+          solvedPercentage,
         })
         if (prev && prev.position) {
           lines.push({ start: prev, end: lesson })
@@ -163,6 +169,9 @@ export function LearningPathMap() {
           ) {
             isMuted = true
             notMutedYet = true
+          }
+          if (somePartialSolved) {
+            thisIsHighlighted = false
           }
           const iconSize = el.source.iconSize || 26
           return (
