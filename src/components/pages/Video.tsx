@@ -10,8 +10,8 @@ export function Video() {
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
-        <div className="flex items-center relative h-full">
-          <video controls className="w-full" autoPlay>
+        <div className="flex items-center relative h-full flex-col justify-center">
+          <video controls className="max-h-[calc(100%-100px)]" autoPlay>
             <source
               src={
                 videoUrl ??
@@ -20,7 +20,7 @@ export function Video() {
               type="video/mp4"
             />
           </video>
-          <div className="absolute bottom-3 flex justify-around w-full">
+          <div className="flex justify-around w-full flex-shrink-0 mt-3">
             <button
               className="px-5 py-4 bg-gray-200 hover:bg-gray-300 rounded"
               onClick={() => {
