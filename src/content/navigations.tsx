@@ -2412,13 +2412,9 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
-<<<<<<< Updated upstream
             icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
             iconSize: 50,
             position: { x: 230, y: 1890 },
-=======
-            position: { x: 230, y: 1850 },
->>>>>>> Stashed changes
             steps: [
               {
                 exercise: {
