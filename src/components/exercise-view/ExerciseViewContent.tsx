@@ -78,7 +78,10 @@ export function ExerciseViewContent() {
   return (
     <div
       ref={ref}
-      className="w-full h-full bg-gray-100 overflow-y-auto"
+      className={clsx(
+        'w-full h-full overflow-y-auto',
+        examplePrescreen ? 'bg-purple-100' : 'bg-gray-100',
+      )}
       onClick={() => {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -349,6 +352,13 @@ export function ExerciseViewContent() {
           <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-hidden">
             <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
               <span className="mt-2 inline-block">{numbering}</span>
+            </div>
+          </div>
+        )}
+        {alternativeKey?.includes('solution') && (
+          <div className="absolute -top-8 right-7 font-bold font-xl w-24 h-8 overflow-hidden">
+            <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
+              <span className="mt-2 inline-block">Lösung</span>
             </div>
           </div>
         )}
