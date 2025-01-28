@@ -2429,6 +2429,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
+            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            iconSize: 50,
             position: { x: 100, y: 1900 },
             steps: [
               {
