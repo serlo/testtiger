@@ -90,7 +90,10 @@ export const exercise117: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Die langen Seitenwände benötigen jeweils genau 5 Holzbretter.</p>
+            <p>
+              Für die langen Seitenwände werden jeweils genau 5 Holzbretter
+              benötigt.
+            </p>
             <p>
               Die Holzbretter auf den kurzen Seiten müssen zurecht gesägt
               werden. Aus jedem gekauften Brett können zwei Bretter gesägt
@@ -137,14 +140,10 @@ export const exercise117: Exercise<DATA> = {
         const höhe = (data.brett * 5) / 100
         return (
           <>
+            <p>Berechne die Oberfläche der rechteckigen Seitenflächen:</p>
             <p>
-              <strong>Oberfläche der Seitenflächen</strong>
-            </p>
-            <p>
-              Berechne die Oberfläche der rechteckigen Seitenwände.
-              Multipliziere dazu die Länge und Breite. <br></br>Achte darauf,
-              dass jeweils <Color1>zwei</Color1> gleiche Seitenwände vorhanden
-              sind:
+              Multipliziere die Länge und Breite. <br></br>Achte darauf, dass
+              jeweils <Color1>zwei</Color1> gleiche Seitenwände vorhanden sind:
             </p>
             {buildEquation([
               [
@@ -185,9 +184,8 @@ export const exercise117: Exercise<DATA> = {
               ],
               [<></>, <>=</>, <>{pp((höhe * 2 * data.breite) / 100)} [m²]</>],
             ])}
-            <p>
-              <strong>Gesamtfläche</strong>
-            </p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Berechne die Gesamtfläche:</p>
             <p>Addiere die Flächen:</p>
             <p>
               {pp((höhe * 2 * data.breite) / 100)} + {pp(länge * höhe * 2)} ={' '}
@@ -200,14 +198,17 @@ export const exercise117: Exercise<DATA> = {
               {(höhe * 2 * data.breite) / 100 + länge * höhe * 2 <
               data.color ? (
                 <>
-                  Die Oberfläche ist kleiner als {pp(data.color)} m² und kann
-                  daher mit einem Eimer Farbe gestrichen werden.
+                  Die Oberfläche ist kleiner als {pp(data.color)} m² und{' '}
+                  <strong>
+                    kann daher mit einem Eimer Farbe gestrichen werden.
+                  </strong>
                 </>
               ) : (
                 <>
-                  Die Oberfläche ist größer als {pp(data.color)} m² und kann
-                  daher <strong>nicht</strong> mit einem Eimer Farbe gestrichen
-                  werden.
+                  Die Oberfläche ist größer als {pp(data.color)} m² und{' '}
+                  <strong>
+                    kann daher nicht mit einem Eimer Farbe gestrichen werden.
+                  </strong>
                 </>
               )}
             </p>
@@ -268,7 +269,10 @@ export const exercise117: Exercise<DATA> = {
                 <> {pp(((länge * data.breite) / 100) * höhe)} [m³]</>,
               ],
             ])}
-            <p>Das Hochbeet wird nur zu einem Drittel befüllt:</p>
+            <p>
+              Das Hochbeet wird nur zu einem Drittel befüllt. Das heißt, die
+              Gesamtfläche muss durch 3 geteilt werden:
+            </p>
             <p>
               {pp(((länge * data.breite) / 100) * höhe)} : 3 ={' '}
               <strong>
@@ -342,9 +346,8 @@ export const exercise117: Exercise<DATA> = {
         return (
           <>
             <p>
-              Zeichne die Skizze mit den angegebenen Maßen ab. Zwischen dem
-              Salat und der Seitenwand ist zudem ein Platz von einem halben
-              Millimeter:
+              Zwischen dem Salat und der Seitenwand ist ein Platz von einem
+              halben Millimeter:
             </p>
             <svg viewBox="0 0 400 220">
               <image
@@ -516,7 +519,10 @@ export const exercise117: Exercise<DATA> = {
                 auf jeder Seite.
               </li>
             </ul>
-            <p>Insgesamt passen damit 2 · 5 = 10 Salatköpfe in das Hochbeet.</p>
+            <p>
+              Insgesamt passen damit 2 · 5 = <strong>10 Salatköpfe</strong> in
+              das Hochbeet.
+            </p>
           </>
         )
       },
