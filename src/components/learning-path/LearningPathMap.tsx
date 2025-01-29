@@ -293,6 +293,7 @@ export function LearningPathMap() {
                           s.examplePrescreen = true
                           s.hasExamplePrescreen = true
                         }
+                        s.isChallenge = lessonDetails.type == 'challenge'
                       })
                     }
                     history.push(
@@ -366,7 +367,6 @@ export function LearningPathMap() {
                         }
                         context++
                       }
-                      console.log('debug pages', s.pages, exerciseIds)
 
                       s.navIndicatorLength = s.pages.length
                       s.navIndicatorPosition = 0
@@ -409,6 +409,7 @@ export function LearningPathMap() {
                       s.tag = lessonDetails.title + '#'
                       s.hasExamplePrescreen = false
                       s.examplePrescreen = false
+                      s.isChallenge = lessonDetails.type == 'challenge'
                     })
                     history.push('/exercise/123456')
                   }
