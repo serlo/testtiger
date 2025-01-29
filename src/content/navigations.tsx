@@ -2215,7 +2215,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'video',
             title: 'Video 2',
-            videoUrl: '123',
+            videoUrl:
+              'https://testtige.uber.space/testtiger/bruechevergleichen.mp4',
             position: { x: 150, y: 320 },
             steps: [],
           },
@@ -2245,7 +2246,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'video',
             title: 'Video 3',
-            videoUrl: '123',
+            videoUrl: 'https://testtige.uber.space/testtiger/schaetzen.mp4',
             position: { x: 200, y: 575 },
             steps: [],
           },
