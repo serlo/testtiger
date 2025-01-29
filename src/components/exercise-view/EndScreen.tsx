@@ -3,7 +3,11 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
 import { FaIcon } from '../ui/FaIcon'
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import {
+  faStar,
+  faThumbsDown,
+  faThumbsUp,
+} from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { updatePlayerProfileStore } from '../../../store/player-profile-store'
@@ -14,13 +18,24 @@ export function EndScreen() {
   const history = useHistory()
   const toHome = ExerciseViewStore.useState(s => s.toHome)
   const [thumbsStats, setThumbsStats] = useState<'none' | 'up' | 'down'>('none')
+  const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
   if (!showEndScreen) return null
   return (
     <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto">
       <div className="text-center pt-6">
-        <div className="text-5xl mb-5">🏆</div>
+        <div className="text-5xl mb-5">
+          {isChallenge ? (
+            <FaIcon icon={faStar} className="text-yellow-300" />
+          ) : (
+            '🏆'
+          )}
+        </div>
         <h1 className="font-bold">Herzlichen Glückwunsch</h1>
-        <p className="mt-5">Du hast die Aufgabe geschafft!</p>
+        <p className="mt-5">
+          {isChallenge
+            ? 'Du hast die Challenge geschafft!'
+            : 'Du hast die Aufgabe geschafft!'}
+        </p>
         <button
           className="px-5 py-2 mt-5 bg-green-200 hover:bg-green-300 rounded"
           onClick={() => {
