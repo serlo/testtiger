@@ -2262,9 +2262,9 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Grundlagen - Challenge 1',
             introText: (
               <>
-                Jetzt hast du schon die ersten Skills gemeistert. Bist du bereit
-                für die <strong>1. Challenge</strong>? Hier kannst du zeigen,
-                was du gelernt hast!
+                Jetzt hast du schon die ersten Skills gemeistert! <br></br> Bist
+                du bereit für die <strong>1. Challenge</strong> &#9733;? Hier
+                kannst du zeigen, was du gelernt hast!
               </>
             ),
             position: { x: 240, y: 760 },
@@ -2325,6 +2325,12 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 2',
+            introText: (
+              <>
+                Probiere deine neuen Skills an der <strong>2. Challenge</strong>{' '}
+                &#9733; aus und hole deinen zweiten Stern!
+              </>
+            ),
             position: { x: 100, y: 1180 },
             steps: [
               {
@@ -2369,6 +2375,12 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 3',
+            introText: (
+              <>
+                Die <strong>3. Challenge</strong> &#9733; wartet auf dich. Zeig,
+                was du gelernt hast!
+              </>
+            ),
             position: { x: 250, y: 1550 },
             steps: [
               {
@@ -2452,6 +2464,14 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 4',
+            introText: (
+              <>
+                In der <strong>4. Challenge</strong> &#9733; wartet schon eine
+                etwas kompliziertere Aufgabe aus dem zweiten Prüfungsteil auf
+                dich. <br></br>Aber keine Sorge, wenn du nicht weiter weißt,
+                kannst du wie gewohnt den Tiger um Rat fragen! Los gehts!
+              </>
+            ),
             position: { x: 100, y: 2000 },
             steps: [
               {
@@ -2514,6 +2534,13 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 5',
+            introText: (
+              <>
+                Die <strong>5. Challenge</strong> &#9733; erfordert etwas
+                Durchhaltevermögen. Hier rechnest du einen ganzen ersten
+                Prüfungsteil. Los gehts!
+              </>
+            ),
             position: { x: 250, y: 2450 },
             steps: [
               {
@@ -2603,6 +2630,14 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 6',
+            introText: (
+              <>
+                Wow, du bist schon bei der <strong>6. Challenge</strong> &#9733;
+                - dem allerletzten Schritt im Grundlagen Training! <br></br>{' '}
+                Auch hier wartet noch einmal ein Prüfungsteil 1 auf dich. Viel
+                Erfolg!
+              </>
+            ),
             position: { x: 100, y: 2900 },
             steps: [
               {
