@@ -69,7 +69,7 @@ export interface Lesson {
   steps: Step[]
   videoUrl?: string
   showExamplePrescreen?: boolean
-  introText?: string
+  introText?: string | JSX.Element
 }
 
 export interface Step {
