@@ -2260,6 +2260,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 1',
+            introText:
+              'Jetzt hast du schon die ersten Skills gemeistert. Bist du bereit für die 1. Challenge? Hier kannst du zeigen, was du gelernt hast!',
             position: { x: 240, y: 760 },
             steps: [
               { exercise: { id: 129 } },

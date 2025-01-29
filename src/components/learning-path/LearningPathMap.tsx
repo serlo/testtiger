@@ -294,6 +294,7 @@ export function LearningPathMap() {
                           s.hasExamplePrescreen = true
                         }
                         s.isChallenge = lessonDetails.type == 'challenge'
+                        s.introText = lessonDetails.introText
                       })
                     }
                     history.push(
@@ -410,6 +411,7 @@ export function LearningPathMap() {
                       s.hasExamplePrescreen = false
                       s.examplePrescreen = false
                       s.isChallenge = lessonDetails.type == 'challenge'
+                      s.introText = lessonDetails.introText
                     })
                     history.push('/exercise/123456')
                   }

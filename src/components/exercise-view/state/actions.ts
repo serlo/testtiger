@@ -79,6 +79,7 @@ export function setupExercise(
     s.hasExamplePrescreen = false
     s.examplePrescreen = false
     s.isChallenge = false
+    s.introText = ''
   })
 }
 
