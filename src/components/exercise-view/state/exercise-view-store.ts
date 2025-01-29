@@ -65,6 +65,7 @@ export type IExerciseViewStore = {
   videoRedirectUrl?: string
   videoUrl?: string
   isChallenge?: boolean
+  introText?: string
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({

@@ -27,6 +27,7 @@ export function ExerciseViewContent() {
   const ref = useRef<HTMLDivElement>(null)
 
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
+  const introText = ExerciseViewStore.useState(s => s.introText)
 
   useEffect(() => {
     if (
@@ -126,9 +127,16 @@ export function ExerciseViewContent() {
             <>
               <br />
               <br />
-              Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
-              <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg
-              ein, oder <strong>tippe</strong> deine Lösung in den Chat.
+              {introText ? (
+                introText
+              ) : (
+                <>
+                  Schnapp dir <strong>Stift</strong> und <strong>Papier</strong>{' '}
+                  und <strong>scanne</strong>, wenn du fertig bist, deinen
+                  Rechenweg ein, oder <strong>tippe</strong> deine Lösung in den
+                  Chat.
+                </>
+              )}
             </>
           ) : (
             <>
