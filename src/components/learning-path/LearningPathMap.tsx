@@ -241,24 +241,22 @@ export function LearningPathMap() {
                             ].learningPathTags.includes(relevantKeys[i]),
                           )
                         }
-                        if (lessonDetails.showExamplePrescreen) {
-                          s.examplePrescreen = true
-                          s.hasExamplePrescreen = true
-                        }
-                        s.videoRedirectUrl =
-                          '/exercise/' +
-                          step.exercise.id +
-                          '#' +
-                          encodeURIComponent(
-                            JSON.stringify({
-                              name: lessonDetails.title,
-                              pages: step.exercise.pages,
-                              toHome: true,
-                            }),
-                          )
-                        s.videoUrl = el.source.videoUrl
                       })
                     }
+                    ExerciseViewStore.update(s => {
+                      s.videoRedirectUrl =
+                        '/exercise/' +
+                        step.exercise.id +
+                        '#' +
+                        encodeURIComponent(
+                          JSON.stringify({
+                            name: lessonDetails.title,
+                            pages: step.exercise.pages,
+                            toHome: true,
+                          }),
+                        )
+                      s.videoUrl = el.source.videoUrl
+                    })
                     history.push('/video')
                     return
                   }
