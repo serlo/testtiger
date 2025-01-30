@@ -67,8 +67,8 @@ export const exercise103: Exercise<DATA> = {
               Laplace-Experiment.
             </p>
             <p>
-              Berechne die Wahrscheinlichkeit mit der Formel für das
-              Laplace-Experiment:
+              Berechne die Wahrscheinlichkeit mit der Formel für das{' '}
+              <b>Laplace-Experiment</b>:
             </p>
             {buildEquation([
               [
@@ -108,9 +108,11 @@ export const exercise103: Exercise<DATA> = {
                     <>p</>,
                     <>=</>,
                     <>
-                      {ppFrac(
-                        data.blue / (data.black + data.white + data.blue),
-                      )}
+                      <b>
+                        {ppFrac(
+                          data.blue / (data.black + data.white + data.blue),
+                        )}
+                      </b>
                     </>,
                   ],
                 ])}
@@ -141,8 +143,8 @@ export const exercise103: Exercise<DATA> = {
         return (
           <>
             <p>
-              Berechne die Wahrscheinlichkeit mit der Formel für das
-              Laplace-Experiment:
+              Berechne die Wahrscheinlichkeit mit der Formel für das{' '}
+              <b>Laplace-Experiment</b>:
             </p>
             {buildEquation([
               [
@@ -203,10 +205,12 @@ export const exercise103: Exercise<DATA> = {
                     'p',
                     <>=</>,
                     <>
-                      {ppFrac(
-                        (data.blue + data.black) /
-                          (data.black + data.white + data.blue),
-                      )}
+                      <b>
+                        {ppFrac(
+                          (data.blue + data.black) /
+                            (data.black + data.white + data.blue),
+                        )}
+                      </b>
                     </>,
                   ],
                 ])}

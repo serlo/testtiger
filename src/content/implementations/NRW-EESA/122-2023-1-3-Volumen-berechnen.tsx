@@ -95,16 +95,14 @@ export const exercise122: Exercise<DATA> = {
             <></>,
             <>=</>,
             <>
-              <strong>
-                {data.length * data.width * data.height} [cm<sup>3</sup>]
-              </strong>
+              {data.length * data.width * data.height} [cm<sup>3</sup>]
             </>,
           ],
         ])}
 
         <p>
+          Das Volumen des Kartons beträgt<br></br>
           <b>
-            Das Volumen des Kartons beträgt<br></br>
             {data.length * data.width * data.height} cm<sup>3</sup>.
           </b>
         </p>

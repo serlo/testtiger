@@ -328,7 +328,7 @@ export const exercise112: Exercise<DATA> = {
             </p>
             <p>
               Verwende die Formel für den Prozentwert, um die Anzahl der Stimmen
-              für die {data.partei} zu bestimmen.
+              für die {data.partei} zu bestimmen:
             </p>
             {buildEquation([
               [<>W</>, <>=</>, <>G · p</>],

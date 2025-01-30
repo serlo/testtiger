@@ -246,107 +246,96 @@ export const exercise106: Exercise<DATA> = {
               Ein Gramm Gold kostet {pp(data.preis)} €. Berechne die fehlenden
               Werte mit dem Dreisatz:
             </p>
-            <ul>
-              <li>
-                {buildEquation([
-                  [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>: 2</span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <>
-                      <strong>0,5 g</strong>
-                    </>,
-                    <>≙</>,
-                    <>
-                      <strong>{pp(roundToDigits(data.preis / 2, 2))} €</strong>
-                    </>,
-                  ],
-                  [<></>, <></>, <></>],
-                ])}
-              </li>
-              <p></p>
-              <li>
-                {buildEquation([
-                  [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>· 1000</span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <>
-                      <strong>1000 g</strong>
-                    </>,
-                    <>≙</>,
-                    <>
-                      <strong>
-                        {pp(roundToDigits(data.preis * 1000, 2))} €
-                      </strong>
-                    </>,
-                  ],
-                  [<></>, <></>, <></>],
-                ])}
-              </li>
-            </ul>
+            {buildEquation([
+              [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>: 2</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  <strong>0,5 g</strong>
+                </>,
+                <>≙</>,
+                <>
+                  <strong>{pp(roundToDigits(data.preis / 2, 2))} €</strong>
+                </>,
+              ],
+              [<></>, <></>, <></>],
+            ])}
+            <hr style={{ margin: '10px 0' }} />
+            <p></p>
+            {buildEquation([
+              [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· 1000</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  <strong>1000 g</strong>
+                </>,
+                <>≙</>,
+                <>
+                  <strong>{pp(roundToDigits(data.preis * 1000, 2))} €</strong>
+                </>,
+              ],
+              [<></>, <></>, <></>],
+            ])}
+            <hr style={{ margin: '10px 0' }} />
             <p>
               {pp(data.preis)} € ist genau die Hälfte von {pp(data.preis * 2)}{' '}
               €:{' '}
             </p>
-            <ul>
-              <li>
-                {buildEquation([
-                  [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>
-                          · {data.faktor}
-                        </span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <>
-                      <strong>2 g</strong>
-                    </>,
-                    <>≙</>,
-                    <>
-                      <strong>
-                        {pp(roundToDigits(data.preis * data.faktor, 2))} €
-                      </strong>
-                    </>,
-                  ],
-                ])}
-              </li>
-            </ul>
+            {buildEquation([
+              [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· {data.faktor}</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  <strong>2 g</strong>
+                </>,
+                <>≙</>,
+                <>
+                  <strong>
+                    {pp(roundToDigits(data.preis * data.faktor, 2))} €
+                  </strong>
+                </>,
+              ],
+            ])}
+            <hr style={{ margin: '10px 0' }} />
             <p>Trage diese Werte in die Tabelle ein:</p>
             <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
               <rect
@@ -562,13 +551,7 @@ export const exercise106: Exercise<DATA> = {
                   {ppFrac(4 / 3)} · π · {pp(data.radius)}³
                 </>,
               ],
-              [
-                <></>,
-                <>≈</>,
-                <>
-                  <strong>{pp(roundToDigits(volume, 2))} [cm³]</strong>
-                </>,
-              ],
+              [<></>, <>≈</>, <>{pp(roundToDigits(volume, 2))} [cm³]</>],
             ])}
             <p>
               Die Kugel hat ein Volumen von<br></br>{' '}

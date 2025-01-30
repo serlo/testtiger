@@ -125,7 +125,7 @@ export const exercise113: Exercise<DATA> = {
             <p>
               Das Drehen des Glücksrads mit gleich großen Feldern ist ein
               Laplace-Experiment. Berechne die Wahrscheinlichkeit mit der Formel
-              für das Laplace-Experiment:
+              für das <b>Laplace-Experiment</b>:
             </p>
             {buildEquation([
               [

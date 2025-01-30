@@ -212,7 +212,9 @@ export const exercise104: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Berechne den Anteil mit der Formel für den Prozentwert.</p>
+            <p>
+              Berechne den Anteil mit der Formel für den <b>Prozentwert</b>.
+            </p>
             <p>Wandle dazu den Prozentsatz in eine Dezimalzahl um:</p>
             <p>
               {data.öffi} % ≙ {pp(data.öffi / 100)}
@@ -569,9 +571,7 @@ export const exercise104: Exercise<DATA> = {
         }
         return (
           <>
-            <p>
-              <strong>Winkel berechnen</strong>{' '}
-            </p>
+            <p>Winkel berechnen: </p>
             <p>Im Kreisdiagramm fehlen zwei Sektoren:</p>
             <ul>
               <li>
@@ -589,17 +589,21 @@ export const exercise104: Exercise<DATA> = {
             <ul>
               <li>
                 {'"'}Zu Fuß{'"'}: 360° · {pp(data.fuß / 100)} ={' '}
-                {pp((360 * data.fuß) / 100)}°
+                <b>{pp((360 * data.fuß) / 100)}°</b>
               </li>
               <li>
                 {'"'}Auto{'"'}: 360° ·{' '}
                 {pp((100 - data.fahrrad - data.fuß - data.öffi) / 100)} ={' '}
-                {pp(360 * ((100 - data.fahrrad - data.fuß - data.öffi) / 100))}°
+                <b>
+                  {pp(
+                    360 * ((100 - data.fahrrad - data.fuß - data.öffi) / 100),
+                  )}
+                  °
+                </b>
               </li>
             </ul>
-            <p>
-              <strong>Kreisdiagramm zeichnen</strong>{' '}
-            </p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Kreisdiagramm zeichnen: </p>
             <p>
               Zeichne die Sektoren mit den berechneten Winkeln mithilfe eines
               Geodreiecks ein:

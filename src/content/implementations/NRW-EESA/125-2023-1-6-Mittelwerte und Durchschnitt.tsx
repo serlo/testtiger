@@ -265,8 +265,8 @@ export const exercise125: Exercise<DATA> = {
         return (
           <>
             <p>
-              <b>Spannweite:</b> Die Spannweite ist der Abstand zwischen dem
-              kleinsten und dem größten Messwert.
+              Die <b>Spannweite</b> ist der Abstand zwischen dem kleinsten und
+              dem größten Messwert.
             </p>
             <p>
               {array[4]} - {array[0]} = {array[4] - array[0]}
@@ -274,12 +274,14 @@ export const exercise125: Exercise<DATA> = {
             <p>
               Die Spannweite beträgt <b>{array[4] - array[0]} Tore</b>.
             </p>
+            <hr style={{ margin: '10px 0' }} />
             <p>
-              <b>Median:</b> Ordne die Anzahl der erzielten Tore der Größe nach:{' '}
+              Ordne für den Median die Anzahl der erzielten Tore der Größe nach:{' '}
               {array[0]}, {array[1]}, {array[2]}, {array[3]}, {array[4]}
             </p>
             <p>
-              Der Median ist die Zahl, die in der Mitte liegt, also {array[2]}.
+              Der <b>Median</b> ist die Zahl, die in der Mitte liegt, also{' '}
+              {array[2]}.
             </p>
             <p>
               Der Median beträgt <b>{array[2]} Tore.</b>
@@ -362,7 +364,7 @@ export const exercise125: Exercise<DATA> = {
               ])}
             </p>
             <p>
-              <b>Antwort:</b> Der Durchschnitt beträgt{' '}
+              Der Durchschnitt beträgt{' '}
               <b>
                 {pp(
                   roundToDigits(

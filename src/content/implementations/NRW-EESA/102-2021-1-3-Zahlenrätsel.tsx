@@ -119,9 +119,7 @@ export const exercise102: Exercise<DATA> = {
               ],
               [
                 <></>,
-                <>
-                  <strong>=</strong>
-                </>,
+                <>=</>,
                 <>
                   <strong>{(data.x_input + data.summand) * data.faktor}</strong>
                 </>,

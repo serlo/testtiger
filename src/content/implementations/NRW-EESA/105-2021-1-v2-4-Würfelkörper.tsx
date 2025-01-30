@@ -126,9 +126,7 @@ export const exercise105: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              <strong>Körper zerlegen</strong>
-            </p>
+            <p>Körper zerlegen:</p>
             <p>
               Das Volumen des zusammengesetzten Körpers kann auf verschiedene
               Wege berechnet werden. Hier wird der Körper in einzelne Quader
@@ -240,9 +238,8 @@ export const exercise105: Exercise<DATA> = {
               Die Seitenlängen des kleinen Quaders können durch die anderen
               Seiten bestimmt werden.
             </p>
-            <p>
-              <strong>Volumen berechnen</strong>
-            </p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Volumen berechnen:</p>
             <p>Berechne das Volumen der einzelnen Quader und addiere sie:</p>
             {buildEquation([
               [
@@ -304,7 +301,7 @@ export const exercise105: Exercise<DATA> = {
                   (data.höhe_1 - data.höhe_2) *
                   data.depth +
                   data.length_1 * data.depth * data.höhe_2}{' '}
-                [cm³]
+                cm³
               </strong>
             </p>
           </>
