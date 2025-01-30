@@ -71,6 +71,7 @@ export const exercise101: Exercise<DATA> = {
           ],
         ])}
         <hr style={{ margin: '10px 0' }} />
+        
 
         <p>
           <strong>1 Stunde (h)</strong> enthält <strong>60 Sekunden (s)</strong>
