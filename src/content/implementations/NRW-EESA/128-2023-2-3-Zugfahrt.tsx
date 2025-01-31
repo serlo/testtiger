@@ -231,12 +231,14 @@ export const exercise128: Exercise<DATA> = {
           <>
             <p>
               Die Fahrt beginnt um 07:{data.zeit_1} Uhr und endet um 10:0
-              {data.zeit_6} Uhr.
+              {data.zeit_6} Uhr. Bis 8 Uhr vergehen {60 - data.zeit_1} Minuten,
+              bis 10:0{data.zeit_6} weitere 2 Stunden und {data.zeit_6} Minuten.
             </p>
             <p>
-              Es vergehen{' '}
+              Es vergehen also 2 Stunden und {60 - data.zeit_1} + {data.zeit_6}{' '}
+              Minuten. Das sind{' '}
               <strong>
-                2 ganze Stunden und {60 - data.zeit_1 + data.zeit_6} Minuten
+                2 Stunden und {60 - data.zeit_1 + data.zeit_6} Minuten
               </strong>
               .
             </p>
@@ -272,7 +274,7 @@ export const exercise128: Exercise<DATA> = {
                 Zwischen Brüssel und Paris sind es damit:<br></br>
                 <br></br>
                 {data.strecke_3} − {data.strecke_2} ={' '}
-                <strong>{data.strecke_3 - data.strecke_2} [km]</strong>
+                <strong>{data.strecke_3 - data.strecke_2} km</strong>
               </li>
             </ol>
           </>
@@ -302,9 +304,7 @@ export const exercise128: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              <strong>Zeit in Stunden</strong>
-            </p>
+            <p>Zeit in Stunden:</p>
             <p>
               Zwischen Aachen und Lüttich beträgt die Strecke {data.strecke_1}{' '}
               km.
@@ -318,9 +318,8 @@ export const exercise128: Exercise<DATA> = {
               {((data.zeit_2 - data.zeit_1) / 60) % 1 == 0 ? '=' : '≈'}{' '}
               {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} [h]
             </p>
-            <p>
-              <strong>Geschwindigkeit bestimmen</strong>
-            </p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Geschwindigkeit bestimmen:</p>
             <p>
               {buildInlineFrac(
                 <>{data.strecke_1} km</>,
@@ -674,7 +673,7 @@ export const exercise128: Exercise<DATA> = {
               orangen Linie ab.
             </p>
             <p>
-              Nach 50 Minuten wurden etwa{' '}
+              Nach 50 Minuten hat der Zug etwa{' '}
               <strong>{Math.round(weg / 5) * 5} km</strong> zurückgelegt.
             </p>
           </>
@@ -728,7 +727,7 @@ export const exercise128: Exercise<DATA> = {
               <>
                 <p>
                   In Lüttich und Brüssel sind zwei Abschnitte sichtbar, in denen
-                  der Graph waagerecht verläuft. Dort wird keine Strecke
+                  der Graph <b>waagerecht</b> verläuft. Dort wird keine Strecke
                   zurückgelegt, weil der Zug am Bahnhof steht.
                 </p>
               </>
@@ -736,9 +735,9 @@ export const exercise128: Exercise<DATA> = {
             {data.case == 2 && (
               <>
                 <p>
-                  In Lüttich verläuft der Graph für eine kurze Zeit waagerecht.
-                  Dort wird keine Strecke zurückgelegt, weil der Zug am Bahnhof
-                  steht.
+                  In Lüttich verläuft der Graph für eine kurze Zeit{' '}
+                  <b>waagerecht</b>. Dort wird keine Strecke zurückgelegt, weil
+                  der Zug am Bahnhof steht.
                 </p>
               </>
             )}
@@ -747,7 +746,7 @@ export const exercise128: Exercise<DATA> = {
                 <p>
                   Die Geschwindigkeit des Zuges wird durch die Steigung der
                   Gerade in diesem Streckenabschnitt angegeben. Verläuft eine
-                  Gerade steiler als eine andere, ist der Zug schneller
+                  Gerade <b>steiler</b> als eine andere, ist der Zug schneller
                   gefahren.
                 </p>
               </>
@@ -755,9 +754,9 @@ export const exercise128: Exercise<DATA> = {
             {data.case == 4 && (
               <>
                 <p>
-                  In Brüssel verläuft der Graph für eine kurze Zeit waagerecht.
-                  Dort wird keine Strecke zurückgelegt, weil der Zug am Bahnhof
-                  steht.
+                  In Brüssel verläuft der Graph für eine kurze Zeit{' '}
+                  <b>waagerecht</b>. Dort wird keine Strecke zurückgelegt, weil
+                  der Zug am Bahnhof steht.
                 </p>
               </>
             )}
@@ -797,7 +796,9 @@ export const exercise128: Exercise<DATA> = {
               <li>{falsch[data.item_2]}</li>
             </ul>{' '}
             <p>
-              sind <strong>korrekt</strong>. Die Aussage{' '}
+              sind <strong>korrekt</strong>.<br></br>
+              <br></br>
+              Die Aussage{' '}
               <ul>
                 <li>{falsch[data.item_3]}</li>
               </ul>{' '}
