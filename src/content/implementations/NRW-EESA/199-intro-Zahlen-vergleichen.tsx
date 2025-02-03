@@ -59,20 +59,54 @@ export const exercise199: Exercise<DATA> = {
         {buildEquation([
           [
             <>{pp(data.a)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id={'199-select-1'}>
+                <option>___</option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.b)}</>,
           ],
           [
             <>{pp(data.c)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              {' '}
+              <select className="p-2">
+                <option>___</option>
+                <option>&lt;</option>
+                <option>&gt;</option>
+                <option>=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.d)}</>,
           ],
           [
             <>{pp(data.e)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              {' '}
+              <select className="p-2">
+                <option>___</option>
+                <option>&lt;</option>
+                <option>&gt;</option>
+                <option>=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.f)}</>,
           ],
         ])}
+        <p>
+          <button
+            className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+            onClick={() => {}}
+          >
+            Abschicken
+          </button>
+        </p>
       </>
     )
   },
