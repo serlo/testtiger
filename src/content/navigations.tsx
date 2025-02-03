@@ -2200,7 +2200,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'video',
             title: 'Video 1',
             videoUrl:
-              'https://testtige.uber.space/testtiger/Zahlen_vergleichen_small.mp4',
+              'https://testtige.uber.space/testtiger/Zahlen_vergleichen_MINI.mp4',
             position: { x: 80, y: 170 },
             steps: [],
           },
@@ -2216,7 +2216,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'video',
             title: 'Video 2',
             videoUrl:
-              'https://testtige.uber.space/testtiger/bruechevergleichen_small.mp4',
+              'https://testtige.uber.space/testtiger/bruechevergleichen_MINI.mp4',
             position: { x: 150, y: 320 },
             steps: [],
           },
@@ -2247,7 +2247,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'video',
             title: 'Video 3',
             videoUrl:
-              'https://testtige.uber.space/testtiger/schaetzen_small.mp4',
+              'https://testtige.uber.space/testtiger/schaetzen_MINI.mp4',
             position: { x: 200, y: 575 },
             steps: [],
           },
