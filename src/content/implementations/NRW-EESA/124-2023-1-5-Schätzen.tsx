@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color1, Color2 } from '@/helper/colors'
 import { getImageAndDescription } from '@/helper/get-image-and-description'
 
 interface DATA {
@@ -12,11 +13,11 @@ export const exercise124: Exercise<DATA> = {
   duration: 6,
   points: 3,
   generator(rng) {
-    const task = rng.randomIntBetween(1, 4)
+    const task = rng.randomIntBetween(1, 3)
     return { task }
   },
   originalData: { task: 1 },
-  learningPathData: { task: 4 },
+  learningPathData: { task: 2 },
   constraint({ data }) {
     return true
   },
@@ -26,9 +27,8 @@ export const exercise124: Exercise<DATA> = {
         <p>
           Bestimme näherungsweise die Anzahl der{' '}
           {data.task === 1 && 'Kaffeebohnen'}
-          {data.task === 2 && 'Bälle'}
-          {data.task === 3 && 'Beeren'}
-          {data.task === 4 && 'Tomaten'} auf dem Bild. Beschreibe, wie du
+          {data.task === 2 && 'Beeren'}
+          {data.task === 3 && 'Tomaten'} auf dem Bild. Beschreibe, wie du
           vorgegangen bist!
         </p>
         {data.task === 1 && (
@@ -41,15 +41,6 @@ export const exercise124: Exercise<DATA> = {
           </svg>
         )}
         {data.task === 2 && (
-          <svg viewBox="0 0 5234 3453">
-            <image
-              href="/content/NRW_EESA/124_Bälle.jpg"
-              height="3453"
-              width="5234"
-            />
-          </svg>
-        )}
-        {data.task === 3 && (
           <svg viewBox="0 0 3132 2072">
             <image
               href="/content/NRW_EESA/124_Beeren.jpg"
@@ -58,7 +49,7 @@ export const exercise124: Exercise<DATA> = {
             />
           </svg>
         )}
-        {data.task === 4 && (
+        {data.task === 3 && (
           <svg viewBox="0 0 2448 3264">
             <image
               href="/content/NRW_EESA/124_Tomaten.jpg"
@@ -75,371 +66,285 @@ export const exercise124: Exercise<DATA> = {
       <>
         {data.task === 1 && (
           <>
-            <p>Teile das Bild in ein Raster mit gleich großen Bereichen auf.</p>
             <svg viewBox="0 0 1469 1037">
               <image
                 href="/content/NRW_EESA/124_Kaffeebohnen.jpeg"
                 height="1037"
                 width="1469"
               />
-              <rect
-                x="10"
-                y="10"
-                width="1440"
-                height="1025"
-                stroke="black"
-                fill="transparent"
-                strokeWidth="10"
-              />
+
               <line
-                x2={1440 / 5 + 10}
-                y1={10}
-                x1={1440 / 5 + 10}
-                y2={1035}
+                x2={1469 / 4}
+                y1={0}
+                x1={1469 / 4}
+                y2={1037}
                 stroke="black"
                 strokeWidth={10}
               />
 
               <line
-                x2={(2 * 1440) / 5 + 10}
-                y1={10}
-                x1={(2 * 1440) / 5 + 10}
-                y2={1035}
+                x2={(2 * 1469) / 4}
+                y1={0}
+                x1={(2 * 1469) / 4}
+                y2={1037}
                 stroke="black"
                 strokeWidth={10}
               />
               <line
-                x2={(3 * 1440) / 5 + 10}
-                y1={10}
-                x1={(3 * 1440) / 5 + 10}
-                y2={1035}
+                x2={(3 * 1469) / 4}
+                y1={0}
+                x1={(3 * 1469) / 4}
+                y2={1037}
+                stroke="black"
+                strokeWidth={10}
+              />
+
+              <line
+                x2={0}
+                y1={1037 / 4}
+                x1={1469}
+                y2={1037 / 4}
                 stroke="black"
                 strokeWidth={10}
               />
               <line
-                x2={(4 * 1440) / 5 + 10}
-                y1={10}
-                x1={(4 * 1440) / 5 + 10}
-                y2={1035}
+                x2={0}
+                y1={(2 * 1037) / 4}
+                x1={1469}
+                y2={(2 * 1037) / 4}
                 stroke="black"
                 strokeWidth={10}
               />
               <line
-                x2={10}
-                y1={1025 / 5 + 10}
-                x1={1445}
-                y2={1025 / 5 + 10}
+                x2={0}
+                y1={(3 * 1037) / 4}
+                x1={1469}
+                y2={(3 * 1037) / 4}
                 stroke="black"
                 strokeWidth={10}
               />
               <line
-                x2={10}
-                y1={(2 * 1025) / 5 + 10}
-                x1={1445}
-                y2={(2 * 1025) / 5 + 10}
-                stroke="black"
-                strokeWidth={10}
+                x2={0}
+                y1={1037 / 4}
+                x1={1469 / 4}
+                y2={1037 / 4}
+                stroke="green"
+                strokeWidth={15}
               />
               <line
-                x2={10}
-                y1={(3 * 1025) / 5 + 10}
-                x1={1445}
-                y2={(3 * 1025) / 5 + 10}
-                stroke="black"
-                strokeWidth={10}
+                x2={0}
+                y1={(2 * 1037) / 4}
+                x1={1469 / 4}
+                y2={(2 * 1037) / 4}
+                stroke="green"
+                strokeWidth={15}
               />
               <line
-                x2={10}
-                y1={(4 * 1025) / 5 + 10}
-                x1={1445}
-                y2={(4 * 1025) / 5 + 10}
-                stroke="black"
-                strokeWidth={10}
+                x2={8}
+                y1={1037 / 4}
+                x1={8}
+                y2={(2 * 1037) / 4}
+                stroke="green"
+                strokeWidth={15}
+              />
+              <line
+                x2={1469 / 4}
+                y1={1037 / 4}
+                x1={1469 / 4}
+                y2={(2 * 1037) / 4}
+                stroke="green"
+                strokeWidth={15}
               />
             </svg>
             <p>
-              In einem durchschnittlich belegten Feld sind etwa 13 Kaffeebohnen.
-              <br></br>
-              <br></br> Damit sind insgesamt etwa 13 · 25 ={' '}
-              <b>325 Kaffeebohnen</b> auf dem Bild.
+              Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
+              Oben ist das Bild zum Beispiel in <Color1>16 Bereiche</Color1>{' '}
+              aufgeteilt.
+            </p>
+            <p>
+              Zähle die Bohnen in einem Bereich, der eine mittlere Anzahl an
+              Bohnen enthält: Im grün markierten Bereich befinden sich zum
+              Beispiel etwa <Color2>22 Bohnen</Color2>.
+            </p>
+            <p>
+              Damit kannst du schätzen:{' '}
+              <b>
+                <Color2>22</Color2> · <Color1>16</Color1> = 352
+              </b>
+            </p>
+            <p>
+              Im letzten Schritt runden wir die Lösung, da wir bei einer
+              Schätzung keine genauen Zahlen haben: <b>352 ≈ 350</b>
+            </p>
+            <p>
+              Damit sind <b>insgesamt etwa 350 Bohnen auf dem Bild</b>.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis ein bisschen abweicht. Du
+              solltest aber auf eine Zahl <b>zwischen 300 und 390</b> kommen.
             </p>
           </>
         )}
         {data.task === 2 && (
           <>
-            <p>
-              Teile das Bild auf in ein Raster mit gleich großen Bereichen auf.
-            </p>
-            <svg viewBox="0 0 5234 3453">
-              <image
-                href="/content/NRW_EESA/124_Bälle.jpg"
-                height="3453"
-                width="5234"
-              />
-              <rect
-                x="10"
-                y="10"
-                width="5234"
-                height="3453"
-                stroke="black"
-                fill="transparent"
-                strokeWidth="30"
-              />
-              <line
-                x2={5234 / 5 + 10}
-                y1={10}
-                x1={5234 / 5 + 10}
-                y2={3463}
-                stroke="black"
-                strokeWidth={30}
-              />
-
-              <line
-                x2={(2 * 5234) / 5 + 10}
-                y1={10}
-                x1={(2 * 5234) / 5 + 10}
-                y2={3463}
-                stroke="black"
-                strokeWidth={30}
-              />
-              <line
-                x2={(3 * 5234) / 5 + 10}
-                y1={10}
-                x1={(3 * 5234) / 5 + 10}
-                y2={3463}
-                stroke="black"
-                strokeWidth={30}
-              />
-              <line
-                x2={(4 * 5234) / 5 + 10}
-                y1={10}
-                x1={(4 * 5234) / 5 + 10}
-                y2={3463}
-                stroke="black"
-                strokeWidth={30}
-              />
-              <line
-                x2={10}
-                y1={3453 / 5 + 10}
-                x1={5239}
-                y2={3453 / 5 + 10}
-                stroke="black"
-                strokeWidth={30}
-              />
-              <line
-                x2={10}
-                y1={(2 * 3453) / 5 + 10}
-                x1={5239}
-                y2={(2 * 3453) / 5 + 10}
-                stroke="black"
-                strokeWidth={30}
-              />
-              <line
-                x2={10}
-                y1={(3 * 3453) / 5 + 10}
-                x1={5239}
-                y2={(3 * 3453) / 5 + 10}
-                stroke="black"
-                strokeWidth={30}
-              />
-              <line
-                x2={10}
-                y1={(4 * 3453) / 5 + 10}
-                x1={5239}
-                y2={(4 * 3453) / 5 + 10}
-                stroke="black"
-                strokeWidth={30}
-              />
-            </svg>
-            <p>
-              In einem durchschnittlich belegten Feld sind etwa 18 Bälle.
-              <br></br>
-              <br></br> Damit sind insgesamt etwa 18 · 25 = <b>450 Bälle</b> auf
-              dem Bild.
-            </p>
-          </>
-        )}
-        {data.task === 3 && (
-          <>
-            <p>Teile das Bild in ein Raster mit gleich großen Bereichen auf.</p>
             <svg viewBox="0 0 3132 2072">
               <image
                 href="/content/NRW_EESA/124_Beeren.jpg"
                 height="2072"
                 width="3132"
               />
-              <rect
-                x="10"
-                y="10"
-                width="3132"
-                height="2072"
-                stroke="white"
-                fill="transparent"
-                strokeWidth="20"
-              />
+
               <line
-                x2={3132 / 5 + 10}
-                y1={10}
-                x1={3132 / 5 + 10}
-                y2={2082}
+                x2={3132 / 4}
+                y1={0}
+                x1={3132 / 4}
+                y2={2072}
                 stroke="white"
                 strokeWidth={20}
               />
 
               <line
-                x2={(2 * 3132) / 5 + 10}
-                y1={10}
-                x1={(2 * 3132) / 5 + 10}
-                y2={2082}
+                x2={(2 * 3132) / 4}
+                y1={0}
+                x1={(2 * 3132) / 4}
+                y2={2072}
                 stroke="white"
                 strokeWidth={20}
               />
               <line
-                x2={(3 * 3132) / 5 + 10}
-                y1={10}
-                x1={(3 * 3132) / 5 + 10}
-                y2={2082}
+                x2={(3 * 3132) / 4}
+                y1={0}
+                x1={(3 * 3132) / 4}
+                y2={2072}
+                stroke="white"
+                strokeWidth={20}
+              />
+
+              <line
+                x2={0}
+                y1={2072 / 4}
+                x1={3132}
+                y2={2072 / 4}
                 stroke="white"
                 strokeWidth={20}
               />
               <line
-                x2={(4 * 3132) / 5 + 10}
-                y1={10}
-                x1={(4 * 3132) / 5 + 10}
-                y2={2082}
+                x2={0}
+                y1={(2 * 2072) / 4}
+                x1={3132}
+                y2={(2 * 2072) / 4}
                 stroke="white"
                 strokeWidth={20}
               />
               <line
-                x2={10}
-                y1={2072 / 5 + 10}
-                x1={3137}
-                y2={2072 / 5 + 10}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={(2 * 2072) / 5 + 10}
-                x1={3137}
-                y2={(2 * 2072) / 5 + 10}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={(3 * 2072) / 5 + 10}
-                x1={3137}
-                y2={(3 * 2072) / 5 + 10}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={(4 * 2072) / 5 + 10}
-                x1={3137}
-                y2={(4 * 2072) / 5 + 10}
+                x2={0}
+                y1={(3 * 2072) / 4}
+                x1={3132}
+                y2={(3 * 2072) / 4}
                 stroke="white"
                 strokeWidth={20}
               />
             </svg>
             <p>
-              In einem durchschnittlich belegten Feld sind etwa 15 Beeren.
-              <br></br>
-              <br></br> Damit sind insgesamt etwa 15 · 25 = <b>375 Beeren</b>{' '}
-              auf dem Bild.
+              Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
+              Oben ist das Bild zum Beispiel in <Color1>16 Bereiche</Color1>{' '}
+              aufgeteilt.
+            </p>
+            <p>
+              Zähle die Beeren in einem der 16 Bereiche: Im Bereich oben rechts
+              befinden sich zum Beispiel etwa <Color2>21 Beeren</Color2>.
+            </p>
+            <p>
+              Damit kannst du schätzen:{' '}
+              <b>
+                <Color2>21</Color2> · <Color1>16</Color1> = 336
+              </b>
+            </p>
+            <p>
+              Im letzten Schritt runden wir die Lösung, da wir bei einer
+              Schätzung keine genauen Zahlen haben: <b>336 ≈ 340</b>
+            </p>
+            <p>
+              Damit sind <b>insgesamt etwa 340 Beeren auf dem Bild</b>.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis ein bisschen abweicht. Du
+              solltest aber auf eine Zahl <b>zwischen 290 und 380</b> kommen.
             </p>
           </>
         )}
-        {data.task === 4 && (
+        {data.task === 3 && (
           <>
-            <p>Teile das Bild in ein Raster mit gleich großen Bereichen auf.</p>
             <svg viewBox="0 0 2448 3264">
               <image
                 href="/content/NRW_EESA/124_Tomaten.jpg"
                 height="3264"
                 width="2448"
               />
-              <rect
-                x="10"
-                y="10"
-                width="2448"
-                height="3264"
-                stroke="white"
-                fill="transparent"
-                strokeWidth="20"
-              />
+
               <line
-                x2={2448 / 5 + 10}
-                y1={10}
-                x1={2448 / 5 + 10}
-                y2={3274}
+                x2={2448 / 3}
+                y1={0}
+                x1={2448 / 3}
+                y2={3264}
                 stroke="white"
                 strokeWidth={20}
               />
 
               <line
-                x2={(2 * 2448) / 5 + 10}
-                y1={10}
-                x1={(2 * 2448) / 5 + 10}
-                y2={3274}
+                x2={(2 * 2448) / 3}
+                y1={0}
+                x1={(2 * 2448) / 3}
+                y2={3264}
+                stroke="white"
+                strokeWidth={20}
+              />
+
+              <line
+                x2={0}
+                y1={3264 / 3}
+                x1={2448}
+                y2={3264 / 3}
                 stroke="white"
                 strokeWidth={20}
               />
               <line
-                x2={(3 * 2448) / 5 + 10}
-                y1={10}
-                x1={(3 * 2448) / 5 + 10}
-                y2={3274}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={(4 * 2448) / 5 + 10}
-                y1={10}
-                x1={(4 * 2448) / 5 + 10}
-                y2={3274}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={3264 / 5 + 10}
-                x1={2453}
-                y2={3264 / 5 + 10}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={(2 * 3264) / 5 + 10}
-                x1={2453}
-                y2={(2 * 3264) / 5 + 10}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={(3 * 3264) / 5 + 10}
-                x1={2453}
-                y2={(3 * 3264) / 5 + 10}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={10}
-                y1={(4 * 3264) / 5 + 10}
-                x1={2453}
-                y2={(4 * 3264) / 5 + 10}
+                x2={0}
+                y1={(2 * 3264) / 3}
+                x1={2448}
+                y2={(2 * 3264) / 3}
                 stroke="white"
                 strokeWidth={20}
               />
             </svg>
             <p>
-              In einem durchschnittlich belegten Feld sind etwa 4 Kaffeebohnen.
-              <br></br>
-              <br></br> Damit sind insgesamt etwa 4 · 25 = <b>100 Tomaten</b>{' '}
-              auf dem Bild.
+              Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
+              Oben ist das Bild zum Beispiel in <Color1>9 Bereiche</Color1>{' '}
+              aufgeteilt.
+            </p>
+            <p>
+              Zähle die Tomaten in einem der 9 Bereiche: Im Bereich unten links
+              befinden sich zum Beispiel etwa <Color2>12 Tomaten</Color2>.
+            </p>
+            <p>
+              Damit kannst du schätzen:{' '}
+              <b>
+                <Color2>12</Color2> · <Color1>9</Color1> = 108
+              </b>
+            </p>
+            <p>
+              Im letzten Schritt runden wir die Lösung, da wir bei einer
+              Schätzung keine genauen Zahlen haben: <b>108 ≈ 110</b>
+            </p>
+            <p>
+              Damit sind <b>insgesamt etwa 110 Tomaten auf dem Bild</b>.
+            </p>
+            <p>
+              <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
+              kann es sein, dass dein Ergebnis ein bisschen abweicht. Du
+              solltest aber auf eine Zahl <b>zwischen 90 und 120</b> kommen.
             </p>
           </>
         )}
