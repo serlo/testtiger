@@ -15,8 +15,8 @@ export const exercise198: Exercise<DATA> = {
   title: 'Lineare Gleichungen',
   source: '',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 4,
+  points: 2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(2, 5),

@@ -32,7 +32,7 @@ export const exercise109: Exercise<DATA> = {
   title: 'Kasimir bastelt',
   source: '2021 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 30,
+  duration: 22,
   generator(rng) {
     return {
       item_1: rng.randomIntBetween(0, 1),
@@ -80,7 +80,7 @@ export const exercise109: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -231,7 +231,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -296,7 +296,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -409,7 +409,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         const h = roundToDigits(
           Math.sqrt(data.a * data.a - (data.a * data.a) / 4),
@@ -526,7 +526,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 1,
-      duration: 1,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>

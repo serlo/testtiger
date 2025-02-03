@@ -2,6 +2,7 @@ import { Exercise } from '@/data/types'
 import { Color1, Color4, Color5 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   brett: number
@@ -13,7 +14,7 @@ export const exercise117: Exercise<DATA> = {
   title: 'Hochbeet',
   source: '2022 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 30,
+  duration: 24,
   generator(rng) {
     return {
       brett: rng.randomIntBetween(20, 40) / 2,
@@ -70,7 +71,7 @@ export const exercise117: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -117,7 +118,7 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 4,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -188,9 +189,15 @@ export const exercise117: Exercise<DATA> = {
             <p>Berechne die Gesamtfläche:</p>
             <p>Addiere die Flächen:</p>
             <p>
-              {pp((höhe * 2 * data.breite) / 100)} + {pp(länge * höhe * 2)} ={' '}
+              {pp((höhe * 2 * data.breite) / 100)} + {pp(länge * höhe * 2)} ≈{' '}
               <strong>
-                {pp((höhe * 2 * data.breite) / 100 + länge * höhe * 2)} [m²]
+                {pp(
+                  roundToDigits(
+                    (höhe * 2 * data.breite) / 100 + länge * höhe * 2,
+                    2,
+                  ),
+                )}{' '}
+                m²
               </strong>
             </p>
 
@@ -218,7 +225,7 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -274,9 +281,12 @@ export const exercise117: Exercise<DATA> = {
               Gesamtfläche muss durch 3 geteilt werden:
             </p>
             <p>
-              {pp(((länge * data.breite) / 100) * höhe)} : 3 ={' '}
+              {pp(((länge * data.breite) / 100) * höhe)} : 3 ≈{' '}
               <strong>
-                {pp((((länge * data.breite) / 100) * höhe) / 3)} [m³]
+                {pp(
+                  roundToDigits((((länge * data.breite) / 100) * höhe) / 3, 2),
+                )}{' '}
+                [m³]
               </strong>
             </p>
           </>
@@ -285,7 +295,7 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -448,7 +458,7 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>

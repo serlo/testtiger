@@ -17,7 +17,7 @@ export const exercise136: Exercise<DATA> = {
   title: 'E-Scooter',
   source: '2024 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     const weg = rng.randomIntBetween(2, 8)
     const pacecase = rng.randomIntBetween(2, 4)
@@ -65,7 +65,7 @@ export const exercise136: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       task({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
@@ -137,7 +137,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
@@ -307,7 +307,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         const time = data.weg / (data.pace / 60)
         const tag = data.zeitkosten * time + data.fixkosten * 2
@@ -407,7 +407,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         const time = data.weg / (data.pace / 60)
         const tag = data.zeitkosten * time + data.fixkosten * 2
@@ -638,7 +638,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       task({ data }) {
         return (
           //f)

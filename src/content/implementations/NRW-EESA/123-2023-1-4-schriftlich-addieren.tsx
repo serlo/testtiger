@@ -10,7 +10,7 @@ export const exercise123: Exercise<DATA> = {
   title: 'schriftlich addieren',
   source: '2023 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 3,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {

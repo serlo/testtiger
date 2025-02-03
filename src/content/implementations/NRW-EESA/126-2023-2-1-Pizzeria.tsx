@@ -16,7 +16,7 @@ export const exercise126: Exercise<DATA> = {
   title: 'Pizzeria',
   source: '2023 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 30,
+  duration: 24,
   generator(rng) {
     return {
       dia: rng.randomIntBetween(7, 11) * 2,
@@ -230,7 +230,7 @@ export const exercise126: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -311,7 +311,7 @@ export const exercise126: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -423,7 +423,7 @@ export const exercise126: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return (
           <>
@@ -589,7 +589,7 @@ export const exercise126: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       skillIntro({ data }) {
         return (
           <>
@@ -716,7 +716,7 @@ export const exercise126: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       skillIntro({ data }) {
         return (
           <>

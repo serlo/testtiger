@@ -22,7 +22,7 @@ export const exercise119: Exercise<DATA> = {
   title: 'Bambus',
   source: '2022 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     return {
       wachsen: rng.randomIntBetween(3, 7) * 10,
@@ -108,7 +108,7 @@ export const exercise119: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return <></>
       },
@@ -292,7 +292,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -371,7 +371,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return (
           <>
@@ -437,7 +437,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -601,7 +601,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>

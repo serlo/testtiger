@@ -17,7 +17,7 @@ export const exercise199: Exercise<DATA> = {
   title: 'Zahlen vergleichen',
   source: '',
   useCalculator: false,
-  duration: 3,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {

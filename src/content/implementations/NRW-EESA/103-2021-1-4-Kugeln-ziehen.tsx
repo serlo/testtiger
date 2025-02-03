@@ -14,7 +14,7 @@ export const exercise103: Exercise<DATA> = {
   title: 'Kugeln ziehen',
   source: '2021 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 2,
+  duration: 8,
   generator(rng) {
     return {
       black: rng.randomIntBetween(4, 10),
@@ -43,7 +43,7 @@ export const exercise103: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -124,7 +124,7 @@ export const exercise103: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },

@@ -38,7 +38,7 @@ export const exercise128: Exercise<DATA> = {
   title: 'Zugfahrt',
   source: '2023 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     return {
       case: rng.randomIntBetween(1, 4),
@@ -211,7 +211,7 @@ export const exercise128: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -248,7 +248,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return <></>
       },
@@ -283,7 +283,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -344,7 +344,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         function toX(n: number) {
           return 33 + n * 15.6
@@ -682,7 +682,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -766,7 +766,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },

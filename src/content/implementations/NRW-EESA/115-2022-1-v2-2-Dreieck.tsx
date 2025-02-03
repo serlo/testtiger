@@ -14,7 +14,7 @@ export const exercise115: Exercise<DATA> = {
   title: 'Dreieck',
   source: '2022 Teil 1 Variante 2 Aufgabe 2',
   useCalculator: false,
-  duration: 42,
+  duration: 12,
   generator(rng) {
     return {
       alpha: rng.randomIntBetween(40, 60),
@@ -51,7 +51,7 @@ export const exercise115: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 4,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -200,7 +200,7 @@ export const exercise115: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 1,
+      duration: 6,
       intro({ data }) {
         return (
           <>

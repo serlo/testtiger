@@ -19,7 +19,7 @@ export const exercise125: Exercise<DATA> = {
   title: 'Mittelwerte und Durchschnitt',
   source: '2023 Teil 1 Aufgabe 6',
   useCalculator: false,
-  duration: 4,
+  duration: 8,
   generator(rng) {
     return {
       Spiel1: rng.randomIntBetween(5, 20),
@@ -242,7 +242,7 @@ export const exercise125: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -292,7 +292,7 @@ export const exercise125: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },

@@ -10,7 +10,7 @@ export const exercise133: Exercise<DATA> = {
   title: 'Schätzen',
   source: '2024 Teil 1 Aufgabe 5',
   useCalculator: false,
-  duration: 2,
+  duration: 6,
   points: 3,
   generator(rng) {
     const task = rng.randomIntBetween(1, 4)

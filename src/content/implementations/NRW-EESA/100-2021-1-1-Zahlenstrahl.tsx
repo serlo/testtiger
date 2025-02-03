@@ -12,7 +12,7 @@ export const exercise100: Exercise<DATA> = {
   title: 'Zahlenstrahl',
   source: '2021 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 3,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {

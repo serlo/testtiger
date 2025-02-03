@@ -1,6 +1,7 @@
 import { Exercise } from '@/data/types'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   stimmen: number
@@ -21,7 +22,7 @@ export const exercise112: Exercise<DATA> = {
   title: 'Landtagswahl',
   source: '2022 Teil 1 Aufgabe 3',
   useCalculator: true,
-  duration: 4,
+  duration: 8,
   generator(rng) {
     return {
       stimmen: rng.randomIntBetween(8000000, 9000000),
@@ -282,7 +283,7 @@ export const exercise112: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -345,19 +346,21 @@ export const exercise112: Exercise<DATA> = {
               ],
               [
                 <></>,
-                <>=</>,
+                <>≈</>,
                 <>
                   {data.partei == 'CDU' && (
-                    <>{pp((data.stimmen * data.cdu) / 100)}</>
+                    <>{pp(roundToDigits((data.stimmen * data.cdu) / 100, 2))}</>
                   )}
                   {data.partei == 'SPD' && (
-                    <>{pp((data.stimmen * data.spd) / 100)}</>
+                    <>{pp(roundToDigits((data.stimmen * data.spd) / 100, 2))}</>
                   )}
                   {data.partei == 'Grüne' && (
-                    <>{pp((data.stimmen * data.grüne) / 100)}</>
+                    <>
+                      {pp(roundToDigits((data.stimmen * data.grüne) / 100, 2))}
+                    </>
                   )}
                   {data.partei == 'FDP' && (
-                    <>{pp((data.stimmen * data.fdp) / 100)}</>
+                    <>{pp(roundToDigits((data.stimmen * data.fdp) / 100, 2))}</>
                   )}
                 </>,
               ],
@@ -388,7 +391,7 @@ export const exercise112: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },

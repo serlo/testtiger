@@ -12,7 +12,7 @@ export const exercise132: Exercise<DATA> = {
   title: 'Basketball',
   source: '2024 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 2,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {

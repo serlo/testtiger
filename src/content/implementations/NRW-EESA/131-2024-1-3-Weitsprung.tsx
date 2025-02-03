@@ -19,7 +19,7 @@ export const exercise131: Exercise<DATA> = {
   title: 'Weitsprung',
   source: '2024 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 42,
+  duration: 8,
   generator(rng) {
     return {
       sprung1: rng.randomIntBetween(35, 45) / 10,
@@ -181,7 +181,7 @@ export const exercise131: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -226,7 +226,7 @@ export const exercise131: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
