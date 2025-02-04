@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color5 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -212,16 +212,26 @@ export const exercise104: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              Berechne den Anteil mit der Formel für den <b>Prozentwert</b>.
-            </p>
-            <p>Wandle dazu den Prozentsatz in eine Dezimalzahl um:</p>
-            <p>
-              {data.öffi} % ≙ {pp(data.öffi / 100)}
-            </p>
-            <p>Setze in die Formel ein und berechne:</p>
+            <p>Berechne den Anteil mit der Formel für den Prozentwert W:</p>
             {buildEquation([
               [<>W</>, <>=</>, <>G · p</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Prozentsatz {data.öffi} % ={' '}
+                      {pp(data.öffi / 100)} ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
               [
                 <></>,
                 <>=</>,
@@ -232,13 +242,16 @@ export const exercise104: Exercise<DATA> = {
               [
                 <></>,
                 <>=</>,
-                <>
-                  <strong>
-                    {pp(roundToDigits((data.personen * data.öffi) / 100, 2))}
-                  </strong>
-                </>,
+                <>{pp(roundToDigits((data.personen * data.öffi) / 100, 2))}</>,
               ],
             ])}
+            <p>
+              <strong>
+                Es fahren{' '}
+                {pp(roundToDigits((data.personen * data.öffi) / 100, 2))} der
+                gefragten Personen mit öffentliche Verkehrsmitteln zur Arbeit.
+              </strong>
+            </p>
           </>
         )
       },
@@ -571,7 +584,6 @@ export const exercise104: Exercise<DATA> = {
         }
         return (
           <>
-            <p>Winkel berechnen: </p>
             <p>Im Kreisdiagramm fehlen zwei Sektoren:</p>
             <ul>
               <li>
@@ -603,7 +615,6 @@ export const exercise104: Exercise<DATA> = {
               </li>
             </ul>
             <hr style={{ margin: '10px 0' }} />
-            <p>Kreisdiagramm zeichnen: </p>
             <p>
               Zeichne die Sektoren mit den berechneten Winkeln mithilfe eines
               Geodreiecks ein:

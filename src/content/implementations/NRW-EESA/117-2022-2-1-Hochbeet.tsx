@@ -141,10 +141,10 @@ export const exercise117: Exercise<DATA> = {
         const höhe = (data.brett * 5) / 100
         return (
           <>
-            <p>Berechne die Oberfläche der rechteckigen Seitenflächen:</p>
             <p>
-              Multipliziere die Länge und Breite. <br></br>Achte darauf, dass
-              jeweils <Color1>zwei</Color1> gleiche Seitenwände vorhanden sind:
+              Berechne die Oberfläche der rechteckigen Seitenflächen mit der
+              Formel:
+              <br></br>A = a · b
             </p>
             {buildEquation([
               [
@@ -165,56 +165,74 @@ export const exercise117: Exercise<DATA> = {
               ],
               [
                 <>
-                  <Color1>2</Color1> · A<sub>lang</sub>
+                  A<sub>lang</sub>
                 </>,
                 <>=</>,
                 <>
-                  <Color1>2</Color1> · {pp(länge)} · {pp(höhe)}{' '}
+                  {pp(länge)} · {pp(höhe)}{' '}
                 </>,
               ],
-
-              [<></>, <>=</>, <>{pp(länge * höhe * 2)} [m²]</>],
+              [<></>, <>=</>, <>{pp(länge * höhe)} [m²]</>],
               [
                 <>
-                  <Color1>2</Color1> · A<sub>kurz</sub>
+                  A<sub>kurz</sub>
                 </>,
                 <>=</>,
                 <>
-                  <Color1>2</Color1> · {pp(data.breite / 100)} · {pp(höhe)}
+                  {pp(data.breite / 100)} · {pp(höhe)}
                 </>,
               ],
-              [<></>, <>=</>, <>{pp((höhe * 2 * data.breite) / 100)} [m²]</>],
+              [<></>, <>=</>, <>{pp((höhe * data.breite) / 100)} [m²]</>],
             ])}
             <hr style={{ margin: '10px 0' }} />
             <p>Berechne die Gesamtfläche:</p>
-            <p>Addiere die Flächen:</p>
-            <p>
-              {pp((höhe * 2 * data.breite) / 100)} + {pp(länge * höhe * 2)} ≈{' '}
-              <strong>
-                {pp(
-                  roundToDigits(
-                    (höhe * 2 * data.breite) / 100 + länge * höhe * 2,
-                    2,
-                  ),
-                )}{' '}
-                m²
-              </strong>
-            </p>
-
+            {buildEquation([
+              [
+                <>
+                  A<sub>gesamt</sub>
+                </>,
+                <>=</>,
+                <>
+                  2 · A<sub>lang</sub> + 2 · A<sub>kurz</sub>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  2 · {pp(länge * höhe)} + 2 · {pp((höhe * data.breite) / 100)}
+                </>,
+              ],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (höhe * 2 * data.breite) / 100 + länge * höhe * 2,
+                        2,
+                      ),
+                    )}{' '}
+                    m²
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
               {(höhe * 2 * data.breite) / 100 + länge * höhe * 2 <
               data.color ? (
                 <>
-                  Die Oberfläche ist kleiner als {pp(data.color)} m² und{' '}
                   <strong>
-                    kann daher mit einem Eimer Farbe gestrichen werden.
+                    Die Oberfläche ist kleiner als {pp(data.color)} m² und kann
+                    daher mit einem Eimer Farbe gestrichen werden.
                   </strong>
                 </>
               ) : (
                 <>
-                  Die Oberfläche ist größer als {pp(data.color)} m² und{' '}
                   <strong>
-                    kann daher nicht mit einem Eimer Farbe gestrichen werden.
+                    Die Oberfläche ist größer als {pp(data.color)} m² und kann
+                    daher nicht mit einem Eimer Farbe gestrichen werden.
                   </strong>
                 </>
               )}
