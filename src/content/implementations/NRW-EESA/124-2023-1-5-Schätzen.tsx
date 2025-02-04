@@ -1,10 +1,205 @@
 import { Exercise } from '@/data/types'
 import { Color1, Color2 } from '@/helper/colors'
-import { getImageAndDescription } from '@/helper/get-image-and-description'
+import { GitterComponent } from './114-2022-1-5-Schätzen'
 
 interface DATA {
   task: number
 }
+
+const task1WithGrid = (
+  <svg viewBox="0 0 1469 1037">
+    <image
+      href="/content/NRW_EESA/124_Kaffeebohnen.jpeg"
+      height="1037"
+      width="1469"
+    />
+
+    <line
+      x2={1469 / 4}
+      y1={0}
+      x1={1469 / 4}
+      y2={1037}
+      stroke="black"
+      strokeWidth={10}
+    />
+
+    <line
+      x2={(2 * 1469) / 4}
+      y1={0}
+      x1={(2 * 1469) / 4}
+      y2={1037}
+      stroke="black"
+      strokeWidth={10}
+    />
+    <line
+      x2={(3 * 1469) / 4}
+      y1={0}
+      x1={(3 * 1469) / 4}
+      y2={1037}
+      stroke="black"
+      strokeWidth={10}
+    />
+
+    <line
+      x2={0}
+      y1={1037 / 4}
+      x1={1469}
+      y2={1037 / 4}
+      stroke="black"
+      strokeWidth={10}
+    />
+    <line
+      x2={0}
+      y1={(2 * 1037) / 4}
+      x1={1469}
+      y2={(2 * 1037) / 4}
+      stroke="black"
+      strokeWidth={10}
+    />
+    <line
+      x2={0}
+      y1={(3 * 1037) / 4}
+      x1={1469}
+      y2={(3 * 1037) / 4}
+      stroke="black"
+      strokeWidth={10}
+    />
+    <line
+      x2={0}
+      y1={1037 / 4}
+      x1={1469 / 4}
+      y2={1037 / 4}
+      stroke="green"
+      strokeWidth={15}
+    />
+    <line
+      x2={0}
+      y1={(2 * 1037) / 4}
+      x1={1469 / 4}
+      y2={(2 * 1037) / 4}
+      stroke="green"
+      strokeWidth={15}
+    />
+    <line
+      x2={8}
+      y1={1037 / 4}
+      x1={8}
+      y2={(2 * 1037) / 4}
+      stroke="green"
+      strokeWidth={15}
+    />
+    <line
+      x2={1469 / 4}
+      y1={1037 / 4}
+      x1={1469 / 4}
+      y2={(2 * 1037) / 4}
+      stroke="green"
+      strokeWidth={15}
+    />
+  </svg>
+)
+
+const task2WithGrid = (
+  <svg viewBox="0 0 3132 2072">
+    <image href="/content/NRW_EESA/124_Beeren.jpg" height="2072" width="3132" />
+
+    <line
+      x2={3132 / 4}
+      y1={0}
+      x1={3132 / 4}
+      y2={2072}
+      stroke="white"
+      strokeWidth={20}
+    />
+
+    <line
+      x2={(2 * 3132) / 4}
+      y1={0}
+      x1={(2 * 3132) / 4}
+      y2={2072}
+      stroke="white"
+      strokeWidth={20}
+    />
+    <line
+      x2={(3 * 3132) / 4}
+      y1={0}
+      x1={(3 * 3132) / 4}
+      y2={2072}
+      stroke="white"
+      strokeWidth={20}
+    />
+
+    <line
+      x2={0}
+      y1={2072 / 4}
+      x1={3132}
+      y2={2072 / 4}
+      stroke="white"
+      strokeWidth={20}
+    />
+    <line
+      x2={0}
+      y1={(2 * 2072) / 4}
+      x1={3132}
+      y2={(2 * 2072) / 4}
+      stroke="white"
+      strokeWidth={20}
+    />
+    <line
+      x2={0}
+      y1={(3 * 2072) / 4}
+      x1={3132}
+      y2={(3 * 2072) / 4}
+      stroke="white"
+      strokeWidth={20}
+    />
+  </svg>
+)
+
+const task3WithGrid = (
+  <svg viewBox="0 0 2448 3264">
+    <image
+      href="/content/NRW_EESA/124_Tomaten.jpg"
+      height="3264"
+      width="2448"
+    />
+
+    <line
+      x2={2448 / 3}
+      y1={0}
+      x1={2448 / 3}
+      y2={3264}
+      stroke="white"
+      strokeWidth={20}
+    />
+
+    <line
+      x2={(2 * 2448) / 3}
+      y1={0}
+      x1={(2 * 2448) / 3}
+      y2={3264}
+      stroke="white"
+      strokeWidth={20}
+    />
+
+    <line
+      x2={0}
+      y1={3264 / 3}
+      x1={2448}
+      y2={3264 / 3}
+      stroke="white"
+      strokeWidth={20}
+    />
+    <line
+      x2={0}
+      y1={(2 * 3264) / 3}
+      x1={2448}
+      y2={(2 * 3264) / 3}
+      stroke="white"
+      strokeWidth={20}
+    />
+  </svg>
+)
 
 export const exercise124: Exercise<DATA> = {
   title: 'Schätzen',
@@ -32,31 +227,46 @@ export const exercise124: Exercise<DATA> = {
           vorgegangen bist!
         </p>
         {data.task === 1 && (
-          <svg viewBox="0 0 1469 1037">
-            <image
-              href="/content/NRW_EESA/124_Kaffeebohnen.jpeg"
-              height="1037"
-              width="1469"
-            />
-          </svg>
+          <GitterComponent
+            grid={task1WithGrid}
+            image={
+              <svg viewBox="0 0 1469 1037">
+                <image
+                  href="/content/NRW_EESA/124_Kaffeebohnen.jpeg"
+                  height="1037"
+                  width="1469"
+                />
+              </svg>
+            }
+          />
         )}
         {data.task === 2 && (
-          <svg viewBox="0 0 3132 2072">
-            <image
-              href="/content/NRW_EESA/124_Beeren.jpg"
-              height="2072"
-              width="3132"
-            />
-          </svg>
+          <GitterComponent
+            grid={task2WithGrid}
+            image={
+              <svg viewBox="0 0 3132 2072">
+                <image
+                  href="/content/NRW_EESA/124_Beeren.jpg"
+                  height="2072"
+                  width="3132"
+                />
+              </svg>
+            }
+          />
         )}
         {data.task === 3 && (
-          <svg viewBox="0 0 2448 3264">
-            <image
-              href="/content/NRW_EESA/124_Tomaten.jpg"
-              height="3264"
-              width="2448"
-            />
-          </svg>
+          <GitterComponent
+            grid={task3WithGrid}
+            image={
+              <svg viewBox="0 0 2448 3264">
+                <image
+                  href="/content/NRW_EESA/124_Tomaten.jpg"
+                  height="3264"
+                  width="2448"
+                />
+              </svg>
+            }
+          />
         )}
       </>
     )
@@ -66,96 +276,7 @@ export const exercise124: Exercise<DATA> = {
       <>
         {data.task === 1 && (
           <>
-            <svg viewBox="0 0 1469 1037">
-              <image
-                href="/content/NRW_EESA/124_Kaffeebohnen.jpeg"
-                height="1037"
-                width="1469"
-              />
-
-              <line
-                x2={1469 / 4}
-                y1={0}
-                x1={1469 / 4}
-                y2={1037}
-                stroke="black"
-                strokeWidth={10}
-              />
-
-              <line
-                x2={(2 * 1469) / 4}
-                y1={0}
-                x1={(2 * 1469) / 4}
-                y2={1037}
-                stroke="black"
-                strokeWidth={10}
-              />
-              <line
-                x2={(3 * 1469) / 4}
-                y1={0}
-                x1={(3 * 1469) / 4}
-                y2={1037}
-                stroke="black"
-                strokeWidth={10}
-              />
-
-              <line
-                x2={0}
-                y1={1037 / 4}
-                x1={1469}
-                y2={1037 / 4}
-                stroke="black"
-                strokeWidth={10}
-              />
-              <line
-                x2={0}
-                y1={(2 * 1037) / 4}
-                x1={1469}
-                y2={(2 * 1037) / 4}
-                stroke="black"
-                strokeWidth={10}
-              />
-              <line
-                x2={0}
-                y1={(3 * 1037) / 4}
-                x1={1469}
-                y2={(3 * 1037) / 4}
-                stroke="black"
-                strokeWidth={10}
-              />
-              <line
-                x2={0}
-                y1={1037 / 4}
-                x1={1469 / 4}
-                y2={1037 / 4}
-                stroke="green"
-                strokeWidth={15}
-              />
-              <line
-                x2={0}
-                y1={(2 * 1037) / 4}
-                x1={1469 / 4}
-                y2={(2 * 1037) / 4}
-                stroke="green"
-                strokeWidth={15}
-              />
-              <line
-                x2={8}
-                y1={1037 / 4}
-                x1={8}
-                y2={(2 * 1037) / 4}
-                stroke="green"
-                strokeWidth={15}
-              />
-              <line
-                x2={1469 / 4}
-                y1={1037 / 4}
-                x1={1469 / 4}
-                y2={(2 * 1037) / 4}
-                stroke="green"
-                strokeWidth={15}
-              />
-            </svg>
+            {task1WithGrid}
             <p>
               Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
               Oben ist das Bild zum Beispiel in <Color1>16 Bereiche</Color1>{' '}
@@ -188,64 +309,7 @@ export const exercise124: Exercise<DATA> = {
         )}
         {data.task === 2 && (
           <>
-            <svg viewBox="0 0 3132 2072">
-              <image
-                href="/content/NRW_EESA/124_Beeren.jpg"
-                height="2072"
-                width="3132"
-              />
-
-              <line
-                x2={3132 / 4}
-                y1={0}
-                x1={3132 / 4}
-                y2={2072}
-                stroke="white"
-                strokeWidth={20}
-              />
-
-              <line
-                x2={(2 * 3132) / 4}
-                y1={0}
-                x1={(2 * 3132) / 4}
-                y2={2072}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={(3 * 3132) / 4}
-                y1={0}
-                x1={(3 * 3132) / 4}
-                y2={2072}
-                stroke="white"
-                strokeWidth={20}
-              />
-
-              <line
-                x2={0}
-                y1={2072 / 4}
-                x1={3132}
-                y2={2072 / 4}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={0}
-                y1={(2 * 2072) / 4}
-                x1={3132}
-                y2={(2 * 2072) / 4}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={0}
-                y1={(3 * 2072) / 4}
-                x1={3132}
-                y2={(3 * 2072) / 4}
-                stroke="white"
-                strokeWidth={20}
-              />
-            </svg>
+            {task2WithGrid}
             <p>
               Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
               Oben ist das Bild zum Beispiel in <Color1>16 Bereiche</Color1>{' '}
@@ -277,48 +341,7 @@ export const exercise124: Exercise<DATA> = {
         )}
         {data.task === 3 && (
           <>
-            <svg viewBox="0 0 2448 3264">
-              <image
-                href="/content/NRW_EESA/124_Tomaten.jpg"
-                height="3264"
-                width="2448"
-              />
-
-              <line
-                x2={2448 / 3}
-                y1={0}
-                x1={2448 / 3}
-                y2={3264}
-                stroke="white"
-                strokeWidth={20}
-              />
-
-              <line
-                x2={(2 * 2448) / 3}
-                y1={0}
-                x1={(2 * 2448) / 3}
-                y2={3264}
-                stroke="white"
-                strokeWidth={20}
-              />
-
-              <line
-                x2={0}
-                y1={3264 / 3}
-                x1={2448}
-                y2={3264 / 3}
-                stroke="white"
-                strokeWidth={20}
-              />
-              <line
-                x2={0}
-                y1={(2 * 3264) / 3}
-                x1={2448}
-                y2={(2 * 3264) / 3}
-                stroke="white"
-                strokeWidth={20}
-              />
-            </svg>
+            {task3WithGrid}
             <p>
               Teile das Bild auf, in ein Raster mit gleich großen Bereichen.
               Oben ist das Bild zum Beispiel in <Color1>9 Bereiche</Color1>{' '}
