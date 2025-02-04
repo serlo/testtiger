@@ -8,63 +8,18 @@ interface DATA {
   task: number
 }
 
-function GitterComponent() {
+export function GitterComponent({
+  grid,
+  image,
+}: {
+  grid: JSX.Element
+  image: JSX.Element
+}) {
   const [showGitter, setShowGitter] = useState(false)
   return (
     <>
       <p> Schätze die Anzahl der Reiskörner. Notiere deinen Lösungsweg.</p>
-      {showGitter ? (
-        <svg viewBox="0 0 328 220" className="my-8">
-          <image
-            href="/content/NRW_EESA/133_Reis.PNG"
-            height="220"
-            width="328"
-          />
-          <line
-            x2={328 / 4}
-            y1={0}
-            x1={328 / 4}
-            y2={220}
-            stroke="white"
-            strokeWidth={2}
-          />
-          <line
-            x2={(2 * 328) / 4}
-            y1={0}
-            x1={(2 * 328) / 4}
-            y2={220}
-            stroke="white"
-            strokeWidth={2}
-          />
-          <line
-            x2={(3 * 328) / 4}
-            y1={0}
-            x1={(3 * 328) / 4}
-            y2={220}
-            stroke="white"
-            strokeWidth={2}
-          />
-
-          <line
-            x2={0}
-            y1={220 / 3}
-            x1={328}
-            y2={220 / 3}
-            stroke="white"
-            strokeWidth={2}
-          />
-          <line
-            x2={0}
-            y1={(2 * 220) / 3}
-            x1={328}
-            y2={(2 * 220) / 3}
-            stroke="white"
-            strokeWidth={2}
-          />
-        </svg>
-      ) : (
-        getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')
-      )}
+      {showGitter ? grid : image}
       <div>
         <label className="cursor-pointer">
           <input
@@ -95,7 +50,62 @@ export const exercise114: Exercise<DATA> = {
     return true
   },
   task({ data }) {
-    if (data.task == 4) return <GitterComponent />
+    if (data.task == 4)
+      return (
+        <GitterComponent
+          grid={
+            <svg viewBox="0 0 328 220" className="my-8">
+              <image
+                href="/content/NRW_EESA/133_Reis.PNG"
+                height="220"
+                width="328"
+              />
+              <line
+                x2={328 / 4}
+                y1={0}
+                x1={328 / 4}
+                y2={220}
+                stroke="white"
+                strokeWidth={2}
+              />
+              <line
+                x2={(2 * 328) / 4}
+                y1={0}
+                x1={(2 * 328) / 4}
+                y2={220}
+                stroke="white"
+                strokeWidth={2}
+              />
+              <line
+                x2={(3 * 328) / 4}
+                y1={0}
+                x1={(3 * 328) / 4}
+                y2={220}
+                stroke="white"
+                strokeWidth={2}
+              />
+
+              <line
+                x2={0}
+                y1={220 / 3}
+                x1={328}
+                y2={220 / 3}
+                stroke="white"
+                strokeWidth={2}
+              />
+              <line
+                x2={0}
+                y1={(2 * 220) / 3}
+                x1={328}
+                y2={(2 * 220) / 3}
+                stroke="white"
+                strokeWidth={2}
+              />
+            </svg>
+          }
+          image={getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')}
+        />
+      )
     return (
       <>
         <p>
