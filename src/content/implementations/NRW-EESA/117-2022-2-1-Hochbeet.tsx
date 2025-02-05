@@ -214,7 +214,7 @@ export const exercise117: Exercise<DATA> = {
                         2,
                       ),
                     )}{' '}
-                    m²
+                    [m²]
                   </strong>
                 </>,
               ],

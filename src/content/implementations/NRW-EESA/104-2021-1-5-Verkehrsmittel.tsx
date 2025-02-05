@@ -212,7 +212,10 @@ export const exercise104: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Berechne den Anteil mit der Formel für den Prozentwert W:</p>
+            <p>
+              Berechne die Anzahl der Personen mit der Formel für den
+              Prozentwert W:
+            </p>
             {buildEquation([
               [<>W</>, <>=</>, <>G · p</>],
               [
@@ -244,12 +247,17 @@ export const exercise104: Exercise<DATA> = {
                 <>=</>,
                 <>{pp(roundToDigits((data.personen * data.öffi) / 100, 2))}</>,
               ],
+              [
+                <></>,
+                <>≈</>,
+                <>{pp(roundToDigits((data.personen * data.öffi) / 100, 0))}</>,
+              ],
             ])}
             <p>
               <strong>
-                Es fahren{' '}
-                {pp(roundToDigits((data.personen * data.öffi) / 100, 2))} der
-                gefragten Personen mit öffentliche Verkehrsmitteln zur Arbeit.
+                Es fahren {roundToDigits((data.personen * data.öffi) / 100, 0)}{' '}
+                der gefragten Personen mit öffentliche Verkehrsmitteln zur
+                Arbeit.
               </strong>
             </p>
           </>

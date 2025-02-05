@@ -66,7 +66,7 @@ export const exercise133: Exercise<DATA> = {
               <br></br>
               <br></br> Im ganzen Insektenhotel sind damit ungefähr<br></br>{' '}
               <b>
-                98 · <Color3>3</Color3> = 294 Röhrchen
+                98 · <Color3>3</Color3> = 294 [Röhrchen]
               </b>
             </p>
             <p>
@@ -101,8 +101,8 @@ export const exercise133: Exercise<DATA> = {
               <Color2>14 Holzscheite</Color2>.<br></br>
               <br></br>Hochgerechnet auf den ganzen Stapel ergeben sich etwa{' '}
               <br></br>
-              <Color1>18</Color1> · <Color2>14</Color2> = <b>252 Holzscheite</b>
-              .
+              <Color1>18</Color1> · <Color2>14</Color2> ={' '}
+              <b>252 [Holzscheite]</b>.
             </p>
             <p>
               Wir runden die Lösung, da wir bei einer Schätzung keine genauen
@@ -128,7 +128,7 @@ export const exercise133: Exercise<DATA> = {
               In rechten, unteren Fach befinden sich zum Beispiel{' '}
               <Color2>24 Bücher</Color2>.<br></br>
               <br></br> Rechne damit die Gesamtzahl der Bücher hoch:{' '}
-              <Color2>24</Color2> · <Color1>10</Color1> = <b>240 Bücher</b>.
+              <Color2>24</Color2> · <Color1>10</Color1> = <b>240 [Bücher]</b>.
             </p>
             <p>
               <b>Achtung:</b> Wenn du einen anderen Rechenweg genommen hast,
@@ -200,7 +200,7 @@ export const exercise133: Exercise<DATA> = {
             <p>
               Damit kannst du schätzen:{' '}
               <b>
-                <Color2>31</Color2> · <Color1>12</Color1> = 372
+                <Color2>31</Color2> · <Color1>12</Color1> = 372 [Reiskörner]
               </b>
             </p>
             <p>

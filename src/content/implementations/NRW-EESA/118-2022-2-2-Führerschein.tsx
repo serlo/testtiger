@@ -270,7 +270,7 @@ export const exercise118: Exercise<DATA> = {
             </p>
             <p>
               {data.month * data.sparen} : {data.month} ={' '}
-              <strong>{data.sparen} Monate</strong>{' '}
+              <strong>{data.sparen} [Monate]</strong>{' '}
             </p>
             <p>
               Alina muss noch <strong>{data.sparen} Monate</strong> sparen, um

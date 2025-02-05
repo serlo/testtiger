@@ -273,8 +273,7 @@ export const exercise125: Exercise<DATA> = {
             <p>
               Die <b>Spannweite</b> ist der Abstand zwischen dem kleinsten und
               dem größten Messwert:<br></br>
-              {array[4]} Tore - {array[0]} Tore ={' '}
-              <b>{array[4] - array[0]} Tore</b>
+              {array[4]} - {array[0]} = <b>{array[4] - array[0]} [Tore]</b>
             </p>
             <p>
               Der <b>Median</b> ist die Zahl, die in der Mitte liegt:{' '}

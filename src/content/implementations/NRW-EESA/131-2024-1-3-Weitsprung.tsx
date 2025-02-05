@@ -218,8 +218,8 @@ export const exercise131: Exercise<DATA> = {
             </p>
             Die <b>Spannweite</b> ist der Abstand zwischen dem kleinsten und dem
             größten Messwert: <br></br>
-            {pp(array[4])} m − {pp(array[0])} m ={' '}
-            <b>{pp(array[4] - array[0])} m</b>
+            {pp(array[4])} − {pp(array[0])} ={' '}
+            <b>{pp(array[4] - array[0])} [m]</b>
           </>
         )
       },

@@ -573,10 +573,10 @@ export const exercise126: Exercise<DATA> = {
               Rabatt vom Preis der kleinen Pizza ab:
             </p>
             <p>
-              {data.small.toFixed(2).replace('.', ',')} € −{' '}
-              {(data.small * 0.6).toFixed(2).replace('.', ',')} € ={' '}
+              {data.small.toFixed(2).replace('.', ',')} −{' '}
+              {(data.small * 0.6).toFixed(2).replace('.', ',')} ={' '}
               <strong>
-                {(data.small * 0.4).toFixed(2).replace('.', ',')} €
+                {(data.small * 0.4).toFixed(2).replace('.', ',')} [€]
               </strong>
             </p>
             <p>

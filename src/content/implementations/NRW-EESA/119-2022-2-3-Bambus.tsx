@@ -355,7 +355,8 @@ export const exercise119: Exercise<DATA> = {
                         (data.height - data.start) / (data.wachsen / 100),
                         2,
                       ),
-                    )}
+                    )}{' '}
+                    [Tage]
                   </strong>
                 </>,
               ],
@@ -425,7 +426,7 @@ export const exercise119: Exercise<DATA> = {
             </p>
             <p>
               {data.length * 100} : {data.dia} ={' '}
-              <strong>{(data.length * 100) / data.dia}</strong>
+              <strong>{(data.length * 100) / data.dia} [Rohre]</strong>
             </p>
             <p>
               Herr Paulsen benötigt etwa{' '}

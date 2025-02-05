@@ -274,7 +274,7 @@ export const exercise128: Exercise<DATA> = {
                 Zwischen Brüssel und Paris sind es damit:<br></br>
                 <br></br>
                 {data.strecke_3} − {data.strecke_2} ={' '}
-                <strong>{data.strecke_3 - data.strecke_2} km</strong>
+                <strong>{data.strecke_3 - data.strecke_2} [km]</strong>
               </li>
             </ol>
           </>
@@ -322,21 +322,20 @@ export const exercise128: Exercise<DATA> = {
             <p>Geschwindigkeit bestimmen:</p>
             <p>
               {buildInlineFrac(
-                <>{data.strecke_1} km</>,
-                <>
-                  {' '}
-                  {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} h
-                </>,
+                <>{data.strecke_1}</>,
+                <> {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))}</>,
               )}{' '}
               ={' '}
-              {pp(
-                roundToDigits(
-                  data.strecke_1 /
-                    roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2),
-                  2,
-                ),
-              )}
-              {buildInlineFrac(<>km</>, <>h</>)}
+              <strong>
+                {pp(
+                  roundToDigits(
+                    data.strecke_1 /
+                      roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2),
+                    2,
+                  ),
+                )}{' '}
+                [{buildInlineFrac(<>km</>, <>h</>)}]
+              </strong>
             </p>
           </>
         )

@@ -301,7 +301,7 @@ export const exercise105: Exercise<DATA> = {
                   (data.höhe_1 - data.höhe_2) *
                   data.depth +
                   data.length_1 * data.depth * data.höhe_2}{' '}
-                cm³
+                [cm³]
               </strong>
             </p>
           </>

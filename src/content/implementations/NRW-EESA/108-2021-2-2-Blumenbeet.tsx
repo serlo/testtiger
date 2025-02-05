@@ -211,7 +211,7 @@ export const exercise108: Exercise<DATA> = {
                     Math.sqrt(
                       data.breite * data.breite + data.breite * data.breite,
                     ),
-                    0,
+                    2,
                   ),
                 )}{' '}
                 cm
@@ -364,6 +364,21 @@ export const exercise108: Exercise<DATA> = {
                     ),
                   )}{' '}
                   [cm]
+                </>,
+              ],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  {pp(
+                    roundToDigits(
+                      (Math.PI *
+                        Math.round(Math.sqrt(2 * data.breite * data.breite))) /
+                        100,
+                      2,
+                    ),
+                  )}{' '}
+                  [m]
                 </>,
               ],
             ])}

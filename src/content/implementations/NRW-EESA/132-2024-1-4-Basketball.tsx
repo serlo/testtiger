@@ -90,8 +90,8 @@ export const exercise132: Exercise<DATA> = {
         <p>Der Rabatt beträgt {pp((data.ball * data.rabatt) / 100)} €.</p>
         <p>
           Ziehe den Rabatt vom ursprünglichen Preis ab:<br></br>
-          {data.ball} € − {pp((data.ball * data.rabatt) / 100)} € ={' '}
-          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>
+          {data.ball} − {pp((data.ball * data.rabatt) / 100)} ={' '}
+          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} [€]</strong>
         </p>
         <p>
           <strong>
