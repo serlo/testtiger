@@ -18,7 +18,6 @@ export function GitterComponent({
   const [showGitter, setShowGitter] = useState(false)
   return (
     <>
-      <p> Schätze die Anzahl der Reiskörner. Notiere deinen Lösungsweg.</p>
       {showGitter ? grid : image}
       <div>
         <label className="cursor-pointer">
@@ -52,59 +51,62 @@ export const exercise114: Exercise<DATA> = {
   task({ data }) {
     if (data.task == 4)
       return (
-        <GitterComponent
-          grid={
-            <svg viewBox="0 0 328 220" className="my-8">
-              <image
-                href="/content/NRW_EESA/133_Reis.PNG"
-                height="220"
-                width="328"
-              />
-              <line
-                x2={328 / 4}
-                y1={0}
-                x1={328 / 4}
-                y2={220}
-                stroke="white"
-                strokeWidth={2}
-              />
-              <line
-                x2={(2 * 328) / 4}
-                y1={0}
-                x1={(2 * 328) / 4}
-                y2={220}
-                stroke="white"
-                strokeWidth={2}
-              />
-              <line
-                x2={(3 * 328) / 4}
-                y1={0}
-                x1={(3 * 328) / 4}
-                y2={220}
-                stroke="white"
-                strokeWidth={2}
-              />
+        <>
+          <p> Schätze die Anzahl der Reiskörner. Notiere deinen Lösungsweg.</p>
+          <GitterComponent
+            grid={
+              <svg viewBox="0 0 328 220" className="my-8">
+                <image
+                  href="/content/NRW_EESA/133_Reis.PNG"
+                  height="220"
+                  width="328"
+                />
+                <line
+                  x2={328 / 4}
+                  y1={0}
+                  x1={328 / 4}
+                  y2={220}
+                  stroke="white"
+                  strokeWidth={2}
+                />
+                <line
+                  x2={(2 * 328) / 4}
+                  y1={0}
+                  x1={(2 * 328) / 4}
+                  y2={220}
+                  stroke="white"
+                  strokeWidth={2}
+                />
+                <line
+                  x2={(3 * 328) / 4}
+                  y1={0}
+                  x1={(3 * 328) / 4}
+                  y2={220}
+                  stroke="white"
+                  strokeWidth={2}
+                />
 
-              <line
-                x2={0}
-                y1={220 / 3}
-                x1={328}
-                y2={220 / 3}
-                stroke="white"
-                strokeWidth={2}
-              />
-              <line
-                x2={0}
-                y1={(2 * 220) / 3}
-                x1={328}
-                y2={(2 * 220) / 3}
-                stroke="white"
-                strokeWidth={2}
-              />
-            </svg>
-          }
-          image={getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')}
-        />
+                <line
+                  x2={0}
+                  y1={220 / 3}
+                  x1={328}
+                  y2={220 / 3}
+                  stroke="white"
+                  strokeWidth={2}
+                />
+                <line
+                  x2={0}
+                  y1={(2 * 220) / 3}
+                  x1={328}
+                  y2={(2 * 220) / 3}
+                  stroke="white"
+                  strokeWidth={2}
+                />
+              </svg>
+            }
+            image={getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')}
+          />
+        </>
       )
     return (
       <>
@@ -112,7 +114,6 @@ export const exercise114: Exercise<DATA> = {
           Schätze die Anzahl der {data.task === 1 && 'Röhrchen'}
           {data.task === 2 && 'Holzscheite'}
           {data.task === 3 && 'Bücher'}
-          {data.task === 4 && 'Reiskörner'}
           {data.task === 5 && 'Pinnwand-Nadeln'}. Notiere deinen Lösungsweg.
         </p>
         {data.task === 1 &&
@@ -121,8 +122,6 @@ export const exercise114: Exercise<DATA> = {
           getImageAndDescription('/content/NRW_MSA/NRW_MSA_Schätzen_2.jpg', '')}
         {data.task === 3 &&
           getImageAndDescription('/content/NRW_MSA/NRW_MSA_Schätzen_3.jpg', '')}
-        {data.task === 4 &&
-          getImageAndDescription('/content/NRW_EESA/133_Reis.PNG', '')}
         {data.task === 5 &&
           getImageAndDescription('/content/NRW_EESA/114_Schätzen.png', '')}
       </>
