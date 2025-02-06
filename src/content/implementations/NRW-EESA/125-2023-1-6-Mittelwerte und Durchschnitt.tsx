@@ -266,9 +266,8 @@ export const exercise125: Exercise<DATA> = {
           <>
             <p>
               Ordne die Anzahl der erzielten Tore der Größe nach:<br></br>
-              {array[0]} Tore&nbsp;&nbsp;&nbsp; {array[1]}{' '}
-              Tore&nbsp;&nbsp;&nbsp; {array[2]} Tore&nbsp;&nbsp;&nbsp;{' '}
-              {array[3]} Tore&nbsp;&nbsp;&nbsp; {array[4]} Tore
+              {array[0]} Tore&nbsp;&nbsp; {array[1]} Tore&nbsp;&nbsp; {array[2]}{' '}
+              Tore&nbsp;&nbsp; {array[3]} Tore&nbsp;&nbsp; {array[4]} Tore
             </p>
             <p>
               Die <b>Spannweite</b> ist der Abstand zwischen dem kleinsten und
