@@ -257,12 +257,21 @@ export const exercise115: Exercise<DATA> = {
         return (
           <>
             {data.alpha + data.beta + data.gamma != 180 && (
-              <p>
-                Die Winkelsumme des Dreiecks ergibt{' '}
-                {data.alpha + data.beta + data.gamma}°. Die Winkelsumme eines
-                Dreiecks beträgt 180°, weshalb das abgebildete Dreieck nicht
-                existieren kann.
-              </p>
+              <>
+                <p>
+                  Berechne die Winkelsumme des Dreiecks. Addiere dafür alle
+                  Winkel:<br></br>{' '}
+                  <b>
+                    {data.alpha}° + {data.beta}° + {data.gamma}° ={' '}
+                    {data.alpha + data.beta + data.gamma}°{' '}
+                  </b>
+                </p>
+                <p>
+                  Die <b>Winkelsumme eines Dreiecks</b> beträgt{' '}
+                  <b>immer 180°</b>, weshalb es das abgebildete Dreieck nicht
+                  geben kann.
+                </p>
+              </>
             )}
             {data.alpha + data.beta + data.gamma == 180 && (
               <p>

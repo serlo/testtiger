@@ -57,8 +57,7 @@ export const exercise109: Exercise<DATA> = {
       <>
         <p>
           Kasimir zeichnet ein gleichseitiges Dreieck mit der Seitenlänge a ={' '}
-          {data.a}
-          cm und einer Höhe h = {pp(h)} cm (Abbildung 1).
+          {data.a} cm und einer Höhe h = {pp(h)} cm (Abbildung 1).
         </p>
         <svg viewBox="0 0 328 180">
           <image
