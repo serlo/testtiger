@@ -76,7 +76,6 @@ export const exercise199: Exercise<DATA> = {
           [
             <>{pp(data.c)}&nbsp;&nbsp;</>,
             <>
-              {' '}
               <select className="p-2" id="199-select-2">
                 <option></option>
                 <option value="<">&lt;</option>
@@ -90,7 +89,6 @@ export const exercise199: Exercise<DATA> = {
           [
             <>{pp(data.e)}&nbsp;&nbsp;</>,
             <>
-              {' '}
               <select className="p-2" id="199-select-3">
                 <option></option>
                 <option value="<">&lt;</option>
