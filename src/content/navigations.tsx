@@ -2363,6 +2363,21 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Lineare Gleichungen',
             icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
             iconSize: 32,
+            position: { x: 170, y: 1370 },
+            steps: [
+              {
+                exercise: {
+                  id: 198,
+                },
+              },
+            ],
+            showExamplePrescreen: true,
+          },
+          {
+            type: 'new-skill',
+            title: 'Lineare Gleichungen',
+            icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
+            iconSize: 32,
             position: { x: 100, y: 1420 },
             steps: [
               {
