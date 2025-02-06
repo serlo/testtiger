@@ -185,7 +185,10 @@ export const exercise109: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Zeichne die Grundlinie des Dreiecks mit der Seitenlänge a.</p>
+            <p>
+              Zeichne die Grundlinie des Dreiecks mit der Seitenlänge a ={' '}
+              {data.a} cm:
+            </p>
             <svg viewBox="0 0 328 30">
               <image
                 href="/content/NRW_EESA/109_Konstruktion.jpg"
@@ -193,9 +196,10 @@ export const exercise109: Exercise<DATA> = {
                 width="328"
               />
             </svg>
+            <hr style={{ margin: '10px 0' }} />
             <p>
               Zeichne die anderen Seiten in einem Winkel von 60° an die
-              Grundlinie.
+              Grundlinie:
             </p>
             <svg viewBox="0 0 328 130">
               <image
@@ -204,6 +208,7 @@ export const exercise109: Exercise<DATA> = {
                 width="328"
               />
             </svg>
+            <hr style={{ margin: '10px 0' }} />
             <p>Verbinde zu einem Dreieck:</p>
             <svg viewBox="0 0 328 140">
               <image
@@ -212,7 +217,7 @@ export const exercise109: Exercise<DATA> = {
                 width="328"
               />
             </svg>
-
+            <hr style={{ margin: '10px 0' }} />
             <p>
               Bestimme anschließend mit dem Lineal die Mittelpunkte der Seiten
               und markiere sie. Verbinde sie, um die Figur fertigzustellen.
