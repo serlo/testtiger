@@ -217,7 +217,9 @@ export function ExerciseViewFooter() {
                                   } else {
                                     if (
                                       s.navIndicatorPosition + 1 <
-                                      s.navIndicatorLength
+                                        s.navIndicatorLength &&
+                                      s.completed[s.navIndicatorPosition + 1] ==
+                                        false
                                     ) {
                                       if (wasNotDone) {
                                         setTimeout(() => {
@@ -227,6 +229,22 @@ export function ExerciseViewFooter() {
                                             s.chatOverlay = null
                                           })
                                         }, 500)
+                                      }
+                                    } else {
+                                      for (
+                                        let i = 0;
+                                        i < s.navIndicatorLength;
+                                        i++
+                                      ) {
+                                        if (s.completed[i] == false) {
+                                          setTimeout(() => {
+                                            ExerciseViewStore.update(s => {
+                                              s.navIndicatorExternalUpdate = i
+                                              s.chatOverlay = null
+                                            })
+                                          }, 500)
+                                          break
+                                        }
                                       }
                                     }
                                   }

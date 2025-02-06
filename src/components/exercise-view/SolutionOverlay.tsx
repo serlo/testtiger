@@ -166,7 +166,10 @@ export function SolutionOverlay() {
                     })
                   }, 600)
                 } else {
-                  if (s.navIndicatorPosition + 1 < s.navIndicatorLength) {
+                  if (
+                    s.navIndicatorPosition + 1 < s.navIndicatorLength &&
+                    s.completed[s.navIndicatorPosition + 1] == false
+                  ) {
                     if (wasNotDone) {
                       setTimeout(() => {
                         ExerciseViewStore.update(s => {
@@ -175,6 +178,18 @@ export function SolutionOverlay() {
                           s.chatOverlay = null
                         })
                       }, 500)
+                    }
+                  } else {
+                    for (let i = 0; i < s.navIndicatorLength; i++) {
+                      if (s.completed[i] == false) {
+                        setTimeout(() => {
+                          ExerciseViewStore.update(s => {
+                            s.navIndicatorExternalUpdate = i
+                            s.chatOverlay = null
+                          })
+                        }, 500)
+                        break
+                      }
                     }
                   }
                 }
