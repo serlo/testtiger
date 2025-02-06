@@ -1,3 +1,6 @@
+'use client'
+import { analyseLastInput } from '@/components/exercise-view/state/actions'
+import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
 import { Color1, Color2, Color3 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
@@ -60,8 +63,8 @@ export const exercise199: Exercise<DATA> = {
           [
             <>{pp(data.a)}&nbsp;&nbsp;</>,
             <>
-              <select className="p-2" id={'199-select-1'}>
-                <option>___</option>
+              <select className="p-2" id="199-select-1">
+                <option></option>
                 <option value="<">&lt;</option>
                 <option value=">">&gt;</option>
                 <option value="=">=</option>
@@ -74,11 +77,11 @@ export const exercise199: Exercise<DATA> = {
             <>{pp(data.c)}&nbsp;&nbsp;</>,
             <>
               {' '}
-              <select className="p-2">
-                <option>___</option>
-                <option>&lt;</option>
-                <option>&gt;</option>
-                <option>=</option>
+              <select className="p-2" id="199-select-2">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
               </select>
               &nbsp;&nbsp;
             </>,
@@ -88,11 +91,11 @@ export const exercise199: Exercise<DATA> = {
             <>{pp(data.e)}&nbsp;&nbsp;</>,
             <>
               {' '}
-              <select className="p-2">
-                <option>___</option>
-                <option>&lt;</option>
-                <option>&gt;</option>
-                <option>=</option>
+              <select className="p-2" id="199-select-3">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
               </select>
               &nbsp;&nbsp;
             </>,
@@ -102,7 +105,23 @@ export const exercise199: Exercise<DATA> = {
         <p>
           <button
             className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
-            onClick={() => {}}
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatHistory[s.navIndicatorPosition].resultPending = true
+                s.chatHistory[s.navIndicatorPosition].entries.push({
+                  type: 'text',
+                  content: `${pp(data.a)} ${(document.getElementById('199-select-1') as any).value} ${pp(
+                    data.b,
+                  )} \n ${pp(data.c)} ${(document.getElementById('199-select-2') as any).value} ${pp(
+                    data.d,
+                  )} \n ${pp(data.e)} ${(document.getElementById('199-select-3') as any).value} ${pp(data.f)}`,
+                  canEdit: true,
+                })
+                s.chatOverlay = 'chat'
+                s.chatHistory[s.navIndicatorPosition].answerInput = ''
+              })
+              void analyseLastInput()
+            }}
           >
             Abschicken
           </button>
