@@ -14,7 +14,7 @@ export const exercise110: Exercise<DATA> = {
   title: 'Zahlen ordnen',
   source: '2022 Teil 1 Aufgabe 1',
   useCalculator: true,
-  duration: 2,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {

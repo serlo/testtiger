@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color5 } from '@/helper/colors'
+import { Color4, Color5 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -15,7 +15,7 @@ export const exercise104: Exercise<DATA> = {
   title: 'Verkehrsmittel',
   source: '2021 Teil 1 Aufgabe 5',
   useCalculator: true,
-  duration: 6,
+  duration: 8,
   generator(rng) {
     return {
       fuß: rng.randomIntBetween(15, 35),
@@ -194,7 +194,7 @@ export const exercise104: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return <></>
       },
@@ -213,15 +213,28 @@ export const exercise104: Exercise<DATA> = {
         return (
           <>
             <p>
-              Berechne den Anteil mit der Formel für den <b>Prozentwert</b>.
+              Berechne die Anzahl der Personen mit der Formel für den
+              Prozentwert W:
             </p>
-            <p>Wandle dazu den Prozentsatz in eine Dezimalzahl um:</p>
-            <p>
-              {data.öffi} % ≙ {pp(data.öffi / 100)}
-            </p>
-            <p>Setze in die Formel ein und berechne:</p>
             {buildEquation([
               [<>W</>, <>=</>, <>G · p</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Prozentsatz {data.öffi} % ={' '}
+                      {pp(data.öffi / 100)} ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
               [
                 <></>,
                 <>=</>,
@@ -232,20 +245,28 @@ export const exercise104: Exercise<DATA> = {
               [
                 <></>,
                 <>=</>,
-                <>
-                  <strong>
-                    {pp(roundToDigits((data.personen * data.öffi) / 100, 2))}
-                  </strong>
-                </>,
+                <>{pp(roundToDigits((data.personen * data.öffi) / 100, 2))}</>,
+              ],
+              [
+                <></>,
+                <>≈</>,
+                <>{pp(roundToDigits((data.personen * data.öffi) / 100, 0))}</>,
               ],
             ])}
+            <p>
+              <strong>
+                Es fahren {roundToDigits((data.personen * data.öffi) / 100, 0)}{' '}
+                der gefragten Personen mit öffentliche Verkehrsmitteln zur
+                Arbeit.
+              </strong>
+            </p>
           </>
         )
       },
     },
     {
       points: 2,
-      duration: 7,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -571,7 +592,6 @@ export const exercise104: Exercise<DATA> = {
         }
         return (
           <>
-            <p>Winkel berechnen: </p>
             <p>Im Kreisdiagramm fehlen zwei Sektoren:</p>
             <ul>
               <li>
@@ -603,7 +623,6 @@ export const exercise104: Exercise<DATA> = {
               </li>
             </ul>
             <hr style={{ margin: '10px 0' }} />
-            <p>Kreisdiagramm zeichnen: </p>
             <p>
               Zeichne die Sektoren mit den berechneten Winkeln mithilfe eines
               Geodreiecks ein:

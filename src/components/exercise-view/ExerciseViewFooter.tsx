@@ -11,7 +11,6 @@ import {
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { FotoOverlay } from './FotoOverlay'
-import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
 import {
@@ -20,8 +19,6 @@ import {
 } from './state/actions'
 import { useRef, useEffect } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
-
-defineCustomElements(window)
 
 export function ExerciseViewFooter() {
   const textareaRef = useRef<HTMLTextAreaElement>(null)

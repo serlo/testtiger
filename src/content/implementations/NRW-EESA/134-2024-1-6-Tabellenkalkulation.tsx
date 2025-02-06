@@ -18,7 +18,7 @@ export const exercise134: Exercise<DATA> = {
   title: 'Tabellenkalkulation',
   source: '2024 Teil 1 Aufgabe 6',
   useCalculator: false,
-  duration: 42,
+  duration: 8,
   generator(rng) {
     return {
       anzahl: rng.randomIntBetween(15, 30),
@@ -154,7 +154,7 @@ export const exercise134: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -184,7 +184,7 @@ export const exercise134: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },

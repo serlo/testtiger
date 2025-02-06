@@ -12,7 +12,7 @@ export const exercise129: Exercise<DATA> = {
   title: 'Zahlen ordnen',
   source: '2024 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 2,
+  duration: 4,
   points: 2,
   generator(rng) {
     return {

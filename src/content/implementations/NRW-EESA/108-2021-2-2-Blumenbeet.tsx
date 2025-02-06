@@ -23,7 +23,7 @@ export const exercise108: Exercise<DATA> = {
   title: 'Blumenbeet',
   source: '2021 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 30,
+  duration: 24,
   generator(rng) {
     return {
       breite: rng.randomIntBetween(8, 16) * 10,
@@ -103,7 +103,7 @@ export const exercise108: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -211,7 +211,7 @@ export const exercise108: Exercise<DATA> = {
                     Math.sqrt(
                       data.breite * data.breite + data.breite * data.breite,
                     ),
-                    0,
+                    2,
                   ),
                 )}{' '}
                 cm
@@ -224,7 +224,7 @@ export const exercise108: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -279,7 +279,7 @@ export const exercise108: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -366,6 +366,21 @@ export const exercise108: Exercise<DATA> = {
                   [cm]
                 </>,
               ],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  {pp(
+                    roundToDigits(
+                      (Math.PI *
+                        Math.round(Math.sqrt(2 * data.breite * data.breite))) /
+                        100,
+                      2,
+                    ),
+                  )}{' '}
+                  [m]
+                </>,
+              ],
             ])}
             <p>
               Der Umfang beträgt{' '}
@@ -388,7 +403,7 @@ export const exercise108: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -528,7 +543,7 @@ export const exercise108: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       intro({ data }) {
         return (
           <>

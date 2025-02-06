@@ -25,7 +25,7 @@ export const exercise118: Exercise<DATA> = {
   title: 'Führerschein',
   source: '2022 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     return {
       rabatt: rng.randomIntBetween(2, 4) * 50,
@@ -220,7 +220,7 @@ export const exercise118: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -270,7 +270,7 @@ export const exercise118: Exercise<DATA> = {
             </p>
             <p>
               {data.month * data.sparen} : {data.month} ={' '}
-              <strong>{data.sparen} Monate</strong>{' '}
+              <strong>{data.sparen} [Monate]</strong>{' '}
             </p>
             <p>
               Alina muss noch <strong>{data.sparen} Monate</strong> sparen, um
@@ -282,7 +282,7 @@ export const exercise118: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -311,7 +311,7 @@ export const exercise118: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -354,7 +354,7 @@ export const exercise118: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -458,7 +458,7 @@ export const exercise118: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -638,7 +638,7 @@ export const exercise118: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return (
           <>

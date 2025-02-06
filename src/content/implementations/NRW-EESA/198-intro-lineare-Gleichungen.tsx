@@ -15,8 +15,8 @@ export const exercise198: Exercise<DATA> = {
   title: 'Lineare Gleichungen',
   source: '',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 4,
+  points: 2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(2, 5),
@@ -36,9 +36,6 @@ export const exercise198: Exercise<DATA> = {
     const rechts = data.a * data.x_sol + data.b
     return (
       <>
-        <p>
-          <b>Starte mit einer Aufgabe zum Aufwärmen:</b>
-        </p>
         <p>Löse die Gleichung:</p>
         {buildEquation([
           [

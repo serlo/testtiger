@@ -15,7 +15,7 @@ export const exercise105: Exercise<DATA> = {
   title: 'Würfelkörper',
   source: '2021 Teil 1 Variante 2 Aufgabe 4',
   useCalculator: false,
-  duration: 4,
+  duration: 6,
   generator(rng) {
     return {
       höhe_1: rng.randomIntBetween(8, 14),
@@ -51,7 +51,7 @@ export const exercise105: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -301,7 +301,7 @@ export const exercise105: Exercise<DATA> = {
                   (data.höhe_1 - data.höhe_2) *
                   data.depth +
                   data.length_1 * data.depth * data.höhe_2}{' '}
-                cm³
+                [cm³]
               </strong>
             </p>
           </>
@@ -310,7 +310,7 @@ export const exercise105: Exercise<DATA> = {
     },
     {
       points: 1,
-      duration: 1,
+      duration: 2,
       intro({ data }) {
         return null
       },

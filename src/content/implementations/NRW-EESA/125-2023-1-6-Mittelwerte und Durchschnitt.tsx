@@ -19,7 +19,7 @@ export const exercise125: Exercise<DATA> = {
   title: 'Mittelwerte und Durchschnitt',
   source: '2023 Teil 1 Aufgabe 6',
   useCalculator: false,
-  duration: 4,
+  duration: 8,
   generator(rng) {
     return {
       Spiel1: rng.randomIntBetween(5, 20),
@@ -242,7 +242,7 @@ export const exercise125: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -265,26 +265,19 @@ export const exercise125: Exercise<DATA> = {
         return (
           <>
             <p>
+              Ordne die Anzahl der erzielten Tore der Größe nach:<br></br>
+              {array[0]} Tore&nbsp;&nbsp;&nbsp; {array[1]}{' '}
+              Tore&nbsp;&nbsp;&nbsp; {array[2]} Tore&nbsp;&nbsp;&nbsp;{' '}
+              {array[3]} Tore&nbsp;&nbsp;&nbsp; {array[4]} Tore
+            </p>
+            <p>
               Die <b>Spannweite</b> ist der Abstand zwischen dem kleinsten und
-              dem größten Messwert.
+              dem größten Messwert:<br></br>
+              {array[4]} - {array[0]} = <b>{array[4] - array[0]} [Tore]</b>
             </p>
             <p>
-              {array[4]} - {array[0]} = {array[4] - array[0]}
-            </p>
-            <p>
-              Die Spannweite beträgt <b>{array[4] - array[0]} Tore</b>.
-            </p>
-            <hr style={{ margin: '10px 0' }} />
-            <p>
-              Ordne für den Median die Anzahl der erzielten Tore der Größe nach:{' '}
-              {array[0]}, {array[1]}, {array[2]}, {array[3]}, {array[4]}
-            </p>
-            <p>
-              Der <b>Median</b> ist die Zahl, die in der Mitte liegt, also{' '}
-              {array[2]}.
-            </p>
-            <p>
-              Der Median beträgt <b>{array[2]} Tore.</b>
+              Der <b>Median</b> ist die Zahl, die in der Mitte liegt:{' '}
+              <b>{array[2]} Tore</b>.
             </p>
           </>
         )
@@ -292,7 +285,7 @@ export const exercise125: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -307,65 +300,42 @@ export const exercise125: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Den Durchschnitt berechnet man mit der Formel:</p>
-
             <p>
-              {buildEquation([
-                [
-                  <></>,
-                  <>
-                    {buildInlineFrac(
-                      <>Gesamtanzahl der erzielten Tore</>,
-                      <>Anzahl der Spiele</>,
-                    )}
-                  </>,
-                ],
-                [
-                  <>=</>,
-                  <>
-                    {buildInlineFrac(
-                      <>
-                        {data.Spiel1} + {data.Spiel2} + {data.Spiel3} +{' '}
-                        {data.Spiel4} + {data.Spiel5}
-                      </>,
-                      5,
-                    )}
-                  </>,
-                ],
-                [
-                  <>=</>,
-                  <>
-                    {buildInlineFrac(
-                      data.Spiel1 +
-                        data.Spiel2 +
-                        data.Spiel3 +
-                        data.Spiel4 +
-                        data.Spiel5,
-                      5,
-                    )}{' '}
-                  </>,
-                ],
-                [
-                  <>=</>,
-                  <>
-                    {pp(
-                      roundToDigits(
-                        (data.Spiel1 +
-                          data.Spiel2 +
-                          data.Spiel3 +
-                          data.Spiel4 +
-                          data.Spiel5) /
-                          5,
-                        2,
-                      ),
-                    )}
-                  </>,
-                ],
-              ])}
+              Addiere für den Durchschnitt die Tore in allen 5 Spielen und teile
+              das Ergebnis durch 5:
             </p>
             <p>
-              Der Durchschnitt beträgt{' '}
+              (Tore Sp.1 + Tore Sp.2 + ... + Tore Sp.5) : 5<br></br>= (
+              {pp(data.Spiel1)} + {pp(data.Spiel2)} + {pp(data.Spiel3)} +{' '}
+              {pp(data.Spiel4)} + {pp(data.Spiel5)}) : 5<br></br>={' '}
+              {pp(
+                roundToDigits(
+                  data.Spiel1 +
+                    data.Spiel2 +
+                    data.Spiel3 +
+                    data.Spiel4 +
+                    data.Spiel5,
+                  2,
+                ),
+              )}{' '}
+              : 5<br></br>={' '}
+              {pp(
+                roundToDigits(
+                  (data.Spiel1 +
+                    data.Spiel2 +
+                    data.Spiel3 +
+                    data.Spiel4 +
+                    data.Spiel5) /
+                    5,
+                  2,
+                ),
+              )}{' '}
+              [Tore]
+            </p>
+            <p>
               <b>
+                {' '}
+                Der Durchschnitt beträgt{' '}
                 {pp(
                   roundToDigits(
                     (data.Spiel1 +

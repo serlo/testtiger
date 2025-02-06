@@ -11,7 +11,7 @@ export const exercise116: Exercise<DATA> = {
   title: 'Füllgraphen',
   source: '2022 Teil 1 Variante 2 Aufgabe 4',
   useCalculator: false,
-  duration: 2,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {

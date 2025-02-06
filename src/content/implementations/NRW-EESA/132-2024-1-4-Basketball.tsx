@@ -12,7 +12,7 @@ export const exercise132: Exercise<DATA> = {
   title: 'Basketball',
   source: '2024 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 2,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {
@@ -90,12 +90,15 @@ export const exercise132: Exercise<DATA> = {
         <p>Der Rabatt beträgt {pp((data.ball * data.rabatt) / 100)} €.</p>
         <p>
           Ziehe den Rabatt vom ursprünglichen Preis ab:<br></br>
-          {data.ball} € − {pp((data.ball * data.rabatt) / 100)} € ={' '}
-          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>
+          {data.ball} − {pp((data.ball * data.rabatt) / 100)} ={' '}
+          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} [€]</strong>
         </p>
         <p>
-          Der neue Kaufpreis beträgt{' '}
-          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>.
+          <strong>
+            Der neue Kaufpreis beträgt{' '}
+            {pp(data.ball - (data.ball * data.rabatt) / 100)} €
+          </strong>
+          .
         </p>
         <p>
           <b>Hinweis:</b> Alternativ kannst du den Rabatt auch mit dem Dreisatz

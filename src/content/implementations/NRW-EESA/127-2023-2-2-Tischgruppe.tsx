@@ -31,7 +31,7 @@ export const exercise127: Exercise<DATA> = {
   title: 'Tischgruppe',
   source: '2023 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     return {
       item_1: rng.randomIntBetween(0, 3),
@@ -123,7 +123,7 @@ export const exercise127: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -210,7 +210,7 @@ export const exercise127: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       intro({ data }) {
         const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
         return (
@@ -300,7 +300,7 @@ export const exercise127: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 5,
+      duration: 6,
       skillIntro({ data }) {
         const hypo = Math.round(Math.sqrt(2 * data.kathete * data.kathete))
         return (
@@ -411,7 +411,7 @@ export const exercise127: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return (
           <>
@@ -621,7 +621,7 @@ export const exercise127: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return <></>
       },

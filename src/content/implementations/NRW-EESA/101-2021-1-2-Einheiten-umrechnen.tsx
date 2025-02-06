@@ -12,7 +12,7 @@ export const exercise101: Exercise<DATA> = {
   title: 'Einheiten umrechnen',
   source: '2021 Teil 1 Aufgabe 2',
   useCalculator: false,
-  duration: 2,
+  duration: 4,
   points: 2,
   generator(rng) {
     return {
@@ -71,7 +71,6 @@ export const exercise101: Exercise<DATA> = {
           ],
         ])}
         <hr style={{ margin: '10px 0' }} />
-        
 
         <p>
           <strong>1 Stunde (h)</strong> enthält <strong>60 Sekunden (s)</strong>
