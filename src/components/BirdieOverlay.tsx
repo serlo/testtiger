@@ -20,19 +20,12 @@ export function BirdieOverlay({ context }: { context: 'map' }) {
       step = 'map-2'
     } else if (!birdieIntros.includes('map-3')) {
       text =
-        'Du startest direkt mit Aufgaben, die in der Prüfung wichtig sind. So kannst du schnell besser werden!'
+        'Du lernst von Anfang an mit Aufgaben, die in der Prüfung wichtig sind. So kannst du schnell besser werden!'
       step = 'map-3'
     } else if (!birdieIntros.includes('map-4')) {
-      text = 'Im ersten Teil wiederholen wir die wichtigsten Grundlagen.'
+      text =
+        'Und jetzt geht’s los! Starte direkt mit einem Video zur ersten Aufgabe. Viel Erfolg!'
       step = 'map-4'
-    } else if (!birdieIntros.includes('map-5')) {
-      text =
-        'In Challenges kannst du zeigen, was du kannst – und bis zu 6 Sterne sammeln!'
-      step = 'map-5'
-    } else if (!birdieIntros.includes('map-6')) {
-      text =
-        'Und jetzt geht’s los! Starte direkt mit dem ersten Video. Viel Erfolg!'
-      step = 'map-6'
     }
   }
 
