@@ -2495,8 +2495,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 exercise: {
                   id: 109,
                   pages: [
-                    { index: 'a', intro: ['global'] },
-                    { index: 'b' },
+                    { index: 'b', intro: ['global'] },
                     { index: 'c' },
                     { index: 'd' },
                   ],
