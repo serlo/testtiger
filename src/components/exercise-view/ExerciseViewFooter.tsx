@@ -17,7 +17,7 @@ import {
   analyseLastInput,
   markCurrentExerciseAsComplete,
 } from './state/actions'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, Fragment } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 
 export function ExerciseViewFooter() {
@@ -133,7 +133,12 @@ export function ExerciseViewFooter() {
                 return (
                   <div key={i} className="flex justify-end">
                     <div className="bg-gray-100 p-2 rounded mb-3 text-right">
-                      {el.content}
+                      {el.content.split('\n').map((line, index) => (
+                        <Fragment key={index}>
+                          {line}
+                          <br />
+                        </Fragment>
+                      ))}
                       {el.canEdit && (
                         <>
                           <br />
