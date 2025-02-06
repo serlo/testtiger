@@ -1,7 +1,7 @@
 import { backendHost } from '@/helper/make-post'
 import { Store } from 'pullstate'
 
-export const storageKey = 'testtiger_player_progress_v0_1'
+export const storageKey = 'testtiger_player_progress_v0_2'
 export type PlayerProfileStoreProps = {
   name: string
   currentExam: number
@@ -10,6 +10,7 @@ export type PlayerProfileStoreProps = {
   statsLog: string[]
   original: boolean
   key?: string
+  birdieIntros: string[]
 }
 
 export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
@@ -23,6 +24,7 @@ export const defaultPlayerProfileStoreValue: PlayerProfileStoreProps = {
   eventLog: [],
   statsLog: [],
   original: false,
+  birdieIntros: [],
 }
 
 interface ExamProgress {
