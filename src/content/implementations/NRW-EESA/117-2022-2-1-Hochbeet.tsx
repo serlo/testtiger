@@ -295,8 +295,8 @@ export const exercise117: Exercise<DATA> = {
               ],
             ])}
             <p>
-              Das Hochbeet wird nur zu einem Drittel befüllt. Das heißt, die
-              Gesamtfläche muss durch 3 geteilt werden:
+              Das Hochbeet wird nur zu einem Drittel befüllt. Das heißt, das
+              Volumen muss durch 3 geteilt werden:
             </p>
             <p>
               {pp(((länge * data.breite) / 100) * höhe)} : 3 ≈{' '}
@@ -305,6 +305,15 @@ export const exercise117: Exercise<DATA> = {
                   roundToDigits((((länge * data.breite) / 100) * höhe) / 3, 2),
                 )}{' '}
                 [m³]
+              </strong>
+            </p>
+            <p>
+              <strong>
+                Es werden{' '}
+                {pp(
+                  roundToDigits((((länge * data.breite) / 100) * höhe) / 3, 2),
+                )}{' '}
+                m³ Gartenerde benötigt.
               </strong>
             </p>
           </>
