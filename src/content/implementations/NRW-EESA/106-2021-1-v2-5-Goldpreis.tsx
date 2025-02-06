@@ -48,6 +48,9 @@ export const exercise106: Exercise<DATA> = {
       intro({ data }) {
         return null
       },
+      example() {
+        return <>TODO</>
+      },
       task({ data }) {
         return (
           //a)

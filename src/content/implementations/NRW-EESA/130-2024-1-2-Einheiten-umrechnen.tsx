@@ -42,6 +42,9 @@ export const exercise130: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  example() {
+    return <>TODO</>
+  },
   task({ data }) {
     return (
       <>

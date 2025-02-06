@@ -14,6 +14,7 @@ export interface SingleExercise<T = unknown> {
   constraint?: (props: { data: T; rng: Rng }) => boolean
   task: (props: { data: T }) => JSX.Element
   solution: (props: { data: T }) => JSX.Element
+  example?: () => JSX.Element
   correctionHints?: (props: { data: T }) => JSX.Element
 }
 
@@ -35,6 +36,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
     intro?: (props: { data: T }) => JSX.Element | null
     task: (props: { data: T }) => JSX.Element
     solution: (props: { data: T }) => JSX.Element
+    example?: () => JSX.Element
     correctionHints?: (props: { data: T }) => JSX.Element
   }[]
 }
