@@ -2416,8 +2416,8 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Rechtwinkliges Dreieck',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            title: 'Quadrat',
+            icon: '/learning-path/NRW_EESA_icons/quadrat.svg',
             iconSize: 50,
             position: { x: 100, y: 1670 },
             steps: [
