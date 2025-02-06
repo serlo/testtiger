@@ -41,7 +41,7 @@ export function BirdieOverlay({ context }: { context: 'map' }) {
   return (
     <div className="fixed inset-0 bg-gray-500/50 z-[200]">
       {/* add a speaking bubble and birdie.svg as image below */}
-      <div className="absolute top-[20vh] left-0 right-0 p-4 bg-white rounded-lg shadow-lg">
+      <div className="absolute top-[20vh] left-2 right-2 p-4 bg-white rounded-lg shadow-lg">
         <p className="mx-5 text-xl leading-loose">{text}</p>
 
         <p className="text-right">

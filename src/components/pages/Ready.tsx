@@ -17,9 +17,11 @@ export function Ready() {
           s.key = 'pending'
         })
         const key = await (await fetch(`${backendHost}/newkey`)).text()
-        PlayerProfileStore.update(s => {
-          s.key = key
-        })
+        if (key) {
+          PlayerProfileStore.update(s => {
+            s.key = key
+          })
+        }
       }
       await syncProfileWithBackend()
       setShowContinue(true)
