@@ -202,7 +202,7 @@ export const exercise109: Exercise<DATA> = {
             </svg>
             <hr style={{ margin: '10px 0' }} />
             <p>
-              Ein gleichseitiges Dreieck hat an der Grundline zwei 60°-Winkel.
+              In einem gleichseitigen Dreieck sind alle drei Winkel 60° groß.
               Zeichne die anderen Seiten in einem Winkel von 60° an die
               Grundlinie:
             </p>
@@ -215,7 +215,7 @@ export const exercise109: Exercise<DATA> = {
             </svg>
             <hr style={{ margin: '10px 0' }} />
             <p>
-              Verbinde zu einem Dreieck. Bestimme mit einem Lineal die
+              Verbinde zu einem Dreieck. <br></br>Bestimme mit einem Lineal die
               Mittelpunkte der Seiten und markiere sie.
             </p>
             <svg viewBox="0 0 328 140">
