@@ -217,7 +217,7 @@ export const exercise104: Exercise<DATA> = {
               Prozentwert W:
             </p>
             {buildEquation([
-              [<>W</>, <>=</>, <>G · p</>],
+              [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
               [
                 '',
                 <>

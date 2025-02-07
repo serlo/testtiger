@@ -387,7 +387,6 @@ export const exercise136: Exercise<DATA> = {
         const tag = data.zeitkosten * time + data.fixkosten * 2
         return (
           <>
-            <p>Bedeutung:</p>
             <ul>
               <li>
                 x ist die <strong>Anzahl der Monate</strong>, die Tom mit dem
@@ -607,6 +606,15 @@ export const exercise136: Exercise<DATA> = {
                 Gesamtkosten in €
               </text>
               <text
+                x={220}
+                y={20}
+                fontSize={10}
+                textAnchor="right"
+                stroke="orange"
+              >
+                gekaufter E-Scooter
+              </text>
+              <text
                 x={230}
                 y={230}
                 fontSize={10}
@@ -659,11 +667,14 @@ export const exercise136: Exercise<DATA> = {
             </p>
             <p>
               Nach einigen Monaten werden die Kosten für den angemieteten
-              Scooter größer sein, sodass sich der Kauf langfristig immer lohnt.
+              Scooter größer sein, sodass sich der Kauf{' '}
+              <strong>langfristig immer lohnt.</strong>
             </p>
             <p>
-              Anschaulich zeigt der Schnittpunkt der Geraden den Zeitpunkt, wann
-              sich der Kauf des Scooters lohnt.
+              <strong>
+                Anschaulich zeigt der Schnittpunkt der Geraden den Zeitpunkt,
+                wann sich der Kauf des Scooters lohnt.
+              </strong>
             </p>
           </>
         )

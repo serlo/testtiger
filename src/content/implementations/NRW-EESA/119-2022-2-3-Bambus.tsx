@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color4, Color5 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
 import { buildEquation } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
@@ -214,8 +214,15 @@ export const exercise119: Exercise<DATA> = {
           <>
             <p>
               Es ist hilfreich mit dem y-Achsenabschnitt{' '}
-              <Color1>{data.start}</Color1> anzufangen und die Gerade mit einem
-              Steigungsdreieck zu zeichnen:
+              <Color1>{data.start}</Color1> anzufangen. Den kannst du aus der
+              Gleichung ablesen: y = {ppFrac(data.wachsen / 100)} ​x +{' '}
+              <Color1>{data.start}</Color1>.<br></br>
+              <br></br>
+              Dann zeichnest du das Steigungsdreieck. Das kannst du aus dem
+              Bruch <Color2>{ppFrac(data.wachsen / 100)}</Color2> ablesen. Der{' '}
+              <Color2>Zähler</Color2> ist immer die <Color2>Höhe</Color2> des
+              Steigungsdreiecks und der <Color2>Nenner</Color2> ist immer die
+              <Color2>Breite</Color2> des Steigungsdreiecks.
             </p>
             <p></p>
             <svg viewBox="0 0 328 220">

@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4, Color5 } from '@/helper/colors'
+import { Color1, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
@@ -136,7 +136,11 @@ export const exercise109: Exercise<DATA> = {
               [
                 <></>,
                 <>≈</>,
-                <>{pp(roundToDigits(0.5 * data.a * h, 2))} [cm²]</>,
+                <>
+                  <strong>
+                    {pp(roundToDigits(0.5 * data.a * h, 2))} [cm²]
+                  </strong>
+                </>,
               ],
             ])}
           </>
@@ -198,6 +202,7 @@ export const exercise109: Exercise<DATA> = {
             </svg>
             <hr style={{ margin: '10px 0' }} />
             <p>
+              Ein gleichseitiges Dreieck hat an der Grundline zwei 60°-Winkel.
               Zeichne die anderen Seiten in einem Winkel von 60° an die
               Grundlinie:
             </p>
@@ -209,19 +214,19 @@ export const exercise109: Exercise<DATA> = {
               />
             </svg>
             <hr style={{ margin: '10px 0' }} />
-            <p>Verbinde zu einem Dreieck:</p>
+            <p>
+              Verbinde zu einem Dreieck. Bestimme mit einem Lineal die
+              Mittelpunkte der Seiten und markiere sie.
+            </p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/109_Kasimir1.PNG"
+                href="/content/NRW_EESA/109_gleichseitiges Dreieck.jpg"
                 height="140"
                 width="328"
               />
             </svg>
             <hr style={{ margin: '10px 0' }} />
-            <p>
-              Bestimme anschließend mit dem Lineal die Mittelpunkte der Seiten
-              und markiere sie. Verbinde sie, um die Figur fertigzustellen.
-            </p>
+            <p>Verbinde die Mittelpunkte, um die Figur fertigzustellen.</p>
             <svg viewBox="0 0 328 140">
               <image
                 href="/content/NRW_EESA/109_Kasimir2.PNG"
@@ -291,8 +296,8 @@ export const exercise109: Exercise<DATA> = {
             </p>
             <p>Teile die Gesamtfläche durch 4:</p>
             <p>
-              {pp(roundToDigits(surface, 1))} : 4 ={' '}
-              {pp(roundToDigits(surface / 4, 1))} [cm²]
+              {pp(roundToDigits(surface, 1))} : 4{' '}
+              <strong>= {pp(roundToDigits(surface / 4, 1))} [cm²]</strong>
             </p>
           </>
         )
@@ -383,27 +388,36 @@ export const exercise109: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Setze den Wert von b aus der Abbildung in die Formel ein:</p>
+            <p>
+              Setze den Wert von <Color1>b</Color1> aus der Abbildung in die
+              Formel ein:
+            </p>
             {buildEquation([
               [
                 <>
                   h<sub>K​</sub>
                 </>,
                 <>=</>,
-                <>{buildInlineFrac(<>{buildSqrt(6)}</>, 3)} · b</>,
+                <>
+                  {buildInlineFrac(<>{buildSqrt(6)}</>, 3)} · <Color1>b</Color1>
+                </>,
               ],
               [
                 <></>,
                 <>=</>,
                 <>
-                  {buildInlineFrac(<>{buildSqrt(6)}</>, 3)} · {pp(data.a / 2)}
+                  {buildInlineFrac(<>{buildSqrt(6)}</>, 3)} ·{' '}
+                  <Color1>{pp(data.a / 2)}</Color1>
                 </>,
               ],
               [
                 <></>,
                 <>≈</>,
                 <>
-                  {pp(roundToDigits((Math.sqrt(6) / 3) * (data.a / 2), 1))} [cm]
+                  <strong>
+                    {pp(roundToDigits((Math.sqrt(6) / 3) * (data.a / 2), 1))}{' '}
+                    [cm]
+                  </strong>
                 </>,
               ],
             ])}
