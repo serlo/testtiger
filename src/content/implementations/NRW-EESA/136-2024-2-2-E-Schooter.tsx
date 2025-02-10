@@ -86,14 +86,21 @@ export const exercise136: Exercise<DATA> = {
           <>
             <p>
               Tom fährt mit einer Geschwindigkeit von {data.pace} Kilometer pro
-              Stunde. Das sind {data.pace} Kilometer in 60 Minuten. Verwende den
-              Dreisatz, um zu bestimmen, wie lange er für {data.weg} Kilometer
-              braucht:
+              Stunde. Das sind {data.pace} Kilometer in 60 Minuten. <br></br>
+              Teile 60 Minuten durch {data.pacecase}, um zu bestimmen, wie lange
+              er für {data.weg} Kilometer braucht:
             </p>
             {buildEquation([
               [<>{data.pace} km</>, <>≙</>, <>60 min</>],
               [
-                '',
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {' '}
+                      : {data.pacecase}
+                    </span>
+                  </Color4>
+                </>,
                 <>
                   {' '}
                   <Color4>
@@ -102,22 +109,10 @@ export const exercise136: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}> : {data.pace}</span>
-                  </Color4>
-                </>,
-              ],
-              [<>1 km</>, <>≙</>, <>{pp(60 / data.pace)} min</>],
-              [
-                '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
-                <>
-                  <Color4>
-                    <span style={{ fontSize: 'small' }}> · {data.weg}</span>
+                    <span style={{ fontSize: 'small' }}>
+                      {' '}
+                      : {data.pacecase}
+                    </span>
                   </Color4>
                 </>,
               ],
@@ -355,7 +350,7 @@ export const exercise136: Exercise<DATA> = {
                 y1={toY(0)}
                 x2={toX(12)}
                 y2={toY(12)}
-                stroke="blue"
+                stroke="black"
                 strokeWidth={2}
               />
             </svg>
@@ -589,7 +584,114 @@ export const exercise136: Exercise<DATA> = {
         }
         return (
           <>
-            <p>Das Koordinatensystem sieht etwa so aus:</p>
+            <p>
+              Bei 0 Monaten startet der gekaufte E-Scooter bei {data.cost} €.
+              Markiere diesen Punkt im Koordinatensystem:
+            </p>
+            <svg viewBox="0 0 328 260">
+              <image
+                href="/content/NRW_EESA/136_KS.png"
+                height="260"
+                width="328"
+              />
+              <text
+                x={30}
+                y={20}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Gesamtkosten in €
+              </text>
+
+              <text
+                x={230}
+                y={230}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Anzahl der Monate
+              </text>
+              <line
+                x1={toX(0)}
+                y1={toY(0)}
+                x2={toX(12)}
+                y2={toY(12)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={toX(0) - 2}
+                y={toY2(0) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>
+              Nach 10 Monaten sind 10 · 10 € = 100 € monatliche Kosten
+              dazugekommen. Insgesamt sind es nach 10 Monaten also {data.cost} €
+              + 100 € = {data.cost + 100} €. Markiere diesen Punkt auch im
+              Koordinatensystem:
+            </p>
+            <svg viewBox="0 0 328 260">
+              <image
+                href="/content/NRW_EESA/136_KS.png"
+                height="260"
+                width="328"
+              />
+              <text
+                x={30}
+                y={20}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Gesamtkosten in €
+              </text>
+
+              <text
+                x={230}
+                y={230}
+                fontSize={10}
+                textAnchor="right"
+                stroke="black"
+              >
+                Anzahl der Monate
+              </text>
+              <line
+                x1={toX(0)}
+                y1={toY(0)}
+                x2={toX(12)}
+                y2={toY(12)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={toX(0) - 2}
+                y={toY2(0) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+              <text
+                x={toX(10) - 4}
+                y={toY2(10) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Ziehe eine Linie durch die beiden Punkte:</p>
             <svg viewBox="0 0 328 260">
               <image
                 href="/content/NRW_EESA/136_KS.png"
@@ -607,10 +709,10 @@ export const exercise136: Exercise<DATA> = {
               </text>
               <text
                 x={220}
-                y={20}
+                y={toY2(12) - 10}
                 fontSize={10}
                 textAnchor="right"
-                stroke="orange"
+                stroke="blue"
               >
                 gekaufter E-Scooter
               </text>
@@ -628,17 +730,35 @@ export const exercise136: Exercise<DATA> = {
                 y1={toY(0)}
                 x2={toX(12)}
                 y2={toY(12)}
-                stroke="blue"
+                stroke="black"
                 strokeWidth={2}
               />
               <line
                 x1={toX2(0)}
-                y1={toY2(0)}
+                y1={toY2(0) - 1}
                 x2={toX2(12)}
-                y2={toY2(12)}
-                stroke="orange"
+                y2={toY2(12) - 1}
+                stroke="blue"
                 strokeWidth={2}
               />
+              <text
+                x={toX(0) - 2}
+                y={toY2(0) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+              <text
+                x={toX(10) - 4}
+                y={toY2(10) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
             </svg>
           </>
         )
