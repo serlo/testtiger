@@ -218,11 +218,12 @@ export const exercise119: Exercise<DATA> = {
               Gleichung ablesen: y = {ppFrac(data.wachsen / 100)} ​x +{' '}
               <Color1>{data.start}</Color1>.<br></br>
               <br></br>
-              Dann zeichnest du das Steigungsdreieck. Das kannst du aus dem
-              Bruch <Color2>{ppFrac(data.wachsen / 100)}</Color2> ablesen. Der{' '}
-              <Color2>Zähler</Color2> ist immer die <Color2>Höhe</Color2> des
-              Steigungsdreiecks und der <Color2>Nenner</Color2> ist immer die
-              <Color2>Breite</Color2> des Steigungsdreiecks.
+              Dann zeichnest du das Steigungsdreieck. Das kannst du aus der
+              Steigung <Color2>{ppFrac(data.wachsen / 100)}</Color2> ablesen.
+              Der <Color2>Zähler</Color2> (obere Zahl) ist immer die{' '}
+              <Color2>Höhe</Color2> des Steigungsdreiecks und der{' '}
+              <Color2>Nenner</Color2> (untere Zahl) ist immer die
+              <Color2> Breite</Color2> des Steigungsdreiecks.
             </p>
             <p></p>
             <svg viewBox="0 0 328 220">
@@ -250,6 +251,15 @@ export const exercise119: Exercise<DATA> = {
                 Höhe in Metern
               </text>
               <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
+              <text
                 x={toX(nenner / 2)}
                 y={toY(data.start) + 15}
                 fontSize="15"
@@ -267,15 +277,6 @@ export const exercise119: Exercise<DATA> = {
               >
                 {zaehler}
               </text>
-
-              <line
-                x1={toX(-1) - 1}
-                y1={toY((-1 * data.wachsen) / 100 + data.start)}
-                x2={toX(19) - 1}
-                y2={toY((19 * data.wachsen) / 100 + data.start)}
-                stroke="blue"
-                strokeWidth={2}
-              />
               <line
                 x1={toX(0) - 1}
                 y1={toY(data.start)}
@@ -292,6 +293,24 @@ export const exercise119: Exercise<DATA> = {
                 stroke="green"
                 strokeWidth={2}
               />
+              <line
+                x1={toX(-1) - 1}
+                y1={toY((-1 * data.wachsen) / 100 + data.start)}
+                x2={toX(19) - 1}
+                y2={toY((19 * data.wachsen) / 100 + data.start)}
+                stroke="black"
+                strokeWidth={2}
+              />
+
+              <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
             </svg>
           </>
         )
