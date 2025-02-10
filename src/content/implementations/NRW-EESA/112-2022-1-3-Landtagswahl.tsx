@@ -332,12 +332,7 @@ export const exercise112: Exercise<DATA> = {
               ],
               [
                 '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
+                '',
                 <>
                   <Color4>
                     <span style={{ fontSize: 'small' }}>
