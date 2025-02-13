@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color5 } from '@/helper/colors'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { Color1, Color2, Color5 } from '@/helper/colors'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -230,17 +230,35 @@ export const exercise128: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Fahrt beginnt um 07:{data.zeit_1} Uhr und endet um 10:0
-              {data.zeit_6} Uhr. Bis 8 Uhr vergehen {60 - data.zeit_1} Minuten,
-              bis 10:0{data.zeit_6} weitere 2 Stunden und {data.zeit_6} Minuten.
+              Die Fahrt beginnt um <b>07:{data.zeit_1} Uhr</b> und endet um{' '}
+              <b>
+                10:0
+                {data.zeit_6} Uhr
+              </b>
+              . <br></br>Du kannst diese Zeit in zwei Teile einteilen:
+            </p>
+            {buildEquation([
+              [
+                <>07:{data.zeit_1} Uhr - 8 Uhr</>,
+                <>:</>,
+                <>{60 - data.zeit_1} min</>,
+              ],
+              [
+                <>8 Uhr - 10:0{data.zeit_6}</>,
+                <>:</>,
+                <>2 h {data.zeit_6} min</>,
+              ],
+            ])}
+            <p>
+              Addiere die beiden Zeiten:<br></br> {60 - data.zeit_1} min + 2 h{' '}
+              {data.zeit_6} min =
+              <strong> 2 h {60 - data.zeit_1 + data.zeit_6} min</strong>
             </p>
             <p>
-              Es vergehen also 2 Stunden und {60 - data.zeit_1} + {data.zeit_6}{' '}
-              Minuten. Das sind{' '}
+              Die Fahrt dauert{' '}
               <strong>
                 2 Stunden und {60 - data.zeit_1 + data.zeit_6} Minuten
               </strong>
-              .
             </p>
           </>
         )
@@ -266,119 +284,33 @@ export const exercise128: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <svg viewBox="0 0 328 120">
-              <image
-                href="/content/NRW_EESA/128_Zugfahrt.jpg"
-                height="120"
-                width="328"
-              />
-            </svg>
-            <div
-              className="relative overflow-hidden rounded-lg max-w-[320px] mx-auto "
-              style={{
-                transform: 'scale(1)',
-                transformOrigin: 'top left',
-              }}
-            >
-              <table className="table-auto rounded-lg shadow-md w-full text-left text-[9px] ">
-                <thead
-                  className="uppercase bg-[#D2ECF6] text-[#404040]"
-                  style={{ backgroundColor: '#D2ECF6', color: '#404040' }}
-                >
-                  <tr>
-                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
-                      Station
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
-                      Ankunft <br></br>(Uhrzeit)
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
-                      Abfahrt <br></br>(Uhrzeit)
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1 border-[#6D5E5E]">
-                      Strecke ab <br></br> Aachen (in km)
-                    </td>
-                  </tr>
-                </thead>
-                <tbody
-                  className="bg-white text-gray-500"
-                  style={{ backgroundColor: '#FFFFFF', color: '#6b7280' }}
-                >
-                  <tr>
-                    <td className="py-1 border text-center font-bold p-1 text-black ">
-                      Aachen
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1 text-black">
-                      -
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      07:{data.zeit_1}
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      0
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-1 border text-center font-bold p-1 text-black ">
-                      Lüttich
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1 text-black">
-                      07:{data.zeit_2}
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      07:{data.zeit_3}
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      {data.strecke_1}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-1 border text-center font-bold p-1 text-blue">
-                      Brüssel
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      08:{data.zeit_4}
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      08:{data.zeit_5}
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      {data.strecke_2}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-1 border text-center font-bold p-1 text-blue">
-                      Paris
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      10:0{data.zeit_6}
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      -
-                    </td>
-                    <td className="py-1 border text-center font-bold p-1  text-black">
-                      {data.strecke_3}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <center>
-              <Color5>
-                <span style={{ fontSize: 'small' }}>
-                  Abbildung 1: Fahrplan des {'"'}Thalys{'"'} von Köln nach Paris
-                </span>
-              </Color5>
-            </center>
+            <p>
+              Berechne die Länge der Teilstrecken:
+              <ul>
+                <li>
+                  Aachen - Lüttich: <br></br>
+                  {data.strecke_1} km
+                </li>
+                <li>
+                  Lüttich - Brüssel: <br></br>
+                  {data.strecke_2} km - {data.strecke_1} km ={' '}
+                  {data.strecke_2 - data.strecke_1} km
+                </li>
+                <li>
+                  Brüssel - Paris:<br></br>
+                  {data.strecke_3} km - {data.strecke_2} km ={' '}
+                  {data.strecke_3 - data.strecke_2} km
+                </li>
+              </ul>
+            </p>
             <ol>
-              <li>Die längste Teilstrecke ist von Brüssel nach Paris.</li>
               <li>
-                Laut Fahrplan betragen die Strecken ab Aachen {data.strecke_2}{' '}
-                km bis Brüssel und {data.strecke_3} km bis Paris.<br></br>
-                Zwischen Brüssel und Paris sind es damit:<br></br>
-                <br></br>
-                {data.strecke_3} − {data.strecke_2} ={' '}
-                <strong>{data.strecke_3 - data.strecke_2} [km]</strong>
+                Die <b>längste Teilstrecke</b> ist <b>von Brüssel nach Paris</b>
+                .
+              </li>
+              <li>
+                Die Strecke ist
+                <strong> {data.strecke_3 - data.strecke_2} km</strong> lang.
               </li>
             </ol>
           </>
@@ -409,26 +341,34 @@ export const exercise128: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bestimme die Geschwindigkeit, indem du die Strecke durch die Zeit
-              teilst. Dafür brauchst du die Zeit in Stunden.
-            </p>
-            <p>
-              Zwischen Aachen und Lüttich beträgt die Strecke {data.strecke_1}{' '}
-              km. Der Zug benötigt für diese Strecke {data.zeit_2 - data.zeit_1}{' '}
-              Minuten. In Stunden sind das:
-            </p>
-            <p>
-              {buildInlineFrac(<>{data.zeit_2 - data.zeit_1}</>, <>60</>)}{' '}
-              {((data.zeit_2 - data.zeit_1) / 60) % 1 == 0 ? '=' : '≈'}{' '}
-              {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} [h]
+              Bestimme die Geschwindigkeit, indem du die{' '}
+              <Color1>Strecke</Color1> durch die <Color2>Zeit </Color2>
+              teilst.
             </p>
             <hr style={{ margin: '10px 0' }} />
-            <p>Jetzt kannst du die Geschwindigkeit bestimmen:</p>
             <p>
-              {buildInlineFrac(
-                <>{data.strecke_1}</>,
-                <> {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))}</>,
-              )}{' '}
+              Die <Color1>Strecke</Color1> zwischen Aachen und Lüttich beträgt{' '}
+              <Color1>{data.strecke_1} km</Color1>.{' '}
+            </p>
+            <p>
+              Der Zug benötigt für diese Strecke{' '}
+              <Color2>{data.zeit_2 - data.zeit_1} Minuten Zeit</Color2>. Rechne
+              das in Stunden um:{' '}
+              <Color2>
+                {data.zeit_2 - data.zeit_1} min : 60{' '}
+                {((data.zeit_2 - data.zeit_1) / 60) % 1 == 0 ? '=' : '≈'}{' '}
+                {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} h
+              </Color2>
+            </p>
+
+            <hr style={{ margin: '10px 0' }} />
+            <p>
+              Jetzt kannst du die Geschwindigkeit bestimmen:<br></br>
+              <Color1>Strecke</Color1> : <Color2>Zeit </Color2> ={' '}
+              <Color1>{data.strecke_1}</Color1> :{' '}
+              <Color2>
+                {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))}
+              </Color2>
               ={' '}
               <strong>
                 {pp(
@@ -1179,7 +1119,9 @@ export const exercise128: Exercise<DATA> = {
             <p>
               Welche Aussagen zum Graphen stimmen bzw. stimmen nicht? Wähle aus.
             </p>
-            <ul>{shuffledItems}</ul>
+            <ul>
+              <em>{shuffledItems}</em>
+            </ul>
           </>
         )
       },
@@ -1188,15 +1130,21 @@ export const exercise128: Exercise<DATA> = {
           <>
             <p>Die Aussagen</p>
             <ul>
-              <li>{richtig[data.item_1]}</li>
-              <li>{falsch[data.item_2]}</li>
+              <li>
+                <em>{richtig[data.item_1]}</em>
+              </li>
+              <li>
+                <em>{falsch[data.item_2]}</em>
+              </li>
             </ul>{' '}
             <p>
               sind <strong>korrekt</strong>.<br></br>
               <br></br>
               Die Aussage{' '}
               <ul>
-                <li>{falsch[data.item_3]}</li>
+                <li>
+                  <em>{falsch[data.item_3]}</em>
+                </li>
               </ul>{' '}
               ist <strong>nicht korrekt</strong>.
             </p>
