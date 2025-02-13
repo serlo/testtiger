@@ -327,13 +327,7 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
               <text
@@ -341,7 +335,7 @@ export const exercise136: Exercise<DATA> = {
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -585,8 +579,11 @@ export const exercise136: Exercise<DATA> = {
         return (
           <>
             <p>
-              Bei 0 Monaten startet der gekaufte E-Scooter bei {data.cost} €.
-              Markiere diesen Punkt im Koordinatensystem:
+              Zu Beginn - also bei 0 Monaten - starten die Kosten für den
+              gekauften E-Scooter beim Kaufpreis von {data.cost} €.
+              <br></br>
+              Markiere den <Color1>Punkt (0 ∣ {data.cost})</Color1> im
+              Koordinatensystem:
             </p>
             <svg viewBox="0 0 328 260">
               <image
@@ -594,13 +591,7 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
 
@@ -609,7 +600,7 @@ export const exercise136: Exercise<DATA> = {
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -635,7 +626,8 @@ export const exercise136: Exercise<DATA> = {
             <p>
               Nach 10 Monaten sind 10 · 10 € = 100 € monatliche Kosten
               dazugekommen. Insgesamt sind es nach 10 Monaten also {data.cost} €
-              + 100 € = {data.cost + 100} €. Markiere diesen Punkt auch im
+              + 100 € = {data.cost + 100} €. <br></br>Markiere auch den{' '}
+              <Color1>Punkt (10 ∣ {data.cost + 100})</Color1> im
               Koordinatensystem:
             </p>
             <svg viewBox="0 0 328 260">
@@ -644,13 +636,7 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
 
@@ -659,7 +645,7 @@ export const exercise136: Exercise<DATA> = {
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -698,13 +684,7 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
               <text
@@ -712,7 +692,7 @@ export const exercise136: Exercise<DATA> = {
                 y={toY2(12) - 10}
                 fontSize={10}
                 textAnchor="right"
-                stroke="blue"
+                fill="blue"
               >
                 gekaufter E-Scooter
               </text>
@@ -721,7 +701,7 @@ export const exercise136: Exercise<DATA> = {
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
