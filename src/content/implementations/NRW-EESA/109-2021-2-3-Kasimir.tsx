@@ -61,7 +61,7 @@ export const exercise109: Exercise<DATA> = {
         </p>
         <svg viewBox="0 0 328 180">
           <image
-            href="/content/NRW_EESA/109_Kasimir1.PNG"
+            href="/content/NRW_EESA/109_Kasimir1.svg"
             height="180"
             width="328"
           />
@@ -160,7 +160,7 @@ export const exercise109: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                href="/content/NRW_EESA/109_Kasimir2.svg"
                 height="140"
                 width="328"
               />
@@ -193,43 +193,141 @@ export const exercise109: Exercise<DATA> = {
               Zeichne die Grundlinie des Dreiecks mit der Seitenlänge a ={' '}
               {data.a} cm:
             </p>
-            <svg viewBox="0 0 328 30">
-              <image
-                href="/content/NRW_EESA/109_Konstruktion.jpg"
-                height="30"
-                width="328"
-              />
-            </svg>
+
+            <>
+              {/* Wir erweitern den ViewBox etwas, damit das Lineal auch Platz hat */}
+              <svg viewBox="0 0 328 40">
+                <image
+                  href="/content/NRW_EESA/109_Konstruktion1.svg"
+                  x="85"
+                  y="6"
+                  height="20"
+                  width="158"
+                />
+
+                {/* Das Lineal: eine horizontale Linie mit Tick-Marks */}
+                <g id="ruler">
+                  {/* Horizontale Linie, die das Lineal darstellt */}
+                  <line
+                    x1="85"
+                    y1="20"
+                    x2="243" /* 85 + 158 = 243 */
+                    y2="20"
+                    stroke="lightgrey"
+                    strokeWidth="1"
+                  />
+                  {Array.from({ length: Number(data.a) + 1 }, (_, i) => {
+                    const xPos = 85 + i * (158 / data.a)
+                    return (
+                      <g key={i}>
+                        <line
+                          x1={xPos}
+                          y1="20"
+                          x2={xPos}
+                          y2={i % 5 === 0 ? '30' : '25'} // Längere Tick-Marks alle 5 cm
+                          stroke="lightgrey"
+                          strokeWidth="1"
+                        />
+                        {i % 5 === 0 && (
+                          <text
+                            x={xPos}
+                            y="38"
+                            fontSize="8"
+                            textAnchor="middle"
+                            fill="lightgrey"
+                          >
+                            {i} cm
+                          </text>
+                        )}
+                      </g>
+                    )
+                  })}
+                </g>
+
+                {/* Beschriftung unter dem Lineal */}
+                <text
+                  x={140}
+                  y="8"
+                  fontSize="11"
+                  textAnchor="right"
+                  fill="black"
+                >
+                  a = {data.a} cm
+                </text>
+              </svg>
+            </>
             <hr style={{ margin: '10px 0' }} />
             <p>
               In einem gleichseitigen Dreieck sind alle drei Winkel 60° groß.
               Zeichne die anderen Seiten in einem Winkel von 60° an die
               Grundlinie:
             </p>
-            <svg viewBox="0 0 328 130">
+            <svg viewBox="0 0 328 170">
+              {/* Geodreieck einfügen */}
               <image
-                href="/content/NRW_EESA/109_Konstruktion2.jpg"
-                height="130"
-                width="328"
+                href="/content/grafiken_allgemein/Geodreieck.svg"
+                // Transformationsreihenfolge:
+                // 1. Verschiebe das Geodreieck, sodass der untere Mittelpunkt (halfWidth, originalHeight) am Ursprung liegt.
+                // 2. Skaliere mit scaleFactor.
+                // 3. Verschiebe es, sodass der Ursprung auf (164, 6) liegt.
+                transform={`translate(86,163) scale(${(158 * 18) / (data.a * 1279)}) translate(-${1279 / 2}, -${642})`}
+              />
+              <image
+                href="/content/NRW_EESA/109_Konstruktion2.svg"
+                x="85"
+                y="6"
+                height="158"
+                width="158"
+              />
+            </svg>
+            <p></p>
+            <svg viewBox="0 0 328 170">
+              <image
+                href="/content/NRW_EESA/109_Konstruktion3.svg"
+                x="85"
+                y="6"
+                height="158"
+                width="158"
               />
             </svg>
             <hr style={{ margin: '10px 0' }} />
             <p>
-              Verbinde zu einem Dreieck. <br></br>Bestimme mit einem Lineal die
-              Mittelpunkte der Seiten und markiere sie.
+              Verbinde zu einem Dreieck. <br></br>Markiere die Mittelpunkte der
+              Seiten bei <br></br>
+              {data.a} cm : 2 = {pp(data.a / 2)} cm:
             </p>
-            <svg viewBox="0 0 328 140">
+            <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_EESA/109_gleichseitiges Dreieck.jpg"
-                height="140"
-                width="328"
+                href="/content/NRW_EESA/109_Konstruktion4.svg"
+                x="85"
+                y="6"
+                height="148"
+                width="158"
               />
+              <text
+                x={110}
+                y="155"
+                fontSize="11"
+                textAnchor="right"
+                fill="black"
+              >
+                {pp(data.a / 2)} cm
+              </text>
+              <text
+                x={180}
+                y="155"
+                fontSize="11"
+                textAnchor="right"
+                fill="black"
+              >
+                {pp(data.a / 2)} cm
+              </text>
             </svg>
             <hr style={{ margin: '10px 0' }} />
             <p>Verbinde die Mittelpunkte, um die Figur fertigzustellen.</p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                href="/content/NRW_EESA/109_Konstruktion5.svg"
                 height="140"
                 width="328"
               />
@@ -292,7 +390,9 @@ export const exercise109: Exercise<DATA> = {
         return (
           <>
             <p>
-              Das große Dreieck besteht aus 4 identischen kleinen Dreiecken.
+              Das große Dreieck hat eine Fläche von{' '}
+              {pp(roundToDigits(surface, 1))} cm². Das große Dreieck besteht aus
+              4 identischen kleinen Dreiecken.
             </p>
             <p>Teile die Gesamtfläche durch 4:</p>
             <p>
