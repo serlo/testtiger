@@ -6,7 +6,7 @@ Dieses Repository enthält den Quellcode und die Inhalte für die nächste Gener
 
 ## Getting Started
 
-Es wird [node.js v20](https://nodejs.org/en) oder höher benötigt. Für nach dem Klonen des Repository im Hauptverzeichnis `npm start` aus. Dadurch werden alle Dependencies installiert und der Dev-Server auf http://localhost:3000/ gestartet. Du kannst auch `npm install` und `npm run dev` separat ausführen.
+Es wird [node.js v20](https://nodejs.org/en) oder höher benötigt. Führe nach dem Klonen des Repository im Hauptverzeichnis `npm start` aus. Dadurch werden alle Abhängigkeiten installiert und der Dev-Server auf http://localhost:3000/ gestartet. Du kannst auch `npm install` und `npm run dev` separat ausführen.
 
 Erstelle ein production-build mit `npm run build`. Das Repository ist mit dem Serlo-Account von [vercel.com](https://vercel.com) und dort wird der Prototyp unter https://testtiger-nine.vercel.app/ gehostet. Pushe auf `main` für ein neues Deployment.
 
