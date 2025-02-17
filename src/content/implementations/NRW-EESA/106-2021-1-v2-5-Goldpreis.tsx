@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color2, Color4 } from '@/helper/colors'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -49,7 +49,381 @@ export const exercise106: Exercise<DATA> = {
         return null
       },
       example() {
-        return <>TODO</>
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              Ergänze in der Tabelle die fehlenden Werte dieser proportionalen
+              Zuordnung.
+            </p>
+            <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="10"
+                y="10"
+                width="210"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
+              />
+              <rect
+                x="10"
+                y="10"
+                width="210"
+                height="44"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+              <line
+                x1="10"
+                y1="32"
+                x2="220"
+                y2="32"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="70"
+                y1="10"
+                x2="70"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="120"
+                y1="10"
+                x2="120"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="170"
+                y1="10"
+                x2="170"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <text
+                x="40"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Gold [g]
+              </text>
+              <text
+                x="96"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="145"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              ></text>
+              <text
+                x="194"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                100
+              </text>
+
+              <text
+                x="41"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Preis [€]
+              </text>
+              <text
+                x="96"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                35,50
+              </text>
+              <text
+                x="146"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                71,00
+              </text>
+              <text
+                x="196"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+            </svg>
+            {/* Pfeil-SVG */}
+            <svg width="220" height="30" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker
+                  id="arrowhead"
+                  viewBox="0 0 10 10"
+                  refX="5"
+                  refY="5"
+                  markerWidth="4"
+                  markerHeight="4"
+                  orient="auto"
+                >
+                  <polygon points="0,0 10,5 0,10" fill="#007EC1" />
+                </marker>
+              </defs>
+              <line
+                x1="30"
+                y1="0"
+                x2="30"
+                y2="15"
+                stroke="#007EC1"
+                strokeWidth="2"
+                markerEnd="url(#arrowhead)"
+              />
+              <text
+                x="70"
+                y="15"
+                fontSize="14"
+                textAnchor="middle"
+                fill="#007EC1"
+              >
+                Lösung:
+              </text>
+            </svg>
+            <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="10"
+                y="10"
+                width="210"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
+              />
+              <rect
+                x="10"
+                y="10"
+                width="210"
+                height="44"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+              <line
+                x1="10"
+                y1="32"
+                x2="220"
+                y2="32"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="70"
+                y1="10"
+                x2="70"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="120"
+                y1="10"
+                x2="120"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="170"
+                y1="10"
+                x2="170"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <text
+                x="40"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Gold [g]
+              </text>
+              <text
+                x="96"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="145"
+                y="25"
+                fontSize="12"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+                fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
+              >
+                <tspan fill="green">2</tspan>
+              </text>
+              <text
+                x="194"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                100
+              </text>
+
+              <text
+                x="41"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Preis [€]
+              </text>
+              <text
+                x="96"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                35,50
+              </text>
+              <text
+                x="146"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                71,00
+              </text>
+              <text
+                x="196"
+                y="47"
+                fontSize="12"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+                fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
+              >
+                <tspan fill="green">3550</tspan>
+              </text>
+            </svg>
+            <div className="explanation-box">
+              <p>
+                Erklärung:
+                <hr style={{ margin: '10px 0' }} />
+                Berechne die fehlenden Werte mit dem Dreisatz.
+              </p>
+              <hr style={{ margin: '10px 0' }} />
+              {buildEquation([
+                [<>1 g</>, <>≙</>, <>35,50 €</>],
+                [
+                  '',
+                  <>
+                    {' '}
+                    <Color4>
+                      <span className="inline-block  scale-y-[1.5]">↓</span>
+                    </Color4>
+                  </>,
+                  <>
+                    <Color4>
+                      <span style={{ fontSize: 'small' }}>· 100</span>
+                    </Color4>
+                  </>,
+                ],
+                [
+                  <>
+                    <strong>100 g</strong>
+                  </>,
+                  <>≙</>,
+                  <>
+                    <strong>3550 €</strong>
+                  </>,
+                ],
+                [<></>, <></>, <></>],
+              ])}
+              <hr style={{ margin: '10px 0' }} />
+              <p>35,50 € ist genau die Hälfte von 71,00 €:</p>
+              {buildEquation([
+                [<>1 g</>, <>≙</>, <>35,50 €</>],
+                [
+                  '',
+                  <>
+                    {' '}
+                    <Color4>
+                      <span className="inline-block  scale-y-[1.5]">↓</span>
+                    </Color4>
+                  </>,
+                  <>
+                    <Color4>
+                      <span style={{ fontSize: 'small' }}>· 2</span>
+                    </Color4>
+                  </>,
+                ],
+                [
+                  <>
+                    <strong>2 g</strong>
+                  </>,
+                  <>≙</>,
+                  <>
+                    <strong>71,00 €</strong>
+                  </>,
+                ],
+                [<></>, <></>, <></>],
+              ])}
+            </div>
+          </>
+        )
       },
       task({ data }) {
         return (

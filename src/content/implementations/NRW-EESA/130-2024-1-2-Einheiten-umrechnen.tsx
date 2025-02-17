@@ -2,7 +2,7 @@
 import { analyseLastInput } from '@/components/exercise-view/state/actions'
 import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color1, Color2, Color4 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
@@ -46,84 +46,85 @@ export const exercise130: Exercise<DATA> = {
   example() {
     return (
       <>
+        <style>
+          {`
+        .gray-box {
+        display: inline-flex;
+        align-items: center;      /* Vertikale Zentrierung */
+        justify-content: center;  /* Horizontale Zentrierung */
+        background-color: lightgray;
+        padding: 2px 4px;
+        border: 1px solid gray;
+        text-align: center;
+        min-width: 30px;
+        height: 20px;            /* Feste Höhe */
+        line-height: 28px;       /* Zeilenhöhe passend zur Höhe */
+        font-size: 22px;
+        /* Falls nötig: eine kleine Korrektur */
+        transform: translateY(-8px);
+        font-family: 'Comic Sans MS', 'Segoe Script', cursive;
+        }
+      `}
+        </style>
+        <style>
+          {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+        </style>
         <p>Rechne die Größen in die angegebene Einheit um. </p>
-        <hr style={{ margin: '10px 0' }} />
         <p>
-          <b>a) </b>300 cm = <span className="gray-box"></span> m
+          <b>a) </b>300 cm ={' '}
+          <span className="gray-box">
+            <Color2>3</Color2>
+          </span>{' '}
+          m
         </p>
-        <div style={{ marginLeft: '40px' }}>
-          <p>Lösung:</p>
+        <div className="explanation-box">
           <p>
-            <strong>1 Meter (m)</strong> enthält{' '}
-            <strong>100 Zentimeter (cm)</strong>. <br></br>Rechne mit dem
-            Umrechnungsfaktor 100:
+            Erklärung:
+            <hr style={{ margin: '10px 0' }} />1 Meter enthält 100 Zentimeter.
+            Rechne mit dem Umrechnungsfaktor 100:
+            <br></br>
+            <b>300 cm = 300 : 100 m = 3 m</b>
           </p>
-          {buildEquation([
-            [<>300 cm</>, <>=</>, <>300 : 100 m</>],
-            [
-              <>
-                <strong>300 cm</strong>
-              </>,
-              <>
-                <strong>=</strong>
-              </>,
-              <>
-                <strong>3 m</strong>
-              </>,
-            ],
-          ])}
         </div>
-        <hr style={{ margin: '10px 0' }} />
         <p>
-          <b>b) </b> 300 s = <span className="gray-box"></span> min
+          <b>b) </b> 300 s ={' '}
+          <span className="gray-box">
+            <Color2> 5</Color2>
+          </span>{' '}
+          min
         </p>
-        <div style={{ marginLeft: '40px' }}>
-          <p>Lösung:</p>
+        <div className="explanation-box">
           <p>
-            <strong>1 Minute (min)</strong> enthält{' '}
-            <strong>60 Sekunden (s)</strong>. <br></br>Rechne mit dem
-            Umrechnungsfaktor 60:
+            Erklärung:
+            <hr style={{ margin: '10px 0' }} />1 Minute enthält 60 Sekunden.
+            Rechne mit dem Umrechnungsfaktor 60:
+            <br></br>
+            <b>300 s = 300 : 60 min = 5 min</b>
           </p>
-          {buildEquation([
-            [<>300 s</>, <>=</>, <>300 : 60 min</>],
-            [
-              <>
-                <strong>300 s</strong>
-              </>,
-              <>
-                <strong>=</strong>
-              </>,
-              <>
-                <strong>5 min</strong>
-              </>,
-            ],
-          ])}
         </div>
-        <hr style={{ margin: '10px 0' }} />
+
         <p>
-          <b>c) </b> 0,2 ℓ = <span className="gray-box"></span> ml
+          <b>c) </b> 0,2 ℓ ={' '}
+          <span className="gray-box">
+            <Color2>200</Color2>
+          </span>{' '}
+          ml
         </p>
-        <div style={{ marginLeft: '40px' }}>
-          <p>Lösung:</p>
+        <div className="explanation-box">
           <p>
-            <strong>1 Liter (ℓ)</strong> enthält{' '}
-            <strong>1000 Milliliter (ml)</strong>. <br></br>Rechne mit dem
-            Umrechnungsfaktor 1000:
+            Erklärung:
+            <hr style={{ margin: '10px 0' }} />1 Liter enthält 1000 Milliliter.
+            Rechne mit dem Umrechnungsfaktor 1000:
+            <br></br>
+            <b>300 s = 300 : 60 min = 5 min</b>
           </p>
-          {buildEquation([
-            [<>0,2 ℓ</>, <>=</>, <>0,2 · 1000 ml</>],
-            [
-              <>
-                <strong>0,2 ℓ</strong>
-              </>,
-              <>
-                <strong>=</strong>
-              </>,
-              <>
-                <strong>200 ml</strong>
-              </>,
-            ],
-          ])}
         </div>
 
         <style>
