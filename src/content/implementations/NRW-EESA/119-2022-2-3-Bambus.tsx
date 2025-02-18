@@ -112,6 +112,9 @@ export const exercise119: Exercise<DATA> = {
       intro({ data }) {
         return <></>
       },
+      example() {
+        return <></>
+      },
       task({ data }) {
         return (
           //a)
