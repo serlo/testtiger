@@ -1,6 +1,10 @@
 import { Exercise } from '@/data/types'
 import { Color2, Color4 } from '@/helper/colors'
-import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildInlineFrac,
+  ExplanationBox,
+} from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -66,10 +70,11 @@ export const exercise106: Exercise<DATA> = {
               Zuordnung.
             </p>
             <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+              {/* Hintergrund und Rahmen */}
               <rect
                 x="10"
                 y="10"
-                width="210"
+                width="300"
                 height="22"
                 fill="#D2ECF6"
                 stroke="none"
@@ -77,7 +82,7 @@ export const exercise106: Exercise<DATA> = {
               <rect
                 x="10"
                 y="10"
-                width="210"
+                width="300"
                 height="44"
                 rx="4"
                 ry="4"
@@ -85,40 +90,46 @@ export const exercise106: Exercise<DATA> = {
                 fill="transparent"
                 strokeWidth="1"
               />
+
+              {/* Horizontale Linie */}
               <line
                 x1="10"
                 y1="32"
-                x2="220"
+                x2="310"
                 y2="32"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
+
+              {/* Vertikale Linien */}
               <line
-                x1="70"
+                x1="96"
                 y1="10"
-                x2="70"
+                x2="96"
                 y2="54"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
               <line
-                x1="120"
+                x1="167"
                 y1="10"
-                x2="120"
+                x2="167"
                 y2="54"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
               <line
-                x1="170"
+                x1="238"
                 y1="10"
-                x2="170"
+                x2="238"
                 y2="54"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
+
+              {/* Erste Zeile (Kopfzeile) */}
               <text
-                x="40"
+                x="53"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -128,7 +139,7 @@ export const exercise106: Exercise<DATA> = {
                 Gold [g]
               </text>
               <text
-                x="96"
+                x="132"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -138,7 +149,7 @@ export const exercise106: Exercise<DATA> = {
                 1
               </text>
               <text
-                x="145"
+                x="203"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -146,7 +157,7 @@ export const exercise106: Exercise<DATA> = {
                 fill="black"
               ></text>
               <text
-                x="194"
+                x="274"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -156,8 +167,9 @@ export const exercise106: Exercise<DATA> = {
                 100
               </text>
 
+              {/* Zweite Zeile (Datenzeile) */}
               <text
-                x="41"
+                x="53"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
@@ -166,7 +178,7 @@ export const exercise106: Exercise<DATA> = {
                 Preis [€]
               </text>
               <text
-                x="96"
+                x="132"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
@@ -175,7 +187,7 @@ export const exercise106: Exercise<DATA> = {
                 35,50
               </text>
               <text
-                x="146"
+                x="203"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
@@ -184,13 +196,14 @@ export const exercise106: Exercise<DATA> = {
                 71,00
               </text>
               <text
-                x="196"
+                x="274"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
                 fill="black"
               ></text>
             </svg>
+
             {/* Pfeil-SVG */}
             <svg width="220" height="30" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -226,10 +239,11 @@ export const exercise106: Exercise<DATA> = {
               </text>
             </svg>
             <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+              {/* Hintergrund und Rahmen */}
               <rect
                 x="10"
                 y="10"
-                width="210"
+                width="300"
                 height="22"
                 fill="#D2ECF6"
                 stroke="none"
@@ -237,7 +251,7 @@ export const exercise106: Exercise<DATA> = {
               <rect
                 x="10"
                 y="10"
-                width="210"
+                width="300"
                 height="44"
                 rx="4"
                 ry="4"
@@ -245,40 +259,46 @@ export const exercise106: Exercise<DATA> = {
                 fill="transparent"
                 strokeWidth="1"
               />
+
+              {/* Horizontale Linie */}
               <line
                 x1="10"
                 y1="32"
-                x2="220"
+                x2="310"
                 y2="32"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
+
+              {/* Vertikale Linien */}
               <line
-                x1="70"
+                x1="96"
                 y1="10"
-                x2="70"
+                x2="96"
                 y2="54"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
               <line
-                x1="120"
+                x1="167"
                 y1="10"
-                x2="120"
+                x2="167"
                 y2="54"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
               <line
-                x1="170"
+                x1="238"
                 y1="10"
-                x2="170"
+                x2="238"
                 y2="54"
                 stroke="#007EC1"
                 strokeWidth="1"
               />
+
+              {/* Erste Zeile (Kopfzeile) */}
               <text
-                x="40"
+                x="53"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -288,7 +308,7 @@ export const exercise106: Exercise<DATA> = {
                 Gold [g]
               </text>
               <text
-                x="96"
+                x="132"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -298,7 +318,7 @@ export const exercise106: Exercise<DATA> = {
                 1
               </text>
               <text
-                x="145"
+                x="203"
                 y="25"
                 fontSize="12"
                 textAnchor="middle"
@@ -309,7 +329,7 @@ export const exercise106: Exercise<DATA> = {
                 <tspan fill="green">2</tspan>
               </text>
               <text
-                x="194"
+                x="274"
                 y="25"
                 fontSize="10"
                 textAnchor="middle"
@@ -319,8 +339,9 @@ export const exercise106: Exercise<DATA> = {
                 100
               </text>
 
+              {/* Zweite Zeile (Datenzeile) */}
               <text
-                x="41"
+                x="53"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
@@ -329,7 +350,7 @@ export const exercise106: Exercise<DATA> = {
                 Preis [€]
               </text>
               <text
-                x="96"
+                x="132"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
@@ -338,7 +359,7 @@ export const exercise106: Exercise<DATA> = {
                 35,50
               </text>
               <text
-                x="146"
+                x="203"
                 y="47"
                 fontSize="10"
                 textAnchor="middle"
@@ -347,7 +368,7 @@ export const exercise106: Exercise<DATA> = {
                 71,00
               </text>
               <text
-                x="196"
+                x="274"
                 y="47"
                 fontSize="12"
                 textAnchor="middle"
@@ -358,13 +379,16 @@ export const exercise106: Exercise<DATA> = {
                 <tspan fill="green">3550</tspan>
               </text>
             </svg>
-            <div className="explanation-box">
+
+            <ExplanationBox>
               <p>
                 Erklärung:
                 <hr style={{ margin: '10px 0' }} />
                 Berechne die fehlenden Werte mit dem Dreisatz.
               </p>
+
               <hr style={{ margin: '10px 0' }} />
+              <p>100 g ist 100 · 1 g:</p>
               {buildEquation([
                 [<>1 g</>, <>≙</>, <>35,50 €</>],
                 [
@@ -393,7 +417,7 @@ export const exercise106: Exercise<DATA> = {
                 [<></>, <></>, <></>],
               ])}
               <hr style={{ margin: '10px 0' }} />
-              <p>35,50 € ist genau die Hälfte von 71,00 €:</p>
+              <p>71,00 € ist genau das Doppelte von 35,50 €:</p>
               {buildEquation([
                 [<>1 g</>, <>≙</>, <>35,50 €</>],
                 [
@@ -421,7 +445,7 @@ export const exercise106: Exercise<DATA> = {
                 ],
                 [<></>, <></>, <></>],
               ])}
-            </div>
+            </ExplanationBox>
           </>
         )
       },
