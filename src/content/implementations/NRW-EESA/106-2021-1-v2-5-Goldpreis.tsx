@@ -386,38 +386,11 @@ export const exercise106: Exercise<DATA> = {
                 <hr style={{ margin: '10px 0' }} />
                 Berechne die fehlenden Werte mit dem Dreisatz.
               </p>
-
               <hr style={{ margin: '10px 0' }} />
-              <p>100 g ist 100 · 1 g:</p>
-              {buildEquation([
-                [<>1 g</>, <>≙</>, <>35,50 €</>],
-                [
-                  '',
-                  <>
-                    {' '}
-                    <Color4>
-                      <span className="inline-block  scale-y-[1.5]">↓</span>
-                    </Color4>
-                  </>,
-                  <>
-                    <Color4>
-                      <span style={{ fontSize: 'small' }}>· 100</span>
-                    </Color4>
-                  </>,
-                ],
-                [
-                  <>
-                    <strong>100 g</strong>
-                  </>,
-                  <>≙</>,
-                  <>
-                    <strong>3550 €</strong>
-                  </>,
-                ],
-                [<></>, <></>, <></>],
-              ])}
-              <hr style={{ margin: '10px 0' }} />
-              <p>71,00 € ist genau das Doppelte von 35,50 €:</p>
+              <p>
+                71,00 € ist genau das Doppelte von 35,50 €. Multipliziere beide
+                Seiten mit 2:
+              </p>
               {buildEquation([
                 [<>1 g</>, <>≙</>, <>35,50 €</>],
                 [
@@ -441,6 +414,36 @@ export const exercise106: Exercise<DATA> = {
                   <>≙</>,
                   <>
                     <strong>71,00 €</strong>
+                  </>,
+                ],
+                [<></>, <></>, <></>],
+              ])}
+
+              <hr style={{ margin: '10px 0' }} />
+              <p>100 g ist 100 mal 1 g. Multipliziere beide Seiten mit 100:</p>
+              {buildEquation([
+                [<>1 g</>, <>≙</>, <>35,50 €</>],
+                [
+                  '',
+                  <>
+                    {' '}
+                    <Color4>
+                      <span className="inline-block  scale-y-[1.5]">↓</span>
+                    </Color4>
+                  </>,
+                  <>
+                    <Color4>
+                      <span style={{ fontSize: 'small' }}>· 100</span>
+                    </Color4>
+                  </>,
+                ],
+                [
+                  <>
+                    <strong>100 g</strong>
+                  </>,
+                  <>≙</>,
+                  <>
+                    <strong>3550 €</strong>
                   </>,
                 ],
                 [<></>, <></>, <></>],
