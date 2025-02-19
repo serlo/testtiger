@@ -372,6 +372,7 @@ export function LearningPathMap() {
                       s.needReset = true
                       s.needReset2 = true
                       s.navIndicatorExternalUpdate = 0
+                      s.showSplitScreen = false
                       s.checks = Array.from({
                         length: Math.max(1, s.navIndicatorLength),
                       }).map(_ => {

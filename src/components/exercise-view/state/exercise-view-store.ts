@@ -66,6 +66,7 @@ export type IExerciseViewStore = {
   videoUrl?: string
   isChallenge?: boolean
   introText?: string | JSX.Element
+  showSplitScreen?: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({

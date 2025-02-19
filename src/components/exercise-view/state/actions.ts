@@ -52,6 +52,7 @@ export function setupExercise(
         : 0
     s.navIndicatorPosition = 0
     s.navIndicatorExternalUpdate = 0
+    s.showSplitScreen = false
     s.checks = Array.from({ length: Math.max(1, s.navIndicatorLength) }).map(
       _ => {
         return {

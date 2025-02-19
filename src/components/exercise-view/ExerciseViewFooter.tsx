@@ -115,10 +115,10 @@ export function ExerciseViewFooter() {
 
   return (
     <div className="bg-white min-h-[65px] relative">
-      <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-white rounded-footer-shadow">
-        {/* visual element*/}
+      {/*<div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-white rounded-footer-shadow">
+        
       </div>
-      <IndicatorBar />
+      <IndicatorBar />*/}
       <SolutionOverlay />
       <FotoOverlay />
       <div className="h-1"></div>

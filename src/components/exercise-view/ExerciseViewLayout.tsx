@@ -15,10 +15,10 @@ export function ExerciseViewLayout() {
       <IonContent>
         <ExerciseViewContent />
       </IonContent>
-      <IonFooter className="ion-no-border">
+      {/*<IonFooter className="ion-no-border">
         <ExerciseViewFooter />
       </IonFooter>
-      <ChatOverlay />
+      <ChatOverlay />*/}
       <CropImageOverlay />
       <EndScreen />
     </IonPage>
