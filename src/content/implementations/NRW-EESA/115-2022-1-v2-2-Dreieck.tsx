@@ -55,6 +55,140 @@ export const exercise115: Exercise<DATA> = {
       intro({ data }) {
         return null
       },
+      example() {
+        return (
+          <>
+            <p>Im Folgenden gelten die im Dreieck üblichen Bezeichnungen.</p>
+
+            <p>
+              Zeichne ein Dreieck ΔABC mit den Seitenlängen b = 3.6 cm, c = 4.0
+              cm und dem Winkel α = 40°.
+            </p>
+            <p>Lösung:</p>
+            <p>
+              Beginne damit die Grundlinie c mit der Länge 4.0 cm zu
+              konstruieren:
+            </p>
+            <svg viewBox="0 0 328 27">
+              <image
+                href="/content/NRW_EESA/115_dreieck1.svg"
+                height="27"
+                width="328"
+              />
+              <text
+                x="164"
+                y="25"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                c = 4.0 cm
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Zeichne im Punkt A einen Winkel von 40°:</p>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/NRW_EESA/115_dreieck2.svg"
+                height="150"
+                width="328"
+              />
+              <text
+                x="114"
+                y="125"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                40°
+              </text>
+              <text
+                x="164"
+                y="147"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                c = 4.0 cm
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Markiere Punkt C im Abstand von b = 3.6 cm zu Punkt A:</p>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/NRW_EESA/115_dreieck3.svg"
+                height="150"
+                width="328"
+              />
+              <text
+                x="164"
+                y="147"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                c = 4.0 cm
+              </text>
+              <text
+                x="125"
+                y="75"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+                transform="rotate(-50, 125, 75)"
+              >
+                b = 3.6 cm
+              </text>
+              <text
+                x="114"
+                y="125"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                40°
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Verbinde die Punkte B und C, um das Dreieck fertigzustellen:</p>
+            <svg viewBox="0 0 328 140">
+              <image
+                href="/content/NRW_EESA/115_dreieck4.svg"
+                height="140"
+                width="328"
+              />
+              <text
+                x="170"
+                y="135"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                c = 4.0 cm
+              </text>
+              <text
+                x="125"
+                y="60"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+                transform="rotate(-50, 125, 60)"
+              >
+                b = 3.6 cm
+              </text>
+              <text
+                x="112"
+                y="112"
+                fontSize="12"
+                textAnchor="middle"
+                fill="black"
+              >
+                40°
+              </text>
+            </svg>
+          </>
+        )
+      },
       task({ data }) {
         return (
           //a)
@@ -238,6 +372,28 @@ export const exercise115: Exercise<DATA> = {
                 {data.gamma}°
               </text>
             </svg>
+          </>
+        )
+      },
+      example() {
+        return (
+          <>
+            <p>
+              Kann das oben abgebildete Dreieck mit den angegebenen Winkelmaßen
+              gezeichnet werden?
+            </p>{' '}
+            <p>Entscheide und begründe deine Entscheidung.</p>
+            <p>Lösung:</p>
+            <>
+              <p>
+                Berechne die Winkelsumme des Dreiecks. Addiere dafür alle
+                Winkel:<br></br> <b>57° + 64° + 58° = 179° </b>
+              </p>
+              <p>
+                Die <b>Winkelsumme eines Dreiecks</b> beträgt <b>immer 180°</b>,
+                weshalb es das abgebildete Dreieck nicht geben kann.
+              </p>
+            </>
           </>
         )
       },
