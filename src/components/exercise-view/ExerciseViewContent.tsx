@@ -259,6 +259,9 @@ export function ExerciseViewContent() {
                             })
                             setSize(300)
                             setInit(false)
+                            setTimeout(() => {
+                              setSize(150)
+                            }, 300)
                           }}
                         >
                           Aufgabe lösen
@@ -358,6 +361,9 @@ export function ExerciseViewContent() {
                         })
                         setSize(300)
                         setInit(false)
+                        setTimeout(() => {
+                          setSize(150)
+                        }, 300)
                       }}
                     >
                       Aufgabe lösen
