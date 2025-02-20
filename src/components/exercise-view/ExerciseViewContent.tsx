@@ -257,7 +257,7 @@ export function ExerciseViewContent() {
                             ExerciseViewStore.update(s => {
                               s.showSplitScreen = true
                             })
-                            setSize(300)
+                            setSize(600)
                             setInit(false)
                             setTimeout(() => {
                               setSize(150)
@@ -271,7 +271,7 @@ export function ExerciseViewContent() {
                   </>
                 }
               </>,
-              page.displayIndex,
+              inlineContext ? undefined : page.displayIndex,
             )}
           {examplePrescreen &&
             singleExercise.example &&
@@ -359,7 +359,7 @@ export function ExerciseViewContent() {
                         ExerciseViewStore.update(s => {
                           s.showSplitScreen = true
                         })
-                        setSize(300)
+                        setSize(600)
                         setInit(false)
                         setTimeout(() => {
                           setSize(150)
