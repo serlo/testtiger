@@ -2476,6 +2476,8 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+
+            showExamplePrescreen: true,
           },
 
           {
