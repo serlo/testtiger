@@ -1,7 +1,7 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
+import { Color1, Color2, Color3, Color4, Color5 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildEquation } from '@/helper/math-builder'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -113,7 +113,45 @@ export const exercise119: Exercise<DATA> = {
         return <></>
       },
       example() {
-        return <></>
+        return (
+          <>
+            <p>
+              Schnittlauch wächst unter guten Bedingungen ca. 2 cm pro Woche.
+            </p>
+            <svg viewBox="0 0 328 160">
+              <image
+                href="/content/NRW_EESA/Schnittlauch.png"
+                height="160"
+                width="328"
+              />
+            </svg>
+            <p>
+              Juri hat einen Schnittlauch auf 5 cm Länge gekürzt. Bestimme die
+              Höhe des Schnittlauchs nach 3 Wochen unter guten Bedingungen.
+            </p>
+            <p>
+              <Color2>
+                <b>Antwort:</b> Der Schnittlauch hat nach 3 Wochen eine Höhe von{' '}
+                <b>11 cm</b>.
+              </Color2>
+            </p>
+            <ExplanationBox>
+              <p>
+                Erklärung: <hr style={{ margin: '10px 0' }} />
+                Der Schnittlauch wächst <Color3>2 cm</Color3> in einer Woche.
+                <br></br>
+                In <Color1>3 Wochen</Color1> wächst der Schnittlauch<br></br>
+                <b>
+                  <Color1>3</Color1> · <Color3>2 cm</Color3> = 6 cm
+                </b>
+              </p>
+              <p>
+                Addiere das zur Startlänge von 5 cm:<br></br>
+                <b>5 cm + 6 cm = 11 cm</b>
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
