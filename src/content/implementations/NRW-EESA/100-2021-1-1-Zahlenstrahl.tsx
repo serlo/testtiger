@@ -59,8 +59,70 @@ export const exercise100: Exercise<DATA> = {
     return (
       <>
         <p>
-          Wandle die Brüche in Dezimalzahlen um und markiere die Zahlen auf dem
-          Zahlenstrahl.
+          Schau dir den Abstand zwischen zwei Strichen am Zahlenstrahl an.
+          Zwischen 0 und 1 sind es 5 Striche. Der Abstand zwischen zwei Strichen
+          ist also immer 1 : 5 = 0,2.
+        </p>
+        <svg
+          width="300"
+          height="50"
+          viewBox="0 0 300 50"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <marker
+              id="arrow"
+              markerWidth="10"
+              markerHeight="10"
+              refX="3"
+              refY="3"
+              orient="auto"
+              markerUnits="strokeWidth"
+            >
+              <path d="M0,0 L0,6 L6,3 z" fill="#000" />
+            </marker>
+          </defs>
+
+          <line
+            x1="20"
+            y1="20"
+            x2="280"
+            y2="20"
+            stroke="black"
+            stroke-width="2"
+            marker-end="url(#arrow)"
+          />
+
+          <line x1="20" y1="18" x2="20" y2="22" stroke="black" />
+          <line x1="52.5" y1="18" x2="52.5" y2="22" stroke="black" />
+          <line x1="85" y1="18" x2="85" y2="22" stroke="black" />
+          <line x1="117.5" y1="18" x2="117.5" y2="22" stroke="black" />
+          <line x1="150" y1="18" x2="150" y2="22" stroke="black" />
+          <line x1="182.5" y1="18" x2="182.5" y2="22" stroke="black" />
+          <line x1="215" y1="18" x2="215" y2="22" stroke="black" />
+          <line x1="247.5" y1="18" x2="247.5" y2="22" stroke="black" />
+          <line x1="280" y1="18" x2="280" y2="22" stroke="black" />
+
+          <text x="20" y="35" text-anchor="middle" font-size="12">
+            0
+          </text>
+          <text x="150" y="35" text-anchor="middle" font-size="12">
+            1
+          </text>
+          <text x="280" y="35" text-anchor="middle" font-size="12">
+            2
+          </text>
+        </svg>
+        <p>Wandle zuerst die Brüche in Dezimalzahlen um:</p>
+        <p>
+          {ppFrac([data.b, 10])} = {pp(data.b / 10)}
+        </p>
+        <p>
+          {ppFrac(data.c)} = {pp(data.c)}
+        </p>
+        <p>
+          Markiere nun die Zahlen auf dem Zahlenstrahl. Der Abstand zwischen
+          zwei Strichen ist dabei immer 0,2.
         </p>
         <svg viewBox="0 0 328 110">
           <image
