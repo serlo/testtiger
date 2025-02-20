@@ -196,7 +196,7 @@ export const exercise109: Exercise<DATA> = {
 
             <>
               {/* Wir erweitern den ViewBox etwas, damit das Lineal auch Platz hat */}
-              <svg viewBox="0 0 328 40">
+              <svg viewBox="0 0 328 40" style={{ margin: '80px 0 30px' }}>
                 <image
                   href="/content/NRW_EESA/109_Konstruktion1.svg"
                   x="85"
@@ -256,6 +256,7 @@ export const exercise109: Exercise<DATA> = {
                 </text>
               </svg>
             </>
+
             <hr style={{ margin: '10px 0' }} />
             <p>
               In einem gleichseitigen Dreieck sind alle drei Winkel 60° groß.
@@ -390,12 +391,14 @@ export const exercise109: Exercise<DATA> = {
         return (
           <>
             <p>
-              Das große Dreieck hat eine Fläche von{' '}
-              {pp(roundToDigits(surface, 1))} cm². Das große Dreieck besteht aus
-              4 identischen kleinen Dreiecken.
+              Das große Dreieck hat eine Fläche von<br></br>A ={' '}
+              {buildInlineFrac(1, 2)} · a · h = {buildInlineFrac(1, 2)} ·{' '}
+              {data.a} · {pp(h)} = {pp(roundToDigits(surface, 1))} [cm²].
             </p>
-            <p>Teile die Gesamtfläche durch 4:</p>
             <p>
+              Das große Dreieck besteht aus 4 identischen kleinen Dreiecken.
+              Teile die Gesamtfläche durch 4:
+              <br></br>
               {pp(roundToDigits(surface, 1))} : 4{' '}
               <strong>= {pp(roundToDigits(surface / 4, 1))} [cm²]</strong>
             </p>
