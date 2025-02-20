@@ -10,7 +10,11 @@ import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef, useState } from 'react'
-import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
+import {
+  ExerciseWithSubtasks,
+  SingleExercise,
+  SkillExercisePage,
+} from '@/data/types'
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex'
 
 import 'react-reflex/styles.css'
@@ -165,167 +169,7 @@ export function ExerciseViewContent() {
                 </>
               )}
             </div>
-            {pages.map((page, i) => {
-              // TODO: find appropriate content for this page
-              const id = page.context
-                ? ExerciseViewStore.getRawState()._exerciseIDs[
-                    parseInt(page.context) - 1
-                  ]
-                : ExerciseViewStore.getRawState().id
-
-              const exercise = exercisesData[id]
-              const data = page.context
-                ? ExerciseViewStore.getRawState().dataPerExercise[page.context]
-                : ExerciseViewStore.getRawState().data
-
-              if (page.index == 'single') {
-                // single page exercise
-                const singleExercise = exercise as SingleExercise<any>
-                return (
-                  <>
-                    {!examplePrescreen &&
-                      renderContentCard(
-                        i,
-                        singleExercise.duration ?? '?',
-                        singleExercise.points ?? '?',
-                        <>
-                          {
-                            <>
-                              {renderContentElement(
-                                singleExercise.task({
-                                  data:
-                                    examplePrescreen &&
-                                    singleExercise.exampleData
-                                      ? singleExercise.exampleData
-                                      : data,
-                                }),
-                              )}
-                              <p>
-                                <button
-                                  className="px-2 py-0.5 mt-3 bg-yellow-100 rounded"
-                                  onClick={() => {
-                                    ExerciseViewStore.update(s => {
-                                      s.showSplitScreen = true
-                                    })
-                                    setSize(150)
-                                    setInit(false)
-                                  }}
-                                >
-                                  Aufgabe lösen
-                                </button>
-                              </p>
-                            </>
-                          }
-                        </>,
-                        page.displayIndex,
-                      )}
-                    {examplePrescreen &&
-                      singleExercise.example &&
-                      renderContentCard(
-                        i,
-                        singleExercise.duration ?? '?',
-                        singleExercise.points ?? '?',
-                        <>
-                          {
-                            <>
-                              {renderContentElement(singleExercise.example())}
-                            </>
-                          }
-                        </>,
-                        page.displayIndex,
-                        `example-${i}`,
-                      )}
-                  </>
-                )
-              } else {
-                const subtasks = exercise as ExerciseWithSubtasks<any>
-
-                const task = subtasks.tasks.find(
-                  (t, j) => countLetter('a', j) == page.index,
-                )!
-
-                const intros = (page.intro ?? []).slice()
-
-                if (page.index == 'a' && !intros.includes('global')) {
-                  intros.push('global')
-                }
-                if (!page.disableDefaultLocalIntro) {
-                  intros.push('local')
-                }
-                const introComps = intros.map((intro, i) =>
-                  intro == 'global'
-                    ? subtasks.intro({
-                        data,
-                      })
-                    : intro == 'local' && task.intro
-                      ? task.intro({
-                          data,
-                        })
-                      : intro == 'skill' && task.skillIntro
-                        ? task.skillIntro({
-                            data,
-                          })
-                        : null,
-                )
-
-                return (
-                  <>
-                    {introComps.length > 0 &&
-                      introComps.some(e => e) &&
-                      !examplePrescreen && (
-                        <>
-                          {page.context && page.displayIndex?.includes('a') && (
-                            <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
-                              <div className="text-center inset-0 h-24 w-24 rounded-full bg-gray-50">
-                                <span className="mt-2 inline-block">
-                                  {page.context}
-                                </span>
-                              </div>
-                            </div>
-                          )}
-                          <div className="px-5 bg-white mb-6">
-                            {renderContentElement(
-                              <>{introComps}</>,
-                              i.toString(),
-                            )}
-                          </div>
-                        </>
-                      )}
-                    {!examplePrescreen &&
-                      renderContentCard(
-                        i,
-                        task.duration ?? '?',
-                        task.points ?? '?',
-                        <>
-                          {renderContentElement(
-                            <div>
-                              {task.task({
-                                data:
-                                  examplePrescreen && exercise.exampleData
-                                    ? exercise.exampleData
-                                    : data,
-                              })}
-                            </div>,
-                          )}
-                        </>,
-                        page.displayIndex,
-                      )}
-                    {examplePrescreen &&
-                      task.example &&
-                      renderContentCard(
-                        i,
-                        task.duration ?? '?',
-                        task.points ?? '?',
-                        <>
-                          {renderContentElement(<div>{task.example()}</div>)}
-                        </>,
-                        page.displayIndex,
-                        `solution-${i}`,
-                      )}
-                  </>
-                )
-              }
-            })}
+            {pages.map((page, i) => renderPage(page, i))}
             {examplePrescreen && (
               <>
                 <div className="text-center -mt-4">
@@ -355,13 +199,188 @@ export function ExerciseViewContent() {
             }
           }}
         >
-          <div className="h-full flex justify-end flex-col bg-white">
+          <div className="h-full flex justify-between flex-col bg-white">
+            {showSplitScreen &&
+              renderPage(
+                pages[navIndicatorPosition],
+                navIndicatorPosition,
+                true,
+              )}
             <ExerciseViewFooter />
           </div>
         </ReflexElement>
       </ReflexContainer>
     </div>
   )
+
+  function renderPage(
+    page: SkillExercisePage,
+    i: number,
+    inlineContext: boolean = false,
+  ) {
+    // TODO: find appropriate content for this page
+    const id = page.context
+      ? ExerciseViewStore.getRawState()._exerciseIDs[parseInt(page.context) - 1]
+      : ExerciseViewStore.getRawState().id
+
+    const exercise = exercisesData[id]
+    const data = page.context
+      ? ExerciseViewStore.getRawState().dataPerExercise[page.context]
+      : ExerciseViewStore.getRawState().data
+
+    if (page.index == 'single') {
+      // single page exercise
+      const singleExercise = exercise as SingleExercise<any>
+      return (
+        <>
+          {!examplePrescreen &&
+            renderContentCard(
+              i,
+              singleExercise.duration ?? '?',
+              singleExercise.points ?? '?',
+              <>
+                {
+                  <>
+                    {renderContentElement(
+                      singleExercise.task({
+                        data:
+                          examplePrescreen && singleExercise.exampleData
+                            ? singleExercise.exampleData
+                            : data,
+                      }),
+                    )}
+                    {!inlineContext && (
+                      <p>
+                        <button
+                          className="px-2 py-0.5 mt-3 bg-yellow-100 rounded"
+                          onClick={() => {
+                            ExerciseViewStore.update(s => {
+                              s.showSplitScreen = true
+                            })
+                            setSize(300)
+                            setInit(false)
+                          }}
+                        >
+                          Aufgabe lösen
+                        </button>
+                      </p>
+                    )}
+                  </>
+                }
+              </>,
+              page.displayIndex,
+            )}
+          {examplePrescreen &&
+            singleExercise.example &&
+            renderContentCard(
+              i,
+              singleExercise.duration ?? '?',
+              singleExercise.points ?? '?',
+              <>{<>{renderContentElement(singleExercise.example())}</>}</>,
+              page.displayIndex,
+              `example-${i}`,
+            )}
+        </>
+      )
+    } else {
+      const subtasks = exercise as ExerciseWithSubtasks<any>
+
+      const task = subtasks.tasks.find(
+        (t, j) => countLetter('a', j) == page.index,
+      )!
+
+      const intros = (page.intro ?? []).slice()
+
+      if (page.index == 'a' && !intros.includes('global')) {
+        intros.push('global')
+      }
+      if (!page.disableDefaultLocalIntro) {
+        intros.push('local')
+      }
+      const introComps = intros.map((intro, i) =>
+        intro == 'global'
+          ? subtasks.intro({
+              data,
+            })
+          : intro == 'local' && task.intro
+            ? task.intro({
+                data,
+              })
+            : intro == 'skill' && task.skillIntro
+              ? task.skillIntro({
+                  data,
+                })
+              : null,
+      )
+
+      return (
+        <>
+          {!inlineContext &&
+            introComps.length > 0 &&
+            introComps.some(e => e) &&
+            !examplePrescreen && (
+              <>
+                {page.context && page.displayIndex?.includes('a') && (
+                  <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
+                    <div className="text-center inset-0 h-24 w-24 rounded-full bg-gray-50">
+                      <span className="mt-2 inline-block">{page.context}</span>
+                    </div>
+                  </div>
+                )}
+                <div className="px-5 bg-white mb-6">
+                  {renderContentElement(<>{introComps}</>, i.toString())}
+                </div>
+              </>
+            )}
+          {!examplePrescreen &&
+            renderContentCard(
+              i,
+              task.duration ?? '?',
+              task.points ?? '?',
+              <>
+                {renderContentElement(
+                  <div>
+                    {task.task({
+                      data:
+                        examplePrescreen && exercise.exampleData
+                          ? exercise.exampleData
+                          : data,
+                    })}
+                  </div>,
+                )}
+                {!inlineContext && (
+                  <p>
+                    <button
+                      className="px-2 py-0.5 mt-3 bg-yellow-100 rounded"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          s.showSplitScreen = true
+                        })
+                        setSize(300)
+                        setInit(false)
+                      }}
+                    >
+                      Aufgabe lösen
+                    </button>
+                  </p>
+                )}
+              </>,
+              inlineContext ? undefined : page.displayIndex,
+            )}
+          {examplePrescreen &&
+            task.example &&
+            renderContentCard(
+              i,
+              task.duration ?? '?',
+              task.points ?? '?',
+              <>{renderContentElement(<div>{task.example()}</div>)}</>,
+              page.displayIndex,
+              `solution-${i}`,
+            )}
+        </>
+      )
+    }
+  }
 
   function renderContentCard(
     i: number,
