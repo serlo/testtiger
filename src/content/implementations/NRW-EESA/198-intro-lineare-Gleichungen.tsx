@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { buildEquation } from '@/helper/math-builder'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 
 interface DATA {
   a: number
@@ -31,6 +31,24 @@ export const exercise198: Exercise<DATA> = {
 
   constraint({ data }) {
     return true
+  },
+  example() {
+    return (
+      <>
+        <style>
+          {`
+    .explanation-box {
+      border: 1px solid lightblue;
+      padding: 0px 8px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  `}
+        </style>
+        <p>Löse die Gleichung:</p>
+        {buildEquation([[<>4 x - 2</>, <>=</>, <>2</>]])}
+      </>
+    )
   },
   task({ data }) {
     const rechts = data.a * data.x_sol + data.b

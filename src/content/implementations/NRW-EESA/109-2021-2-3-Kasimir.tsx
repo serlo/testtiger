@@ -1,9 +1,10 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color4, Color5 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
   buildSqrt,
+  ExplanationBox,
 } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -82,6 +83,73 @@ export const exercise109: Exercise<DATA> = {
       duration: 4,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              Gegeben ist ein Dreieck mit der Grundseite g = 4 cm und einer Höhe
+              h = 2 cm. Berechne den Flächeninhalt des Dreiecks.
+            </p>
+            <svg viewBox="0 0 328 180">
+              <image
+                href="/content/NRW_EESA/109_Kasimir1.svg"
+                height="180"
+                width="328"
+              />
+            </svg>
+            <br></br>
+            <Color2>
+              <b>Antwort</b>: Das Dreieck hat einen Flächeninhalt von{' '}
+              <b>4 cm²</b>.
+            </Color2>
+            <br></br>
+            <br></br>
+            <ExplanationBox>
+              <p>
+                Rechnung:
+                <hr style={{ margin: '10px 0' }} />
+                {buildEquation([
+                  [<>A</>, <>=</>, <>{ppFrac(1 / 2)} · g · h</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze g = 4 und h = 2 ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<></>, <>=</>, <>{ppFrac(1 / 2)} · 4 · 2</>],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      <strong>4 [cm²]</strong>
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         const h = roundToDigits(
