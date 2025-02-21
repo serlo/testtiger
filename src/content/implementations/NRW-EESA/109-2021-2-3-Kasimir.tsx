@@ -98,14 +98,14 @@ export const exercise109: Exercise<DATA> = {
       `}
             </style>
             <p>
-              Gegeben ist ein Dreieck mit der Grundseite g = 4 cm und einer Höhe
-              h = 2 cm. Berechne den Flächeninhalt des Dreiecks.
+              Gegeben ist ein Dreieck mit der Grundseite g = 4 cm und der Höhe h
+              = 2 cm. Berechne den Flächeninhalt des Dreiecks.
             </p>
-            <svg viewBox="0 0 328 180">
+            <svg viewBox="0 0 200 80">
               <image
-                href="/content/NRW_EESA/109_Kasimir1.svg"
-                height="180"
-                width="328"
+                href="/content/NRW_EESA/109_dreieck_beispiel.svg"
+                height="80"
+                width="160"
               />
             </svg>
             <br></br>

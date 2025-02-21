@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color2 } from '@/helper/colors'
 import { ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
@@ -69,14 +70,16 @@ export const exercise115: Exercise<DATA> = {
         }
       `}
             </style>
-            <p>Im Folgenden gelten die im Dreieck üblichen Bezeichnungen.</p>
-
             <p>
-              Zeichne ein Dreieck ΔABC mit den Seitenlängen b = 3.6 cm, c = 4.0
-              cm und dem Winkel α = 40°.
+              Ein Dreieck ΔABC hat die Seitenlängen b = 3.6 cm, c = 4.0 cm und
+              den Winkel α = 40°. Zeichne das Dreieck.
             </p>
             <ExplanationBox>
-              <p>Schritt-für-Schritt-Lösung:</p>
+              <p>
+                <Color2>
+                  <b>Schritt-für-Schritt-Erklärung:</b>
+                </Color2>
+              </p>
               <hr style={{ margin: '10px 0' }} />
               <p>
                 Beginne damit die Grundlinie c mit der Länge 4.0 cm zu
