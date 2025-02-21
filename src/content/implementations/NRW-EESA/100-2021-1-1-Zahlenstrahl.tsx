@@ -42,12 +42,139 @@ export const exercise100: Exercise<DATA> = {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {ppFrac(data.c)}
         </p>
-        <svg viewBox="0 0 328 40">
-          <image
-            href="/content/NRW_EESA/100_Zahlenstrahl.png"
-            height="40"
-            width="328"
+        <svg
+          width="350"
+          height="50"
+          viewBox="0 0 350 50"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <marker
+              id="arrow"
+              markerWidth="10"
+              markerHeight="10"
+              refX="3"
+              refY="3"
+              orient="auto"
+              markerUnits="strokeWidth"
+            >
+              <path d="M0,0 L0,6 L6,3 Z" fill="black" />
+            </marker>
+          </defs>
+          <line
+            x1="20"
+            y1="20"
+            x2="320"
+            y2="20"
+            stroke="black"
+            stroke-width="1"
+            marker-end="url(#arrow)"
           />
+          <line
+            x1="30"
+            y1="12"
+            x2="30"
+            y2="28"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="55.5"
+            y1="16"
+            x2="55.5"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="80.9"
+            y1="16"
+            x2="80.9"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="106.4"
+            y1="16"
+            x2="106.4"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="131.8"
+            y1="16"
+            x2="131.8"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="157.3"
+            y1="12"
+            x2="157.3"
+            y2="28"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="182.7"
+            y1="16"
+            x2="182.7"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="208.2"
+            y1="16"
+            x2="208.2"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="233.6"
+            y1="16"
+            x2="233.6"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="259.1"
+            y1="16"
+            x2="259.1"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="284.6"
+            y1="12"
+            x2="284.6"
+            y2="28"
+            stroke="black"
+            stroke-width="1"
+          />
+          <line
+            x1="310"
+            y1="16"
+            x2="310"
+            y2="24"
+            stroke="black"
+            stroke-width="1"
+          />
+          <text x="30" y="40" text-anchor="middle" font-size="12">
+            0
+          </text>
+          <text x="157.3" y="40" text-anchor="middle" font-size="12">
+            1
+          </text>
+          <text x="284.6" y="40" text-anchor="middle" font-size="12">
+            2
+          </text>
         </svg>
       </>
     )
