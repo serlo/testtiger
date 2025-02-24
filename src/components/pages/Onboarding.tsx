@@ -32,8 +32,10 @@ export function Onboarding() {
             Datenschutz
           </IonButton>
         </div>
-        <div className="text-center text-5xl mt-20">🐯</div>
-        <div className="text-center text-4xl mt-6">TestTiger</div>
+        <div className="text-center text-5xl mt-20">
+          <img src="/birdie.svg" alt="" className="h-[100px] mx-auto" />
+        </div>
+        <div className="text-center text-4xl mt-6">Birdie</div>
         <div className="text-center text-lg mt-6 italic text-blue-600">
           Freies lernen. Für immer
         </div>
