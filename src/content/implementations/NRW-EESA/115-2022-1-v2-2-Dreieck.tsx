@@ -405,22 +405,33 @@ export const exercise115: Exercise<DATA> = {
       example() {
         return (
           <>
+            <p>Bestimme die Größe des Winkels α.</p>
+            <svg viewBox="0 0 328 102">
+              <image
+                href="/content/NRW_EESA/115_dreieck_beispiel.svg"
+                height="102"
+                width="200"
+              />
+            </svg>
+
             <p>
-              Kann das oben abgebildete Dreieck mit den angegebenen Winkelmaßen
-              gezeichnet werden?
-            </p>{' '}
-            <p>Entscheide und begründe deine Entscheidung.</p>
-            <p>Lösung:</p>
-            <>
+              <Color2>
+                <b>Antwort</b>: Der Winkel α ist <b>53°</b> groß.
+              </Color2>
+            </p>
+            <ExplanationBox>
               <p>
-                Berechne die Winkelsumme des Dreiecks. Addiere dafür alle
-                Winkel:<br></br> <b>57° + 64° + 58° = 179° </b>
+                Erklärung:
+                <hr style={{ margin: '10px 0' }} />
+                Die <b>Winkelsumme</b> in einem Dreieck beträgt immer{' '}
+                <b>180°</b>.
               </p>
               <p>
-                Die <b>Winkelsumme eines Dreiecks</b> beträgt <b>immer 180°</b>,
-                weshalb es das abgebildete Dreieck nicht geben kann.
+                Bestimme α, indem du die anderen beiden Winkel von 180°
+                abziehst:<br></br>
+                <b>180° - 40° - 87° = 53°</b>
               </p>
-            </>
+            </ExplanationBox>
           </>
         )
       },
