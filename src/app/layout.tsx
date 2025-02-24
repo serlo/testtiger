@@ -15,8 +15,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'TestTiger',
-  description: 'technischer Prototyp',
+  title: 'Birdie',
+  description: 'Pilot-Prototyp für die Matheprüfung EESA in NRW',
 }
 
 export default function RootLayout({

@@ -163,7 +163,13 @@ export function ExerciseViewFooter() {
               if (el.type == 'response') {
                 return (
                   <div key={i} className="mb-4 flex">
-                    <div className="mr-3 text-2xl">🐯</div>
+                    <div className="mr-3 min-w-[18px]">
+                      <img
+                        src="/birdie.svg"
+                        alt=""
+                        className="inline-block mt-3"
+                      />
+                    </div>
                     <div>
                       {el.content}
                       {el.category == 'actionable-feedback' && (
@@ -285,7 +291,7 @@ export function ExerciseViewFooter() {
               <div className="mb-6 text-center flex items-center justify-center space-x-2">
                 <div className="w-5 h-5 border-2 border-t-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
                 <span className="text-gray-600 font-medium">
-                  Tiger denkt nach ...
+                  Birdie denkt nach ...
                 </span>
               </div>
             ) : (
