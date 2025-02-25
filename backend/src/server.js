@@ -133,9 +133,11 @@ app.get('/profile/load/:key', async (req, res) => {
 
 app.get('/profile/view/:key', async (req, res) => {
   const key = req.params.key
-  const profile = await sequelize.Profile.findOne({
-    where: { key },
-  })
+  const profile = JSON.parse(
+    await sequelize.Profile.findOne({
+      where: { key },
+    }).value,
+  )
 
   if (!profile) {
     return res.send('Profile not found')
@@ -166,11 +168,14 @@ app.get('/profile/view/:key', async (req, res) => {
   // Dynamische Erstellung des Ereignis-Logs
   const eventLogHtml = profile.eventLog
     .map(event => {
+      const date = new Date(event.ts).toLocaleString('de-DE', {
+        timeZone: 'Europe/Berlin',
+      })
       return `
       <tr>
         <td>${event.type}</td>
         <td>${event.id}</td>
-        <td>${event.ts}</td>
+        <td>${date}</td>
         <td>${event.index}</td>
       </tr>`
     })
