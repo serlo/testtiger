@@ -39,8 +39,8 @@ export const exercise132: Exercise<DATA> = {
     }
   `}
         </style>
-        <p>Wie viel sind 20 % von 50 €?</p>
-        <br></br>
+        <p>Berechne 20 % von 50 €.</p>
+
         <Color2>
           <b>Antwort: 10 €</b>.
         </Color2>
