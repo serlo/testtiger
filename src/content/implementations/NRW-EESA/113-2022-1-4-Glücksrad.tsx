@@ -1,7 +1,11 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color2, Color4 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildInlineFrac,
+  ExplanationBox,
+} from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -104,6 +108,53 @@ export const exercise113: Exercise<DATA> = {
               {sectorsPaths} {/* Hier werden die Sektoren hinzugefügt */}
               <polygon points="274,125 304,115 304,135" fill="black" />
             </svg>
+          </>
+        )
+      },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              In einer Lostrommel mit 15 Losen befinden sich 5 Gewinne und 10
+              Nieten. Wie hoch ist die Wahrscheinlichkeit, einen Gewinn zu
+              ziehen?
+            </p>
+            <br></br>
+            <Color2>
+              <b>Antwort: {ppFrac(1 / 3)} </b>.
+            </Color2>
+            <br></br>
+            <br></br>
+            <ExplanationBox>
+              <p>
+                Rechnung:
+                <hr style={{ margin: '10px 0' }} />
+                {buildEquation([
+                  [
+                    <>p</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>Anzahl der Gewinnlose</>,
+                        <>Anzahl aller Lose</>,
+                      )}
+                    </>,
+                  ],
+                  [<></>, <>=</>, <>{buildInlineFrac(<>5</>, <>15</>)}</>],
+                  [<></>, <>=</>, <>{buildInlineFrac(<>1</>, <>3</>)}</>],
+                ])}
+              </p>
+            </ExplanationBox>
           </>
         )
       },

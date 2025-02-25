@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { Color2, Color4 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -25,6 +25,72 @@ export const exercise132: Exercise<DATA> = {
   exampleData: { ball: 50, rabatt: 10 },
   constraint({ data }) {
     return true
+  },
+  example() {
+    return (
+      <>
+        <style>
+          {`
+    .explanation-box {
+      border: 1px solid lightblue;
+      padding: 0px 8px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  `}
+        </style>
+        <p>Wie viel sind 20 % von 50 €?</p>
+        <br></br>
+        <Color2>
+          <b>Antwort: 10 €</b>.
+        </Color2>
+        <br></br>
+        <br></br>
+        <ExplanationBox>
+          <p>
+            Rechnung:
+            <hr style={{ margin: '10px 0' }} />
+            {buildEquation([
+              [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Grundwert 50 € ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Prozentsatz 20 % = 0,2 ein{' '}
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              ['', '=', <>50 € · 0,2</>],
+              ['W', '=', <> 10 €</>],
+            ])}
+          </p>
+        </ExplanationBox>
+      </>
+    )
   },
   task({ data }) {
     return (

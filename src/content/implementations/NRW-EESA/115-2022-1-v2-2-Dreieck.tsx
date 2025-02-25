@@ -71,7 +71,7 @@ export const exercise115: Exercise<DATA> = {
       `}
             </style>
             <p>
-              Ein Dreieck ΔABC hat die Seitenlängen b = 3.6 cm, c = 4.0 cm und
+              Ein Dreieck ΔABC hat die Seitenlängen b = 3,6 cm, c = 4,0 cm und
               den Winkel α = 40°. Zeichne das Dreieck.
             </p>
             <ExplanationBox>
@@ -82,7 +82,7 @@ export const exercise115: Exercise<DATA> = {
               </p>
               <hr style={{ margin: '10px 0' }} />
               <p>
-                Beginne damit die Grundlinie c mit der Länge 4.0 cm zu
+                Beginne damit die Grundlinie c mit der Länge 4,0 cm zu
                 konstruieren:
               </p>
               <br></br>
@@ -101,7 +101,7 @@ export const exercise115: Exercise<DATA> = {
                   textAnchor="middle"
                   fill="black"
                 >
-                  c = 4.0 cm
+                  c = 4,0 cm
                 </text>
               </svg>
               <br></br>
@@ -129,11 +129,11 @@ export const exercise115: Exercise<DATA> = {
                   textAnchor="middle"
                   fill="black"
                 >
-                  c = 4.0 cm
+                  c = 4,0 cm
                 </text>
               </svg>
               <hr style={{ margin: '10px 0' }} />
-              <p>Markiere Punkt C im Abstand von b = 3.6 cm zu Punkt A:</p>
+              <p>Markiere Punkt C im Abstand von b = 3,6 cm zu Punkt A:</p>
               <svg viewBox="0 0 328 150">
                 <image
                   href="/content/NRW_EESA/115_dreieck3.svg"
@@ -147,7 +147,7 @@ export const exercise115: Exercise<DATA> = {
                   textAnchor="middle"
                   fill="black"
                 >
-                  c = 4.0 cm
+                  c = 4,0 cm
                 </text>
                 <text
                   x="125"
@@ -157,7 +157,7 @@ export const exercise115: Exercise<DATA> = {
                   fill="black"
                   transform="rotate(-50, 125, 75)"
                 >
-                  b = 3.6 cm
+                  b = 3,6 cm
                 </text>
                 <text
                   x="114"
@@ -186,7 +186,7 @@ export const exercise115: Exercise<DATA> = {
                   textAnchor="middle"
                   fill="black"
                 >
-                  c = 4.0 cm
+                  c = 4,0 cm
                 </text>
                 <text
                   x="125"
@@ -196,7 +196,7 @@ export const exercise115: Exercise<DATA> = {
                   fill="black"
                   transform="rotate(-50, 125, 60)"
                 >
-                  b = 3.6 cm
+                  b = 3,6 cm
                 </text>
                 <text
                   x="112"
