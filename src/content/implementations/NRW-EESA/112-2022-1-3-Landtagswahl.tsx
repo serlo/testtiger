@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { Color2, Color4 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -287,6 +287,75 @@ export const exercise112: Exercise<DATA> = {
       duration: 4,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              In einem Fußballverein sind 80 Spieler. Davon sind 40% jünger als
+              18. Wie viele Spieler sind jünger als 18?
+            </p>
+            <br></br>
+            <Color2>
+              <b>Antwort: 32 Spieler </b>.
+            </Color2>
+            <br></br>
+            <br></br>
+            <ExplanationBox>
+              <p>
+                Rechnung:
+                <hr style={{ margin: '10px 0' }} />
+                {buildEquation([
+                  [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze für den Grundwert 80 ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze für den Prozentsatz 40 % = 0,4 ein{' '}
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  ['', '=', <>80 · 0,4</>],
+                  ['W', '=', <> 32 [Spieler]</>],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (

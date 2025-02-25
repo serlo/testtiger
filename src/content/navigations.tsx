@@ -2534,6 +2534,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
           {
             type: 'new-skill',
@@ -2645,6 +2646,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
 
           {

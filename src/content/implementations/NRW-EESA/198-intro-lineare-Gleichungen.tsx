@@ -1,4 +1,5 @@
 import { Exercise } from '@/data/types'
+import { Color2 } from '@/helper/colors'
 import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 
 interface DATA {
@@ -47,6 +48,33 @@ export const exercise198: Exercise<DATA> = {
         </style>
         <p>Löse die Gleichung:</p>
         {buildEquation([[<>4 x - 2</>, <>=</>, <>2</>]])}
+        <br></br>
+        <Color2>
+          <b>Antwort</b>: x = <b>1</b>.
+        </Color2>
+        <br></br>
+        <br></br>
+        <ExplanationBox>
+          <p>
+            Rechnung:
+            <hr style={{ margin: '10px 0' }} />
+            {buildEquation([
+              [<>4 x - 2</>, <>=</>, <>2</>, <>| + 2</>],
+              [<>4 x</>, <>=</>, <>4</>, <>| : 4</>],
+              [
+                <>
+                  <b>x</b>
+                </>,
+                <>
+                  <b>=</b>
+                </>,
+                <>
+                  <b>1</b>
+                </>,
+              ],
+            ])}
+          </p>
+        </ExplanationBox>
       </>
     )
   },
