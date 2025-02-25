@@ -134,9 +134,11 @@ app.get('/profile/load/:key', async (req, res) => {
 app.get('/profile/view/:key', async (req, res) => {
   const key = req.params.key
   const profile = JSON.parse(
-    await sequelize.Profile.findOne({
-      where: { key },
-    }).value,
+    (
+      await sequelize.Profile.findOne({
+        where: { key },
+      })
+    ).value,
   )
 
   if (!profile) {
