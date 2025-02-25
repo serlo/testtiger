@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color4, Color5 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -121,6 +121,134 @@ export const exercise117: Exercise<DATA> = {
       duration: 6,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/NRW_EESA/117_quader_beispiel.svg"
+                height="150"
+                width="250"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>Abbildung 1: Quader</span>
+              </Color5>
+            </center>
+            <ol>
+              <li>
+                Bestimme die Größe der Seitenflächen A<sub>1</sub> und A
+                <sub>2</sub> des Quaders.
+                <br />
+                <Color2>
+                  <b>Antwort</b>: <br></br>A<sub>1</sub> = 200 cm<sup>2</sup>{' '}
+                  und A<sub>2</sub> = 50 cm<sup>2</sup>
+                </Color2>
+              </li>
+            </ol>
+            <ExplanationBox>
+              <p>
+                Erklärung:
+                <hr style={{ margin: '10px 0' }} />
+                Berechne die rechteckigen Seitenflächen A<sub>1</sub> und A
+                <sub>2</sub> mit der Formel:
+                {buildEquation([
+                  [<>A</>, <>=</>, <>a · b</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze die Seitenlängen ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [
+                    <>
+                      A<sub>1</sub>
+                    </>,
+                    <>=</>,
+                    <>20 · 10</>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      200 [cm<sup>2</sup>]
+                    </>,
+                  ],
+                  [
+                    <>
+                      A<sub>2</sub>
+                    </>,
+                    <>=</>,
+                    <>5 · 10</>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      50 [cm<sup>2</sup>]
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+            <ol start={2}>
+              <li>
+                Bestimme das Volumen des Quaders.
+                <br />
+                <Color2>
+                  <b>Antwort</b>: V = 1000 cm<sup>3</sup>
+                </Color2>
+              </li>{' '}
+            </ol>
+
+            <ExplanationBox>
+              Erklärung:
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Berechne das Volumen mit der Formel
+                {buildEquation([
+                  [<>V</>, <>=</>, <>a · b · c </>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze die Seitenlängen ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<>V</>, <>=</>, <>20 · 10 · 5 </>],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      1000 [cm<sup>3</sup>]
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -247,6 +375,7 @@ export const exercise117: Exercise<DATA> = {
       intro({ data }) {
         return null
       },
+
       task({ data }) {
         return (
           //c)
