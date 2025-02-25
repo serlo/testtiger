@@ -137,17 +137,16 @@ export const exercise117: Exercise<DATA> = {
                 <span style={{ fontSize: 'small' }}>Abbildung 1: Quader</span>
               </Color5>
             </center>
-            <ol>
-              <li>
-                Bestimme die Größe der Seitenflächen A<sub>1</sub> und A
-                <sub>2</sub> des Quaders.
-                <br />
-                <Color2>
-                  <b>Antwort</b>: <br></br>A<sub>1</sub> = 200 cm<sup>2</sup>{' '}
-                  und A<sub>2</sub> = 50 cm<sup>2</sup>
-                </Color2>
-              </li>
-            </ol>
+            <p>
+              Bestimme die Größe der Seitenflächen A<sub>1</sub> und A
+              <sub>2</sub> des Quaders.
+            </p>
+            <p>
+              <Color2>
+                <b>Lösung</b>: <br></br>A<sub>1</sub> = 200 cm<sup>2</sup> und A
+                <sub>2</sub> = 50 cm<sup>2</sup>
+              </Color2>
+            </p>
             <ExplanationBox>
               <p>
                 Erklärung:
@@ -198,50 +197,6 @@ export const exercise117: Exercise<DATA> = {
                     <>=</>,
                     <>
                       50 [cm<sup>2</sup>]
-                    </>,
-                  ],
-                ])}
-              </p>
-            </ExplanationBox>
-            <ol start={2}>
-              <li>
-                Bestimme das Volumen des Quaders.
-                <br />
-                <Color2>
-                  <b>Antwort</b>: V = 1000 cm<sup>3</sup>
-                </Color2>
-              </li>{' '}
-            </ol>
-
-            <ExplanationBox>
-              Erklärung:
-              <hr style={{ margin: '10px 0' }} />
-              <p>
-                Berechne das Volumen mit der Formel
-                {buildEquation([
-                  [<>V</>, <>=</>, <>a · b · c </>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>
-                          setze die Seitenlängen ein
-                        </span>
-                      </Color4>
-                    </>,
-                  ],
-                  [<>V</>, <>=</>, <>20 · 10 · 5 </>],
-                  [
-                    <></>,
-                    <>=</>,
-                    <>
-                      1000 [cm<sup>3</sup>]
                     </>,
                   ],
                 ])}
@@ -375,7 +330,53 @@ export const exercise117: Exercise<DATA> = {
       intro({ data }) {
         return null
       },
+      example() {
+        return (
+          <>
+            <p>Bestimme das Volumen des Quaders.</p>
+            <p>
+              <Color2>
+                <b>Lösung</b>: V = 1000 cm<sup>3</sup>
+              </Color2>
+            </p>
 
+            <ExplanationBox>
+              Erklärung:
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Berechne das Volumen mit der Formel
+                {buildEquation([
+                  [<>V</>, <>=</>, <>a · b · c </>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze die Seitenlängen ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<>V</>, <>=</>, <>20 · 10 · 5 </>],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      1000 [cm<sup>3</sup>]
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
+      },
       task({ data }) {
         return (
           //c)
