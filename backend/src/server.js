@@ -131,6 +131,188 @@ app.get('/profile/load/:key', async (req, res) => {
   }
 })
 
+app.get('/profile/view/:key', async (req, res) => {
+  const key = req.params.key
+  const profile = await sequelize.Profile.findOne({
+    where: { key },
+  })
+
+  if (!profile) {
+    return res.send('Profile not found')
+  }
+
+  // Dynamische Erstellung der Fortschritt-Abschnitte
+  const progressHtml = Object.keys(profile.progress)
+    .map(exam => {
+      const examProgress = profile.progress[exam]
+      const selectedTopics =
+        examProgress.selectedTopics && examProgress.selectedTopics.length > 0
+          ? examProgress.selectedTopics.join(', ')
+          : 'Keine'
+      const learningPathTags =
+        examProgress.learningPathTags &&
+        examProgress.learningPathTags.length > 0
+          ? `<ul class="tag-list">${examProgress.learningPathTags.map(tag => `<li>${tag}</li>`).join('')}</ul>`
+          : 'Keine'
+      return `
+      <h3>Prüfung ${exam}</h3>
+      <ul>
+        <li><strong>Ausgewählte Themen:</strong> ${selectedTopics}</li>
+        <li><strong>Lernpfad-Tags:</strong> ${learningPathTags}</li>
+      </ul>`
+    })
+    .join('')
+
+  // Dynamische Erstellung des Ereignis-Logs
+  const eventLogHtml = profile.eventLog
+    .map(event => {
+      return `
+      <tr>
+        <td>${event.type}</td>
+        <td>${event.id}</td>
+        <td>${event.ts}</td>
+        <td>${event.index}</td>
+      </tr>`
+    })
+    .join('')
+
+  // Erstellung des Statistiken-Abschnitts
+  const statsLogHtml =
+    profile.statsLog && profile.statsLog.length > 0
+      ? profile.statsLog.map(stat => `<li>${stat}</li>`).join('')
+      : '<li>Keine</li>'
+
+  // Erstellung der Birdie Intros
+  const birdieIntrosHtml =
+    profile.birdieIntros && profile.birdieIntros.length > 0
+      ? profile.birdieIntros.map(birdie => `<li>${birdie}</li>`).join('')
+      : '<li>Keine</li>'
+
+  // Generierung des kompletten HTMLs
+  const html = `
+    <!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <title>Profilansicht: ${profile.name}</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #f4f4f9;
+          color: #333;
+          line-height: 1.6;
+          padding: 20px;
+        }
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background: #fff;
+          padding: 30px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          border-radius: 8px;
+        }
+        h1, h2, h3 {
+          color: #2c3e50;
+        }
+        ul {
+          list-style-type: none;
+          padding-left: 0;
+        }
+        li {
+          margin-bottom: 5px;
+        }
+        .section {
+          margin-bottom: 25px;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+        th, td {
+          padding: 10px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        th {
+          background: #e9ecef;
+        }
+        .tag-list {
+          margin: 0;
+          padding: 0;
+        }
+        .tag-list li {
+          display: inline-block;
+          background: #3498db;
+          color: #fff;
+          padding: 5px 10px;
+          margin: 3px 3px 3px 0;
+          border-radius: 3px;
+          font-size: 0.9em;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Profil von ${profile.name}</h1>
+
+        <div class="section">
+          <h2>Allgemeine Informationen</h2>
+          <ul>
+            <li><strong>Name:</strong> ${profile.name}</li>
+            <li><strong>Aktuelle Prüfung:</strong> ${profile.currentExam}</li>
+            <li><strong>Original:</strong> ${profile.original ? 'Ja' : 'Nein'}</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Fortschritt</h2>
+          ${progressHtml}
+        </div>
+
+        <div class="section">
+          <h2>Ereignis-Log</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Typ</th>
+                <th>ID</th>
+                <th>Zeitstempel</th>
+                <th>Index</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${eventLogHtml}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2>Statistiken</h2>
+          <ul>
+            ${statsLogHtml}
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Birdie Intros</h2>
+          <ul>
+            ${birdieIntrosHtml}
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Schlüssel</h2>
+          <p><code>${profile.key}</code></p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `
+
+  res.send(html)
+})
+
 async function run() {
   await sequelize.sync()
   app.listen(8080, () => {
