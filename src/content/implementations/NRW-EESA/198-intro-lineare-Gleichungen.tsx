@@ -46,7 +46,7 @@ export const exercise198: Exercise<DATA> = {
     }
   `}
         </style>
-        <p>Löse die Gleichung:</p>
+        <p>Löse die Gleichung nach x auf:</p>
         {buildEquation([[<>4 x - 2</>, <>=</>, <>2</>]])}
         <br></br>
         <Color2>
@@ -82,7 +82,7 @@ export const exercise198: Exercise<DATA> = {
     const rechts = data.a * data.x_sol + data.b
     return (
       <>
-        <p>Löse die Gleichung:</p>
+        <p>Löse die Gleichung nach x auf:</p>
         {buildEquation([
           [
             <>
