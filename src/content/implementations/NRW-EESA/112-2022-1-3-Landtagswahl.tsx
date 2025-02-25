@@ -305,7 +305,6 @@ export const exercise112: Exercise<DATA> = {
               In einem Fußballverein sind 80 Spieler. Davon sind 40% jünger als
               18. Wie viele Spieler sind jünger als 18?
             </p>
-            <br></br>
             <Color2>
               <b>Antwort: 32 Spieler </b>.
             </Color2>
