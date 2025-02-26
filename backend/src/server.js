@@ -320,6 +320,97 @@ app.get('/profile/view/:key', async (req, res) => {
   res.send(html)
 })
 
+app.get('/showfeedback', async (req, res) => {
+  // whitin the statsLog, there are feedbacks starting with "feedback_", extract them all and show them with timestamp
+  const profiles = await sequelize.Profile.findAll()
+
+  const feedbacks = profiles
+    .map(profile => {
+      const profileData = JSON.parse(profile.value)
+      const feedbacks =
+        profileData.statsLog?.filter(stat => stat.startsWith('feedback_')) ?? []
+      return {
+        name: profileData.name,
+        key: profile.key,
+        feedbacks,
+      }
+    })
+    .filter(profile => profile.feedbacks.length > 0)
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <title>Feedbacks</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #f4f4f9;
+          color: #333;
+          line-height: 1.6;
+          padding: 20px;
+        }
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background: #fff;
+          padding: 30px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          border-radius: 8px;
+        }
+        h1, h2, h3 {
+          color: #2c3e50;
+        }
+        ul {
+          list-style-type: none;
+          padding-left: 0;
+        }
+        li {
+          margin-bottom: 5px;
+        }
+        .section {
+          margin-bottom: 25px;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+        th, td {
+          padding: 10px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        th {
+          background: #e9ecef;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Feedbacks</h1>
+        <ul>
+          ${feedbacks
+            .map(profile => {
+              return `
+              <li>
+                <strong>${profile.name}</strong> (<code>${profile.key}</code>)
+                <ul>
+                  ${profile.feedbacks.map(feedback => `<li>${feedback}</li>`).join('')}
+                </ul>
+              </li>
+            `
+            })
+            .join('')}
+        </ul>
+      </div>
+    </body>
+    </html> `
+
+  res.send(html)
+})
+
 async function run() {
   await sequelize.sync()
   app.listen(8080, () => {

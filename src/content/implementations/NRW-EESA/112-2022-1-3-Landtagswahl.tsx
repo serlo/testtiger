@@ -302,11 +302,113 @@ export const exercise112: Exercise<DATA> = {
       `}
             </style>
             <p>
-              In einem Fußballverein sind 80 Spieler. Davon sind 40% jünger als
-              18. Wie viele Spieler sind jünger als 18?
+              In einem Fußballverein sind 80 Spieler. Im folgenden
+              Balkendiagramm ist das Alter der #spieler dargestellt. Berechne
+              die Anzahl der Spieler, die jünger als 18 sind.
             </p>
+            <svg width="328" height="300">
+              <text
+                x={270}
+                y={20}
+                fill="black"
+                fontSize="15"
+                textAnchor="middle"
+              >
+                Alter der Spieler
+              </text>
+              <text
+                x={30}
+                y={290}
+                fill="black"
+                fontSize="10"
+                textAnchor="middle"
+              >
+                jünger als 18
+              </text>
+              <text
+                x={30}
+                y={265 - 40 * 6}
+                fill="black"
+                fontSize="10"
+                textAnchor="middle"
+              >
+                40 %
+              </text>
+              <text
+                x={160}
+                y={290}
+                fill="black"
+                fontSize="10"
+                textAnchor="middle"
+              >
+                zwischen 18 und 30
+              </text>
+              <text
+                x={160}
+                y={265 - 35 * 6}
+                fill="black"
+                fontSize="10"
+                textAnchor="middle"
+              >
+                35 %
+              </text>
+              <text
+                x={290}
+                y={290}
+                fill="black"
+                fontSize="10"
+                textAnchor="middle"
+              >
+                älter als 30
+              </text>
+              <text
+                x={290}
+                y={265 - 25 * 6}
+                fill="black"
+                fontSize="10"
+                textAnchor="middle"
+              >
+                25 %
+              </text>
+              <line
+                x1={0}
+                y1={271}
+                x2={328}
+                y2={271}
+                stroke="black"
+                strokeWidth={1}
+              />
+              <rect
+                x={18}
+                y={270 - 40 * 6} // obere linke Ecke
+                width={25} // Breite des Rechtecks
+                height={40 * 6} // Höhe des Rechtecks
+                fill="red" // Farbe des Rechtecks
+                stroke="black"
+                strokeWidth={2}
+              />
+              <rect
+                x={147}
+                y={270 - 35 * 6} // obere linke Ecke
+                width={25} // Breite des Rechtecks
+                height={35 * 6} // Höhe des Rechtecks
+                fill="orange" // Farbe des Rechtecks
+                stroke="black"
+                strokeWidth={2}
+              />
+              <rect
+                x={276}
+                y={270 - 25 * 6} // obere linke Ecke
+                width={25} // Breite des Rechtecks
+                height={25 * 6} // Höhe des Rechtecks
+                fill="gray" // Farbe des Rechtecks
+                stroke="black"
+                strokeWidth={2}
+              />
+            </svg>
+            <br></br>
             <Color2>
-              <b>Antwort: 32 Spieler </b>.
+              <b>Antwort:</b> Es sind <b>32 Spieler</b> jünger als 18.
             </Color2>
             <br></br>
             <br></br>

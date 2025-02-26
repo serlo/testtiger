@@ -163,7 +163,7 @@ export function ExerciseViewFooter() {
               if (el.type == 'response') {
                 return (
                   <div key={i} className="mb-4 flex">
-                    <div className="mr-3 min-w-[18px]">
+                    <div className="mr-3 flex-shrink-0 w-[36px]">
                       <img
                         src="/birdie.svg"
                         alt=""

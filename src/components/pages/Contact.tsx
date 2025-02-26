@@ -33,11 +33,7 @@ export function Contact() {
             Gotzinger Straße 8<br />
             D-81371 München
           </p>
-          <p>
-            E-Mail: de@serlo.org
-            <br />
-            Telefonnummer: +491629070168
-          </p>
+          <p>E-Mail: de@serlo.org</p>
         </div>
       </IonContent>
     </IonPage>
