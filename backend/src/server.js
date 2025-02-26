@@ -76,8 +76,10 @@ app.post('/va89kjds', async (req, res) => {
     apiKey: process.env.OPENAI_API_KEY,
   })
 
+  const hasImages = JSON.stringify(messages).includes('"type":"image"')
+
   const { text } = await generateText({
-    model: openai('gpt-4o'),
+    model: openai(hasImages ? 'gpt-4o' : 'gpt-o3-mini'),
     messages,
   })
 
