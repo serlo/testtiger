@@ -39,10 +39,10 @@ export const exercise132: Exercise<DATA> = {
     }
   `}
         </style>
-        <p>Berechne 20 % von 50 €.</p>
+        <p>Berechne 30 % von 50 €.</p>
 
         <Color2>
-          <b>Antwort: 10 €</b>.
+          <b>Lösung: 15 €</b>.
         </Color2>
         <br></br>
         <br></br>
@@ -50,6 +50,7 @@ export const exercise132: Exercise<DATA> = {
           <p>
             Rechnung:
             <hr style={{ margin: '10px 0' }} />
+            <p>Berechne den Preis mit der Formel für den Prozentwert W:</p>
             {buildEquation([
               [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
               [
@@ -79,13 +80,53 @@ export const exercise132: Exercise<DATA> = {
                 <>
                   <Color4>
                     <span style={{ fontSize: 'small' }}>
-                      setze für den Prozentsatz 20 % = 0,2 ein{' '}
+                      setze für den Prozentsatz 30 % = 0,3 ein{' '}
                     </span>
                   </Color4>
                 </>,
               ],
-              ['', '=', <>50 € · 0,2</>],
-              ['W', '=', <> 10 €</>],
+              ['', '=', <>50 € · 0,3</>],
+              ['W', '=', <> 15 €</>],
+            ])}
+          </p>
+        </ExplanationBox>
+        <ExplanationBox>
+          <p>
+            Rechnung:
+            <hr style={{ margin: '10px 0' }} />
+            <p>Alternativ kannst du auch den Dreisatz anwenden:</p>
+            {buildEquation([
+              [<>100%</>, <>≙</>, <>50€</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>: 10</span>
+                  </Color4>
+                </>,
+              ],
+              ['10%', '≙', <>5€</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· 3 </span>
+                  </Color4>
+                </>,
+              ],
+              ['30%', '≙', <> 15 €</>],
             ])}
           </p>
         </ExplanationBox>

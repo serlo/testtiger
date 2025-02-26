@@ -129,16 +129,21 @@ export const exercise113: Exercise<DATA> = {
               Nieten. Wie hoch ist die Wahrscheinlichkeit, einen Gewinn zu
               ziehen?
             </p>
-            <br></br>
             <Color2>
-              <b>Antwort: {ppFrac(1 / 3)} </b>.
+              <b>Antwort:</b> Die Wahrscheinlichkeit, einen Gewinn zu ziehen ist{' '}
+              <b>{ppFrac(1 / 3)} </b>.
             </Color2>
             <br></br>
             <br></br>
             <ExplanationBox>
               <p>
-                Rechnung:
+                Erklärung:
                 <hr style={{ margin: '10px 0' }} />
+                <p>
+                  Das Ziehen von Losen ist ein Laplace-Experiment. Berechne die
+                  Wahrscheinlichkeit mit der Formel für das{' '}
+                  <b>Laplace-Experiment</b>:
+                </p>
                 {buildEquation([
                   [
                     <>p</>,
