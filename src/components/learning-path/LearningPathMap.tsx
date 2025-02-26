@@ -391,7 +391,7 @@ interface LearningPathStepParams {
   lesson: Lesson
   solvedPercentage: number
   exam: number
-  history: any
+  history?: { push: (url: string) => void }
   // Only used for video lessons:
   nextElement?: { source: Lesson; solvedPercentage: number }
 }
@@ -442,14 +442,14 @@ export function handleLearningPathStepClick({
         '#' +
         encodeURIComponent(
           JSON.stringify({
-            name: lessonDetails.title,
-            pages: step.exercise.pages,
-            toHome: true,
+            solvedPercentage,
+            exam,
+            lessonPosition: lesson.position,
           }),
         )
       s.videoUrl = lesson.videoUrl
     })
-    history.push('/video')
+    if (history) history.push('/video')
     return
   }
 
@@ -480,18 +480,19 @@ export function handleLearningPathStepClick({
         s.introText = lesson.introText
       })
     }
-    history.push(
-      '/exercise/' +
-        step.exercise.id +
-        '#' +
-        encodeURIComponent(
-          JSON.stringify({
-            name: lesson.title,
-            pages: step.exercise.pages,
-            toHome: true,
-          }),
-        ),
-    )
+    if (history)
+      history.push(
+        '/exercise/' +
+          step.exercise.id +
+          '#' +
+          encodeURIComponent(
+            JSON.stringify({
+              solvedPercentage,
+              exam,
+              lessonPosition: lesson.position,
+            }),
+          ),
+      )
     ExerciseViewStore.update(s => {
       s.needReset2 = true
     })
@@ -584,7 +585,19 @@ export function handleLearningPathStepClick({
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
     })
-    history.push('/exercise/123456')
+    if (history)
+      history.push(
+        '/exercise/' +
+          exerciseIds[0] +
+          '#' +
+          encodeURIComponent(
+            JSON.stringify({
+              solvedPercentage,
+              exam,
+              lessonPosition: lesson.position,
+            }),
+          ),
+      )
   }
   setDisplayIndices()
 }
