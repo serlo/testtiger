@@ -15,6 +15,10 @@ export function BirdieOverlay({ context }: { context: 'map' | 'exercise' }) {
   const exerciseWithExample =
     ExerciseViewStore.getRawState().hasExamplePrescreen
 
+  const tag = ExerciseViewStore.getRawState().tag
+
+  console.log(tag)
+
   if (context == 'map') {
     if (!birdieIntros.includes('map-1')) {
       text =
@@ -45,6 +49,15 @@ export function BirdieOverlay({ context }: { context: 'map' | 'exercise' }) {
         text =
           'Wenn du die Lösung verstanden hast, gehe weiter zur nächsten Aufgabe.'
         step = 'exercise-example-2'
+      }
+    } else if (tag == 'Grundlagen - Challenge 1#') {
+      if (!birdieIntros.includes('challenge-1')) {
+        text = 'Jetzt hast du schon die ersten Skills gemeistert!'
+        step = 'challenge-1'
+      } else if (!birdieIntros.includes('challenge-2')) {
+        text =
+          'Bist du bereit für die 1. Challenge? Hier kannst du zeigen, was du gelernt hast!'
+        step = 'challenge-2'
       }
     }
   }
