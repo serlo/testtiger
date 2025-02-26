@@ -1,7 +1,8 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color4, Color5 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   brett: number
@@ -13,7 +14,7 @@ export const exercise117: Exercise<DATA> = {
   title: 'Hochbeet',
   source: '2022 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 30,
+  duration: 24,
   generator(rng) {
     return {
       brett: rng.randomIntBetween(20, 40) / 2,
@@ -70,7 +71,7 @@ export const exercise117: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return null
       },
@@ -90,7 +91,10 @@ export const exercise117: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Die langen Seitenwände benötigen jeweils genau 5 Holzbretter.</p>
+            <p>
+              Für die langen Seitenwände werden jeweils genau 5 Holzbretter
+              benötigt.
+            </p>
             <p>
               Die Holzbretter auf den kurzen Seiten müssen zurecht gesägt
               werden. Aus jedem gekauften Brett können zwei Bretter gesägt
@@ -114,9 +118,92 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 4,
+      duration: 6,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <svg viewBox="0 0 328 150">
+              <image
+                href="/content/NRW_EESA/117_quader_beispiel.svg"
+                height="150"
+                width="250"
+              />
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>Abbildung 1: Quader</span>
+              </Color5>
+            </center>
+            <p>
+              Bestimme die Größe der Seitenflächen A<sub>1</sub> und A
+              <sub>2</sub> des Quaders.
+            </p>
+            <p>
+              <Color2>
+                <b>Lösung</b>: <br></br>A<sub>1</sub> = 200 cm<sup>2</sup> und A
+                <sub>2</sub> = 50 cm<sup>2</sup>
+              </Color2>
+            </p>
+            <ExplanationBox>
+              <p>
+                Erklärung:
+                <hr style={{ margin: '10px 0' }} />
+                Berechne die rechteckigen Seitenflächen A<sub>1</sub> und A
+                <sub>2</sub> mit der Formel:
+                {buildEquation([
+                  [<>A</>, <>=</>, <>a · b</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze die Seitenlängen ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [
+                    <>
+                      A<sub>1</sub>
+                    </>,
+                    <>=</>,
+                    <>20 · 10</>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      200 [cm<sup>2</sup>]
+                    </>,
+                  ],
+                  [
+                    <>
+                      A<sub>2</sub>
+                    </>,
+                    <>=</>,
+                    <>5 · 10</>,
+                  ],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      50 [cm<sup>2</sup>]
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -138,13 +225,9 @@ export const exercise117: Exercise<DATA> = {
         return (
           <>
             <p>
-              <strong>Oberfläche der Seitenflächen</strong>
-            </p>
-            <p>
-              Berechne die Oberfläche der rechteckigen Seitenwände.
-              Multipliziere dazu die Länge und Breite. <br></br>Achte darauf,
-              dass jeweils <Color1>zwei</Color1> gleiche Seitenwände vorhanden
-              sind:
+              Berechne die Oberfläche der rechteckigen Seitenflächen mit der
+              Formel:
+              <br></br>A = a · b
             </p>
             {buildEquation([
               [
@@ -165,49 +248,75 @@ export const exercise117: Exercise<DATA> = {
               ],
               [
                 <>
-                  <Color1>2</Color1> · A<sub>lang</sub>
+                  A<sub>lang</sub>
                 </>,
                 <>=</>,
                 <>
-                  <Color1>2</Color1> · {pp(länge)} · {pp(höhe)}{' '}
+                  {pp(länge)} · {pp(höhe)}{' '}
                 </>,
               ],
-
-              [<></>, <>=</>, <>{pp(länge * höhe * 2)} [m²]</>],
+              [<></>, <>=</>, <>{pp(länge * höhe)} [m²]</>],
               [
                 <>
-                  <Color1>2</Color1> · A<sub>kurz</sub>
+                  A<sub>kurz</sub>
                 </>,
                 <>=</>,
                 <>
-                  <Color1>2</Color1> · {pp(data.breite / 100)} · {pp(höhe)}
+                  {pp(data.breite / 100)} · {pp(höhe)}
                 </>,
               ],
-              [<></>, <>=</>, <>{pp((höhe * 2 * data.breite) / 100)} [m²]</>],
+              [<></>, <>=</>, <>{pp((höhe * data.breite) / 100)} [m²]</>],
             ])}
-            <p>
-              <strong>Gesamtfläche</strong>
-            </p>
-            <p>Addiere die Flächen:</p>
-            <p>
-              {pp((höhe * 2 * data.breite) / 100)} + {pp(länge * höhe * 2)} ={' '}
-              <strong>
-                {pp((höhe * 2 * data.breite) / 100 + länge * höhe * 2)} [m²]
-              </strong>
-            </p>
-
+            <hr style={{ margin: '10px 0' }} />
+            <p>Berechne die Gesamtfläche:</p>
+            {buildEquation([
+              [
+                <>
+                  A<sub>gesamt</sub>
+                </>,
+                <>=</>,
+                <>
+                  2 · A<sub>lang</sub> + 2 · A<sub>kurz</sub>
+                </>,
+              ],
+              [
+                <></>,
+                <>=</>,
+                <>
+                  2 · {pp(länge * höhe)} + 2 · {pp((höhe * data.breite) / 100)}
+                </>,
+              ],
+              [
+                <></>,
+                <>≈</>,
+                <>
+                  <strong>
+                    {pp(
+                      roundToDigits(
+                        (höhe * 2 * data.breite) / 100 + länge * höhe * 2,
+                        2,
+                      ),
+                    )}{' '}
+                    [m²]
+                  </strong>
+                </>,
+              ],
+            ])}
             <p>
               {(höhe * 2 * data.breite) / 100 + länge * höhe * 2 <
               data.color ? (
                 <>
-                  Die Oberfläche ist kleiner als {pp(data.color)} m² und kann
-                  daher mit einem Eimer Farbe gestrichen werden.
+                  <strong>
+                    Die Oberfläche ist kleiner als {pp(data.color)} m² und kann
+                    daher mit einem Eimer Farbe gestrichen werden.
+                  </strong>
                 </>
               ) : (
                 <>
-                  Die Oberfläche ist größer als {pp(data.color)} m² und kann
-                  daher <strong>nicht</strong> mit einem Eimer Farbe gestrichen
-                  werden.
+                  <strong>
+                    Die Oberfläche ist größer als {pp(data.color)} m² und kann
+                    daher nicht mit einem Eimer Farbe gestrichen werden.
+                  </strong>
                 </>
               )}
             </p>
@@ -217,9 +326,56 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <p>Bestimme das Volumen des Quaders.</p>
+            <p>
+              <Color2>
+                <b>Lösung</b>: V = 1000 cm<sup>3</sup>
+              </Color2>
+            </p>
+
+            <ExplanationBox>
+              Erklärung:
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Berechne das Volumen mit der Formel
+                {buildEquation([
+                  [<>V</>, <>=</>, <>a · b · c </>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze die Seitenlängen ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<>V</>, <>=</>, <>20 · 10 · 5 </>],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      1000 [cm<sup>3</sup>]
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -268,11 +424,26 @@ export const exercise117: Exercise<DATA> = {
                 <> {pp(((länge * data.breite) / 100) * höhe)} [m³]</>,
               ],
             ])}
-            <p>Das Hochbeet wird nur zu einem Drittel befüllt:</p>
             <p>
-              {pp(((länge * data.breite) / 100) * höhe)} : 3 ={' '}
+              Das Hochbeet wird nur zu einem Drittel befüllt. Das heißt, das
+              Volumen muss durch 3 geteilt werden:
+            </p>
+            <p>
+              {pp(((länge * data.breite) / 100) * höhe)} : 3 ≈{' '}
               <strong>
-                {pp((((länge * data.breite) / 100) * höhe) / 3)} [m³]
+                {pp(
+                  roundToDigits((((länge * data.breite) / 100) * höhe) / 3, 2),
+                )}{' '}
+                [m³]
+              </strong>
+            </p>
+            <p>
+              <strong>
+                Es werden{' '}
+                {pp(
+                  roundToDigits((((länge * data.breite) / 100) * höhe) / 3, 2),
+                )}{' '}
+                m³ Gartenerde benötigt.
               </strong>
             </p>
           </>
@@ -281,7 +452,7 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -342,9 +513,8 @@ export const exercise117: Exercise<DATA> = {
         return (
           <>
             <p>
-              Zeichne die Skizze mit den angegebenen Maßen ab. Zwischen dem
-              Salat und der Seitenwand ist zudem ein Platz von einem halben
-              Millimeter:
+              Zwischen dem Salat und der Seitenwand ist ein Platz von einem
+              halben Millimeter:
             </p>
             <svg viewBox="0 0 400 220">
               <image
@@ -445,7 +615,7 @@ export const exercise117: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -516,7 +686,10 @@ export const exercise117: Exercise<DATA> = {
                 auf jeder Seite.
               </li>
             </ul>
-            <p>Insgesamt passen damit 2 · 5 = 10 Salatköpfe in das Hochbeet.</p>
+            <p>
+              Insgesamt passen damit 2 · 5 = <strong>10 Salatköpfe</strong> in
+              das Hochbeet.
+            </p>
           </>
         )
       },

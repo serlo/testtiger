@@ -1,3 +1,6 @@
+'use client'
+import { analyseLastInput } from '@/components/exercise-view/state/actions'
+import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
 import { Color1, Color2, Color3 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
@@ -17,7 +20,7 @@ export const exercise199: Exercise<DATA> = {
   title: 'Zahlen vergleichen',
   source: '',
   useCalculator: false,
-  duration: 3,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {
@@ -59,20 +62,68 @@ export const exercise199: Exercise<DATA> = {
         {buildEquation([
           [
             <>{pp(data.a)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id="199-select-1">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.b)}</>,
           ],
           [
             <>{pp(data.c)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id="199-select-2">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.d)}</>,
           ],
           [
             <>{pp(data.e)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id="199-select-3">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.f)}</>,
           ],
         ])}
+        <p>
+          <button
+            className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatHistory[s.navIndicatorPosition].resultPending = true
+                s.chatHistory[s.navIndicatorPosition].entries.push({
+                  type: 'text',
+                  content: `${pp(data.a)} ${(document.getElementById('199-select-1') as any).value} ${pp(
+                    data.b,
+                  )} \n ${pp(data.c)} ${(document.getElementById('199-select-2') as any).value} ${pp(
+                    data.d,
+                  )} \n ${pp(data.e)} ${(document.getElementById('199-select-3') as any).value} ${pp(data.f)}`,
+                  canEdit: true,
+                })
+                s.chatOverlay = 'chat'
+                s.chatHistory[s.navIndicatorPosition].answerInput = ''
+              })
+              void analyseLastInput()
+            }}
+          >
+            Abschicken
+          </button>
+        </p>
       </>
     )
   },

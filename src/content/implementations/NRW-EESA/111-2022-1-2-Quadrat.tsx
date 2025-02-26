@@ -12,7 +12,7 @@ export const exercise111: Exercise<DATA> = {
   title: 'Quadrat',
   source: '2022 Teil 1 Aufgabe 2',
   useCalculator: true,
-  duration: 4,
+  duration: 10,
   generator(rng) {
     return { seite: rng.randomIntBetween(2, 9) }
   },
@@ -45,7 +45,7 @@ export const exercise111: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return (
           <>
@@ -114,7 +114,7 @@ export const exercise111: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 2,
+      duration: 6,
       skillIntro({ data }) {
         return (
           <>

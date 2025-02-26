@@ -202,6 +202,17 @@ export function buildEquation(data: (JSX.Element | string | number)[][]) {
   )
 }
 
+const explanationBoxStyle: React.CSSProperties = {
+  border: '1px solid lightblue',
+  padding: '0px 8px',
+  backgroundColor: '#f9f9f9',
+  borderRadius: '8px',
+}
+
+export function ExplanationBox({ children }: { children: React.ReactNode }) {
+  return <div style={explanationBoxStyle}>{children}</div>
+}
+
 /*interface JSXOptions {
   width?: number
   height?: number

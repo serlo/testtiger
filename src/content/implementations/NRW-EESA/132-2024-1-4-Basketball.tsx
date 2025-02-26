@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { Color2, Color4 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 
 interface DATA {
@@ -12,7 +12,7 @@ export const exercise132: Exercise<DATA> = {
   title: 'Basketball',
   source: '2024 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 2,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {
@@ -25,6 +25,72 @@ export const exercise132: Exercise<DATA> = {
   exampleData: { ball: 50, rabatt: 10 },
   constraint({ data }) {
     return true
+  },
+  example() {
+    return (
+      <>
+        <style>
+          {`
+    .explanation-box {
+      border: 1px solid lightblue;
+      padding: 0px 8px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  `}
+        </style>
+        <p>Berechne 20 % von 50 €.</p>
+
+        <Color2>
+          <b>Antwort: 10 €</b>.
+        </Color2>
+        <br></br>
+        <br></br>
+        <ExplanationBox>
+          <p>
+            Rechnung:
+            <hr style={{ margin: '10px 0' }} />
+            {buildEquation([
+              [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Grundwert 50 € ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Prozentsatz 20 % = 0,2 ein{' '}
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              ['', '=', <>50 € · 0,2</>],
+              ['W', '=', <> 10 €</>],
+            ])}
+          </p>
+        </ExplanationBox>
+      </>
+    )
   },
   task({ data }) {
     return (
@@ -90,12 +156,15 @@ export const exercise132: Exercise<DATA> = {
         <p>Der Rabatt beträgt {pp((data.ball * data.rabatt) / 100)} €.</p>
         <p>
           Ziehe den Rabatt vom ursprünglichen Preis ab:<br></br>
-          {data.ball} € − {pp((data.ball * data.rabatt) / 100)} € ={' '}
-          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>
+          {data.ball} − {pp((data.ball * data.rabatt) / 100)} ={' '}
+          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} [€]</strong>
         </p>
         <p>
-          Der neue Kaufpreis beträgt{' '}
-          <strong>{pp(data.ball - (data.ball * data.rabatt) / 100)} €</strong>.
+          <strong>
+            Der neue Kaufpreis beträgt{' '}
+            {pp(data.ball - (data.ball * data.rabatt) / 100)} €
+          </strong>
+          .
         </p>
         <p>
           <b>Hinweis:</b> Alternativ kannst du den Rabatt auch mit dem Dreisatz

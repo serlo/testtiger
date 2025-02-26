@@ -20,7 +20,7 @@ export const exercise107: Exercise<DATA> = {
   title: 'Roller-Tour',
   source: '2021 Teil 2 Aufgabe 1',
   useCalculator: true,
-  duration: 30,
+  duration: 28,
   generator(rng) {
     return {
       legende: rng.randomIntBetween(1, 4),
@@ -105,7 +105,7 @@ export const exercise107: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return <></>
       },
@@ -138,7 +138,7 @@ export const exercise107: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return <></>
       },
@@ -227,7 +227,7 @@ export const exercise107: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return (
           <>
@@ -377,7 +377,7 @@ export const exercise107: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -609,7 +609,7 @@ export const exercise107: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       skillIntro({ data }) {
         function toX(n: number) {
           return 20.5 + n * (287 / 20)
@@ -731,7 +731,7 @@ export const exercise107: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return <></>
       },

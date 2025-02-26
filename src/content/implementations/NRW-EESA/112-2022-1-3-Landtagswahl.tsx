@@ -1,6 +1,8 @@
 import { Exercise } from '@/data/types'
-import { buildEquation } from '@/helper/math-builder'
+import { Color2, Color4 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { roundToDigits } from '@/helper/round-to-digits'
 
 interface DATA {
   stimmen: number
@@ -21,7 +23,7 @@ export const exercise112: Exercise<DATA> = {
   title: 'Landtagswahl',
   source: '2022 Teil 1 Aufgabe 3',
   useCalculator: true,
-  duration: 4,
+  duration: 8,
   generator(rng) {
     return {
       stimmen: rng.randomIntBetween(8000000, 9000000),
@@ -282,17 +284,87 @@ export const exercise112: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              In einem Fußballverein sind 80 Spieler. Davon sind 40% jünger als
+              18. Wie viele Spieler sind jünger als 18?
+            </p>
+            <Color2>
+              <b>Antwort: 32 Spieler </b>.
+            </Color2>
+            <br></br>
+            <br></br>
+            <ExplanationBox>
+              <p>
+                Rechnung:
+                <hr style={{ margin: '10px 0' }} />
+                {buildEquation([
+                  [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze für den Grundwert 80 ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze für den Prozentsatz 40 % = 0,4 ein{' '}
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  ['', '=', <>80 · 0,4</>],
+                  ['W', '=', <> 32 [Spieler]</>],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
           //a)
           <>
             <p>
-              Bei der Landtagswahl gaben {data.stimmen} Personen ihre Stimme ab.
-              Berechne, wie viele Stimmen die {data.partei} erhielt.
+              Bei der Landtagswahl gaben{' '}
+              {data.stimmen.toLocaleString('de-DE').replace(/\./g, '\u2009')}{' '}
+              Personen ihre Stimme ab. Berechne, wie viele Stimmen die{' '}
+              {data.partei} erhielt.
             </p>
           </>
         )
@@ -301,43 +373,72 @@ export const exercise112: Exercise<DATA> = {
         return (
           <>
             <p>
-              Wandle die Prozentzahl des Wahlergebnisses in einer Dezimalzahl
-              um:
-            </p>
-            <p>
-              {data.partei == 'CDU' && (
-                <>
-                  {pp(data.cdu)} % = {pp(data.cdu / 100)}
-                </>
-              )}
-              {data.partei == 'SPD' && (
-                <>
-                  {pp(data.spd)} % = {pp(data.spd / 100)}
-                </>
-              )}
-              {data.partei == 'Grüne' && (
-                <>
-                  {pp(data.grüne)} % = {pp(data.grüne / 100)}
-                </>
-              )}
-              {data.partei == 'FDP' && (
-                <>
-                  {pp(data.fdp)} % = {pp(data.fdp / 100)}
-                </>
-              )}
-            </p>
-            <p>
-              Verwende die Formel für den Prozentwert, um die Anzahl der Stimmen
-              für die {data.partei} zu bestimmen.
+              Berechne die Anzahl der Stimmen für die {data.partei} mit der
+              Formel für den Prozentwert W:
             </p>
             {buildEquation([
-              [<>W</>, <>=</>, <>G · p</>],
+              [<>W</>, <>=</>, <>Grundwert · Prozentsatz</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Grundwert{' '}
+                      {data.stimmen
+                        .toLocaleString('de-DE')
+                        .replace(/\./g, '\u2009')}{' '}
+                      ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
+              [
+                '',
+                '',
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      setze für den Prozentsatz{' '}
+                      {data.partei == 'CDU' && (
+                        <>
+                          {pp(data.cdu)} % = {pp(data.cdu / 100)}
+                        </>
+                      )}{' '}
+                      {data.partei == 'SPD' && (
+                        <>
+                          {pp(data.spd)} % = {pp(data.spd / 100)}
+                        </>
+                      )}
+                      {data.partei == 'Grüne' && (
+                        <>
+                          {pp(data.grüne)} % = {pp(data.grüne / 100)}
+                        </>
+                      )}
+                      {data.partei == 'FDP' && (
+                        <>
+                          {pp(data.fdp)} % = {pp(data.fdp / 100)}
+                        </>
+                      )}{' '}
+                      ein
+                    </span>
+                  </Color4>
+                </>,
+              ],
               [
                 <></>,
                 <>=</>,
                 <>
-                  {data.stimmen} ·{' '}
-                  {data.partei == 'CDU' && <>{pp(data.cdu / 100)}</>}
+                  {' '}
+                  {data.stimmen
+                    .toLocaleString('de-DE')
+                    .replace(/\./g, '\u2009')}{' '}
+                  · {data.partei == 'CDU' && <>{pp(data.cdu / 100)}</>}
                   {data.partei == 'SPD' && <>{pp(data.spd / 100)}</>}
                   {data.partei == 'Grüne' && <>{pp(data.grüne / 100)}</>}
                   {data.partei == 'FDP' && <>{pp(data.fdp / 100)}</>}
@@ -345,19 +446,35 @@ export const exercise112: Exercise<DATA> = {
               ],
               [
                 <></>,
-                <>=</>,
+                <>≈</>,
                 <>
                   {data.partei == 'CDU' && (
-                    <>{pp((data.stimmen * data.cdu) / 100)}</>
+                    <>
+                      {Math.round((data.stimmen * data.cdu) / 100)
+                        .toLocaleString('de-DE')
+                        .replace(/\./g, '\u2009')}
+                    </>
                   )}
                   {data.partei == 'SPD' && (
-                    <>{pp((data.stimmen * data.spd) / 100)}</>
+                    <>
+                      {Math.round((data.stimmen * data.spd) / 100)
+                        .toLocaleString('de-DE')
+                        .replace(/\./g, '\u2009')}
+                    </>
                   )}
                   {data.partei == 'Grüne' && (
-                    <>{pp((data.stimmen * data.grüne) / 100)}</>
+                    <>
+                      {Math.round((data.stimmen * data.grüne) / 100)
+                        .toLocaleString('de-DE')
+                        .replace(/\./g, '\u2009')}
+                    </>
                   )}
                   {data.partei == 'FDP' && (
-                    <>{pp((data.stimmen * data.fdp) / 100)}</>
+                    <>
+                      {Math.round((data.stimmen * data.fdp) / 100)
+                        .toLocaleString('de-DE')
+                        .replace(/\./g, '\u2009')}
+                    </>
                   )}
                 </>,
               ],
@@ -367,16 +484,32 @@ export const exercise112: Exercise<DATA> = {
               <strong>
                 {' '}
                 {data.partei == 'CDU' && (
-                  <>{pp(Math.round((data.stimmen * data.cdu) / 100))}</>
+                  <>
+                    {Math.round((data.stimmen * data.cdu) / 100)
+                      .toLocaleString('de-DE')
+                      .replace(/\./g, '\u2009')}
+                  </>
                 )}
                 {data.partei == 'SPD' && (
-                  <>{pp(Math.round((data.stimmen * data.spd) / 100))}</>
+                  <>
+                    {Math.round((data.stimmen * data.spd) / 100)
+                      .toLocaleString('de-DE')
+                      .replace(/\./g, '\u2009')}
+                  </>
                 )}
                 {data.partei == 'Grüne' && (
-                  <>{pp(Math.round((data.stimmen * data.grüne) / 100))}</>
+                  <>
+                    {Math.round((data.stimmen * data.grüne) / 100)
+                      .toLocaleString('de-DE')
+                      .replace(/\./g, '\u2009')}
+                  </>
                 )}
                 {data.partei == 'FDP' && (
-                  <>{pp(Math.round((data.stimmen * data.fdp) / 100))}</>
+                  <>
+                    {Math.round((data.stimmen * data.fdp) / 100)
+                      .toLocaleString('de-DE')
+                      .replace(/\./g, '\u2009')}
+                  </>
                 )}{' '}
                 Stimmen
               </strong>
@@ -388,7 +521,7 @@ export const exercise112: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -407,9 +540,15 @@ export const exercise112: Exercise<DATA> = {
           <>
             <p>Entscheide jeweils, ob die Aussagen wahr oder falsch sind:</p>
             <ul>
-              <li>{aussagen[data.item_1]}</li>
-              <li>{aussagen[data.item_2]}</li>
-              <li>{aussagen[data.item_3]}</li>
+              <li>
+                <em>{aussagen[data.item_1]}</em>
+              </li>
+              <li>
+                <em>{aussagen[data.item_2]}</em>
+              </li>
+              <li>
+                <em>{aussagen[data.item_3]}</em>
+              </li>
             </ul>
           </>
         )
@@ -440,6 +579,7 @@ export const exercise112: Exercise<DATA> = {
               {pp(data.cdu)} % = {pp(data.cdu + data.spd)} %.<br></br>Diese
               Aussage ist <strong>richtig</strong>.
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
           <>
             <p>
@@ -447,6 +587,7 @@ export const exercise112: Exercise<DATA> = {
               Stimmen hat &quot;Die Linke&quot; nicht erreicht.<br></br>Diese
               Aussage ist <strong>falsch</strong>.
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
           <>
             <p>
@@ -464,19 +605,20 @@ export const exercise112: Exercise<DATA> = {
                 </>
               )}
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
           <>
             <p>
-              &quot;Jede zehnte Stimme&quot; entspricht dem Anteil von 10 %. Die
-              Grüne hat weniger Stimmen.<br></br>Diese Aussage ist{' '}
-              <strong>richtig</strong>.
+              &quot;Jede zehnte Stimme&quot; entspricht einem Anteil von 10 %.
+              Die Grüne hat weniger Stimmen.<br></br>Diese Aussage ist also{' '}
+              <strong>falsch</strong>.
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
           <>
             <p>
               Die FDP hat {pp(data.fdp)} % der Stimmen. Ein Zehntel aller
-              Stimmen entsprechen 10 %.<br></br>
-              <br></br>Diese Aussage ist also{' '}
+              Stimmen entsprechen 10 %.<br></br>Diese Aussage ist also{' '}
               {data.fdp > 10 ? (
                 <>
                   <strong>richtig</strong>
@@ -488,12 +630,14 @@ export const exercise112: Exercise<DATA> = {
               )}
               .
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
           <>
             <p>
-              Die Piraten erreichen {pp(data.piraten)} %.<br></br>
-              <br></br>Diese Aussage ist also <strong>richtig</strong>.
+              Die Piraten erreichen {pp(data.piraten)} %.<br></br>Diese Aussage
+              ist also <strong>richtig</strong>.
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
           <>
             <p>
@@ -501,16 +645,23 @@ export const exercise112: Exercise<DATA> = {
               {pp(100 - andere)} % der Stimmen.
               <br></br>Diese Aussage ist <strong>richtig</strong>.
             </p>
+            <hr style={{ margin: '10px 0' }} />
           </>,
         ]
         return (
           <>
             <ul>
-              <li>{aussagen[data.item_1]}</li>
+              <li>
+                <em>{aussagen[data.item_1]}</em>
+              </li>
               {result[data.item_1]}
-              <li>{aussagen[data.item_2]}</li>
+              <li>
+                <em>{aussagen[data.item_2]}</em>
+              </li>
               {result[data.item_2]}
-              <li>{aussagen[data.item_3]}</li>
+              <li>
+                <em>{aussagen[data.item_3]}</em>
+              </li>
               {result[data.item_3]}
             </ul>
           </>

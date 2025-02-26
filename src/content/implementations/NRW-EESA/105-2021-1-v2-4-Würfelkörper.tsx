@@ -15,7 +15,7 @@ export const exercise105: Exercise<DATA> = {
   title: 'Würfelkörper',
   source: '2021 Teil 1 Variante 2 Aufgabe 4',
   useCalculator: false,
-  duration: 4,
+  duration: 6,
   generator(rng) {
     return {
       höhe_1: rng.randomIntBetween(8, 14),
@@ -51,7 +51,7 @@ export const exercise105: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -126,9 +126,7 @@ export const exercise105: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>
-              <strong>Körper zerlegen</strong>
-            </p>
+            <p>Körper zerlegen:</p>
             <p>
               Das Volumen des zusammengesetzten Körpers kann auf verschiedene
               Wege berechnet werden. Hier wird der Körper in einzelne Quader
@@ -240,9 +238,8 @@ export const exercise105: Exercise<DATA> = {
               Die Seitenlängen des kleinen Quaders können durch die anderen
               Seiten bestimmt werden.
             </p>
-            <p>
-              <strong>Volumen berechnen</strong>
-            </p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Volumen berechnen:</p>
             <p>Berechne das Volumen der einzelnen Quader und addiere sie:</p>
             {buildEquation([
               [
@@ -313,7 +310,7 @@ export const exercise105: Exercise<DATA> = {
     },
     {
       points: 1,
-      duration: 1,
+      duration: 2,
       intro({ data }) {
         return null
       },

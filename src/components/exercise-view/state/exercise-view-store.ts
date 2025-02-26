@@ -64,6 +64,8 @@ export type IExerciseViewStore = {
   hasExamplePrescreen: boolean
   videoRedirectUrl?: string
   videoUrl?: string
+  isChallenge?: boolean
+  introText?: string | JSX.Element
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({

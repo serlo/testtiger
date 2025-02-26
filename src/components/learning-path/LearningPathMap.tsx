@@ -238,203 +238,13 @@ export function LearningPathMap() {
                 }
                 className="cursor-pointer"
                 onClick={() => {
-                  if (el.source.type == 'video') {
-                    updatePlayerProfileStore(s => {
-                      s.progress[exam].learningPathTags.push(el.source.title)
-                    })
-                    const lessonDetails = elements[i + 1].source
-                    const step = lessonDetails.steps[0]
-                    setupExercise(
-                      step.exercise.id,
-                      lessonDetails.title,
-                      step.exercise.pages,
-                      true,
-                      elements[i + 1].solvedPercentage < 1,
-                    )
-
-                    if (elements[i + 1].solvedPercentage < 1) {
-                      const relevantKeys = findRelevantKeys(lessonDetails)
-                      ExerciseViewStore.update(s => {
-                        s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                        if (elements[i + 1].solvedPercentage < 1) {
-                          s.completed = s.checks.map((_, i) =>
-                            PlayerProfileStore.getRawState().progress[
-                              exam
-                            ].learningPathTags.includes(relevantKeys[i]),
-                          )
-                        }
-                        if (lessonDetails.showExamplePrescreen) {
-                          s.examplePrescreen = true
-                          s.hasExamplePrescreen = true
-                        }
-                        s.videoRedirectUrl =
-                          '/exercise/' +
-                          step.exercise.id +
-                          '#' +
-                          encodeURIComponent(
-                            JSON.stringify({
-                              name: lessonDetails.title,
-                              pages: step.exercise.pages,
-                              toHome: true,
-                            }),
-                          )
-                        s.videoUrl = el.source.videoUrl
-                      })
-                    }
-                    history.push('/video')
-                    return
-                  }
-                  const lessonDetails = el.source
-
-                  /*if (isStepOfLessonDone(lessonDetails, step)) {
-                    continue
-                  }*/
-                  const solvedPercentage = el.solvedPercentage
-                  if (lessonDetails.steps.length == 1) {
-                    const step = lessonDetails.steps[0]
-                    setupExercise(
-                      step.exercise.id,
-                      lessonDetails.title,
-                      step.exercise.pages,
-                      true,
-                      solvedPercentage < 1,
-                    )
-
-                    if (solvedPercentage < 1) {
-                      const relevantKeys = findRelevantKeys(lessonDetails)
-                      ExerciseViewStore.update(s => {
-                        s.tag = `${lessonDetails.title}#${step.exercise.id}#`
-                        if (solvedPercentage < 1) {
-                          s.completed = s.checks.map((_, i) =>
-                            PlayerProfileStore.getRawState().progress[
-                              exam
-                            ].learningPathTags.includes(relevantKeys[i]),
-                          )
-                        }
-                        if (lessonDetails.showExamplePrescreen) {
-                          s.examplePrescreen = true
-                          s.hasExamplePrescreen = true
-                        }
-                      })
-                    }
-                    history.push(
-                      '/exercise/' +
-                        step.exercise.id +
-                        '#' +
-                        encodeURIComponent(
-                          JSON.stringify({
-                            name: lessonDetails.title,
-                            pages: step.exercise.pages,
-                            toHome: true,
-                          }),
-                        ),
-                    )
-                    ExerciseViewStore.update(s => {
-                      s.needReset2 = true
-                    })
-                  } else {
-                    const exerciseIds = lessonDetails.steps.map(
-                      s => s.exercise.id,
-                    )
-                    const relevantKeys = findRelevantKeys(lessonDetails)
-                    ExerciseViewStore.update(s => {
-                      s.id = 123456
-                      s.seed = generateSeed()
-
-                      // TODO fill in with correct values
-                      s._exerciseIDs = exerciseIds
-                      s.dataPerExercise = {}
-
-                      exerciseIds.forEach((id, i) => {
-                        const content = exercisesData[id]
-                        s.dataPerExercise[i + 1] =
-                          content.learningPathData &&
-                          solvedPercentage < 1 &&
-                          !lessonDetails.steps[i].forceDynamic
-                            ? content.learningPathData
-                            : (generateData(
-                                id,
-                                s.seed,
-                                exercisesData[id],
-                                true,
-                              ) as object)
-                      })
-
-                      s.pages = []
-                      let context = 1
-                      for (const step of lessonDetails.steps) {
-                        if (step.exercise.pages) {
-                          for (const page of step.exercise.pages) {
-                            s.pages.push({
-                              context: context.toString(),
-                              ...page,
-                            })
-                          }
-                        } else {
-                          const exercise = exercisesData[step.exercise.id]
-                          if ('tasks' in exercise) {
-                            exercise.tasks.forEach((_, index) => {
-                              s.pages.push({
-                                index: countLetter('a', index),
-                                context: context.toString(),
-                              })
-                            })
-                          } else {
-                            s.pages.push({
-                              context: context.toString(),
-                              index: 'single',
-                            })
-                          }
-                        }
-                        context++
-                      }
-                      console.log('debug pages', s.pages, exerciseIds)
-
-                      s.navIndicatorLength = s.pages.length
-                      s.navIndicatorPosition = 0
-                      s.needReset = true
-                      s.needReset2 = true
-                      s.navIndicatorExternalUpdate = 0
-                      s.checks = Array.from({
-                        length: Math.max(1, s.navIndicatorLength),
-                      }).map(_ => {
-                        return {
-                          answerInput: '',
-                          result: '',
-                          resultPending: false,
-                          fotoFeedback: '',
-                          croppedImage: '',
-                          uploadedImage: '',
-                        }
-                      })
-                      s.chatHistory = Array.from({
-                        length: Math.max(1, s.navIndicatorLength),
-                      }).map(_ => {
-                        return {
-                          entries: [],
-                          resultPending: false,
-                          answerInput: '',
-                        }
-                      })
-                      s.chatOverlay = null
-                      s.skill = lessonDetails.title
-                      s.cropImage = false
-                      s.completed = s.checks.map(
-                        (_, i) =>
-                          solvedPercentage < 1 &&
-                          PlayerProfileStore.getRawState().progress[
-                            exam
-                          ].learningPathTags.includes(relevantKeys[i]),
-                      )
-                      s.showEndScreen = false
-                      s.toHome = true
-                      s.tag = lessonDetails.title + '#'
-                      s.hasExamplePrescreen = false
-                      s.examplePrescreen = false
-                    })
-                    history.push('/exercise/123456')
-                  }
-                  setDisplayIndices()
+                  handleLearningPathStepClick({
+                    lesson: el.source,
+                    solvedPercentage: el.solvedPercentage,
+                    exam,
+                    history,
+                    nextElement: elements[i + 1],
+                  })
                 }}
               ></circle>
               {el.source.icon && (
@@ -597,4 +407,206 @@ export function LearningPathMap() {
       )*/}
     </div>
   )
+}
+
+interface LearningPathStepParams {
+  lesson: Lesson
+  solvedPercentage: number
+  exam: number
+  history: any
+  // Only used for video lessons:
+  nextElement?: { source: Lesson; solvedPercentage: number }
+}
+
+export function handleLearningPathStepClick({
+  lesson,
+  solvedPercentage,
+  exam,
+  history,
+  nextElement,
+}: LearningPathStepParams) {
+  if (lesson.type === 'video') {
+    // Video step logic
+    updatePlayerProfileStore(s => {
+      s.progress[exam].learningPathTags.push(lesson.title)
+    })
+
+    if (!nextElement) {
+      console.warn('No next element provided for video lesson')
+      return
+    }
+
+    const lessonDetails = nextElement.source
+    const step = lessonDetails.steps[0]
+    setupExercise(
+      step.exercise.id,
+      lessonDetails.title,
+      step.exercise.pages,
+      true,
+      nextElement.solvedPercentage < 1,
+    )
+    if (nextElement.solvedPercentage < 1) {
+      const relevantKeys = findRelevantKeys(lessonDetails)
+      ExerciseViewStore.update(s => {
+        s.tag = `${lessonDetails.title}#${step.exercise.id}#`
+        s.completed = s.checks.map((_, i) =>
+          // Decoupled access to the player profile store
+          PlayerProfileStore.getRawState().progress[
+            exam
+          ].learningPathTags.includes(relevantKeys[i]),
+        )
+      })
+    }
+    ExerciseViewStore.update(s => {
+      s.videoRedirectUrl =
+        '/exercise/' +
+        step.exercise.id +
+        '#' +
+        encodeURIComponent(
+          JSON.stringify({
+            name: lessonDetails.title,
+            pages: step.exercise.pages,
+            toHome: true,
+          }),
+        )
+      s.videoUrl = lesson.videoUrl
+    })
+    history.push('/video')
+    return
+  }
+
+  // Non-video step logic
+  if (lesson.steps.length === 1) {
+    const step = lesson.steps[0]
+    setupExercise(
+      step.exercise.id,
+      lesson.title,
+      step.exercise.pages,
+      true,
+      solvedPercentage < 1,
+    )
+    if (solvedPercentage < 1) {
+      const relevantKeys = findRelevantKeys(lesson)
+      ExerciseViewStore.update(s => {
+        s.tag = `${lesson.title}#${step.exercise.id}#`
+        s.completed = s.checks.map((_, i) =>
+          PlayerProfileStore.getRawState().progress[
+            exam
+          ].learningPathTags.includes(relevantKeys[i]),
+        )
+        if (lesson.showExamplePrescreen) {
+          s.examplePrescreen = true
+          s.hasExamplePrescreen = true
+        }
+        s.isChallenge = lesson.type === 'challenge'
+        s.introText = lesson.introText
+      })
+    }
+    history.push(
+      '/exercise/' +
+        step.exercise.id +
+        '#' +
+        encodeURIComponent(
+          JSON.stringify({
+            name: lesson.title,
+            pages: step.exercise.pages,
+            toHome: true,
+          }),
+        ),
+    )
+    ExerciseViewStore.update(s => {
+      s.needReset2 = true
+    })
+  } else {
+    // For lessons with multiple steps:
+    const exerciseIds = lesson.steps.map(s => s.exercise.id)
+    const relevantKeys = findRelevantKeys(lesson)
+    ExerciseViewStore.update(s => {
+      s.id = 123456 // temporary id; adjust as needed
+      s.seed = generateSeed()
+      s._exerciseIDs = exerciseIds
+      s.dataPerExercise = {}
+
+      exerciseIds.forEach((id, i) => {
+        const content = exercisesData[id]
+        s.dataPerExercise[i + 1] =
+          content.learningPathData &&
+          solvedPercentage < 1 &&
+          !lesson.steps[i].forceDynamic
+            ? content.learningPathData
+            : (generateData(id, s.seed, exercisesData[id], true) as object)
+      })
+
+      s.pages = []
+      let context = 1
+      for (const step of lesson.steps) {
+        if (step.exercise.pages) {
+          for (const page of step.exercise.pages) {
+            s.pages.push({
+              context: context.toString(),
+              ...page,
+            })
+          }
+        } else {
+          const exercise = exercisesData[step.exercise.id]
+          if ('tasks' in exercise) {
+            exercise.tasks.forEach((_, index) => {
+              s.pages.push({
+                index: countLetter('a', index),
+                context: context.toString(),
+              })
+            })
+          } else {
+            s.pages.push({
+              context: context.toString(),
+              index: 'single',
+            })
+          }
+        }
+        context++
+      }
+
+      s.navIndicatorLength = s.pages.length
+      s.navIndicatorPosition = 0
+      s.needReset = true
+      s.needReset2 = true
+      s.navIndicatorExternalUpdate = 0
+      s.checks = Array.from({ length: Math.max(1, s.navIndicatorLength) }).map(
+        () => ({
+          answerInput: '',
+          result: '',
+          resultPending: false,
+          fotoFeedback: '',
+          croppedImage: '',
+          uploadedImage: '',
+        }),
+      )
+      s.chatHistory = Array.from({
+        length: Math.max(1, s.navIndicatorLength),
+      }).map(() => ({
+        entries: [],
+        resultPending: false,
+        answerInput: '',
+      }))
+      s.chatOverlay = null
+      s.skill = lesson.title
+      s.cropImage = false
+      s.completed = s.checks.map(
+        (_, i) =>
+          solvedPercentage < 1 &&
+          PlayerProfileStore.getRawState().progress[
+            exam
+          ].learningPathTags.includes(relevantKeys[i]),
+      )
+      s.showEndScreen = false
+      s.toHome = true
+      s.tag = lesson.title + '#'
+      s.hasExamplePrescreen = false
+      s.examplePrescreen = false
+      s.isChallenge = lesson.type === 'challenge'
+      s.introText = lesson.introText
+    })
+    history.push('/exercise/123456')
+  }
+  setDisplayIndices()
 }

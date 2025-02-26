@@ -5,6 +5,7 @@ import { LearningPathMap } from './LearningPathMap'
 import { LearningPathStore } from './state/learning-path-store'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { navigationData } from '@/content/navigations'
+import { BirdieOverlay } from '../BirdieOverlay'
 
 export function LearningPath() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -37,6 +38,7 @@ export function LearningPath() {
 
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
+      <BirdieOverlay context="map" />
       <IonHeader className="bg-white">
         <LearningPathHeader />
       </IonHeader>

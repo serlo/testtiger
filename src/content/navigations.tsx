@@ -2200,7 +2200,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'video',
             title: 'Video 1',
             videoUrl:
-              'https://testtige.uber.space/testtiger/Zahlen_vergleichen.mp4',
+              'https://testtige.uber.space/testtiger/Zahlen_vergleichen_MINI.mp4',
             position: { x: 80, y: 170 },
             steps: [],
           },
@@ -2215,7 +2215,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'video',
             title: 'Video 2',
-            videoUrl: '123',
+            videoUrl:
+              'https://testtige.uber.space/testtiger/bruechevergleichen_MINI.mp4',
             position: { x: 150, y: 320 },
             steps: [],
           },
@@ -2245,7 +2246,8 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'video',
             title: 'Video 3',
-            videoUrl: '123',
+            videoUrl:
+              'https://testtige.uber.space/testtiger/schaetzen_MINI.mp4',
             position: { x: 200, y: 575 },
             steps: [],
           },
@@ -2260,10 +2262,17 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 1',
+            introText: (
+              <>
+                Jetzt hast du schon die ersten Skills gemeistert! <br></br> Bist
+                du bereit für die <strong>1. Challenge</strong> &#9733;? Hier
+                kannst du zeigen, was du gelernt hast!
+              </>
+            ),
             position: { x: 240, y: 760 },
             steps: [
               { exercise: { id: 129 } },
-              { exercise: { id: 123 }, forceDynamic: true },
+              { exercise: { id: 121 } },
               { exercise: { id: 133 } },
             ],
           },
@@ -2318,6 +2327,12 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 2',
+            introText: (
+              <>
+                Probiere deine neuen Skills an der <strong>2. Challenge</strong>{' '}
+                &#9733; aus und hole deinen zweiten Stern!
+              </>
+            ),
             position: { x: 100, y: 1180 },
             steps: [
               {
@@ -2348,6 +2363,21 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Lineare Gleichungen',
             icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
             iconSize: 32,
+            position: { x: 170, y: 1370 },
+            steps: [
+              {
+                exercise: {
+                  id: 198,
+                },
+              },
+            ],
+            showExamplePrescreen: true,
+          },
+          {
+            type: 'new-skill',
+            title: 'Lineare Gleichungen',
+            icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
+            iconSize: 32,
             position: { x: 100, y: 1420 },
             steps: [
               {
@@ -2362,6 +2392,12 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 3',
+            introText: (
+              <>
+                Die <strong>3. Challenge</strong> &#9733; wartet auf dich. Zeig,
+                was du gelernt hast!
+              </>
+            ),
             position: { x: 250, y: 1550 },
             steps: [
               {
@@ -2380,8 +2416,8 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
-            title: 'Rechtwinkliges Dreieck',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            title: 'Quadrat',
+            icon: '/learning-path/NRW_EESA_icons/quadrat.svg',
             iconSize: 50,
             position: { x: 100, y: 1670 },
             steps: [
@@ -2440,19 +2476,28 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+
+            showExamplePrescreen: true,
           },
 
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 4',
+            introText: (
+              <>
+                In der <strong>4. Challenge</strong> &#9733; wartet schon eine
+                etwas kompliziertere Aufgabe aus dem zweiten Prüfungsteil auf
+                dich. <br></br>Aber keine Sorge, wenn du nicht weiter weißt,
+                kannst du wie gewohnt den Tiger um Rat fragen! Los gehts!
+              </>
+            ),
             position: { x: 100, y: 2000 },
             steps: [
               {
                 exercise: {
                   id: 109,
                   pages: [
-                    { index: 'a', intro: ['global'] },
-                    { index: 'b' },
+                    { index: 'b', intro: ['global'] },
                     { index: 'c' },
                     { index: 'd' },
                   ],
@@ -2474,6 +2519,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
           {
             type: 'new-skill',
@@ -2488,6 +2534,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
           {
             type: 'new-skill',
@@ -2507,6 +2554,13 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 5',
+            introText: (
+              <>
+                Die <strong>5. Challenge</strong> &#9733; erfordert etwas
+                Durchhaltevermögen. Hier rechnest du einen ganzen ersten
+                Prüfungsteil. Los gehts!
+              </>
+            ),
             position: { x: 250, y: 2450 },
             steps: [
               {
@@ -2555,6 +2609,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
 
           {
@@ -2591,11 +2646,20 @@ export const navigationData: { [key: number]: Navigation } = {
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
 
           {
             type: 'challenge',
             title: 'Grundlagen - Challenge 6',
+            introText: (
+              <>
+                Wow, du bist schon bei der <strong>6. Challenge</strong> &#9733;
+                - dem allerletzten Schritt im Grundlagen Training! <br></br>{' '}
+                Auch hier wartet noch einmal ein Prüfungsteil 1 auf dich. Viel
+                Erfolg!
+              </>
+            ),
             position: { x: 100, y: 2900 },
             steps: [
               {

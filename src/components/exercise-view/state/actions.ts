@@ -78,6 +78,8 @@ export function setupExercise(
     s.tag = ''
     s.hasExamplePrescreen = false
     s.examplePrescreen = false
+    s.isChallenge = false
+    s.introText = ''
   })
 }
 

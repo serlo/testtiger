@@ -1,6 +1,10 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
-import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import { Color2, Color4 } from '@/helper/colors'
+import {
+  buildEquation,
+  buildInlineFrac,
+  ExplanationBox,
+} from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -15,7 +19,7 @@ export const exercise106: Exercise<DATA> = {
   title: 'Goldpreis',
   source: '2021 Teil 1 Variante 2 Aufgabe 5',
   useCalculator: true,
-  duration: 5,
+  duration: 10,
   generator(rng) {
     return {
       preis: rng.randomIntBetween(2000, 2500) / 50,
@@ -44,9 +48,409 @@ export const exercise106: Exercise<DATA> = {
   tasks: [
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              Ergänze in der Tabelle die fehlenden Werte dieser proportionalen
+              Zuordnung.
+            </p>
+            <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+              {/* Hintergrund und Rahmen */}
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
+              />
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="44"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              {/* Horizontale Linie */}
+              <line
+                x1="10"
+                y1="32"
+                x2="310"
+                y2="32"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              {/* Vertikale Linien */}
+              <line
+                x1="96"
+                y1="10"
+                x2="96"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="167"
+                y1="10"
+                x2="167"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="238"
+                y1="10"
+                x2="238"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              {/* Erste Zeile (Kopfzeile) */}
+              <text
+                x="53"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Gold [g]
+              </text>
+              <text
+                x="132"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="203"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              ></text>
+              <text
+                x="274"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                100
+              </text>
+
+              {/* Zweite Zeile (Datenzeile) */}
+              <text
+                x="53"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Preis [€]
+              </text>
+              <text
+                x="132"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                35,50
+              </text>
+              <text
+                x="203"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                71,00
+              </text>
+              <text
+                x="274"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              ></text>
+            </svg>
+
+            {/* Pfeil-SVG */}
+            <svg width="220" height="30" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker
+                  id="arrowhead"
+                  viewBox="0 0 10 10"
+                  refX="5"
+                  refY="5"
+                  markerWidth="4"
+                  markerHeight="4"
+                  orient="auto"
+                >
+                  <polygon points="0,0 10,5 0,10" fill="#007EC1" />
+                </marker>
+              </defs>
+              <line
+                x1="30"
+                y1="0"
+                x2="30"
+                y2="15"
+                stroke="#007EC1"
+                strokeWidth="2"
+                markerEnd="url(#arrowhead)"
+              />
+              <text
+                x="70"
+                y="15"
+                fontSize="14"
+                textAnchor="middle"
+                fill="#007EC1"
+              >
+                Lösung:
+              </text>
+            </svg>
+            <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+              {/* Hintergrund und Rahmen */}
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="22"
+                fill="#D2ECF6"
+                stroke="none"
+              />
+              <rect
+                x="10"
+                y="10"
+                width="300"
+                height="44"
+                rx="4"
+                ry="4"
+                stroke="#007EC1"
+                fill="transparent"
+                strokeWidth="1"
+              />
+
+              {/* Horizontale Linie */}
+              <line
+                x1="10"
+                y1="32"
+                x2="310"
+                y2="32"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              {/* Vertikale Linien */}
+              <line
+                x1="96"
+                y1="10"
+                x2="96"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="167"
+                y1="10"
+                x2="167"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+              <line
+                x1="238"
+                y1="10"
+                x2="238"
+                y2="54"
+                stroke="#007EC1"
+                strokeWidth="1"
+              />
+
+              {/* Erste Zeile (Kopfzeile) */}
+              <text
+                x="53"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                Gold [g]
+              </text>
+              <text
+                x="132"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                1
+              </text>
+              <text
+                x="203"
+                y="25"
+                fontSize="12"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+                fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
+              >
+                <tspan fill="green">2</tspan>
+              </text>
+              <text
+                x="274"
+                y="25"
+                fontSize="10"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+              >
+                100
+              </text>
+
+              {/* Zweite Zeile (Datenzeile) */}
+              <text
+                x="53"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Preis [€]
+              </text>
+              <text
+                x="132"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                35,50
+              </text>
+              <text
+                x="203"
+                y="47"
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                71,00
+              </text>
+              <text
+                x="274"
+                y="47"
+                fontSize="12"
+                textAnchor="middle"
+                fontWeight="bold"
+                fill="black"
+                fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
+              >
+                <tspan fill="green">3550</tspan>
+              </text>
+            </svg>
+
+            <ExplanationBox>
+              <p>
+                Erklärung:
+                <hr style={{ margin: '10px 0' }} />
+                Berechne die fehlenden Werte mit dem Dreisatz.
+              </p>
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                71,00 € ist genau das Doppelte von 35,50 €. Multipliziere beide
+                Seiten mit 2:
+              </p>
+              {buildEquation([
+                [<>1 g</>, <>≙</>, <>35,50 €</>],
+                [
+                  '',
+                  <>
+                    {' '}
+                    <Color4>
+                      <span className="inline-block  scale-y-[1.5]">↓</span>
+                    </Color4>
+                  </>,
+                  <>
+                    <Color4>
+                      <span style={{ fontSize: 'small' }}>· 2</span>
+                    </Color4>
+                  </>,
+                ],
+                [
+                  <>
+                    <strong>2 g</strong>
+                  </>,
+                  <>≙</>,
+                  <>
+                    <strong>71,00 €</strong>
+                  </>,
+                ],
+                [<></>, <></>, <></>],
+              ])}
+
+              <hr style={{ margin: '10px 0' }} />
+              <p>100 g ist 100 mal 1 g. Multipliziere beide Seiten mit 100:</p>
+              {buildEquation([
+                [<>1 g</>, <>≙</>, <>35,50 €</>],
+                [
+                  '',
+                  <>
+                    {' '}
+                    <Color4>
+                      <span className="inline-block  scale-y-[1.5]">↓</span>
+                    </Color4>
+                  </>,
+                  <>
+                    <Color4>
+                      <span style={{ fontSize: 'small' }}>· 100</span>
+                    </Color4>
+                  </>,
+                ],
+                [
+                  <>
+                    <strong>100 g</strong>
+                  </>,
+                  <>≙</>,
+                  <>
+                    <strong>3550 €</strong>
+                  </>,
+                ],
+                [<></>, <></>, <></>],
+              ])}
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -246,107 +650,96 @@ export const exercise106: Exercise<DATA> = {
               Ein Gramm Gold kostet {pp(data.preis)} €. Berechne die fehlenden
               Werte mit dem Dreisatz:
             </p>
-            <ul>
-              <li>
-                {buildEquation([
-                  [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>: 2</span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <>
-                      <strong>0,5 g</strong>
-                    </>,
-                    <>≙</>,
-                    <>
-                      <strong>{pp(roundToDigits(data.preis / 2, 2))} €</strong>
-                    </>,
-                  ],
-                  [<></>, <></>, <></>],
-                ])}
-              </li>
-              <p></p>
-              <li>
-                {buildEquation([
-                  [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>· 1000</span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <>
-                      <strong>1000 g</strong>
-                    </>,
-                    <>≙</>,
-                    <>
-                      <strong>
-                        {pp(roundToDigits(data.preis * 1000, 2))} €
-                      </strong>
-                    </>,
-                  ],
-                  [<></>, <></>, <></>],
-                ])}
-              </li>
-            </ul>
+            {buildEquation([
+              [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>: 2</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  <strong>0,5 g</strong>
+                </>,
+                <>≙</>,
+                <>
+                  <strong>{pp(roundToDigits(data.preis / 2, 2))} €</strong>
+                </>,
+              ],
+              [<></>, <></>, <></>],
+            ])}
+            <hr style={{ margin: '10px 0' }} />
+            <p></p>
+            {buildEquation([
+              [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· 1000</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  <strong>1000 g</strong>
+                </>,
+                <>≙</>,
+                <>
+                  <strong>{pp(roundToDigits(data.preis * 1000, 2))} €</strong>
+                </>,
+              ],
+              [<></>, <></>, <></>],
+            ])}
+            <hr style={{ margin: '10px 0' }} />
             <p>
               {pp(data.preis)} € ist genau die Hälfte von {pp(data.preis * 2)}{' '}
               €:{' '}
             </p>
-            <ul>
-              <li>
-                {buildEquation([
-                  [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
-                  [
-                    '',
-                    <>
-                      {' '}
-                      <Color4>
-                        <span className="inline-block  scale-y-[1.5]">↓</span>
-                      </Color4>
-                    </>,
-                    <>
-                      <Color4>
-                        <span style={{ fontSize: 'small' }}>
-                          · {data.faktor}
-                        </span>
-                      </Color4>
-                    </>,
-                  ],
-                  [
-                    <>
-                      <strong>2 g</strong>
-                    </>,
-                    <>≙</>,
-                    <>
-                      <strong>
-                        {pp(roundToDigits(data.preis * data.faktor, 2))} €
-                      </strong>
-                    </>,
-                  ],
-                ])}
-              </li>
-            </ul>
+            {buildEquation([
+              [<>1 g</>, <>≙</>, <>{pp(data.preis)} €</>],
+              [
+                '',
+                <>
+                  {' '}
+                  <Color4>
+                    <span className="inline-block  scale-y-[1.5]">↓</span>
+                  </Color4>
+                </>,
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>· {data.faktor}</span>
+                  </Color4>
+                </>,
+              ],
+              [
+                <>
+                  <strong>2 g</strong>
+                </>,
+                <>≙</>,
+                <>
+                  <strong>
+                    {pp(roundToDigits(data.preis * data.faktor, 2))} €
+                  </strong>
+                </>,
+              ],
+            ])}
+            <hr style={{ margin: '10px 0' }} />
             <p>Trage diese Werte in die Tabelle ein:</p>
             <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
               <rect
@@ -514,7 +907,7 @@ export const exercise106: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -562,13 +955,7 @@ export const exercise106: Exercise<DATA> = {
                   {ppFrac(4 / 3)} · π · {pp(data.radius)}³
                 </>,
               ],
-              [
-                <></>,
-                <>≈</>,
-                <>
-                  <strong>{pp(roundToDigits(volume, 2))} [cm³]</strong>
-                </>,
-              ],
+              [<></>, <>≈</>, <>{pp(roundToDigits(volume, 2))} [cm³]</>],
             ])}
             <p>
               Die Kugel hat ein Volumen von<br></br>{' '}

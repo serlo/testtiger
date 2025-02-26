@@ -1,3 +1,6 @@
+'use client'
+import { analyseLastInput } from '@/components/exercise-view/state/actions'
+import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
 import { Color1 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
@@ -20,7 +23,7 @@ export const exercise120: Exercise<DATA> = {
   title: 'Zahlen vergleichen',
   source: '2023 Teil 1 Aufgabe 1',
   useCalculator: false,
-  duration: 3,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {
@@ -79,20 +82,70 @@ export const exercise120: Exercise<DATA> = {
         {buildEquation([
           [
             <>{pp(data.a)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id="120-select-1">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{pp(data.b)}</>,
           ],
           [
             <>{ppFrac([data.c, data.d])}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id="120-select-2">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{ppFrac([data.e, data.f])}</>,
           ],
           [
             <>{pp(data.g)}&nbsp;&nbsp;</>,
-            <>___&nbsp;&nbsp;</>,
+            <>
+              <select className="p-2" id="120-select-3">
+                <option></option>
+                <option value="<">&lt;</option>
+                <option value=">">&gt;</option>
+                <option value="=">=</option>
+              </select>
+              &nbsp;&nbsp;
+            </>,
             <>{ppFrac([data.h, data.i])}</>,
           ],
         ])}
+        <p>
+          <button
+            className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatHistory[s.navIndicatorPosition].resultPending = true
+                s.chatHistory[s.navIndicatorPosition].entries.push({
+                  type: 'text',
+                  content: `${pp(data.a)} ${(document.getElementById('120-select-1') as any).value} ${pp(
+                    data.b,
+                  )} \n ${pp(data.c)}/${pp(data.d)} ${(document.getElementById('120-select-2') as any).value} ${pp(
+                    data.e,
+                  )}/${pp(data.f)} \n ${pp(data.g)} ${(document.getElementById('120-select-3') as any).value} ${pp(data.h)}/${pp(
+                    data.i,
+                  )}`,
+                  canEdit: true,
+                })
+                s.chatOverlay = 'chat'
+                s.chatHistory[s.navIndicatorPosition].answerInput = ''
+              })
+              void analyseLastInput()
+            }}
+          >
+            Abschicken
+          </button>
+        </p>
       </>
     )
   },

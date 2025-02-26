@@ -11,17 +11,14 @@ import {
 import { IndicatorBar } from './IndicatorBar'
 import { SolutionOverlay } from './SolutionOverlay'
 import { FotoOverlay } from './FotoOverlay'
-import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
 import {
   analyseLastInput,
   markCurrentExerciseAsComplete,
 } from './state/actions'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, Fragment } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
-
-defineCustomElements(window)
 
 export function ExerciseViewFooter() {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -136,7 +133,12 @@ export function ExerciseViewFooter() {
                 return (
                   <div key={i} className="flex justify-end">
                     <div className="bg-gray-100 p-2 rounded mb-3 text-right">
-                      {el.content}
+                      {el.content.split('\n').map((line, index) => (
+                        <Fragment key={index}>
+                          {line}
+                          <br />
+                        </Fragment>
+                      ))}
                       {el.canEdit && (
                         <>
                           <br />
@@ -161,7 +163,13 @@ export function ExerciseViewFooter() {
               if (el.type == 'response') {
                 return (
                   <div key={i} className="mb-4 flex">
-                    <div className="mr-3 text-2xl">🐯</div>
+                    <div className="mr-3 min-w-[18px]">
+                      <img
+                        src="/birdie.svg"
+                        alt=""
+                        className="inline-block mt-3"
+                      />
+                    </div>
                     <div>
                       {el.content}
                       {el.category == 'actionable-feedback' && (
@@ -215,7 +223,9 @@ export function ExerciseViewFooter() {
                                   } else {
                                     if (
                                       s.navIndicatorPosition + 1 <
-                                      s.navIndicatorLength
+                                        s.navIndicatorLength &&
+                                      s.completed[s.navIndicatorPosition + 1] ==
+                                        false
                                     ) {
                                       if (wasNotDone) {
                                         setTimeout(() => {
@@ -225,6 +235,22 @@ export function ExerciseViewFooter() {
                                             s.chatOverlay = null
                                           })
                                         }, 500)
+                                      }
+                                    } else {
+                                      for (
+                                        let i = 0;
+                                        i < s.navIndicatorLength;
+                                        i++
+                                      ) {
+                                        if (s.completed[i] == false) {
+                                          setTimeout(() => {
+                                            ExerciseViewStore.update(s => {
+                                              s.navIndicatorExternalUpdate = i
+                                              s.chatOverlay = null
+                                            })
+                                          }, 500)
+                                          break
+                                        }
                                       }
                                     }
                                   }
@@ -265,7 +291,7 @@ export function ExerciseViewFooter() {
               <div className="mb-6 text-center flex items-center justify-center space-x-2">
                 <div className="w-5 h-5 border-2 border-t-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
                 <span className="text-gray-600 font-medium">
-                  Tiger denkt nach ...
+                  Birdie denkt nach ...
                 </span>
               </div>
             ) : (

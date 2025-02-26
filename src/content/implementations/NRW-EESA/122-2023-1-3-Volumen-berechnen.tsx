@@ -13,7 +13,7 @@ export const exercise122: Exercise<DATA> = {
   title: 'Volumen berechnen',
   source: '2023 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 3,
+  duration: 6,
   points: 3,
   generator(rng) {
     return {
@@ -95,16 +95,14 @@ export const exercise122: Exercise<DATA> = {
             <></>,
             <>=</>,
             <>
-              <strong>
-                {data.length * data.width * data.height} [cm<sup>3</sup>]
-              </strong>
+              {data.length * data.width * data.height} [cm<sup>3</sup>]
             </>,
           ],
         ])}
 
         <p>
+          Das Volumen des Kartons beträgt<br></br>
           <b>
-            Das Volumen des Kartons beträgt<br></br>
             {data.length * data.width * data.height} cm<sup>3</sup>.
           </b>
         </p>

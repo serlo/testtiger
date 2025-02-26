@@ -1,5 +1,9 @@
 import { Exercise } from '@/data/types'
-import { buildFrac } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildFrac,
+  buildInlineFrac,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -15,7 +19,7 @@ export const exercise131: Exercise<DATA> = {
   title: 'Weitsprung',
   source: '2024 Teil 1 Aufgabe 3',
   useCalculator: false,
-  duration: 42,
+  duration: 8,
   generator(rng) {
     return {
       sprung1: rng.randomIntBetween(35, 45) / 10,
@@ -177,7 +181,7 @@ export const exercise131: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -200,28 +204,29 @@ export const exercise131: Exercise<DATA> = {
         const median = array[2]
         return (
           <>
-            <ul>
-              <li>
-                Der <strong>Median</strong> ist der mittlere Wert in der
-                geordneten Datenliste. <br></br>
-                <br></br>Hier ist der mittlere Wert{' '}
-                <strong>{pp(median)} m</strong>, denn es liegen 2 Werte darüber
-                und 2 darunter.
-              </li>
-              <li>
-                Die <strong>Spannweite</strong> ist die Differenz des größten
-                Wertes und des kleinsten Wertes:<br></br>
-                {pp(array[4])} − {pp(array[0])} ={' '}
-                <strong>{pp(array[4] - array[0])} [m]</strong>.
-              </li>
-            </ul>
+            <p>
+              Ordne die Sprünge der Größe nach: <br></br>
+              {pp(array[0])} m&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+              {pp(array[1])} m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {pp(array[2])} m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {pp(array[3])} m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{pp(array[4])}{' '}
+              m
+            </p>
+            <p>
+              Der <b>Median</b> ist die Zahl, die in der Mitte liegt:{' '}
+              <b>{pp(array[2])} m</b>.
+            </p>
+            Die <b>Spannweite</b> ist der Abstand zwischen dem kleinsten und dem
+            größten Messwert: <br></br>
+            {pp(array[4])} − {pp(array[0])} ={' '}
+            <b>{pp(array[4] - array[0])} [m]</b>
           </>
         )
       },
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -246,38 +251,55 @@ export const exercise131: Exercise<DATA> = {
         return (
           <>
             <p>
-              Um den Durchschnitt zu berechnen, addierst du alle Werte und
-              teilst das Ergebnis durch die Anzahl der Werte:
+              Addiere für den Durchschnitt alle 5 Sprünge und teile das Ergbnis
+              durch 5:
             </p>
+
             <p>
-              {buildFrac(
-                pp(data.sprung1) +
-                  ' + ' +
-                  pp(data.sprung2) +
-                  ' + ' +
-                  pp(data.sprung3) +
-                  ' + ' +
-                  pp(data.sprung4) +
-                  ' + ' +
-                  pp(data.sprung5),
-                5,
-              )}{' '}
-              ={' '}
-              {buildFrac(
-                pp(
+              (Sprung 1 + Sprung 2 + ... + Sprung 5) : 5<br></br>= (
+              {pp(data.sprung1)} + {pp(data.sprung2)} + {pp(data.sprung3)} +{' '}
+              {pp(data.sprung4)} + {pp(data.sprung5)}) : 5<br></br>={' '}
+              {pp(
+                roundToDigits(
                   data.sprung1 +
                     data.sprung2 +
                     data.sprung3 +
                     data.sprung4 +
                     data.sprung5,
+                  2,
                 ),
-                5,
               )}{' '}
-              = {pp(mittel)}
+              : 5<br></br>={' '}
+              {pp(
+                roundToDigits(
+                  (data.sprung1 +
+                    data.sprung2 +
+                    data.sprung3 +
+                    data.sprung4 +
+                    data.sprung5) /
+                    5,
+                  2,
+                ),
+              )}{' '}
+              [m]
             </p>
             <p>
-              Der Durchschnitt beträgt{' '}
-              <strong>{pp(roundToDigits(mittel, 2))} Meter</strong>.
+              <b>
+                {' '}
+                Der Durchschnitt beträgt{' '}
+                {pp(
+                  roundToDigits(
+                    (data.sprung1 +
+                      data.sprung2 +
+                      data.sprung3 +
+                      data.sprung4 +
+                      data.sprung5) /
+                      5,
+                    2,
+                  ),
+                )}{' '}
+                m.
+              </b>
             </p>
           </>
         )

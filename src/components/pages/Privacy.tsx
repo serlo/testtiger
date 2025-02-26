@@ -27,8 +27,8 @@ export function Privacy() {
             Chat-Interaktionen keine persönliche Daten weitergibst.
           </p>
           <p>
-            Dein Fortschritt wird auf deinem Gerät gespeichert. Du kannst es im
-            Profil jederzeit löschen.
+            Dein Fortschritt wird auf deinem Gerät und auf dem Server
+            gespeichert.
           </p>
           <p>
             Zur Bereitstellung der App und der Funktionalität greifen wir auf

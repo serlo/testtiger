@@ -1,7 +1,11 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
+import { Color2, Color4 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildInlineFrac,
+  ExplanationBox,
+} from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -13,7 +17,7 @@ export const exercise113: Exercise<DATA> = {
   title: 'Glücksrad',
   source: '2022 Teil 1 Aufgabe 4',
   useCalculator: false,
-  duration: 7,
+  duration: 8,
   generator(rng) {
     const array = Array.from({ length: 12 }, () =>
       Math.random() > 0.25 ? 0 : 1,
@@ -34,7 +38,7 @@ export const exercise113: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       intro({ data }) {
         // Anzahl der Sektoren
         const sectors = 12
@@ -107,6 +111,53 @@ export const exercise113: Exercise<DATA> = {
           </>
         )
       },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              In einer Lostrommel mit 15 Losen befinden sich 5 Gewinne und 10
+              Nieten. Wie hoch ist die Wahrscheinlichkeit, einen Gewinn zu
+              ziehen?
+            </p>
+            <br></br>
+            <Color2>
+              <b>Antwort: {ppFrac(1 / 3)} </b>.
+            </Color2>
+            <br></br>
+            <br></br>
+            <ExplanationBox>
+              <p>
+                Rechnung:
+                <hr style={{ margin: '10px 0' }} />
+                {buildEquation([
+                  [
+                    <>p</>,
+                    <>=</>,
+                    <>
+                      {buildInlineFrac(
+                        <>Anzahl der Gewinnlose</>,
+                        <>Anzahl aller Lose</>,
+                      )}
+                    </>,
+                  ],
+                  [<></>, <>=</>, <>{buildInlineFrac(<>5</>, <>15</>)}</>],
+                  [<></>, <>=</>, <>{buildInlineFrac(<>1</>, <>3</>)}</>],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
+      },
       task({ data }) {
         return (
           //a)
@@ -125,7 +176,7 @@ export const exercise113: Exercise<DATA> = {
             <p>
               Das Drehen des Glücksrads mit gleich großen Feldern ist ein
               Laplace-Experiment. Berechne die Wahrscheinlichkeit mit der Formel
-              für das Laplace-Experiment:
+              für das <b>Laplace-Experiment</b>:
             </p>
             {buildEquation([
               [
@@ -173,7 +224,7 @@ export const exercise113: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 6,
+      duration: 4,
       intro({ data }) {
         return null
       },

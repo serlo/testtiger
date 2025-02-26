@@ -17,7 +17,7 @@ export const exercise136: Exercise<DATA> = {
   title: 'E-Scooter',
   source: '2024 Teil 2 Aufgabe 2',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     const weg = rng.randomIntBetween(2, 8)
     const pacecase = rng.randomIntBetween(2, 4)
@@ -65,7 +65,7 @@ export const exercise136: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       task({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
@@ -86,14 +86,21 @@ export const exercise136: Exercise<DATA> = {
           <>
             <p>
               Tom fährt mit einer Geschwindigkeit von {data.pace} Kilometer pro
-              Stunde. Das sind {data.pace} Kilometer in 60 Minuten. Verwende den
-              Dreisatz, um zu bestimmen, wie lange er für {data.weg} Kilometer
-              braucht:
+              Stunde. Das sind {data.pace} Kilometer in 60 Minuten. <br></br>
+              Teile 60 Minuten durch {data.pacecase}, um zu bestimmen, wie lange
+              er für {data.weg} Kilometer braucht:
             </p>
             {buildEquation([
               [<>{data.pace} km</>, <>≙</>, <>60 min</>],
               [
-                '',
+                <>
+                  <Color4>
+                    <span style={{ fontSize: 'small' }}>
+                      {' '}
+                      : {data.pacecase}
+                    </span>
+                  </Color4>
+                </>,
                 <>
                   {' '}
                   <Color4>
@@ -102,22 +109,10 @@ export const exercise136: Exercise<DATA> = {
                 </>,
                 <>
                   <Color4>
-                    <span style={{ fontSize: 'small' }}> : {data.pace}</span>
-                  </Color4>
-                </>,
-              ],
-              [<>1 km</>, <>≙</>, <>{pp(60 / data.pace)} min</>],
-              [
-                '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
-                <>
-                  <Color4>
-                    <span style={{ fontSize: 'small' }}> · {data.weg}</span>
+                    <span style={{ fontSize: 'small' }}>
+                      {' '}
+                      : {data.pacecase}
+                    </span>
                   </Color4>
                 </>,
               ],
@@ -137,7 +132,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         const time = data.weg / (data.pace / 60)
         return (
@@ -280,19 +275,19 @@ export const exercise136: Exercise<DATA> = {
             <ul>
               <li>
                 2 mal die <Color1>Startgebühr</Color1>: 2 ·{' '}
-                <Color1>{pp(data.fixkosten)} €</Color1> ={' '}
-                {pp(data.fixkosten * 2)} €
+                <Color1>{pp(data.fixkosten)} </Color1> ={' '}
+                {pp(data.fixkosten * 2)} [€]
               </li>
               <li>
                 Die <Color2>Gebühr pro Minute</Color2> für 2 mal {time} Minuten:
-                <br></br>2 · {time} · <Color2>{pp(data.zeitkosten)} €</Color2> ={' '}
-                {pp(2 * data.zeitkosten * time)} €
+                <br></br>2 · {time} · <Color2>{pp(data.zeitkosten)} </Color2> ={' '}
+                {pp(2 * data.zeitkosten * time)} [€]
               </li>
             </ul>
             <p>
-              Addiere die Beträge: {pp(data.fixkosten * 2)} € +{' '}
-              {pp(2 * data.zeitkosten * time)} € ={' '}
-              {pp(2 * data.zeitkosten * time + data.fixkosten * 2)} €
+              Addiere die Beträge: {pp(data.fixkosten * 2)} +{' '}
+              {pp(2 * data.zeitkosten * time)} ={' '}
+              {pp(2 * data.zeitkosten * time + data.fixkosten * 2)} [€]
             </p>
             <p>
               Damit bezahlt Tom{' '}
@@ -307,7 +302,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         const time = data.weg / (data.pace / 60)
         const tag = data.zeitkosten * time + data.fixkosten * 2
@@ -332,13 +327,7 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
               <text
@@ -346,7 +335,7 @@ export const exercise136: Exercise<DATA> = {
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -355,7 +344,7 @@ export const exercise136: Exercise<DATA> = {
                 y1={toY(0)}
                 x2={toX(12)}
                 y2={toY(12)}
-                stroke="blue"
+                stroke="black"
                 strokeWidth={2}
               />
             </svg>
@@ -387,7 +376,6 @@ export const exercise136: Exercise<DATA> = {
         const tag = data.zeitkosten * time + data.fixkosten * 2
         return (
           <>
-            <p>Bedeutung:</p>
             <ul>
               <li>
                 x ist die <strong>Anzahl der Monate</strong>, die Tom mit dem
@@ -407,7 +395,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         const time = data.weg / (data.pace / 60)
         const tag = data.zeitkosten * time + data.fixkosten * 2
@@ -590,28 +578,29 @@ export const exercise136: Exercise<DATA> = {
         }
         return (
           <>
-            <p>Das Koordinatensystem sieht etwa so aus:</p>
+            <p>
+              Zu Beginn - also bei 0 Monaten - starten die Kosten für den
+              gekauften E-Scooter beim Kaufpreis von {data.cost} €.
+              <br></br>
+              Markiere den <Color1>Punkt (0 ∣ {data.cost})</Color1> im
+              Koordinatensystem:
+            </p>
             <svg viewBox="0 0 328 260">
               <image
                 href="/content/NRW_EESA/136_KS.png"
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
+
               <text
                 x={230}
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -620,17 +609,136 @@ export const exercise136: Exercise<DATA> = {
                 y1={toY(0)}
                 x2={toX(12)}
                 y2={toY(12)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={toX(0) - 2}
+                y={toY2(0) + 2}
+                fontSize={9}
+                textAnchor="right"
                 stroke="blue"
+              >
+                X
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>
+              Nach 10 Monaten sind 10 · 10 € = 100 € monatliche Kosten
+              dazugekommen. Insgesamt sind es nach 10 Monaten also {data.cost} €
+              + 100 € = {data.cost + 100} €. <br></br>Markiere auch den{' '}
+              <Color1>Punkt (10 ∣ {data.cost + 100})</Color1> im
+              Koordinatensystem:
+            </p>
+            <svg viewBox="0 0 328 260">
+              <image
+                href="/content/NRW_EESA/136_KS.png"
+                height="260"
+                width="328"
+              />
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
+                Gesamtkosten in €
+              </text>
+
+              <text
+                x={230}
+                y={230}
+                fontSize={10}
+                textAnchor="right"
+                fill="black"
+              >
+                Anzahl der Monate
+              </text>
+              <line
+                x1={toX(0)}
+                y1={toY(0)}
+                x2={toX(12)}
+                y2={toY(12)}
+                stroke="black"
+                strokeWidth={2}
+              />
+              <text
+                x={toX(0) - 2}
+                y={toY2(0) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+              <text
+                x={toX(10) - 4}
+                y={toY2(10) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Ziehe eine Linie durch die beiden Punkte:</p>
+            <svg viewBox="0 0 328 260">
+              <image
+                href="/content/NRW_EESA/136_KS.png"
+                height="260"
+                width="328"
+              />
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
+                Gesamtkosten in €
+              </text>
+              <text
+                x={220}
+                y={toY2(12) - 10}
+                fontSize={10}
+                textAnchor="right"
+                fill="blue"
+              >
+                gekaufter E-Scooter
+              </text>
+              <text
+                x={230}
+                y={230}
+                fontSize={10}
+                textAnchor="right"
+                fill="black"
+              >
+                Anzahl der Monate
+              </text>
+              <line
+                x1={toX(0)}
+                y1={toY(0)}
+                x2={toX(12)}
+                y2={toY(12)}
+                stroke="black"
                 strokeWidth={2}
               />
               <line
                 x1={toX2(0)}
-                y1={toY2(0)}
+                y1={toY2(0) - 1}
                 x2={toX2(12)}
-                y2={toY2(12)}
-                stroke="orange"
+                y2={toY2(12) - 1}
+                stroke="blue"
                 strokeWidth={2}
               />
+              <text
+                x={toX(0) - 2}
+                y={toY2(0) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
+              <text
+                x={toX(10) - 4}
+                y={toY2(10) + 2}
+                fontSize={9}
+                textAnchor="right"
+                stroke="blue"
+              >
+                X
+              </text>
             </svg>
           </>
         )
@@ -638,7 +746,7 @@ export const exercise136: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       task({ data }) {
         return (
           //f)
@@ -659,11 +767,14 @@ export const exercise136: Exercise<DATA> = {
             </p>
             <p>
               Nach einigen Monaten werden die Kosten für den angemieteten
-              Scooter größer sein, sodass sich der Kauf langfristig immer lohnt.
+              Scooter größer sein, sodass sich der Kauf{' '}
+              <strong>langfristig immer lohnt.</strong>
             </p>
             <p>
-              Anschaulich zeigt der Schnittpunkt der Geraden den Zeitpunkt, wann
-              sich der Kauf des Scooters lohnt.
+              <strong>
+                Anschaulich zeigt der Schnittpunkt der Geraden den Zeitpunkt,
+                wann sich der Kauf des Scooters lohnt.
+              </strong>
             </p>
           </>
         )

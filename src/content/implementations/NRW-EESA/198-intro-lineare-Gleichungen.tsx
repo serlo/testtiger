@@ -1,5 +1,6 @@
 import { Exercise } from '@/data/types'
-import { buildEquation } from '@/helper/math-builder'
+import { Color2 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 
 interface DATA {
   a: number
@@ -15,8 +16,8 @@ export const exercise198: Exercise<DATA> = {
   title: 'Lineare Gleichungen',
   source: '',
   useCalculator: false,
-  duration: 42,
-  points: 42,
+  duration: 4,
+  points: 2,
   generator(rng) {
     return {
       a: rng.randomIntBetween(2, 5),
@@ -32,14 +33,56 @@ export const exercise198: Exercise<DATA> = {
   constraint({ data }) {
     return true
   },
+  example() {
+    return (
+      <>
+        <style>
+          {`
+    .explanation-box {
+      border: 1px solid lightblue;
+      padding: 0px 8px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  `}
+        </style>
+        <p>Löse die Gleichung nach x auf:</p>
+        {buildEquation([[<>4 x - 2</>, <>=</>, <>2</>]])}
+        <br></br>
+        <Color2>
+          <b>Antwort</b>: x = <b>1</b>.
+        </Color2>
+        <br></br>
+        <br></br>
+        <ExplanationBox>
+          <p>
+            Rechnung:
+            <hr style={{ margin: '10px 0' }} />
+            {buildEquation([
+              [<>4 x - 2</>, <>=</>, <>2</>, <>| + 2</>],
+              [<>4 x</>, <>=</>, <>4</>, <>| : 4</>],
+              [
+                <>
+                  <b>x</b>
+                </>,
+                <>
+                  <b>=</b>
+                </>,
+                <>
+                  <b>1</b>
+                </>,
+              ],
+            ])}
+          </p>
+        </ExplanationBox>
+      </>
+    )
+  },
   task({ data }) {
     const rechts = data.a * data.x_sol + data.b
     return (
       <>
-        <p>
-          <b>Starte mit einer Aufgabe zum Aufwärmen:</b>
-        </p>
-        <p>Löse die Gleichung:</p>
+        <p>Löse die Gleichung nach x auf:</p>
         {buildEquation([
           [
             <>

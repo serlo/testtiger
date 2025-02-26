@@ -1,7 +1,7 @@
 import { Exercise } from '@/data/types'
-import { Color1, Color4, Color5 } from '@/helper/colors'
+import { Color1, Color2, Color3, Color4, Color5 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
-import { buildEquation } from '@/helper/math-builder'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -22,7 +22,7 @@ export const exercise119: Exercise<DATA> = {
   title: 'Bambus',
   source: '2022 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     return {
       wachsen: rng.randomIntBetween(3, 7) * 10,
@@ -108,9 +108,50 @@ export const exercise119: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return <></>
+      },
+      example() {
+        return (
+          <>
+            <p>
+              Schnittlauch wächst unter guten Bedingungen ca. 2 cm pro Woche.
+            </p>
+            <svg viewBox="0 0 328 160">
+              <image
+                href="/content/NRW_EESA/Schnittlauch.png"
+                height="160"
+                width="328"
+              />
+            </svg>
+            <p>
+              Juri hat einen Schnittlauch auf 5 cm Länge gekürzt. Bestimme die
+              Höhe des Schnittlauchs nach 3 Wochen unter guten Bedingungen.
+            </p>
+            <p>
+              <Color2>
+                <b>Antwort:</b> Der Schnittlauch hat nach 3 Wochen eine Höhe von{' '}
+                <b>11 cm</b>.
+              </Color2>
+            </p>
+            <ExplanationBox>
+              <p>
+                Erklärung: <hr style={{ margin: '10px 0' }} />
+                Der Schnittlauch wächst <Color3>2 cm</Color3> in einer Woche.
+                <br></br>
+                In <Color1>3 Wochen</Color1> wächst der Schnittlauch<br></br>
+                <b>
+                  <Color1>3</Color1> · <Color3>2 cm</Color3> = 6 cm
+                </b>
+              </p>
+              <p>
+                Addiere das zur Startlänge von 5 cm:<br></br>
+                <b>5 cm + 6 cm = 11 cm</b>
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         return (
@@ -214,8 +255,16 @@ export const exercise119: Exercise<DATA> = {
           <>
             <p>
               Es ist hilfreich mit dem y-Achsenabschnitt{' '}
-              <Color1>{data.start}</Color1> anzufangen und die Gerade mit einem
-              Steigungsdreieck zu zeichnen:
+              <Color1>{data.start}</Color1> anzufangen. Den kannst du aus der
+              Gleichung ablesen: y = {ppFrac(data.wachsen / 100)} ​x +{' '}
+              <Color1>{data.start}</Color1>.<br></br>
+              <br></br>
+              Dann zeichnest du das Steigungsdreieck. Das kannst du aus der
+              Steigung <Color2>{ppFrac(data.wachsen / 100)}</Color2> ablesen.
+              Der <Color2>Zähler</Color2> (obere Zahl) ist immer die{' '}
+              <Color2>Höhe</Color2> des Steigungsdreiecks und der{' '}
+              <Color2>Nenner</Color2> (untere Zahl) ist immer die
+              <Color2> Breite</Color2> des Steigungsdreiecks.
             </p>
             <p></p>
             <svg viewBox="0 0 328 220">
@@ -243,6 +292,15 @@ export const exercise119: Exercise<DATA> = {
                 Höhe in Metern
               </text>
               <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
+              <text
                 x={toX(nenner / 2)}
                 y={toY(data.start) + 15}
                 fontSize="15"
@@ -260,15 +318,6 @@ export const exercise119: Exercise<DATA> = {
               >
                 {zaehler}
               </text>
-
-              <line
-                x1={toX(-1) - 1}
-                y1={toY((-1 * data.wachsen) / 100 + data.start)}
-                x2={toX(19) - 1}
-                y2={toY((19 * data.wachsen) / 100 + data.start)}
-                stroke="blue"
-                strokeWidth={2}
-              />
               <line
                 x1={toX(0) - 1}
                 y1={toY(data.start)}
@@ -285,6 +334,24 @@ export const exercise119: Exercise<DATA> = {
                 stroke="green"
                 strokeWidth={2}
               />
+              <line
+                x1={toX(-1) - 1}
+                y1={toY((-1 * data.wachsen) / 100 + data.start)}
+                x2={toX(19) - 1}
+                y2={toY((19 * data.wachsen) / 100 + data.start)}
+                stroke="black"
+                strokeWidth={2}
+              />
+
+              <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
             </svg>
           </>
         )
@@ -292,7 +359,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -355,7 +422,8 @@ export const exercise119: Exercise<DATA> = {
                         (data.height - data.start) / (data.wachsen / 100),
                         2,
                       ),
-                    )}
+                    )}{' '}
+                    [Tage]
                   </strong>
                 </>,
               ],
@@ -371,7 +439,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return (
           <>
@@ -425,7 +493,7 @@ export const exercise119: Exercise<DATA> = {
             </p>
             <p>
               {data.length * 100} : {data.dia} ={' '}
-              <strong>{(data.length * 100) / data.dia}</strong>
+              <strong>{(data.length * 100) / data.dia} [Rohre]</strong>
             </p>
             <p>
               Herr Paulsen benötigt etwa{' '}
@@ -437,7 +505,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -601,7 +669,7 @@ export const exercise119: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 3,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>

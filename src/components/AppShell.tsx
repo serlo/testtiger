@@ -27,6 +27,7 @@ import { Privacy } from './pages/Privacy'
 import { CaptureOverlay } from './exercise-view/CaptureOverlay'
 import { Feedback } from './pages/Feedback'
 import { Video } from './pages/Video'
+import { Survey } from './pages/Survey'
 
 setupIonicReact({})
 
@@ -79,6 +80,7 @@ export function AppShell() {
           <Route path="/privacy" render={() => <Privacy />} />
           <Route path="/feedback" render={() => <Feedback />} />
           <Route path="/video" render={() => <Video />} />
+          <Route path="/survey" render={() => <Survey />} />
           <Route
             path=""
             render={() => <Redirect to="/onboarding" />}

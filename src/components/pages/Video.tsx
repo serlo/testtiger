@@ -2,6 +2,7 @@ import { IonButton, IonContent, IonFooter, IonPage } from '@ionic/react'
 import { useHistory } from 'react-router'
 import { ExerciseView } from '../exercise-view/ExerciseView'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
+import { useEffect } from 'react'
 
 export function Video() {
   const videoRedirectUrl = ExerciseViewStore.useState(s => s.videoRedirectUrl)
@@ -11,7 +12,12 @@ export function Video() {
     <IonPage className="sm:max-w-[375px] mx-auto">
       <IonContent className="ion-padding">
         <div className="flex items-center relative h-full flex-col justify-center">
-          <video controls className="max-h-[calc(100%-100px)]" autoPlay>
+          <video
+            controls
+            className="max-h-[calc(100%-100px)]"
+            autoPlay
+            key="videoUrl"
+          >
             <source
               src={
                 videoUrl ??

@@ -27,6 +27,7 @@ export function ExerciseViewContent() {
   const ref = useRef<HTMLDivElement>(null)
 
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
+  const introText = ExerciseViewStore.useState(s => s.introText)
 
   useEffect(() => {
     if (
@@ -78,10 +79,7 @@ export function ExerciseViewContent() {
   return (
     <div
       ref={ref}
-      className={clsx(
-        'w-full h-full overflow-y-auto',
-        examplePrescreen ? 'bg-purple-100' : 'bg-gray-100',
-      )}
+      className={clsx('w-full h-full overflow-y-auto bg-gray-100')}
       onClick={() => {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -126,9 +124,16 @@ export function ExerciseViewContent() {
             <>
               <br />
               <br />
-              Schnapp dir <strong>Stift</strong> und <strong>Papier</strong> und{' '}
-              <strong>scanne</strong>, wenn du fertig bist, deinen Rechenweg
-              ein, oder <strong>tippe</strong> deine Lösung in den Chat.
+              {introText ? (
+                introText
+              ) : (
+                <>
+                  Schnapp dir <strong>Stift</strong> und <strong>Papier</strong>{' '}
+                  und <strong>scanne</strong>, wenn du fertig bist, deinen
+                  Rechenweg ein, oder <strong>tippe</strong> deine Lösung in den
+                  Chat.
+                </>
+              )}
             </>
           ) : (
             <>
@@ -138,22 +143,6 @@ export function ExerciseViewContent() {
             </>
           )}
         </div>
-        {examplePrescreen && (
-          <>
-            <div className="text-center -mt-4 mb-6">
-              <button
-                className="bg-green-200 hover:bg-green-300 px-4 py-2 rounded-lg"
-                onClick={() => {
-                  ExerciseViewStore.update(s => {
-                    s.examplePrescreen = false
-                  })
-                }}
-              >
-                Selber rechnen
-              </button>
-            </div>
-          </>
-        )}
         {pages.map((page, i) => {
           // TODO: find appropriate content for this page
           const id = page.context
@@ -172,27 +161,7 @@ export function ExerciseViewContent() {
             const singleExercise = exercise as SingleExercise<any>
             return (
               <>
-                {renderContentCard(
-                  i,
-                  singleExercise.duration ?? '?',
-                  singleExercise.points ?? '?',
-                  <>
-                    {
-                      <>
-                        {renderContentElement(
-                          singleExercise.task({
-                            data:
-                              examplePrescreen && singleExercise.exampleData
-                                ? singleExercise.exampleData
-                                : data,
-                          }),
-                        )}
-                      </>
-                    }
-                  </>,
-                  page.displayIndex,
-                )}
-                {examplePrescreen &&
+                {!examplePrescreen &&
                   renderContentCard(
                     i,
                     singleExercise.duration ?? '?',
@@ -201,15 +170,29 @@ export function ExerciseViewContent() {
                       {
                         <>
                           {renderContentElement(
-                            singleExercise.solution({
-                              data: singleExercise.exampleData ?? data,
+                            singleExercise.task({
+                              data:
+                                examplePrescreen && singleExercise.exampleData
+                                  ? singleExercise.exampleData
+                                  : data,
                             }),
                           )}
                         </>
                       }
                     </>,
                     page.displayIndex,
-                    `solution-${i}`,
+                  )}
+                {examplePrescreen &&
+                  singleExercise.example &&
+                  renderContentCard(
+                    i,
+                    singleExercise.duration ?? '?',
+                    singleExercise.points ?? '?',
+                    <>
+                      {<>{renderContentElement(singleExercise.example())}</>}
+                    </>,
+                    page.displayIndex,
+                    `example-${i}`,
                   )}
               </>
             )
@@ -246,55 +229,50 @@ export function ExerciseViewContent() {
 
             return (
               <>
-                {introComps.length > 0 && introComps.some(e => e) && (
-                  <>
-                    {page.context && page.displayIndex?.includes('a') && (
-                      <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
-                        <div className="text-center inset-0 h-24 w-24 rounded-full bg-gray-50">
-                          <span className="mt-2 inline-block">
-                            {page.context}
-                          </span>
+                {introComps.length > 0 &&
+                  introComps.some(e => e) &&
+                  !examplePrescreen && (
+                    <>
+                      {page.context && page.displayIndex?.includes('a') && (
+                        <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
+                          <div className="text-center inset-0 h-24 w-24 rounded-full bg-gray-50">
+                            <span className="mt-2 inline-block">
+                              {page.context}
+                            </span>
+                          </div>
                         </div>
+                      )}
+                      <div className="px-5 bg-white mb-6">
+                        {renderContentElement(<>{introComps}</>, i.toString())}
                       </div>
-                    )}
-                    <div className="px-5 bg-white mb-6">
-                      {renderContentElement(<>{introComps}</>, i.toString())}
-                    </div>
-                  </>
-                )}
-                {renderContentCard(
-                  i,
-                  task.duration ?? '?',
-                  task.points ?? '?',
-                  <>
-                    {renderContentElement(
-                      <div>
-                        {task.task({
-                          data:
-                            examplePrescreen && exercise.exampleData
-                              ? exercise.exampleData
-                              : data,
-                        })}
-                      </div>,
-                    )}
-                  </>,
-                  page.displayIndex,
-                )}
-                {examplePrescreen &&
+                    </>
+                  )}
+                {!examplePrescreen &&
                   renderContentCard(
                     i,
-
                     task.duration ?? '?',
                     task.points ?? '?',
                     <>
                       {renderContentElement(
                         <div>
-                          {task.solution({
-                            data: exercise.exampleData ?? data,
+                          {task.task({
+                            data:
+                              examplePrescreen && exercise.exampleData
+                                ? exercise.exampleData
+                                : data,
                           })}
                         </div>,
                       )}
                     </>,
+                    page.displayIndex,
+                  )}
+                {examplePrescreen &&
+                  task.example &&
+                  renderContentCard(
+                    i,
+                    task.duration ?? '?',
+                    task.points ?? '?',
+                    <>{renderContentElement(<div>{task.example()}</div>)}</>,
                     page.displayIndex,
                     `solution-${i}`,
                   )}
@@ -313,7 +291,7 @@ export function ExerciseViewContent() {
                   })
                 }}
               >
-                Selber rechnen
+                Weiter
               </button>
             </div>
           </>
@@ -352,13 +330,6 @@ export function ExerciseViewContent() {
           <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-hidden">
             <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
               <span className="mt-2 inline-block">{numbering}</span>
-            </div>
-          </div>
-        )}
-        {alternativeKey?.includes('solution') && (
-          <div className="absolute -top-8 right-7 font-bold font-xl w-24 h-8 overflow-hidden">
-            <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
-              <span className="mt-2 inline-block">Lösung</span>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color5 } from '@/helper/colors'
-import { buildInlineFrac } from '@/helper/math-builder'
+import { Color1, Color2, Color5 } from '@/helper/colors'
+import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -38,7 +38,7 @@ export const exercise128: Exercise<DATA> = {
   title: 'Zugfahrt',
   source: '2023 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 30,
+  duration: 26,
   generator(rng) {
     return {
       case: rng.randomIntBetween(1, 4),
@@ -50,10 +50,10 @@ export const exercise128: Exercise<DATA> = {
       strecke_1: rng.randomIntBetween(30, 70),
       strecke_2: rng.randomIntBetween(100, 170),
       strecke_3: rng.randomIntBetween(390, 420),
-      zeit_1: rng.randomIntBetween(10, 30),
+      zeit_1: rng.randomIntBetween(18, 30),
 
-      zeit_2: rng.randomIntBetween(44, 50),
-      zeit_3: rng.randomIntBetween(51, 59),
+      zeit_2: rng.randomIntBetween(44, 49),
+      zeit_3: rng.randomIntBetween(51, 58),
       zeit_4: rng.randomIntBetween(36, 40),
       zeit_5: rng.randomIntBetween(46, 50),
       zeit_6: rng.randomIntBetween(0, 5),
@@ -211,7 +211,7 @@ export const exercise128: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -230,15 +230,35 @@ export const exercise128: Exercise<DATA> = {
         return (
           <>
             <p>
-              Die Fahrt beginnt um 07:{data.zeit_1} Uhr und endet um 10:0
-              {data.zeit_6} Uhr.
+              Die Fahrt beginnt um <b>07:{data.zeit_1} Uhr</b> und endet um{' '}
+              <b>
+                10:0
+                {data.zeit_6} Uhr
+              </b>
+              . <br></br>Du kannst diese Zeit in zwei Teile einteilen:
+            </p>
+            {buildEquation([
+              [
+                <>07:{data.zeit_1} Uhr - 8 Uhr</>,
+                <>:</>,
+                <>{60 - data.zeit_1} min</>,
+              ],
+              [
+                <>8 Uhr - 10:0{data.zeit_6}</>,
+                <>:</>,
+                <>2 h {data.zeit_6} min</>,
+              ],
+            ])}
+            <p>
+              Addiere die beiden Zeiten:<br></br> {60 - data.zeit_1} min + 2 h{' '}
+              {data.zeit_6} min =
+              <strong> 2 h {60 - data.zeit_1 + data.zeit_6} min</strong>
             </p>
             <p>
-              Es vergehen{' '}
+              Die Fahrt dauert{' '}
               <strong>
-                2 ganze Stunden und {60 - data.zeit_1 + data.zeit_6} Minuten
+                2 Stunden und {60 - data.zeit_1 + data.zeit_6} Minuten
               </strong>
-              .
             </p>
           </>
         )
@@ -246,7 +266,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 3,
-      duration: 3,
+      duration: 6,
       intro({ data }) {
         return <></>
       },
@@ -264,15 +284,33 @@ export const exercise128: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
+            <p>
+              Berechne die Länge der Teilstrecken:
+              <ul>
+                <li>
+                  Aachen - Lüttich: <br></br>
+                  {data.strecke_1} km
+                </li>
+                <li>
+                  Lüttich - Brüssel: <br></br>
+                  {data.strecke_2} km - {data.strecke_1} km ={' '}
+                  {data.strecke_2 - data.strecke_1} km
+                </li>
+                <li>
+                  Brüssel - Paris:<br></br>
+                  {data.strecke_3} km - {data.strecke_2} km ={' '}
+                  {data.strecke_3 - data.strecke_2} km
+                </li>
+              </ul>
+            </p>
             <ol>
-              <li>Die längste Teilstrecke ist von Brüssel nach Paris.</li>
               <li>
-                Laut Fahrplan betragen die Strecken ab Aachen {data.strecke_2}{' '}
-                km bis Brüssel und {data.strecke_3} km bis Paris.<br></br>
-                Zwischen Brüssel und Paris sind es damit:<br></br>
-                <br></br>
-                {data.strecke_3} − {data.strecke_2} ={' '}
-                <strong>{data.strecke_3 - data.strecke_2} [km]</strong>
+                Die <b>längste Teilstrecke</b> ist <b>von Brüssel nach Paris</b>
+                .
+              </li>
+              <li>
+                Die Strecke ist
+                <strong> {data.strecke_3 - data.strecke_2} km</strong> lang.
               </li>
             </ol>
           </>
@@ -281,7 +319,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -303,41 +341,45 @@ export const exercise128: Exercise<DATA> = {
         return (
           <>
             <p>
-              <strong>Zeit in Stunden</strong>
+              Bestimme die Geschwindigkeit, indem du die{' '}
+              <Color1>Strecke</Color1> durch die <Color2>Zeit </Color2>
+              teilst.
+            </p>
+            <hr style={{ margin: '10px 0' }} />
+            <p>
+              Die <Color1>Strecke</Color1> zwischen Aachen und Lüttich beträgt{' '}
+              <Color1>{data.strecke_1} km</Color1>.{' '}
             </p>
             <p>
-              Zwischen Aachen und Lüttich beträgt die Strecke {data.strecke_1}{' '}
-              km.
+              Der Zug benötigt für diese Strecke{' '}
+              <Color2>{data.zeit_2 - data.zeit_1} Minuten Zeit</Color2>. Rechne
+              das in Stunden um:{' '}
+              <Color2>
+                {data.zeit_2 - data.zeit_1} min : 60{' '}
+                {((data.zeit_2 - data.zeit_1) / 60) % 1 == 0 ? '=' : '≈'}{' '}
+                {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} h
+              </Color2>
             </p>
+
+            <hr style={{ margin: '10px 0' }} />
             <p>
-              Der Zug benötigt für diese Strecke {data.zeit_2 - data.zeit_1}{' '}
-              Minuten. Rechne diese Zeit in Stunden um:
-            </p>
-            <p>
-              {buildInlineFrac(<>{data.zeit_2 - data.zeit_1}</>, <>60</>)}{' '}
-              {((data.zeit_2 - data.zeit_1) / 60) % 1 == 0 ? '=' : '≈'}{' '}
-              {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} [h]
-            </p>
-            <p>
-              <strong>Geschwindigkeit bestimmen</strong>
-            </p>
-            <p>
-              {buildInlineFrac(
-                <>{data.strecke_1} km</>,
-                <>
-                  {' '}
-                  {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))} h
-                </>,
-              )}{' '}
+              Jetzt kannst du die Geschwindigkeit bestimmen:<br></br>
+              <Color1>Strecke</Color1> : <Color2>Zeit </Color2> ={' '}
+              <Color1>{data.strecke_1}</Color1> :{' '}
+              <Color2>
+                {pp(roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2))}
+              </Color2>
               ={' '}
-              {pp(
-                roundToDigits(
-                  data.strecke_1 /
-                    roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2),
-                  2,
-                ),
-              )}
-              {buildInlineFrac(<>km</>, <>h</>)}
+              <strong>
+                {pp(
+                  roundToDigits(
+                    data.strecke_1 /
+                      roundToDigits((data.zeit_2 - data.zeit_1) / 60, 2),
+                    2,
+                  ),
+                )}{' '}
+                [{buildInlineFrac(<>km</>, <>h</>)}]
+              </strong>
             </p>
           </>
         )
@@ -345,14 +387,26 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         function toX(n: number) {
+          // n entspricht der Zeit in 10-Minuten-Schritten (z. B. 0.5 = 5 min, 1 = 10 min usw.)
           return 33 + n * 15.6
         }
         function toY(n: number) {
+          // n entspricht der Strecke in 50-Kilometer-Schritten (z. B. 0.5 = 25 km, 1 = 50 km usw.)
           return 157 - n * 15.6
         }
+
+        // Berechnungen für das vertikale Gitternetz (x-Achse)
+        const availableWidth = 328 - 33 // 295
+        const gridSpacingX = 7.8 // 5 min = 7.8 SVG-Einheiten
+        const numXSteps = Math.floor(availableWidth / gridSpacingX) + 1
+
+        // Für das horizontale Gitternetz (y-Achse)
+        // Mit numYSteps = 21 decken wir bis 500 km ab, allerdings wird 500 km später nicht beschriftet.
+        const numYSteps = 21
+
         return (
           <>
             <p>
@@ -360,134 +414,260 @@ export const exercise128: Exercise<DATA> = {
               vereinfacht dargestellt.
             </p>
             <svg viewBox="0 0 328 180">
-              <image
-                href="/content/NRW_EESA/128_Zugfahrt2.PNG"
-                height="180"
-                width="328"
+              {/* Vertikale Gitternetzlinien und Beschriftungen (x-Achse) */}
+              {Array.from({ length: numXSteps }, (_, i) => {
+                const param = i * 0.5 // 0.5 entspricht 5 min
+                const x = toX(param)
+                const timeMinutes = i * 5
+                return (
+                  <g key={`x-grid-${i}`}>
+                    <line
+                      x1={x}
+                      y1="157"
+                      x2={x}
+                      y2="0"
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung alle 10 min (ohne Einheit) plus Tick-Mark */}
+                    {timeMinutes % 10 === 0 && (
+                      <>
+                        <line
+                          x1={x}
+                          y1="157"
+                          x2={x}
+                          y2="160"
+                          stroke="black"
+                          strokeWidth="1"
+                        />
+                        <text x={x} y="165" fontSize="6" textAnchor="middle">
+                          {timeMinutes}
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
+              })}
+
+              {/* Horizontale Gitternetzlinien und Beschriftungen (y-Achse) */}
+              {Array.from({ length: numYSteps }, (_, j) => {
+                const km = j * 25
+                const y = toY(j * 0.5)
+                return (
+                  <g key={`y-grid-${j}`}>
+                    <line
+                      x1="33"
+                      y1={y}
+                      x2="328"
+                      y2={y}
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung alle 100 km (ohne Einheit), außer bei 0 km und 500 km */}
+                    {km !== 0 && km % 100 === 0 && km < 500 && (
+                      <>
+                        <line
+                          x1="30"
+                          y1={y}
+                          x2="33"
+                          y2={y}
+                          stroke="black"
+                          strokeWidth="1"
+                        />
+                        <text x="15" y={y + 3} fontSize="6" textAnchor="start">
+                          {km}
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
+              })}
+              <defs>
+                {/* Definition eines Pfeilmarkers */}
+                <marker
+                  id="arrow"
+                  markerWidth="6"
+                  markerHeight="6"
+                  refX="3"
+                  refY="3"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                </marker>
+              </defs>
+
+              {/* Koordinatensystem */}
+              {/* x-Achse (verschobenes Ende, sodass der Pfeil vollständig sichtbar ist) */}
+              <line
+                x1="33"
+                y1="157"
+                x2="324" // statt 328
+                y2="157"
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
               />
-              <text
-                x={toX((data.zeit_2 - data.zeit_1) / 10) - 1}
-                y={toY(data.strecke_1 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
-                stroke="blue"
-                fill="blue"
-              >
-                o
+              {/* y-Achse (Endpunkt von 0 auf 5 verschoben) */}
+              <line
+                x1="33"
+                y1="157"
+                x2="33"
+                y2="5" // statt 0
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
+              />
+
+              {/* Achsenbeschriftungen */}
+              {/* x-Achse: "Zeit in min" zentriert unter der Achse */}
+              <text x={324 - 40} y="175" fontSize="9" textAnchor="right">
+                Zeit in min
               </text>
+              {/* y-Achse: "Strecke in km"  */}
               <text
-                x={toX((data.zeit_3 - data.zeit_1) / 10)}
-                y={toY(data.strecke_1 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
-                stroke="blue"
-                fill="blue"
+                x="8"
+                y="40"
+                fontSize="9"
+                textAnchor="middle"
+                transform="rotate(-90 8,40)"
               >
-                o
+                Strecke in km
               </text>
-              <text
-                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10) - 2}
-                y={toY(data.strecke_2 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
-                stroke="blue"
-                fill="blue"
-              >
-                o
-              </text>
-              <text
-                x={toX((data.zeit_5 + 60 - data.zeit_1) / 10) - 2}
-                y={toY(data.strecke_2 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
-                stroke="blue"
-                fill="blue"
-              >
-                o
-              </text>
-              <text
-                x={15}
-                y={145}
-                fontSize={7}
-                textAnchor="right"
-                stroke="blue"
-              >
+
+              {/* Stationsbeschriftungen */}
+              <text x="15" y="150" fontSize="8" textAnchor="right">
                 Aachen
               </text>
               <text
                 x={toX((data.zeit_2 - data.zeit_1) / 10)}
                 y={toY(data.strecke_1 / 50) - 4}
-                fontSize={7}
+                fontSize={8}
                 textAnchor="middle"
-                stroke="blue"
               >
                 Lüttich
               </text>
               <text
                 x={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
                 y={toY(data.strecke_2 / 50) - 4}
-                fontSize={7}
+                fontSize={8}
                 textAnchor="middle"
-                stroke="blue"
               >
                 Brüssel
               </text>
               <text
                 x={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
                 y={toY(data.strecke_3 / 50) - 4}
-                fontSize={7}
+                fontSize={8}
                 textAnchor="middle"
-                stroke="blue"
               >
                 Paris
               </text>
+
+              {/* Verbindungslinien (Fahrtverlauf) */}
               <line
-                x1={33}
-                y1={157}
+                x1="33"
+                y1="157"
                 x2={toX((data.zeit_2 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_1 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
                 x1={toX((data.zeit_2 - data.zeit_1) / 10)}
                 y1={toY(data.strecke_1 / 50)}
                 x2={toX((data.zeit_3 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_1 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
-                x2={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
-                y2={toY(data.strecke_2 / 50)}
                 x1={toX((data.zeit_3 - data.zeit_1) / 10)}
                 y1={toY(data.strecke_1 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                x2={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
+                y2={toY(data.strecke_2 / 50)}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
                 x1={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
                 y1={toY(data.strecke_2 / 50)}
                 x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_2 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
-                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
-                y1={toY(data.strecke_3 / 50)}
                 x1={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
+                y1={toY(data.strecke_3 / 50)}
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_2 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
+              {/* Markierung Aachen */}
               <text
-                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10) - 2}
-                y={toY(data.strecke_3 / 50) + 1}
-                fontSize={5}
+                x={33 - 1}
+                y={157 + 1}
+                fontSize="4"
                 textAnchor="right"
-                stroke="blue"
-                fill="blue"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              {/* Markierung Lüttich 1 */}
+              <text
+                x={toX((data.zeit_2 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_1 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              {/* Markierung Lüttich 2 */}
+              <text
+                x={toX((data.zeit_3 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_1 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              {/* Markierung Brüssel 1 */}
+              <text
+                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              {/* Markierung Brüssel 2 */}
+              <text
+                x={toX((data.zeit_5 + 60 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              {/* Markierung am Endpunkt (z. B. Paris) */}
+              <text
+                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_3 / 50) + 1}
+                fontSize="3"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
               >
                 o
               </text>
@@ -502,6 +682,7 @@ export const exercise128: Exercise<DATA> = {
           </>
         )
       },
+
       task({ data }) {
         return (
           //d)
@@ -515,166 +696,320 @@ export const exercise128: Exercise<DATA> = {
       },
       solution({ data }) {
         function toX(n: number) {
+          // n entspricht der Zeit in 10-Minuten-Schritten (z. B. 0.5 = 5 min, 1 = 10 min usw.)
           return 33 + n * 15.6
         }
         function toY(n: number) {
+          // n entspricht der Strecke in 50-Kilometer-Schritten (z. B. 0.5 = 25 km, 1 = 50 km usw.)
           return 157 - n * 15.6
         }
+        // Berechnungen für das vertikale Gitternetz (x-Achse)
+        const availableWidth = 328 - 33 // 295
+        const gridSpacingX = 7.8 // 5 min = 7.8 SVG-Einheiten
+        const numXSteps = Math.floor(availableWidth / gridSpacingX) + 1
+
+        // Für das horizontale Gitternetz (y-Achse)
+        // Mit numYSteps = 21 decken wir bis 500 km ab, allerdings wird 500 km später nicht beschriftet.
+        const numYSteps = 21
+
+        // Berechnung der Strecke (in km) nach 50 Minuten, anhand deiner Interpolation:
         const weg =
           data.strecke_1 +
           ((50 - data.zeit_3 + data.zeit_1) *
             (data.strecke_2 - data.strecke_1)) /
-            (data.zeit_4 + 60 - data.zeit_2)
+            (data.zeit_4 + 60 - data.zeit_3)
+
         return (
           <>
             <svg viewBox="0 0 328 180">
-              <image
-                href="/content/NRW_EESA/128_Zugfahrt2.PNG"
-                height="180"
-                width="328"
+              {/* Vertikale Gitternetzlinien und Beschriftungen (x-Achse) */}
+              {Array.from({ length: numXSteps }, (_, i) => {
+                const param = i * 0.5 // 0.5 entspricht 5 min
+                const x = toX(param)
+                const timeMinutes = i * 5
+                return (
+                  <g key={`x-grid-${i}`}>
+                    <line
+                      x1={x}
+                      y1="157"
+                      x2={x}
+                      y2="0"
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung alle 10 min (ohne Einheit) plus Tick-Mark */}
+                    {timeMinutes % 10 === 0 && (
+                      <>
+                        <line
+                          x1={x}
+                          y1="157"
+                          x2={x}
+                          y2="160"
+                          stroke={timeMinutes === 50 ? 'blue' : 'black'}
+                          strokeWidth="1"
+                        />
+                        <text
+                          x={x}
+                          y="165"
+                          fontSize="6"
+                          textAnchor="middle"
+                          fill={timeMinutes === 50 ? 'blue' : 'black'}
+                        >
+                          {timeMinutes}
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
+              })}
+
+              {/* Horizontale Gitternetzlinien und Beschriftungen (y-Achse) */}
+              {Array.from({ length: numYSteps }, (_, j) => {
+                const km = j * 25
+                const y = toY(j * 0.5)
+                return (
+                  <g key={`y-grid-${j}`}>
+                    <line
+                      x1="33"
+                      y1={y}
+                      x2="328"
+                      y2={y}
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung alle 100 km (ohne Einheit), außer bei 0 km und 500 km */}
+                    {km !== 0 && km % 100 === 0 && km < 500 && (
+                      <>
+                        <line
+                          x1="30"
+                          y1={y}
+                          x2="33"
+                          y2={y}
+                          stroke="black"
+                          strokeWidth="1"
+                        />
+                        <text x="15" y={y + 3} fontSize="6" textAnchor="start">
+                          {km}
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
+              })}
+
+              <defs>
+                {/* Definition eines Pfeilmarkers */}
+                <marker
+                  id="arrow"
+                  markerWidth="6"
+                  markerHeight="6"
+                  refX="3"
+                  refY="3"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                </marker>
+              </defs>
+
+              {/* Koordinatensystem */}
+              {/* x-Achse (verschobenes Ende, sodass der Pfeil vollständig sichtbar ist) */}
+              <line
+                x1="33"
+                y1="157"
+                x2="324" // statt 328
+                y2="157"
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
               />
-              <text
-                x={toX((data.zeit_2 - data.zeit_1) / 10) - 1}
-                y={toY(data.strecke_1 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
-                stroke="blue"
-                fill="blue"
-              >
-                o
+              {/* y-Achse (Endpunkt von 0 auf 5 verschoben) */}
+              <line
+                x1="33"
+                y1="157"
+                x2="33"
+                y2="5" // statt 0
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
+              />
+
+              {/* Achsenbeschriftungen */}
+              {/* x-Achse: "Zeit in min" zentriert unter der Achse */}
+              <text x={324 - 40} y="175" fontSize="9" textAnchor="right">
+                Zeit in min
               </text>
+              {/* y-Achse: "Strecke in km" */}
               <text
-                x={toX((data.zeit_3 - data.zeit_1) / 10)}
-                y={toY(data.strecke_1 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
-                stroke="blue"
-                fill="blue"
+                x="8"
+                y="40"
+                fontSize="9"
+                textAnchor="middle"
+                transform="rotate(-90 8,40)"
               >
-                o
+                Strecke in km
               </text>
-              <text
-                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10) - 1}
-                y={toY(data.strecke_2 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
+
+              {/* Gestrichelte blaue Linie, die den 50-min-Punkt markiert */}
+              {/* Vertikale Linie: vom x-Achsenwert (bei 50 min) bis zum Schnittpunkt mit der Kurve */}
+              <line
+                x1={toX(5)}
+                y1="157"
+                x2={toX(5)}
+                y2={toY(weg / 50)}
                 stroke="blue"
-                fill="blue"
-              >
-                o
-              </text>
-              <text
-                x={toX((data.zeit_5 + 60 - data.zeit_1) / 10) - 1}
-                y={toY(data.strecke_2 / 50) + 1}
-                fontSize={5}
-                textAnchor="right"
+                strokeWidth="1"
+                strokeDasharray="4,2"
+              />
+              {/* Horizontale Linie: vom Schnittpunkt bis zur y-Achse */}
+              <line
+                x1={toX(5)}
+                y1={toY(weg / 50)}
+                x2="30"
+                y2={toY(weg / 50)}
                 stroke="blue"
-                fill="blue"
-              >
-                o
-              </text>
-              <text
-                x={15}
-                y={145}
-                fontSize={7}
-                textAnchor="right"
-                stroke="blue"
-              >
+                strokeWidth="1"
+                strokeDasharray="4,2"
+              />
+
+              {/* Stationsbeschriftungen */}
+              <text x="15" y="150" fontSize="8" textAnchor="right">
                 Aachen
               </text>
               <text
                 x={toX((data.zeit_2 - data.zeit_1) / 10)}
                 y={toY(data.strecke_1 / 50) - 4}
-                fontSize={7}
+                fontSize={8}
                 textAnchor="middle"
-                stroke="blue"
               >
                 Lüttich
               </text>
               <text
                 x={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
                 y={toY(data.strecke_2 / 50) - 4}
-                fontSize={7}
+                fontSize={8}
                 textAnchor="middle"
-                stroke="blue"
               >
                 Brüssel
               </text>
               <text
                 x={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
                 y={toY(data.strecke_3 / 50) - 4}
-                fontSize={7}
+                fontSize={8}
                 textAnchor="middle"
-                stroke="blue"
               >
                 Paris
               </text>
+
+              {/* Verbindungslinien (Fahrtverlauf) */}
               <line
-                x1={33 + 1}
-                y1={157}
-                x2={toX((data.zeit_2 - data.zeit_1) / 10) + 1}
+                x1="33"
+                y1="157"
+                x2={toX((data.zeit_2 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_1 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
-                x1={toX((data.zeit_2 - data.zeit_1) / 10) + 1}
+                x1={toX((data.zeit_2 - data.zeit_1) / 10)}
                 y1={toY(data.strecke_1 / 50)}
-                x2={toX((data.zeit_3 - data.zeit_1) / 10) + 1}
+                x2={toX((data.zeit_3 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_1 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
-                x2={toX((data.zeit_4 + 60 - data.zeit_1) / 10) + 1}
+                x1={toX((data.zeit_3 - data.zeit_1) / 10)}
+                y1={toY(data.strecke_1 / 50)}
+                x2={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_2 / 50)}
-                x1={toX((data.zeit_3 - data.zeit_1) / 10) + 1}
-                y1={toY(data.strecke_1 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
-                x1={toX((data.zeit_4 + 60 - data.zeit_1) / 10) + 1}
+                x1={toX((data.zeit_4 + 60 - data.zeit_1) / 10)}
                 y1={toY(data.strecke_2 / 50)}
-                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10) + 1}
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_2 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
               <line
-                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10) + 1}
+                x1={toX((data.zeit_6 + 180 - data.zeit_1) / 10)}
                 y1={toY(data.strecke_3 / 50)}
-                x1={toX((data.zeit_6 + 180 - data.zeit_1) / 10) + 1}
+                x2={toX((data.zeit_5 + 60 - data.zeit_1) / 10)}
                 y2={toY(data.strecke_2 / 50)}
-                stroke="blue"
-                strokeWidth={2}
+                stroke="black"
+                strokeWidth={1.5}
               />
+              {/* Markierungen an den Stationen */}
               <text
-                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10) - 2}
-                y={toY(data.strecke_3 / 50) + 2}
-                fontSize={5}
+                x={33 - 1}
+                y={157 + 1}
+                fontSize="4"
                 textAnchor="right"
-                stroke="blue"
-                fill="blue"
+                stroke="black"
+                fill="black"
               >
                 o
               </text>
-              <line
-                x1={toX(5) + 1.5}
-                y1={toY(0) - 1}
-                x2={toX(5) + 1.5}
-                y2={toY(9) - 1}
-                stroke="orange"
-                strokeWidth={2}
-              />
+              <text
+                x={toX((data.zeit_2 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_1 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_3 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_1 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_4 + 60 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_5 + 60 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_2 / 50) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX((data.zeit_6 + 180 - data.zeit_1) / 10) - 1}
+                y={toY(data.strecke_3 / 50) + 1}
+                fontSize="3"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
             </svg>
             <p>
-              Die orange Linie markiert den Zeitpunkt, wenn der Zug 50 Minuten
-              unterwegs ist. Lies den Schnittpunkt der blauen Gerade mit der
-              orangen Linie ab.
+              Die blau gestrichelte Linie hilft dir abzulesen, wie viele
+              Kilometer nach 50 min erreicht sind.
             </p>
             <p>
-              Nach 50 Minuten wurden etwa{' '}
+              Nach 50 Minuten hat der Zug etwa{' '}
               <strong>{Math.round(weg / 5) * 5} km</strong> zurückgelegt.
             </p>
           </>
@@ -683,7 +1018,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -728,7 +1063,7 @@ export const exercise128: Exercise<DATA> = {
               <>
                 <p>
                   In Lüttich und Brüssel sind zwei Abschnitte sichtbar, in denen
-                  der Graph waagerecht verläuft. Dort wird keine Strecke
+                  der Graph <b>waagerecht</b> verläuft. Dort wird keine Strecke
                   zurückgelegt, weil der Zug am Bahnhof steht.
                 </p>
               </>
@@ -736,9 +1071,9 @@ export const exercise128: Exercise<DATA> = {
             {data.case == 2 && (
               <>
                 <p>
-                  In Lüttich verläuft der Graph für eine kurze Zeit waagerecht.
-                  Dort wird keine Strecke zurückgelegt, weil der Zug am Bahnhof
-                  steht.
+                  In Lüttich verläuft der Graph für eine kurze Zeit{' '}
+                  <b>waagerecht</b>. Dort wird keine Strecke zurückgelegt, weil
+                  der Zug am Bahnhof steht.
                 </p>
               </>
             )}
@@ -747,7 +1082,7 @@ export const exercise128: Exercise<DATA> = {
                 <p>
                   Die Geschwindigkeit des Zuges wird durch die Steigung der
                   Gerade in diesem Streckenabschnitt angegeben. Verläuft eine
-                  Gerade steiler als eine andere, ist der Zug schneller
+                  Gerade <b>steiler</b> als eine andere, ist der Zug schneller
                   gefahren.
                 </p>
               </>
@@ -755,9 +1090,9 @@ export const exercise128: Exercise<DATA> = {
             {data.case == 4 && (
               <>
                 <p>
-                  In Brüssel verläuft der Graph für eine kurze Zeit waagerecht.
-                  Dort wird keine Strecke zurückgelegt, weil der Zug am Bahnhof
-                  steht.
+                  In Brüssel verläuft der Graph für eine kurze Zeit{' '}
+                  <b>waagerecht</b>. Dort wird keine Strecke zurückgelegt, weil
+                  der Zug am Bahnhof steht.
                 </p>
               </>
             )}
@@ -767,7 +1102,7 @@ export const exercise128: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
       },
@@ -784,7 +1119,9 @@ export const exercise128: Exercise<DATA> = {
             <p>
               Welche Aussagen zum Graphen stimmen bzw. stimmen nicht? Wähle aus.
             </p>
-            <ul>{shuffledItems}</ul>
+            <ul>
+              <em>{shuffledItems}</em>
+            </ul>
           </>
         )
       },
@@ -793,13 +1130,21 @@ export const exercise128: Exercise<DATA> = {
           <>
             <p>Die Aussagen</p>
             <ul>
-              <li>{richtig[data.item_1]}</li>
-              <li>{falsch[data.item_2]}</li>
+              <li>
+                <em>{richtig[data.item_1]}</em>
+              </li>
+              <li>
+                <em>{falsch[data.item_2]}</em>
+              </li>
             </ul>{' '}
             <p>
-              sind <strong>korrekt</strong>. Die Aussage{' '}
+              sind <strong>korrekt</strong>.<br></br>
+              <br></br>
+              Die Aussage{' '}
               <ul>
-                <li>{falsch[data.item_3]}</li>
+                <li>
+                  <em>{falsch[data.item_3]}</em>
+                </li>
               </ul>{' '}
               ist <strong>nicht korrekt</strong>.
             </p>

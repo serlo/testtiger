@@ -1,9 +1,10 @@
 import { Exercise } from '@/data/types'
-import { Color4, Color5 } from '@/helper/colors'
+import { Color1, Color2, Color4, Color5 } from '@/helper/colors'
 import {
   buildEquation,
   buildInlineFrac,
   buildSqrt,
+  ExplanationBox,
 } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
@@ -32,7 +33,7 @@ export const exercise109: Exercise<DATA> = {
   title: 'Kasimir bastelt',
   source: '2021 Teil 2 Aufgabe 3',
   useCalculator: true,
-  duration: 30,
+  duration: 22,
   generator(rng) {
     return {
       item_1: rng.randomIntBetween(0, 1),
@@ -57,12 +58,11 @@ export const exercise109: Exercise<DATA> = {
       <>
         <p>
           Kasimir zeichnet ein gleichseitiges Dreieck mit der Seitenlänge a ={' '}
-          {data.a}
-          cm und einer Höhe h = {pp(h)} cm (Abbildung 1).
+          {data.a} cm und einer Höhe h = {pp(h)} cm (Abbildung 1).
         </p>
         <svg viewBox="0 0 328 180">
           <image
-            href="/content/NRW_EESA/109_Kasimir1.PNG"
+            href="/content/NRW_EESA/109_Kasimir1.svg"
             height="180"
             width="328"
           />
@@ -80,9 +80,76 @@ export const exercise109: Exercise<DATA> = {
   tasks: [
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       intro({ data }) {
         return null
+      },
+      example() {
+        return (
+          <>
+            <style>
+              {`
+        .explanation-box {
+          border: 1px solid lightblue;
+          padding: 0px 8px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+        }
+      `}
+            </style>
+            <p>
+              Gegeben ist ein Dreieck mit der Grundseite g = 4 cm und der Höhe h
+              = 2 cm. Berechne den Flächeninhalt des Dreiecks.
+            </p>
+            <svg viewBox="0 0 200 80">
+              <image
+                href="/content/NRW_EESA/109_dreieck_beispiel.svg"
+                height="80"
+                width="160"
+              />
+            </svg>
+            <br></br>
+            <Color2>
+              <b>Antwort</b>: Das Dreieck hat einen Flächeninhalt von{' '}
+              <b>4 cm²</b>.
+            </Color2>
+            <br></br>
+            <br></br>
+            <ExplanationBox>
+              <p>
+                Rechnung:
+                <hr style={{ margin: '10px 0' }} />
+                {buildEquation([
+                  [<>A</>, <>=</>, <>{ppFrac(1 / 2)} · g · h</>],
+                  [
+                    '',
+                    <>
+                      {' '}
+                      <Color4>
+                        <span className="inline-block  scale-y-[1.5]">↓</span>
+                      </Color4>
+                    </>,
+                    <>
+                      <Color4>
+                        <span style={{ fontSize: 'small' }}>
+                          setze g = 4 und h = 2 ein
+                        </span>
+                      </Color4>
+                    </>,
+                  ],
+                  [<></>, <>=</>, <>{ppFrac(1 / 2)} · 4 · 2</>],
+                  [
+                    <></>,
+                    <>=</>,
+                    <>
+                      <strong>4 [cm²]</strong>
+                    </>,
+                  ],
+                ])}
+              </p>
+            </ExplanationBox>
+          </>
+        )
       },
       task({ data }) {
         const h = roundToDigits(
@@ -137,7 +204,11 @@ export const exercise109: Exercise<DATA> = {
               [
                 <></>,
                 <>≈</>,
-                <>{pp(roundToDigits(0.5 * data.a * h, 2))} [cm²]</>,
+                <>
+                  <strong>
+                    {pp(roundToDigits(0.5 * data.a * h, 2))} [cm²]
+                  </strong>
+                </>,
               ],
             ])}
           </>
@@ -157,7 +228,7 @@ export const exercise109: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                href="/content/NRW_EESA/109_Kasimir2.svg"
                 height="140"
                 width="328"
               />
@@ -186,41 +257,146 @@ export const exercise109: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Zeichne die Grundlinie des Dreiecks mit der Seitenlänge a.</p>
-            <svg viewBox="0 0 328 30">
-              <image
-                href="/content/NRW_EESA/109_Konstruktion.jpg"
-                height="30"
-                width="328"
-              />
-            </svg>
             <p>
-              Zeichne die anderen Seiten in einem Winkel von 60° an die
-              Grundlinie.
+              Zeichne die Grundlinie des Dreiecks mit der Seitenlänge a ={' '}
+              {data.a} cm:
             </p>
-            <svg viewBox="0 0 328 130">
-              <image
-                href="/content/NRW_EESA/109_Konstruktion2.jpg"
-                height="130"
-                width="328"
-              />
-            </svg>
-            <p>Verbinde zu einem Dreieck:</p>
-            <svg viewBox="0 0 328 140">
-              <image
-                href="/content/NRW_EESA/109_Kasimir1.PNG"
-                height="140"
-                width="328"
-              />
-            </svg>
 
+            <>
+              {/* Wir erweitern den ViewBox etwas, damit das Lineal auch Platz hat */}
+              <svg viewBox="0 0 328 40" style={{ margin: '80px 0 30px' }}>
+                <image
+                  href="/content/NRW_EESA/109_Konstruktion1.svg"
+                  x="85"
+                  y="6"
+                  height="20"
+                  width="158"
+                />
+
+                {/* Das Lineal: eine horizontale Linie mit Tick-Marks */}
+                <g id="ruler">
+                  {/* Horizontale Linie, die das Lineal darstellt */}
+                  <line
+                    x1="85"
+                    y1="20"
+                    x2="243" /* 85 + 158 = 243 */
+                    y2="20"
+                    stroke="lightgrey"
+                    strokeWidth="1"
+                  />
+                  {Array.from({ length: Number(data.a) + 1 }, (_, i) => {
+                    const xPos = 85 + i * (158 / data.a)
+                    return (
+                      <g key={i}>
+                        <line
+                          x1={xPos}
+                          y1="20"
+                          x2={xPos}
+                          y2={i % 5 === 0 ? '30' : '25'} // Längere Tick-Marks alle 5 cm
+                          stroke="lightgrey"
+                          strokeWidth="1"
+                        />
+                        {i % 5 === 0 && (
+                          <text
+                            x={xPos}
+                            y="38"
+                            fontSize="8"
+                            textAnchor="middle"
+                            fill="lightgrey"
+                          >
+                            {i} cm
+                          </text>
+                        )}
+                      </g>
+                    )
+                  })}
+                </g>
+
+                {/* Beschriftung unter dem Lineal */}
+                <text
+                  x={140}
+                  y="8"
+                  fontSize="11"
+                  textAnchor="right"
+                  fill="black"
+                >
+                  a = {data.a} cm
+                </text>
+              </svg>
+            </>
+
+            <hr style={{ margin: '10px 0' }} />
             <p>
-              Bestimme anschließend mit dem Lineal die Mittelpunkte der Seiten
-              und markiere sie. Verbinde sie, um die Figur fertigzustellen.
+              In einem gleichseitigen Dreieck sind alle drei Winkel 60° groß.
+              Zeichne die anderen Seiten in einem Winkel von 60° an die
+              Grundlinie:
             </p>
+            <svg viewBox="0 0 328 170">
+              {/* Geodreieck einfügen */}
+              <image
+                href="/content/grafiken_allgemein/Geodreieck.svg"
+                // Transformationsreihenfolge:
+                // 1. Verschiebe das Geodreieck, sodass der untere Mittelpunkt (halfWidth, originalHeight) am Ursprung liegt.
+                // 2. Skaliere mit scaleFactor.
+                // 3. Verschiebe es, sodass der Ursprung auf (164, 6) liegt.
+                transform={`translate(86,163) scale(${(158 * 18) / (data.a * 1279)}) translate(-${1279 / 2}, -${642})`}
+              />
+              <image
+                href="/content/NRW_EESA/109_Konstruktion2.svg"
+                x="85"
+                y="6"
+                height="158"
+                width="158"
+              />
+            </svg>
+            <p></p>
+            <svg viewBox="0 0 328 170">
+              <image
+                href="/content/NRW_EESA/109_Konstruktion3.svg"
+                x="85"
+                y="6"
+                height="158"
+                width="158"
+              />
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>
+              Verbinde zu einem Dreieck. <br></br>Markiere die Mittelpunkte der
+              Seiten bei <br></br>
+              {data.a} cm : 2 = {pp(data.a / 2)} cm:
+            </p>
+            <svg viewBox="0 0 328 160">
+              <image
+                href="/content/NRW_EESA/109_Konstruktion4.svg"
+                x="85"
+                y="6"
+                height="148"
+                width="158"
+              />
+              <text
+                x={110}
+                y="155"
+                fontSize="11"
+                textAnchor="right"
+                fill="black"
+              >
+                {pp(data.a / 2)} cm
+              </text>
+              <text
+                x={180}
+                y="155"
+                fontSize="11"
+                textAnchor="right"
+                fill="black"
+              >
+                {pp(data.a / 2)} cm
+              </text>
+            </svg>
+            <hr style={{ margin: '10px 0' }} />
+            <p>Verbinde die Mittelpunkte, um die Figur fertigzustellen.</p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/109_Kasimir2.PNG"
+                href="/content/NRW_EESA/109_Konstruktion5.svg"
                 height="140"
                 width="328"
               />
@@ -231,7 +407,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 1,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -283,12 +459,16 @@ export const exercise109: Exercise<DATA> = {
         return (
           <>
             <p>
-              Das große Dreieck besteht aus 4 identischen kleinen Dreiecken.
+              Das große Dreieck hat eine Fläche von<br></br>A ={' '}
+              {buildInlineFrac(1, 2)} · a · h = {buildInlineFrac(1, 2)} ·{' '}
+              {data.a} · {pp(h)} = {pp(roundToDigits(surface, 1))} [cm²].
             </p>
-            <p>Teile die Gesamtfläche durch 4:</p>
             <p>
-              {pp(roundToDigits(surface, 1))} : 4 ={' '}
-              {pp(roundToDigits(surface / 4, 1))} [cm²]
+              Das große Dreieck besteht aus 4 identischen kleinen Dreiecken.
+              Teile die Gesamtfläche durch 4:
+              <br></br>
+              {pp(roundToDigits(surface, 1))} : 4{' '}
+              <strong>= {pp(roundToDigits(surface / 4, 1))} [cm²]</strong>
             </p>
           </>
         )
@@ -296,7 +476,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         return (
           <>
@@ -379,27 +559,36 @@ export const exercise109: Exercise<DATA> = {
       solution({ data }) {
         return (
           <>
-            <p>Setze den Wert von b aus der Abbildung in die Formel ein:</p>
+            <p>
+              Setze den Wert von <Color1>b</Color1> aus der Abbildung in die
+              Formel ein:
+            </p>
             {buildEquation([
               [
                 <>
                   h<sub>K​</sub>
                 </>,
                 <>=</>,
-                <>{buildInlineFrac(<>{buildSqrt(6)}</>, 3)} · b</>,
+                <>
+                  {buildInlineFrac(<>{buildSqrt(6)}</>, 3)} · <Color1>b</Color1>
+                </>,
               ],
               [
                 <></>,
                 <>=</>,
                 <>
-                  {buildInlineFrac(<>{buildSqrt(6)}</>, 3)} · {pp(data.a / 2)}
+                  {buildInlineFrac(<>{buildSqrt(6)}</>, 3)} ·{' '}
+                  <Color1>{pp(data.a / 2)}</Color1>
                 </>,
               ],
               [
                 <></>,
                 <>≈</>,
                 <>
-                  {pp(roundToDigits((Math.sqrt(6) / 3) * (data.a / 2), 1))} [cm]
+                  <strong>
+                    {pp(roundToDigits((Math.sqrt(6) / 3) * (data.a / 2), 1))}{' '}
+                    [cm]
+                  </strong>
                 </>,
               ],
             ])}
@@ -409,7 +598,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 2,
-      duration: 2,
+      duration: 4,
       skillIntro({ data }) {
         const h = roundToDigits(
           Math.sqrt(data.a * data.a - (data.a * data.a) / 4),
@@ -526,7 +715,7 @@ export const exercise109: Exercise<DATA> = {
     },
     {
       points: 1,
-      duration: 1,
+      duration: 2,
       skillIntro({ data }) {
         return (
           <>
