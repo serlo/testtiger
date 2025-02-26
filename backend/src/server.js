@@ -327,9 +327,8 @@ app.get('/showfeedback', async (req, res) => {
   const feedbacks = profiles
     .map(profile => {
       const profileData = JSON.parse(profile.value)
-      const feedbacks = profileData.statsLog.filter(stat =>
-        stat.startsWith('feedback_'),
-      )
+      const feedbacks =
+        profileData.statsLog?.filter(stat => stat.startsWith('feedback_')) ?? []
       return {
         name: profileData.name,
         key: profile.key,
