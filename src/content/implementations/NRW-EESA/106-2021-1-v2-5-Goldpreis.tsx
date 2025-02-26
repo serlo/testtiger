@@ -204,181 +204,153 @@ export const exercise106: Exercise<DATA> = {
               ></text>
             </svg>
 
-            {/* Pfeil-SVG */}
-            <svg width="220" height="30" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <marker
-                  id="arrowhead"
-                  viewBox="0 0 10 10"
-                  refX="5"
-                  refY="5"
-                  markerWidth="4"
-                  markerHeight="4"
-                  orient="auto"
+            <p>
+              {' '}
+              <Color2>
+                <b>Lösung:</b>
+              </Color2>
+              <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
+                {/* Hintergrund und Rahmen */}
+                <rect
+                  x="10"
+                  y="10"
+                  width="300"
+                  height="22"
+                  fill="#D2ECF6"
+                  stroke="none"
+                />
+                <rect
+                  x="10"
+                  y="10"
+                  width="300"
+                  height="44"
+                  rx="4"
+                  ry="4"
+                  stroke="#007EC1"
+                  fill="transparent"
+                  strokeWidth="1"
+                />
+
+                {/* Horizontale Linie */}
+                <line
+                  x1="10"
+                  y1="32"
+                  x2="310"
+                  y2="32"
+                  stroke="#007EC1"
+                  strokeWidth="1"
+                />
+
+                {/* Vertikale Linien */}
+                <line
+                  x1="96"
+                  y1="10"
+                  x2="96"
+                  y2="54"
+                  stroke="#007EC1"
+                  strokeWidth="1"
+                />
+                <line
+                  x1="167"
+                  y1="10"
+                  x2="167"
+                  y2="54"
+                  stroke="#007EC1"
+                  strokeWidth="1"
+                />
+                <line
+                  x1="238"
+                  y1="10"
+                  x2="238"
+                  y2="54"
+                  stroke="#007EC1"
+                  strokeWidth="1"
+                />
+
+                {/* Erste Zeile (Kopfzeile) */}
+                <text
+                  x="53"
+                  y="25"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
                 >
-                  <polygon points="0,0 10,5 0,10" fill="#007EC1" />
-                </marker>
-              </defs>
-              <line
-                x1="30"
-                y1="0"
-                x2="30"
-                y2="15"
-                stroke="#007EC1"
-                strokeWidth="2"
-                markerEnd="url(#arrowhead)"
-              />
-              <text
-                x="70"
-                y="15"
-                fontSize="14"
-                textAnchor="middle"
-                fill="#007EC1"
-              >
-                Lösung:
-              </text>
-            </svg>
-            <svg width="320" height="81" xmlns="http://www.w3.org/2000/svg">
-              {/* Hintergrund und Rahmen */}
-              <rect
-                x="10"
-                y="10"
-                width="300"
-                height="22"
-                fill="#D2ECF6"
-                stroke="none"
-              />
-              <rect
-                x="10"
-                y="10"
-                width="300"
-                height="44"
-                rx="4"
-                ry="4"
-                stroke="#007EC1"
-                fill="transparent"
-                strokeWidth="1"
-              />
+                  Gold [g]
+                </text>
+                <text
+                  x="132"
+                  y="25"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                >
+                  1
+                </text>
+                <text
+                  x="203"
+                  y="25"
+                  fontSize="12"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                  fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
+                >
+                  <tspan fill="green">2</tspan>
+                </text>
+                <text
+                  x="274"
+                  y="25"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                >
+                  100
+                </text>
 
-              {/* Horizontale Linie */}
-              <line
-                x1="10"
-                y1="32"
-                x2="310"
-                y2="32"
-                stroke="#007EC1"
-                strokeWidth="1"
-              />
-
-              {/* Vertikale Linien */}
-              <line
-                x1="96"
-                y1="10"
-                x2="96"
-                y2="54"
-                stroke="#007EC1"
-                strokeWidth="1"
-              />
-              <line
-                x1="167"
-                y1="10"
-                x2="167"
-                y2="54"
-                stroke="#007EC1"
-                strokeWidth="1"
-              />
-              <line
-                x1="238"
-                y1="10"
-                x2="238"
-                y2="54"
-                stroke="#007EC1"
-                strokeWidth="1"
-              />
-
-              {/* Erste Zeile (Kopfzeile) */}
-              <text
-                x="53"
-                y="25"
-                fontSize="10"
-                textAnchor="middle"
-                fontWeight="bold"
-                fill="black"
-              >
-                Gold [g]
-              </text>
-              <text
-                x="132"
-                y="25"
-                fontSize="10"
-                textAnchor="middle"
-                fontWeight="bold"
-                fill="black"
-              >
-                1
-              </text>
-              <text
-                x="203"
-                y="25"
-                fontSize="12"
-                textAnchor="middle"
-                fontWeight="bold"
-                fill="black"
-                fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
-              >
-                <tspan fill="green">2</tspan>
-              </text>
-              <text
-                x="274"
-                y="25"
-                fontSize="10"
-                textAnchor="middle"
-                fontWeight="bold"
-                fill="black"
-              >
-                100
-              </text>
-
-              {/* Zweite Zeile (Datenzeile) */}
-              <text
-                x="53"
-                y="47"
-                fontSize="10"
-                textAnchor="middle"
-                fill="black"
-              >
-                Preis [€]
-              </text>
-              <text
-                x="132"
-                y="47"
-                fontSize="10"
-                textAnchor="middle"
-                fill="black"
-              >
-                35,50
-              </text>
-              <text
-                x="203"
-                y="47"
-                fontSize="10"
-                textAnchor="middle"
-                fill="black"
-              >
-                71,00
-              </text>
-              <text
-                x="274"
-                y="47"
-                fontSize="12"
-                textAnchor="middle"
-                fontWeight="bold"
-                fill="black"
-                fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
-              >
-                <tspan fill="green">3550</tspan>
-              </text>
-            </svg>
+                {/* Zweite Zeile (Datenzeile) */}
+                <text
+                  x="53"
+                  y="47"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  Preis [€]
+                </text>
+                <text
+                  x="132"
+                  y="47"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  35,50
+                </text>
+                <text
+                  x="203"
+                  y="47"
+                  fontSize="10"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  71,00
+                </text>
+                <text
+                  x="274"
+                  y="47"
+                  fontSize="12"
+                  textAnchor="middle"
+                  fontWeight="bold"
+                  fill="black"
+                  fontFamily="'Comic Sans MS', 'Segoe Script', cursive"
+                >
+                  <tspan fill="green">3550</tspan>
+                </text>
+              </svg>
+            </p>
 
             <ExplanationBox>
               <p>
