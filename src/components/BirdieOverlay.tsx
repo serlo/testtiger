@@ -1,13 +1,19 @@
-import { faArrowRight, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from './ui/FaIcon'
-import { Play } from 'next/font/google'
-import { PlayerProfileStore } from '../../store/player-profile-store'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../store/player-profile-store'
+import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'
 
-export function BirdieOverlay({ context }: { context: 'map' }) {
+export function BirdieOverlay({ context }: { context: 'map' | 'exercise' }) {
   const birdieIntros = PlayerProfileStore.useState(s => s.birdieIntros)
 
   let text = ''
   let step = ''
+
+  const exerciseWithExample =
+    ExerciseViewStore.getRawState().hasExamplePrescreen
 
   if (context == 'map') {
     if (!birdieIntros.includes('map-1')) {
@@ -29,6 +35,20 @@ export function BirdieOverlay({ context }: { context: 'map' }) {
     }
   }
 
+  if (context == 'exercise') {
+    if (exerciseWithExample) {
+      if (!birdieIntros.includes('exercise-example-1')) {
+        text =
+          'Schau dir diese Beispiel-Aufgabe an. Unten findest du die Lösung dazu.'
+        step = 'exercise-example-1'
+      } else if (!birdieIntros.includes('exercise-example-2')) {
+        text =
+          'Wenn du die Lösung verstanden hast, gehe weiter zur nächsten Aufgabe.'
+        step = 'exercise-example-2'
+      }
+    }
+  }
+
   if (!text) return null
 
   return (
@@ -41,7 +61,7 @@ export function BirdieOverlay({ context }: { context: 'map' }) {
           <button
             className="w-12 h-12 bg-blue-300 rounded-full hover:bg-blue-400 mt-5"
             onClick={() => {
-              PlayerProfileStore.update(s => {
+              updatePlayerProfileStore(s => {
                 s.birdieIntros.push(step)
               })
             }}
