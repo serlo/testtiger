@@ -26,7 +26,7 @@ export function LearningPathMap() {
   const history = useHistory()
 
   const path = navigationData[exam].path
-  const mapHeight = navigationData[exam].mapHeight
+  const mapHeight = navigationData[exam].mapHeight + 200
 
   const elements: { source: Lesson; solvedPercentage: number }[] = []
   const lines: { start: Lesson; end: Lesson }[] = []
@@ -60,18 +60,40 @@ export function LearningPathMap() {
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox={`0 0 375 ${mapHeight}`}>
-        <image href="/learning-path/stage1.svg" x={-50} y={1810} width={500} />
-        <image href="/learning-path/gs1.svg" x={-130} y={6240} width={260} />
-        <image href="/learning-path/gs2.svg" x={160} y={6430} width={70} />
-        <image href="/learning-path/gs3.svg" x={250} y={6400} width={180} />
-        <image href="/learning-path/gs4.svg" x={80} y={5970} width={300} />
+        <image href="/learning-path/stage1.svg" x={-50} y={2020} width={500} />
+        <image
+          href="/learning-path/bgstage2.svg"
+          x={-50}
+          y={-250}
+          width={500}
+        />
+        <image href="/learning-path/stage3.svg" x={-45} y={-1600} width={500} />
+        <image
+          href="/learning-path/icebiom.svg"
+          x={-750}
+          y={-170}
+          width={1400}
+        />
+        <image href="/learning-path/ice3.svg" x={-59} y={254} width={150} />
+        <image href="/learning-path/icetree.svg" x={-5} y={230} width={30} />
+        <image href="/learning-path/gberg.svg" x={-130} y={210} width={200} />
+        <image href="/learning-path/berg2.svg" x={-145} y={425} width={200} />
+        <image href="/learning-path/gs1.svg" x={-130} y={6440} width={260} />
+        <image href="/learning-path/gs2.svg" x={160} y={6630} width={70} />
+        <image href="/learning-path/gs3.svg" x={250} y={6600} width={180} />
+        <image href="/learning-path/gs4.svg" x={80} y={6050} width={300} />
+        <image href="/learning-path/gs5.svg" x={-40} y={5620} width={300} />
+        <image href="/learning-path/gs6.svg" x={140} y={5220} width={230} />
+        <image href="/learning-path/gs4.svg" x={10} y={4820} width={300} />
 
-        <image href="/learning-path/bigbush.svg" x={-70} y={6310} width={180} />
-        <image href="/learning-path/gras2.svg" x={340} y={6450} width={80} />
-        <image href="/learning-path/grass.svg" x={275} y={6440} width={60} />
+        <image href="/learning-path/treegroup.svg" x={0} y={5550} width={100} />
+        <image href="/learning-path/trees.svg" x={200} y={5920} width={150} />
+        <image href="/learning-path/bigbush.svg" x={-70} y={6510} width={180} />
+        <image href="/learning-path/gras2.svg" x={340} y={6640} width={80} />
+        <image href="/learning-path/grass.svg" x={275} y={6640} width={60} />
 
-        <image href="/learning-path/tree2.svg" x={275} y={6140} width={120} />
-        <image href="/learning-path/tree1.svg" x={-70} y={5990} width={180} />
+        <image href="/learning-path/tree2.svg" x={275} y={6340} width={120} />
+        <image href="/learning-path/tree1.svg" x={-70} y={6190} width={180} />
 
         {exam ==
           2 /* add feedback button without!!! external image using text and rectangle*/ && (
