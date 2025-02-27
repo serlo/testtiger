@@ -18,6 +18,9 @@ export function extractor(exercise: Exercise<any>, data: object) {
         '\n\nLösung:\n\n' +
         renderToStaticMarkup(t.solution({ data }))
       if (t.correctionHints) {
+        if (t.onlyHints) {
+          output = ''
+        }
         output +=
           '\n\nKorrekturhinweise:\n\n' +
           renderToStaticMarkup(t.correctionHints({ data }))
@@ -31,6 +34,9 @@ export function extractor(exercise: Exercise<any>, data: object) {
       '\n\nLösung:\n\n' +
       renderToStaticMarkup(exercise.solution({ data }))
     if (exercise.correctionHints) {
+      if (exercise.onlyHints) {
+        output = ''
+      }
       output +=
         '\n\nKorrekturhinweise:\n\n' +
         renderToStaticMarkup(exercise.correctionHints({ data }))

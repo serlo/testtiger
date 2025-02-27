@@ -51,6 +51,36 @@ export const exercise199: Exercise<DATA> = {
   task({ data }) {
     return <TaskComponent data={data} />
   },
+  onlyHints: true,
+  correctionHints({ data }) {
+    // vereinfachte Textversion der Angabe und Lösung
+    return (
+      <>
+        <p>
+          Vergleiche die Zahlen und setze in die Lücke jeweils das Zeichen{' '}
+          {'"<"'}, {'">"'} oder {'"="'} ein.
+        </p>
+        <p>
+          {pp(data.a)} ___ {pp(data.b)}
+        </p>
+        <p>
+          {pp(data.c)} ___ {pp(data.d)}
+        </p>
+        <p>
+          {pp(data.e)} ___ {pp(data.f)}
+        </p>
+        Die Antwort lautet: <br />
+        {pp(data.a)} {data.a > data.b && ' > '}
+        {data.a < data.b && ' < '}
+        {data.a == data.b && ' = '} {pp(data.b)} <br />
+        {pp(data.c)} {data.c > data.d && ' > '}
+        {data.c < data.d && ' < '} {data.c == data.d && ' = '}
+        {pp(data.d)} <br />
+        {pp(data.e)} {data.e > data.f && ' > '}
+        {data.e < data.f && ' < '} {data.e == data.f && ' = '} {pp(data.f)}
+      </>
+    )
+  },
   solution({ data }) {
     return (
       <>
@@ -180,8 +210,8 @@ function TaskComponent({ data }: { data: DATA }) {
               onChange={e => handleSelectChange(0, e.target.value)}
             >
               <option></option>
-              <option value="<">&lt;</option>
-              <option value=">">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="&gt;">&gt;</option>
               <option value="=">=</option>
             </select>
             &nbsp;&nbsp;
@@ -197,8 +227,8 @@ function TaskComponent({ data }: { data: DATA }) {
               onChange={e => handleSelectChange(1, e.target.value)}
             >
               <option></option>
-              <option value="<">&lt;</option>
-              <option value=">">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="&gt;">&gt;</option>
               <option value="=">=</option>
             </select>
             &nbsp;&nbsp;
@@ -214,8 +244,8 @@ function TaskComponent({ data }: { data: DATA }) {
               onChange={e => handleSelectChange(2, e.target.value)}
             >
               <option></option>
-              <option value="<">&lt;</option>
-              <option value=">">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="&gt;">&gt;</option>
               <option value="=">=</option>
             </select>
             &nbsp;&nbsp;
