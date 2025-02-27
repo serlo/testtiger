@@ -6,6 +6,7 @@ import { Color1 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
+import { useState } from 'react'
 
 interface DATA {
   a: number
@@ -73,81 +74,7 @@ export const exercise120: Exercise<DATA> = {
     i: 4,
   },
   task({ data }) {
-    return (
-      <>
-        <p>
-          Vergleiche und setze in die Lücke jeweils das Zeichen {'"<"'}, {'">"'}
-          oder {'"="'} ein.
-        </p>
-        {buildEquation([
-          [
-            <>{pp(data.a)}&nbsp;&nbsp;</>,
-            <>
-              <select className="p-2" id="120-select-1">
-                <option></option>
-                <option value="<">&lt;</option>
-                <option value=">">&gt;</option>
-                <option value="=">=</option>
-              </select>
-              &nbsp;&nbsp;
-            </>,
-            <>{pp(data.b)}</>,
-          ],
-          [
-            <>{ppFrac([data.c, data.d])}&nbsp;&nbsp;</>,
-            <>
-              <select className="p-2" id="120-select-2">
-                <option></option>
-                <option value="<">&lt;</option>
-                <option value=">">&gt;</option>
-                <option value="=">=</option>
-              </select>
-              &nbsp;&nbsp;
-            </>,
-            <>{ppFrac([data.e, data.f])}</>,
-          ],
-          [
-            <>{pp(data.g)}&nbsp;&nbsp;</>,
-            <>
-              <select className="p-2" id="120-select-3">
-                <option></option>
-                <option value="<">&lt;</option>
-                <option value=">">&gt;</option>
-                <option value="=">=</option>
-              </select>
-              &nbsp;&nbsp;
-            </>,
-            <>{ppFrac([data.h, data.i])}</>,
-          ],
-        ])}
-        <p>
-          <button
-            className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
-            onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.chatHistory[s.navIndicatorPosition].resultPending = true
-                s.chatHistory[s.navIndicatorPosition].entries.push({
-                  type: 'text',
-                  content: `${pp(data.a)} ${(document.getElementById('120-select-1') as any).value} ${pp(
-                    data.b,
-                  )} \n ${pp(data.c)}/${pp(data.d)} ${(document.getElementById('120-select-2') as any).value} ${pp(
-                    data.e,
-                  )}/${pp(data.f)} \n ${pp(data.g)} ${(document.getElementById('120-select-3') as any).value} ${pp(data.h)}/${pp(
-                    data.i,
-                  )}`,
-                  canEdit: true,
-                })
-                s.chatOverlay = 'chat'
-                s.chatHistory[s.navIndicatorPosition].answerInput = ''
-              })
-              void analyseLastInput()
-            }}
-          >
-            Abschicken
-          </button>
-        </p>
-      </>
-    )
+    return <TaskComponent data={data} />
   },
   solution({ data }) {
     const hauptnenner1 = (data.d * data.f) / getGcd(data.d, data.f)
@@ -315,6 +242,99 @@ export const exercise120: Exercise<DATA> = {
     )
   },
 }
-function erweitereBruch(arg0: number, arg1: number, arg2: number) {
-  throw new Error('Function not implemented.')
+
+function TaskComponent({ data }: { data: DATA }) {
+  const [answers, setAnswers] = useState<string[]>(['', '', ''])
+
+  const handleSelectChange = (index: number, value: string) => {
+    const newAnswers = [...answers]
+    newAnswers[index] = value
+    setAnswers(newAnswers)
+  }
+
+  const handleSubmit = () => {
+    ExerciseViewStore.update(s => {
+      s.chatHistory[s.navIndicatorPosition].resultPending = true
+      s.chatHistory[s.navIndicatorPosition].entries.push({
+        type: 'text',
+        content: `${pp(data.a)} ${answers[0]} ${pp(data.b)} \n ${pp(data.c)} ${answers[1]} ${pp(data.d)} \n ${pp(data.g)} ${answers[2]} ${pp(data.h)}/${pp(
+          data.i,
+        )}`,
+        canEdit: true,
+      })
+      s.chatOverlay = 'chat'
+      s.chatHistory[s.navIndicatorPosition].answerInput = ''
+    })
+    void analyseLastInput()
+  }
+
+  return (
+    <>
+      <p>
+        Vergleiche und setze in die Lücke jeweils das Zeichen {'"<"'}, {'">"'}{' '}
+        oder {'"="'} ein.
+      </p>
+      {buildEquation([
+        [
+          <>{pp(data.a)}&nbsp;&nbsp;</>,
+          <>
+            <select
+              className="p-2"
+              value={answers[0]}
+              onChange={e => handleSelectChange(0, e.target.value)}
+            >
+              <option></option>
+              <option value="<">&lt;</option>
+              <option value=">">&gt;</option>
+              <option value="=">=</option>
+            </select>
+            &nbsp;&nbsp;
+          </>,
+          <>{pp(data.b)}</>,
+        ],
+        [
+          <>{ppFrac([data.c, data.d])}&nbsp;&nbsp;</>,
+          <>
+            <select
+              className="p-2"
+              value={answers[1]}
+              onChange={e => handleSelectChange(1, e.target.value)}
+            >
+              <option></option>
+              <option value="<">&lt;</option>
+              <option value=">">&gt;</option>
+              <option value="=">=</option>
+            </select>
+            &nbsp;&nbsp;
+          </>,
+          <>{ppFrac([data.e, data.f])}</>,
+        ],
+        [
+          <>{pp(data.g)}&nbsp;&nbsp;</>,
+          <>
+            <select
+              className="p-2"
+              value={answers[2]}
+              onChange={e => handleSelectChange(2, e.target.value)}
+            >
+              <option></option>
+              <option value="<">&lt;</option>
+              <option value=">">&gt;</option>
+              <option value="=">=</option>
+            </select>
+            &nbsp;&nbsp;
+          </>,
+          <>{ppFrac([data.h, data.i])}</>,
+        ],
+      ])}
+      <p>
+        <button
+          className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+          onClick={handleSubmit}
+        >
+          Abschicken
+        </button>
+      </p>
+    </>
+  )
 }

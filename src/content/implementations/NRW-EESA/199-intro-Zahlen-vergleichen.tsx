@@ -3,9 +3,9 @@ import { analyseLastInput } from '@/components/exercise-view/state/actions'
 import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
 import { Color1, Color2, Color3 } from '@/helper/colors'
-import { getGcd } from '@/helper/get-gcd'
-import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
-import { pp, ppFrac } from '@/helper/pretty-print'
+import { buildEquation } from '@/helper/math-builder'
+import { pp } from '@/helper/pretty-print'
+import { useState } from 'react'
 
 interface DATA {
   a: number
@@ -49,83 +49,7 @@ export const exercise199: Exercise<DATA> = {
     f: -5,
   },
   task({ data }) {
-    return (
-      <>
-        <p>
-          <b>Starte mit einer Aufgabe zum Aufwärmen:</b>
-        </p>
-        <p>
-          Vergleiche die Zahlen und setze in die Lücke jeweils das Zeichen{' '}
-          {'"<"'}, {'">"'}
-          oder {'"="'} ein.
-        </p>
-        {buildEquation([
-          [
-            <>{pp(data.a)}&nbsp;&nbsp;</>,
-            <>
-              <select className="p-2" id="199-select-1">
-                <option></option>
-                <option value="<">&lt;</option>
-                <option value=">">&gt;</option>
-                <option value="=">=</option>
-              </select>
-              &nbsp;&nbsp;
-            </>,
-            <>{pp(data.b)}</>,
-          ],
-          [
-            <>{pp(data.c)}&nbsp;&nbsp;</>,
-            <>
-              <select className="p-2" id="199-select-2">
-                <option></option>
-                <option value="<">&lt;</option>
-                <option value=">">&gt;</option>
-                <option value="=">=</option>
-              </select>
-              &nbsp;&nbsp;
-            </>,
-            <>{pp(data.d)}</>,
-          ],
-          [
-            <>{pp(data.e)}&nbsp;&nbsp;</>,
-            <>
-              <select className="p-2" id="199-select-3">
-                <option></option>
-                <option value="<">&lt;</option>
-                <option value=">">&gt;</option>
-                <option value="=">=</option>
-              </select>
-              &nbsp;&nbsp;
-            </>,
-            <>{pp(data.f)}</>,
-          ],
-        ])}
-        <p>
-          <button
-            className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
-            onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.chatHistory[s.navIndicatorPosition].resultPending = true
-                s.chatHistory[s.navIndicatorPosition].entries.push({
-                  type: 'text',
-                  content: `${pp(data.a)} ${(document.getElementById('199-select-1') as any).value} ${pp(
-                    data.b,
-                  )} \n ${pp(data.c)} ${(document.getElementById('199-select-2') as any).value} ${pp(
-                    data.d,
-                  )} \n ${pp(data.e)} ${(document.getElementById('199-select-3') as any).value} ${pp(data.f)}`,
-                  canEdit: true,
-                })
-                s.chatOverlay = 'chat'
-                s.chatHistory[s.navIndicatorPosition].answerInput = ''
-              })
-              void analyseLastInput()
-            }}
-          >
-            Abschicken
-          </button>
-        </p>
-      </>
-    )
+    return <TaskComponent data={data} />
   },
   solution({ data }) {
     return (
@@ -212,4 +136,101 @@ export const exercise199: Exercise<DATA> = {
       </>
     )
   },
+}
+
+function TaskComponent({ data }: { data: DATA }) {
+  const [answers, setAnswers] = useState<string[]>(['', '', ''])
+
+  const handleSelectChange = (index: number, value: string) => {
+    const newAnswers = [...answers]
+    newAnswers[index] = value
+    setAnswers(newAnswers)
+  }
+
+  const handleSubmit = () => {
+    ExerciseViewStore.update(s => {
+      s.chatHistory[s.navIndicatorPosition].resultPending = true
+      s.chatHistory[s.navIndicatorPosition].entries.push({
+        type: 'text',
+        content: `${pp(data.a)} ${answers[0]} ${pp(data.b)} \n ${pp(data.c)} ${answers[1]} ${pp(data.d)} \n ${pp(data.e)} ${answers[2]} ${pp(data.f)}`,
+        canEdit: true,
+      })
+      s.chatOverlay = 'chat'
+      s.chatHistory[s.navIndicatorPosition].answerInput = ''
+    })
+    void analyseLastInput()
+  }
+
+  return (
+    <>
+      <p>
+        <b>Starte mit einer Aufgabe zum Aufwärmen:</b>
+      </p>
+      <p>
+        Vergleiche die Zahlen und setze in die Lücke jeweils das Zeichen {'"<"'}
+        , {'">"'} oder {'"="'} ein.
+      </p>
+      {buildEquation([
+        [
+          <>{pp(data.a)}&nbsp;&nbsp;</>,
+          <>
+            <select
+              className="p-2"
+              value={answers[0]}
+              onChange={e => handleSelectChange(0, e.target.value)}
+            >
+              <option></option>
+              <option value="<">&lt;</option>
+              <option value=">">&gt;</option>
+              <option value="=">=</option>
+            </select>
+            &nbsp;&nbsp;
+          </>,
+          <>{pp(data.b)}</>,
+        ],
+        [
+          <>{pp(data.c)}&nbsp;&nbsp;</>,
+          <>
+            <select
+              className="p-2"
+              value={answers[1]}
+              onChange={e => handleSelectChange(1, e.target.value)}
+            >
+              <option></option>
+              <option value="<">&lt;</option>
+              <option value=">">&gt;</option>
+              <option value="=">=</option>
+            </select>
+            &nbsp;&nbsp;
+          </>,
+          <>{pp(data.d)}</>,
+        ],
+        [
+          <>{pp(data.e)}&nbsp;&nbsp;</>,
+          <>
+            <select
+              className="p-2"
+              value={answers[2]}
+              onChange={e => handleSelectChange(2, e.target.value)}
+            >
+              <option></option>
+              <option value="<">&lt;</option>
+              <option value=">">&gt;</option>
+              <option value="=">=</option>
+            </select>
+            &nbsp;&nbsp;
+          </>,
+          <>{pp(data.f)}</>,
+        ],
+      ])}
+      <p>
+        <button
+          className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+          onClick={handleSubmit}
+        >
+          Abschicken
+        </button>
+      </p>
+    </>
+  )
 }

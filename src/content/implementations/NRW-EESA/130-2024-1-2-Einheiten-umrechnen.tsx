@@ -5,6 +5,7 @@ import { Exercise } from '@/data/types'
 import { Color1, Color2, Color4 } from '@/helper/colors'
 import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
+import { useState } from 'react'
 
 interface DATA {
   m: number
@@ -119,71 +120,7 @@ export const exercise130: Exercise<DATA> = {
     )
   },
   task({ data }) {
-    return (
-      <>
-        <p>Rechne die Größen in die angegebene Einheit um.</p>
-        {buildEquation([
-          [
-            <>{pp(data.m * 100)} cm</>,
-            <>=</>,
-            <>
-              <input
-                key={data.m}
-                className="inline w-16 border text-center"
-                id="130-input-1"
-              />{' '}
-              m
-            </>,
-          ],
-          [
-            <>{pp(data.min * 60)} s</>,
-            <>=</>,
-            <>
-              <input
-                key={data.min}
-                className="inline w-16 border text-center"
-                id="130-input-2"
-              />{' '}
-              min
-            </>,
-          ],
-          [
-            <>{pp(data.ml / 1000)} ℓ</>,
-            <>=</>,
-            <>
-              <input
-                key={data.ml}
-                className="inline w-16 border text-center"
-                id="130-input-3"
-              />{' '}
-              ml
-            </>,
-          ],
-        ])}
-        <p>
-          <button
-            className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
-            onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.chatHistory[s.navIndicatorPosition].resultPending = true
-                s.chatHistory[s.navIndicatorPosition].entries.push({
-                  type: 'text',
-                  content: `${(document.getElementById('130-input-1') as any).value} m \n ${
-                    (document.getElementById('130-input-2') as any).value
-                  } min \n ${(document.getElementById('130-input-3') as any).value} ml`,
-                  canEdit: true,
-                })
-                s.chatOverlay = 'chat'
-                s.chatHistory[s.navIndicatorPosition].answerInput = ''
-              })
-              void analyseLastInput()
-            }}
-          >
-            Abschicken
-          </button>
-        </p>
-      </>
-    )
+    return <TaskComponent data={data} />
   },
   solution({ data }) {
     return (
@@ -258,4 +195,80 @@ export const exercise130: Exercise<DATA> = {
       </>
     )
   },
+}
+
+function TaskComponent({ data }: { data: DATA }) {
+  const [answers, setAnswers] = useState<string[]>(['', '', ''])
+
+  const handleInputChange = (index: number, value: string) => {
+    const newAnswers = [...answers]
+    newAnswers[index] = value
+    setAnswers(newAnswers)
+  }
+
+  const handleSubmit = () => {
+    ExerciseViewStore.update(s => {
+      s.chatHistory[s.navIndicatorPosition].resultPending = true
+      s.chatHistory[s.navIndicatorPosition].entries.push({
+        type: 'text',
+        content: `${answers[0]} m \n ${answers[1]} min \n ${answers[2]} ml`,
+        canEdit: true,
+      })
+      s.chatOverlay = 'chat'
+      s.chatHistory[s.navIndicatorPosition].answerInput = ''
+    })
+    void analyseLastInput()
+  }
+
+  return (
+    <>
+      <p>Rechne die Größen in die angegebene Einheit um.</p>
+      {buildEquation([
+        [
+          <>{pp(data.m * 100)} cm</>,
+          <>=</>,
+          <>
+            <input
+              className="inline w-16 border text-center"
+              value={answers[0]}
+              onChange={e => handleInputChange(0, e.target.value)}
+            />{' '}
+            m
+          </>,
+        ],
+        [
+          <>{pp(data.min * 60)} s</>,
+          <>=</>,
+          <>
+            <input
+              className="inline w-16 border text-center"
+              value={answers[1]}
+              onChange={e => handleInputChange(1, e.target.value)}
+            />{' '}
+            min
+          </>,
+        ],
+        [
+          <>{pp(data.ml / 1000)} ℓ</>,
+          <>=</>,
+          <>
+            <input
+              className="inline w-16 border text-center"
+              value={answers[2]}
+              onChange={e => handleInputChange(2, e.target.value)}
+            />{' '}
+            ml
+          </>,
+        ],
+      ])}
+      <p>
+        <button
+          className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+          onClick={handleSubmit}
+        >
+          Abschicken
+        </button>
+      </p>
+    </>
+  )
 }
