@@ -134,6 +134,21 @@ export function ExerciseViewFooter() {
       <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-white rounded-footer-shadow">
         {/* visual element*/}
       </div>
+      <div
+        className="absolute right-3 -top-8 h-8 w-8 rounded-full bg-gray-200 cursor-pointer text-center"
+        onClick={() => {
+          ExerciseViewStore.update(s => {
+            if (s.chatOverlay) {
+              s.chatOverlay = null
+            }
+            if (s.pickAndSolveMode) {
+              s.pickAndSolveShowChat = false
+            }
+          })
+        }}
+      >
+        <FaIcon icon={faCaretDown} className="text-lg mt-1.5" />
+      </div>
       <IndicatorBar />
       <SolutionOverlay />
       <FotoOverlay />
@@ -415,7 +430,7 @@ export function ExerciseViewFooter() {
               </button>
             </div>
             <div>
-              {chatHistory.entries.length > 0 && (
+              {chatHistory.entries.length > 0 && !pickAndSolveMode && (
                 <button
                   className="bg-gray-100 px-2 rounded mr-3"
                   onClick={() => {
