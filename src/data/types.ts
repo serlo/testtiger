@@ -16,6 +16,7 @@ export interface SingleExercise<T = unknown> {
   solution: (props: { data: T }) => JSX.Element
   example?: () => JSX.Element
   correctionHints?: (props: { data: T }) => JSX.Element
+  onlyHints?: boolean
 }
 
 export interface ExerciseWithSubtasks<T = unknown> {
@@ -38,6 +39,7 @@ export interface ExerciseWithSubtasks<T = unknown> {
     solution: (props: { data: T }) => JSX.Element
     example?: () => JSX.Element
     correctionHints?: (props: { data: T }) => JSX.Element
+    onlyHints?: boolean
   }[]
 }
 
