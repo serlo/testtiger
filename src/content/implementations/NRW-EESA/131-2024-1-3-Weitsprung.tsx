@@ -387,8 +387,7 @@ export const exercise131: Exercise<DATA> = {
                 10,5 m
               </text>
             </svg>
-            Wie viele Meter liegen zwischen dem kürzesten und dem weitesten
-            Wurf?
+            <p>Berechne die Spannweite.</p>
             <Color2>
               <b>Antwort:</b> Zwischen dem kürzesten und dem weitesten Wurf
               liegen <b>2 m</b>.
@@ -396,12 +395,12 @@ export const exercise131: Exercise<DATA> = {
             <br></br>
             <br></br>
             <ExplanationBox>
-              <p>Rechnung:</p>
+              <p>Erklärung:</p>
               <hr style={{ margin: '10px 0' }} />
               <p>
                 Der kürzeste Wurf liegt bei 10 m und der weiteste Wurf bei 12 m.
-                Um den Unterschied zwischen den beiden zu berechnen, ziehe den
-                kürzesten vom weitesten Wurf ab:{' '}
+                Um die Spannweite zu berechnen, ziehe den kürzesten vom
+                weitesten Wurf ab:{' '}
               </p>
               <p>12 m - 10 m = 2 m</p>
             </ExplanationBox>
