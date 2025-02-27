@@ -19,6 +19,10 @@ import {
 } from './state/actions'
 import { useRef, useEffect, Fragment } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
+import { exercisesData } from '@/content/exercises'
+import { proseWrapper } from '@/helper/prose-wrapper'
+import { ExerciseWithSubtasks } from '@/data/types'
+import { countLetter } from '@/helper/count-letter'
 
 export function ExerciseViewFooter() {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -37,6 +41,14 @@ export function ExerciseViewFooter() {
   const id = ExerciseViewStore.useState(s => s.id)
   const toHome = ExerciseViewStore.useState(s => s.toHome)
   const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
+  const pickAndSolveMode = ExerciseViewStore.useState(s => s.pickAndSolveMode)
+  const pickAndSolveShowChat = ExerciseViewStore.useState(
+    s => s.pickAndSolveShowChat,
+  )
+
+  const navIndicatorPosition = ExerciseViewStore.useState(
+    s => s.navIndicatorPosition,
+  )
 
   useEffect(() => {
     setTimeout(() => {
@@ -113,6 +125,10 @@ export function ExerciseViewFooter() {
 
   if (examplePrescreen) return null
 
+  if (pickAndSolveMode && !pickAndSolveShowChat) return null
+
+  const page = ExerciseViewStore.getRawState().pages[navIndicatorPosition]
+
   return (
     <div className="bg-white min-h-[65px] relative">
       <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-white rounded-footer-shadow">
@@ -128,6 +144,33 @@ export function ExerciseViewFooter() {
             className="max-h-[50vh] overflow-y-auto mx-3"
             ref={chatHistoryRef} // Add ref here
           >
+            {pickAndSolveMode &&
+              pickAndSolveShowChat &&
+              (() => {
+                // TODO: find appropriate content for this page
+                const id = page.context
+                  ? ExerciseViewStore.getRawState()._exerciseIDs[
+                      parseInt(page.context) - 1
+                    ]
+                  : ExerciseViewStore.getRawState().id
+
+                const exercise = exercisesData[id] as ExerciseWithSubtasks<any>
+                const data = page.context
+                  ? ExerciseViewStore.getRawState().dataPerExercise[
+                      page.context
+                    ]
+                  : ExerciseViewStore.getRawState().data
+
+                const task = exercise.tasks.find(
+                  (t, j) => countLetter('a', j) == page.index,
+                )!
+
+                return (
+                  <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]">
+                    {proseWrapper(task.task({ data }))}
+                  </div>
+                )
+              })()}
             {chatHistory.entries.map((el, i) => {
               if (el.type == 'text') {
                 return (

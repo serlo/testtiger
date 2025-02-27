@@ -66,6 +66,8 @@ export type IExerciseViewStore = {
   videoUrl?: string
   isChallenge?: boolean
   introText?: string | JSX.Element
+  pickAndSolveMode?: boolean
+  pickAndSolveShowChat?: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({

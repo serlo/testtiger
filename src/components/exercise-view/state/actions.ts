@@ -80,6 +80,8 @@ export function setupExercise(
     s.examplePrescreen = false
     s.isChallenge = false
     s.introText = ''
+    s.pickAndSolveMode = pages.length > 1
+    s.pickAndSolveShowChat = false
   })
 }
 

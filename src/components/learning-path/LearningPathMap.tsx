@@ -606,6 +606,7 @@ export function handleLearningPathStepClick({
       s.examplePrescreen = false
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
+      s.pickAndSolveMode = false
     })
     if (history)
       history.push(
