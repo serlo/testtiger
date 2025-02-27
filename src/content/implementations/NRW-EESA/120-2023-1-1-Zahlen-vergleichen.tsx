@@ -257,7 +257,7 @@ function TaskComponent({ data }: { data: DATA }) {
       s.chatHistory[s.navIndicatorPosition].resultPending = true
       s.chatHistory[s.navIndicatorPosition].entries.push({
         type: 'text',
-        content: `${pp(data.a)} ${answers[0]} ${pp(data.b)} \n ${pp(data.c)} ${answers[1]} ${pp(data.d)} \n ${pp(data.g)} ${answers[2]} ${pp(data.h)}/${pp(
+        content: `${pp(data.a)} ${answers[0]} ${pp(data.b)} \n ${pp(data.c)}/${pp(data.d)} ${answers[1]} ${pp(data.e)}/${pp(data.f)}  \n ${pp(data.g)} ${answers[2]} ${pp(data.h)}/${pp(
           data.i,
         )}`,
         canEdit: true,
@@ -284,8 +284,8 @@ function TaskComponent({ data }: { data: DATA }) {
               onChange={e => handleSelectChange(0, e.target.value)}
             >
               <option></option>
-              <option value="<">&lt;</option>
-              <option value=">">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="&gt;">&gt;</option>
               <option value="=">=</option>
             </select>
             &nbsp;&nbsp;
@@ -301,8 +301,8 @@ function TaskComponent({ data }: { data: DATA }) {
               onChange={e => handleSelectChange(1, e.target.value)}
             >
               <option></option>
-              <option value="<">&lt;</option>
-              <option value=">">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="&gt;">&gt;</option>
               <option value="=">=</option>
             </select>
             &nbsp;&nbsp;
@@ -318,8 +318,8 @@ function TaskComponent({ data }: { data: DATA }) {
               onChange={e => handleSelectChange(2, e.target.value)}
             >
               <option></option>
-              <option value="<">&lt;</option>
-              <option value=">">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="&gt;">&gt;</option>
               <option value="=">=</option>
             </select>
             &nbsp;&nbsp;
