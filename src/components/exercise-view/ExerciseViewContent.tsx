@@ -29,6 +29,8 @@ export function ExerciseViewContent() {
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
   const introText = ExerciseViewStore.useState(s => s.introText)
 
+  const pickAndSolve = ExerciseViewStore.useState(s => s.pickAndSolveMode)
+
   useEffect(() => {
     if (
       navIndicatorExternalUpdate >= 0 &&
@@ -84,6 +86,9 @@ export function ExerciseViewContent() {
         if (chatOverlay) {
           ExerciseViewStore.update(s => {
             s.chatOverlay = null
+            if (s.pickAndSolveMode) {
+              s.pickAndSolveShowChat = false
+            }
           })
         }
       }}
@@ -162,38 +167,44 @@ export function ExerciseViewContent() {
             return (
               <>
                 {!examplePrescreen &&
-                  renderContentCard(
+                  renderContentCard({
                     i,
-                    singleExercise.duration ?? '?',
-                    singleExercise.points ?? '?',
-                    <>
-                      {
-                        <>
-                          {renderContentElement(
-                            singleExercise.task({
-                              data:
-                                examplePrescreen && singleExercise.exampleData
-                                  ? singleExercise.exampleData
-                                  : data,
-                            }),
-                          )}
-                        </>
-                      }
-                    </>,
-                    page.displayIndex,
-                  )}
+                    duration: singleExercise.duration ?? '?',
+                    points: singleExercise.points ?? '?',
+                    contentEl: (
+                      <>
+                        {renderContentElement(
+                          singleExercise.task({
+                            data:
+                              examplePrescreen && singleExercise.exampleData
+                                ? singleExercise.exampleData
+                                : data,
+                          }),
+                        )}
+                      </>
+                    ),
+                    numbering: page.displayIndex,
+                    toHome,
+                    pages,
+                    useCalculator,
+                    pickAndSolve,
+                  })}
                 {examplePrescreen &&
                   singleExercise.example &&
-                  renderContentCard(
+                  renderContentCard({
                     i,
-                    singleExercise.duration ?? '?',
-                    singleExercise.points ?? '?',
-                    <>
-                      {<>{renderContentElement(singleExercise.example())}</>}
-                    </>,
-                    page.displayIndex,
-                    `example-${i}`,
-                  )}
+                    duration: singleExercise.duration ?? '?',
+                    points: singleExercise.points ?? '?',
+                    contentEl: (
+                      <>{renderContentElement(singleExercise.example())}</>
+                    ),
+                    numbering: page.displayIndex,
+                    alternativeKey: `example-${i}`,
+                    toHome,
+                    pages,
+                    useCalculator,
+                    pickAndSolve,
+                  })}
               </>
             )
           } else {
@@ -248,34 +259,46 @@ export function ExerciseViewContent() {
                     </>
                   )}
                 {!examplePrescreen &&
-                  renderContentCard(
+                  renderContentCard({
                     i,
-                    task.duration ?? '?',
-                    task.points ?? '?',
-                    <>
-                      {renderContentElement(
-                        <div>
-                          {task.task({
-                            data:
-                              examplePrescreen && exercise.exampleData
-                                ? exercise.exampleData
-                                : data,
-                          })}
-                        </div>,
-                      )}
-                    </>,
-                    page.displayIndex,
-                  )}
+                    duration: task.duration ?? '?',
+                    points: task.points ?? '?',
+                    contentEl: (
+                      <>
+                        {renderContentElement(
+                          <div>
+                            {task.task({
+                              data:
+                                examplePrescreen && exercise.exampleData
+                                  ? exercise.exampleData
+                                  : data,
+                            })}
+                          </div>,
+                        )}
+                      </>
+                    ),
+                    numbering: page.displayIndex,
+                    toHome,
+                    pages,
+                    useCalculator,
+                    pickAndSolve,
+                  })}
                 {examplePrescreen &&
                   task.example &&
-                  renderContentCard(
+                  renderContentCard({
                     i,
-                    task.duration ?? '?',
-                    task.points ?? '?',
-                    <>{renderContentElement(<div>{task.example()}</div>)}</>,
-                    page.displayIndex,
-                    `solution-${i}`,
-                  )}
+                    duration: task.duration ?? '?',
+                    points: task.points ?? '?',
+                    contentEl: (
+                      <>{renderContentElement(<div>{task.example()}</div>)}</>
+                    ),
+                    numbering: page.displayIndex,
+                    alternativeKey: `solution-${i}`,
+                    toHome,
+                    pages,
+                    useCalculator,
+                    pickAndSolve,
+                  })}
               </>
             )
           }
@@ -300,115 +323,156 @@ export function ExerciseViewContent() {
       </div>
     </div>
   )
+}
 
-  function renderContentCard(
-    i: number,
-    duration: number | string,
-    points: number | string,
-    contentEl: JSX.Element,
-    numbering?: string,
-    alternativeKey?: string,
-  ) {
-    const showNumbering = toHome && numbering
-    return (
-      <div
-        className={clsx(
-          'w-[calc(100%-24px)] flex-shrink-0 mx-auto relative',
-          showNumbering && 'mt-20',
-        )}
-        style={{ scrollbarWidth: 'thin' }}
-        key={alternativeKey ?? i}
-        onClick={() => {
-          ExerciseViewStore.update(s => {
+function renderContentCard({
+  i,
+  duration,
+  points,
+  contentEl,
+  numbering,
+  alternativeKey,
+  toHome,
+  pages,
+  useCalculator,
+  pickAndSolve,
+}: {
+  i: number
+  duration: number | string
+  points: number | string
+  contentEl: JSX.Element
+  numbering?: string
+  alternativeKey?: string
+  toHome: boolean
+  pages: any[]
+  useCalculator: boolean
+  pickAndSolve?: boolean
+}) {
+  const showNumbering = toHome && numbering
+  return (
+    <div
+      className={clsx(
+        'w-[calc(100%-24px)] flex-shrink-0 mx-auto relative',
+        showNumbering && 'mt-20',
+      )}
+      style={{ scrollbarWidth: 'thin' }}
+      key={alternativeKey ?? i}
+      onClick={() => {
+        ExerciseViewStore.update(s => {
+          console.log('on click', s.pickAndSolveMode, s.pickAndSolveShowChat)
+          if (s.pickAndSolveMode) {
+            if (!s.pickAndSolveShowChat) {
+              s.pickAndSolveShowChat = true
+              s.chatOverlay = 'chat'
+              s.navIndicatorPosition = i
+              s.navIndicatorExternalUpdate = i
+            }
+          } else {
             s.navIndicatorPosition = i
             s.navIndicatorExternalUpdate = i
-          })
-        }}
-        id={`exercise-${i}`}
-      >
-        {toHome && numbering && (
-          <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-hidden">
-            <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
-              <span className="mt-2 inline-block">{numbering}</span>
-            </div>
+          }
+        })
+      }}
+      id={`exercise-${i}`}
+    >
+      {toHome && numbering && (
+        <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-hidden">
+          <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
+            <span className="mt-2 inline-block">{numbering}</span>
           </div>
+        </div>
+      )}
+      <div
+        className={clsx(
+          'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2 cursor-pointer',
+          /*navIndicatorPosition == i && !examplePrescreen
+            ? 'border-blue-500 cursor-pointer'
+            :*/ 'border-transparent',
+          ExerciseViewStore.getRawState().completed[i]
+            ? 'bg-green-100'
+            : 'bg-white',
         )}
+      >
         <div
           className={clsx(
-            'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2',
-            navIndicatorPosition == i && !examplePrescreen
-              ? 'border-blue-500 cursor-pointer'
-              : 'border-transparent',
-            ExerciseViewStore.getRawState().completed[i]
-              ? 'bg-green-100'
-              : 'bg-white',
+            'flex justify-between p-[3px] w-full top-0',
+            toHome && 'hidden',
           )}
         >
-          <div
-            className={clsx(
-              'flex justify-between p-[3px] w-full top-0',
-              toHome && 'hidden',
-            )}
-          >
-            <div>
-              <div
-                className={clsx(
-                  'px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2',
-                )}
-              >
-                Aufgabe
-                {
-                  <>
-                    {' '}
-                    {!pages[i].context && pages[i].index == 'single' ? null : (
-                      <>
-                        {pages[i].context}
-                        {(pages[i].index == 'single' ? '' : pages[i].index) +
-                          ')'}
-                      </>
-                    )}
-                  </>
-                }
-              </div>
-            </div>
-            <div>
-              <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-                <div className="inset-0 absolute">
-                  <FaIcon icon={faCalculator} />
-                </div>
-                {!useCalculator && (
-                  <div className="absolute inset-0 -scale-x-100">
-                    <FaIcon icon={faSlash} />
-                  </div>
-                )}
-              </button>
-              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-1">
-                <FaIcon
-                  icon={faClock}
-                  className="text-xs mb-0.5 ml-0.5 inline-block"
-                />{' '}
-                {duration} min
-              </button>
-              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">
-                {points} BE
-              </button>
+          <div>
+            <div
+              className={clsx(
+                'px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2',
+              )}
+            >
+              Aufgabe
+              {
+                <>
+                  {' '}
+                  {!pages[i].context && pages[i].index == 'single' ? null : (
+                    <>
+                      {pages[i].context}
+                      {(pages[i].index == 'single' ? '' : pages[i].index) + ')'}
+                    </>
+                  )}
+                </>
+              }
             </div>
           </div>
-
-          {contentEl}
+          <div>
+            <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+              <div className="inset-0 absolute">
+                <FaIcon icon={faCalculator} />
+              </div>
+              {!useCalculator && (
+                <div className="absolute inset-0 -scale-x-100">
+                  <FaIcon icon={faSlash} />
+                </div>
+              )}
+            </button>
+            <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-1">
+              <FaIcon
+                icon={faClock}
+                className="text-xs mb-0.5 ml-0.5 inline-block"
+              />{' '}
+              {duration} min
+            </button>
+            <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">
+              {points} BE
+            </button>
+          </div>
         </div>
-      </div>
-    )
-  }
 
-  function renderContentElement(c: JSX.Element | null, key?: string) {
-    if (!c) return null
-    return (
-      <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]" key={key}>
-        {proseWrapper(c)}
+        {contentEl}
+        {pickAndSolve && (
+          <div className="flex justify-center items-center p-2 w-full rounded-b-xl">
+            <button
+              className="bg-yellow-200 hover:bg-yellow-300 px-4 py-2 rounded-lg"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.pickAndSolveShowChat = true
+                  s.chatOverlay = 'chat'
+                  s.navIndicatorPosition = i
+                  s.navIndicatorExternalUpdate = i
+                })
+              }}
+            >
+              Aufgabe lösen
+            </button>
+          </div>
+        )}
       </div>
-    )
-  }
+    </div>
+  )
+}
+
+function renderContentElement(c: JSX.Element | null, key?: string) {
+  if (!c) return null
+  return (
+    <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]" key={key}>
+      {proseWrapper(c)}
+    </div>
+  )
 }
 
 function calculateSnapPoints() {

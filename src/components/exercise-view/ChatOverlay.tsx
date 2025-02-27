@@ -11,9 +11,13 @@ export function ChatOverlay() {
           'fixed inset-0 z-[100] pointer-events-none',
           chatOverlay == null ? 'hidden' : 'bg-gray-600/10 ',
         )}
-        onClick={() => {
+        onClick={e => {
           ExerciseViewStore.update(s => {
             s.chatOverlay = null
+            console.log('closing chat overlay')
+            if (s.pickAndSolveMode) {
+              s.pickAndSolveShowChat = false
+            }
           })
         }}
       ></div>

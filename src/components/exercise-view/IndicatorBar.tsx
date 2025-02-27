@@ -41,7 +41,12 @@ export function IndicatorBar() {
                   onClick={() => {
                     ExerciseViewStore.update(s => {
                       s.navIndicatorExternalUpdate = j
-                      s.chatOverlay = null
+                      if (s.pickAndSolveMode) {
+                        s.chatOverlay = 'chat'
+                        s.pickAndSolveShowChat = true
+                      } else {
+                        s.chatOverlay = null
+                      }
                     })
                   }}
                 >
