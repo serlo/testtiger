@@ -306,7 +306,7 @@ export const exercise112: Exercise<DATA> = {
               Balkendiagramm ist das Alter der #spieler dargestellt. Berechne
               die Anzahl der Spieler, die jünger als 18 sind.
             </p>
-            <svg width="328" height="300">
+            <svg width="328" height="230">
               <text
                 x={270}
                 y={20}
@@ -317,8 +317,8 @@ export const exercise112: Exercise<DATA> = {
                 Alter der Spieler
               </text>
               <text
-                x={30}
-                y={290}
+                x={43}
+                y={220}
                 fill="black"
                 fontSize="10"
                 textAnchor="middle"
@@ -326,7 +326,7 @@ export const exercise112: Exercise<DATA> = {
                 jünger als 18
               </text>
               <text
-                x={30}
+                x={43}
                 y={265 - 40 * 6}
                 fill="black"
                 fontSize="10"
@@ -335,8 +335,8 @@ export const exercise112: Exercise<DATA> = {
                 40 %
               </text>
               <text
-                x={160}
-                y={290}
+                x={167}
+                y={220}
                 fill="black"
                 fontSize="10"
                 textAnchor="middle"
@@ -344,8 +344,8 @@ export const exercise112: Exercise<DATA> = {
                 zwischen 18 und 30
               </text>
               <text
-                x={160}
-                y={265 - 35 * 6}
+                x={167}
+                y={260 - 35 * 6}
                 fill="black"
                 fontSize="10"
                 textAnchor="middle"
@@ -353,8 +353,8 @@ export const exercise112: Exercise<DATA> = {
                 35 %
               </text>
               <text
-                x={290}
-                y={290}
+                x={285}
+                y={220}
                 fill="black"
                 fontSize="10"
                 textAnchor="middle"
@@ -362,8 +362,8 @@ export const exercise112: Exercise<DATA> = {
                 älter als 30
               </text>
               <text
-                x={290}
-                y={265 - 25 * 6}
+                x={285}
+                y={240 - 25 * 6}
                 fill="black"
                 fontSize="10"
                 textAnchor="middle"
@@ -372,35 +372,35 @@ export const exercise112: Exercise<DATA> = {
               </text>
               <line
                 x1={0}
-                y1={271}
+                y1={200}
                 x2={328}
-                y2={271}
+                y2={200}
                 stroke="black"
                 strokeWidth={1}
               />
               <rect
                 x={18}
-                y={270 - 40 * 6} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={40 * 6} // Höhe des Rechtecks
+                y={200 - 40 * 4} // obere linke Ecke
+                width={50} // Breite des Rechtecks
+                height={40 * 4} // Höhe des Rechtecks
                 fill="red" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <rect
-                x={147}
-                y={270 - 35 * 6} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={35 * 6} // Höhe des Rechtecks
+                x={139}
+                y={200 - 35 * 4} // obere linke Ecke
+                width={50} // Breite des Rechtecks
+                height={35 * 4} // Höhe des Rechtecks
                 fill="orange" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
               />
               <rect
-                x={276}
-                y={270 - 25 * 6} // obere linke Ecke
-                width={25} // Breite des Rechtecks
-                height={25 * 6} // Höhe des Rechtecks
+                x={260}
+                y={200 - 25 * 4} // obere linke Ecke
+                width={50} // Breite des Rechtecks
+                height={25 * 4} // Höhe des Rechtecks
                 fill="gray" // Farbe des Rechtecks
                 stroke="black"
                 strokeWidth={2}
