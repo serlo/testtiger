@@ -122,6 +122,19 @@ export const exercise130: Exercise<DATA> = {
   task({ data }) {
     return <TaskComponent data={data} />
   },
+  onlyHints: true,
+  correctionHints({ data }) {
+    return (
+      <>
+        Bei dieser Aufgabe sollen drei Größen in eine andere Einheit umgerechnet
+        werden. Die Antwort wird in diesem Format erwartet: ___ m
+        <br /> ___ min
+        <br /> ___ ml. Die richtige Antwort lautet {pp(data.m)} m
+        <br /> {pp(data.min)} min
+        <br /> {pp(data.ml)} ml.
+      </>
+    )
+  },
   solution({ data }) {
     return (
       <>
