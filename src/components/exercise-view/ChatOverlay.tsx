@@ -4,6 +4,15 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 
 export function ChatOverlay() {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
+
+  const multiScreenExercise = ExerciseViewStore.useState(
+    s => s.multiScreenExercise,
+  )
+
+  if (multiScreenExercise) {
+    return null
+  }
+
   return (
     <>
       <div

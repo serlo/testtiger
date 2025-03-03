@@ -13,6 +13,7 @@ import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef } from 'react'
 import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 import { useHistory } from 'react-router'
+import { NewExerciseViewChat } from './NewExerciseViewChat'
 
 export function ExerciseViewContent() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
@@ -166,6 +167,7 @@ export function ExerciseViewContent() {
             }
           })
         }}
+        className="h-full"
       >
         <div className="h-2"></div>
         {!multiScreenExercise && (
@@ -260,6 +262,7 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                   })}
+                <NewExerciseViewChat />
                 {examplePrescreen &&
                   singleExercise.example &&
                   renderContentCard({

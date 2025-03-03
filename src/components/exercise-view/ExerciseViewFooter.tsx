@@ -1,10 +1,14 @@
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { FaIcon } from '../ui/FaIcon'
 import {
+  faArrowUp,
   faCameraAlt,
   faCaretDown,
   faCaretUp,
   faExpand,
+  faFileLines,
+  faMinus,
+  faPlus,
   faQuestionCircle,
   faSquareRootVariable,
 } from '@fortawesome/free-solid-svg-icons'
@@ -17,7 +21,7 @@ import {
   analyseLastInput,
   markCurrentExerciseAsComplete,
 } from './state/actions'
-import { useRef, useEffect, Fragment } from 'react'
+import { useRef, useEffect, Fragment, useState } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { exercisesData } from '@/content/exercises'
 import { proseWrapper } from '@/helper/prose-wrapper'
@@ -128,11 +132,96 @@ export function ExerciseViewFooter() {
   )
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
 
+  const [showHelp, setShowHelp] = useState(false)
+
   if (examplePrescreen) return null
 
   if (pickAndSolveMode && !pickAndSolveShowChat) return null
 
-  if (multiScreenExercise && showIntroScreen) return null
+  if (multiScreenExercise && !showIntroScreen) {
+    return (
+      <div className="bg-blue-100 min-h-[65px] relative">
+        <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-blue-100">
+          {/* visual element*/}
+        </div>
+        <div className="absolute right-3 -top-14 bg-blue-200 rounded-full px-1 py-0.5">
+          <button onClick={() => setShowHelp(!showHelp)}>
+            <FaIcon
+              icon={showHelp ? faMinus : faPlus}
+              className="text-blue-500 mr-1.5"
+            />{' '}
+            Hilfe
+          </button>
+        </div>
+        {showHelp && (
+          <div className="absolute left-3 -top-14 bg-blue-200 rounded-full px-1 py-0.5">
+            <button
+              className=""
+              onClick={() => {
+                setShowHelp(false)
+                ExerciseViewStore.update(s => {
+                  s.chatOverlay = 'solution'
+                })
+              }}
+            >
+              Lösung anzeigen
+            </button>
+          </div>
+        )}
+        {!needReset2 && (
+          <TextareaAutosize
+            ref={textareaRef}
+            value={chatHistory.answerInput}
+            onChange={e =>
+              ExerciseViewStore.update(s => {
+                s.chatHistory[s.navIndicatorPosition].answerInput =
+                  e.target.value
+              })
+            }
+            placeholder="Gib deine Antwort oder Frage ein ..."
+            minRows={1}
+            maxRows={5}
+            className="w-[calc(100%-48px)] mt-4 mb-6 resize-none bg-blue-100 outline-none mx-6 font-bold"
+          />
+        )}
+        <div className="flex justify-between items-center px-4 pb-4">
+          <button
+            className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-md"
+            onClick={takePhoto}
+            disabled={chatHistory.resultPending}
+          >
+            <FaIcon icon={faFileLines} />
+            Lösung einscannen
+          </button>
+          <button
+            className="flex-shrink-0 w-10 h-10 bg-yellow-400 text-white rounded-full flex items-center justify-center hover:bg-yellow-500 disabled:bg-gray-300"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatHistory[s.navIndicatorPosition].resultPending = true
+                s.chatHistory[s.navIndicatorPosition].entries.push({
+                  type: 'text',
+                  content: s.chatHistory[s.navIndicatorPosition].answerInput,
+                  canEdit: true,
+                })
+                s.chatOverlay = 'chat'
+                s.chatHistory[s.navIndicatorPosition].answerInput = ''
+              })
+              void analyseLastInput()
+            }}
+            disabled={
+              chatHistory.resultPending || chatHistory.answerInput == ''
+            }
+          >
+            <FaIcon icon={faArrowUp} className="w-5 h-5 text-black" />
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  if (multiScreenExercise && showIntroScreen) {
+    return null
+  }
 
   const page = ExerciseViewStore.getRawState().pages[navIndicatorPosition]
 

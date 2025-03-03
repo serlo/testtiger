@@ -89,30 +89,35 @@ export function SolutionOverlay() {
 
   return (
     <>
-      <div className="flex justify-between mx-3 pt-3">
-        <button
-          onClick={() => {
-            ExerciseViewStore.update(s => {
-              s.chatOverlay = 'chat'
-            })
-          }}
-          className="text-gray-400"
-        >
-          zurück zum Chat
-        </button>
-        <button
-          className="px-2 py-0.5 bg-gray-100 rounded"
-          onClick={() => {
-            ExerciseViewStore.update(s => {
-              s.chatOverlay = null
-            })
-          }}
-        >
-          <FaIcon icon={faCaretDown} /> Lösung
-        </button>
-      </div>
+      {!multiScreenExercise && (
+        <div className="flex justify-between mx-3 pt-3">
+          <button
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = 'chat'
+              })
+            }}
+            className="text-gray-400"
+          >
+            zurück zum Chat
+          </button>
+          <button
+            className="px-2 py-0.5 bg-gray-100 rounded"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+            }}
+          >
+            <FaIcon icon={faCaretDown} /> Lösung
+          </button>
+        </div>
+      )}
       <div
-        className="mx-3 mt-3 mb-6 max-h-[50vh] overflow-y-auto"
+        className={clsx(
+          'mx-3 mt-3 mb-6 overflow-y-auto',
+          !multiScreenExercise && 'max-h-[50vh]',
+        )}
         ref={solutionDiv}
       >
         <div className="max-w-[328px] mx-auto">
