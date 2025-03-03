@@ -216,11 +216,51 @@ export function LearningPathMap() {
                 <circle
                   cx={el.source.position!.x}
                   cy={mapHeight - el.source.position!.y}
-                  r={39}
+                  r={35}
                   fill="none"
-                  className="stroke-white/60 animate-pulse"
+                  className="stroke-white"
                   strokeWidth={13}
                 ></circle>
+              )}
+              {thisIsHighlighted && (
+                <>
+                  <polygon
+                    points={`${el.source.position!.x},${mapHeight - el.source.position!.y + 47} ${el.source.position!.x - 40},${mapHeight - el.source.position!.y + 95} ${el.source.position!.x + 40},${mapHeight - el.source.position!.y + 95}`}
+                    fill="white"
+                    className="filter drop-shadow-md"
+                  />
+                  <foreignObject
+                    x="10%"
+                    y={mapHeight - el.source.position!.y + 60}
+                    width="80%"
+                    height={120}
+                  >
+                    <div className="bg-white p-2 rounded-md shadow-md text-center text-sm h-full">
+                      <p className="font-bold mt-3 text-lg">
+                        {el.source.title}
+                      </p>
+                      <button
+                        className="bg-blue-500 text-white py-2 px-4 rounded-full mt-2 hover:bg-blue-600 transition-colors"
+                        onClick={e => {
+                          e.stopPropagation()
+                          handleLearningPathStepClick({
+                            lesson: el.source,
+                            solvedPercentage: el.solvedPercentage,
+                            exam,
+                            history,
+                            nextElement: elements[i + 1],
+                          })
+                        }}
+                      >
+                        {el.source.type === 'challenge'
+                          ? 'Challenge starten'
+                          : el.source.type === 'video'
+                            ? 'Video starten'
+                            : 'Aufgabe starten'}
+                      </button>
+                    </div>
+                  </foreignObject>
+                </>
               )}
 
               <circle
