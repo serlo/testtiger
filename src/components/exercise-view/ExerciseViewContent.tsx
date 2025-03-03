@@ -209,7 +209,14 @@ export function ExerciseViewContent() {
           </>
         )}
         {pages.map((page, i) => {
-          if (multiScreenExercise && i !== navIndicatorPosition) {
+          if (
+            multiScreenExercise &&
+            i !== navIndicatorPosition &&
+            !(
+              i < navIndicatorPosition &&
+              pages[i].context == pages[navIndicatorPosition].context
+            )
+          ) {
             return null
           }
 
