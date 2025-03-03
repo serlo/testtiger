@@ -3,10 +3,15 @@ import { useHistory } from 'react-router'
 import { ExerciseView } from '../exercise-view/ExerciseView'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
 import { useEffect } from 'react'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore,
+} from '../../../store/player-profile-store'
 
 export function Video() {
   const videoRedirectUrl = ExerciseViewStore.useState(s => s.videoRedirectUrl)
   const videoUrl = ExerciseViewStore.useState(s => s.videoUrl)
+  const exam = PlayerProfileStore.useState(s => s.currentExam)
   const history = useHistory()
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
@@ -40,6 +45,11 @@ export function Video() {
             <button
               className="px-5 py-4 bg-green-200 hover:bg-green-300 rounded"
               onClick={() => {
+                updatePlayerProfileStore(s => {
+                  s.progress[exam].learningPathTags.push(
+                    ExerciseViewStore.getRawState().videoTitle ?? '',
+                  )
+                })
                 document.querySelector('video')?.pause()
                 document.querySelector('video')!.currentTime = 0
                 ExerciseViewStore.update(s => {

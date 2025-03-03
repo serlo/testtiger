@@ -466,11 +466,6 @@ export function handleLearningPathStepClick({
   nextElement,
 }: LearningPathStepParams) {
   if (lesson.type === 'video') {
-    // Video step logic
-    updatePlayerProfileStore(s => {
-      s.progress[exam].learningPathTags.push(lesson.title)
-    })
-
     if (!nextElement) {
       console.warn('No next element provided for video lesson')
       return
@@ -495,6 +490,7 @@ export function handleLearningPathStepClick({
             exam
           ].learningPathTags.includes(relevantKeys[i]),
         )
+        s.videoTitle = lesson.title
       })
     }
     ExerciseViewStore.update(s => {

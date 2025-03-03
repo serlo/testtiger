@@ -64,6 +64,7 @@ export type IExerciseViewStore = {
   hasExamplePrescreen: boolean
   videoRedirectUrl?: string
   videoUrl?: string
+  videoTitle?: string
   isChallenge?: boolean
   introText?: string | JSX.Element
   pickAndSolveMode?: boolean
