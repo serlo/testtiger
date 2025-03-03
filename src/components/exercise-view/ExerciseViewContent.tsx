@@ -5,12 +5,14 @@ import {
   faCalculator,
   faClock,
   faSlash,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
 import { useEffect, useRef } from 'react'
 import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
+import { useHistory } from 'react-router'
 
 export function ExerciseViewContent() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
@@ -54,6 +56,8 @@ export function ExerciseViewContent() {
     }
   }, [navIndicatorExternalUpdate, navIndicatorPosition])
 
+  const history = useHistory()
+
   useEffect(() => {
     if (needReset && ref.current) {
       ref.current.scrollTop = 0
@@ -77,6 +81,58 @@ export function ExerciseViewContent() {
           ]
         : ExerciseViewStore.getRawState().id
     ].useCalculator
+
+  const multiScreenExercise = ExerciseViewStore.useState(
+    s => s.multiScreenExercise,
+  )
+  const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
+
+  const skill = ExerciseViewStore.useState(s => s.skill)
+
+  if (multiScreenExercise && showIntroScreen) {
+    // return a full screen intro screen with yellow background
+    return (
+      <div className="absolute inset-0 bg-yellow-100 flex justify-between flex-col">
+        <button
+          className="absolute top-4 left-4 text-blue-500 hover:text-blue-700 text-2xl"
+          onClick={() => {
+            history.push('/app/home')
+          }}
+        >
+          <FaIcon icon={faTimes} />
+        </button>
+        <div></div>
+
+        <div>
+          <div className="w-[270px] mx-auto">
+            <img src="/birdie_idle.svg" alt="" />
+          </div>
+          <h1 className="font-bold mx-4 text-xl text-center">
+            Willkommen zur {skill}!
+          </h1>
+          <div className="mx-4 text-center mt-5">{introText}</div>
+        </div>
+        <div>
+          <div className="flex justify-center mt-4 mb-2">
+            <button
+              className="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-full text-white w-[290px]"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.showIntroScreen = false
+                })
+              }}
+            >
+              Mit der ersten Aufgabe beginnen
+            </button>
+          </div>
+          <p className="text-xs text-gray-400 w-[270px] mx-auto mb-7 text-center transition-colors">
+            (du musst nicht alles auf einmal machen. Dein Fortschritt wird
+            gespeichert)
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div

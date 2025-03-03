@@ -123,9 +123,16 @@ export function ExerciseViewFooter() {
     }
   }
 
+  const multiScreenExercise = ExerciseViewStore.useState(
+    s => s.multiScreenExercise,
+  )
+  const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
+
   if (examplePrescreen) return null
 
   if (pickAndSolveMode && !pickAndSolveShowChat) return null
+
+  if (multiScreenExercise && showIntroScreen) return null
 
   const page = ExerciseViewStore.getRawState().pages[navIndicatorPosition]
 

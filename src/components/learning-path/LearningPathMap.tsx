@@ -643,6 +643,8 @@ export function handleLearningPathStepClick({
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
       s.pickAndSolveMode = false
+      s.multiScreenExercise = lesson.steps.length > 1
+      s.showIntroScreen = true
     })
     if (history)
       history.push(

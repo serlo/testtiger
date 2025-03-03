@@ -82,6 +82,7 @@ export function setupExercise(
     s.introText = ''
     s.pickAndSolveMode = pages.length > 1
     s.pickAndSolveShowChat = false
+    s.multiScreenExercise = false
   })
 }
 

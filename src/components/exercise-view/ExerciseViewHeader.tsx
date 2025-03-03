@@ -25,6 +25,15 @@ export function ExerciseViewHeader() {
       : exercisesData[id]
   const history = useHistory()
 
+  const multiScreenExercise = ExerciseViewStore.useState(
+    s => s.multiScreenExercise,
+  )
+  const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
+
+  if (multiScreenExercise && showIntroScreen) {
+    return null
+  }
+
   return (
     <div
       className="mt-3 mb-1 mx-3 border shadow-md px-4 py-2 rounded-lg bg-white"
