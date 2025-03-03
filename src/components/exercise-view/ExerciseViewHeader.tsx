@@ -1,6 +1,6 @@
 import { exercisesData } from '@/content/exercises'
 import { ExerciseViewStore } from './state/exercise-view-store'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
@@ -25,6 +25,11 @@ export function ExerciseViewHeader() {
       : exercisesData[id]
   const history = useHistory()
 
+  // load if this exercise is completed
+  const completed = ExerciseViewStore.useState(
+    s => s.completed[s.navIndicatorPosition],
+  )
+
   const multiScreenExercise = ExerciseViewStore.useState(
     s => s.multiScreenExercise,
   )
@@ -32,6 +37,64 @@ export function ExerciseViewHeader() {
 
   if (multiScreenExercise && showIntroScreen) {
     return null
+  }
+
+  if (multiScreenExercise) {
+    // der Header ist gelb, noch oben verbunden, untere zwei Ecken sind abgerundet
+    // links ist ein x zum schließen
+    // in der Mitte steht der Titel in Dunkelgelb
+    // unter dem Titel steht, ob man Taschenrechner benutzen darf
+    // darunter sind kleine Balken die anzeigen, wie viele Aufgaben es gibt und an welcher man gerade arbeitet
+
+    return (
+      <div className="mb-1 shadow-md px-4 py-2 rounded-t-none rounded-b-lg bg-yellow-100 border-yellow-300 relative">
+        <div
+          className="absolute top-4 left-4 text-blue-500 hover:text-blue-700 text-2xl cursor-pointer"
+          onClick={() => history.push('/app/home')}
+        >
+          <FaIcon icon={faTimes} className="" />
+        </div>
+        <div className="text-center">
+          <h2 className="text-yellow-800 font-bold">{skill}</h2>
+          <p className="text-sm text-yellow-700">
+            {content.useCalculator
+              ? 'Taschenrechner erlaubt'
+              : 'Kein Taschenrechner erlaubt'}
+          </p>
+          <div className="flex justify-center mt-2 gap-2">
+            {pages &&
+              pages.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1 w-12 rounded-full ${
+                    index <= navIndicatorPosition
+                      ? 'bg-yellow-600'
+                      : 'bg-yellow-300'
+                  }`}
+                />
+              ))}
+          </div>
+          {completed && (
+            <div className="absolute top-4 right-4">
+              <button
+                className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md font-medium"
+                onClick={() => {
+                  const nextPos = navIndicatorPosition + 1
+                  if (nextPos < (pages?.length || 0)) {
+                    ExerciseViewStore.update(s => {
+                      s.navIndicatorPosition = nextPos
+                      s.navIndicatorExternalUpdate = nextPos
+                    })
+                  }
+                }}
+              >
+                Weiter
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    )
   }
 
   return (

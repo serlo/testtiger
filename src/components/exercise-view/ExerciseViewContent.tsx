@@ -168,43 +168,51 @@ export function ExerciseViewContent() {
         }}
       >
         <div className="h-2"></div>
-        <div className="mb-5 mx-2 p-4 rounded-lg">
-          <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-            <div className="inset-0 absolute">
-              <FaIcon icon={faCalculator} />
-            </div>
-            {!useCalculator && (
-              <div className="absolute inset-0 -scale-x-100">
-                <FaIcon icon={faSlash} />
-              </div>
-            )}
-          </button>
-          Taschenrechner ist
-          {useCalculator ? '' : ' nicht'} erlaubt.
-          {!examplePrescreen ? (
-            <>
-              <br />
-              <br />
-              {introText ? (
-                introText
+        {!multiScreenExercise && (
+          <>
+            <div className="mb-5 mx-2 p-4 rounded-lg">
+              <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+                <div className="inset-0 absolute">
+                  <FaIcon icon={faCalculator} />
+                </div>
+                {!useCalculator && (
+                  <div className="absolute inset-0 -scale-x-100">
+                    <FaIcon icon={faSlash} />
+                  </div>
+                )}
+              </button>
+              Taschenrechner ist
+              {useCalculator ? '' : ' nicht'} erlaubt.
+              {!examplePrescreen ? (
+                <>
+                  <br />
+                  <br />
+                  {introText ? (
+                    introText
+                  ) : (
+                    <>
+                      Schnapp dir <strong>Stift</strong> und{' '}
+                      <strong>Papier</strong> und <strong>scanne</strong>, wenn
+                      du fertig bist, deinen Rechenweg ein, oder{' '}
+                      <strong>tippe</strong> deine Lösung in den Chat.
+                    </>
+                  )}
+                </>
               ) : (
                 <>
-                  Schnapp dir <strong>Stift</strong> und <strong>Papier</strong>{' '}
-                  und <strong>scanne</strong>, wenn du fertig bist, deinen
-                  Rechenweg ein, oder <strong>tippe</strong> deine Lösung in den
-                  Chat.
+                  <br />
+                  <br />
+                  Schaue dir das <strong>Beispiel</strong> an.
                 </>
               )}
-            </>
-          ) : (
-            <>
-              <br />
-              <br />
-              Schaue dir das <strong>Beispiel</strong> an.
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
         {pages.map((page, i) => {
+          if (multiScreenExercise && i !== navIndicatorPosition) {
+            return null
+          }
+
           // TODO: find appropriate content for this page
           const id = page.context
             ? ExerciseViewStore.getRawState()._exerciseIDs[

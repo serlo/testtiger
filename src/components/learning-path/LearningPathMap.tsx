@@ -235,7 +235,7 @@ export function LearningPathMap() {
                     width="80%"
                     height={120}
                   >
-                    <div className="bg-white p-2 rounded-md shadow-md text-center text-sm h-full">
+                    <div className="bg-white p-2 rounded-md shadow-md text-center text-sm h-full z-100">
                       <p className="font-bold mt-3 text-lg">
                         {el.source.title}
                       </p>
@@ -309,6 +309,26 @@ export function LearningPathMap() {
                   className="pointer-events-none"
                 />
               )}
+
+              <>
+                {[el].map((el, i) => {
+                  if (el.source.type == 'challenge') {
+                    return (
+                      <text
+                        key={'challenge-text' + i}
+                        x={el.source.position!.x}
+                        y={mapHeight - el.source.position!.y + 9}
+                        textAnchor="middle"
+                        fontSize={18}
+                        className="pointer-events-none"
+                      >
+                        {parseInt(el.source.title.replace(/[^0-9]/g, ''))}
+                      </text>
+                    )
+                  }
+                  return null
+                })}
+              </>
               {el.source.type == 'video' && (
                 <image
                   href="/learning-path/video.svg"
@@ -340,23 +360,6 @@ export function LearningPathMap() {
               )}
             </Fragment>
           )
-        })}
-        {elements.map((el, i) => {
-          if (el.source.type == 'challenge') {
-            return (
-              <text
-                key={i}
-                x={el.source.position!.x}
-                y={mapHeight - el.source.position!.y + 9}
-                textAnchor="middle"
-                fontSize={18}
-                className="pointer-events-none"
-              >
-                {parseInt(el.source.title.replace(/[^0-9]/g, ''))}
-              </text>
-            )
-          }
-          return null
         })}
       </svg>
       {/*lessonDetails && (

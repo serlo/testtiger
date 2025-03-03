@@ -15,6 +15,13 @@ export function IndicatorBar() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
 
   const completed = ExerciseViewStore.useState(s => s.completed)
+  const multiScreenExercise = ExerciseViewStore.useState(
+    s => s.multiScreenExercise,
+  )
+
+  if (multiScreenExercise) {
+    return null
+  }
 
   if (navIndicatorLength == 0 || (pages && pages.length == 1)) {
     return null

@@ -39,6 +39,10 @@ export function SolutionOverlay() {
       (entry.category == 'actionable-feedback' || entry.category == 'success'),
   )
 
+  const multiScreenExercise = ExerciseViewStore.useState(
+    s => s.multiScreenExercise,
+  )
+
   useEffect(() => {
     if (solutionDiv.current) {
       const target = solutionDiv.current
