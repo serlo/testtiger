@@ -262,7 +262,6 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                   })}
-                <NewExerciseViewChat />
                 {examplePrescreen &&
                   singleExercise.example &&
                   renderContentCard({
@@ -358,7 +357,6 @@ export function ExerciseViewContent() {
                     pickAndSolve,
                   })}
 
-                <NewExerciseViewChat />
                 {examplePrescreen &&
                   task.example &&
                   renderContentCard({
@@ -395,6 +393,7 @@ export function ExerciseViewContent() {
             </div>
           </>
         )}
+        <NewExerciseViewChat />
         <div className="h-12"></div>
       </div>
     </div>
