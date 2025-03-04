@@ -357,6 +357,8 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                   })}
+
+                <NewExerciseViewChat />
                 {examplePrescreen &&
                   task.example &&
                   renderContentCard({
