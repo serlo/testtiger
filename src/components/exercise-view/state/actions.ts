@@ -80,9 +80,9 @@ export function setupExercise(
     s.examplePrescreen = false
     s.isChallenge = false
     s.introText = ''
-    s.pickAndSolveMode = pages.length > 1
+    s.pickAndSolveMode = false
     s.pickAndSolveShowChat = false
-    s.multiScreenExercise = false
+    s.multiScreenExercise = true
   })
 }
 
