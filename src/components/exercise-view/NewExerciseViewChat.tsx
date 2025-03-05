@@ -11,6 +11,8 @@ export function NewExerciseViewChat() {
   )
   const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
 
+  const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
+
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
 
   useEffect(() => {
@@ -28,7 +30,10 @@ export function NewExerciseViewChat() {
     }
   }, [chatHistory.entries.length])
 
-  if (examplePrescreen || chatHistory.entries.length == 0) {
+  if (
+    (examplePrescreen || chatHistory.entries.length == 0) &&
+    chatOverlay !== 'solution'
+  ) {
     return null
   }
 
