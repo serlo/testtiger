@@ -140,14 +140,14 @@ export function ExerciseViewContent() {
       ref={ref}
       className={clsx('w-full h-full overflow-y-auto bg-gray-100')}
       onClick={() => {
-        if (chatOverlay) {
+        /*if (chatOverlay) {
           ExerciseViewStore.update(s => {
             s.chatOverlay = null
             if (s.pickAndSolveMode) {
               s.pickAndSolveShowChat = false
             }
           })
-        }
+        }*/
       }}
     >
       <div
