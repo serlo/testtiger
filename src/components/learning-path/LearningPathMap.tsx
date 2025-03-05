@@ -1,8 +1,5 @@
 import { navigationData } from '@/content/navigations'
-import {
-  PlayerProfileStore,
-  updatePlayerProfileStore,
-} from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { Fragment } from 'react'
 import {
