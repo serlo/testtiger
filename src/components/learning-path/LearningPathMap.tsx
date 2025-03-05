@@ -192,14 +192,14 @@ export function LearningPathMap() {
             isMuted = true
             notMutedYet = true
           }
-          /*if (
+          if (
             somePartialSolved &&
-            el.solvedPercentage < 1 &&
+            el.solvedPercentage == 0 &&
             thisIsHighlighted
           ) {
             alreadyHighlighted = false
             thisIsHighlighted = false
-          }*/
+          }
           const iconSize = el.source.iconSize || 26
           return (
             <Fragment key={i}>
@@ -217,7 +217,7 @@ export function LearningPathMap() {
                   transform={`rotate(-90 ${el.source.position!.x} ${mapHeight - el.source.position!.y})`}
                 ></circle>
               }
-              {thisIsHighlighted && el.solvedPercentage < 1 && (
+              {thisIsHighlighted && el.solvedPercentage == 0 && (
                 <circle
                   cx={el.source.position!.x}
                   cy={mapHeight - el.source.position!.y}
@@ -257,11 +257,17 @@ export function LearningPathMap() {
                           })
                         }}
                       >
-                        {el.source.type === 'challenge'
-                          ? 'Challenge starten'
-                          : el.source.type === 'video'
-                            ? 'Video starten'
-                            : 'Aufgabe starten'}
+                        {el.solvedPercentage > 0
+                          ? el.source.type === 'challenge'
+                            ? 'Challenge weiter'
+                            : el.source.type === 'video'
+                              ? 'Video weiter'
+                              : 'Aufgabe weiter'
+                          : el.source.type === 'challenge'
+                            ? 'Challenge starten'
+                            : el.source.type === 'video'
+                              ? 'Video starten'
+                              : 'Aufgabe starten'}
                       </button>
                     </div>
                   </foreignObject>
