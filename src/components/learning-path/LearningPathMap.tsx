@@ -192,9 +192,14 @@ export function LearningPathMap() {
             isMuted = true
             notMutedYet = true
           }
-          if (somePartialSolved) {
+          /*if (
+            somePartialSolved &&
+            el.solvedPercentage < 1 &&
+            thisIsHighlighted
+          ) {
+            alreadyHighlighted = false
             thisIsHighlighted = false
-          }
+          }*/
           const iconSize = el.source.iconSize || 26
           return (
             <Fragment key={i}>
@@ -212,7 +217,7 @@ export function LearningPathMap() {
                   transform={`rotate(-90 ${el.source.position!.x} ${mapHeight - el.source.position!.y})`}
                 ></circle>
               }
-              {thisIsHighlighted && (
+              {thisIsHighlighted && el.solvedPercentage < 1 && (
                 <circle
                   cx={el.source.position!.x}
                   cy={mapHeight - el.source.position!.y}
