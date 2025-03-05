@@ -47,7 +47,7 @@ export function SolutionOverlay() {
     if (solutionDiv.current) {
       const target = solutionDiv.current
 
-      if (target) {
+      /*if (target) {
         const gesture = createGesture({
           el: target,
           direction: 'y',
@@ -73,7 +73,7 @@ export function SolutionOverlay() {
         return () => {
           gesture.destroy()
         }
-      }
+      }*/
     }
   }, [solutionDiv])
 
@@ -120,6 +120,7 @@ export function SolutionOverlay() {
         )}
         ref={solutionDiv}
       >
+        <h4 className="font-bold text-xl">Lösung</h4>
         <div className="max-w-[328px] mx-auto">
           {proseWrapper(
             (() => {
@@ -206,7 +207,7 @@ export function SolutionOverlay() {
               markCurrentExerciseAsComplete()
             }}
           >
-            Als gelöst markieren
+            Ich bin fertig
           </button>
           <button
             className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-xl ml-3"
@@ -217,7 +218,7 @@ export function SolutionOverlay() {
               reseed()
             }}
           >
-            <FaIcon icon={faWandMagicSparkles} /> Nochmal
+            <FaIcon icon={faWandMagicSparkles} /> Mit anderen Zahlen rechnen
           </button>
           <br />
           <button

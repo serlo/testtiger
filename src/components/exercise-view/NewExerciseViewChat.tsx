@@ -11,6 +11,8 @@ export function NewExerciseViewChat() {
   )
   const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
 
+  const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
+
   useEffect(() => {
     setTimeout(() => {
       ExerciseViewStore.update(s => {
@@ -25,6 +27,10 @@ export function NewExerciseViewChat() {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight
     }
   }, [chatHistory.entries.length])
+
+  if (examplePrescreen || chatHistory.entries.length == 0) {
+    return null
+  }
 
   return (
     <>

@@ -21,13 +21,13 @@ export function ChatOverlay() {
           chatOverlay == null ? 'hidden' : 'bg-gray-600/10 ',
         )}
         onClick={e => {
-          ExerciseViewStore.update(s => {
+          /*ExerciseViewStore.update(s => {
             s.chatOverlay = null
             console.log('closing chat overlay')
             if (s.pickAndSolveMode) {
               s.pickAndSolveShowChat = false
             }
-          })
+          })*/
         }}
       ></div>
       <div className="fixed left-0 right-0 bottom-0 bg-white z-[101]">
