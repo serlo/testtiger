@@ -3,6 +3,10 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import clsx from 'clsx'
 import {
   faCalculator,
+  faCaretDown,
+  faCaretUp,
+  faChevronDown,
+  faChevronUp,
   faClock,
   faSlash,
   faTimes,
@@ -90,6 +94,14 @@ export function ExerciseViewContent() {
 
   const skill = ExerciseViewStore.useState(s => s.skill)
 
+  const introCollapseState = ExerciseViewStore.useState(
+    s => s.introCollapseState,
+  )
+
+  const tasksCollapseState = ExerciseViewStore.useState(
+    s => s.tasksCollapseState,
+  )
+
   if (multiScreenExercise && showIntroScreen) {
     // return a full screen intro screen with yellow background
     return (
@@ -138,7 +150,7 @@ export function ExerciseViewContent() {
   return (
     <div
       ref={ref}
-      className={clsx('w-full h-full overflow-y-auto bg-gray-100')}
+      className={clsx('w-full h-full overflow-y-auto')}
       onClick={() => {
         /*if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -317,18 +329,40 @@ export function ExerciseViewContent() {
                   introComps.some(e => e) &&
                   !examplePrescreen && (
                     <>
-                      {page.context && page.displayIndex?.includes('a') && (
-                        <div className="ml-3 font-bold font-xl w-24 h-8 overflow-hidden -mb-3">
-                          <div className="text-center inset-0 h-24 w-24 rounded-full bg-gray-50">
-                            <span className="mt-2 inline-block">
-                              {page.context}
-                            </span>
-                          </div>
+                      <div
+                        className={clsx(
+                          'relative',
+                          introCollapseState[i] &&
+                            'h-[70px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
+                        )}
+                      >
+                        <div
+                          className="absolute right-3 top-1 cursor-pointer"
+                          onClick={() => {
+                            ExerciseViewStore.update(s => {
+                              s.introCollapseState[i] = !s.introCollapseState[i]
+                            })
+                          }}
+                        >
+                          <FaIcon
+                            icon={
+                              introCollapseState[i]
+                                ? faChevronDown
+                                : faChevronUp
+                            }
+                          />
                         </div>
-                      )}
-                      <div className="px-5 bg-white mb-6">
-                        {renderContentElement(<>{introComps}</>, i.toString())}
+                        <div className="text-blue-500 text-sm mx-4 mt-3 mb-2">
+                          BESCHREIBUNG
+                        </div>
+                        <div className="px-4 bg-white mb-6">
+                          {renderContentElement(
+                            <>{introComps}</>,
+                            i.toString(),
+                          )}
+                        </div>
                       </div>
+                      <hr />
                     </>
                   )}
                 {!examplePrescreen &&
@@ -339,14 +373,12 @@ export function ExerciseViewContent() {
                     contentEl: (
                       <>
                         {renderContentElement(
-                          <div>
-                            {task.task({
-                              data:
-                                examplePrescreen && exercise.exampleData
-                                  ? exercise.exampleData
-                                  : data,
-                            })}
-                          </div>,
+                          task.task({
+                            data:
+                              examplePrescreen && exercise.exampleData
+                                ? exercise.exampleData
+                                : data,
+                          }),
                         )}
                       </>
                     ),
@@ -355,6 +387,7 @@ export function ExerciseViewContent() {
                     pages,
                     useCalculator,
                     pickAndSolve,
+                    taskCollapsed: tasksCollapseState[i],
                   })}
 
                 {examplePrescreen &&
@@ -411,6 +444,7 @@ function renderContentCard({
   pages,
   useCalculator,
   pickAndSolve,
+  taskCollapsed,
 }: {
   i: number
   duration: number | string
@@ -422,129 +456,126 @@ function renderContentCard({
   pages: any[]
   useCalculator: boolean
   pickAndSolve?: boolean
+  taskCollapsed?: boolean
 }) {
   const showNumbering = toHome && numbering
   return (
-    <div
-      className={clsx(
-        'w-[calc(100%-24px)] flex-shrink-0 mx-auto relative',
-        showNumbering && 'mt-20',
-      )}
-      style={{ scrollbarWidth: 'thin' }}
-      key={alternativeKey ?? i}
-      onClick={() => {
-        ExerciseViewStore.update(s => {
-          console.log('on click', s.pickAndSolveMode, s.pickAndSolveShowChat)
-          if (s.pickAndSolveMode) {
-            if (!s.pickAndSolveShowChat) {
-              s.pickAndSolveShowChat = true
-              s.chatOverlay = 'chat'
-              s.navIndicatorPosition = i
-              s.navIndicatorExternalUpdate = i
-            }
-          } else {
-            s.navIndicatorPosition = i
-            s.navIndicatorExternalUpdate = i
-          }
-        })
-      }}
-      id={`exercise-${i}`}
-    >
-      {toHome && numbering && (
-        <div className="absolute -top-8 left-7 font-bold font-xl w-24 h-8 overflow-hidden">
-          <div className="text-center inset-0 h-24 w-24 rounded-full bg-blue-100">
-            <span className="mt-2 inline-block">{numbering}</span>
-          </div>
-        </div>
-      )}
+    <>
       <div
+        key={alternativeKey ?? i}
+        id={`exercise-${i}`}
         className={clsx(
-          'flex flex-col justify-start pt-2 rounded-xl shadow-lg mb-12 mt-2 px-[1px] items-center border-2 cursor-pointer',
-          /*navIndicatorPosition == i && !examplePrescreen
-            ? 'border-blue-500 cursor-pointer'
-            :*/ 'border-transparent',
-          ExerciseViewStore.getRawState().completed[i]
-            ? 'bg-green-100'
-            : 'bg-white',
+          'relative',
+          taskCollapsed &&
+            'h-[70px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
         )}
       >
         <div
-          className={clsx(
-            'flex justify-between p-[3px] w-full top-0',
-            toHome && 'hidden',
-          )}
+          className="absolute right-3 top-1 cursor-pointer"
+          onClick={() => {
+            ExerciseViewStore.update(s => {
+              s.tasksCollapseState[i] = !s.tasksCollapseState[i]
+            })
+          }}
         >
-          <div>
-            <div
-              className={clsx(
-                'px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2',
-              )}
-            >
-              Aufgabe
-              {
-                <>
-                  {' '}
-                  {!pages[i].context && pages[i].index == 'single' ? null : (
-                    <>
-                      {pages[i].context}
-                      {(pages[i].index == 'single' ? '' : pages[i].index) + ')'}
-                    </>
-                  )}
-                </>
-              }
-            </div>
-          </div>
-          <div>
-            <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-              <div className="inset-0 absolute">
-                <FaIcon icon={faCalculator} />
-              </div>
-              {!useCalculator && (
-                <div className="absolute inset-0 -scale-x-100">
-                  <FaIcon icon={faSlash} />
-                </div>
-              )}
-            </button>
-            <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-1">
-              <FaIcon
-                icon={faClock}
-                className="text-xs mb-0.5 ml-0.5 inline-block"
-              />{' '}
-              {duration} min
-            </button>
-            <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">
-              {points} BE
-            </button>
-          </div>
+          <FaIcon icon={taskCollapsed ? faChevronDown : faChevronUp} />
         </div>
-
-        {contentEl}
-        {pickAndSolve && (
-          <div className="flex justify-center items-center p-2 w-full rounded-b-xl">
-            <button
-              className="bg-yellow-200 hover:bg-yellow-300 px-4 py-2 rounded-lg"
-              onClick={() => {
-                ExerciseViewStore.update(s => {
-                  s.pickAndSolveShowChat = true
-                  s.chatOverlay = 'chat'
-                  s.navIndicatorPosition = i
-                  s.navIndicatorExternalUpdate = i
-                })
-              }}
-            >
-              Aufgabe lösen
-            </button>
+        {toHome && numbering && (
+          <div className="text-blue-500 text-sm mx-5 mt-3">
+            TEILAUFGABE {numbering.toUpperCase()}
           </div>
         )}
+        <div
+          className={clsx(
+            'flex flex-col justify-start items-center',
+            /*navIndicatorPosition == i && !examplePrescreen
+            ? 'border-blue-500 cursor-pointer'
+            :*/ 'border-transparent',
+            ExerciseViewStore.getRawState().completed[i]
+              ? 'bg-green-100'
+              : 'bg-white',
+          )}
+        >
+          <div
+            className={clsx(
+              'flex justify-between p-[3px] w-full top-0',
+              toHome && 'hidden',
+            )}
+          >
+            <div>
+              <div
+                className={clsx(
+                  'px-2 py-0.5 bg-gray-100 inline-block rounded-md mr-2',
+                )}
+              >
+                Aufgabe
+                {
+                  <>
+                    {' '}
+                    {!pages[i].context && pages[i].index == 'single' ? null : (
+                      <>
+                        {pages[i].context}
+                        {(pages[i].index == 'single' ? '' : pages[i].index) +
+                          ')'}
+                      </>
+                    )}
+                  </>
+                }
+              </div>
+            </div>
+            <div>
+              <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
+                <div className="inset-0 absolute">
+                  <FaIcon icon={faCalculator} />
+                </div>
+                {!useCalculator && (
+                  <div className="absolute inset-0 -scale-x-100">
+                    <FaIcon icon={faSlash} />
+                  </div>
+                )}
+              </button>
+              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100 mr-1">
+                <FaIcon
+                  icon={faClock}
+                  className="text-xs mb-0.5 ml-0.5 inline-block"
+                />{' '}
+                {duration} min
+              </button>
+              <button className="cursor-default px-1 py-0.5 rounded-md bg-gray-100">
+                {points} BE
+              </button>
+            </div>
+          </div>
+
+          {contentEl}
+          {pickAndSolve && (
+            <div className="flex justify-center items-center p-2 w-full rounded-b-xl">
+              <button
+                className="bg-yellow-200 hover:bg-yellow-300 px-4 py-2 rounded-lg"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    s.pickAndSolveShowChat = true
+                    s.chatOverlay = 'chat'
+                    s.navIndicatorPosition = i
+                    s.navIndicatorExternalUpdate = i
+                  })
+                }}
+              >
+                Aufgabe lösen
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      <hr className="mt-3" />
+    </>
   )
 }
 
 function renderContentElement(c: JSX.Element | null, key?: string) {
   if (!c) return null
   return (
-    <div className="p-[3px] mt-3 mb-2 min-w-[300px] sm:w-[334px]" key={key}>
+    <div className="mb-2 min-w-[300px] sm:w-[334px]" key={key}>
       {proseWrapper(c)}
     </div>
   )

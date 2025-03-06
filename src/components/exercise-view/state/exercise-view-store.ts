@@ -71,6 +71,8 @@ export type IExerciseViewStore = {
   pickAndSolveShowChat?: boolean
   multiScreenExercise?: boolean
   showIntroScreen?: boolean
+  introCollapseState: boolean[]
+  tasksCollapseState: boolean[]
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -96,4 +98,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   takePhoto: false,
   examplePrescreen: false,
   hasExamplePrescreen: false,
+  introCollapseState: [],
+  tasksCollapseState: [],
 })

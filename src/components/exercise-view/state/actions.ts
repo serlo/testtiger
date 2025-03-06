@@ -83,6 +83,8 @@ export function setupExercise(
     s.pickAndSolveMode = false
     s.pickAndSolveShowChat = false
     s.multiScreenExercise = true
+    s.introCollapseState = pages.map(() => false)
+    s.tasksCollapseState = pages.map(() => false)
   })
 }
 

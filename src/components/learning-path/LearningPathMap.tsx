@@ -656,6 +656,8 @@ export function handleLearningPathStepClick({
       s.pickAndSolveMode = false
       s.multiScreenExercise = lesson.steps.length > 1
       s.showIntroScreen = true
+      s.introCollapseState = s.pages.map(() => false)
+      s.tasksCollapseState = s.pages.map(() => false)
     })
     if (history)
       history.push(
