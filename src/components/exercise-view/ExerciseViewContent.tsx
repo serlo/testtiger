@@ -238,6 +238,17 @@ export function ExerciseViewContent() {
             return null
           }
 
+          let indexWithContext = 1
+          for (let j = 0; j < pages.length; j++) {
+            const page = pages[j]
+            if (page.context == pages[navIndicatorPosition].context) {
+              if (i == j) {
+                break
+              }
+              indexWithContext++
+            }
+          }
+
           // TODO: find appropriate content for this page
           const id = page.context
             ? ExerciseViewStore.getRawState()._exerciseIDs[
@@ -342,22 +353,25 @@ export function ExerciseViewContent() {
                             'h-[70px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
                         )}
                       >
-                        <div
-                          className="absolute right-3 top-1 cursor-pointer"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.introCollapseState[i] = !s.introCollapseState[i]
-                            })
-                          }}
-                        >
-                          <FaIcon
-                            icon={
-                              introCollapseState[i]
-                                ? faChevronDown
-                                : faChevronUp
-                            }
-                          />
-                        </div>
+                        {exercisesWithThisContext > 1 && (
+                          <div
+                            className="absolute right-3 top-1 cursor-pointer"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.introCollapseState[i] =
+                                  !s.introCollapseState[i]
+                              })
+                            }}
+                          >
+                            <FaIcon
+                              icon={
+                                introCollapseState[i]
+                                  ? faChevronDown
+                                  : faChevronUp
+                              }
+                            />
+                          </div>
+                        )}
                         <div className="text-blue-500 text-sm mx-4 mt-3 mb-2">
                           BESCHREIBUNG
                         </div>
@@ -395,6 +409,10 @@ export function ExerciseViewContent() {
                     pickAndSolve,
                     taskCollapsed: tasksCollapseState[i],
                     allowCollapse: exercisesWithThisContext > 1,
+                    heading:
+                      exercisesWithThisContext > 1
+                        ? `${indexWithContext}/${exercisesWithThisContext} TEILAUFGABEN`
+                        : 'AUFGABE',
                   })}
 
                 {examplePrescreen &&

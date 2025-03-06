@@ -61,9 +61,9 @@ export function ExerciseViewHeader() {
               ? 'Taschenrechner erlaubt'
               : 'Kein Taschenrechner erlaubt'}
           </p>
-          <div className="flex justify-center mt-2 gap-2">
-            {pages &&
-              pages.map((_, index) => (
+          {pages && pages.length > 1 && (
+            <div className="flex justify-center mt-2 gap-2">
+              {pages.map((_, index) => (
                 <div
                   key={index}
                   className={`h-1 w-12 rounded-full ${
@@ -73,8 +73,9 @@ export function ExerciseViewHeader() {
                   }`}
                 />
               ))}
-          </div>
-          {completed && (
+            </div>
+          )}
+          {completed && pages.length > 1 && (
             <div className="absolute top-4 right-4">
               <button
                 className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md font-medium"
