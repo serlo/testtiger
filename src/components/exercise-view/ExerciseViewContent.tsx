@@ -346,16 +346,13 @@ export function ExerciseViewContent() {
                   introComps.some(e => e) &&
                   !examplePrescreen && (
                     <>
-                      <div
-                        className={clsx(
-                          'relative',
-                          introCollapseState[i] &&
-                            'h-[70px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
-                        )}
-                      >
+                      <div className={clsx('relative')}>
                         {exercisesWithThisContext > 1 && (
                           <div
-                            className="absolute right-3 top-1 cursor-pointer"
+                            className={clsx(
+                              'absolute right-3 cursor-pointer',
+                              introCollapseState[i] ? '-top-1' : 'top-0',
+                            )}
                             onClick={() => {
                               ExerciseViewStore.update(s => {
                                 s.introCollapseState[i] =
@@ -375,7 +372,13 @@ export function ExerciseViewContent() {
                         <div className="text-blue-500 text-sm mx-4 mt-3 mb-2">
                           BESCHREIBUNG
                         </div>
-                        <div className="px-4 bg-white mb-6">
+                        <div
+                          className={clsx(
+                            'px-4 bg-white mb-6',
+                            introCollapseState[i] &&
+                              'h-[24px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
+                          )}
+                        >
                           {renderContentElement(
                             <>{introComps}</>,
                             i.toString(),
@@ -391,7 +394,12 @@ export function ExerciseViewContent() {
                     duration: task.duration ?? '?',
                     points: task.points ?? '?',
                     contentEl: (
-                      <>
+                      <div
+                        className={clsx(
+                          tasksCollapseState[i] &&
+                            'h-[32px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px] mt-2.5',
+                        )}
+                      >
                         {renderContentElement(
                           task.task({
                             data:
@@ -400,7 +408,7 @@ export function ExerciseViewContent() {
                                 : data,
                           }),
                         )}
-                      </>
+                      </div>
                     ),
                     numbering: page.displayIndex,
                     toHome,
@@ -493,11 +501,7 @@ function renderContentCard({
       <div
         key={alternativeKey ?? i}
         id={`exercise-${i}`}
-        className={clsx(
-          'relative',
-          taskCollapsed &&
-            'h-[70px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
-        )}
+        className={clsx('relative')}
       >
         {allowCollapse && (
           <div
@@ -512,7 +516,14 @@ function renderContentCard({
           </div>
         )}
         {heading && (
-          <div className="text-blue-500 text-sm mx-5 mt-3">{heading}</div>
+          <div
+            className={clsx(
+              'text-blue-500 text-sm mx-5 mt-3',
+              taskCollapsed ? '' : 'mb-2.5',
+            )}
+          >
+            {heading}
+          </div>
         )}
         <div
           className={clsx(
