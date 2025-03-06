@@ -2,6 +2,7 @@ import { useRef, useEffect, Fragment } from 'react'
 import { markCurrentExerciseAsComplete } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { SolutionOverlay } from './SolutionOverlay'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 
 export function NewExerciseViewChat() {
   const chatHistoryRef = useRef<HTMLDivElement>(null)
@@ -10,6 +11,8 @@ export function NewExerciseViewChat() {
     s => s.chatHistory[s.navIndicatorPosition],
   )
   const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
+
+  const name = PlayerProfileStore.useState(s => s.name)
 
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
 
@@ -46,30 +49,19 @@ export function NewExerciseViewChat() {
         {chatHistory.entries.map((el, i) => {
           if (el.type == 'text') {
             return (
-              <div key={i} className="flex justify-end">
-                <div className="bg-gray-100 p-2 rounded mb-3 text-right">
-                  {el.content.split('\n').map((line, index) => (
-                    <Fragment key={index}>
-                      {line}
-                      <br />
-                    </Fragment>
-                  ))}
-                  {el.canEdit && (
-                    <>
-                      <br />
-                      <button
-                        className="text-gray-500 underline text-xs"
-                        onClick={() => {
-                          ExerciseViewStore.update(s => {
-                            s.chatHistory[s.navIndicatorPosition].answerInput =
-                              el.content
-                          })
-                        }}
-                      >
-                        überarbeiten
-                      </button>
-                    </>
-                  )}
+              <div key={i}>
+                <p className="text-xs text-left ml-3 text-gray-500 mb-1">
+                  {name}
+                </p>
+                <div className="flex justify-start mb-4">
+                  <div className="bg-blue-100 rounded-full px-4 py-4 mb-3 text-right">
+                    {el.content.split('\n').map((line, index, arr) => (
+                      <Fragment key={index}>
+                        {line}
+                        {index + 1 < arr.length && <br />}
+                      </Fragment>
+                    ))}
+                  </div>
                 </div>
               </div>
             )
@@ -77,8 +69,8 @@ export function NewExerciseViewChat() {
           if (el.type == 'response') {
             return (
               <div key={i} className="mb-4 flex">
-                <div className="mr-3 flex-shrink-0 w-[36px]">
-                  <img src="/birdie.svg" alt="" className="inline-block mt-3" />
+                <div className="mr-3 flex-shrink-0 w-[16px]">
+                  <img src="/birdie_idle.svg" alt="" className="inline-block" />
                 </div>
                 <div>
                   {el.content}

@@ -102,6 +102,10 @@ export function ExerciseViewContent() {
     s => s.tasksCollapseState,
   )
 
+  const exercisesWithThisContext = pages.filter(
+    page => page.context == pages[navIndicatorPosition].context,
+  ).length
+
   if (multiScreenExercise && showIntroScreen) {
     // return a full screen intro screen with yellow background
     return (
@@ -273,6 +277,8 @@ export function ExerciseViewContent() {
                     pages,
                     useCalculator,
                     pickAndSolve,
+                    allowCollapse: false,
+                    heading: 'AUFGABE',
                   })}
                 {examplePrescreen &&
                   singleExercise.example &&
@@ -388,6 +394,7 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                     taskCollapsed: tasksCollapseState[i],
+                    allowCollapse: exercisesWithThisContext > 1,
                   })}
 
                 {examplePrescreen &&
@@ -445,6 +452,8 @@ function renderContentCard({
   useCalculator,
   pickAndSolve,
   taskCollapsed,
+  allowCollapse,
+  heading,
 }: {
   i: number
   duration: number | string
@@ -457,6 +466,8 @@ function renderContentCard({
   useCalculator: boolean
   pickAndSolve?: boolean
   taskCollapsed?: boolean
+  allowCollapse?: boolean
+  heading?: string
 }) {
   const showNumbering = toHome && numbering
   return (
@@ -470,20 +481,20 @@ function renderContentCard({
             'h-[70px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
         )}
       >
-        <div
-          className="absolute right-3 top-1 cursor-pointer"
-          onClick={() => {
-            ExerciseViewStore.update(s => {
-              s.tasksCollapseState[i] = !s.tasksCollapseState[i]
-            })
-          }}
-        >
-          <FaIcon icon={taskCollapsed ? faChevronDown : faChevronUp} />
-        </div>
-        {toHome && numbering && (
-          <div className="text-blue-500 text-sm mx-5 mt-3">
-            TEILAUFGABE {numbering.toUpperCase()}
+        {allowCollapse && (
+          <div
+            className="absolute right-3 top-1 cursor-pointer"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.tasksCollapseState[i] = !s.tasksCollapseState[i]
+              })
+            }}
+          >
+            <FaIcon icon={taskCollapsed ? faChevronDown : faChevronUp} />
           </div>
+        )}
+        {heading && (
+          <div className="text-blue-500 text-sm mx-5 mt-3">{heading}</div>
         )}
         <div
           className={clsx(
