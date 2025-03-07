@@ -266,7 +266,7 @@ export const exercise109: Exercise<DATA> = {
               {/* Wir erweitern den ViewBox etwas, damit das Lineal auch Platz hat */}
               <svg viewBox="0 0 328 40" style={{ margin: '80px 0 30px' }}>
                 <image
-                  href="/content/NRW_EESA/109_Konstruktion1.svg"
+                  href="/content/NRW_EESA/109_konstruktion1.svg"
                   x="85"
                   y="6"
                   height="20"
@@ -352,7 +352,7 @@ export const exercise109: Exercise<DATA> = {
             <p></p>
             <svg viewBox="0 0 328 170">
               <image
-                href="/content/NRW_EESA/109_Konstruktion3.svg"
+                href="/content/NRW_EESA/109_konstruktion3.svg"
                 x="85"
                 y="6"
                 height="158"
@@ -367,7 +367,7 @@ export const exercise109: Exercise<DATA> = {
             </p>
             <svg viewBox="0 0 328 160">
               <image
-                href="/content/NRW_EESA/109_Konstruktion4.svg"
+                href="/content/NRW_EESA/109_konstruktion4.svg"
                 x="85"
                 y="6"
                 height="148"
@@ -396,7 +396,7 @@ export const exercise109: Exercise<DATA> = {
             <p>Verbinde die Mittelpunkte, um die Figur fertigzustellen.</p>
             <svg viewBox="0 0 328 140">
               <image
-                href="/content/NRW_EESA/109_Konstruktion5.svg"
+                href="/content/NRW_EESA/109_konstruktion5.svg"
                 height="140"
                 width="328"
               />
