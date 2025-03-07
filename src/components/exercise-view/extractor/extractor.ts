@@ -42,7 +42,9 @@ export function extractor(exercise: Exercise<any>, data: object) {
         renderToStaticMarkup(exercise.correctionHints({ data }))
     }
   }
-  console.log(output)
   ExtractorStore.active = false
+  // remove all html tags
+  output = output.replace(/<[^>]+>/g, ' ')
+  console.log(output)
   return output
 }
