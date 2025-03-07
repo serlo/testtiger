@@ -191,7 +191,7 @@ export function ExerciseViewFooter() {
             disabled={chatHistory.resultPending}
           >
             <FaIcon icon={faFileLines} />
-            Lösung einscannen
+            Lösung fotographieren
           </button>
           <button
             className="flex-shrink-0 w-10 h-10 bg-yellow-400 text-white rounded-full flex items-center justify-center hover:bg-yellow-500 disabled:bg-gray-300"
