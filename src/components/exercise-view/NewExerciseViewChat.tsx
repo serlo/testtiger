@@ -43,7 +43,7 @@ export function NewExerciseViewChat() {
   return (
     <>
       <div
-        className="px-3 pt-5 bg-white"
+        className="px-2 pt-5 bg-white"
         ref={chatHistoryRef} // Add ref here
       >
         {chatHistory.entries.map((el, i) => {
