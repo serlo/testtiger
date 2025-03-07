@@ -1,15 +1,20 @@
-import { useRef, useEffect, Fragment } from 'react'
+import { useRef, useEffect, Fragment, useState } from 'react'
 import { markCurrentExerciseAsComplete } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { SolutionOverlay } from './SolutionOverlay'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
+import clsx from 'clsx'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { FaIcon } from '../ui/FaIcon'
 
-export function NewExerciseViewChat() {
+interface NewExerciseViewChatProps {
+  index: number
+}
+
+export function NewExerciseViewChat({ index }: NewExerciseViewChatProps) {
   const chatHistoryRef = useRef<HTMLDivElement>(null)
 
-  const chatHistory = ExerciseViewStore.useState(
-    s => s.chatHistory[s.navIndicatorPosition],
-  )
+  const chatHistory = ExerciseViewStore.useState(s => s.chatHistory[index])
   const needReset2 = ExerciseViewStore.useState(s => s.needReset2)
 
   const name = PlayerProfileStore.useState(s => s.name)
@@ -33,6 +38,8 @@ export function NewExerciseViewChat() {
     }
   }, [chatHistory.entries.length])
 
+  const [collapsed, setCollapsed] = useState(false)
+
   if (
     (examplePrescreen || chatHistory.entries.length == 0) &&
     chatOverlay !== 'solution'
@@ -43,9 +50,20 @@ export function NewExerciseViewChat() {
   return (
     <>
       <div
-        className="px-2 pt-5 bg-white"
+        className={clsx(
+          'px-2 pt-5 bg-gray-100 pb-3 relative',
+          collapsed && 'h-24 overflow-hidden',
+        )}
         ref={chatHistoryRef} // Add ref here
       >
+        <div
+          className={clsx('absolute right-3 cursor-pointer top-3')}
+          onClick={() => {
+            setCollapsed(!collapsed)
+          }}
+        >
+          <FaIcon icon={collapsed ? faChevronDown : faChevronUp} />
+        </div>
         {chatHistory.entries.map((el, i) => {
           if (el.type == 'text') {
             return (

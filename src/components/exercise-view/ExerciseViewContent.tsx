@@ -307,6 +307,7 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                   })}
+                <NewExerciseViewChat index={i} />
               </>
             )
           } else {
@@ -439,6 +440,7 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                   })}
+                <NewExerciseViewChat index={i} />
               </>
             )
           }
@@ -459,7 +461,6 @@ export function ExerciseViewContent() {
             </div>
           </>
         )}
-        <NewExerciseViewChat />
         <div className="h-12"></div>
       </div>
     </div>
