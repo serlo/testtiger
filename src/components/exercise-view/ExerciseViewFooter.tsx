@@ -144,15 +144,15 @@ export function ExerciseViewFooter() {
 
   if (multiScreenExercise && !showIntroScreen) {
     return (
-      <div className="bg-blue-100 min-h-[65px] relative">
-        <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-blue-100">
+      <div className="bg-[#F2F8FC] min-h-[65px] relative">
+        <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-[#F2F8FC]">
           {/* visual element*/}
         </div>
-        <div className="absolute right-3 -top-14 bg-blue-200 rounded-full px-1 py-0.5">
+        <div className="absolute right-6 -top-14 bg-[#F2F8FC] rounded-full px-1 py-0.5">
           <button onClick={() => setShowHelp(!showHelp)}>
             <FaIcon
               icon={showHelp ? faMinus : faPlus}
-              className="text-blue-500 mr-1.5"
+              className="text-[#208EC9] mr-1.5 font-medium"
             />{' '}
             Hilfe
           </button>
@@ -185,12 +185,12 @@ export function ExerciseViewFooter() {
             placeholder="Gib deine Antwort oder Frage ein ..."
             minRows={1}
             maxRows={5}
-            className="w-[calc(100%-48px)] mt-4 mb-6 resize-none bg-blue-100 outline-none mx-6 font-bold"
+            className="w-[calc(100%-48px)] mb-7 resize-none bg-[#F2F8FC] outline-none mx-6 font-bold caret-[#FDD992]"
           />
         )}
         <div className="flex justify-between items-center px-4 pb-4">
           <button
-            className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-md"
+            className="flex items-center gap-2 bg-[#FDD992] px-4 py-1.5 rounded-xl font-bold"
             onClick={takePhoto}
             disabled={chatHistory.resultPending}
           >
@@ -228,7 +228,7 @@ export function ExerciseViewFooter() {
             Lösung fotografieren
           </button>
           <button
-            className="flex-shrink-0 w-10 h-10 bg-yellow-400 text-white rounded-full flex items-center justify-center hover:bg-yellow-500 disabled:bg-gray-300"
+            className="flex-shrink-0 w-9 h-9 bg-[#FDD992] text-black rounded-full flex items-center justify-center disabled:bg-[#B7B7B7] disabled:text-[#F2F8FC]"
             onClick={() => {
               ExerciseViewStore.update(s => {
                 s.chatHistory[s.navIndicatorPosition].resultPending = true
@@ -246,7 +246,7 @@ export function ExerciseViewFooter() {
               chatHistory.resultPending || chatHistory.answerInput == ''
             }
           >
-            <FaIcon icon={faArrowUp} className="w-5 h-5 text-black" />
+            <FaIcon icon={faArrowUp} className="w-8 h-8  text-2xl" />
           </button>
         </div>
       </div>

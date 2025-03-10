@@ -346,7 +346,7 @@ export function ExerciseViewContent() {
                           />
                         </svg>
                       </div>
-                      <p className="px-4 pt-4 pb-2 font-bold text-[#007EC1]">
+                      <p className="px-4 pt-4 font-bold text-[#007EC1]">
                         Du kannst den Chat benutzen oder auch direkt auf die
                         Zahlen tippen.
                       </p>
