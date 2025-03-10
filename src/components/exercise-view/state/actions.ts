@@ -244,6 +244,8 @@ export async function analyseLastInput() {
     })
   }
 
+  console.log(messages)
+
   const result = await submitUserMessage({ messages })
 
   const result_str = result.content

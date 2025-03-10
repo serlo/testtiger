@@ -9,9 +9,13 @@ import { FaIcon } from '../ui/FaIcon'
 
 interface NewExerciseViewChatProps {
   index: number
+  useCollapse?: boolean
 }
 
-export function NewExerciseViewChat({ index }: NewExerciseViewChatProps) {
+export function NewExerciseViewChat({
+  index,
+  useCollapse,
+}: NewExerciseViewChatProps) {
   const chatHistoryRef = useRef<HTMLDivElement>(null)
 
   const chatHistory = ExerciseViewStore.useState(s => s.chatHistory[index])
@@ -51,34 +55,38 @@ export function NewExerciseViewChat({ index }: NewExerciseViewChatProps) {
     <>
       <div
         className={clsx(
-          'px-2 pt-5 bg-gray-100 pb-3 relative',
+          'px-2 pt-5 pb-3 relative',
           collapsed && 'h-24 overflow-hidden',
         )}
         ref={chatHistoryRef} // Add ref here
       >
-        <div
-          className={clsx('absolute right-3 cursor-pointer top-3')}
-          onClick={() => {
-            setCollapsed(!collapsed)
-          }}
-        >
-          <FaIcon icon={collapsed ? faChevronDown : faChevronUp} />
-        </div>
+        {useCollapse && (
+          <div
+            className={clsx('absolute right-3 cursor-pointer top-3')}
+            onClick={() => {
+              setCollapsed(!collapsed)
+            }}
+          >
+            <FaIcon icon={collapsed ? faChevronDown : faChevronUp} />
+          </div>
+        )}
         {chatHistory.entries.map((el, i) => {
           if (el.type == 'text') {
             return (
-              <div key={i}>
-                <p className="text-xs text-left ml-3 text-gray-500 mb-1">
-                  {name}
-                </p>
-                <div className="flex justify-start mb-4">
-                  <div className="bg-blue-100 rounded-full px-4 py-4 mb-3 text-right">
-                    {el.content.split('\n').map((line, index, arr) => (
-                      <Fragment key={index}>
-                        {line}
-                        {index + 1 < arr.length && <br />}
-                      </Fragment>
-                    ))}
+              <div key={i} className="flex justify-end">
+                <div>
+                  <p className="text-xs text-left ml-3 text-gray-500 mb-1">
+                    {name}
+                  </p>
+                  <div className="flex justify-start mb-4">
+                    <div className="bg-[#F2F8FC] rounded-full px-4 py-4 mb-3 text-right font-medium">
+                      {el.content.split('\n').map((line, index, arr) => (
+                        <Fragment key={index}>
+                          {line}
+                          {index + 1 < arr.length && <br />}
+                        </Fragment>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

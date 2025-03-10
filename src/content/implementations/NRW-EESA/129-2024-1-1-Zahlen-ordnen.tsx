@@ -94,7 +94,7 @@ export const exercise129: Exercise<DATA> = {
                         s.chatHistory[s.navIndicatorPosition].answerInput = el
                       } else {
                         s.chatHistory[s.navIndicatorPosition].answerInput +=
-                          ' < ' + el
+                          ' ' + el
                       }
                     })
                   }}
