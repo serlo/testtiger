@@ -1,3 +1,6 @@
+'use client'
+
+import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
 import { pp } from '@/helper/pretty-print'
 import { Key } from 'react'
@@ -74,13 +77,33 @@ export const exercise129: Exercise<DATA> = {
       <>
         <p>Ordne die Zahlen der Größe nach. Beginne mit der kleinsten Zahl.</p>
         <p>
-          {pp(data.a)}{' '}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
-          {pp(data.c)}{' '}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
-          {data.b ? pp(data.a + 0.01) : pp(data.a - 0.01)}{' '}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
-          {pp(swapDecimalPlaces(data.c))}
+          <div className="flex justify-between">
+            {[
+              pp(data.a),
+              pp(data.c),
+              data.b ? pp(data.a + 0.01) : pp(data.a - 0.01),
+              pp(swapDecimalPlaces(data.c)),
+            ].map((el, i) => {
+              return (
+                <span
+                  key={i}
+                  className="px-2 py-1 bg-[#FAEFCA] rounded-md font-bold cursor-pointer"
+                  onClick={() => {
+                    ExerciseViewStore.update(s => {
+                      if (!s.chatHistory[s.navIndicatorPosition].answerInput) {
+                        s.chatHistory[s.navIndicatorPosition].answerInput = el
+                      } else {
+                        s.chatHistory[s.navIndicatorPosition].answerInput +=
+                          ' < ' + el
+                      }
+                    })
+                  }}
+                >
+                  {el}
+                </span>
+              )
+            })}
+          </div>
         </p>
       </>
     )

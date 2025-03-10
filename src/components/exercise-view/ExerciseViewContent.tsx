@@ -106,6 +106,20 @@ export function ExerciseViewContent() {
     page => page.context == pages[navIndicatorPosition].context,
   ).length
 
+  // find out how many different contexts there are and in which of the contexts the current page is
+  let contextCount = 0
+  let contextIndex = 0
+  const seenContexts = new Set()
+  for (let i = 0; i < pages.length; i++) {
+    if (pages[i].context && !seenContexts.has(pages[i].context)) {
+      seenContexts.add(pages[i].context)
+      contextCount++
+      if (pages[i].context == pages[navIndicatorPosition].context) {
+        contextIndex = contextCount
+      }
+    }
+  }
+
   if (multiScreenExercise && showIntroScreen) {
     // return a full screen intro screen with yellow background
     return (
@@ -132,7 +146,7 @@ export function ExerciseViewContent() {
         <div>
           <div className="flex justify-center mt-4 mb-2">
             <button
-              className="bg-[#F3BA03] hover:bg-yellow-600 px-4 py-2 rounded-full text-white w-[290px]"
+              className="bg-[#F3BA03] px-4 py-2 rounded-full text-white w-[290px]"
               onClick={() => {
                 ExerciseViewStore.update(s => {
                   s.showIntroScreen = false
@@ -289,7 +303,8 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                     allowCollapse: false,
-                    heading: 'AUFGABE',
+                    heading:
+                      (contextCount > 1 ? `${contextIndex}. ` : '') + 'AUFGABE',
                   })}
                 {examplePrescreen &&
                   singleExercise.example &&
@@ -519,8 +534,8 @@ function renderContentCard({
         {heading && (
           <div
             className={clsx(
-              'text-blue-500 text-sm mx-5 mt-3',
-              taskCollapsed ? '' : 'mb-2.5',
+              'text-[#B08700] text-xs mx-5 mt-3',
+              taskCollapsed ? '' : 'mb-1',
             )}
           >
             {heading}
