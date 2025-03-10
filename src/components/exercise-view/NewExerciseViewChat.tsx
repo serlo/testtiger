@@ -44,6 +44,11 @@ export function NewExerciseViewChat({
 
   const [collapsed, setCollapsed] = useState(false)
 
+  const navIndicatorPosition = ExerciseViewStore.useState(
+    s => s.navIndicatorPosition,
+  )
+  const pages = ExerciseViewStore.useState(s => s.pages)
+
   if (
     (examplePrescreen || chatHistory.entries.length == 0) &&
     chatOverlay !== 'solution'
@@ -93,33 +98,71 @@ export function NewExerciseViewChat({
             )
           }
           if (el.type == 'response') {
+            if (el.category == 'success') {
+              return (
+                <>
+                  <div className="flex mx-6 mt-7 gap-2.5">
+                    <div className="flex-shrink-0 w-8">
+                      <img src="/birdie_hurrah.svg" alt="" className="w-full" />
+                    </div>
+                    <div className="flex-grow bg-[#FFF1C5] rounded-tl-[46px] rounded-tr-[48px] rounded-bl-[28px] rounded-br-[50px] relative isolate">
+                      <div
+                        className="absolute left-0 top-0"
+                        style={{ zIndex: -1 }}
+                      >
+                        <svg
+                          width="53"
+                          height="29"
+                          viewBox="0 0 53 29"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            id="Vector 25"
+                            d="M2.55716 16.0363C18.9953 14.2574 23.3513 8.62345 37.1553 1.09034C38.6298 0.285664 40.471 0.892499 41.2109 2.40057L51.9709 24.332C52.9667 26.3617 51.4276 28.7203 49.1683 28.638C14.4757 27.374 4.03549 24.7574 0.411203 19.6526C-0.680382 18.1151 0.682503 16.2391 2.55716 16.0363Z"
+                            fill="#FFF1C5"
+                          />
+                        </svg>
+                      </div>
+                      <p className="px-4 pt-4 font-medium pb-2 text-[#100E09]">
+                        {el.content}
+                      </p>
+                      <div className="flex justify-end mr-9 mb-2">
+                        <div className="h-[33px] px-[8.75px] relative bg-[#B08700] rounded-2xl inline-flex justify-start items-center gap-[8.75px]">
+                          <button
+                            className="text-white text-[17px] font-medium"
+                            onClick={() => {
+                              const nextPos = navIndicatorPosition + 1
+                              if (nextPos < (pages?.length || 0)) {
+                                ExerciseViewStore.update(s => {
+                                  s.navIndicatorPosition = nextPos
+                                  s.navIndicatorExternalUpdate = nextPos
+                                  s.poppy = false
+                                })
+                              } else {
+                                ExerciseViewStore.update(s => {
+                                  s.showEndScreen = true
+                                })
+                              }
+                            }}
+                          >
+                            zur nächsten Aufgabe
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )
+            }
             return (
-              <div key={i} className="mb-4 flex">
+              <div key={i} className="mb-4 flex ml-3">
                 <div className="mr-3 flex-shrink-0 w-[16px]">
                   <img src="/birdie_idle.svg" alt="" className="inline-block" />
                 </div>
                 <div>
                   {el.content}
-                  {el.category == 'actionable-feedback' && (
-                    <>
-                      <p className="text-xs text-gray-600 mt-2">
-                        Das Feedback ersetzt keine Korrektur.
-                      </p>
-                      <p className="mt-3">
-                        <button
-                          className="px-2 py-0.5 bg-gray-100 rounded mr-4"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.chatOverlay = 'solution'
-                            })
-                          }}
-                        >
-                          Lösung anzeigen
-                        </button>
-                      </p>
-                    </>
-                  )}
-                  {el.category == 'success' && (
+                  {false && (
                     <>
                       <p className="text-xs text-gray-600 mt-2">
                         Das Feedback ersetzt keine Korrektur.

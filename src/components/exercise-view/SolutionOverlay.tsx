@@ -186,6 +186,7 @@ export function SolutionOverlay() {
                           s.navIndicatorExternalUpdate =
                             s.navIndicatorPosition + 1
                           s.chatOverlay = null
+                          s.poppy = false
                         })
                       }, 500)
                     }
@@ -196,6 +197,7 @@ export function SolutionOverlay() {
                           ExerciseViewStore.update(s => {
                             s.navIndicatorExternalUpdate = i
                             s.chatOverlay = null
+                            s.poppy = false
                           })
                         }, 500)
                         break

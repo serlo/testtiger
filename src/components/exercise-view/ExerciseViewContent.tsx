@@ -588,13 +588,13 @@ function renderContentCard({
         )}
         <div
           className={clsx(
-            'flex flex-col justify-start items-center',
+            'flex flex-col justify-start items-center bg-white',
             /*navIndicatorPosition == i && !examplePrescreen
             ? 'border-blue-500 cursor-pointer'
             :*/ 'border-transparent',
-            ExerciseViewStore.getRawState().completed[i]
+            /* ExerciseViewStore.getRawState().completed[i]
               ? 'bg-green-100'
-              : 'bg-white',
+              : 'bg-white',*/
           )}
         >
           <div

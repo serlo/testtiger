@@ -90,7 +90,7 @@ export function ExerciseViewHeader() {
               ))}
             </div>
           )}
-          {completed && pages.length > 1 && (
+          {false && completed && pages.length > 1 && (
             <div className="absolute top-4 right-4">
               <button
                 className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md font-medium"

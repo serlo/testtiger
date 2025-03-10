@@ -10,7 +10,7 @@ import { BirdieOverlay } from '../BirdieOverlay'
 export function ExerciseViewLayout() {
   return (
     <IonPage className="sm:max-w-[375px] mx-auto">
-      <IonHeader className="ion-no-border bg-white">
+      <IonHeader className="ion-no-border bg-white select-all">
         <ExerciseViewHeader />
       </IonHeader>
       <IonContent>
