@@ -58,7 +58,12 @@ export function LearningPathMap() {
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox={`0 0 375 ${mapHeight}`}>
         <image href="/learning-path/stage1.svg" x={-50} y={2020} width={500} />
-        <image href="/learning-path/starshadow6.svg" x={-90} y={3780} width={300} />
+        <image
+          href="/learning-path/starshadow6.svg"
+          x={-90}
+          y={3780}
+          width={300}
+        />
         <image
           href="/learning-path/bgstage2.svg"
           x={-50}
@@ -72,10 +77,15 @@ export function LearningPathMap() {
           y={-170}
           width={1400}
         />
-      
+
         <image href="/learning-path/ice3.svg" x={-59} y={254} width={150} />
         <image href="/learning-path/river2.svg" x={-420} y={5200} width={900} />
-        <image href="/learning-path/Ruderboot.svg" x={200} y={5435} width={70} />
+        <image
+          href="/learning-path/Ruderboot.svg"
+          x={200}
+          y={5435}
+          width={70}
+        />
         <image href="/learning-path/treer.svg" x={290} y={5780} width={180} />
         <image href="/learning-path/icetree.svg" x={-5} y={230} width={30} />
         <image href="/learning-path/gberg.svg" x={-130} y={210} width={200} />
@@ -87,8 +97,12 @@ export function LearningPathMap() {
         <image href="/learning-path/gs5.svg" x={-40} y={5620} width={300} />
         <image href="/learning-path/gs6.svg" x={190} y={5165} width={230} />
         <image href="/learning-path/gs4.svg" x={10} y={4820} width={300} />
-        <image href="/learning-path/starshadow5.svg" x={140} y={4250} width={300} />
-        
+        <image
+          href="/learning-path/starshadow5.svg"
+          x={140}
+          y={4250}
+          width={300}
+        />
 
         <image href="/learning-path/treegroup.svg" x={0} y={5550} width={100} />
         <image href="/learning-path/trees.svg" x={200} y={5920} width={150} />
@@ -96,19 +110,33 @@ export function LearningPathMap() {
         <image href="/learning-path/trees.svg" x={270} y={5220} width={150} />
         <image href="/learning-path/trees.svg" x={0} y={5040} width={130} />
         <image href="/learning-path/trees.svg" x={0} y={4060} width={170} />
-     
+
         <image href="/learning-path/bigbush.svg" x={-70} y={6510} width={180} />
         <image href="/learning-path/gras2.svg" x={340} y={6640} width={80} />
         <image href="/learning-path/grass.svg" x={275} y={6640} width={60} />
 
-        <image href="/learning-path/railhill.svg" x={255} y={4060} width={140} />
+        <image
+          href="/learning-path/railhill.svg"
+          x={255}
+          y={4060}
+          width={140}
+        />
         <image href="/learning-path/rail.png" x={280} y={4260} width={180} />
-        <image href="/learning-path/Schienengruppe.png" x={-260} y={4160} width={440} />
-        <image href="/learning-path/treebush2.svg" x={275} y={4850} width={120} />
+        <image
+          href="/learning-path/Schienengruppe.png"
+          x={-260}
+          y={4160}
+          width={440}
+        />
+        <image
+          href="/learning-path/treebush2.svg"
+          x={275}
+          y={4850}
+          width={120}
+        />
 
         <image href="/learning-path/tree2.svg" x={275} y={6340} width={120} />
         <image href="/learning-path/tree1.svg" x={-70} y={6190} width={180} />
-        
 
         {exam ==
           2 /* add feedback button without external image using text and rectangle*/ && (
@@ -676,6 +704,10 @@ export function handleLearningPathStepClick({
       s.showIntroScreen = true
       s.introCollapseState = s.pages.map(() => false)
       s.tasksCollapseState = s.pages.map(() => false)
+
+      s.poppy = exerciseIds.some(id => {
+        return id == 129
+      })
     })
     if (history)
       history.push(

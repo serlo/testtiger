@@ -3,8 +3,6 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import clsx from 'clsx'
 import {
   faCalculator,
-  faCaretDown,
-  faCaretUp,
   faChevronDown,
   faChevronUp,
   faClock,
@@ -21,11 +19,13 @@ import { NewExerciseViewChat } from './NewExerciseViewChat'
 
 export function ExerciseViewContent() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
-  const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const pages = ExerciseViewStore.useState(s => s.pages)
   const navIndicatorExternalUpdate = ExerciseViewStore.useState(
     s => s.navIndicatorExternalUpdate,
   )
+
+  const poppy = ExerciseViewStore.useState(s => s.poppy)
+
   const navIndicatorPosition = ExerciseViewStore.useState(
     s => s.navIndicatorPosition,
   )
@@ -168,7 +168,7 @@ export function ExerciseViewContent() {
   return (
     <div
       ref={ref}
-      className={clsx('w-full h-full overflow-y-auto')}
+      className={clsx('w-full h-full overflow-y-auto bg-[#FAF9F8]')}
       onClick={() => {
         /*if (chatOverlay) {
           ExerciseViewStore.update(s => {
@@ -199,7 +199,7 @@ export function ExerciseViewContent() {
         }}
         className="h-full"
       >
-        <div className="h-2"></div>
+        <div className="h-2 bg-white"></div>
         {!multiScreenExercise && (
           <>
             <div className="mb-5 mx-2 p-4 rounded-lg">
@@ -322,6 +322,51 @@ export function ExerciseViewContent() {
                     useCalculator,
                     pickAndSolve,
                   })}
+                {poppy && (
+                  <div className="flex mx-6 mt-7 gap-2.5">
+                    <div className="flex-shrink-0 w-8">
+                      <img src="/birdie_idle.svg" alt="" className="w-full" />
+                    </div>
+                    <div className="flex-grow bg-[#F2F8FC] rounded-tl-[46px] rounded-tr-[48px] rounded-bl-[28px] rounded-br-[50px] relative isolate">
+                      <div
+                        className="absolute left-0 top-0"
+                        style={{ zIndex: -1 }}
+                      >
+                        <svg
+                          width="53"
+                          height="29"
+                          viewBox="0 0 53 29"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            id="Vector 25"
+                            d="M2.55716 16.0363C18.9953 14.2574 23.3513 8.62345 37.1553 1.09034C38.6298 0.285664 40.471 0.892499 41.2109 2.40057L51.9709 24.332C52.9667 26.3617 51.4276 28.7203 49.1683 28.638C14.4757 27.374 4.03549 24.7574 0.411203 19.6526C-0.680382 18.1151 0.682503 16.2391 2.55716 16.0363Z"
+                            fill="#F2F8FC"
+                          />
+                        </svg>
+                      </div>
+                      <p className="px-4 pt-4 pb-2 font-bold text-[#007EC1]">
+                        Du kannst den Chat benutzen oder auch direkt auf die
+                        Zahlen tippen.
+                      </p>
+                      <div className="flex justify-end mr-9 mb-2">
+                        <div className="w-[61px] h-[33px] px-[8.75px] relative bg-[#faefca] rounded-2xl inline-flex justify-start items-center gap-[8.75px]">
+                          <button
+                            className="text-black text-[17px] font-medium"
+                            onClick={() => {
+                              ExerciseViewStore.update(s => {
+                                s.poppy = false
+                              })
+                            }}
+                          >
+                            okay
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <NewExerciseViewChat index={i} />
               </>
             )
@@ -534,8 +579,8 @@ function renderContentCard({
         {heading && (
           <div
             className={clsx(
-              'text-[#B08700] text-xs mx-5 mt-3',
-              taskCollapsed ? '' : 'mb-1',
+              'text-[#B08700] text-xs px-5 pt-3 bg-white',
+              taskCollapsed ? '' : 'pb-1',
             )}
           >
             {heading}
@@ -623,7 +668,7 @@ function renderContentCard({
           )}
         </div>
       </div>
-      <hr className="mt-3" />
+      <div className="w-full border-b border-dashed border-[#E9E9E9] bg-white pt-3" />
     </>
   )
 }
