@@ -7,7 +7,6 @@ import { roundToDigits } from '@/helper/round-to-digits'
 interface DATA {
   bildvariante: number
   breite: number
-  radius: number
   buchsbaeume: number
   samen: number
 }
@@ -21,7 +20,6 @@ export const exercise135: Exercise<DATA> = {
     return {
       bildvariante: rng.randomIntBetween(1, 6),
       breite: rng.randomItemFromArray([6, 8, 10]),
-      radius: rng.randomIntBetween(1, 2),
       buchsbaeume: rng.randomIntBetween(7, 38),
       samen: rng.randomIntBetween(2, 7),
     }
@@ -29,19 +27,17 @@ export const exercise135: Exercise<DATA> = {
   originalData: {
     bildvariante: 4,
     breite: 8,
-    radius: 2,
     buchsbaeume: 38,
     samen: 3,
   },
   learningPathData: {
     bildvariante: 2,
     breite: 6,
-    radius: 1,
     buchsbaeume: 24,
     samen: 5,
   },
   constraint({ data }) {
-    return data.breite != data.radius && data.buchsbaeume / data.breite < 7
+    return data.buchsbaeume / data.breite < 7
   },
   intro({ data }) {
     return (
@@ -73,7 +69,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} m
+              {pp(data.breite / 4)} m
             </text>
           </svg>
         )}
@@ -100,7 +96,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} m
+              {pp(data.breite / 4)} m
             </text>
           </svg>
         )}
@@ -126,7 +122,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} m
+              {pp(data.breite / 4)} m
             </text>
           </svg>
         )}
@@ -152,7 +148,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} m
+              {pp(data.breite / 4)} m
             </text>
           </svg>
         )}
@@ -178,7 +174,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} m
+              {pp(data.breite / 4)} m
             </text>
           </svg>
         )}
@@ -204,7 +200,7 @@ export const exercise135: Exercise<DATA> = {
               textAnchor="right"
               stroke="black"
             >
-              {data.radius} m
+              {pp(data.breite / 4)} m
             </text>
           </svg>
         )}
@@ -212,7 +208,7 @@ export const exercise135: Exercise<DATA> = {
         <center>
           <Color5>
             <span style={{ fontSize: 'small' }}>
-              Abbildung 1: Grundriss des Gartens (nicht maßstabsgetreu)
+              Abbildung 1: Grundriss des Gartens (maßstabsgetreu)
             </span>
           </Color5>
         </center>
@@ -637,7 +633,8 @@ export const exercise135: Exercise<DATA> = {
           <>
             <p>
               Ausgehend vom Mittelpunkt des Gartens möchte Lisa ein
-              kreisförmiges Beet mit einem Radius von {data.radius} m anlegen.
+              kreisförmiges Beet mit einem Radius von {pp(data.breite / 4)} m
+              anlegen.
             </p>
           </>
         )
@@ -647,6 +644,11 @@ export const exercise135: Exercise<DATA> = {
           //d)
           <>
             <p>Zeichne dieses Beet maßstabsgetreu in Abbildung 1 ein.</p>
+            <p>
+              <Color4>
+                Du kannst dafür die Zeichenvorlage Nummer 7 verwenden.{' '}
+              </Color4>
+            </p>
           </>
         )
       },
@@ -657,22 +659,22 @@ export const exercise135: Exercise<DATA> = {
             <p>
               Der ganze Garten ist <Color1>{data.breite} m</Color1> breit. Das
               kreisförmige Beet hat einen Durchmesser von{' '}
-              <Color1>{data.radius * 2} m</Color1>.
+              <Color1>{pp((data.breite / 4) * 2)} m</Color1>.
             </p>
             <p>Im richtigen Maßstab sieht das kreisförmige Beet so aus:</p>
             <svg width="328" height="368">
               <circle
                 cx="164"
                 cy="164"
-                r={meter * data.radius}
+                r={meter * (data.breite / 4)}
                 fill="none"
                 stroke="black"
                 strokeWidth={3}
               />
               <line
-                x1={164 - meter * data.radius}
+                x1={164 - meter * (data.breite / 4)}
                 y1={164}
-                x2={164 + meter * data.radius}
+                x2={164 + meter * (data.breite / 4)}
                 y2={164}
                 stroke="#007EC1"
                 strokeWidth="1"
@@ -684,7 +686,7 @@ export const exercise135: Exercise<DATA> = {
                 textAnchor="middle"
                 stroke="#007EC1"
               >
-                {data.radius * 2} m
+                {(data.breite / 4) * 2} m
               </text>
               <text
                 x={164}
@@ -750,7 +752,8 @@ export const exercise135: Exercise<DATA> = {
           <>
             <p>
               Ausgehend vom Mittelpunkt des Gartens möchte Lisa ein
-              kreisförmiges Beet mit einem Radius von {data.radius} m anlegen.
+              kreisförmiges Beet mit einem Radius von {data.breite / 4} m
+              anlegen.
             </p>
           </>
         )
@@ -790,12 +793,17 @@ export const exercise135: Exercise<DATA> = {
                   </Color4>
                 </>,
               ],
-              ['', '=', <>π · {data.radius}²</>],
+              ['', '=', <>π · {pp(data.breite / 4)}²</>],
               [
                 <></>,
                 '≈',
                 <>
-                  {pp(roundToDigits(Math.PI * data.radius * data.radius, 2))}{' '}
+                  {pp(
+                    roundToDigits(
+                      Math.PI * (data.breite / 4) * (data.breite / 4),
+                      2,
+                    ),
+                  )}{' '}
                   [m²]
                 </>,
               ],
@@ -808,17 +816,26 @@ export const exercise135: Exercise<DATA> = {
               Quadratmeter:
             </p>
             <p>
-              {pp(roundToDigits(Math.PI * data.radius * data.radius, 2))} ·{' '}
-              {data.samen} ={' '}
               {pp(
-                roundToDigits(Math.PI * data.radius * data.radius, 2) *
-                  data.samen,
+                roundToDigits(
+                  Math.PI * (data.breite / 4) * (data.breite / 4),
+                  2,
+                ),
+              )}{' '}
+              · {data.samen} ={' '}
+              {pp(
+                roundToDigits(
+                  Math.PI * (data.breite / 4) * (data.breite / 4),
+                  2,
+                ) * data.samen,
               )}{' '}
               ≈{' '}
               {pp(
                 roundToDigits(
-                  roundToDigits(Math.PI * data.radius * data.radius, 2) *
-                    data.samen,
+                  roundToDigits(
+                    Math.PI * (data.breite / 4) * (data.breite / 4),
+                    2,
+                  ) * data.samen,
                   0,
                 ),
               )}{' '}
@@ -830,8 +847,10 @@ export const exercise135: Exercise<DATA> = {
                 ca.{' '}
                 {pp(
                   roundToDigits(
-                    roundToDigits(Math.PI * data.radius * data.radius, 2) *
-                      data.samen,
+                    roundToDigits(
+                      Math.PI * (data.breite / 4) * (data.breite / 4),
+                      2,
+                    ) * data.samen,
                     0,
                   ),
                 )}{' '}

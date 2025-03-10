@@ -2699,44 +2699,26 @@ export const navigationData: { [key: number]: Navigation } = {
         title: 'Skill-Profi',
         lessons: [
           {
-            type: 'repetition',
-            title: 'Informationen aus Graph ablesen',
+            type: 'new-skill',
+            title: 'Lineare Funktionen',
             icon: '/learning-path/NRW_EESA_icons/graph.svg',
             position: { x: 250, y: 3050 },
             steps: [
               {
                 exercise: {
                   id: 136,
-                  pages: [{ index: 'd', intro: ['skill'] }],
+                  pages: [{ index: 'c', intro: ['global'] }, { index: 'd' }],
                 },
               },
             ],
           },
+
           {
             type: 'new-skill',
             title: 'Lineare Funktionen',
             icon: '/learning-path/NRW_EESA_icons/gerade.svg',
             iconSize: 33,
             position: { x: 100, y: 3180 },
-            steps: [
-              {
-                exercise: {
-                  id: 136,
-                  pages: [
-                    { index: 'c', intro: ['global'] },
-                    { index: 'e' },
-                    { index: 'f' },
-                  ],
-                },
-              },
-            ],
-          },
-          {
-            type: 'new-skill',
-            title: 'Lineare Funktionen',
-            icon: '/learning-path/NRW_EESA_icons/gerade.svg',
-            iconSize: 33,
-            position: { x: 240, y: 3250 },
             steps: [
               {
                 exercise: {
@@ -2750,7 +2732,7 @@ export const navigationData: { [key: number]: Navigation } = {
             type: 'new-skill',
             title: 'Tabelle auswerten',
             icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
-            position: { x: 280, y: 3390 },
+            position: { x: 240, y: 3250 },
             steps: [
               {
                 exercise: {
@@ -2764,7 +2746,24 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-
+          {
+            type: 'new-skill',
+            title: 'Lineare Funktionen',
+            icon: '/learning-path/NRW_EESA_icons/gerade.svg',
+            iconSize: 33,
+            position: { x: 280, y: 3390 },
+            steps: [
+              {
+                exercise: {
+                  id: 136,
+                  pages: [
+                    { index: 'e', intro: ['global', 'skill'] },
+                    { index: 'f' },
+                  ],
+                },
+              },
+            ],
+          },
           {
             type: 'challenge',
             title: 'Skill-Profi - Challenge 1',

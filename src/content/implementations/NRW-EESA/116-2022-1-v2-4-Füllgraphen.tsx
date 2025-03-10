@@ -42,7 +42,7 @@ export const exercise116: Exercise<DATA> = {
     return (
       <>
         <p>Die abgebildeten Gefäße werden gleichmäßig gefüllt.</p>
-        <p>Schau dir an, welcher Füllgraph zu welchem Gefäß gehört:</p>
+        <p>Schau dir an, wie die Füllgraphen zu den Gefäßen aussehen:</p>
         <hr style={{ margin: '10px 0', borderTop: '2px solid lightgrey' }} />
         <svg viewBox="0 0 328 110">
           <image

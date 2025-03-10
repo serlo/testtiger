@@ -1,5 +1,5 @@
 import { Exercise } from '@/data/types'
-import { Color1 } from '@/helper/colors'
+import { Color1, Color4 } from '@/helper/colors'
 import { pp, ppFrac } from '@/helper/pretty-print'
 
 interface DATA {
@@ -176,6 +176,11 @@ export const exercise100: Exercise<DATA> = {
             2
           </text>
         </svg>
+        <p>
+          <Color4>
+            Du kannst dafür die Zeichenvorlage Nummer 2 verwenden.{' '}
+          </Color4>
+        </p>
       </>
     )
   },

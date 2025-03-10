@@ -436,6 +436,11 @@ export const exercise104: Exercise<DATA> = {
                 </span>
               </Color5>
             </center>
+            <p>
+              <Color4>
+                Du kannst dafür die Zeichenvorlage Nummer 3 verwenden.{' '}
+              </Color4>
+            </p>
           </>
         )
       },

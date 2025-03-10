@@ -239,6 +239,11 @@ export const exercise119: Exercise<DATA> = {
                 Höhe in Metern
               </text>
             </svg>
+            <p>
+              <Color4>
+                Du kannst dafür die Zeichenvorlage Nummer 4 verwenden.{' '}
+              </Color4>
+            </p>
           </>
         )
       },
@@ -254,19 +259,155 @@ export const exercise119: Exercise<DATA> = {
         return (
           <>
             <p>
-              Es ist hilfreich mit dem y-Achsenabschnitt{' '}
-              <Color1>{data.start}</Color1> anzufangen. Den kannst du aus der
-              Gleichung ablesen: y = {ppFrac(data.wachsen / 100)} ​x +{' '}
-              <Color1>{data.start}</Color1>.<br></br>
-              <br></br>
-              Dann zeichnest du das Steigungsdreieck. Das kannst du aus der
-              Steigung <Color2>{ppFrac(data.wachsen / 100)}</Color2> ablesen.
-              Der <Color2>Zähler</Color2> (obere Zahl) ist immer die{' '}
+              Bestimme den <Color1>y-Achsenabschnitt</Color1> aus der Gleichung,
+              indem du <Color3>x = 0</Color3> einsetzt:<br></br> y ={' '}
+              {ppFrac(data.wachsen / 100)} · <Color3>0</Color3> + {data.start} ={' '}
+              <b>
+                <Color1>{data.start}</Color1>
+              </b>
+              .<br></br>Markiere den <Color1>y-Achsenabschnitt</Color1> im
+              Koordinatensystem:
+            </p>
+            <svg viewBox="0 0 328 220">
+              <image
+                href="/content/NRW_EESA/119_KS.PNG"
+                height="220"
+                width="328"
+              />
+              <text
+                x={285}
+                y={188}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Zeit in Tagen
+              </text>
+              <text
+                x={45}
+                y={10}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Höhe in Metern
+              </text>
+              <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
+
+              <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
+            </svg>
+            <p>
+              Zeichne von dem markierten Punkt aus das Steigungsdreieck. Die
+              Steigung kannst du aus der Gleichung ablesen: <br></br>y ={' '}
+              <Color2>{ppFrac(data.wachsen / 100)}</Color2> ​x + {data.start}
+              <br></br> Der <Color2>Zähler</Color2> (obere Zahl) ist immer die{' '}
               <Color2>Höhe</Color2> des Steigungsdreiecks und der{' '}
               <Color2>Nenner</Color2> (untere Zahl) ist immer die
-              <Color2> Breite</Color2> des Steigungsdreiecks.
+              <Color2> Breite</Color2> des Steigungsdreiecks:
             </p>
-            <p></p>
+            <svg viewBox="0 0 328 220">
+              <image
+                href="/content/NRW_EESA/119_KS.PNG"
+                height="220"
+                width="328"
+              />
+              <text
+                x={285}
+                y={188}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Zeit in Tagen
+              </text>
+              <text
+                x={45}
+                y={10}
+                fontSize="10"
+                textAnchor="middle"
+                fill="black"
+              >
+                Höhe in Metern
+              </text>
+              <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
+              <text
+                x={toX(nenner / 2)}
+                y={toY(data.start) + 15}
+                fontSize="15"
+                textAnchor="middle"
+                fill="green"
+              >
+                {nenner}
+              </text>
+              <text
+                x={toX(nenner) + 10}
+                y={toY((2 * data.start + zaehler) / 2) - 2}
+                fontSize="15"
+                textAnchor="middle"
+                fill="green"
+              >
+                {zaehler}
+              </text>
+              <line
+                x1={toX(0) - 1}
+                y1={toY(data.start)}
+                x2={toX(nenner) - 1}
+                y2={toY(data.start)}
+                stroke="green"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(nenner) - 1}
+                y2={toY(data.start)}
+                x2={toX(nenner) - 1}
+                y1={toY(data.start + zaehler)}
+                stroke="green"
+                strokeWidth={2}
+              />
+              <line
+                x1={toX(0) - 1}
+                y1={toY(data.start)}
+                y2={toY(data.start + zaehler)}
+                x2={toX(nenner) - 1}
+                stroke="green"
+                strokeWidth={2}
+              />
+
+              <text
+                x={toX(0)}
+                y={toY(data.start) + 3}
+                fontSize="15"
+                textAnchor="middle"
+                fill="blue"
+              >
+                x
+              </text>
+            </svg>
+            <p>Zeichne die Gerade entlang des Steigungsdreiecks ein:</p>
             <svg viewBox="0 0 328 220">
               <image
                 href="/content/NRW_EESA/119_KS.PNG"
@@ -386,12 +527,8 @@ export const exercise119: Exercise<DATA> = {
         return (
           <>
             <p>
-              Das Wachstum der Pflanze wird mit der Gleichung beschrieben:{' '}
-              <br></br>y = {ppFrac(data.wachsen / 100)} ​x + {data.start}
-            </p>
-            <p>
-              Setze die Gleichung mit dem Wert {pp(data.height)} gleich und löse
-              nach x auf:
+              Der y-Wert gibt die Höhe der Pflanze an. Setze für y den Wert{' '}
+              {pp(data.height)} ein und löse nach x auf:
             </p>
             {buildEquation([
               [
@@ -429,9 +566,12 @@ export const exercise119: Exercise<DATA> = {
               ],
             ])}
             <p>
-              Nach etwa{' '}
-              {Math.round((data.height - data.start) / (data.wachsen / 100))}{' '}
-              Tagen hat die Pflanze eine Höhe von {pp(data.height)} m erreicht.
+              <b>
+                Nach etwa{' '}
+                {Math.round((data.height - data.start) / (data.wachsen / 100))}{' '}
+                Tagen hat die Pflanze eine Höhe von {pp(data.height)} m
+                erreicht.
+              </b>
             </p>
           </>
         )

@@ -87,7 +87,7 @@ export const exercise107: Exercise<DATA> = {
             height="100"
             width="328"
           />
-          <text x={302} y={90} fontSize={9} textAnchor="right" stroke="black">
+          <text x={302} y={90} fontSize={9} textAnchor="right" fill="black">
             {data.legende}
           </text>
         </svg>
@@ -116,6 +116,11 @@ export const exercise107: Exercise<DATA> = {
             <p>
               Die Strecke ist ungefähr {data.legende * 15} km lang. Bestätige
               dies durch Messen und mithilfe des Maßstabs.
+            </p>
+            <p>
+              <Color4>
+                Du kannst zum Messen auch die Zeichenvorlage Nummer 6 verwenden.{' '}
+              </Color4>
             </p>
           </>
         )

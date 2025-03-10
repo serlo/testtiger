@@ -342,7 +342,7 @@ export const exercise109: Exercise<DATA> = {
                 transform={`translate(86,163) scale(${(158 * 18) / (data.a * 1279)}) translate(-${1279 / 2}, -${642})`}
               />
               <image
-                href="/content/NRW_EESA/109_Konstruktion2.svg"
+                href="/content/NRW_EESA/109_konstruktion2.svg"
                 x="85"
                 y="6"
                 height="158"

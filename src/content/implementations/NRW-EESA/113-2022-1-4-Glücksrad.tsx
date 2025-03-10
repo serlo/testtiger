@@ -244,6 +244,11 @@ export const exercise113: Exercise<DATA> = {
               beschriftet werden. Markiere im Glücksrad{' '}
               {ppFrac(1 / data.nenner)}​ aller Felder als Niete (N).
             </p>
+            <p>
+              <Color4>
+                Du kannst dafür die Zeichenvorlage Nummer 1 verwenden.{' '}
+              </Color4>
+            </p>
           </>
         )
       },
@@ -322,7 +327,10 @@ export const exercise113: Exercise<DATA> = {
               12 · {ppFrac(1 / data.nenner)} ={' '}
               <strong>{pp(12 / data.nenner)}</strong>
             </p>
-            <p>Beschrifte {pp(12 / data.nenner)} Felder mit &quot;N&quot;:</p>
+            <p>
+              Beschrifte {pp(12 / data.nenner)} Felder mit &quot;N&quot;, zum
+              Beispiel:
+            </p>
             <svg width="328" height="250">
               <circle
                 cx="164"

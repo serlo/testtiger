@@ -420,13 +420,7 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text
-                x={30}
-                y={20}
-                fontSize={10}
-                textAnchor="right"
-                stroke="black"
-              >
+              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
                 Gesamtkosten in €
               </text>
               <text
@@ -434,7 +428,7 @@ export const exercise136: Exercise<DATA> = {
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -443,7 +437,7 @@ export const exercise136: Exercise<DATA> = {
                 y1={toY(0)}
                 x2={toX(12)}
                 y2={toY(12)}
-                stroke="blue"
+                stroke="black"
                 strokeWidth={2}
               />
             </svg>
@@ -503,20 +497,22 @@ export const exercise136: Exercise<DATA> = {
                 width="328"
               />
               <text
-                x={30}
-                y={20}
+                x={10}
+                y={100}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
+                transform="rotate(270, 10, 100)"
               >
                 Gesamtkosten in €
               </text>
+
               <text
                 x={230}
                 y={230}
                 fontSize={10}
                 textAnchor="right"
-                stroke="black"
+                fill="black"
               >
                 Anzahl der Monate
               </text>
@@ -525,7 +521,7 @@ export const exercise136: Exercise<DATA> = {
                 y1={toY(0)}
                 x2={toX(12)}
                 y2={toY(12)}
-                stroke="blue"
+                stroke="black"
                 strokeWidth={2}
               />
             </svg>
@@ -557,6 +553,11 @@ export const exercise136: Exercise<DATA> = {
             <p>
               Zeichne den Graphen der Gesamtkosten für diesen E-Scooter in das
               Koordinatensystem ein (Abbildung 1).
+            </p>
+            <p>
+              <Color4>
+                Du kannst dafür die Zeichenvorlage Nummer 5 verwenden.{' '}
+              </Color4>
             </p>
           </>
         )
@@ -591,7 +592,14 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
+              <text
+                x={10}
+                y={100}
+                fontSize={10}
+                textAnchor="right"
+                fill="black"
+                transform="rotate(270, 10, 100)"
+              >
                 Gesamtkosten in €
               </text>
 
@@ -636,7 +644,14 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
+              <text
+                x={10}
+                y={100}
+                fontSize={10}
+                textAnchor="right"
+                fill="black"
+                transform="rotate(270, 10, 100)"
+              >
                 Gesamtkosten in €
               </text>
 
@@ -684,7 +699,14 @@ export const exercise136: Exercise<DATA> = {
                 height="260"
                 width="328"
               />
-              <text x={30} y={20} fontSize={10} textAnchor="right" fill="black">
+              <text
+                x={10}
+                y={100}
+                fontSize={10}
+                textAnchor="right"
+                fill="black"
+                transform="rotate(270, 10, 100)"
+              >
                 Gesamtkosten in €
               </text>
               <text
