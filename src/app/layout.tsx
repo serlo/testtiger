@@ -6,12 +6,12 @@ import '@ionic/react/css/core.css'
 
 import '../../styles/global.css'
 
-import { Inter } from 'next/font/google'
+import { Karla } from 'next/font/google'
 
-const inter = Inter({
+const karla = Karla({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-karla',
 })
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de" suppressHydrationWarning={true} className={inter.variable}>
+    <html lang="de" suppressHydrationWarning={true} className={karla.variable}>
       <body>{children}</body>
     </html>
   )

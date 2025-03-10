@@ -109,9 +109,9 @@ export function ExerciseViewContent() {
   if (multiScreenExercise && showIntroScreen) {
     // return a full screen intro screen with yellow background
     return (
-      <div className="absolute inset-0 bg-yellow-100 flex justify-between flex-col">
+      <div className="absolute inset-0 bg-[#FFF1C5] flex justify-between flex-col">
         <button
-          className="absolute top-4 left-4 text-blue-500 hover:text-blue-700 text-2xl"
+          className="absolute top-4 left-4 text-[#007EC1] bg-[#FFEAA8] text-2xl h-[17px] w-[17px] flex items-center justify-center"
           onClick={() => {
             history.push('/app/home')
           }}
@@ -120,19 +120,19 @@ export function ExerciseViewContent() {
         </button>
         <div></div>
 
-        <div>
-          <div className="w-[270px] mx-auto">
+        <div className="text-[#0C0A1C] w-[285px] mx-auto">
+          <div className="w-[210px] mx-auto">
             <img src="/birdie_idle.svg" alt="" />
           </div>
-          <h1 className="font-bold mx-4 text-xl text-center">
+          <h1 className="font-extrabold text-[22px] text-center">
             Willkommen zur {skill}!
           </h1>
-          <div className="mx-4 text-center mt-5">{introText}</div>
+          <div className="text-center mt-5 text-sm opacity-85">{introText}</div>
         </div>
         <div>
           <div className="flex justify-center mt-4 mb-2">
             <button
-              className="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-full text-white w-[290px]"
+              className="bg-[#F3BA03] hover:bg-yellow-600 px-4 py-2 rounded-full text-white w-[290px]"
               onClick={() => {
                 ExerciseViewStore.update(s => {
                   s.showIntroScreen = false
@@ -142,7 +142,7 @@ export function ExerciseViewContent() {
               Mit der ersten Aufgabe beginnen
             </button>
           </div>
-          <p className="text-xs text-gray-400 w-[270px] mx-auto mb-7 text-center transition-colors">
+          <p className="text-xs w-[270px] mx-auto mb-7 text-center transition-colors text-[#B9B9B9]">
             (du musst nicht alles auf einmal machen. Dein Fortschritt wird
             gespeichert)
           </p>

@@ -2267,6 +2267,9 @@ export const navigationData: { [key: number]: Navigation } = {
                 Jetzt hast du schon die ersten Skills gemeistert! <br></br> Bist
                 du bereit für die <strong>1. Challenge</strong> &#9733;? Hier
                 kannst du zeigen, was du gelernt hast!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 15 Minuten.
               </>
             ),
             position: { x: 240, y: 760 },

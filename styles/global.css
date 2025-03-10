@@ -20,7 +20,7 @@ body {
 
 :root,
 html {
-  --ion-default-font: var(--font-inter) !important;
+  --ion-default-font: var(--font-karla) !important;
 }
 
 .rounded-footer-shadow {
