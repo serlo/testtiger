@@ -202,8 +202,8 @@ export const exercise131: Exercise<DATA> = {
       `}
             </style>
             <p>
-              Florian trainiert das Werfen eines Balls. Er hat die Weiten seiner
-              fünf Würfe in einer Tabelle notiert.
+              Mika und seine Freundinnen und Freunde messen, wie groß sie sind
+              und halten das Ergebnis in einer Tabelle fest.
             </p>
             <svg width="320" height="150" xmlns="http://www.w3.org/2000/svg">
               <rect
@@ -284,7 +284,7 @@ export const exercise131: Exercise<DATA> = {
                 fontWeight="bold"
                 fill="black"
               >
-                Wurf
+                Name
               </text>
               <text
                 x="47.5"
@@ -293,7 +293,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                1
+                Mika
               </text>
               <text
                 x="47.5"
@@ -302,7 +302,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                2
+                Florian
               </text>
               <text
                 x="47.5"
@@ -311,7 +311,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                3
+                Nisa
               </text>
               <text
                 x="47.5"
@@ -320,7 +320,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                4
+                Leonie
               </text>
               <text
                 x="47.5"
@@ -329,7 +329,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                5
+                Adam
               </text>
               <text
                 x="160"
@@ -339,7 +339,7 @@ export const exercise131: Exercise<DATA> = {
                 fontWeight="bold"
                 fill="black"
               >
-                Florians Wurfweiten
+                Größe
               </text>
               <text
                 x="160"
@@ -348,7 +348,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                12 m
+                1,43 m
               </text>
               <text
                 x="160"
@@ -357,7 +357,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                10 m
+                1,33 m
               </text>
               <text
                 x="160"
@@ -366,7 +366,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                11 m
+                1,38 m
               </text>
               <text
                 x="160"
@@ -375,7 +375,7 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                12 m
+                1,32 m
               </text>
               <text
                 x="160"
@@ -384,25 +384,59 @@ export const exercise131: Exercise<DATA> = {
                 textAnchor="middle"
                 fill="black"
               >
-                10,5 m
+                1,39 m
               </text>
             </svg>
-            <p>Berechne die Spannweite.</p>
+            <p>
+              <b>a</b>) Gib den Median der Körpergröße an.
+            </p>
             <Color2>
-              <b>Antwort:</b> Zwischen dem kürzesten und dem weitesten Wurf
-              liegen <b>2 m</b>.
+              <b>Antwort:</b> Der Median liegt bei <b>1,38 m</b>.
             </Color2>
-            <br></br>
-            <br></br>
             <ExplanationBox>
               <p>Erklärung:</p>
               <hr style={{ margin: '10px 0' }} />
               <p>
-                Der kürzeste Wurf liegt bei 10 m und der weiteste Wurf bei 12 m.
-                Um die Spannweite zu berechnen, ziehe den kürzesten vom
-                weitesten Wurf ab:{' '}
+                Ordne die Körpergrößen von klein nach groß:<br></br>1,32
+                m&nbsp;&nbsp;&nbsp; 1,33 m&nbsp;&nbsp; &nbsp; 1,38
+                m&nbsp;&nbsp;&nbsp; 1,39 m&nbsp;&nbsp; &nbsp; 1,43 m
               </p>
-              <p>12 m - 10 m = 2 m</p>
+              <p>
+                Der <b>Median</b> ist der Wert, der <b>in der Mitte</b> liegt:{' '}
+                <b>1,38 m</b>
+              </p>
+            </ExplanationBox>
+            <br></br>
+            <p>
+              <b>b</b>) Gib die Spannweite der Körpergröße an.
+            </p>
+            <Color2>
+              <b>Antwort:</b> Die Spannweite beträgt <b>0,11 m</b>.
+            </Color2>
+            <ExplanationBox>
+              <p>Erklärung:</p>
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Die <b>Spannweite</b> ist der{' '}
+                <b>Abstand zwischen größtem und kleinstem Wert</b>:<br></br>{' '}
+                1,43 - 1,32 = <b>0,11 [m]</b>
+              </p>
+            </ExplanationBox>
+            <br></br>
+            <p>
+              <b>c</b>) Gib den Mittelwert der Körpergröße an.
+            </p>
+            <Color2>
+              <b>Antwort:</b> Der Mittelwert beträgt <b>1,37 m</b>.
+            </Color2>
+            <ExplanationBox>
+              <p>Erklärung:</p>
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Addiere für den <b>Mittelwert</b> alle Körpergrößen und teile
+                das Ergebnis durch 5:<br></br> (1,32 + 1,33 + 1,38 + 1,39 +
+                1,43) : 5 = <b>1,37 [m]</b>
+              </p>
             </ExplanationBox>
           </>
         )
@@ -452,41 +486,7 @@ export const exercise131: Exercise<DATA> = {
       intro({ data }) {
         return null
       },
-      example() {
-        return (
-          <>
-            <style>
-              {`
-        .explanation-box {
-          border: 1px solid lightblue;
-          padding: 0px 8px;
-          background-color: #f9f9f9;
-          border-radius: 8px;
-        }
-      `}
-            </style>
-            <p>Wie weit wirft Florian im Durchschnitt?</p>
-            <Color2>
-              <b>Antwort:</b> Florian wirft im Durchschnitt <b>11,1 m</b> weit.
-            </Color2>
-            <br></br>
-            <br></br>
-            <ExplanationBox>
-              <p>Rechnung:</p>
-              <hr style={{ margin: '10px 0' }} />
-              <p>
-                Addiere für den Durchschnitt alle 5 Würfe und teile das Ergbnis
-                durch 5:
-              </p>
 
-              <p>
-                (Wurf 1 + Wurf 2 + ... + Wurf 5) : 5<br></br>= (12 + 10 + 11 +
-                12 + 10,5) : 5<br></br>= 55,5 : 5<br></br>= <b>11,1</b> [m]
-              </p>
-            </ExplanationBox>
-          </>
-        )
-      },
       task({ data }) {
         return (
           //b)
