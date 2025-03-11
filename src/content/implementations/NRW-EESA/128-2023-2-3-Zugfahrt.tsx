@@ -1,6 +1,10 @@
 import { Exercise } from '@/data/types'
 import { Color1, Color2, Color5 } from '@/helper/colors'
-import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
+import {
+  buildEquation,
+  buildInlineFrac,
+  ExplanationBox,
+} from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -388,6 +392,691 @@ export const exercise128: Exercise<DATA> = {
     {
       points: 2,
       duration: 4,
+      example() {
+        function toX(t: number) {
+          // t in Minuten, 0 ≤ t ≤ 120
+          return 33 + t * (295 / 120) // 33 + t * 2.4583
+        }
+        function toY(km: number) {
+          // km in Kilometern, 0 ≤ km ≤ 30
+          return 157 - km * (152 / 30) // 157 - km * 5.0667
+        }
+
+        // Berechnungen für das vertikale Gitternetz (x-Achse)
+        // Wir zeichnen Gitternetzlinien alle 5 Minuten
+        const gridSpacingX = 5 // in Minuten
+        const numXSteps = Math.floor(120 / gridSpacingX) + 1 // 120/5 = 24, plus 1 => 25
+
+        // Für das horizontale Gitternetz (y-Achse)
+        // Wir zeichnen Gitternetzlinien alle 5 km
+        const gridSpacingY = 2.5 // in km
+        const numYSteps = Math.floor(30 / gridSpacingY) + 1 // 30/5 = 6, plus 1 => 7
+
+        return (
+          <>
+            <p>
+              Lara macht eine Fahrradtour. Zwischendurch macht sie eine Pause.
+              Der Graph in Abbildung 1 zeigt den Verlauf ihrer Tour.
+            </p>
+            <svg viewBox="0 0 328 180">
+              {/* Vertikale Gitternetzlinien und Beschriftungen (x-Achse) */}
+              {Array.from({ length: numXSteps }, (_, i) => {
+                const time = i * gridSpacingX // in Minuten
+                const x = toX(time)
+                return (
+                  <g key={`x-grid-${i}`}>
+                    <line
+                      x1={x}
+                      y1="157"
+                      x2={x}
+                      y2="5"
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung alle 10 Minuten */}
+                    {time % 10 === 0 && time < 120 && (
+                      <>
+                        <line
+                          x1={x}
+                          y1="157"
+                          x2={x}
+                          y2="160"
+                          stroke="black"
+                          strokeWidth="1"
+                        />
+                        <text x={x} y="165" fontSize="6" textAnchor="middle">
+                          {time}
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
+              })}
+
+              {/* Horizontale Gitternetzlinien und Beschriftungen (y-Achse) */}
+              {Array.from({ length: numYSteps }, (_, j) => {
+                const km = j * gridSpacingY
+                const y = toY(km)
+                return (
+                  <g key={`y-grid-${j}`}>
+                    <line
+                      x1="33"
+                      y1={y}
+                      x2="328"
+                      y2={y}
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung alle 10 km (außer bei 0 und 30 km) */}
+                    {km !== 0 && km % 10 === 0 && km < 30 && (
+                      <>
+                        <line
+                          x1="30"
+                          y1={y}
+                          x2="33"
+                          y2={y}
+                          stroke="black"
+                          strokeWidth="1"
+                        />
+                        <text x="15" y={y + 3} fontSize="6" textAnchor="start">
+                          {km}
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
+              })}
+
+              <defs>
+                {/* Definition eines Pfeilmarkers */}
+                <marker
+                  id="arrow"
+                  markerWidth="6"
+                  markerHeight="6"
+                  refX="3"
+                  refY="3"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                </marker>
+              </defs>
+
+              {/* Koordinatensystem */}
+              <line
+                x1="33"
+                y1="157"
+                x2="324" // statt 328
+                y2="157"
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
+              />
+              <line
+                x1="33"
+                y1="157"
+                x2="33"
+                y2="5" // statt 0
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
+              />
+
+              {/* Achsenbeschriftungen */}
+              {/* x-Achse: "Zeit in min" zentriert unter der Achse */}
+              <text x={324 - 45} y="175" fontSize="9" textAnchor="right">
+                Zeit in min
+              </text>
+              {/* y-Achse: "Strecke in km" */}
+              <text
+                x="8"
+                y="30"
+                fontSize="9"
+                textAnchor="middle"
+                transform="rotate(-90 8,30)"
+              >
+                Strecke in km
+              </text>
+
+              {/*  und Verbindungslinien*/}
+
+              <line
+                x1="33"
+                y1="157"
+                x2={toX(40)}
+                y2={toY(10)}
+                stroke="black"
+                strokeWidth={1.5}
+              />
+              <line
+                x1={toX(40)}
+                y1={toY(10)}
+                x2={toX(60)}
+                y2={toY(10)}
+                stroke="black"
+                strokeWidth={1.5}
+              />
+              <line
+                x1={toX(60)}
+                y1={toY(10)}
+                x2={toX(110)}
+                y2={toY(25)}
+                stroke="black"
+                strokeWidth={1.5}
+              />
+              <text
+                x={33 - 1}
+                y={157 + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX(40) - 1}
+                y={toY(10) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX(60) - 1}
+                y={toY(10) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+              <text
+                x={toX(110) - 1}
+                y={toY(25) + 1}
+                fontSize="4"
+                textAnchor="right"
+                stroke="black"
+                fill="black"
+              >
+                o
+              </text>
+            </svg>
+            <center>
+              <Color5>
+                <span style={{ fontSize: 'small' }}>
+                  Abbildung 1: Zeit-Weg-Diagramm von Laras Fahrradtour
+                </span>
+              </Color5>
+            </center>
+            <p>
+              <b>a) </b> Lies am Graphen ab, wie lange Lara eine Pause gemacht
+              hat.
+            </p>
+            <Color2>
+              <b>Antwort:</b> Sie hat <b>20 Minuten</b> lang Pause gemacht.
+            </Color2>
+            <ExplanationBox>
+              <p>Erklärung:</p>
+              <hr style={{ margin: '10px 0' }} />
+
+              <svg viewBox="0 0 328 180">
+                {/* Vertikale Gitternetzlinien und Beschriftungen (x-Achse) */}
+                {Array.from({ length: numXSteps }, (_, i) => {
+                  const time = i * gridSpacingX // in Minuten
+                  const x = toX(time)
+                  return (
+                    <g key={`x-grid-${i}`}>
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="5"
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung alle 10 Minuten */}
+                      {time % 10 === 0 && time < 120 && (
+                        <>
+                          <line
+                            x1={x}
+                            y1="157"
+                            x2={x}
+                            y2="160"
+                            stroke="black"
+                            strokeWidth="1"
+                          />
+                          <text x={x} y="165" fontSize="6" textAnchor="middle">
+                            {time}
+                          </text>
+                        </>
+                      )}
+                    </g>
+                  )
+                })}
+
+                {/* Horizontale Gitternetzlinien und Beschriftungen (y-Achse) */}
+                {Array.from({ length: numYSteps }, (_, j) => {
+                  const km = j * gridSpacingY
+                  const y = toY(km)
+                  return (
+                    <g key={`y-grid-${j}`}>
+                      <line
+                        x1="33"
+                        y1={y}
+                        x2="328"
+                        y2={y}
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung alle 10 km (außer bei 0 und 30 km) */}
+                      {km !== 0 && km % 10 === 0 && km < 30 && (
+                        <>
+                          <line
+                            x1="30"
+                            y1={y}
+                            x2="33"
+                            y2={y}
+                            stroke="black"
+                            strokeWidth="1"
+                          />
+                          <text
+                            x="15"
+                            y={y + 3}
+                            fontSize="6"
+                            textAnchor="start"
+                          >
+                            {km}
+                          </text>
+                        </>
+                      )}
+                    </g>
+                  )
+                })}
+
+                <defs>
+                  {/* Definition eines Pfeilmarkers */}
+                  <marker
+                    id="arrow"
+                    markerWidth="6"
+                    markerHeight="6"
+                    refX="3"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                  </marker>
+                </defs>
+
+                {/* Koordinatensystem */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="324" // statt 328
+                  y2="157"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="33"
+                  y2="5" // statt 0
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+
+                {/* Achsenbeschriftungen */}
+                {/* x-Achse: "Zeit in min" zentriert unter der Achse */}
+                <text x={324 - 45} y="175" fontSize="9" textAnchor="right">
+                  Zeit in min
+                </text>
+                {/* y-Achse: "Strecke in km" */}
+                <text
+                  x="8"
+                  y="30"
+                  fontSize="9"
+                  textAnchor="middle"
+                  transform="rotate(-90 8,30)"
+                >
+                  Strecke in km
+                </text>
+
+                {/*  und Verbindungslinien*/}
+
+                <line
+                  x1="33"
+                  y1="157"
+                  x2={toX(40)}
+                  y2={toY(10)}
+                  stroke="black"
+                  strokeWidth={1.5}
+                />
+                <line
+                  x1={toX(40)}
+                  y1={toY(10)}
+                  x2={toX(60)}
+                  y2={toY(10)}
+                  stroke="black"
+                  strokeWidth={1.5}
+                />
+                <line
+                  x1={toX(60)}
+                  y1={toY(10)}
+                  x2={toX(110)}
+                  y2={toY(25)}
+                  stroke="black"
+                  strokeWidth={1.5}
+                />
+
+                {/* Weitere Hilfslinien und Markierungen bleiben unverändert */}
+                <line
+                  x1={toX(40)}
+                  y1={toY(0)}
+                  x2={toX(40)}
+                  y2={toY(10)}
+                  stroke="blue"
+                  strokeWidth="1"
+                  strokeDasharray="4,2"
+                />
+                <line
+                  x1={toX(60)}
+                  y1={toY(10)}
+                  x2={toX(60)}
+                  y2={toY(0)}
+                  stroke="blue"
+                  strokeWidth="1"
+                  strokeDasharray="4,2"
+                />
+                <text
+                  x={33 - 1}
+                  y={157 + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+                <text
+                  x={toX(40) - 1}
+                  y={toY(10) + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+                <text
+                  x={toX(60) - 1}
+                  y={toY(10) + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+                <text
+                  x={toX(110) - 1}
+                  y={toY(25) + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+              </svg>
+              <p>
+                Zwischen den blau gestrichelten Linien hat sich der Graph nicht
+                nach oben bewegt - Lara hat hier also eine Pause gemacht. Die
+                Pause beginnt nach 40 Minuten und endet bei 60 Minuten. Sie
+                dauert also <br></br>
+                <b>60 Minuten - 40 Minuten = 20 Minuten</b>.
+              </p>
+            </ExplanationBox>
+            <p>
+              <b>b) </b> Lies am Graphen ab, wie viele Kilometer Lara nach 20
+              Minuten zurückgelegt hat.
+            </p>
+            <Color2>
+              <b>Antwort:</b> Sie hat nach 20 Minuten <b>5 km</b> zurückgelegt.
+            </Color2>
+            <ExplanationBox>
+              <p>Erklärung:</p>
+              <hr style={{ margin: '10px 0' }} />
+
+              <svg viewBox="0 0 328 180">
+                {/* Vertikale Gitternetzlinien und Beschriftungen (x-Achse) */}
+                {Array.from({ length: numXSteps }, (_, i) => {
+                  const time = i * gridSpacingX // in Minuten
+                  const x = toX(time)
+                  return (
+                    <g key={`x-grid-${i}`}>
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="5"
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung alle 10 Minuten */}
+                      {time % 10 === 0 && time < 120 && (
+                        <>
+                          <line
+                            x1={x}
+                            y1="157"
+                            x2={x}
+                            y2="160"
+                            stroke="black"
+                            strokeWidth="1"
+                          />
+                          <text x={x} y="165" fontSize="6" textAnchor="middle">
+                            {time}
+                          </text>
+                        </>
+                      )}
+                    </g>
+                  )
+                })}
+
+                {/* Horizontale Gitternetzlinien und Beschriftungen (y-Achse) */}
+                {Array.from({ length: numYSteps }, (_, j) => {
+                  const km = j * gridSpacingY
+                  const y = toY(km)
+                  return (
+                    <g key={`y-grid-${j}`}>
+                      <line
+                        x1="33"
+                        y1={y}
+                        x2="328"
+                        y2={y}
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung alle 10 km (außer bei 0 und 30 km) */}
+                      {km !== 0 && km % 10 === 0 && km < 30 && (
+                        <>
+                          <line
+                            x1="30"
+                            y1={y}
+                            x2="33"
+                            y2={y}
+                            stroke="black"
+                            strokeWidth="1"
+                          />
+                          <text
+                            x="15"
+                            y={y + 3}
+                            fontSize="6"
+                            textAnchor="start"
+                          >
+                            {km}
+                          </text>
+                        </>
+                      )}
+                    </g>
+                  )
+                })}
+
+                <defs>
+                  {/* Definition eines Pfeilmarkers */}
+                  <marker
+                    id="arrow"
+                    markerWidth="6"
+                    markerHeight="6"
+                    refX="3"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                  </marker>
+                </defs>
+
+                {/* Koordinatensystem */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="324" // statt 328
+                  y2="157"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="33"
+                  y2="5" // statt 0
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+
+                {/* Achsenbeschriftungen */}
+                {/* x-Achse: "Zeit in min" zentriert unter der Achse */}
+                <text x={324 - 45} y="175" fontSize="9" textAnchor="right">
+                  Zeit in min
+                </text>
+                {/* y-Achse: "Strecke in km" */}
+                <text
+                  x="8"
+                  y="30"
+                  fontSize="9"
+                  textAnchor="middle"
+                  transform="rotate(-90 8,30)"
+                >
+                  Strecke in km
+                </text>
+
+                {/*  und Verbindungslinien*/}
+
+                <line
+                  x1="33"
+                  y1="157"
+                  x2={toX(40)}
+                  y2={toY(10)}
+                  stroke="black"
+                  strokeWidth={1.5}
+                />
+                <line
+                  x1={toX(40)}
+                  y1={toY(10)}
+                  x2={toX(60)}
+                  y2={toY(10)}
+                  stroke="black"
+                  strokeWidth={1.5}
+                />
+                <line
+                  x1={toX(60)}
+                  y1={toY(10)}
+                  x2={toX(110)}
+                  y2={toY(25)}
+                  stroke="black"
+                  strokeWidth={1.5}
+                />
+
+                {/* Weitere Hilfslinien und Markierungen bleiben unverändert */}
+                <line
+                  x1={toX(20)}
+                  y1={toY(0)}
+                  x2={toX(20)}
+                  y2={toY(5)}
+                  stroke="blue"
+                  strokeWidth="1"
+                  strokeDasharray="4,2"
+                />
+                <line
+                  x1={toX(0)}
+                  y1={toY(5)}
+                  x2={toX(20)}
+                  y2={toY(5)}
+                  stroke="blue"
+                  strokeWidth="1"
+                  strokeDasharray="4,2"
+                />
+                <text
+                  x={33 - 1}
+                  y={157 + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+                <text
+                  x={toX(40) - 1}
+                  y={toY(10) + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+                <text
+                  x={toX(60) - 1}
+                  y={toY(10) + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+                <text
+                  x={toX(110) - 1}
+                  y={toY(25) + 1}
+                  fontSize="4"
+                  textAnchor="right"
+                  stroke="black"
+                  fill="black"
+                >
+                  o
+                </text>
+              </svg>
+              <p>
+                Die blau gestrichelte Linie hilft dir abzulesen, wie viele
+                Kilometer nach 20 min erreicht sind.<br></br>Gehe von 20 Minuten
+                hoch bis zum Graphen und von dort links zur y-Achse. Hier kannst
+                du ablesen, wie viele Kilometer Lara nach 20 Minuten gefahren
+                ist: <b>5 Kilometer</b>.
+              </p>
+            </ExplanationBox>
+          </>
+        )
+      },
       intro({ data }) {
         function toX(n: number) {
           // n entspricht der Zeit in 10-Minuten-Schritten (z. B. 0.5 = 5 min, 1 = 10 min usw.)

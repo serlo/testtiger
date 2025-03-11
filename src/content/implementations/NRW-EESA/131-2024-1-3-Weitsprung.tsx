@@ -191,16 +191,6 @@ export const exercise131: Exercise<DATA> = {
       example() {
         return (
           <>
-            <style>
-              {`
-        .explanation-box {
-          border: 1px solid lightblue;
-          padding: 0px 8px;
-          background-color: #f9f9f9;
-          border-radius: 8px;
-        }
-      `}
-            </style>
             <p>
               Mika und seine Freundinnen und Freunde messen, wie groß sie sind
               und halten das Ergebnis in einer Tabelle fest.
