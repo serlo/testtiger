@@ -2786,21 +2786,7 @@ export const navigationData: { [key: number]: Navigation } = {
               },
             ],
           },
-          {
-            type: 'repetition',
-            title: 'Fläche Quadrat',
-            icon: '/learning-path/NRW_EESA_icons/quadrat.svg',
-            iconSize: 32,
-            position: { x: 220, y: 3650 },
-            steps: [
-              {
-                exercise: {
-                  id: 111,
-                  pages: [{ index: 'a' }],
-                },
-              },
-            ],
-          },
+
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
@@ -2811,10 +2797,11 @@ export const navigationData: { [key: number]: Navigation } = {
               {
                 exercise: {
                   id: 111,
-                  pages: [{ index: 'b', intro: ['global'] }],
+                  pages: [{ index: 'a' }, { index: 'b' }],
                 },
               },
             ],
+            showExamplePrescreen: true,
           },
           {
             type: 'new-skill',

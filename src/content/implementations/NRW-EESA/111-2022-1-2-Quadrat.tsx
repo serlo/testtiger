@@ -1,6 +1,6 @@
 import { Exercise } from '@/data/types'
-import { Color4 } from '@/helper/colors'
-import { buildEquation } from '@/helper/math-builder'
+import { Color2, Color4 } from '@/helper/colors'
+import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
 import { roundToDigits } from '@/helper/round-to-digits'
 
@@ -46,26 +46,40 @@ export const exercise111: Exercise<DATA> = {
     {
       points: 2,
       duration: 4,
-      intro({ data }) {
+      example() {
         return (
           <>
-            <svg width="320" height="170" xmlns="http://www.w3.org/2000/svg">
+            <p>Gegeben ist ein rechtwinkliges Dreieck.</p>
+            <svg width="320" height="120">
               <image
-                href="/content/NRW_EESA/111_Quadrat.PNG"
-                width="328"
-                height="150"
+                href="/content/NRW_EESA/111_rechtwinkliges_Dreieck.svg"
+                width="262" /* 80% von 328 ≈ 262 */
+                height="120"
               />
-              <text
-                x="164"
-                y="160"
-                fontSize="15"
-                textAnchor="middle"
-                fontWeight="bold"
-                fill="black"
-              >
-                {data.seite} cm
-              </text>
             </svg>
+            <p>Gib die Länge der Seite x an.</p>
+            <p>
+              <Color2>
+                <b>Antwort: x = 5 cm</b>
+              </Color2>
+            </p>
+            <ExplanationBox>
+              <p>Erklärung:</p>
+              <hr style={{ margin: '10px 0' }} />
+              <p>Berechne die Länge von x mit dem Satz des Pythagoras:</p>
+              {buildEquation([
+                [<>x²</>, <>=</>, <>3² + 4²</>],
+                [<>x²</>, <>=</>, <>9 + 16</>, <></>],
+                [<>x²</>, <>=</>, <>25</>, <>| √</>],
+                [
+                  <>x</>,
+                  <>=</>,
+                  <>
+                    <strong>5 [cm]</strong>
+                  </>,
+                ],
+              ])}
+            </ExplanationBox>
           </>
         )
       },
