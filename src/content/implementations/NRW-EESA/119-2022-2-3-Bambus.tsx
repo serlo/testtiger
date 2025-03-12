@@ -198,6 +198,682 @@ export const exercise119: Exercise<DATA> = {
       intro({ data }) {
         return null
       },
+      example() {
+        // Gesamtmaße im SVG:
+        // viewBox="0 0 328 180"
+        // Unser Zeichenbereich (Achsenbereich) beginnt bei x=33 und endet bei x=328 (also 295 px in der Breite)
+        // und von y=157 (unten) bis y=5 (oben) – also 152 px in der Höhe.
+
+        const availableWidth = 328 - 33 // 295 px
+        const availableHeight = 157 - 5 // 152 px
+
+        // Wir wollen den x-Bereich auf 0 bis 10 festlegen:
+        const xMax = 10
+        // Für die y-Achse wählen wir einen Bereich 0 bis 15 (damit unsere Funktion (1 bis 8.5) gut dargestellt wird)
+        const yMax = 10
+
+        // Skalierungsfaktoren:
+        const scaleX = availableWidth / xMax // 295/10 = 29.5 px pro Einheit
+        const scaleY = availableHeight / yMax // 152/15 ≈ 10.13 px pro Einheit
+
+        // Umrechnung von mathematischen in SVG-Koordinaten:
+        function toX(x: number) {
+          return 33 + x * scaleX
+        }
+        function toY(y: number) {
+          return 157 - y * scaleY
+        }
+
+        // Für die Funktion y = (3/4)x + 5:
+        // Bei x = 0: y = 5; bei x = 10: y = 0.75 * 10 + 5 = 12.5.
+        const x0 = 0
+        const y0 = 1
+        const x1 = 10
+        const y1 = 0.75 * 10 + 1 // 12.5
+        return (
+          <>
+            <p>Gegeben ist die Funktion y = {ppFrac(0.75)} · x + 1.</p>
+            <p>
+              Zeichne den Graphen zur Funktion in ein Koordinatensystem ein.
+            </p>
+            <p>
+              <Color2>
+                <b>Lösung:</b>
+              </Color2>
+            </p>
+            <svg viewBox="0 0 328 180" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                {/* Pfeilmarker für die Achsen */}
+                <marker
+                  id="arrow"
+                  markerWidth="6"
+                  markerHeight="6"
+                  refX="3"
+                  refY="3"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                </marker>
+              </defs>
+
+              {/* Zeichne die vertikalen Gitternetzlinien für x (jede Einheit) */}
+              {Array.from({ length: xMax }, (_, i) => {
+                const x = toX(i)
+                return (
+                  <g key={`x-grid-${i}`}>
+                    <line
+                      x1={x}
+                      y1="157"
+                      x2={x}
+                      y2="5"
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung an der x-Achse */}
+                    <line
+                      x1={x}
+                      y1="157"
+                      x2={x}
+                      y2="162"
+                      stroke="black"
+                      strokeWidth="1"
+                    />
+                    <text
+                      x={x}
+                      y="170"
+                      fontSize="6"
+                      textAnchor="middle"
+                      fill="black"
+                    >
+                      {i}
+                    </text>
+                  </g>
+                )
+              })}
+
+              {/* Zeichne die horizontalen Gitternetzlinien für y (jede Einheit) */}
+              {Array.from({ length: yMax }, (_, j) => {
+                const y = toY(j)
+                return (
+                  <g key={`y-grid-${j}`}>
+                    <line
+                      x1="33"
+                      y1={y}
+                      x2="328"
+                      y2={y}
+                      stroke="lightgray"
+                      strokeWidth="0.5"
+                    />
+                    {/* Beschriftung an der y-Achse */}
+                    <line
+                      x1="28"
+                      y1={y}
+                      x2="33"
+                      y2={y}
+                      stroke="black"
+                      strokeWidth="1"
+                    />
+                    <text
+                      x="20"
+                      y={y + 3}
+                      fontSize="6"
+                      textAnchor="end"
+                      fill="black"
+                    >
+                      {j}
+                    </text>
+                  </g>
+                )
+              })}
+
+              {/* Achsen */}
+              {/* x-Achse: von (33,157) bis (324,157) */}
+              <line
+                x1="33"
+                y1="157"
+                x2="324"
+                y2="157"
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
+              />
+              {/* y-Achse: von (33,157) bis (33,5) */}
+              <line
+                x1="33"
+                y1="157"
+                x2="33"
+                y2="5"
+                stroke="black"
+                strokeWidth="1"
+                markerEnd="url(#arrow)"
+              />
+
+              {/* Graph: y = (3/4)x + 5 */}
+              <line
+                x1={toX(x0)}
+                y1={toY(y0)}
+                x2={toX(x1)}
+                y2={toY(y1)}
+                stroke="black"
+                strokeWidth="2"
+              />
+
+              {/* Achsenbeschriftungen */}
+              <text x="328" y="170" fontSize="12" textAnchor="end" fill="black">
+                x
+              </text>
+              <text x="20" y="8" fontSize="12" textAnchor="middle" fill="black">
+                y
+              </text>
+            </svg>
+            <ExplanationBox>
+              <p>Schritt-für-Schritt-Erklärung:</p>
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Bestimme den <Color2>y-Achsenabschnitt</Color2> aus der
+                Gleichung, indem du <Color3>x = 0</Color3> einsetzt:<br></br> y
+                = {ppFrac(0.75)} · <Color3>0</Color3> + 1 ={' '}
+                <b>
+                  <Color2>1</Color2>
+                </b>
+                .<br></br>Markiere den <Color2>y-Achsenabschnitt</Color2> im
+                Koordinatensystem:
+              </p>
+              <svg viewBox="0 0 328 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  {/* Pfeilmarker für die Achsen */}
+                  <marker
+                    id="arrow"
+                    markerWidth="6"
+                    markerHeight="6"
+                    refX="3"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                  </marker>
+                </defs>
+
+                {/* Zeichne die vertikalen Gitternetzlinien für x (jede Einheit) */}
+                {Array.from({ length: xMax }, (_, i) => {
+                  const x = toX(i)
+                  return (
+                    <g key={`x-grid-${i}`}>
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="5"
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung an der x-Achse */}
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="162"
+                        stroke="black"
+                        strokeWidth="1"
+                      />
+                      <text
+                        x={x}
+                        y="170"
+                        fontSize="6"
+                        textAnchor="middle"
+                        fill="black"
+                      >
+                        {i}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Zeichne die horizontalen Gitternetzlinien für y (jede Einheit) */}
+                {Array.from({ length: yMax }, (_, j) => {
+                  const y = toY(j)
+                  return (
+                    <g key={`y-grid-${j}`}>
+                      <line
+                        x1="33"
+                        y1={y}
+                        x2="328"
+                        y2={y}
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung an der y-Achse */}
+                      <line
+                        x1="28"
+                        y1={y}
+                        x2="33"
+                        y2={y}
+                        stroke="black"
+                        strokeWidth="1"
+                      />
+                      <text
+                        x="20"
+                        y={y + 3}
+                        fontSize="6"
+                        textAnchor="end"
+                        fill="black"
+                      >
+                        {j}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Achsen */}
+                {/* x-Achse: von (33,157) bis (324,157) */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="324"
+                  y2="157"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+                {/* y-Achse: von (33,157) bis (33,5) */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="33"
+                  y2="5"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+
+                {/* y-Achsenabschnitt */}
+                <text
+                  x={toX(x0)}
+                  y={toY(y0) + 4.5}
+                  fontSize="20"
+                  textAnchor="middle"
+                  fill="green"
+                >
+                  x
+                </text>
+
+                {/* Achsenbeschriftungen */}
+                <text
+                  x="328"
+                  y="170"
+                  fontSize="12"
+                  textAnchor="end"
+                  fill="black"
+                >
+                  x
+                </text>
+                <text
+                  x="20"
+                  y="8"
+                  fontSize="12"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  y
+                </text>
+              </svg>
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Zeichne vom y-Achsenabschnitt aus das
+                <b> Steigungsdreieck</b>. Die <Color2>Steigung</Color2> kannst
+                du aus der Gleichung ablesen: <br></br>y ={' '}
+                <Color2>{ppFrac(0.75)}</Color2> · ​x + 1<br></br> Der{' '}
+                <Color2>Zähler</Color2> (obere Zahl) ist immer die{' '}
+                <Color2>Höhe</Color2> des Steigungsdreiecks und der{' '}
+                <Color2>Nenner</Color2> (untere Zahl) ist immer die
+                <Color2> Breite</Color2> des Steigungsdreiecks:
+              </p>
+              <svg viewBox="0 0 328 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  {/* Pfeilmarker für die Achsen */}
+                  <marker
+                    id="arrow"
+                    markerWidth="6"
+                    markerHeight="6"
+                    refX="3"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                  </marker>
+                </defs>
+
+                {/* Zeichne die vertikalen Gitternetzlinien für x (jede Einheit) */}
+                {Array.from({ length: xMax }, (_, i) => {
+                  const x = toX(i)
+                  return (
+                    <g key={`x-grid-${i}`}>
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="5"
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung an der x-Achse */}
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="162"
+                        stroke="black"
+                        strokeWidth="1"
+                      />
+                      <text
+                        x={x}
+                        y="170"
+                        fontSize="6"
+                        textAnchor="middle"
+                        fill="black"
+                      >
+                        {i}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Zeichne die horizontalen Gitternetzlinien für y (jede Einheit) */}
+                {Array.from({ length: yMax }, (_, j) => {
+                  const y = toY(j)
+                  return (
+                    <g key={`y-grid-${j}`}>
+                      <line
+                        x1="33"
+                        y1={y}
+                        x2="328"
+                        y2={y}
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung an der y-Achse */}
+                      <line
+                        x1="28"
+                        y1={y}
+                        x2="33"
+                        y2={y}
+                        stroke="black"
+                        strokeWidth="1"
+                      />
+                      <text
+                        x="20"
+                        y={y + 3}
+                        fontSize="6"
+                        textAnchor="end"
+                        fill="black"
+                      >
+                        {j}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Achsen */}
+                {/* x-Achse: von (33,157) bis (324,157) */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="324"
+                  y2="157"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+                {/* y-Achse: von (33,157) bis (33,5) */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="33"
+                  y2="5"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+
+                {/* y-Achsenabschnitt */}
+                <text
+                  x={toX(x0)}
+                  y={toY(y0) + 4.5}
+                  fontSize="20"
+                  textAnchor="middle"
+                  fill="green"
+                >
+                  x
+                </text>
+                {/* Steigungsdreieck */}
+                <line
+                  x1={toX(x0)}
+                  y1={toY(y0)}
+                  x2={toX(4)}
+                  y2={toY(4)}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={toX(x0)}
+                  y1={toY(y0)}
+                  x2={toX(4)}
+                  y2={toY(y0)}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={toX(4)}
+                  y1={toY(y0)}
+                  x2={toX(4)}
+                  y2={toY(4)}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+
+                {/* Achsenbeschriftungen */}
+                <text
+                  x="328"
+                  y="170"
+                  fontSize="12"
+                  textAnchor="end"
+                  fill="black"
+                >
+                  x
+                </text>
+                <text
+                  x="20"
+                  y="8"
+                  fontSize="12"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  y
+                </text>
+              </svg>
+              <hr style={{ margin: '10px 0' }} />
+              <p>
+                Zeichne am Steigungsdreieck entlang den Graphen als Gerade ein:
+              </p>
+              <svg viewBox="0 0 328 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  {/* Pfeilmarker für die Achsen */}
+                  <marker
+                    id="arrow"
+                    markerWidth="6"
+                    markerHeight="6"
+                    refX="3"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L0,6 L6,3 z" fill="black" />
+                  </marker>
+                </defs>
+
+                {/* Zeichne die vertikalen Gitternetzlinien für x (jede Einheit) */}
+                {Array.from({ length: xMax }, (_, i) => {
+                  const x = toX(i)
+                  return (
+                    <g key={`x-grid-${i}`}>
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="5"
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung an der x-Achse */}
+                      <line
+                        x1={x}
+                        y1="157"
+                        x2={x}
+                        y2="162"
+                        stroke="black"
+                        strokeWidth="1"
+                      />
+                      <text
+                        x={x}
+                        y="170"
+                        fontSize="6"
+                        textAnchor="middle"
+                        fill="black"
+                      >
+                        {i}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Zeichne die horizontalen Gitternetzlinien für y (jede Einheit) */}
+                {Array.from({ length: yMax }, (_, j) => {
+                  const y = toY(j)
+                  return (
+                    <g key={`y-grid-${j}`}>
+                      <line
+                        x1="33"
+                        y1={y}
+                        x2="328"
+                        y2={y}
+                        stroke="lightgray"
+                        strokeWidth="0.5"
+                      />
+                      {/* Beschriftung an der y-Achse */}
+                      <line
+                        x1="28"
+                        y1={y}
+                        x2="33"
+                        y2={y}
+                        stroke="black"
+                        strokeWidth="1"
+                      />
+                      <text
+                        x="20"
+                        y={y + 3}
+                        fontSize="6"
+                        textAnchor="end"
+                        fill="black"
+                      >
+                        {j}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Achsen */}
+                {/* x-Achse: von (33,157) bis (324,157) */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="324"
+                  y2="157"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+                {/* y-Achse: von (33,157) bis (33,5) */}
+                <line
+                  x1="33"
+                  y1="157"
+                  x2="33"
+                  y2="5"
+                  stroke="black"
+                  strokeWidth="1"
+                  markerEnd="url(#arrow)"
+                />
+
+                {/* y-Achsenabschnitt */}
+                <text
+                  x={toX(x0)}
+                  y={toY(y0) + 4.5}
+                  fontSize="20"
+                  textAnchor="middle"
+                  fill="green"
+                >
+                  x
+                </text>
+                {/* Steigungsdreieck */}
+                <line
+                  x1={toX(x0)}
+                  y1={toY(y0)}
+                  x2={toX(4)}
+                  y2={toY(4)}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={toX(x0)}
+                  y1={toY(y0)}
+                  x2={toX(4)}
+                  y2={toY(y0)}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={toX(4)}
+                  y1={toY(y0)}
+                  x2={toX(4)}
+                  y2={toY(4)}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+                {/* Graph: y = (3/4)x + 1 */}
+                <line
+                  x1={toX(x0)}
+                  y1={toY(y0)}
+                  x2={toX(x1)}
+                  y2={toY(y1)}
+                  stroke="black"
+                  strokeWidth="2"
+                />
+                {/* Achsenbeschriftungen */}
+                <text
+                  x="328"
+                  y="170"
+                  fontSize="12"
+                  textAnchor="end"
+                  fill="black"
+                >
+                  x
+                </text>
+                <text
+                  x="20"
+                  y="8"
+                  fontSize="12"
+                  textAnchor="middle"
+                  fill="black"
+                >
+                  y
+                </text>
+              </svg>
+            </ExplanationBox>
+          </>
+        )
+      },
       task({ data }) {
         function toX(n: number) {
           return 15 + n * (236 / 15)
