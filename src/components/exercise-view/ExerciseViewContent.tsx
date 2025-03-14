@@ -588,7 +588,7 @@ function renderContentCard({
         )}
         <div
           className={clsx(
-            'flex flex-col justify-start items-center bg-white',
+            'flex flex-col justify-start items-center bg-white px-4',
             /*navIndicatorPosition == i && !examplePrescreen
             ? 'border-blue-500 cursor-pointer'
             :*/ 'border-transparent',
