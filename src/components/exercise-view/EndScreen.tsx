@@ -21,11 +21,11 @@ export function EndScreen() {
   const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
   if (!showEndScreen) return null
   return (
-    <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto">
+    <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto flex-col">
       <div className="text-center pt-6">
         <div className="text-5xl mb-5">
           {isChallenge ? (
-            <FaIcon icon={faStar} className="text-yellow-300" />
+            <img src="/gold_star.svg" className="mx-auto" alt="" />
           ) : (
             '🏆'
           )}

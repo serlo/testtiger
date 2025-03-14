@@ -266,7 +266,7 @@ export function NewExerciseViewChat({
           <div className="h-4"></div>
         )}
 
-        <SolutionOverlay />
+        {index == navIndicatorPosition && <SolutionOverlay />}
       </div>
     </>
   )
