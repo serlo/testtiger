@@ -47,32 +47,43 @@ export function App() {
         />
         <Route path="/app/profile" render={() => <Profile />} exact={true} />
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
-        <IonTabButton tab="tab1" href="/app/home">
-          <IonIcon icon={analyticsOutline} />
-          <IonLabel>Lernpfad</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab2" href="/app/participate">
-          <IonIcon icon={gridOutline} />
-          <IonLabel>Themen</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab3" href="/app/superskills">
-          <IonIcon icon={menuOutline} />
-          <IonLabel>Liste</IonLabel>
-        </IonTabButton>
-        {/*<IonTabButton tab="tab4" href="/app/superskills">
-          <IonIcon icon={copyOutline} />
-          <IonLabel>Meta</IonLabel>
-        </IonTabButton>*/}
-        <IonTabButton tab="tab5" href="/app/profile">
-          <img
-            src="/profile-placeholder.jpg"
-            className="w-6 h-6 bg-green-200 rounded-full mb-1"
-            alt="Profil"
-          />
-          <IonLabel>Profil</IonLabel>
-        </IonTabButton>
-      </IonTabBar>
+      <IonTabBar
+  slot="bottom"
+  style={{
+    borderTopLeftRadius: '24px',
+    borderTopRightRadius: '24px',
+    //leichter Schatten nach oben
+    boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1)',
+    height: '80px',
+    overflow: 'hidden',
+    background: 'transparent'
+  }}
+>
+  <IonTabButton tab="tab1" href="/app/home">
+    <IonIcon icon={analyticsOutline} />
+    <IonLabel>Lernpfad</IonLabel>
+  </IonTabButton>
+  <IonTabButton tab="tab2" href="/app/participate">
+    <IonIcon icon={gridOutline} />
+    <IonLabel>Themen</IonLabel>
+  </IonTabButton>
+  <IonTabButton tab="tab3" href="/app/superskills">
+    <IonIcon icon={menuOutline} />
+    <IonLabel>Liste</IonLabel>
+  </IonTabButton>
+  {/*<IonTabButton tab="tab4" href="/app/superskills">
+    <IonIcon icon={copyOutline} />
+    <IonLabel>Meta</IonLabel>
+  </IonTabButton>*/}
+  <IonTabButton tab="tab5" href="/app/profile">
+    <img
+      src="/profile-placeholder.jpg"
+      className="w-6 h-6 bg-green-200 rounded-full mb-1"
+      alt="Profil"
+    />
+    <IonLabel>Profil</IonLabel>
+  </IonTabButton>
+</IonTabBar>
     </IonTabs>
   )
 }
