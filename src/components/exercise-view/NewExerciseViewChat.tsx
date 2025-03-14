@@ -35,12 +35,12 @@ export function NewExerciseViewChat({
     }, 10)
   }, [needReset2])
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (chatHistoryRef.current) {
       console.log('scrolling')
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight
     }
-  }, [chatHistory.entries.length])
+  }, [chatHistory.entries.length])*/
 
   const [collapsed, setCollapsed] = useState(false)
 

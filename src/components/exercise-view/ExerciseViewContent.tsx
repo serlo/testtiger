@@ -12,7 +12,7 @@ import {
 import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 import { useHistory } from 'react-router'
 import { NewExerciseViewChat } from './NewExerciseViewChat'
@@ -37,6 +37,11 @@ export function ExerciseViewContent() {
   const introText = ExerciseViewStore.useState(s => s.introText)
 
   const pickAndSolve = ExerciseViewStore.useState(s => s.pickAndSolveMode)
+
+  const chatHistory = ExerciseViewStore.useState(
+    s => s.chatHistory[navIndicatorPosition],
+  )
+  const chatHistoryRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (
@@ -77,6 +82,13 @@ export function ExerciseViewContent() {
       })
     }
   }, [needReset])
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      console.log('scrolling', ref)
+      ref.current.scrollTop = ref.current.scrollHeight
+    }
+  }, [chatHistory.entries.length])
 
   const useCalculator =
     exercisesData[
@@ -180,25 +192,7 @@ export function ExerciseViewContent() {
         }*/
       }}
     >
-      <div
-        id="exercise-view-content"
-        onScroll={e => {
-          const [distance, offset] = calculateSnapPoints()
-          const scrollLeft = (e.target as HTMLDivElement).scrollLeft
-          const base = scrollLeft - offset
-          const index = Math.abs(Math.round(base / distance))
-          ExerciseViewStore.update(s => {
-            if (index != s.navIndicatorPosition && s.chatOverlay) {
-              s.chatOverlay = null
-            }
-            s.navIndicatorPosition = index
-            if (s.navIndicatorExternalUpdate == index) {
-              s.navIndicatorExternalUpdate = -1
-            }
-          })
-        }}
-        className="h-full"
-      >
+      <div id="exercise-view-content" ref={chatHistoryRef} className="h-full">
         <div className="h-2 bg-white"></div>
         {!multiScreenExercise && (
           <>
