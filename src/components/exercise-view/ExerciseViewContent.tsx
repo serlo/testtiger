@@ -114,6 +114,8 @@ export function ExerciseViewContent() {
     s => s.tasksCollapseState,
   )
 
+  const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
+
   const exercisesWithThisContext = pages.filter(
     page => page.context == pages[navIndicatorPosition].context,
   ).length
@@ -299,6 +301,7 @@ export function ExerciseViewContent() {
                     allowCollapse: false,
                     heading:
                       (contextCount > 1 ? `${contextIndex}. ` : '') + 'AUFGABE',
+                    isChallenge,
                   })}
                 {examplePrescreen &&
                   singleExercise.example &&
@@ -315,6 +318,7 @@ export function ExerciseViewContent() {
                     pages,
                     useCalculator,
                     pickAndSolve,
+                    isChallenge,
                   })}
                 {poppy && (
                   <div className="flex mx-6 mt-7 gap-2.5">
@@ -476,6 +480,7 @@ export function ExerciseViewContent() {
                       exercisesWithThisContext > 1
                         ? `${indexWithContext}/${exercisesWithThisContext} TEILAUFGABEN`
                         : 'AUFGABE',
+                    isChallenge,
                   })}
 
                 {examplePrescreen &&
@@ -493,6 +498,7 @@ export function ExerciseViewContent() {
                     pages,
                     useCalculator,
                     pickAndSolve,
+                    isChallenge,
                   })}
                 <NewExerciseViewChat index={i} />
               </>
@@ -535,6 +541,7 @@ function renderContentCard({
   taskCollapsed,
   allowCollapse,
   heading,
+  isChallenge,
 }: {
   i: number
   duration: number | string
@@ -549,8 +556,8 @@ function renderContentCard({
   taskCollapsed?: boolean
   allowCollapse?: boolean
   heading?: string
+  isChallenge?: boolean
 }) {
-  const showNumbering = toHome && numbering
   return (
     <>
       <div
@@ -573,8 +580,9 @@ function renderContentCard({
         {heading && (
           <div
             className={clsx(
-              'text-[#B08700] text-xs px-5 pt-3 bg-white',
+              'text-xs px-5 pt-3 bg-white',
               taskCollapsed ? '' : 'pb-1',
+              isChallenge ? 'text-[#B08700]' : 'text-[#007EC1]',
             )}
           >
             {heading}

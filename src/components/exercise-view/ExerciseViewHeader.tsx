@@ -10,6 +10,7 @@ import { FaIcon } from '../ui/FaIcon'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
+import clsx from 'clsx'
 
 export function ExerciseViewHeader() {
   const id = ExerciseViewStore.useState(s => s.id)
@@ -39,6 +40,7 @@ export function ExerciseViewHeader() {
     s => s.multiScreenExercise,
   )
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
+  const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
 
   if (multiScreenExercise && showIntroScreen) {
     return null
@@ -52,7 +54,12 @@ export function ExerciseViewHeader() {
     // darunter sind kleine Balken die anzeigen, wie viele Aufgaben es gibt und an welcher man gerade arbeitet
 
     return (
-      <div className="mb-1 shadow-md px-4 py-2 rounded-t-none rounded-b-3xl bg-[#FFF1C5] relative">
+      <div
+        className={clsx(
+          'mb-1 shadow-md px-4 py-2 rounded-t-none rounded-b-3xl relative',
+          isChallenge ? 'bg-[#FFF1C5]' : 'bg-white',
+        )}
+      >
         <div
           className="absolute top-8 left-6 text-[#007EC1] text-2xl w-[17px] flex justify-center items-center cursor-pointer"
           onClick={() => history.push('/app/home')}
@@ -60,7 +67,14 @@ export function ExerciseViewHeader() {
           <FaIcon icon={faTimes} className="" />
         </div>
         <div className="text-center">
-          <h2 className="text-[#B08700] font-extrabold">{skill}</h2>
+          <h2
+            className={clsx(
+              'font-extrabold',
+              isChallenge ? 'text-[#B08700]' : 'text-[#007EC1]',
+            )}
+          >
+            {skill}
+          </h2>
           <p className="text-sm text-[#808080] text-opacity-55">
             <button className="cursor-default py-0.5 bg-transparent inline-block relative h-[25px] w-8 mt-0.5 align-top">
               <div className="inset-0 absolute">
