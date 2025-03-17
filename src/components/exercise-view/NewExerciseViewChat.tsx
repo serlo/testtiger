@@ -1,5 +1,5 @@
 import { useRef, useEffect, Fragment, useState } from 'react'
-import { done, markCurrentExerciseAsComplete } from './state/actions'
+import { done, markCurrentExerciseAsComplete, reseed } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { SolutionOverlay } from './SolutionOverlay'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
@@ -135,24 +135,42 @@ export function NewExerciseViewChat({
                       </p>
                     </div>
                   </div>
-                  <div className="flex justify-end mr-9 mb-2 mt-4">
-                    <div
+                  <div className="flex flex-col items-end mr-6 mb-2 mt-4">
+                    <button
                       className={clsx(
-                        'h-[33px] px-[10px] py-3 relative rounded-2xl inline-flex justify-start items-center gap-[8.75px]',
+                        'text-white text-[17px] font-medium px-[10px] py-3 rounded-full',
                         isChallenge ? 'bg-[#B08700]' : 'bg-[#749A45]',
                       )}
+                      onClick={() => {
+                        done()
+                      }}
                     >
-                      <button
-                        className="text-white text-[17px] font-medium"
-                        onClick={() => {
-                          done()
-                        }}
-                      >
-                        {pages.length == 1
-                          ? 'Aufgabe abschließen'
-                          : 'zur nächsten Aufgabe'}
-                      </button>
-                    </div>
+                      {pages.length == 1
+                        ? 'Aufgabe abschließen'
+                        : 'zur nächsten Aufgabe'}
+                    </button>
+                    <button
+                      className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          s.chatOverlay = null
+                        })
+                        reseed()
+                      }}
+                    >
+                      Mit anderen Zahlen rechnen
+                    </button>
+
+                    <button
+                      className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
+                      onClick={() => {
+                        ExerciseViewStore.update(s => {
+                          s.chatOverlay = 'solution'
+                        })
+                      }}
+                    >
+                      Zeig mir die Lösung
+                    </button>
                   </div>
                 </>
               )
@@ -269,6 +287,8 @@ export function NewExerciseViewChat({
         )}
 
         {index == navIndicatorPosition && <SolutionOverlay />}
+
+        {}
       </div>
     </>
   )

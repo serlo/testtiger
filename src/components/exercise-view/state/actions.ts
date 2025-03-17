@@ -131,6 +131,7 @@ export function reseed() {
     } else {
       s.data = generateData(id, newSeed, exercisesData[id]) as object
     }
+    s.chatHistory[s.navIndicatorPosition].entries = []
   })
 }
 
