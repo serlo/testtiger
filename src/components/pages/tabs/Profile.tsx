@@ -26,7 +26,7 @@ export function Profile() {
       </IonHeader>
       <IonContent fullscreen>
         <div className="mx-3">
-          <div className="flex flex-col space-y-2 mt-4">
+          <div className="flex-col space-y-2 mt-4 hidden">
             <label className="text-lg font-semibold" htmlFor="exam-select">
               Prüfung
             </label>
