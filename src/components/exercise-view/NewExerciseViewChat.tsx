@@ -1,5 +1,5 @@
 import { useRef, useEffect, Fragment, useState } from 'react'
-import { markCurrentExerciseAsComplete } from './state/actions'
+import { done, markCurrentExerciseAsComplete } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { SolutionOverlay } from './SolutionOverlay'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
@@ -132,18 +132,7 @@ export function NewExerciseViewChat({
                           <button
                             className="text-white text-[17px] font-medium"
                             onClick={() => {
-                              const nextPos = navIndicatorPosition + 1
-                              if (nextPos < (pages?.length || 0)) {
-                                ExerciseViewStore.update(s => {
-                                  s.navIndicatorPosition = nextPos
-                                  s.navIndicatorExternalUpdate = nextPos
-                                  s.poppy = false
-                                })
-                              } else {
-                                ExerciseViewStore.update(s => {
-                                  s.showEndScreen = true
-                                })
-                              }
+                              done()
                             }}
                           >
                             zur nächsten Aufgabe

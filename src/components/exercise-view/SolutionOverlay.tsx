@@ -11,7 +11,7 @@ import { createGesture } from '@ionic/react'
 import { useRef, useEffect } from 'react'
 import { countLetter } from '@/helper/count-letter'
 import clsx from 'clsx'
-import { markCurrentExerciseAsComplete, reseed } from './state/actions'
+import { done, markCurrentExerciseAsComplete, reseed } from './state/actions'
 import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
 export function SolutionOverlay() {
@@ -166,47 +166,7 @@ export function SolutionOverlay() {
               'px-6 py-2 rounded-xl mb-3 bg-green-200 hover:bg-green-300',
             )}
             onClick={() => {
-              ExerciseViewStore.update(s => {
-                const wasNotDone = s.completed[s.navIndicatorPosition] == false
-                s.completed[s.navIndicatorPosition] = true
-                if (s.completed.every(x => x)) {
-                  setTimeout(() => {
-                    ExerciseViewStore.update(s => {
-                      s.showEndScreen = true
-                    })
-                  }, 600)
-                } else {
-                  if (
-                    s.navIndicatorPosition + 1 < s.navIndicatorLength &&
-                    s.completed[s.navIndicatorPosition + 1] == false
-                  ) {
-                    if (wasNotDone) {
-                      setTimeout(() => {
-                        ExerciseViewStore.update(s => {
-                          s.navIndicatorExternalUpdate =
-                            s.navIndicatorPosition + 1
-                          s.chatOverlay = null
-                          s.poppy = false
-                        })
-                      }, 500)
-                    }
-                  } else {
-                    for (let i = 0; i < s.navIndicatorLength; i++) {
-                      if (s.completed[i] == false) {
-                        setTimeout(() => {
-                          ExerciseViewStore.update(s => {
-                            s.navIndicatorExternalUpdate = i
-                            s.chatOverlay = null
-                            s.poppy = false
-                          })
-                        }, 500)
-                        break
-                      }
-                    }
-                  }
-                }
-              })
-              markCurrentExerciseAsComplete()
+              done()
             }}
           >
             Ich bin fertig
