@@ -5,7 +5,7 @@ import { Exercise } from '@/data/types'
 import { Color1, Color2, Color4 } from '@/helper/colors'
 import { buildEquation, ExplanationBox } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface DATA {
   m: number
@@ -212,6 +212,11 @@ export const exercise130: Exercise<DATA> = {
 
 function TaskComponent({ data }: { data: DATA }) {
   const [answers, setAnswers] = useState<string[]>(['', '', ''])
+  const dataFromState = ExerciseViewStore.useState(state => state.data) as DATA
+
+  useEffect(() => {
+    setAnswers(['', '', ''])
+  }, [dataFromState])
 
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers]
