@@ -158,9 +158,9 @@ export function ExerciseViewFooter() {
           </button>
         </div>
         {showHelp && (
-          <div className="absolute left-3 -top-14 bg-blue-200 rounded-full px-1 py-0.5">
+          <div className="absolute left-3 -top-14">
             <button
-              className=""
+              className="bg-blue-200 rounded-full px-1 py-0.5"
               onClick={() => {
                 setShowHelp(false)
                 ExerciseViewStore.update(s => {
@@ -170,6 +170,20 @@ export function ExerciseViewFooter() {
             >
               Lösung anzeigen
             </button>
+            {hasExamplePrescreen && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  setShowHelp(false)
+                  ExerciseViewStore.update(s => {
+                    s.examplePrescreen = true
+                    s.chatOverlay = null
+                  })
+                }}
+              >
+                Beispiel
+              </button>
+            )}
           </div>
         )}
         {!needReset2 && (

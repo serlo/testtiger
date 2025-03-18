@@ -506,23 +506,24 @@ export function ExerciseViewContent() {
             )
           }
         })}
-        {examplePrescreen && (
+        {examplePrescreen ? (
           <>
-            <div className="text-center -mt-4">
+            <div className="bg-white h-32 flex justify-center items-center">
               <button
-                className="bg-green-200 hover:bg-green-300 px-4 py-2 rounded-lg"
+                className="rounded-full py-[13px] px-[55px] font-bold text-white bg-[#007EC1]"
                 onClick={() => {
                   ExerciseViewStore.update(s => {
                     s.examplePrescreen = false
                   })
                 }}
               >
-                Weiter
+                Weiter zur Aufgabe
               </button>
             </div>
           </>
+        ) : (
+          <div className="h-12"></div>
         )}
-        <div className="h-12"></div>
       </div>
     </div>
   )
