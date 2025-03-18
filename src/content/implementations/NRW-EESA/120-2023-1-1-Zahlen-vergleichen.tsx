@@ -6,7 +6,7 @@ import { Color1 } from '@/helper/colors'
 import { getGcd } from '@/helper/get-gcd'
 import { buildEquation, buildInlineFrac } from '@/helper/math-builder'
 import { pp, ppFrac } from '@/helper/pretty-print'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface DATA {
   a: number
@@ -251,6 +251,11 @@ function TaskComponent({ data }: { data: DATA }) {
     newAnswers[index] = value
     setAnswers(newAnswers)
   }
+
+  const dataFromState = ExerciseViewStore.useState(state => state.data) as DATA
+  useEffect(() => {
+    setAnswers(['', '', ''])
+  }, [dataFromState])
 
   const handleSubmit = () => {
     ExerciseViewStore.update(s => {

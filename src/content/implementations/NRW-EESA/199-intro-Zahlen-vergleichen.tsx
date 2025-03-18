@@ -5,7 +5,7 @@ import { Exercise } from '@/data/types'
 import { Color1, Color2, Color3 } from '@/helper/colors'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface DATA {
   a: number
@@ -176,6 +176,11 @@ function TaskComponent({ data }: { data: DATA }) {
     newAnswers[index] = value
     setAnswers(newAnswers)
   }
+
+  const dataFromState = ExerciseViewStore.useState(state => state.data) as DATA
+  useEffect(() => {
+    setAnswers(['', '', ''])
+  }, [dataFromState])
 
   const handleSubmit = () => {
     ExerciseViewStore.update(s => {

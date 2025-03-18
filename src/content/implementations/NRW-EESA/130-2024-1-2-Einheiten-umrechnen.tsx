@@ -212,8 +212,8 @@ export const exercise130: Exercise<DATA> = {
 
 function TaskComponent({ data }: { data: DATA }) {
   const [answers, setAnswers] = useState<string[]>(['', '', ''])
-  const dataFromState = ExerciseViewStore.useState(state => state.data) as DATA
 
+  const dataFromState = ExerciseViewStore.useState(state => state.data) as DATA
   useEffect(() => {
     setAnswers(['', '', ''])
   }, [dataFromState])
