@@ -183,12 +183,7 @@ export function LearningPathMap() {
         <image href="/learning-path/bushes.svg" x={265} y={3665} width={440} />
         <image href="/learning-path/stumpf1.svg" x={-38} y={3465} width={160} />
         <image href="/learning-path/forest.svg" x={265} y={3225} width={240} />
-        <image
-          href="/learning-path/treer.svg"
-          x={270}
-          y={4835}
-          width={230}
-        />
+        <image href="/learning-path/treer.svg" x={270} y={4835} width={230} />
         <image
           href="/learning-path/bigtreegroup.svg"
           x={-175}
@@ -668,6 +663,13 @@ export function handleLearningPathStepClick({
         s.isChallenge = lesson.type === 'challenge'
         s.introText = lesson.introText
       })
+      if (lesson.showExamplePrescreen) {
+        PlayerProfileStore.update(s => {
+          s.birdieIntros = s.birdieIntros.filter(
+            intro => !intro.startsWith('exercise-example'),
+          )
+        })
+      }
     }
     if (history)
       history.push(
