@@ -27,6 +27,8 @@ import { exercisesData } from '@/content/exercises'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { ExerciseWithSubtasks } from '@/data/types'
 import { countLetter } from '@/helper/count-letter'
+import { handleLearningPathStepClick } from '../learning-path/LearningPathMap'
+import { useHistory } from 'react-router'
 
 export function ExerciseViewFooter() {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -57,6 +59,8 @@ export function ExerciseViewFooter() {
   const answerInput = ExerciseViewStore.useState(
     s => s.chatHistory[s.navIndicatorPosition].answerInput,
   )
+
+  const history = useHistory()
 
   useEffect(() => {
     setTimeout(() => {
@@ -184,8 +188,111 @@ export function ExerciseViewFooter() {
                 Beispiel
               </button>
             )}
+            {id == 199 && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  setShowHelp(false)
+                  handleLearningPathStepClick({
+                    lesson: {
+                      type: 'video',
+                      title: 'Video 1',
+                      videoUrl:
+                        'https://testtige.uber.space/testtiger/Zahlen_vergleichen_MINI.mp4',
+                      position: { x: 80, y: 170 },
+                      steps: [],
+                    },
+                    solvedPercentage: 1,
+                    exam: 2,
+                    nextElement: {
+                      source: {
+                        type: 'new-skill',
+                        title: 'Intro: Zahlen vergleichen',
+                        icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
+                        iconSize: 22,
+                        position: { x: 190, y: 210 },
+                        steps: [{ exercise: { id: 199 } }],
+                      },
+                      solvedPercentage: 0,
+                    },
+                    history,
+                  })
+                }}
+              >
+                Video
+              </button>
+            )}
+            {id == 120 && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  setShowHelp(false)
+                  handleLearningPathStepClick({
+                    lesson: {
+                      type: 'video',
+                      title: 'Video 2',
+                      videoUrl:
+                        'https://testtige.uber.space/testtiger/bruechevergleichen_MINI.mp4',
+                      position: { x: 150, y: 320 },
+                      steps: [],
+                    },
+                    solvedPercentage: 1,
+                    exam: 2,
+                    nextElement: {
+                      source: {
+                        type: 'new-skill',
+                        title: 'Zahlen vergleichen',
+                        icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
+                        iconSize: 22,
+                        position: { x: 280, y: 340 },
+                        steps: [{ exercise: { id: 120 } }],
+                      },
+                      solvedPercentage: 0,
+                    },
+                    history,
+                  })
+                }}
+              >
+                Video
+              </button>
+            )}
+            {id == 114 && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  setShowHelp(false)
+                  handleLearningPathStepClick({
+                    lesson: {
+                      type: 'video',
+                      title: 'Video 3',
+                      videoUrl:
+                        'https://testtige.uber.space/testtiger/schaetzen_MINI.mp4',
+                      position: { x: 200, y: 575 },
+                      steps: [],
+                    },
+                    solvedPercentage: 0,
+                    exam: 2,
+                    nextElement: {
+                      source: {
+                        type: 'new-skill',
+                        title: 'Schätzen & Überschlagen',
+                        icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
+                        iconSize: 30,
+                        position: { x: 290, y: 650 },
+                        steps: [{ exercise: { id: 114 } }],
+                      },
+                      solvedPercentage: 0,
+                    },
+                    history,
+                  })
+                }}
+              >
+                Video
+              </button>
+            )}
           </div>
         )}
+
         {!needReset2 && (
           <TextareaAutosize
             ref={textareaRef}
