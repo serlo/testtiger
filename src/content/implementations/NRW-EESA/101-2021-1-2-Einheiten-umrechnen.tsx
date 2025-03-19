@@ -104,8 +104,8 @@ export const exercise101: Exercise<DATA> = {
 
         <p>
           <strong>1 Liter (l)</strong> enthält{' '}
-          <strong>1 Kubikdezimeter (dm³)</strong>. <br></br>Rechne mit dem
-          Umrechnungsfaktor 60:
+          <strong>1 Kubikdezimeter (dm³)</strong>. <br></br>Die Zahlenwerte sind
+          also in beiden Einheiten gleich:
         </p>
         {buildEquation([
           [
