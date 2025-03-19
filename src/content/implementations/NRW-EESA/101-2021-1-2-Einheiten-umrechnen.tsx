@@ -1,6 +1,10 @@
+'use client'
+import { analyseLastInput } from '@/components/exercise-view/state/actions'
+import { ExerciseViewStore } from '@/components/exercise-view/state/exercise-view-store'
 import { Exercise } from '@/data/types'
 import { buildEquation } from '@/helper/math-builder'
 import { pp } from '@/helper/pretty-print'
+import { useEffect, useState } from 'react'
 
 interface DATA {
   m: number
@@ -35,12 +39,18 @@ export const exercise101: Exercise<DATA> = {
     return true
   },
   task({ data }) {
+    return <TaskComponent data={data} />
+  },
+  onlyHints: true,
+  correctionHints({ data }) {
     return (
       <>
-        <p>Rechne die Größen in die angegebene Einheit um.</p>
-        <p>{pp(data.m * 100)} cm = ______ m</p>
-        <p>{pp(data.h)} h = ______ min</p>
-        <p>{pp(data.ml / 1000)} ℓ = ______ dm³</p>
+        Bei dieser Aufgabe sollen drei Größen in eine andere Einheit umgerechnet
+        werden. Die Antwort wird in diesem Format erwartet: ___ m
+        <br /> ___ min
+        <br /> ___ dm³. Die richtige Antwort lautet {pp(data.m)} m
+        <br /> {pp(data.h * 60)} min
+        <br /> {pp(data.ml / 1000)} dm³.
       </>
     )
   },
@@ -113,4 +123,86 @@ export const exercise101: Exercise<DATA> = {
       </>
     )
   },
+}
+
+function TaskComponent({ data }: { data: DATA }) {
+  const [answers, setAnswers] = useState<string[]>(['', '', ''])
+
+  const dataFromState = ExerciseViewStore.useState(state => state.data) as DATA
+
+  useEffect(() => {
+    setAnswers(['', '', ''])
+  }, [dataFromState])
+
+  const handleInputChange = (index: number, value: string) => {
+    const newAnswers = [...answers]
+    newAnswers[index] = value
+    setAnswers(newAnswers)
+  }
+
+  const handleSubmit = () => {
+    ExerciseViewStore.update(s => {
+      s.chatHistory[s.navIndicatorPosition].resultPending = true
+      s.chatHistory[s.navIndicatorPosition].entries.push({
+        type: 'text',
+        content: `${answers[0]} m\n${answers[1]} min\n${answers[2]} dm³`,
+        canEdit: true,
+      })
+      s.chatOverlay = 'chat'
+      s.chatHistory[s.navIndicatorPosition].answerInput = ''
+    })
+    void analyseLastInput()
+  }
+
+  return (
+    <>
+      <p>Rechne die Größen in die angegebene Einheit um.</p>
+      {buildEquation([
+        [
+          <>{pp(data.m * 100)} cm</>,
+          <>=</>,
+          <>
+            <input
+              className="inline w-16 border text-center"
+              value={answers[0]}
+              onChange={e => handleInputChange(0, e.target.value)}
+            />{' '}
+            m
+          </>,
+        ],
+        [
+          <>{pp(data.h)} h</>,
+          <>=</>,
+          <>
+            <input
+              className="inline w-16 border text-center"
+              value={answers[1]}
+              onChange={e => handleInputChange(1, e.target.value)}
+            />{' '}
+            min
+          </>,
+        ],
+        [
+          <>{pp(data.ml / 1000)} ℓ</>,
+          <>=</>,
+          <>
+            <input
+              className="inline w-16 border text-center"
+              value={answers[2]}
+              onChange={e => handleInputChange(2, e.target.value)}
+            />{' '}
+            dm³
+          </>,
+        ],
+      ])}
+      <p>
+        <button
+          className="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded"
+          onClick={handleSubmit}
+        >
+          Abschicken
+        </button>
+      </p>
+    </>
+  )
 }

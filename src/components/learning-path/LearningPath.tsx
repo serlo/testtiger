@@ -12,15 +12,18 @@ export function LearningPath() {
 
   useEffect(() => {
     if (scrollDiv.current) {
-      scrollDiv.current.scrollTop = LearningPathStore.getRawState().scrollPosition
+      scrollDiv.current.scrollTop =
+        LearningPathStore.getRawState().scrollPosition
       setTimeout(() => {
         if (scrollDiv.current) {
-          scrollDiv.current.scrollTop = LearningPathStore.getRawState().scrollPosition
+          scrollDiv.current.scrollTop =
+            LearningPathStore.getRawState().scrollPosition
         }
       }, 100)
       setTimeout(() => {
         if (scrollDiv.current) {
-          scrollDiv.current.scrollTop = LearningPathStore.getRawState().scrollPosition
+          scrollDiv.current.scrollTop =
+            LearningPathStore.getRawState().scrollPosition
         }
       }, 200)
     }
@@ -30,7 +33,6 @@ export function LearningPath() {
     <IonPage className="relative sm:max-w-[375px] mx-auto">
       <BirdieOverlay context="map" />
 
- 
       <div
         className="
           absolute
@@ -57,7 +59,7 @@ export function LearningPath() {
         Inhalt startet nach dem Header. 
         Wenn dein Header 88px hoch ist, verwende pt-[88px] als „Abstand nach oben“.
       */}
-      <IonContent >
+      <IonContent fullscreen>
         <div
           className="h-full overflow-y-auto"
           ref={scrollDiv}
@@ -68,8 +70,8 @@ export function LearningPath() {
                 scrollTop > navigationData[exam].breakPoints[0]
                   ? 0
                   : scrollTop > navigationData[exam].breakPoints[1]
-                  ? 1
-                  : 2
+                    ? 1
+                    : 2
 
               LearningPathStore.update(s => {
                 s.part = visiblePart
