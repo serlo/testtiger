@@ -461,15 +461,13 @@ export function done() {
         s.navIndicatorPosition + 1 < s.navIndicatorLength &&
         s.completed[s.navIndicatorPosition + 1] == false
       ) {
-        if (wasNotDone) {
-          setTimeout(() => {
-            ExerciseViewStore.update(s => {
-              s.navIndicatorExternalUpdate = s.navIndicatorPosition + 1
-              s.chatOverlay = null
-              s.poppy = false
-            })
-          }, 500)
-        }
+        setTimeout(() => {
+          ExerciseViewStore.update(s => {
+            s.navIndicatorExternalUpdate = s.navIndicatorPosition + 1
+            s.chatOverlay = null
+            s.poppy = false
+          })
+        }, 500)
       } else {
         for (let i = 0; i < s.navIndicatorLength; i++) {
           if (s.completed[i] == false) {
