@@ -89,7 +89,7 @@ export function ExerciseViewContent() {
       console.log('scrolling', ref)
       ref.current.scrollTop = ref.current.scrollHeight
     }
-  }, [chatHistory.entries.length])
+  }, [chatHistory.entries.length, navIndicatorPosition])
 
   const useCalculator =
     exercisesData[
