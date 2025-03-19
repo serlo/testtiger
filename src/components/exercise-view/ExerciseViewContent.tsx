@@ -42,6 +42,7 @@ export function ExerciseViewContent() {
     s => s.chatHistory[navIndicatorPosition],
   )
   const data = ExerciseViewStore.useState(s => s.data)
+  const dataPerExercise = ExerciseViewStore.useState(s => s.dataPerExercise)
   const chatHistoryRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
