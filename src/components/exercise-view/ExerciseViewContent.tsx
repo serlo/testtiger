@@ -12,7 +12,7 @@ import {
 import { FaIcon } from '../ui/FaIcon'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { countLetter } from '@/helper/count-letter'
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useRef } from 'react'
 import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 import { useHistory } from 'react-router'
 import { NewExerciseViewChat } from './NewExerciseViewChat'
@@ -39,7 +39,7 @@ export function ExerciseViewContent() {
   const pickAndSolve = ExerciseViewStore.useState(s => s.pickAndSolveMode)
 
   const chatHistory = ExerciseViewStore.useState(
-    s => s.chatHistory[navIndicatorPosition],
+    s => s.chatHistory[s.navIndicatorPosition],
   )
   const data = ExerciseViewStore.useState(s => s.data)
   const dataPerExercise = ExerciseViewStore.useState(s => s.dataPerExercise)
@@ -277,7 +277,7 @@ export function ExerciseViewContent() {
             // single page exercise
             const singleExercise = exercise as SingleExercise<any>
             return (
-              <>
+              <Fragment key={i}>
                 {!examplePrescreen &&
                   renderContentCard({
                     i,
@@ -368,7 +368,7 @@ export function ExerciseViewContent() {
                   </div>
                 )}
                 <NewExerciseViewChat index={i} />
-              </>
+              </Fragment>
             )
           } else {
             const subtasks = exercise as ExerciseWithSubtasks<any>
@@ -402,7 +402,7 @@ export function ExerciseViewContent() {
             )
 
             return (
-              <>
+              <Fragment key={i}>
                 {introComps.length > 0 &&
                   introComps.some(e => e) &&
                   !examplePrescreen && (
@@ -441,7 +441,11 @@ export function ExerciseViewContent() {
                           )}
                         >
                           {renderContentElement(
-                            <>{introComps}</>,
+                            <>
+                              {introComps.map((el, i) => (
+                                <Fragment key={i}>{el}</Fragment>
+                              ))}
+                            </>,
                             i.toString(),
                           )}
                         </div>
@@ -503,7 +507,7 @@ export function ExerciseViewContent() {
                     isChallenge,
                   })}
                 <NewExerciseViewChat index={i} />
-              </>
+              </Fragment>
             )
           }
         })}
@@ -685,17 +689,4 @@ function renderContentElement(c: JSX.Element | null, key?: string) {
       {proseWrapper(c)}
     </div>
   )
-}
-
-function calculateSnapPoints() {
-  let vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0,
-  )
-  if (vw > 640) {
-    vw = 375
-  }
-  const distance = vw - 24 + 8
-  const offset = (vw - 24) / 2 + 16 + vw * 0.2 - vw / 2
-  return [distance, offset]
 }
