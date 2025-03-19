@@ -85,6 +85,7 @@ export function setupExercise(
     s.multiScreenExercise = true
     s.introCollapseState = pages.map(() => false)
     s.tasksCollapseState = pages.map(() => false)
+    s.showHelp = false
   })
 }
 

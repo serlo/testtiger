@@ -140,7 +140,7 @@ export function ExerciseViewFooter() {
   )
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
 
-  const [showHelp, setShowHelp] = useState(false)
+  const showHelp = ExerciseViewStore.useState(s => s.showHelp)
 
   if (examplePrescreen) return null
 
@@ -153,7 +153,13 @@ export function ExerciseViewFooter() {
           {/* visual element*/}
         </div>
         <div className="absolute right-6 -top-14 bg-[#F2F8FC] rounded-full px-1 py-0.5">
-          <button onClick={() => setShowHelp(!showHelp)}>
+          <button
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.showHelp = !s.showHelp
+              })
+            }}
+          >
             <FaIcon
               icon={showHelp ? faMinus : faPlus}
               className="text-[#208EC9] mr-1.5 font-medium"
@@ -161,137 +167,6 @@ export function ExerciseViewFooter() {
             Hilfe
           </button>
         </div>
-        {showHelp && (
-          <div className="absolute left-3 -top-14">
-            <button
-              className="bg-blue-200 rounded-full px-1 py-0.5"
-              onClick={() => {
-                setShowHelp(false)
-                ExerciseViewStore.update(s => {
-                  s.chatOverlay = 'solution'
-                })
-              }}
-            >
-              Lösung anzeigen
-            </button>
-            {hasExamplePrescreen && (
-              <button
-                className="ml-2"
-                onClick={() => {
-                  setShowHelp(false)
-                  ExerciseViewStore.update(s => {
-                    s.examplePrescreen = true
-                    s.chatOverlay = null
-                  })
-                }}
-              >
-                Beispiel
-              </button>
-            )}
-            {id == 199 && (
-              <button
-                className="ml-2"
-                onClick={() => {
-                  setShowHelp(false)
-                  handleLearningPathStepClick({
-                    lesson: {
-                      type: 'video',
-                      title: 'Video 1',
-                      videoUrl:
-                        'https://testtige.uber.space/testtiger/Zahlen_vergleichen_MINI.mp4',
-                      position: { x: 80, y: 170 },
-                      steps: [],
-                    },
-                    solvedPercentage: 1,
-                    exam: 2,
-                    nextElement: {
-                      source: {
-                        type: 'new-skill',
-                        title: 'Intro: Zahlen vergleichen',
-                        icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
-                        iconSize: 22,
-                        position: { x: 190, y: 210 },
-                        steps: [{ exercise: { id: 199 } }],
-                      },
-                      solvedPercentage: 0,
-                    },
-                    history,
-                  })
-                }}
-              >
-                Video
-              </button>
-            )}
-            {id == 120 && (
-              <button
-                className="ml-2"
-                onClick={() => {
-                  setShowHelp(false)
-                  handleLearningPathStepClick({
-                    lesson: {
-                      type: 'video',
-                      title: 'Video 2',
-                      videoUrl:
-                        'https://testtige.uber.space/testtiger/bruechevergleichen_MINI.mp4',
-                      position: { x: 150, y: 320 },
-                      steps: [],
-                    },
-                    solvedPercentage: 1,
-                    exam: 2,
-                    nextElement: {
-                      source: {
-                        type: 'new-skill',
-                        title: 'Zahlen vergleichen',
-                        icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
-                        iconSize: 22,
-                        position: { x: 280, y: 340 },
-                        steps: [{ exercise: { id: 120 } }],
-                      },
-                      solvedPercentage: 0,
-                    },
-                    history,
-                  })
-                }}
-              >
-                Video
-              </button>
-            )}
-            {id == 114 && (
-              <button
-                className="ml-2"
-                onClick={() => {
-                  setShowHelp(false)
-                  handleLearningPathStepClick({
-                    lesson: {
-                      type: 'video',
-                      title: 'Video 3',
-                      videoUrl:
-                        'https://testtige.uber.space/testtiger/schaetzen_MINI.mp4',
-                      position: { x: 200, y: 575 },
-                      steps: [],
-                    },
-                    solvedPercentage: 0,
-                    exam: 2,
-                    nextElement: {
-                      source: {
-                        type: 'new-skill',
-                        title: 'Schätzen & Überschlagen',
-                        icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
-                        iconSize: 30,
-                        position: { x: 290, y: 650 },
-                        steps: [{ exercise: { id: 114 } }],
-                      },
-                      solvedPercentage: 0,
-                    },
-                    history,
-                  })
-                }}
-              >
-                Video
-              </button>
-            )}
-          </div>
-        )}
 
         {!needReset2 && (
           <TextareaAutosize

@@ -74,6 +74,7 @@ export type IExerciseViewStore = {
   introCollapseState: boolean[]
   tasksCollapseState: boolean[]
   poppy?: boolean
+  showHelp: boolean
 }
 
 export const ExerciseViewStore = new Store<IExerciseViewStore>({
@@ -101,4 +102,5 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   hasExamplePrescreen: false,
   introCollapseState: [],
   tasksCollapseState: [],
+  showHelp: false,
 })

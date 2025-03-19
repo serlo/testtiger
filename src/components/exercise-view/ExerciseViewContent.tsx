@@ -16,6 +16,7 @@ import { Fragment, useEffect, useLayoutEffect, useRef } from 'react'
 import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 import { useHistory } from 'react-router'
 import { NewExerciseViewChat } from './NewExerciseViewChat'
+import { handleLearningPathStepClick } from '../learning-path/LearningPathMap'
 
 export function ExerciseViewContent() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
@@ -44,6 +45,8 @@ export function ExerciseViewContent() {
   const data = ExerciseViewStore.useState(s => s.data)
   const dataPerExercise = ExerciseViewStore.useState(s => s.dataPerExercise)
   const chatHistoryRef = useRef<HTMLDivElement>(null)
+
+  const showHelp = ExerciseViewStore.useState(s => s.showHelp)
 
   useEffect(() => {
     if (
@@ -90,7 +93,7 @@ export function ExerciseViewContent() {
       console.log('scrolling', ref)
       ref.current.scrollTop = ref.current.scrollHeight
     }
-  }, [chatHistory.entries.length, navIndicatorPosition])
+  }, [chatHistory.entries.length, navIndicatorPosition, showHelp])
 
   const useCalculator =
     exercisesData[
@@ -107,6 +110,11 @@ export function ExerciseViewContent() {
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
 
   const skill = ExerciseViewStore.useState(s => s.skill)
+
+  const id = ExerciseViewStore.useState(s => s.id)
+  const hasExamplePrescreen = ExerciseViewStore.useState(
+    s => s.hasExamplePrescreen,
+  )
 
   const introCollapseState = ExerciseViewStore.useState(
     s => s.introCollapseState,
@@ -511,6 +519,134 @@ export function ExerciseViewContent() {
             )
           }
         })}
+        {showHelp && (
+          <div className="flex flex-col items-end mt-3 mr-3 mb-12">
+            <button
+              className="bg-blue-200 rounded-full px-1 py-0.5"
+              onClick={() => {
+                ExerciseViewStore.update(s => {
+                  s.chatOverlay = 'solution'
+                  s.showHelp = false
+                })
+              }}
+            >
+              Lösung anzeigen
+            </button>
+            {hasExamplePrescreen && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  ExerciseViewStore.update(s => {
+                    s.examplePrescreen = true
+                    s.chatOverlay = null
+                    s.showHelp = false
+                  })
+                }}
+              >
+                Beispiel
+              </button>
+            )}
+            {id == 199 && (
+              <button
+                className="bg-blue-200 rounded-full px-1 py-0.5"
+                onClick={() => {
+                  handleLearningPathStepClick({
+                    lesson: {
+                      type: 'video',
+                      title: 'Video 1',
+                      videoUrl:
+                        'https://testtige.uber.space/testtiger/Zahlen_vergleichen_MINI.mp4',
+                      position: { x: 80, y: 170 },
+                      steps: [],
+                    },
+                    solvedPercentage: 1,
+                    exam: 2,
+                    nextElement: {
+                      source: {
+                        type: 'new-skill',
+                        title: 'Intro: Zahlen vergleichen',
+                        icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
+                        iconSize: 22,
+                        position: { x: 190, y: 210 },
+                        steps: [{ exercise: { id: 199 } }],
+                      },
+                      solvedPercentage: 0,
+                    },
+                    history,
+                  })
+                }}
+              >
+                Video
+              </button>
+            )}
+            {id == 120 && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  handleLearningPathStepClick({
+                    lesson: {
+                      type: 'video',
+                      title: 'Video 2',
+                      videoUrl:
+                        'https://testtige.uber.space/testtiger/bruechevergleichen_MINI.mp4',
+                      position: { x: 150, y: 320 },
+                      steps: [],
+                    },
+                    solvedPercentage: 1,
+                    exam: 2,
+                    nextElement: {
+                      source: {
+                        type: 'new-skill',
+                        title: 'Zahlen vergleichen',
+                        icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
+                        iconSize: 22,
+                        position: { x: 280, y: 340 },
+                        steps: [{ exercise: { id: 120 } }],
+                      },
+                      solvedPercentage: 0,
+                    },
+                    history,
+                  })
+                }}
+              >
+                Video
+              </button>
+            )}
+            {id == 114 && (
+              <button
+                className="ml-2"
+                onClick={() => {
+                  handleLearningPathStepClick({
+                    lesson: {
+                      type: 'video',
+                      title: 'Video 3',
+                      videoUrl:
+                        'https://testtige.uber.space/testtiger/schaetzen_MINI.mp4',
+                      position: { x: 200, y: 575 },
+                      steps: [],
+                    },
+                    solvedPercentage: 0,
+                    exam: 2,
+                    nextElement: {
+                      source: {
+                        type: 'new-skill',
+                        title: 'Schätzen & Überschlagen',
+                        icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
+                        iconSize: 30,
+                        position: { x: 290, y: 650 },
+                        steps: [{ exercise: { id: 114 } }],
+                      },
+                      solvedPercentage: 0,
+                    },
+                    history,
+                  })
+                }}
+              >
+                Video
+              </button>
+            )}
+          </div>
+        )}
         {examplePrescreen ? (
           <>
             <div className="bg-white h-32 flex justify-center items-center">

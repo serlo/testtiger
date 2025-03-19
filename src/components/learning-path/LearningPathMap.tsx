@@ -780,6 +780,7 @@ export function handleLearningPathStepClick({
       s.showIntroScreen = true
       s.introCollapseState = s.pages.map(() => false)
       s.tasksCollapseState = s.pages.map(() => false)
+      s.showHelp = false
 
       s.poppy = exerciseIds.some(id => {
         return id == 129

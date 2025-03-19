@@ -28,6 +28,8 @@ export function NewExerciseViewChat({
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
   const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
 
+  const showHelp = ExerciseViewStore.useState(s => s.showHelp)
+
   useEffect(() => {
     setTimeout(() => {
       ExerciseViewStore.update(s => {
@@ -287,8 +289,6 @@ export function NewExerciseViewChat({
         )}
 
         {index == navIndicatorPosition && <SolutionOverlay />}
-
-        {}
       </div>
     </>
   )
