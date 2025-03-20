@@ -95,6 +95,14 @@ export const exercise198: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Gib bei einer fehlerhaften Lösung nur einen Hinweis und nicht das
+        richtige Ergebnis an.
+      </>
+    )
+  },
   solution({ data }) {
     const rechts = data.a * data.x_sol + data.b
     return (
