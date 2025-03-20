@@ -132,6 +132,10 @@ export const exercise130: Exercise<DATA> = {
         <br /> ___ ml. Die richtige Antwort lautet {pp(data.m)} m
         <br /> {pp(data.min)} min
         <br /> {pp(data.ml)} ml.
+        <br /> Gib nur dann die Rückmeldung, dass es korrekt gelöst wurde, wenn
+        alle drei Antworten wirklich exakt richtig sind. Insbesondere die erste
+        Lösung muss exakt {pp(data.m)} m lauten. Verrate bei einem Fehler nicht
+        die richtige Lösung.
       </>
     )
   },

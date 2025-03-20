@@ -76,6 +76,30 @@ export const exercise120: Exercise<DATA> = {
   task({ data }) {
     return <TaskComponent data={data} />
   },
+  onlyHints: true,
+  correctionHints({ data }) {
+    return (
+      <>
+        Bei dieser Aufgabe sollen drei mal zwei verschiedene Zahlen verglichen
+        werden. Als Antwort wird erwartet, dass die Zahlen mit größer, kleiner
+        oder gleich verglichen werden. Die richtige Antwort lautet: <br></br>
+        {pp(data.a)}
+        {data.a > data.b && ' > '}
+        {data.a < data.b && ' < '}
+        {data.a == data.b && ' = '}
+        {pp(data.b)}
+        <br /> {ppFrac([data.c, data.d])}{' '}
+        {data.c / data.d > data.e / data.f && '>'}{' '}
+        {data.c / data.d < data.e / data.f && '<'}{' '}
+        {data.c / data.d == data.e / data.f && '='} {ppFrac([data.e, data.f])}
+        <br /> {pp(data.g)} {data.g > data.h / data.i && '>'}
+        {data.g < data.h / data.i && '<'}
+        {data.g == data.h / data.i && '='} {ppFrac([data.h, data.i])}
+        <br></br>Achte besonders darauf, dass bei negativen Zahlen die Zahl mit
+        dem kleineren Betrag größer ist.
+      </>
+    )
+  },
   solution({ data }) {
     const hauptnenner1 = (data.d * data.f) / getGcd(data.d, data.f)
     const hauptnenner2 = (data.i * 10) / getGcd(data.i, 10)
