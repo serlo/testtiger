@@ -14,12 +14,13 @@ import clsx from 'clsx'
 import { done, markCurrentExerciseAsComplete, reseed } from './state/actions'
 import { updatePlayerProfileStore } from '../../../store/player-profile-store'
 
-export function SolutionOverlay() {
+export function SolutionOverlay({
+  navIndicatorPosition,
+}: {
+  navIndicatorPosition: number
+}) {
   const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
   const id = ExerciseViewStore.useState(s => s.id)
-  const navIndicatorPosition = ExerciseViewStore.useState(
-    s => s.navIndicatorPosition,
-  )
   const completed = ExerciseViewStore.useState(
     s => s.completed[s.navIndicatorPosition],
   )
@@ -77,10 +78,6 @@ export function SolutionOverlay() {
     }
   }, [solutionDiv])
 
-  if (chatOverlay !== 'solution') {
-    return null
-  }
-
   const data = pages[navIndicatorPosition].context
     ? ExerciseViewStore.getRawState().dataPerExercise[
         pages[navIndicatorPosition].context!
@@ -88,6 +85,79 @@ export function SolutionOverlay() {
     : ExerciseViewStore.getRawState().data
 
   return (
+    <>
+      <div className="mb-4 flex ml-3">
+        <div className="mr-3 flex-shrink-0 w-[16px]">
+          <img src="/birdie_idle.svg" alt="" className="inline-block" />
+        </div>
+        <div className="font-medium">
+          Alles klar, hier ist die Original-Lösung aus der Prüfung:
+        </div>
+      </div>
+      <div className="max-w-[328px] mx-auto">
+        {proseWrapper(
+          (() => {
+            /*'tasks' in content
+              ? pages
+                ? content.tasks.find(
+                    (el, i) =>
+                      countLetter('a', i) == pages[navIndicatorPosition].index,
+                  )!.solution
+                : content.tasks[navIndicatorPosition].solution
+              : content.solution*/
+            const exercise =
+              exercisesData[
+                pages[navIndicatorPosition].context
+                  ? ExerciseViewStore.getRawState()._exerciseIDs[
+                      parseInt(pages[navIndicatorPosition].context!) - 1
+                    ]
+                  : id
+              ]
+
+            if (
+              pages[navIndicatorPosition].index == 'single' &&
+              'solution' in exercise
+            ) {
+              return exercise.solution!
+            } else if ('tasks' in exercise) {
+              return exercise.tasks.find(
+                (el, i) =>
+                  countLetter('a', i) == pages[navIndicatorPosition].index,
+              )!.solution
+            }
+
+            // eslint-disable-next-line react/display-name
+            return () => <></> // should not happen
+          })()({
+            data,
+          }),
+        )}
+      </div>
+      <div className="flex flex-col items-end mt-6   mr-5 mb-12 gap-3">
+        <button
+          className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
+          onClick={() => {
+            done()
+          }}
+        >
+          Aufgabe abschließen
+        </button>
+        <button
+          className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
+          onClick={() => {
+            ExerciseViewStore.update(s => {
+              s.chatOverlay = null
+            })
+            reseed()
+          }}
+        >
+          Mit anderen Zahlen rechnen
+        </button>
+      </div>
+    </>
+  )
+
+  /*return (
     <>
       {!multiScreenExercise && (
         <div className="flex justify-between mx-3 pt-3">
@@ -131,7 +201,7 @@ export function SolutionOverlay() {
                       countLetter('a', i) == pages[navIndicatorPosition].index,
                   )!.solution
                 : content.tasks[navIndicatorPosition].solution
-              : content.solution*/
+              : content.solution
               const exercise =
                 exercisesData[
                   pages[navIndicatorPosition].context
@@ -196,5 +266,5 @@ export function SolutionOverlay() {
         </div>
       </div>
     </>
-  )
+  )*/
 }

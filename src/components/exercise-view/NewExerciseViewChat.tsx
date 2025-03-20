@@ -1,11 +1,11 @@
 import { useRef, useEffect, Fragment, useState } from 'react'
 import { done, markCurrentExerciseAsComplete, reseed } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
-import { SolutionOverlay } from './SolutionOverlay'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
 import clsx from 'clsx'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
+import { SolutionOverlay } from './SolutionOverlay'
 
 interface NewExerciseViewChatProps {
   index: number
@@ -275,6 +275,13 @@ export function NewExerciseViewChat({
               </div>
             )
           }
+          if (el.type == 'solution') {
+            return (
+              <div key={i}>
+                <SolutionOverlay navIndicatorPosition={el.index} />
+              </div>
+            )
+          }
           return null
         })}
         {chatHistory.resultPending ? (
@@ -287,8 +294,6 @@ export function NewExerciseViewChat({
         ) : (
           <div className="h-4"></div>
         )}
-
-        {index == navIndicatorPosition && <SolutionOverlay />}
       </div>
     </>
   )

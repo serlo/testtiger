@@ -61,7 +61,10 @@ export function ExerciseViewHeader() {
         )}
       >
         <div
-          className="absolute top-8 left-6 text-[#007EC1] text-2xl w-[17px] flex justify-center items-center cursor-pointer"
+          className={clsx(
+            'absolute left-6 text-[#007EC1] text-2xl w-[17px] flex justify-center items-center cursor-pointer',
+            pages && pages.length > 1 ? 'top-8' : 'top-6',
+          )}
           onClick={() => history.push('/app/home')}
         >
           <FaIcon icon={faTimes} className="" />

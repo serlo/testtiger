@@ -86,6 +86,7 @@ export function setupExercise(
     s.introCollapseState = pages.map(() => false)
     s.tasksCollapseState = pages.map(() => false)
     s.showHelp = false
+    s.poppy = false
   })
 }
 
@@ -456,7 +457,7 @@ export function done() {
         ExerciseViewStore.update(s => {
           s.showEndScreen = true
         })
-      }, 600)
+      }, 50)
     } else {
       if (
         s.navIndicatorPosition + 1 < s.navIndicatorLength &&
@@ -468,7 +469,7 @@ export function done() {
             s.chatOverlay = null
             s.poppy = false
           })
-        }, 500)
+        }, 50)
       } else {
         for (let i = 0; i < s.navIndicatorLength; i++) {
           if (s.completed[i] == false) {
@@ -478,7 +479,7 @@ export function done() {
                 s.chatOverlay = null
                 s.poppy = false
               })
-            }, 500)
+            }, 50)
             break
           }
         }

@@ -90,7 +90,6 @@ export function ExerciseViewContent() {
 
   useLayoutEffect(() => {
     if (ref.current) {
-      console.log('scrolling', ref)
       ref.current.scrollTop = ref.current.scrollHeight
     }
   }, [chatHistory.entries.length, navIndicatorPosition, showHelp])
@@ -520,35 +519,45 @@ export function ExerciseViewContent() {
           }
         })}
         {showHelp && (
-          <div className="flex flex-col items-end mt-3 mr-3 mb-12">
+          <div className="flex flex-col items-end mt-3 mr-5 mb-12 gap-3">
             <button
-              className="bg-blue-200 rounded-full px-1 py-0.5"
+              className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
               onClick={() => {
                 ExerciseViewStore.update(s => {
                   s.chatOverlay = 'solution'
                   s.showHelp = false
+                  // add message to chat history
+                  s.chatHistory[s.navIndicatorPosition].entries.push({
+                    type: 'text',
+                    content: 'Zeig mir die Lösung',
+                  })
+                  s.chatHistory[s.navIndicatorPosition].entries.push({
+                    type: 'solution',
+                    index: s.navIndicatorPosition,
+                  })
                 })
               }}
             >
-              Lösung anzeigen
+              Zeig mir die Lösung
             </button>
             {hasExamplePrescreen && (
               <button
-                className="ml-2"
+                className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
                 onClick={() => {
                   ExerciseViewStore.update(s => {
                     s.examplePrescreen = true
                     s.chatOverlay = null
                     s.showHelp = false
+                    s.needReset = true
                   })
                 }}
               >
-                Beispiel
+                Beispiel vorrechnen
               </button>
             )}
             {id == 199 && (
               <button
-                className="bg-blue-200 rounded-full px-1 py-0.5"
+                className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
                 onClick={() => {
                   handleLearningPathStepClick({
                     lesson: {
@@ -576,12 +585,12 @@ export function ExerciseViewContent() {
                   })
                 }}
               >
-                Video
+                Video abspielen
               </button>
             )}
             {id == 120 && (
               <button
-                className="ml-2"
+                className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
                 onClick={() => {
                   handleLearningPathStepClick({
                     lesson: {
@@ -609,12 +618,12 @@ export function ExerciseViewContent() {
                   })
                 }}
               >
-                Video
+                Video abspielen
               </button>
             )}
             {id == 114 && (
               <button
-                className="ml-2"
+                className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
                 onClick={() => {
                   handleLearningPathStepClick({
                     lesson: {
@@ -642,7 +651,7 @@ export function ExerciseViewContent() {
                   })
                 }}
               >
-                Video
+                Video abspielen
               </button>
             )}
           </div>

@@ -276,7 +276,6 @@ export function ExerciseViewFooter() {
         <FaIcon icon={faCaretDown} className="text-lg mt-1.5" />
       </div>
       <IndicatorBar />
-      <SolutionOverlay />
       <FotoOverlay />
       <div className="h-1"></div>
       {chatOverlay == 'chat' && (

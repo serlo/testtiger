@@ -13,6 +13,11 @@ interface ImageChatMeessage {
   description: string
 }
 
+interface SolutionMessage {
+  type: 'solution'
+  index: number
+}
+
 export interface SystemResponse {
   type: 'response'
   content: string
@@ -24,7 +29,11 @@ export interface SystemResponse {
     | 'question'
 }
 
-type ChatHistoryEntry = TextChatMessage | ImageChatMeessage | SystemResponse
+type ChatHistoryEntry =
+  | TextChatMessage
+  | ImageChatMeessage
+  | SystemResponse
+  | SolutionMessage
 
 export type IExerciseViewStore = {
   id: number
