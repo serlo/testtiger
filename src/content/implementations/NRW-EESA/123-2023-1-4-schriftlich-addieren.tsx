@@ -131,6 +131,18 @@ export const exercise123: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Bei dieser Aufgabe soll eine falsche Addition überprüft werden, der
+        Fehler erklärt und die richtige Lösung berechnet werden. Der Fehler ist,
+        dass die Dezimalstellen nicht richtig untereinander stehen. Die richtige
+        Lösung der Addition ist {pp(data.a + data.b)}. Die Aufgabe ist gelöst,
+        wenn das richtige Ergebnis der Addition bestimmt wurde. Gib trotzdem
+        noch den Hinweis, dass der Fehler erklärt werden muss.
+      </>
+    )
+  },
   solution({ data }) {
     const aDigits = data.a.toFixed(2).toString().split('') // Ziffern von a als String-Array
     const bDigits = data.b.toFixed(2).toString().split('') // Ziffern von b als String-Array
