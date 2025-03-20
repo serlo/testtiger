@@ -131,6 +131,7 @@ export const exercise123: Exercise<DATA> = {
       </>
     )
   },
+  onlyHints: true,
   correctionHints({ data }) {
     return (
       <>

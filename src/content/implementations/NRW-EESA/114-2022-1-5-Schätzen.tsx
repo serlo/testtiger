@@ -127,6 +127,14 @@ export const exercise114: Exercise<DATA> = {
       </>
     )
   },
+  correctionHints({ data }) {
+    return (
+      <>
+        Die Lösung ist auch richtig, wenn sie um 10-20% von der Musterlösung
+        abweicht.
+      </>
+    )
+  },
   solution({ data }) {
     return (
       <>
