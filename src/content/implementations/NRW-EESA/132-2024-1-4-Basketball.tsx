@@ -89,46 +89,42 @@ export const exercise132: Exercise<DATA> = {
               ['W', '=', <> 15 €</>],
             ])}
           </p>
-        </ExplanationBox>
-        <ExplanationBox>
-          <p>
-            Rechnung:
-            <hr style={{ margin: '10px 0' }} />
-            <p>Alternativ kannst du auch den Dreisatz anwenden:</p>
-            {buildEquation([
-              [<>100%</>, <>≙</>, <>50€</>],
-              [
-                '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
-                <>
-                  <Color4>
-                    <span style={{ fontSize: 'small' }}>: 10</span>
-                  </Color4>
-                </>,
-              ],
-              ['10%', '≙', <>5€</>],
-              [
-                '',
-                <>
-                  {' '}
-                  <Color4>
-                    <span className="inline-block  scale-y-[1.5]">↓</span>
-                  </Color4>
-                </>,
-                <>
-                  <Color4>
-                    <span style={{ fontSize: 'small' }}>· 3 </span>
-                  </Color4>
-                </>,
-              ],
-              ['30%', '≙', <> 15 €</>],
-            ])}
-          </p>
+
+          <hr style={{ margin: '10px 0' }} />
+          <p>Alternativ kannst du auch den Dreisatz anwenden:</p>
+          {buildEquation([
+            [<>100%</>, <>≙</>, <>50€</>],
+            [
+              '',
+              <>
+                {' '}
+                <Color4>
+                  <span className="inline-block  scale-y-[1.5]">↓</span>
+                </Color4>
+              </>,
+              <>
+                <Color4>
+                  <span style={{ fontSize: 'small' }}>: 10</span>
+                </Color4>
+              </>,
+            ],
+            ['10%', '≙', <>5€</>],
+            [
+              '',
+              <>
+                {' '}
+                <Color4>
+                  <span className="inline-block  scale-y-[1.5]">↓</span>
+                </Color4>
+              </>,
+              <>
+                <Color4>
+                  <span style={{ fontSize: 'small' }}>· 3 </span>
+                </Color4>
+              </>,
+            ],
+            ['30%', '≙', <> 15 €</>],
+          ])}
         </ExplanationBox>
       </>
     )
@@ -141,6 +137,14 @@ export const exercise132: Exercise<DATA> = {
           der Ball {data.ball} €. Nun wird er mit {data.rabatt} % Rabatt
           verkauft. Berechne den neuen Kaufpreis.
         </p>
+      </>
+    )
+  },
+  correctionHints({ data }) {
+    return (
+      <>
+        Gib bei einer fehlerhaften Lösung nur einen Hinweis und nicht das
+        richtige Ergebnis an.
       </>
     )
   },
