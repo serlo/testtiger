@@ -90,7 +90,7 @@ export function SolutionOverlay({
         <div className="mr-3 flex-shrink-0 w-[16px]">
           <img src="/birdie_idle.svg" alt="" className="inline-block" />
         </div>
-        <div className="font-medium">
+        <div className="font-medium start-of-solution">
           Alles klar, hier ist die Original-Lösung aus der Prüfung:
         </div>
       </div>

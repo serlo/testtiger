@@ -90,7 +90,25 @@ export function ExerciseViewContent() {
 
   useLayoutEffect(() => {
     if (ref.current) {
-      ref.current.scrollTop = ref.current.scrollHeight
+      if (
+        ExerciseViewStore.getRawState().chatHistory[
+          navIndicatorPosition
+        ].entries.at(-1)?.type == 'solution'
+      ) {
+        // find last div with class start-of-solution and scroll to top
+        const allSolutionDivs =
+          ref.current.querySelectorAll('.start-of-solution')
+        const div = allSolutionDivs.length
+          ? allSolutionDivs[allSolutionDivs.length - 1]
+          : null
+        if (div) {
+          const rect = div.getBoundingClientRect()
+          const scrollTop = ref.current.scrollTop + rect.top - 80
+          ref.current.scrollTop = scrollTop
+        }
+      } else {
+        ref.current.scrollTop = ref.current.scrollHeight
+      }
     }
   }, [chatHistory.entries.length, navIndicatorPosition, showHelp])
 
