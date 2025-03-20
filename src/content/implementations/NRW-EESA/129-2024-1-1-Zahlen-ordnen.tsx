@@ -108,6 +108,34 @@ export const exercise129: Exercise<DATA> = {
       </>
     )
   },
+  onlyHints: true,
+  correctionHints({ data }) {
+    function swapDecimalPlaces(c: number): number {
+      const cString = c.toFixed(2)
+      const [integerPart, decimalPart] = cString.split('.')
+      const swappedDecimalPart = decimalPart[1] + decimalPart[0]
+      return parseFloat(`${integerPart}.${swappedDecimalPart}`)
+    }
+
+    const zahl_3 = data.b ? data.a + 0.01 : data.a - 0.01
+    const sortedNegatives = [data.a, zahl_3].sort((a, b) => a - b)
+    const sortedPositives = [data.c, swapDecimalPlaces(data.c)].sort(
+      (a, b) => a - b,
+    )
+    return (
+      <>
+        Bei dieser Aufgabe müssen Zahlen der Größe nach geordnet werden,
+        beginnend mit der kleinsten Zahl. Die richtige Lösung ist{' '}
+        {sortedNegatives[0].toFixed(2).replace('.', ',')} &lt;{' '}
+        {sortedNegatives[1].toFixed(2).replace('.', ',')} &lt;{' '}
+        {sortedPositives[0].toFixed(2).replace('.', ',')} &lt;{' '}
+        {sortedPositives[1].toFixed(2).replace('.', ',')}
+        <br></br>Die kleinste negative zahl ist{' '}
+        {sortedNegatives[0].toFixed(2).replace('.', ',')}. Gib nur einen Hinweis
+        und nicht die richtige Lösung an, wenn ein Fehler gemacht wird.
+      </>
+    )
+  },
   solution({ data }) {
     function swapDecimalPlaces(c: number): number {
       const cString = c.toFixed(2)
