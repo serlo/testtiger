@@ -21,23 +21,33 @@ export function EndScreen() {
   const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
   if (!showEndScreen) return null
   return (
-    <div className="fixed inset-0 bg-white z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto flex-col">
+    <div
+      className={clsx(
+        'fixed inset-0 z-[1000] flex items-center justify-center sm:max-w-[375px] mx-auto flex-col',
+        isChallenge ? 'bg-[#FFF1C5]' : 'bg-[#E5F4D3]',
+      )}
+    >
       <div className="text-center pt-6">
         <div className="text-5xl mb-5">
           {isChallenge ? (
             <img src="/gold_star.svg" className="mx-auto" alt="" />
           ) : (
-            '🏆'
+            <img src="/birdie_success.png" className="mx-auto" alt="" />
           )}
         </div>
-        <h1 className="font-bold">Herzlichen Glückwunsch</h1>
+        <h1 className="font-bold">
+          {isChallenge ? 'Wie ein Pro!' : 'Boom! Einfach mal abgeliefert!'}
+        </h1>
         <p className="mt-5">
           {isChallenge
             ? 'Du hast die Challenge geschafft!'
             : 'Du hast die Aufgabe geschafft!'}
         </p>
         <button
-          className="px-5 py-2 mt-5 bg-green-200 hover:bg-green-300 rounded"
+          className={clsx(
+            'p-4 px-12 mt-12 rounded-2xl font-bold text-white',
+            isChallenge ? 'bg-[#B08700]' : 'bg-[#749A45]',
+          )}
           onClick={() => {
             ExerciseViewStore.update(s => {
               s.showEndScreen = false
@@ -69,9 +79,9 @@ export function EndScreen() {
             )
           }}
         >
-          weiter
+          weiter zum Lernpfad
         </button>
-        <div className="mt-24">Fandest du diese Aufgabe hilfreich?</div>
+        {/*<div className="mt-24">Fandest du diese Aufgabe hilfreich?</div>
         <div className="text-center mt-4">
           <button
             className={clsx('mr-8', thumbsStats === 'down' && 'text-red-500')}
@@ -101,7 +111,7 @@ export function EndScreen() {
           >
             <FaIcon icon={faThumbsUp} />
           </button>
-        </div>
+        </div>*/}
       </div>
     </div>
     /*<>
