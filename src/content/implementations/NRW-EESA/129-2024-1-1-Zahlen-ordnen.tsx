@@ -32,7 +32,7 @@ export const exercise129: Exercise<DATA> = {
   learningPathData: {
     a: -0.3,
     b: false,
-    c: 0.46,
+    c: 0.18,
   },
   constraint({ data }) {
     function swapDecimalPlaces(c: number): number {
@@ -130,7 +130,8 @@ export const exercise129: Exercise<DATA> = {
         {sortedNegatives[1].toFixed(2).replace('.', ',')} &lt;{' '}
         {sortedPositives[0].toFixed(2).replace('.', ',')} &lt;{' '}
         {sortedPositives[1].toFixed(2).replace('.', ',')}
-        <br></br>Die kleinste negative zahl ist{' '}
+        <br></br>Wenn die Zahlen in dieser Reihenfolge angegeben werden, ist die
+        Aufgabe gelöst.<br></br>Die kleinste negative zahl ist{' '}
         {sortedNegatives[0].toFixed(2).replace('.', ',')}. Gib nur einen Hinweis
         und nicht die richtige Lösung an, wenn ein Fehler gemacht wird.
       </>
