@@ -353,7 +353,7 @@ export function ExerciseViewContent() {
                     <div className="flex-shrink-0 w-8">
                       <img src="/birdie_idle.svg" alt="" className="w-full" />
                     </div>
-                    <div className="flex-grow bg-[#F2F8FC] rounded-tl-[46px] rounded-tr-[48px] rounded-bl-[28px] rounded-br-[50px] relative isolate">
+                    <div className="flex-grow bg-[#E8F6FF] rounded-tl-[46px] rounded-tr-[48px] rounded-bl-[28px] rounded-br-[50px] relative isolate">
                       <div
                         className="absolute left-0 top-0"
                         style={{ zIndex: -1 }}
@@ -368,7 +368,7 @@ export function ExerciseViewContent() {
                           <path
                             id="Vector 25"
                             d="M2.55716 16.0363C18.9953 14.2574 23.3513 8.62345 37.1553 1.09034C38.6298 0.285664 40.471 0.892499 41.2109 2.40057L51.9709 24.332C52.9667 26.3617 51.4276 28.7203 49.1683 28.638C14.4757 27.374 4.03549 24.7574 0.411203 19.6526C-0.680382 18.1151 0.682503 16.2391 2.55716 16.0363Z"
-                            fill="#F2F8FC"
+                            fill="#E8F6FF"
                           />
                         </svg>
                       </div>

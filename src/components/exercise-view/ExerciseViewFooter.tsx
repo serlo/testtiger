@@ -152,7 +152,7 @@ export function ExerciseViewFooter() {
         <div className="absolute left-0 right-0 -top-5 h-5 rounded-tl-full rounded-tr-full bg-[#F2F8FC]">
           {/* visual element*/}
         </div>
-        <div className="absolute right-6 -top-14 bg-[#F2F8FC] rounded-full px-1 py-0.5">
+        <div className="absolute right-6 -top-14 bg-[#E8F6FF] rounded-full px-1 py-0.5">
           <button
             onClick={() => {
               ExerciseViewStore.update(s => {
@@ -224,7 +224,7 @@ export function ExerciseViewFooter() {
             Lösung fotografieren
           </button>
           <button
-            className="flex-shrink-0 w-9 h-9 bg-[#FDD992] text-black rounded-full flex items-center justify-center disabled:bg-[#B7B7B7] disabled:text-[#F2F8FC]"
+            className="flex-shrink-0 w-9 h-9 bg-[#FDD992] text-black rounded-full flex items-center justify-center disabled:bg-[#B7B7B7] disabled:text-[#7B7B7B]"
             onClick={() => {
               ExerciseViewStore.update(s => {
                 s.chatHistory[s.navIndicatorPosition].resultPending = true
@@ -242,7 +242,7 @@ export function ExerciseViewFooter() {
               chatHistory.resultPending || chatHistory.answerInput == ''
             }
           >
-            <FaIcon icon={faArrowUp} className="w-8 h-8  text-2xl" />
+            <FaIcon icon={faArrowUp} className="w-8 h-8  text-2xl " />
           </button>
         </div>
       </div>

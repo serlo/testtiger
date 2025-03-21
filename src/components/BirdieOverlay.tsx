@@ -39,26 +39,15 @@ export function BirdieOverlay({ context }: { context: 'map' | 'exercise' }) {
     }
   }
 
-  if (context == 'exercise') {
-    if (exerciseWithExample) {
-      if (!birdieIntros.includes('exercise-example-1')) {
-        text =
-          'Schau dir diese Beispiel-Aufgabe an. Unten findest du die Lösung dazu.'
-        step = 'exercise-example-1'
-      } else if (!birdieIntros.includes('exercise-example-2')) {
-        text =
-          'Wenn du die Lösung verstanden hast, gehe weiter zur nächsten Aufgabe.'
-        step = 'exercise-example-2'
-      }
-    } else if (tag == 'Grundlagen - Challenge 1#') {
-      if (!birdieIntros.includes('challenge-1')) {
-        text = 'Jetzt hast du schon die ersten Skills gemeistert!'
-        step = 'challenge-1'
-      } else if (!birdieIntros.includes('challenge-2')) {
-        text =
-          'Bist du bereit für die 1. Challenge? Hier kannst du zeigen, was du gelernt hast!'
-        step = 'challenge-2'
-      }
+  if (context == 'exercise' && exerciseWithExample) {
+    if (!birdieIntros.includes('exercise-example-1')) {
+      text =
+        'Schau dir diese Beispiel-Aufgabe an. Unten findest du die Lösung dazu.'
+      step = 'exercise-example-1'
+    } else if (!birdieIntros.includes('exercise-example-2')) {
+      text =
+        'Wenn du die Lösung verstanden hast, gehe weiter zur nächsten Aufgabe.'
+      step = 'exercise-example-2'
     }
   }
 
