@@ -154,7 +154,12 @@ export function NewExerciseViewChat({
                     >
                       {pages.length == 1
                         ? 'Aufgabe abschließen'
-                        : 'zur nächsten Aufgabe'}
+                        : isChallenge &&
+                            navIndicatorPosition == pages.length - 1
+                          ? 'Challenge abschließen'
+                          : navIndicatorPosition == pages.length - 1
+                            ? 'Komplette Aufgabe abschließen'
+                            : 'Zur nächsten Aufgabe'}
                     </button>
                     <button
                       className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
@@ -168,14 +173,16 @@ export function NewExerciseViewChat({
                       Mit anderen Zahlen rechnen
                     </button>
 
-                    <button
-                      className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
-                      onClick={() => {
-                        showSolution()
-                      }}
-                    >
-                      Zeig mir die Lösung
-                    </button>
+                    {!showHelp && (
+                      <button
+                        className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
+                        onClick={() => {
+                          showSolution()
+                        }}
+                      >
+                        Zeig mir die Lösung
+                      </button>
+                    )}
                   </div>
                 </>
               )
