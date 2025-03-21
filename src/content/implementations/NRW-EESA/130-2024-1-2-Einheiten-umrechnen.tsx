@@ -113,7 +113,7 @@ export const exercise130: Exercise<DATA> = {
             <hr style={{ margin: '10px 0' }} />1 Liter enthält 1000 Milliliter.
             Rechne mit dem Umrechnungsfaktor 1000:
             <br></br>
-            <b>300 s = 300 : 60 min = 5 min</b>
+            <b>0,2 ℓ = 0,2 · 1000 ml = 200 ml</b>
           </p>
         </ExplanationBox>
       </>
