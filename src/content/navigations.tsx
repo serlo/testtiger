@@ -2269,7 +2269,7 @@ export const navigationData: { [key: number]: Navigation } = {
                 kannst du zeigen, was du gelernt hast!
                 <br />
                 <br />
-                Die Bearbeitungszeit ist etwa 15 Minuten.
+                Die Bearbeitungszeit ist etwa 15-20 Minuten.
               </>
             ),
             position: { x: 240, y: 760 },
@@ -2334,6 +2334,9 @@ export const navigationData: { [key: number]: Navigation } = {
               <>
                 Probiere deine neuen Skills an der <strong>2. Challenge</strong>{' '}
                 &#9733; aus und hole deinen zweiten Stern!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 10 Minuten.
               </>
             ),
             position: { x: 100, y: 1180 },
@@ -2399,6 +2402,9 @@ export const navigationData: { [key: number]: Navigation } = {
               <>
                 Die <strong>3. Challenge</strong> &#9733; wartet auf dich. Zeig,
                 was du gelernt hast!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 10 Minuten.
               </>
             ),
             position: { x: 250, y: 1550 },
@@ -2492,6 +2498,9 @@ export const navigationData: { [key: number]: Navigation } = {
                 etwas kompliziertere Aufgabe aus dem zweiten Prüfungsteil auf
                 dich. <br></br>Aber keine Sorge, wenn du nicht weiter weißt,
                 kannst du wie gewohnt den Tiger um Rat fragen! Los gehts!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 15-20 Minuten.
               </>
             ),
             position: { x: 100, y: 2000 },
@@ -2563,6 +2572,9 @@ export const navigationData: { [key: number]: Navigation } = {
                 Die <strong>5. Challenge</strong> &#9733; erfordert etwas
                 Durchhaltevermögen. Hier rechnest du einen ganzen ersten
                 Prüfungsteil. Los gehts!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 30 Minuten.
               </>
             ),
             position: { x: 250, y: 2450 },
@@ -2663,6 +2675,9 @@ export const navigationData: { [key: number]: Navigation } = {
                 - dem allerletzten Schritt im Grundlagen Training! <br></br>{' '}
                 Auch hier wartet noch einmal ein Prüfungsteil 1 auf dich. Viel
                 Erfolg!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 30 Minuten.
               </>
             ),
             position: { x: 100, y: 2900 },
