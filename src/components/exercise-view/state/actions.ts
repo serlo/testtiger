@@ -220,13 +220,18 @@ export async function analyseLastInput() {
 
       Kategorie "success": Die Aufgabe ist gelöst. Das Endergebnis ist korrekt und vorhanden. Wenn ein Lösungsweg oder eine Begründung in der Aufgabenstellung gefordert ist, dann erwarte auch, dass sie vorhanden ist. Bitte beachte unbedingt die Korrekturhinweise. Sei dabei nicht zu streng mit Formalitäten. Es ist ok, wenn eine andere äquivalente Einheit verwendet wurde oder eine andere Rundung verwendet wurde. Es ist nicht schlimm, wenn kleine Details mit der Musterlösung nicht übereinstimmen. Spreche ein Lob aus und lobe den Fortschritt.
 
-      Wenn die Eingabe ein Bild ist, dann beschreibe das Bild möglichst vollständig in der Description.
-
-      Hier sind die bisherigen Nachrichten der Schülerin:
+      Wenn die Eingabe ein Bild ist, dann beschreibe das Bild möglichst vollständig in der Description.${
+        state.chatHistory[state.navIndicatorPosition].entries.length > 0 &&
+        `
+        
+        Hier sind die bisherigen Nachrichten der Schülerin:
       ${
         state.chatHistory[state.navIndicatorPosition].entries
 
-          .map(entry => {
+          .map((entry, i, arr) => {
+            if (i == arr.length - 1) {
+              return '' //
+            }
             if (entry.type == 'text') {
               return entry.content
             }
@@ -234,8 +239,8 @@ export async function analyseLastInput() {
           })
           .join('\n') + '\n'
       }
-      Die nächste Nachricht ist die Eingabe der Schülerin.
-      `,
+        `
+      }`,
     id: 'prompt',
   })
   const lastMessage =

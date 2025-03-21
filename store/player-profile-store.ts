@@ -51,8 +51,10 @@ export async function syncProfileWithBackend() {
   const key = PlayerProfileStore.getRawState().key
 
   if (!key || key == 'pending') return
+  const state = JSON.parse(JSON.stringify(PlayerProfileStore.getRawState()))
+  state.name = state.key ?? '---'
   // post to backend with json body
-  const body = JSON.stringify(PlayerProfileStore.getRawState())
+  const body = JSON.stringify(state)
   await fetch(`${backendHost}/profile/${key}`, {
     method: 'POST',
     body,
