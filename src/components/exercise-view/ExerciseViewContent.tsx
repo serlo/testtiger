@@ -456,12 +456,12 @@ export function ExerciseViewContent() {
                             />
                           </div>
                         )}
-                        <div className="text-blue-500 text-sm mx-4 mt-3 mb-2">
+                        <div className="text-[#007EC1] text-xs px-4 pt-3 pb-2 bg-white">
                           BESCHREIBUNG
                         </div>
                         <div
                           className={clsx(
-                            'px-4 bg-white mb-6',
+                            'px-4 bg-white pb-6',
                             introCollapseState[i] &&
                               'h-[24px] overflow-hidden whitespace-nowrap [&_p]:text-ellipsis [&_p]:overflow-hidden [&_p]:max-w-[334px]',
                           )}

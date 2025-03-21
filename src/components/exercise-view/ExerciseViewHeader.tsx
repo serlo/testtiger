@@ -42,9 +42,13 @@ export function ExerciseViewHeader() {
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
   const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
 
+  const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
+
   if (multiScreenExercise && showIntroScreen) {
     return null
   }
+
+  const hidePagination = examplePrescreen || !pages || pages.length <= 1
 
   if (multiScreenExercise) {
     // der Header ist gelb, noch oben verbunden, untere zwei Ecken sind abgerundet
@@ -63,7 +67,7 @@ export function ExerciseViewHeader() {
         <div
           className={clsx(
             'absolute left-6 text-[#007EC1] text-2xl w-[17px] flex justify-center items-center cursor-pointer',
-            pages && pages.length > 1 ? 'top-8' : 'top-6',
+            hidePagination ? 'top-6' : 'top-8',
           )}
           onClick={() => history.push('/app/home')}
         >
@@ -93,15 +97,19 @@ export function ExerciseViewHeader() {
               ? 'Taschenrechner erlaubt'
               : 'ohne Taschenrechner'}
           </p>
-          {pages && pages.length > 1 && (
+          {!hidePagination && (
             <div className="flex justify-center gap-1">
               {pages.map((_, index) => (
                 <div
                   key={index}
                   className={`h-[7px] w-[15px] rounded-full ${
-                    index <= navIndicatorPosition
-                      ? 'bg-yellow-600'
-                      : 'bg-[#E6DBB6]'
+                    isChallenge
+                      ? index <= navIndicatorPosition
+                        ? 'bg-yellow-600'
+                        : 'bg-[#E6DBB6]'
+                      : index <= navIndicatorPosition
+                        ? 'bg-[#007EC1]'
+                        : 'bg-[#D2ECF6]'
                   }`}
                 />
               ))}
