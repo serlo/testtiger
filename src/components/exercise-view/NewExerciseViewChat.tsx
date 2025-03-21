@@ -1,5 +1,10 @@
 import { useRef, useEffect, Fragment, useState } from 'react'
-import { done, markCurrentExerciseAsComplete, reseed } from './state/actions'
+import {
+  done,
+  markCurrentExerciseAsComplete,
+  reseed,
+  showSolution,
+} from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { PlayerProfileStore } from '../../../store/player-profile-store'
 import clsx from 'clsx'
@@ -166,9 +171,7 @@ export function NewExerciseViewChat({
                     <button
                       className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
                       onClick={() => {
-                        ExerciseViewStore.update(s => {
-                          s.chatOverlay = 'solution'
-                        })
+                        showSolution()
                       }}
                     >
                       Zeig mir die Lösung

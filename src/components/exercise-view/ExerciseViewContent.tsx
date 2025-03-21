@@ -17,6 +17,7 @@ import { ExerciseWithSubtasks, SingleExercise } from '@/data/types'
 import { useHistory } from 'react-router'
 import { NewExerciseViewChat } from './NewExerciseViewChat'
 import { handleLearningPathStepClick } from '../learning-path/LearningPathMap'
+import { showSolution } from './state/actions'
 
 export function ExerciseViewContent() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
@@ -541,19 +542,7 @@ export function ExerciseViewContent() {
             <button
               className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
               onClick={() => {
-                ExerciseViewStore.update(s => {
-                  s.chatOverlay = 'solution'
-                  s.showHelp = false
-                  // add message to chat history
-                  s.chatHistory[s.navIndicatorPosition].entries.push({
-                    type: 'text',
-                    content: 'Zeig mir die Lösung',
-                  })
-                  s.chatHistory[s.navIndicatorPosition].entries.push({
-                    type: 'solution',
-                    index: s.navIndicatorPosition,
-                  })
-                })
+                showSolution()
               }}
             >
               Zeig mir die Lösung

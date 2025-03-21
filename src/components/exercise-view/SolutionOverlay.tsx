@@ -91,7 +91,7 @@ export function SolutionOverlay({
           <img src="/birdie_idle.svg" alt="" className="inline-block" />
         </div>
         <div className="font-medium start-of-solution">
-          Alles klar, hier ist die Original-Lösung aus der Prüfung:
+          Alles klar, hier ist die Lösung zu der Aufgabe:
         </div>
       </div>
       <div className="max-w-[328px] mx-auto">
