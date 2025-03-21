@@ -138,9 +138,11 @@ export const exercise123: Exercise<DATA> = {
         Bei dieser Aufgabe soll eine falsche Addition überprüft werden, der
         Fehler erklärt und die richtige Lösung berechnet werden. Der Fehler ist,
         dass die Dezimalstellen nicht richtig untereinander stehen. Die richtige
-        Lösung der Addition ist {pp(data.a + data.b)}. Die Aufgabe ist gelöst,
-        wenn das richtige Ergebnis der Addition bestimmt wurde. Gib trotzdem
-        noch den Hinweis, dass der Fehler erklärt werden muss.
+        Lösung der Addition ist {pp(data.a + data.b)}. Die Aufgabe ist nur
+        gelöst, wenn sowohl das richtige Ergebnis der Addition bestimmt wurde
+        und als auch der Fehler erklärt wurde. Wenn nur eines von beiden gemacht
+        wird, gib einen Hinweis für den anderen Teil. Verrate nicht das richtige
+        Ergebnis.
       </>
     )
   },
