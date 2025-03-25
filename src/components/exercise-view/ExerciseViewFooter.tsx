@@ -2,32 +2,26 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import { FaIcon } from '../ui/FaIcon'
 import {
   faArrowUp,
-  faCameraAlt,
   faCaretDown,
   faCaretUp,
   faExpand,
-  faFileLines,
   faMinus,
   faPlus,
   faQuestionCircle,
   faSquareRootVariable,
 } from '@fortawesome/free-solid-svg-icons'
-import { IndicatorBar } from './IndicatorBar'
-import { SolutionOverlay } from './SolutionOverlay'
-import { FotoOverlay } from './FotoOverlay'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import TextareaAutosize from 'react-textarea-autosize'
 import {
   analyseLastInput,
   markCurrentExerciseAsComplete,
 } from './state/actions'
-import { useRef, useEffect, Fragment, useState } from 'react'
+import { useRef, useEffect, Fragment } from 'react'
 import { buildInlineFrac } from '@/helper/math-builder'
 import { exercisesData } from '@/content/exercises'
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { ExerciseWithSubtasks } from '@/data/types'
 import { countLetter } from '@/helper/count-letter'
-import { handleLearningPathStepClick } from '../learning-path/LearningPathMap'
 import { useHistory } from 'react-router'
 
 export function ExerciseViewFooter() {
@@ -60,8 +54,6 @@ export function ExerciseViewFooter() {
     s => s.chatHistory[s.navIndicatorPosition].answerInput,
   )
 
-  const history = useHistory()
-
   useEffect(() => {
     setTimeout(() => {
       ExerciseViewStore.update(s => {
@@ -82,32 +74,6 @@ export function ExerciseViewFooter() {
     ExerciseViewStore.update(s => {
       s.takePhoto = true
     })
-
-    /*const image = await Camera.getPhoto({
-        // If we want to save some money on tokens, we can probably get away
-        // with choosing a lower quality
-        quality: 95,
-        width: 512,
-        height: 512,
-        allowEditing: false,
-        resultType: CameraResultType.Base64,
-        source: CameraSource.Camera,
-        direction: CameraDirection.Rear,
-        presentationStyle: 'fullscreen',
-        webUseInput: false,
-      })
-
-      ExerciseViewStore.update(s => {
-        s.checks[s.navIndicatorPosition].uploadedImage =
-          `data:image/jpeg;base64,${image.base64String}`
-      })
-    } catch (error) {
-      console.error('Error taking photo:', error)
-
-      ExerciseViewStore.update(s => {
-        s.cropImage = false
-      })
-    }*/
   }
 
   const insertSymbolAtCursor = (symbol: string) => {
@@ -275,8 +241,6 @@ export function ExerciseViewFooter() {
       >
         <FaIcon icon={faCaretDown} className="text-lg mt-1.5" />
       </div>
-      <IndicatorBar />
-      <FotoOverlay />
       <div className="h-1"></div>
       {chatOverlay == 'chat' && (
         <>

@@ -5,7 +5,7 @@ import { constrainedGeneration } from '@/helper/constrained-generation'
 import { isDeepEqual } from '@/helper/is-deep-equal'
 import { ExerciseViewStore, SystemResponse } from './exercise-view-store'
 import { extractor } from '../extractor/extractor'
-import { IMessage, SkillExercise, SkillExercisePage } from '@/data/types'
+import { IMessage, SkillExercisePage } from '@/data/types'
 import { makePost } from '@/helper/make-post'
 import { countLetter } from '@/helper/count-letter'
 import {
@@ -160,14 +160,6 @@ export function markCurrentExerciseAsComplete() {
 }
 
 export async function analyseLastInput() {
-  /*await new Promise(res => setTimeout(res, 5000))
-  ExerciseViewStore.update(s => {
-    s.chatHistory[s.navIndicatorPosition].entries.push({
-      type: 'response',
-      content: 'Hier würde dann das Feedback der KI stehen',
-    })
-    s.chatHistory[s.navIndicatorPosition].resultPending = false
-  })*/
   const state = ExerciseViewStore.getRawState()
   const exerciseContext = extractor(
     exercisesData[
@@ -326,150 +318,9 @@ async function submitUserMessage({
     }
   }
 }
-/*
-  const state = ExerciseViewStore.getRawState()
-  const index = state.navIndicatorPosition
-  const exerciseContext = extractor(exercisesData[state.id], state.data)
-  const messages: IMessage[] = []
-  messages.push({
-    role: 'system',
-    content: exerciseContext,
-    id: 'context',
-  })
-  messages.push({
-    role: 'system',
-    content: `
-      Du befindest dich bei der Teilaufgabe ${
-        state.pages
-          ? state.pages[state.navIndicatorPosition].index
-          : countLetter('a', state.navIndicatorPosition)
-      }).
-
-      Analysiere die Eingabe der SchülerIn und gebe dein Ergebnis als folgendes JSON-Object aus (nur JSON! kein Markdown oder \`\`\`-Zeichen)
-
-      {
-        feedback: string
-        rank: '0' | 'C' | 'B' | 'A'
-      }
-
-      Die Erklärung der Ränge:
-
-      Rang 0: Die Eingabe hat keinen Bezug zur Aufgabe. Es wurde etwas irrelevantes eingeben. Sage im Feedback, dass die Eingabe keinen Bezug hat und gib einen Tipp, wie man am besten mit der Aufgabe startet. Verrate nicht die Lösung.
-
-      Rang C: Es ist merkbar, dass die Eingabe einen Bezug zur Aufgabe hat. Allerdings ist noch kein Ergebnis vorhanden und der Rechenweg ist unvollständig. Zumindest einzelne Elemente können mit der Aufgabe in Verbindung gebracht werden. Zeige im Feedback, dass die Eingabe mit der Aufgabe zusammenhängt und wie. Gib dann eine relativ konkrete Anweisung, was als nächster sinnvolle Schritt für die Aufgabe zu tun ist. Ermutige, weiter zu machen. Verrate nicht die Lösung.
-
-      Rang B: Wesentliche Zwischenschritte sind korrekt, es fehlt aber noch die Antwort oder die Antwort ist falsch. Lobe erstmal den Fortschritt im Feedback. Mache dann klar, welche Elemente falsch sind oder fehlen. Gib einen konkreten nächsten Auftrag.
-
-      Rang A: Die Ergebnisse stimmen mit der Musterlösung überein. Sei großzügig bei den Formalitäten: Es ist nicht schlimm, wenn einzelne Details im Lösungsweg fehlen. Begründen werden nur erwartet, wenn sie in der Aufgabenstellung explizit gefordert wurden. Lobe den Fortschritt. Mache auch klar, dass du als KI-Tutor keine Korrektur übernehmen kannst und deshalb sollte im Zweifel immer mit der Musterlösung verglichen werden. Falls du einen möglichen Tipps siehst, formuliere ganz vorsichtig diesen Tipp.
-
-      Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
-
-      Die nächste Nachricht ist vollständig die Eingabe der Schülerin.
-      `,
-    id: 'prompt',
-  })
-  messages.push({
-    role: 'user',
-    content: state.checks[state.navIndicatorPosition].answerInput,
-    id: 'user',
-  })
-  const result = await submitUserMessage({ messages })
-  try {
-    JSON.parse(result.content.toString())
-    ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].resultPending = false
-      s.checks[s.navIndicatorPosition].result = result.content.toString()
-    })
-  } catch {
-    ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].resultPending = false
-      s.checks[s.navIndicatorPosition].result =
-        '{"feedback":"Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.","rank":0}'
-    })
-  }*/
-
-/*export async function anaylseImage() {
-  const state = ExerciseViewStore.getRawState()
-  const exerciseContext = extractor(exercisesData[state.id], state.data)
-  const messages: IMessage[] = []
-  messages.push({
-    role: 'system',
-    content: exerciseContext,
-    id: 'context',
-  })
-  messages.push({
-    role: 'system',
-    content: `
-      Du befindest dich bei der Teilaufgabe ${
-        state.pages
-          ? state.pages[state.navIndicatorPosition].index
-          : countLetter('a', state.navIndicatorPosition)
-      }).
-
-      Analysiere die Eingabe der SchülerIn und gebe dein Ergebnis als folgendes JSON-Object aus (nur JSON! kein Markdown oder \`\`\`-Zeichen). Neben dem JSON soll kein anderer Text stehen.
-
-      {
-        feedback: string <-- deine Antworten stehen hier drin
-        rank: '0' | 'C' | 'B' | 'A'
-      }
-
-      Die Erklärung der Ränge:
-
-      Rang 0: Die Eingabe hat keinen Bezug zur Aufgabe. Es wurde etwas irrelevantes eingeben. Sage im Feedback, dass die Eingabe keinen Bezug hat und gib einen Tipp, wie man am besten mit der Aufgabe startet. Verrate nicht die Lösung.
-
-      Rang C: Es ist merkbar, dass die Eingabe einen Bezug zur Aufgabe hat. Allerdings ist noch kein Ergebnis vorhanden und der Rechenweg ist unvollständig. Zumindest einzelne Elemente können mit der Aufgabe in Verbindung gebracht werden. Zeige im Feedback, dass die Eingabe mit der Aufgabe zusammenhängt und wie. Gib dann eine relativ konkrete Anweisung, was als nächster sinnvolle Schritt für die Aufgabe zu tun ist. Ermutige, weiter zu machen. Verrate nicht die Lösung.
-
-      Rang B: Wesentliche Zwischenschritte sind korrekt, es fehlt aber noch die Antwort oder die Antwort ist falsch. Lobe erstmal den Fortschritt im Feedback. Mache dann klar, welche Elemente falsch sind oder fehlen. Gib einen konkreten nächsten Auftrag.
-
-      Rang A: Die Ergebnisse stimmen mit der Musterlösung überein. Sei großzügig bei den Formalitäten: Es ist nicht schlimm, wenn einzelne Details im Lösungsweg fehlen. Begründen werden nur erwartet, wenn sie in der Aufgabenstellung explizit gefordert wurden. Lobe den Fortschritt. Mache auch klar, dass du als KI-Tutor keine Korrektur übernehmen kannst und deshalb sollte im Zweifel immer mit der Musterlösung verglichen werden. Falls du einen möglichen Tipps siehst, formuliere ganz vorsichtig diesen Tipp.
-
-      Bitte nutze im Feedback kein Latex oder Markdown! Schreibe alles als Text, Brüche als /, nutze Unicode für ² oder ³.
-      
-      Bitte gib die Antwort als JSON aus! Kein Markdown, keine BackTicks bitte.
-      
-      Die nächste Nachricht ist ein Bild mit der Bearbeitung der Schülerin.
-      `,
-    id: 'prompt',
-  })
-  messages.push({
-    role: 'user',
-    content: [
-      {
-        type: 'image',
-        image: state.checks[state.navIndicatorPosition].croppedImage,
-      },
-    ],
-    id: 'user',
-  })
-  let result: any = undefined
-  try {
-    result = await submitUserMessage({ messages })
-    const json = result.content
-      .toString()
-      .replace(/```/, '')
-      .replace(/json```/, '')
-    console.log(json)
-    JSON.parse(json)
-    ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].fotoFeedback = json
-    })
-  } catch (e) {
-    console.log(e)
-    ExerciseViewStore.update(s => {
-      s.checks[s.navIndicatorPosition].fotoFeedback = JSON.stringify({
-        rank: '0',
-        feedback:
-          'Fehler bei der Verarbeitung. Probiere es nochmal. Sorry.' +
-          result?.content?.toString(),
-      })
-    })
-  }
-}
-*/
 
 export function done() {
   ExerciseViewStore.update(s => {
-    const wasNotDone = s.completed[s.navIndicatorPosition] == false
     s.completed[s.navIndicatorPosition] = true
     if (s.completed.every(x => x)) {
       setTimeout(() => {

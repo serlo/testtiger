@@ -10,7 +10,7 @@ import { PlayerProfileStore } from '../../store/player-profile-store'
 import clsx from 'clsx'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
-import { SolutionOverlay } from './SolutionOverlay'
+import { SolutionRenderer } from './SolutionRenderer'
 
 interface NewExerciseViewChatProps {
   index: number
@@ -288,7 +288,7 @@ export function NewExerciseViewChat({
           if (el.type == 'solution') {
             return (
               <div key={i}>
-                <SolutionOverlay navIndicatorPosition={el.index} />
+                <SolutionRenderer navIndicatorPosition={el.index} />
               </div>
             )
           }

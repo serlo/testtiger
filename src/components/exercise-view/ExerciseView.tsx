@@ -2,7 +2,6 @@ import { ExerciseViewStore } from './state/exercise-view-store'
 import { ExerciseViewLayout } from './ExerciseViewLayout'
 import { useEffect } from 'react'
 import { setupExercise } from './state/actions'
-import { useHistory } from 'react-router'
 import { handleLearningPathStepClick } from '../learning-path/LearningPathMap'
 import { navigationData } from '@/content/navigations'
 
@@ -12,10 +11,6 @@ interface ExerciseViewProps {
 
 export function ExerciseView({ id }: ExerciseViewProps) {
   useEffect(() => {
-    if (id == 123456 && ExerciseViewStore.getRawState().id !== 123456) {
-      window.location.href = '/app/home'
-      return
-    }
     if (ExerciseViewStore.getRawState().id !== id) {
       const hash = window.location.hash
       if (hash) {
@@ -23,7 +18,7 @@ export function ExerciseView({ id }: ExerciseViewProps) {
         console.log('parse it', obj)
         if (obj.lessonPosition) {
           navigationData[obj.exam].path.forEach((path, index) => {
-            path.lessons.forEach((lesson, lessonIndex) => {
+            path.lessons.forEach(lesson => {
               if (
                 lesson.position?.x === obj.lessonPosition.x &&
                 lesson.position?.y === obj.lessonPosition.y

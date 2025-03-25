@@ -80,7 +80,7 @@ export function TmpKITest() {
                       <img
                         src={test.input}
                         alt="Eingabe"
-                        className="border border-gray-600 border-2 w-[40%] h-[40%]"
+                        className="border-gray-600 border-2 w-[40%] h-[40%]"
                       />
                     </span>
                   </>
