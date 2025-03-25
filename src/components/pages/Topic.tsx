@@ -35,7 +35,7 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
               className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block mx-4 text-xl"
               onClick={() => {
                 // scroll restoration is buggy and will fix later
-                history.push('/app/participate')
+                history.push('/app/topicsOverview')
               }}
             >
               <FaIcon icon={faArrowLeft} />
