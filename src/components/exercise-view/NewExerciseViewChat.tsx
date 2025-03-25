@@ -6,7 +6,7 @@ import {
   showSolution,
 } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 import clsx from 'clsx'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'

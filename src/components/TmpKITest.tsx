@@ -1,5 +1,5 @@
 import { exercisesData } from '@/content/exercises'
-import { KiTestStore } from '../../store/ki-test-store'
+import { KiTestStore } from '../store/ki-test-store'
 import clsx from 'clsx'
 import { KiTests } from '@/content/ki-tests'
 import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'

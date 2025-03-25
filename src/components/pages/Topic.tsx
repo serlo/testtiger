@@ -1,5 +1,4 @@
 import {
-  IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
@@ -14,7 +13,7 @@ import { useState } from 'react'
 import { SkillGroup } from '@/data/types'
 import { faArrowLeft, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 import { countLetter } from '@/helper/count-letter'
 
 interface TopicProps {

@@ -2,9 +2,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from '../ui/FaIcon'
 import { LearningPathStore } from './state/learning-path-store'
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 import clsx from 'clsx'
-import { isWholeLessonDonePercentage } from '../../../store/actions'
+import { isWholeLessonDonePercentage } from '../../store/actions'
 
 export function LearningPathHeader() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
@@ -27,7 +27,7 @@ export function LearningPathHeader() {
                 'mr-1',
                 isWholeLessonDonePercentage(l) === 1
                   ? 'text-yellow-400'
-                  : 'text-gray-400'
+                  : 'text-gray-400',
               )}
             />
           ))}

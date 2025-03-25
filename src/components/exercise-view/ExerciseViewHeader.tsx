@@ -9,7 +9,7 @@ import {
 import { FaIcon } from '../ui/FaIcon'
 import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 import clsx from 'clsx'
 
 export function ExerciseViewHeader() {

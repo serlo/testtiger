@@ -3,7 +3,7 @@ import {
   PlayerProfileStore,
   syncProfileWithBackend,
   updatePlayerProfileStore,
-} from '../../../store/player-profile-store'
+} from '../../store/player-profile-store'
 import { backendHost } from '@/helper/make-post'
 
 export function Survey() {

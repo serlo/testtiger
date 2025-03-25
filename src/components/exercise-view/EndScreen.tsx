@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import clsx from 'clsx'
-import { updatePlayerProfileStore } from '../../../store/player-profile-store'
+import { updatePlayerProfileStore } from '../../store/player-profile-store'
 
 export function EndScreen() {
   const showEndScreen = ExerciseViewStore.useState(s => s.showEndScreen)

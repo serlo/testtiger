@@ -1,14 +1,7 @@
 import { exercisesData } from '@/content/exercises'
 import { Lesson } from '@/data/types'
 import { countLetter } from '@/helper/count-letter'
-import { UiStore } from '.'
 import { PlayerProfileStore } from './player-profile-store'
-
-export const setName = (name: string) => {
-  UiStore.update(s => {
-    s.name = name
-  })
-}
 
 export function isWholeLessonDonePercentage(lesson: Lesson) {
   if (lesson.videoUrl) {

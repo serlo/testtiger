@@ -10,7 +10,7 @@ import {
   PlayerProfileStore,
   syncProfileWithBackend,
   updatePlayerProfileStore,
-} from '../../../store/player-profile-store'
+} from '../../store/player-profile-store'
 import { useEffect, useRef, useState } from 'react'
 import { backendHost } from '@/helper/make-post'
 

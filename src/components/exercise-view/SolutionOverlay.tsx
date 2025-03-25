@@ -12,7 +12,7 @@ import { useRef, useEffect } from 'react'
 import { countLetter } from '@/helper/count-letter'
 import clsx from 'clsx'
 import { done, markCurrentExerciseAsComplete, reseed } from './state/actions'
-import { updatePlayerProfileStore } from '../../../store/player-profile-store'
+import { updatePlayerProfileStore } from '../../store/player-profile-store'
 
 export function SolutionOverlay({
   navIndicatorPosition,

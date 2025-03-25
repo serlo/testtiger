@@ -1,5 +1,5 @@
 import { KITestEntry } from '@/data/types'
-import { KiTestStore } from '../../store/ki-test-store'
+import { KiTestStore } from '../store/ki-test-store'
 
 export const KiTests: KITestEntry[] = [
   {

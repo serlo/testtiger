@@ -5,10 +5,6 @@ import { Redirect, Route, useHistory } from 'react-router-dom'
 
 import { Onboarding } from './pages/Onboarding'
 import { Name } from './pages/Name'
-import { Schoolform } from './pages/Schoolform'
-import { Federal } from './pages/Federal'
-import { Focus } from './pages/Focus'
-import { Ready } from './pages/Ready'
 import { App } from './pages/App'
 import { Topic } from './pages/Topic'
 import { navigationData } from '@/content/navigations'
@@ -21,7 +17,7 @@ import {
   defaultPlayerProfileStoreValue,
   PlayerProfileStore,
   storageKey,
-} from '../../store/player-profile-store'
+} from '../store/player-profile-store'
 import { Contact } from './pages/Contact'
 import { Privacy } from './pages/Privacy'
 import { CaptureOverlay } from './exercise-view/CaptureOverlay'
@@ -71,10 +67,6 @@ export function AppShell() {
           <Route path="/onboarding" render={() => <Onboarding />} />
           <Route path="/ki-test" render={() => <TmpKITest />} />
           <Route path="/name" render={() => <Name />} />
-          <Route path="/schoolform" render={() => <Schoolform />} />
-          <Route path="/federal" render={() => <Federal />} />
-          <Route path="/focus" render={() => <Focus />} />
-          <Route path="/ready" render={() => <Ready />} />
           <Route path="/app" render={() => <App />} />
           <Route path="/contact" render={() => <Contact />} />
           <Route path="/privacy" render={() => <Privacy />} />
@@ -134,11 +126,6 @@ export function AppShell() {
                 render={() => <ExerciseView id={id} />}
               />
             ))}
-          <Route
-            path={`/exercise/123456`}
-            key={123456}
-            render={() => <ExerciseView id={123456} />}
-          />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

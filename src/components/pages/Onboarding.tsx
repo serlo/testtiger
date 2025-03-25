@@ -1,13 +1,5 @@
-import {
-  IonButton,
-  IonContent,
-  IonFooter,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { IonButton, IonContent, IonFooter, IonPage } from '@ionic/react'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 
 export function Onboarding() {
   const username = PlayerProfileStore.useState(s => s.name)

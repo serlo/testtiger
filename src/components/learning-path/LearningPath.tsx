@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { LearningPathHeader } from './LearningPathHeader'
 import { LearningPathMap } from './LearningPathMap'
 import { LearningPathStore } from './state/learning-path-store'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 import { navigationData } from '@/content/navigations'
 import { BirdieOverlay } from '../BirdieOverlay'
 export function LearningPath() {

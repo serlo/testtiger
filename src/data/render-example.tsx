@@ -1,6 +1,6 @@
 import { proseWrapper } from '@/helper/prose-wrapper'
 import { generateData } from './generate-data'
-import { Exercise, SingleExercise } from './types'
+import { Exercise } from './types'
 import { Fragment } from 'react'
 import { isExerciseWithSubtasks, isSingleExercise } from './is-x-exercise'
 

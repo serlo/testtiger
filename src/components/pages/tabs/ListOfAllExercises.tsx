@@ -7,11 +7,11 @@ import {
   IonTitle,
   IonContent,
 } from '@ionic/react'
-import { PlayerProfileStore } from '../../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { useHistory } from 'react-router'
 import clsx from 'clsx'
 
-export function Superskills() {
+export function ListOfAllExercises() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const exercises = Object.entries(exercisesData)
   const history = useHistory()

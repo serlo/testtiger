@@ -3,7 +3,7 @@ import { FaIcon } from './ui/FaIcon'
 import {
   PlayerProfileStore,
   updatePlayerProfileStore,
-} from '../../store/player-profile-store'
+} from '../store/player-profile-store'
 import { ExerciseViewStore } from './exercise-view/state/exercise-view-store'
 
 export function BirdieOverlay({ context }: { context: 'map' | 'exercise' }) {

@@ -1,21 +1,10 @@
-import { IonPage, IonHeader, IonContent } from '@ionic/react'
-import clsx from 'clsx'
-import { useHistory } from 'react-router'
 import { navigationData } from '@/content/navigations'
-import { Fragment, useState } from 'react'
 import { exercisesData } from '@/content/exercises'
-import { setupExercise } from '@/components/exercise-view/state/actions'
-import { PlayerProfileStore } from '../../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../../store/player-profile-store'
 import { countLetter } from '@/helper/count-letter'
-import { SkillExercise, Step } from '@/data/types'
-import { FaIcon } from '@/components/ui/FaIcon'
-import { faCircle, faRepeat, faStar } from '@fortawesome/free-solid-svg-icons'
 import { LearningPath } from '@/components/learning-path/LearningPath'
 
 export function Home() {
-  const history = useHistory()
-
-  const name = PlayerProfileStore.useState(s => s.name)
   const exam = PlayerProfileStore.useState(s => s.currentExam)
 
   const eventLog = PlayerProfileStore.useState(s => s.eventLog)
@@ -79,44 +68,6 @@ export function Home() {
       }
     }
   })
-
-  function isStepCompleted(step: Step) {
-    return step.exercise.pages
-      ? step.exercise.pages.every(p =>
-          PlayerProfileStore.getRawState().eventLog.some(
-            e =>
-              e.type == 'kann-ich' &&
-              e.id == step.exercise.id &&
-              countLetter('a', e.index) == p.index,
-          ),
-        )
-      : PlayerProfileStore.getRawState().eventLog.some(
-          e => e.type == 'kann-ich' && e.id == step.exercise.id,
-        )
-  }
-
-  const allExercises = fullNumberOfExercisesPerTopic.reduce((p, c) => p + c, 0)
-  const visited = visitedNumberOfExercisesPerTopic.reduce((p, c) => p + c, 0)
-
-  const percentage = Math.round((visited * 100) / allExercises)
-
-  function generateRecommands() {
-    const pool: { exercise: SkillExercise; score: number }[] = []
-    navigationData[exam].topics.forEach(t => {
-      t.skillGroups.forEach(g => {
-        g.skillExercises.forEach(e => {
-          const exercise: SkillExercise = JSON.parse(JSON.stringify(e))
-          exercise.groupName = g.name
-          exercise.topicColor = t.twColor
-          pool.push({ exercise, score: 0 })
-        })
-      })
-    })
-    pool.sort((a, b) => Math.random() - 0.5)
-    return pool.slice(0, 3).map(el => el.exercise)
-  }
-
-  const [recommands, setRecommands] = useState(generateRecommands())
 
   return <LearningPath />
 }

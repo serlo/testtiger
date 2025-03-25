@@ -8,7 +8,7 @@ import {
   IonToolbar,
 } from '@ionic/react'
 import { useState } from 'react'
-import { updatePlayerProfileStore } from '../../../store/player-profile-store'
+import { updatePlayerProfileStore } from '../../store/player-profile-store'
 
 export function Feedback() {
   const [done, setDone] = useState(false)

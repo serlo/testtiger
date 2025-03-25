@@ -1,5 +1,5 @@
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../../store/player-profile-store'
+import { PlayerProfileStore } from '../../store/player-profile-store'
 import { Lesson } from '@/data/types'
 import { Fragment } from 'react'
 import {
@@ -15,7 +15,7 @@ import { countLetter } from '@/helper/count-letter'
 import {
   findRelevantKeys,
   isWholeLessonDonePercentage,
-} from '../../../store/actions'
+} from '../../store/actions'
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)

@@ -1,12 +1,10 @@
-import { IonButton, IonContent, IonFooter, IonPage } from '@ionic/react'
+import { IonContent, IonPage } from '@ionic/react'
 import { useHistory } from 'react-router'
-import { ExerciseView } from '../exercise-view/ExerciseView'
 import { ExerciseViewStore } from '../exercise-view/state/exercise-view-store'
-import { useEffect } from 'react'
 import {
   PlayerProfileStore,
   updatePlayerProfileStore,
-} from '../../../store/player-profile-store'
+} from '../../store/player-profile-store'
 
 export function Video() {
   const videoRedirectUrl = ExerciseViewStore.useState(s => s.videoRedirectUrl)

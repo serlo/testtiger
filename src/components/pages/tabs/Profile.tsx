@@ -10,7 +10,7 @@ import {
   PlayerProfileStore,
   storageKey,
   updatePlayerProfileStore,
-} from '../../../../store/player-profile-store'
+} from '../../../store/player-profile-store'
 import { navigationData } from '@/content/navigations'
 
 export function Profile() {

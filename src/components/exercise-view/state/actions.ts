@@ -11,7 +11,7 @@ import { countLetter } from '@/helper/count-letter'
 import {
   PlayerProfileStore,
   updatePlayerProfileStore,
-} from '../../../../store/player-profile-store'
+} from '../../../store/player-profile-store'
 
 export function setupExercise(
   id: number,

@@ -12,13 +12,11 @@ import clsx from 'clsx'
 import {
   PlayerProfileStore,
   updatePlayerProfileStore,
-} from '../../../../store/player-profile-store'
+} from '../../../store/player-profile-store'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
-import { setupExercise } from '@/components/exercise-view/state/actions'
-import { exercisesData } from '@/content/exercises'
 
-export function Participate() {
+export function TopicsOverview() {
   const [showAllTopics, setShowAllTopics] = useState(false)
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const history = useHistory()
