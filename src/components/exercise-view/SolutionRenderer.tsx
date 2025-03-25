@@ -10,6 +10,9 @@ export function SolutionRenderer({
 }: {
   navIndicatorPosition: number
 }) {
+  const actualNavIndicatorPosition = ExerciseViewStore.useState(
+    s => s.navIndicatorPosition,
+  )
   const id = ExerciseViewStore.useState(s => s.id)
 
   const pages = ExerciseViewStore.useState(s => s.pages)
@@ -61,27 +64,29 @@ export function SolutionRenderer({
           }),
         )}
       </div>
-      <div className="flex flex-col items-end mt-6   mr-5 mb-12 gap-3">
-        <button
-          className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
-          onClick={() => {
-            done()
-          }}
-        >
-          Aufgabe abschließen
-        </button>
-        <button
-          className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
-          onClick={() => {
-            ExerciseViewStore.update(s => {
-              s.chatOverlay = null
-            })
-            reseed()
-          }}
-        >
-          Mit anderen Zahlen rechnen
-        </button>
-      </div>
+      {actualNavIndicatorPosition == navIndicatorPosition && (
+        <div className="flex flex-col items-end mt-6   mr-5 mb-12 gap-3">
+          <button
+            className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
+            onClick={() => {
+              done()
+            }}
+          >
+            Aufgabe abschließen
+          </button>
+          <button
+            className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
+            onClick={() => {
+              ExerciseViewStore.update(s => {
+                s.chatOverlay = null
+              })
+              reseed()
+            }}
+          >
+            Mit anderen Zahlen rechnen
+          </button>
+        </div>
+      )}
     </>
   )
 }
