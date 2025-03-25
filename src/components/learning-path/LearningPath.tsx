@@ -43,7 +43,7 @@ export function LearningPath() {
       */}
       <IonContent fullscreen>
         <div
-          className="h-full overflow-y-auto"
+          className="h-[calc(100%+32px)] -mb-[32px] overflow-y-auto"
           ref={scrollDiv}
           onScroll={() => {
             if (scrollDiv.current) {
