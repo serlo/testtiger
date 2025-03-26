@@ -2785,6 +2785,15 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Skill-Profi - Challenge 1',
+            introText: (
+              <>
+                Willkommen zur <strong>1. Challenge</strong> &#9733; auf dem Weg
+                zum Skill-Profi und viel Erfolg!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 25 Minuten.
+              </>
+            ),
             position: { x: 100, y: 3500 },
             steps: [
               {
@@ -2882,6 +2891,16 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Skill-Profi - Challenge 2',
+            introText: (
+              <>
+                Die <strong>2. Challenge</strong> &#9733; auf dem Weg zum
+                Skill-Profi steht an - eine ganze Aufgabe aus dem Prüfungsteil 2
+                2021. Viel Erfolg!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 30 Minuten.
+              </>
+            ),
             position: { x: 100, y: 4130 },
             steps: [
               {
@@ -2953,6 +2972,16 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Skill-Profi - Challenge 3',
+            introText: (
+              <>
+                Die <strong>3. Challenge</strong> &#9733; auf dem Weg zum
+                Skill-Profi steht an. Danach hast du schon mehr als die Hälfte
+                des Skill-Profi Teils geschafft! Viel Erfolg!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 30 Minuten.
+              </>
+            ),
             position: { x: 100, y: 4740 },
             steps: [
               {
@@ -3037,6 +3066,15 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Skill-Profi - Challenge 4',
+            introText: (
+              <>
+                Die <strong>4. Challenge</strong> &#9733; wartet eine Aufgabe
+                aus dem Prüfungsteil 2 des Jahres 2022 auf dich. Viel Erfolg!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 30 Minuten.
+              </>
+            ),
             position: { x: 100, y: 5320 },
             steps: [
               {
@@ -3107,6 +3145,16 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'challenge',
             title: 'Skill-Profi - Challenge 5',
+            introText: (
+              <>
+                Willkommen zur <strong>5. und letzten Challenge</strong> &#9733;
+                auf dem Weg zum Skill-Profi - Wahnsinn, wie viel
+                Durchhaltevermögen du bis hier schon hattest! Viel Erfolg!
+                <br />
+                <br />
+                Die Bearbeitungszeit ist etwa 30 Minuten.
+              </>
+            ),
             position: { x: 100, y: 5900 },
             steps: [
               {
