@@ -3068,7 +3068,7 @@ export const navigationData: { [key: number]: Navigation } = {
             title: 'Skill-Profi - Challenge 4',
             introText: (
               <>
-                Die <strong>4. Challenge</strong> &#9733; wartet eine Aufgabe
+                In der <strong>4. Challenge</strong> &#9733; wartet eine Aufgabe
                 aus dem Prüfungsteil 2 des Jahres 2022 auf dich. Viel Erfolg!
                 <br />
                 <br />
