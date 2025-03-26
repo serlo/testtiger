@@ -33,12 +33,6 @@ export function AppShell() {
   useEffect(() => {
     const handler = (ev: any) => {
       ev.detail.register(1000, () => {
-        if (ExerciseViewStore.getRawState().chatOverlay) {
-          ExerciseViewStore.update(s => {
-            s.chatOverlay = null
-          })
-          return
-        }
         history.goBack()
       })
     }

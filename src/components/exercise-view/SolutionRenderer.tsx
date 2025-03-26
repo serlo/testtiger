@@ -77,9 +77,6 @@ export function SolutionRenderer({
           <button
             className="rounded-full font-medium p-4 border-[#007EC1] bg-[#F2F8FC] text-[#007EC1] border"
             onClick={() => {
-              ExerciseViewStore.update(s => {
-                s.chatOverlay = null
-              })
               reseed()
             }}
           >

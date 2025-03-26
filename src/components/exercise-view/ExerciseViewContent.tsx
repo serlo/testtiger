@@ -211,16 +211,7 @@ export function ExerciseViewContent() {
     <div
       ref={ref}
       className={clsx('w-full h-full overflow-y-auto bg-[#FAF9F8]')}
-      onClick={() => {
-        /*if (chatOverlay) {
-          ExerciseViewStore.update(s => {
-            s.chatOverlay = null
-            if (s.pickAndSolveMode) {
-              s.pickAndSolveShowChat = false
-            }
-          })
-        }*/
-      }}
+      onClick={() => {}}
     >
       <div id="exercise-view-content" ref={chatHistoryRef} className="h-full">
         <div className="h-2 bg-white"></div>
@@ -553,7 +544,6 @@ export function ExerciseViewContent() {
                 onClick={() => {
                   ExerciseViewStore.update(s => {
                     s.examplePrescreen = true
-                    s.chatOverlay = null
                     s.showHelp = false
                     s.needReset = true
                   })
@@ -817,7 +807,6 @@ function renderContentCard({
                 onClick={() => {
                   ExerciseViewStore.update(s => {
                     s.pickAndSolveShowChat = true
-                    s.chatOverlay = 'chat'
                     s.navIndicatorPosition = i
                     s.navIndicatorExternalUpdate = i
                   })

@@ -58,7 +58,6 @@ export function CropImageOverlay() {
                           description: '',
                         })
                         s.cropImage = false
-                        s.chatOverlay = 'chat'
                       })
                       void analyseLastInput()
                     }, 200)

@@ -28,8 +28,6 @@ export function NewExerciseViewChat({
 
   const name = PlayerProfileStore.useState(s => s.name)
 
-  const chatOverlay = ExerciseViewStore.useState(s => s.chatOverlay)
-
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
   const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
 
@@ -57,10 +55,7 @@ export function NewExerciseViewChat({
   )
   const pages = ExerciseViewStore.useState(s => s.pages)
 
-  if (
-    (examplePrescreen || chatHistory.entries.length == 0) &&
-    chatOverlay !== 'solution'
-  ) {
+  if (examplePrescreen || chatHistory.entries.length == 0) {
     return null
   }
 
@@ -164,9 +159,6 @@ export function NewExerciseViewChat({
                     <button
                       className="text-[#007EC1] bg-[#F2F8FC] border-[#007EC1] font-medium mt-3 px-[10px] py-3 rounded-full border"
                       onClick={() => {
-                        ExerciseViewStore.update(s => {
-                          s.chatOverlay = null
-                        })
                         reseed()
                       }}
                     >
@@ -192,81 +184,7 @@ export function NewExerciseViewChat({
                 <div className="mr-3 flex-shrink-0 w-[16px]">
                   <img src="/birdie_idle.svg" alt="" className="inline-block" />
                 </div>
-                <div>
-                  {el.content}
-                  {false && (
-                    <>
-                      <p className="text-xs text-gray-600 mt-2">
-                        Das Feedback ersetzt keine Korrektur.
-                      </p>
-                      <p className="mt-3">
-                        <button
-                          className="px-2 py-0.5 bg-gray-100 rounded mr-4"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              s.chatOverlay = 'solution'
-                            })
-                          }}
-                        >
-                          Lösung anzeigen
-                        </button>
-                        <button
-                          className="px-2 py-0.5 bg-green-200 hover:bg-green-300 rounded mr-4"
-                          onClick={() => {
-                            ExerciseViewStore.update(s => {
-                              const wasNotDone =
-                                s.completed[s.navIndicatorPosition] == false
-                              s.completed[s.navIndicatorPosition] = true
-                              if (s.completed.every(x => x)) {
-                                setTimeout(() => {
-                                  ExerciseViewStore.update(s => {
-                                    s.showEndScreen = true
-                                  })
-                                }, 600)
-                              } else {
-                                if (
-                                  s.navIndicatorPosition + 1 <
-                                    s.navIndicatorLength &&
-                                  s.completed[s.navIndicatorPosition + 1] ==
-                                    false
-                                ) {
-                                  if (wasNotDone) {
-                                    setTimeout(() => {
-                                      ExerciseViewStore.update(s => {
-                                        s.navIndicatorExternalUpdate =
-                                          s.navIndicatorPosition + 1
-                                        s.chatOverlay = null
-                                      })
-                                    }, 500)
-                                  }
-                                } else {
-                                  for (
-                                    let i = 0;
-                                    i < s.navIndicatorLength;
-                                    i++
-                                  ) {
-                                    if (s.completed[i] == false) {
-                                      setTimeout(() => {
-                                        ExerciseViewStore.update(s => {
-                                          s.navIndicatorExternalUpdate = i
-                                          s.chatOverlay = null
-                                        })
-                                      }, 500)
-                                      break
-                                    }
-                                  }
-                                }
-                              }
-                            })
-                            markCurrentExerciseAsComplete()
-                          }}
-                        >
-                          Fertig
-                        </button>
-                      </p>
-                    </>
-                  )}
-                </div>
+                <div>{el.content}</div>
               </div>
             )
           }

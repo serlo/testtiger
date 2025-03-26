@@ -190,7 +190,6 @@ function TaskComponent({ data }: { data: DATA }) {
         content: `${pp(data.a)} ${answers[0]} ${pp(data.b)} \n ${pp(data.c)} ${answers[1]} ${pp(data.d)} \n ${pp(data.e)} ${answers[2]} ${pp(data.f)}`,
         canEdit: true,
       })
-      s.chatOverlay = 'chat'
       s.chatHistory[s.navIndicatorPosition].answerInput = ''
     })
     void analyseLastInput()

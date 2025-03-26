@@ -69,7 +69,6 @@ export function setupExercise(
     }).map(_ => {
       return { entries: [], resultPending: false, answerInput: '' }
     })
-    s.chatOverlay = null
     s.skill = skill
     s.cropImage = false
     s.completed = s.checks.map(() => false)
@@ -336,7 +335,6 @@ export function done() {
         setTimeout(() => {
           ExerciseViewStore.update(s => {
             s.navIndicatorExternalUpdate = s.navIndicatorPosition + 1
-            s.chatOverlay = null
             s.poppy = false
           })
         }, 50)
@@ -346,7 +344,6 @@ export function done() {
             setTimeout(() => {
               ExerciseViewStore.update(s => {
                 s.navIndicatorExternalUpdate = i
-                s.chatOverlay = null
                 s.poppy = false
               })
             }, 50)
@@ -361,7 +358,6 @@ export function done() {
 
 export function showSolution() {
   ExerciseViewStore.update(s => {
-    s.chatOverlay = 'solution'
     s.showHelp = false
     // add message to chat history
     s.chatHistory[s.navIndicatorPosition].entries.push({

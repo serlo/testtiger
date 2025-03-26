@@ -672,7 +672,6 @@ export function handleLearningPathStepClick({
         resultPending: false,
         answerInput: '',
       }))
-      s.chatOverlay = null
       s.skill = lesson.title
       s.cropImage = false
       s.completed = s.checks.map(

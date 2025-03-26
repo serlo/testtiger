@@ -44,7 +44,6 @@ export type IExerciseViewStore = {
   navIndicatorLength: number
   navIndicatorPosition: number
   navIndicatorExternalUpdate: number
-  chatOverlay: null | 'solution' | 'type-n-check' | 'foto' | 'chat'
   chatHistory: {
     entries: ChatHistoryEntry[]
     resultPending: boolean
@@ -98,7 +97,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   navIndicatorLength: 0,
   navIndicatorPosition: 0,
   navIndicatorExternalUpdate: -1,
-  chatOverlay: null,
   checks: [],
   cropImage: false,
   completed: [],

@@ -148,7 +148,6 @@ function TaskComponent({ data }: { data: DATA }) {
         content: `${answers[0]} m\n${answers[1]} min\n${answers[2]} dm³`,
         canEdit: true,
       })
-      s.chatOverlay = 'chat'
       s.chatHistory[s.navIndicatorPosition].answerInput = ''
     })
     void analyseLastInput()

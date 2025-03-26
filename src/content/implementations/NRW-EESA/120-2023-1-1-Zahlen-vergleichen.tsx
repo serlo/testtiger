@@ -291,7 +291,6 @@ function TaskComponent({ data }: { data: DATA }) {
         )}`,
         canEdit: true,
       })
-      s.chatOverlay = 'chat'
       s.chatHistory[s.navIndicatorPosition].answerInput = ''
     })
     void analyseLastInput()

@@ -127,7 +127,6 @@ function TaskComponent({ data }: { data: DATA }) {
         content: `${answers[0]} m \n ${answers[1]} s \n ${answers[2]} l`,
         canEdit: true,
       })
-      s.chatOverlay = 'chat'
       s.chatHistory[s.navIndicatorPosition].answerInput = ''
     })
     void analyseLastInput()
