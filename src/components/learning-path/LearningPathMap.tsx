@@ -579,6 +579,7 @@ export function handleLearningPathStepClick({
       }
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
+      s.showIntroScreen = true
     })
     if (lesson.showExamplePrescreen) {
       PlayerProfileStore.update(s => {
