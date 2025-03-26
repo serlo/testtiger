@@ -570,20 +570,22 @@ export function handleLearningPathStepClick({
             exam
           ].learningPathTags.includes(relevantKeys[i]),
         )
-        if (lesson.showExamplePrescreen) {
-          s.examplePrescreen = true
-          s.hasExamplePrescreen = true
-        }
-        s.isChallenge = lesson.type === 'challenge'
-        s.introText = lesson.introText
       })
+    }
+    ExerciseViewStore.update(s => {
       if (lesson.showExamplePrescreen) {
-        PlayerProfileStore.update(s => {
-          s.birdieIntros = s.birdieIntros.filter(
-            intro => !intro.startsWith('exercise-example'),
-          )
-        })
+        s.examplePrescreen = true
+        s.hasExamplePrescreen = true
       }
+      s.isChallenge = lesson.type === 'challenge'
+      s.introText = lesson.introText
+    })
+    if (lesson.showExamplePrescreen) {
+      PlayerProfileStore.update(s => {
+        s.birdieIntros = s.birdieIntros.filter(
+          intro => !intro.startsWith('exercise-example'),
+        )
+      })
     }
     if (history)
       history.push(
