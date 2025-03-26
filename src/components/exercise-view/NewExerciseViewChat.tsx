@@ -1,10 +1,5 @@
 import { useRef, useEffect, Fragment, useState } from 'react'
-import {
-  done,
-  markCurrentExerciseAsComplete,
-  reseed,
-  showSolution,
-} from './state/actions'
+import { done, reseed, showSolution } from './state/actions'
 import { ExerciseViewStore } from './state/exercise-view-store'
 import { PlayerProfileStore } from '../../store/player-profile-store'
 import clsx from 'clsx'
@@ -54,6 +49,10 @@ export function NewExerciseViewChat({
     s => s.navIndicatorPosition,
   )
   const pages = ExerciseViewStore.useState(s => s.pages)
+
+  //  KEEP THIS TO TRIGGER RE-RENDERING
+  ExerciseViewStore.useState(s => s.data)
+  ExerciseViewStore.useState(s => s.dataPerExercise)
 
   if (examplePrescreen || chatHistory.entries.length == 0) {
     return null

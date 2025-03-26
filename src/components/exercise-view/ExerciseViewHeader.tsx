@@ -36,138 +36,126 @@ export function ExerciseViewHeader() {
     s => s.completed[s.navIndicatorPosition],
   )
 
-  const multiScreenExercise = ExerciseViewStore.useState(
-    s => s.multiScreenExercise,
-  )
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
   const isChallenge = ExerciseViewStore.useState(s => s.isChallenge)
 
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
 
-  if (multiScreenExercise && showIntroScreen) {
+  if (showIntroScreen) {
     return null
   }
 
   const hidePagination = examplePrescreen || !pages || pages.length <= 1
 
-  if (multiScreenExercise) {
-    // der Header ist gelb, noch oben verbunden, untere zwei Ecken sind abgerundet
-    // links ist ein x zum schließen
-    // in der Mitte steht der Titel in Dunkelgelb
-    // unter dem Titel steht, ob man Taschenrechner benutzen darf
-    // darunter sind kleine Balken die anzeigen, wie viele Aufgaben es gibt und an welcher man gerade arbeitet
-
-    return (
+  return (
+    <div
+      className={clsx(
+        'mb-1 shadow-md px-4 py-2 rounded-t-none rounded-b-3xl relative',
+        isChallenge ? 'bg-[#FFF1C5]' : 'bg-white',
+      )}
+    >
       <div
         className={clsx(
-          'mb-1 shadow-md px-4 py-2 rounded-t-none rounded-b-3xl relative',
-          isChallenge ? 'bg-[#FFF1C5]' : 'bg-white',
+          'absolute left-6 text-[#007EC1] text-2xl w-[17px] flex justify-center items-center cursor-pointer',
+          hidePagination ? 'top-6' : 'top-8',
         )}
+        onClick={() => {
+          if (toHome) {
+            history.push('/app/home')
+            return
+          }
+          const i1 = navigationData[1].topics.findIndex(t =>
+            t.skillGroups.some(g => g.name == skill),
+          )
+          const i2 = navigationData[2].topics.findIndex(t =>
+            t.skillGroups.some(g => g.name == skill),
+          )
+          const i3 = navigationData[3].topics.findIndex(t =>
+            t.skillGroups.some(g => g.name == skill),
+          )
+          // scroll restoration is buggy and will fix later
+          history.push(
+            skill && (i1 >= 0 || i2 >= 0 || i3 >= 0)
+              ? '/topic/' +
+                  (exam == 1
+                    ? i1 + 1
+                    : exam == 2
+                      ? i2 + 101
+                      : i3 + 201
+                  ).toString()
+              : '/app/topicsOverview',
+          )
+        }}
       >
-        <div
-          className={clsx(
-            'absolute left-6 text-[#007EC1] text-2xl w-[17px] flex justify-center items-center cursor-pointer',
-            hidePagination ? 'top-6' : 'top-8',
-          )}
-          onClick={() => history.push('/app/home')}
-        >
-          <FaIcon icon={faTimes} className="" />
-        </div>
-        <div className="text-center">
-          <h2
-            className={clsx(
-              'font-extrabold',
-              isChallenge ? 'text-[#B08700]' : 'text-[#007EC1]',
-            )}
-          >
-            {skill}
-          </h2>
-          <p className="text-sm text-[#808080] text-opacity-55">
-            <button className="cursor-default py-0.5 bg-transparent inline-block relative h-[25px] w-8 mt-0.5 align-top">
-              <div className="inset-0 absolute">
-                <FaIcon icon={faCalculator} />
-              </div>
-              {!content.useCalculator && (
-                <div className="absolute inset-0 -scale-x-100 text-[#C18686]">
-                  <FaIcon icon={faSlash} />
-                </div>
-              )}
-            </button>
-            {content.useCalculator
-              ? 'Taschenrechner erlaubt'
-              : 'ohne Taschenrechner'}
-          </p>
-          {!hidePagination && (
-            <div className="flex justify-center gap-1">
-              {pages.map((_, index) => (
-                <div
-                  key={index}
-                  className={`h-[7px] w-[15px] rounded-full ${
-                    isChallenge
-                      ? index <= navIndicatorPosition
-                        ? 'bg-yellow-600'
-                        : 'bg-[#E6DBB6]'
-                      : index <= navIndicatorPosition
-                        ? 'bg-[#007EC1]'
-                        : 'bg-[#D2ECF6]'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-          {false && completed && pages.length > 1 && (
-            <div className="absolute top-4 right-4">
-              <button
-                className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md font-medium"
-                onClick={() => {
-                  const nextPos = navIndicatorPosition + 1
-                  if (nextPos < (pages?.length || 0)) {
-                    ExerciseViewStore.update(s => {
-                      s.navIndicatorPosition = nextPos
-                      s.navIndicatorExternalUpdate = nextPos
-                    })
-                  }
-                }}
-              >
-                Weiter
-              </button>
-            </div>
-          )}
-        </div>
+        <FaIcon icon={faTimes} className="" />
       </div>
-    )
-  }
+      <div className="text-center">
+        <h2
+          className={clsx(
+            'font-extrabold',
+            isChallenge ? 'text-[#B08700]' : 'text-[#007EC1]',
+          )}
+        >
+          {skill}
+        </h2>
+        <p className="text-sm text-[#808080] text-opacity-55">
+          <button className="cursor-default py-0.5 bg-transparent inline-block relative h-[25px] w-8 mt-0.5 align-top">
+            <div className="inset-0 absolute">
+              <FaIcon icon={faCalculator} />
+            </div>
+            {!content.useCalculator && (
+              <div className="absolute inset-0 -scale-x-100 text-[#C18686]">
+                <FaIcon icon={faSlash} />
+              </div>
+            )}
+          </button>
+          {content.useCalculator
+            ? 'Taschenrechner erlaubt'
+            : 'ohne Taschenrechner'}
+        </p>
+        {!hidePagination && (
+          <div className="flex justify-center gap-1">
+            {pages.map((_, index) => (
+              <div
+                key={index}
+                className={`h-[7px] w-[15px] rounded-full ${
+                  isChallenge
+                    ? index <= navIndicatorPosition
+                      ? 'bg-yellow-600'
+                      : 'bg-[#E6DBB6]'
+                    : index <= navIndicatorPosition
+                      ? 'bg-[#007EC1]'
+                      : 'bg-[#D2ECF6]'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+        {false && completed && pages.length > 1 && (
+          <div className="absolute top-4 right-4">
+            <button
+              className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md font-medium"
+              onClick={() => {
+                const nextPos = navIndicatorPosition + 1
+                if (nextPos < (pages?.length || 0)) {
+                  ExerciseViewStore.update(s => {
+                    s.navIndicatorPosition = nextPos
+                  })
+                }
+              }}
+            >
+              Weiter
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 
   return (
     <div
       className="mt-3 mb-1 mx-3 border shadow-md px-4 py-2 rounded-lg bg-white"
-      onClick={() => {
-        if (toHome) {
-          history.push('/app/home')
-          return
-        }
-        const i1 = navigationData[1].topics.findIndex(t =>
-          t.skillGroups.some(g => g.name == skill),
-        )
-        const i2 = navigationData[2].topics.findIndex(t =>
-          t.skillGroups.some(g => g.name == skill),
-        )
-        const i3 = navigationData[3].topics.findIndex(t =>
-          t.skillGroups.some(g => g.name == skill),
-        )
-        // scroll restoration is buggy and will fix later
-        history.push(
-          skill && (i1 >= 0 || i2 >= 0 || i3 >= 0)
-            ? '/topic/' +
-                (exam == 1
-                  ? i1 + 1
-                  : exam == 2
-                    ? i2 + 101
-                    : i3 + 201
-                ).toString()
-            : '/app/superskills',
-        )
-      }}
+      onClick={() => {}}
     >
       <button className="whitespace-nowrap text-ellipsis overflow-hidden max-w-full inline-block">
         <FaIcon icon={faArrowLeft} />{' '}

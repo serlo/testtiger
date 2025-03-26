@@ -654,7 +654,6 @@ export function handleLearningPathStepClick({
       s.navIndicatorPosition = 0
       s.needReset = true
       s.needReset2 = true
-      s.navIndicatorExternalUpdate = 0
       s.checks = Array.from({ length: Math.max(1, s.navIndicatorLength) }).map(
         () => ({
           answerInput: '',
@@ -688,8 +687,6 @@ export function handleLearningPathStepClick({
       s.examplePrescreen = false
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
-      s.pickAndSolveMode = false
-      s.multiScreenExercise = lesson.steps.length > 1
       s.showIntroScreen = true
       s.introCollapseState = s.pages.map(() => false)
       s.tasksCollapseState = s.pages.map(() => false)

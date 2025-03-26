@@ -22,9 +22,6 @@ import { showSolution } from './state/actions'
 export function ExerciseViewContent() {
   const toHome = ExerciseViewStore.useState(s => s.toHome)
   const pages = ExerciseViewStore.useState(s => s.pages)
-  const navIndicatorExternalUpdate = ExerciseViewStore.useState(
-    s => s.navIndicatorExternalUpdate,
-  )
 
   const poppy = ExerciseViewStore.useState(s => s.poppy)
 
@@ -38,39 +35,19 @@ export function ExerciseViewContent() {
   const examplePrescreen = ExerciseViewStore.useState(s => s.examplePrescreen)
   const introText = ExerciseViewStore.useState(s => s.introText)
 
-  const pickAndSolve = ExerciseViewStore.useState(s => s.pickAndSolveMode)
-
   const chatHistory = ExerciseViewStore.useState(
     s => s.chatHistory[s.navIndicatorPosition],
   )
-  const data = ExerciseViewStore.useState(s => s.data)
-  const dataPerExercise = ExerciseViewStore.useState(s => s.dataPerExercise)
+
+  // KEEP THIS FOR SYNC WITH STATE
+  ExerciseViewStore.useState(s => s.data)
+
+  // KEEP THIS FOR SYNC WITH STATE
+  ExerciseViewStore.useState(s => s.dataPerExercise)
+
   const chatHistoryRef = useRef<HTMLDivElement>(null)
 
   const showHelp = ExerciseViewStore.useState(s => s.showHelp)
-
-  useEffect(() => {
-    if (
-      navIndicatorExternalUpdate >= 0 &&
-      navIndicatorPosition != navIndicatorExternalUpdate &&
-      ref.current
-    ) {
-      /*const [distance, offset] = calculateSnapPoints()
-      ref.current.scrollLeft = offset + distance * navIndicatorExternalUpdate*/
-
-      document
-        .getElementById(`exercise-${navIndicatorExternalUpdate}`)
-        ?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'center',
-        })
-      ExerciseViewStore.update(s => {
-        s.navIndicatorExternalUpdate = -1
-        s.navIndicatorPosition = navIndicatorExternalUpdate
-      })
-    }
-  }, [navIndicatorExternalUpdate, navIndicatorPosition])
 
   const history = useHistory()
 
@@ -122,9 +99,6 @@ export function ExerciseViewContent() {
         : ExerciseViewStore.getRawState().id
     ].useCalculator
 
-  const multiScreenExercise = ExerciseViewStore.useState(
-    s => s.multiScreenExercise,
-  )
   const showIntroScreen = ExerciseViewStore.useState(s => s.showIntroScreen)
 
   const skill = ExerciseViewStore.useState(s => s.skill)
@@ -162,7 +136,7 @@ export function ExerciseViewContent() {
     }
   }
 
-  if (multiScreenExercise && showIntroScreen) {
+  if (showIntroScreen) {
     // return a full screen intro screen with yellow background
     return (
       <div className="absolute inset-0 bg-[#FFF1C5] flex justify-between flex-col">
@@ -215,49 +189,8 @@ export function ExerciseViewContent() {
     >
       <div id="exercise-view-content" ref={chatHistoryRef} className="h-full">
         <div className="h-2 bg-white"></div>
-        {!multiScreenExercise && (
-          <>
-            <div className="mb-5 mx-2 p-4 rounded-lg">
-              <button className="cursor-default px-2 py-0.5 rounded-md bg-gray-100 inline-block relative h-[25px] w-8 mt-0.5 mr-1 align-top">
-                <div className="inset-0 absolute">
-                  <FaIcon icon={faCalculator} />
-                </div>
-                {!useCalculator && (
-                  <div className="absolute inset-0 -scale-x-100">
-                    <FaIcon icon={faSlash} />
-                  </div>
-                )}
-              </button>
-              Taschenrechner ist
-              {useCalculator ? '' : ' nicht'} erlaubt.
-              {!examplePrescreen ? (
-                <>
-                  <br />
-                  <br />
-                  {introText ? (
-                    introText
-                  ) : (
-                    <>
-                      Schnapp dir <strong>Stift</strong> und{' '}
-                      <strong>Papier</strong> und <strong>scanne</strong>, wenn
-                      du fertig bist, deinen Rechenweg ein, oder{' '}
-                      <strong>tippe</strong> deine Lösung in den Chat.
-                    </>
-                  )}
-                </>
-              ) : (
-                <>
-                  <br />
-                  <br />
-                  Schaue dir das <strong>Beispiel</strong> an.
-                </>
-              )}
-            </div>
-          </>
-        )}
         {pages.map((page, i) => {
           if (
-            multiScreenExercise &&
             i !== navIndicatorPosition &&
             !(
               i < navIndicatorPosition &&
@@ -316,7 +249,6 @@ export function ExerciseViewContent() {
                     toHome,
                     pages,
                     useCalculator,
-                    pickAndSolve,
                     allowCollapse: false,
                     heading:
                       (contextCount > 1 ? `${contextIndex}. ` : '') + 'AUFGABE',
@@ -336,7 +268,6 @@ export function ExerciseViewContent() {
                     toHome,
                     pages,
                     useCalculator,
-                    pickAndSolve,
                     isChallenge,
                   })}
                 {poppy && (
@@ -496,7 +427,6 @@ export function ExerciseViewContent() {
                     toHome,
                     pages,
                     useCalculator,
-                    pickAndSolve,
                     taskCollapsed: tasksCollapseState[i],
                     allowCollapse: exercisesWithThisContext > 1,
                     heading:
@@ -520,7 +450,6 @@ export function ExerciseViewContent() {
                     toHome,
                     pages,
                     useCalculator,
-                    pickAndSolve,
                     isChallenge,
                   })}
                 <NewExerciseViewChat index={i} />
@@ -686,7 +615,6 @@ function renderContentCard({
   toHome,
   pages,
   useCalculator,
-  pickAndSolve,
   taskCollapsed,
   allowCollapse,
   heading,
@@ -701,7 +629,6 @@ function renderContentCard({
   toHome: boolean
   pages: any[]
   useCalculator: boolean
-  pickAndSolve?: boolean
   taskCollapsed?: boolean
   allowCollapse?: boolean
   heading?: string
@@ -800,22 +727,6 @@ function renderContentCard({
           </div>
 
           {contentEl}
-          {pickAndSolve && (
-            <div className="flex justify-center items-center p-2 w-full rounded-b-xl">
-              <button
-                className="bg-yellow-200 hover:bg-yellow-300 px-4 py-2 rounded-lg"
-                onClick={() => {
-                  ExerciseViewStore.update(s => {
-                    s.pickAndSolveShowChat = true
-                    s.navIndicatorPosition = i
-                    s.navIndicatorExternalUpdate = i
-                  })
-                }}
-              >
-                Aufgabe lösen
-              </button>
-            </div>
-          )}
         </div>
       </div>
       <div className="w-full border-b border-dashed border-[#E9E9E9] bg-white pt-3" />

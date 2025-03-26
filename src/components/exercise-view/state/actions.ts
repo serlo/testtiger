@@ -51,7 +51,6 @@ export function setupExercise(
         ? content.tasks.length
         : 0
     s.navIndicatorPosition = 0
-    s.navIndicatorExternalUpdate = 0
     s.checks = Array.from({ length: Math.max(1, s.navIndicatorLength) }).map(
       _ => {
         return {
@@ -79,9 +78,6 @@ export function setupExercise(
     s.examplePrescreen = false
     s.isChallenge = false
     s.introText = ''
-    s.pickAndSolveMode = false
-    s.pickAndSolveShowChat = false
-    s.multiScreenExercise = true
     s.introCollapseState = pages.map(() => false)
     s.tasksCollapseState = pages.map(() => false)
     s.showHelp = false
@@ -334,7 +330,7 @@ export function done() {
       ) {
         setTimeout(() => {
           ExerciseViewStore.update(s => {
-            s.navIndicatorExternalUpdate = s.navIndicatorPosition + 1
+            s.navIndicatorPosition = s.navIndicatorPosition + 1
             s.poppy = false
           })
         }, 50)
@@ -343,7 +339,6 @@ export function done() {
           if (s.completed[i] == false) {
             setTimeout(() => {
               ExerciseViewStore.update(s => {
-                s.navIndicatorExternalUpdate = i
                 s.poppy = false
               })
             }, 50)

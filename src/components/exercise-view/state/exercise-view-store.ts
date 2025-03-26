@@ -43,7 +43,6 @@ export type IExerciseViewStore = {
   dataPerExercise: { [key: string]: object }
   navIndicatorLength: number
   navIndicatorPosition: number
-  navIndicatorExternalUpdate: number
   chatHistory: {
     entries: ChatHistoryEntry[]
     resultPending: boolean
@@ -75,9 +74,6 @@ export type IExerciseViewStore = {
   videoTitle?: string
   isChallenge?: boolean
   introText?: string | JSX.Element
-  pickAndSolveMode?: boolean
-  pickAndSolveShowChat?: boolean
-  multiScreenExercise?: boolean
   showIntroScreen?: boolean
   introCollapseState: boolean[]
   tasksCollapseState: boolean[]
@@ -96,7 +92,6 @@ export const ExerciseViewStore = new Store<IExerciseViewStore>({
   dataPerExercise: {},
   navIndicatorLength: 0,
   navIndicatorPosition: 0,
-  navIndicatorExternalUpdate: -1,
   checks: [],
   cropImage: false,
   completed: [],
