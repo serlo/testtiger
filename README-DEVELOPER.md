@@ -1,40 +1,15 @@
 # Readme for Developer
 
-## Einleitung
+## Introduction
 
-Dieses Repository enthält den Quellcode und die Inhalte für die nächste Generation der Prüfungsvorbereitung von Serlo. Es ist angedacht als eine selbstständige App zum Mathe-Üben. Sie ist als Web-App implementiert. Als Web-Framework kommt [next.js 14](https://nextjs.org/) zum Einsatz, für native Wrapper sind zudem [ionic 8](https://ionicframework.com/) und [capacitor 7](https://capacitorjs.com/docs) integriert. Das Haupt-Target ist aktuell Web.
+This repository contains the source code and content for the next generation of Serlo's exam preparation. It is designed as a standalone app for practicing math. The app is implemented as a web application. The web framework used is [next.js 14](https://nextjs.org/), and for native wrappers, [ionic 8](https://ionicframework.com/) and [capacitor 7](https://capacitorjs.com/docs) are also integrated. The primary target is currently the web.
 
 ## Getting Started
 
-Es wird [node.js v20](https://nodejs.org/en) oder höher benötigt. Führe nach dem Klonen des Repository im Hauptverzeichnis `npm start` aus. Dadurch werden alle Abhängigkeiten installiert und der Dev-Server auf http://localhost:3000/ gestartet. Du kannst auch `npm install` und `npm run dev` separat ausführen.
+[node.js v20](https://nodejs.org/en) or higher is required. After cloning the repository, run `npm start` in the main directory. This will install all dependencies and start the development server at [http://localhost:3000/](http://localhost:3000/). You can also run `npm install` and `npm run dev` separately.
 
-Erstelle ein production-build mit `npm run build`. Das Repository ist mit dem Serlo-Account von [vercel.com](https://vercel.com) und dort wird der Prototyp unter https://testtiger-nine.vercel.app/ gehostet. Pushe auf `main` für ein neues Deployment.
+Create a production build with `npm run build`. The repository is linked to the Serlo account on [vercel.com](https://vercel.com), and the prototype is hosted there at [https://testtiger-nine.vercel.app/](https://testtiger-nine.vercel.app/). Push to `main` for a new deployment.
 
-Das Repo enthält in `/backend` auch eine Backend-Server-Komponente. Führe `npm install` separat in diesem Repo aus und dann `npm start`. Das Backend wird aktuell dem Asteroid `testtige` des Serlo-Uberspace gehostet. Dort ist ein Verzeichnis `backend-testtiger` angelegt. Mit dem `./deploy.sh`-Script lässt sich eine neue Version des Servers deployen.
+The repository also includes a backend server component in the `/backend` directory. Run `npm install` separately in this directory and then `npm start`. The backend is currently hosted on the Asteroid `testtige` of the Serlo-Uberspace. A directory named `backend-testtiger` has been created there. A new version of the server can be deployed using the `./deploy.sh` script in the `backend-testtiger` directory. To access the Uberspace, [create a new ssh-key](https://manual.uberspace.de/basics-ssh/) via the Uberspace dashboard.
 
-    Ordner- & Dateistruktur
-        Verzeichnisaufbau: Erklärung der Hauptordner und deren Zweck (z.B. src, components, assets, styles, etc.).
-        Namenskonventionen: Wie Dateien und Komponenten benannt werden.
-
-    Technologien & Abhängigkeiten
-        Frontend-Framework: (z.B. React, Vue, Angular) und kurze Begründung der Auswahl.
-        Wichtige Libraries & Tools: Beschreibung der wichtigsten externen Pakete, Build-Tools, Linter, Formatter, etc.
-
-    Entwicklungs- & Deployment-Prozess
-        Workflow: Branching-Strategie, Code Reviews, Merge-Prozesse.
-        Testing: Welche Testarten (Unit, Integration, E2E) implementiert sind und wie sie ausgeführt werden.
-        CI/CD: Informationen zu automatisierten Tests, Builds und Deployments (z.B. über GitHub Actions, Jenkins o.ä.).
-
-    Coding Guidelines & Best Practices
-        Code-Style: Konventionen, die eingehalten werden (z.B. ESLint/Prettier-Konfigurationen).
-        Commit-Messages: Vorlagen oder Regeln für sinnvolle Commit-Beschreibungen.
-
-    Troubleshooting & FAQ
-        Häufige Probleme: Bekannte Stolpersteine und deren Lösungen.
-        Debugging-Tipps: Hilfreiche Tools und Vorgehensweisen zur Fehleranalyse.
-
-    Weiterführende Ressourcen & Dokumentation
-        Links: Zu externen Dokumentationen, Tutorials, oder Design-Guidelines.
-        Kontakt & Support: An wen man sich bei Fragen wenden kann.
-
-Diese Struktur deckt alle wesentlichen Bereiche ab, die dein Nachfolger kennen sollte, um sich schnell zurechtzufinden und produktiv zu arbeiten. Natürlich kannst du je nach Komplexität deines Repos und den Bedürfnissen deines Teams einzelne Punkte noch erweitern oder anpassen.
+The backend is storing profiles in a database. Use https://mysql.uberspace.de/phpmyadmin/index.php?route=/sql&pos=0&db=testtige_backend&table=Profiles&server=117 to get access to the data, username is `testtige` and the mysql passwort can be found by typing `cat .my.cnf` in the root of the uberspace.
