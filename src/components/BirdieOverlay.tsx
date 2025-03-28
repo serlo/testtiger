@@ -17,8 +17,6 @@ export function BirdieOverlay({ context }: { context: 'map' | 'exercise' }) {
 
   const tag = ExerciseViewStore.getRawState().tag
 
-  console.log(tag)
-
   if (context == 'map') {
     if (!birdieIntros.includes('map-1')) {
       text =

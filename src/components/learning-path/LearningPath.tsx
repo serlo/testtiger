@@ -29,12 +29,40 @@ export function LearningPath() {
     }
   }, [])
 
+  function getVisiblePart(scrollTop: number) {
+    return scrollTop > navigationData[exam].breakPoints[0]
+      ? 0
+      : scrollTop > navigationData[exam].breakPoints[1]
+        ? 1
+        : 2
+  }
+
+  function handleSelect(selected: string) {
+    if (scrollDiv.current === null) return
+
+    let scrollTop = 999999
+
+    if (selected === navigationData[exam].path[1].title) {
+      scrollTop = navigationData[exam].breakPoints[0]
+    }
+    if (selected === navigationData[exam].path[2].title) {
+      scrollTop = navigationData[exam].breakPoints[1]
+    }
+
+    scrollDiv.current.scrollTo({ top: scrollTop, behavior: 'smooth' })
+    const visiblePart = getVisiblePart(scrollTop)
+    LearningPathStore.update(s => {
+      s.part = visiblePart
+      s.scrollPosition = scrollTop
+    })
+  }
+
   return (
     <IonPage className="relative sm:max-w-[375px] mx-auto">
       <BirdieOverlay context="map" />
 
-      <div className="absolute top-0 w-full h-20 bg-white rounded-b-[24px] z-10 flex items-center px-4 shadow-md left-1/2 -translate-x-1/2">
-        <LearningPathHeader />
+      <div className="absolute top-0 w-full h-20 bg-white bg-opacity-95 rounded-b-[24px] z-10 flex items-center px-4 shadow-md left-1/2 -translate-x-1/2">
+        <LearningPathHeader onSelect={handleSelect} />
       </div>
 
       {/* 
@@ -48,12 +76,7 @@ export function LearningPath() {
           onScroll={() => {
             if (scrollDiv.current) {
               const scrollTop = scrollDiv.current.scrollTop
-              const visiblePart =
-                scrollTop > navigationData[exam].breakPoints[0]
-                  ? 0
-                  : scrollTop > navigationData[exam].breakPoints[1]
-                    ? 1
-                    : 2
+              const visiblePart = getVisiblePart(scrollTop)
 
               LearningPathStore.update(s => {
                 s.part = visiblePart
