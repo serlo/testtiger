@@ -3,13 +3,15 @@ import { FaIcon } from '../ui/FaIcon'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
 
-export default function LearningPathHeaderSelect({
-  options,
-  onSelect,
-}: {
+interface LearningPathHeaderSelectProp {
   options: Array<{ title: string; percentage: number }>
   onSelect: (selected: string) => void
-}) {
+}
+
+export function LearningPathHeaderSelect({
+  options,
+  onSelect,
+}: LearningPathHeaderSelectProp) {
   const [selected, setSelected] = useState(options[0])
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useRef<HTMLDivElement>(null)

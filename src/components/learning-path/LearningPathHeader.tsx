@@ -6,14 +6,14 @@ import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../store/player-profile-store'
 import clsx from 'clsx'
 import { isWholeLessonDonePercentage } from '../../store/actions'
-import LearningPathHeaderSelect from './LearningPathHeaderSelect'
+import { LearningPathHeaderSelect } from './LearningPathHeaderSelect'
 import type { Lesson } from '@/data/types'
 
-export function LearningPathHeader({
-  onSelect,
-}: {
+interface LearningPathProps {
   onSelect: (selected: string) => void
-}) {
+}
+
+export function LearningPathHeader({ onSelect }: LearningPathProps) {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const part = LearningPathStore.useState(s => s.part)
 
