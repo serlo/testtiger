@@ -133,7 +133,7 @@ export function LearningPathMap() {
             width={350}
           />
 
-          <image href="/learning-path/l2h5.svg" x={-75} y={920} width={220} />
+          <image href="/learning-path/l2h5.svg" x={-75} y={-920} width={220} />
 
           <image href="/learning-path/treer.svg" x={290} y={5780} width={180} />
 
@@ -161,52 +161,30 @@ export function LearningPathMap() {
           <image href="/learning-path/gras2.svg" x={340} y={6640} width={80} />
           <image href="/learning-path/grass.svg" x={275} y={6640} width={60} />
 
-          <image href="/learning-path/l2h1.svg" x={-30} y={3450} width={180} />
-          <image href="/learning-path/l2h2.svg" x={240} y={3130} width={180} />
           <image href="/learning-path/l2h3.svg" x={-50} y={2890} width={160} />
           <image href="/learning-path/l2h3.svg" x={-60} y={1660} width={180} />
           <image href="/learning-path/l2h41.svg" x={220} y={2530} width={230} />
-          <image href="/learning-path/l2h4.svg" x={240} y={-500} width={220} />
+          <image href="/learning-path/l2h4.svg" x={240} y={-1900} width={220} />
           <image href="/learning-path/l2h5.svg" x={-40} y={2290} width={150} />
-          <image href="/learning-path/l2h6.svg" x={200} y={2150} width={220} />
-          <image href="/learning-path/rail.png" x={280} y={4260} width={180} />
+
           <image
             href="/learning-path/Schienengruppe.png"
             x={-290}
-            y={980}
-            width={520}
+            y={990}
+            width={500}
           />
-          <image href="/learning-path/train.svg" x={310} y={4330} width={110} />
-          <image href="/learning-path/town.svg" x={225} y={2125} width={420} />
-          <image
-            href="/learning-path/bushes.svg"
-            x={265}
-            y={3665}
-            width={440}
-          />
-          <image
-            href="/learning-path/stumpf1.svg"
-            x={-38}
-            y={3465}
-            width={160}
-          />
-          <image
-            href="/learning-path/forest.svg"
-            x={265}
-            y={3225}
-            width={240}
-          />
+
           <image href="/learning-path/treer.svg" x={270} y={4835} width={230} />
           <image
             href="/learning-path/bigtreegroup.svg"
             x={-175}
-            y={1045}
+            y={-1045}
             width={260}
           />
           <image
             href="/learning-path/balloon.svg"
             x={310}
-            y={-500}
+            y={-1500}
             width={100}
           />
           <image
@@ -273,6 +251,40 @@ export function LearningPathMap() {
             x={255}
             y={1400}
             width={180}
+          />
+          <image
+            href="/learning-path/rail.png"
+            x={280}
+            y={4260 - 2600}
+            width={180}
+          />
+          <image
+            href="/learning-path/train.svg"
+            x={310}
+            y={4330 - 2600}
+            width={110}
+          />
+          {/* Stage2*/}
+          {/* hill1*/}
+          <image href="/learning-path/l2h2.svg" x={240} y={410} width={180} />
+          <image href="/learning-path/forest.svg" x={265} y={500} width={240} />
+          {/* hill2*/}
+          <image href="/learning-path/l2h1.svg" x={-30} y={210} width={220} />
+          <image
+            href="/learning-path/stumpf1.svg"
+            x={-38}
+            y={238}
+            width={195}
+          />
+          {/* hill3*/}
+          <image href="/learning-path/l2h6.svg" x={200} y={-400} width={220} />
+          <image href="/learning-path/town.svg" x={225} y={-430} width={420} />
+          {/* river*/}
+          <image
+            href="/learning-path/river4.svg"
+            x={-180}
+            y={-200}
+            width={700}
           />
         </g>
 
