@@ -19,35 +19,55 @@ import {
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
-
   const history = useHistory()
 
+  // Design-spezifische Offsets und Skalierung
   const path = navigationData[exam].path
-  const mapHeight = navigationData[exam].mapHeight + 200
+  const partVerticalOffset = 2400 // Offset pro Part (Themenpfad)
+  const additionalVerticalOffsetPerLesson = 80 // Zusätzlicher Offset pro Lesson innerhalb eines Parts
+  const imageOffset = 7020 // Vertikaler Offset für die Hintergrundbilder
+  const verticalScale = 1.1 // Skalierungsfaktor für y-Koordinaten der Elemente
+  const circleRadius = 50 // Standardkreisradius (außer bei Challenge)
+  const mapHeight =
+    navigationData[exam].mapHeight + partVerticalOffset * path.length
 
+  // Elemente (Lessons) und Linien dazwischen sammeln
   const elements: { source: Lesson; solvedPercentage: number }[] = []
   const lines: { start: Lesson; end: Lesson }[] = []
-
   let somePartialSolved = false
 
+  let partIndex = 0
   for (const part of path) {
     let prev: Lesson | null = null
+    let lessonIndex = 0
+    const partOffset = partIndex * partVerticalOffset
+
     for (const lesson of part.lessons) {
       if (lesson.position) {
         const solvedPercentage = isWholeLessonDonePercentage(lesson)
         if (solvedPercentage < 1 && solvedPercentage > 0) {
           somePartialSolved = true
         }
-        elements.push({
-          source: lesson,
-          solvedPercentage,
-        })
-        if (prev && prev.position) {
-          lines.push({ start: prev, end: lesson })
+        // Y‑Position anpassen: Originalwert + Part‑Offset + zusätzlicher Offset pro Lesson
+        const adjustedLesson: Lesson = {
+          ...lesson,
+          position: {
+            x: lesson.position.x,
+            y:
+              lesson.position.y +
+              partOffset +
+              lessonIndex * additionalVerticalOffsetPerLesson,
+          },
         }
+        elements.push({ source: adjustedLesson, solvedPercentage })
+        if (prev && prev.position) {
+          lines.push({ start: prev, end: adjustedLesson })
+        }
+        prev = adjustedLesson
+        lessonIndex++
       }
-      prev = lesson
     }
+    partIndex++
   }
 
   let allSolved = true
@@ -57,165 +77,213 @@ export function LearningPathMap() {
   return (
     <div className="bg-gradient-to-t from-green-300 to-blue-300">
       <svg viewBox={`0 0 375 ${mapHeight}`}>
-        <image href="/learning-path/stage1.svg" x={-50} y={2020} width={500} />
-        <image
-          href="/learning-path/starshadow6.svg"
-          x={-90}
-          y={3780}
-          width={300}
-        />
+        {/* Hintergrundbilder in einer Gruppe mit Translation */}
+        <g transform={`translate(0, ${imageOffset})`}>
+          <image
+            href="/learning-path/stage1.svg"
+            x={-50}
+            y={-28310}
+            width={500}
+          />
+          <image
+            href="/learning-path/stage2.svg"
+            x={-50}
+            y={-10550}
+            width={500}
+          />
+          <image
+            href="/learning-path/stage3.svg"
+            x={-45}
+            y={-7380}
+            width={500}
+          />
+          {/* HintergundVektor für Stage2 1. Stern*/}
+          <image
+            href="/learning-path/st2starshadow1.svg"
+            x={-40}
+            y={-100}
+            width={350}
+          />
+          {/* HintergundVektor für Stage2 2. Stern*/}
+          <image
+            href="/learning-path/st2starshadow2.svg"
+            x={0}
+            y={-1340}
+            width={300}
+          />
+          {/* HintergundVektor für Stage2 3. Stern*/}
+          <image
+            href="/learning-path/st2starshadow3.svg"
+            x={0}
+            y={-2620}
+            width={220}
+          />
+          {/* HintergundVektor für Stage2 4. Stern*/}
+          <image
+            href="/learning-path/st2starshadow4.svg"
+            x={-10}
+            y={-3800}
+            width={220}
+          />
+          {/* HintergundVektor für Stage2 5. Stern*/}
+          <image
+            href="/learning-path/st2starshadow1.svg"
+            x={-10}
+            y={-4730}
+            width={350}
+          />
 
-        <image
-          href="/learning-path/bgstage2.svg"
-          x={-50}
-          y={-250}
-          width={500}
-        />
-        <image
-          href="/learning-path/st2starshadow1.svg"
-          x={-40}
-          y={3270}
-          width={300}
-        />
-        <image
-          href="/learning-path/st2starshadow3.svg"
-          x={20}
-          y={2000}
-          width={160}
-        />
-        <image
-          href="/learning-path/st2starshadow4.svg"
-          x={20}
-          y={1430}
-          width={160}
-        />
-        <image
-          href="/learning-path/st2starshadow5.svg"
-          x={-70}
-          y={780}
-          width={270}
-        />
-        <image
-          href="/learning-path/st2starshadow2.svg"
-          x={0}
-          y={2670}
-          width={220}
-        />
-        <image href="/learning-path/l2h5.svg" x={-75} y={920} width={220} />
-        <image href="/learning-path/stage3.svg" x={-45} y={-1600} width={500} />
-        <image
-          href="/learning-path/icebiom.svg"
-          x={-750}
-          y={-170}
-          width={1400}
-        />
+          <image href="/learning-path/l2h5.svg" x={-75} y={920} width={220} />
 
-        <image href="/learning-path/ice3.svg" x={-59} y={254} width={150} />
-        <image href="/learning-path/river2.svg" x={-420} y={5200} width={900} />
-        <image
-          href="/learning-path/Ruderboot.svg"
-          x={200}
-          y={5435}
-          width={70}
-        />
+          <image href="/learning-path/treer.svg" x={290} y={5780} width={180} />
 
-        <image href="/learning-path/treer.svg" x={290} y={5780} width={180} />
-        <image href="/learning-path/icetree.svg" x={-5} y={230} width={30} />
-        <image href="/learning-path/gberg.svg" x={-130} y={210} width={200} />
-        <image href="/learning-path/berg2.svg" x={-145} y={425} width={200} />
-        <image href="/learning-path/gs1.svg" x={-130} y={6440} width={260} />
-        <image href="/learning-path/gs2.svg" x={160} y={6630} width={70} />
-        <image href="/learning-path/gs3.svg" x={250} y={6600} width={180} />
-        <image href="/learning-path/gs4.svg" x={80} y={6050} width={300} />
-        <image href="/learning-path/gs5.svg" x={-40} y={5620} width={300} />
-        <image href="/learning-path/gs6.svg" x={190} y={5165} width={230} />
-        <image href="/learning-path/gs4.svg" x={10} y={4820} width={300} />
-        <image
-          href="/learning-path/starshadow5.svg"
-          x={140}
-          y={4250}
-          width={300}
-        />
+          <image href="/learning-path/gs1.svg" x={-130} y={6440} width={260} />
+          <image href="/learning-path/gs2.svg" x={160} y={6630} width={70} />
+          <image href="/learning-path/gs3.svg" x={250} y={6600} width={180} />
 
-        <image href="/learning-path/treegroup.svg" x={0} y={5550} width={100} />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={0}
+            y={5550}
+            width={100}
+          />
+          <image href="/learning-path/trees.svg" x={200} y={5920} width={150} />
+          <image href="/learning-path/trees.svg" x={-50} y={5720} width={150} />
+          <image href="/learning-path/trees.svg" x={270} y={5220} width={150} />
+          <image href="/learning-path/trees.svg" x={0} y={5040} width={130} />
+          <image href="/learning-path/trees.svg" x={0} y={4060} width={170} />
+          <image
+            href="/learning-path/bigbush.svg"
+            x={-70}
+            y={6510}
+            width={180}
+          />
+          <image href="/learning-path/gras2.svg" x={340} y={6640} width={80} />
+          <image href="/learning-path/grass.svg" x={275} y={6640} width={60} />
 
-        <image href="/learning-path/trees.svg" x={200} y={5920} width={150} />
-        <image href="/learning-path/trees.svg" x={-50} y={5720} width={150} />
-        <image href="/learning-path/trees.svg" x={270} y={5220} width={150} />
-        <image href="/learning-path/trees.svg" x={0} y={5040} width={130} />
-        <image href="/learning-path/trees.svg" x={0} y={4060} width={170} />
+          <image href="/learning-path/l2h1.svg" x={-30} y={3450} width={180} />
+          <image href="/learning-path/l2h2.svg" x={240} y={3130} width={180} />
+          <image href="/learning-path/l2h3.svg" x={-50} y={2890} width={160} />
+          <image href="/learning-path/l2h3.svg" x={-60} y={1660} width={180} />
+          <image href="/learning-path/l2h41.svg" x={220} y={2530} width={230} />
+          <image href="/learning-path/l2h4.svg" x={240} y={-500} width={220} />
+          <image href="/learning-path/l2h5.svg" x={-40} y={2290} width={150} />
+          <image href="/learning-path/l2h6.svg" x={200} y={2150} width={220} />
+          <image href="/learning-path/rail.png" x={280} y={4260} width={180} />
+          <image
+            href="/learning-path/Schienengruppe.png"
+            x={-290}
+            y={980}
+            width={520}
+          />
+          <image href="/learning-path/train.svg" x={310} y={4330} width={110} />
+          <image href="/learning-path/town.svg" x={225} y={2125} width={420} />
+          <image
+            href="/learning-path/bushes.svg"
+            x={265}
+            y={3665}
+            width={440}
+          />
+          <image
+            href="/learning-path/stumpf1.svg"
+            x={-38}
+            y={3465}
+            width={160}
+          />
+          <image
+            href="/learning-path/forest.svg"
+            x={265}
+            y={3225}
+            width={240}
+          />
+          <image href="/learning-path/treer.svg" x={270} y={4835} width={230} />
+          <image
+            href="/learning-path/bigtreegroup.svg"
+            x={-175}
+            y={1045}
+            width={260}
+          />
+          <image
+            href="/learning-path/balloon.svg"
+            x={310}
+            y={-500}
+            width={100}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={-30}
+            y={2380}
+            width={90}
+          />
+          <image
+            href="/learning-path/treehouse.svg"
+            x={300}
+            y={2680}
+            width={120}
+          />
+          <image href="/learning-path/tree2.svg" x={275} y={6340} width={120} />
+          <image href="/learning-path/tree1.svg" x={-70} y={6190} width={180} />
+          <image
+            href="/learning-path/icebiom4.svg"
+            x={-420}
+            y={-10200}
+            width={1150}
+          />
+          <image
+            href="/learning-path/river2.svg"
+            x={-1030}
+            y={4420}
+            width={2200}
+          />
+          <image
+            href="/learning-path/Ruderboot.svg"
+            x={200}
+            y={4900}
+            width={70}
+          />
+          {/* HintergundVektor für 1. Stern*/}
+          <image href="/learning-path/gs4.svg" x={80} y={5240} width={380} />
 
-        <image href="/learning-path/bigbush.svg" x={-70} y={6510} width={180} />
-        <image href="/learning-path/gras2.svg" x={340} y={6640} width={80} />
-        <image href="/learning-path/grass.svg" x={275} y={6640} width={60} />
+          {/* HintergundVektor für 2. Stern*/}
+          <image href="/learning-path/gs5.svg" x={-40} y={4390} width={380} />
 
-        <image
-          href="/learning-path/railhill.svg"
-          x={255}
-          y={4060}
-          width={140}
-        />
+          {/* HintergundVektor für 3. Stern*/}
+          <image
+            href="/learning-path/starshadow5.svg"
+            x={90}
+            y={3570}
+            width={350}
+          />
+          {/* HintergundVektor für 4. Stern*/}
+          <image
+            href="/learning-path/starshadow6.svg"
+            x={-90}
+            y={2625}
+            width={350}
+          />
+          {/* HintergundVektor für 5. Stern*/}
+          <image href="/learning-path/gs6.svg" x={115} y={1765} width={350} />
 
-        <image href="/learning-path/l2h1.svg" x={-30} y={3450} width={180} />
-        <image href="/learning-path/l2h2.svg" x={240} y={3130} width={180} />
+          {/* HintergundVektor für 6. Stern*/}
+          <image href="/learning-path/gs4.svg" x={10} y={1050} width={410} />
 
-        <image href="/learning-path/l2h3.svg" x={-50} y={2890} width={160} />
-        <image href="/learning-path/l2h3.svg" x={-60} y={1660} width={180} />
+          {/* Railhill*/}
+          <image
+            href="/learning-path/railhill.svg"
+            x={255}
+            y={1400}
+            width={180}
+          />
+        </g>
 
-        <image href="/learning-path/l2h41.svg" x={220} y={2530} width={230} />
-
-        <image href="/learning-path/l2h4.svg" x={240} y={1400} width={220} />
-
-        <image href="/learning-path/l2h5.svg" x={-40} y={2290} width={150} />
-
-        <image href="/learning-path/l2h6.svg" x={200} y={2150} width={220} />
-        <image href="/learning-path/rail.png" x={280} y={4260} width={180} />
-        <image
-          href="/learning-path/Schienengruppe.png"
-          x={-260}
-          y={4160}
-          width={440}
-        />
-        <image href="/learning-path/train.svg" x={310} y={4330} width={110} />
-
-        <image href="/learning-path/town.svg" x={225} y={2125} width={420} />
-
-        <image href="/learning-path/bushes.svg" x={265} y={3665} width={440} />
-        <image href="/learning-path/stumpf1.svg" x={-38} y={3465} width={160} />
-        <image href="/learning-path/forest.svg" x={265} y={3225} width={240} />
-        <image href="/learning-path/treer.svg" x={270} y={4835} width={230} />
-        <image
-          href="/learning-path/bigtreegroup.svg"
-          x={-175}
-          y={1045}
-          width={260}
-        />
-        <image href="/learning-path/balloon.svg" x={310} y={1340} width={100} />
-
-        <image
-          href="/learning-path/treegroup.svg"
-          x={-30}
-          y={2380}
-          width={90}
-        />
-        <image
-          href="/learning-path/treehouse.svg"
-          x={300}
-          y={2680}
-          width={120}
-        />
-        <image href="/learning-path/tree2.svg" x={275} y={6340} width={120} />
-        <image href="/learning-path/tree1.svg" x={-70} y={6190} width={180} />
-
-        {exam ==
-          2 /* add feedback button without external image using text and rectangle*/ && (
+        {exam === 2 && (
           <>
             <rect
-              x={200 + 0}
-              y={5700}
+              x={200}
+              y={12750}
               width={200}
               height={50}
-              radius={10}
+              rx={10}
               fill="white"
               stroke="black"
               strokeWidth={1}
@@ -226,9 +294,9 @@ export function LearningPathMap() {
             />
             <text
               x={200 + 100}
-              y={5700 + 30}
+              y={12750 + 30}
               fontSize={20}
-              fill="black"
+              fill="#007EC1"
               textAnchor="middle"
               className="pointer-events-none"
             >
@@ -237,51 +305,57 @@ export function LearningPathMap() {
           </>
         )}
 
+        {/* Linien zwischen den Lessons – abwechselnd links/rechts gekrümmt */}
         {lines.map((l, i) => {
           const x1 = l.start.position!.x
-          const y1 = mapHeight - l.start.position!.y
+          const y1 = mapHeight - l.start.position!.y * verticalScale
           const x2 = l.end.position!.x
-          const y2 = mapHeight - l.end.position!.y
+          const y2 = mapHeight - l.end.position!.y * verticalScale
 
-          if (y1 === y2) {
-            // Zeichne eine gerade Linie
-            return (
-              <line
-                key={i}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="gray"
-                strokeWidth={8}
-              />
-            )
-          } else {
-            // Zeichne eine gebogene Linie (Quadratische Bezier-Kurve)
-            const midX = (x1 + x2) / 2
-            const midY = (y1 + y2) / 2
-            const offset = 50
+          const midX = (x1 + x2) / 2
+          const midY = (y1 + y2) / 2
 
-            return (
+          const dx = x2 - x1
+          const dy = y2 - y1
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1
+          const perpX = -dy / dist
+          const perpY = dx / dist
+          const direction = i % 2 === 0 ? -1 : 1
+          const offset = dist * 0.2
+          const cX = midX + direction * offset * perpX
+          const cY = midY + direction * offset * perpY
+          const dAttr = `M ${x1} ${y1} Q ${cX} ${cY} ${x2} ${y2}`
+
+          // Wenn der Startknoten zu 100% gelöst ist, Linie grün einfärben
+          const startSolved = isWholeLessonDonePercentage(l.start)
+          const strokeColor = startSolved === 1 ? '#1DE669' : '#DBF49E'
+
+          return (
+            <Fragment key={i}>
+              {/* Breitere Linie (10px dicker) im Hintergrund */}
               <path
-                key={i}
-                d={`M ${x1} ${y1} Q ${midX} ${midY + offset} ${x2} ${y2}`}
-                stroke="gray"
-                strokeWidth={8}
+                d={dAttr}
+                stroke="#DBF49E"
+                strokeWidth={26}
                 fill="none"
+                strokeLinecap="round"
+                style={{
+                  filter: 'drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25))',
+                }}
               />
-            )
-          }
+              {/* Originale Linie */}
+              <path
+                d={dAttr}
+                stroke={strokeColor}
+                strokeWidth={20}
+                fill="none"
+                strokeLinecap="round"
+              />
+            </Fragment>
+          )
         })}
 
-        {/*lessonDetails && (
-          <circle
-            cx={lessonDetails.position!.x}
-            cy={mapHeight - lessonDetails.position!.y}
-            r={35}
-            fill={'red'}
-          ></circle>
-        )*/}
+        {/* Darstellung der Lessons */}
         {elements.map((el, i) => {
           let thisIsHighlighted = false
           if (
@@ -297,58 +371,66 @@ export function LearningPathMap() {
           }
           let notMutedYet = false
           if (
-            el.source.type == 'challenge' &&
+            el.source.type === 'challenge' &&
             el.solvedPercentage < 1 &&
             !isMuted
           ) {
             isMuted = true
             notMutedYet = true
           }
-          if (
-            somePartialSolved &&
-            el.solvedPercentage == 0 &&
-            thisIsHighlighted
-          ) {
-            alreadyHighlighted = false
-            thisIsHighlighted = false
+
+          // Berechnung der zentrierten Koordinaten mit Skalierung
+          const cx = el.source.position!.x + 5
+          const cy = mapHeight - el.source.position!.y * verticalScale
+          const isChallenge = el.source.type === 'challenge'
+          const radius = isChallenge ? 65 : circleRadius
+          const outerRadius = radius + 2
+
+          // Helferfunktion zum Erzeugen der Click-Parameter
+          const getClickParams = () => {
+            const params: {
+              lesson: Lesson
+              solvedPercentage: number
+              exam: number
+              history: { push: (url: string) => void }
+              nextElement?: { source: Lesson; solvedPercentage: number }
+            } = {
+              lesson: el.source,
+              solvedPercentage: el.solvedPercentage,
+              exam,
+              history,
+            }
+            if (elements[i + 1]) {
+              params.nextElement = elements[i + 1]
+            }
+            return params
           }
-          const iconSize = el.source.iconSize || 26
+
           return (
             <Fragment key={i}>
-              {
+              {/* Weißer Highlight-Kreis */}
+              {thisIsHighlighted && el.solvedPercentage === 0 && (
                 <circle
-                  cx={el.source.position!.x}
-                  cy={mapHeight - el.source.position!.y}
-                  r={39}
+                  cx={cx}
+                  cy={cy}
+                  r={radius + 5}
                   fill="none"
-                  className="stroke-green-500"
-                  strokeWidth={8}
-                  strokeDasharray={
-                    Math.round(el.solvedPercentage * 246).toString() + ' 1000'
-                  }
-                  transform={`rotate(-90 ${el.source.position!.x} ${mapHeight - el.source.position!.y})`}
-                ></circle>
-              }
-              {thisIsHighlighted && el.solvedPercentage == 0 && (
-                <circle
-                  cx={el.source.position!.x}
-                  cy={mapHeight - el.source.position!.y}
-                  r={35}
-                  fill="none"
-                  className="stroke-white"
+                  className="stroke-white/50"
                   strokeWidth={13}
-                ></circle>
+                />
               )}
+
+              {/* Sprechblase mit Button (bei Hervorhebung) */}
               {thisIsHighlighted && (
                 <>
                   <polygon
-                    points={`${el.source.position!.x},${mapHeight - el.source.position!.y + 47} ${el.source.position!.x - 40},${mapHeight - el.source.position!.y + 95} ${el.source.position!.x + 40},${mapHeight - el.source.position!.y + 95}`}
+                    points={`${cx},${cy + radius - 3} ${cx - 40},${cy + radius + 40} ${cx + 40},${cy + radius + 40}`}
                     fill="white"
                     className="filter drop-shadow-md"
                   />
                   <foreignObject
                     x="10%"
-                    y={mapHeight - el.source.position!.y + 60}
+                    y={cy + radius + 10}
                     width="80%"
                     height={120}
                   >
@@ -360,13 +442,7 @@ export function LearningPathMap() {
                         className="bg-blue-500 text-white py-2 px-4 rounded-full mt-2 hover:bg-blue-600 transition-colors"
                         onClick={e => {
                           e.stopPropagation()
-                          handleLearningPathStepClick({
-                            lesson: el.source,
-                            solvedPercentage: el.solvedPercentage,
-                            exam,
-                            history,
-                            nextElement: elements[i + 1],
-                          })
+                          handleLearningPathStepClick(getClickParams())
                         }}
                       >
                         {el.solvedPercentage > 0
@@ -386,100 +462,123 @@ export function LearningPathMap() {
                 </>
               )}
 
+              {/* Klickbarer Kreis (gefüllter Kreis mit weißem Stroke und Drop-Shadow) */}
               <circle
-                cx={el.source.position!.x}
-                cy={mapHeight - el.source.position!.y}
-                r={35}
+                cx={cx}
+                cy={cy}
+                r={radius}
                 fill={
-                  el.source.type == 'new-skill'
-                    ? 'rebeccapurple'
-                    : el.source.type == 'challenge'
-                      ? '#f7bc02'
-                      : el.source.type == 'video'
-                        ? '#a78bfa'
-                        : 'gray'
+                  el.solvedPercentage === 1
+                    ? 'green'
+                    : el.source.type === 'new-skill'
+                      ? 'rebeccapurple'
+                      : el.source.type === 'challenge'
+                        ? '#f7bc02'
+                        : el.source.type === 'video'
+                          ? '#a78bfa'
+                          : 'gray'
                 }
-                className="cursor-pointer"
-                onClick={() => {
-                  handleLearningPathStepClick({
-                    lesson: el.source,
-                    solvedPercentage: el.solvedPercentage,
-                    exam,
-                    history,
-                    nextElement: elements[i + 1],
-                  })
+                stroke="white"
+                strokeWidth={4}
+                style={{
+                  filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.25))',
+                  cursor: 'pointer',
                 }}
-              ></circle>
+                onClick={e => {
+                  e.stopPropagation()
+                  handleLearningPathStepClick(getClickParams())
+                }}
+              />
+              {/* Icon, falls definiert */}
               {el.source.icon && (
                 <image
                   href={el.source.icon}
-                  x={el.source.position!.x - iconSize / 2}
-                  y={mapHeight - el.source.position!.y - iconSize / 2}
-                  width={iconSize}
-                  height={iconSize}
-                  fill="white"
-                  className="pointer-events-none"
-                />
-              )}
-              {el.source.type == 'challenge' && (
-                <image
-                  href="/learning-path/star.svg"
-                  x={el.source.position!.x - 25}
-                  y={mapHeight - el.source.position!.y - 25}
-                  width={50}
-                  height={50}
-                  fill="white"
+                  x={cx - 13}
+                  y={cy - 13}
+                  width={26}
+                  height={26}
                   className="pointer-events-none"
                 />
               )}
 
-              <>
-                {[el].map((el, i) => {
-                  if (el.source.type == 'challenge') {
-                    return (
-                      <text
-                        key={'challenge-text' + i}
-                        x={el.source.position!.x}
-                        y={mapHeight - el.source.position!.y + 9}
-                        textAnchor="middle"
-                        fontSize={18}
-                        className="pointer-events-none"
-                      >
-                        {parseInt(el.source.title.replace(/[^0-9]/g, ''))}
-                      </text>
-                    )
-                  }
-                  return null
-                })}
-              </>
-              {el.source.type == 'video' && (
+              {/* Challenge-Stern */}
+              {isChallenge && (
+                <image
+                  href="/learning-path/star.svg"
+                  x={cx - 40}
+                  y={cy - 40}
+                  width={80}
+                  height={80}
+                  className="cursor-pointer"
+                  onClick={e => {
+                    e.stopPropagation()
+                    handleLearningPathStepClick(getClickParams())
+                  }}
+                />
+              )}
+
+              {/* Challenge-Text */}
+              {isChallenge && (
+                <text
+                  x={cx}
+                  y={cy + 12}
+                  textAnchor="middle"
+                  fontSize={24}
+                  fill="blue"
+                  className="pointer-events-none"
+                >
+                  {parseInt(el.source.title.replace(/[^0-9]/g, ''))}
+                </text>
+              )}
+
+              {/* Video-Icon */}
+              {el.source.type === 'video' && (
                 <image
                   href="/learning-path/video.svg"
-                  x={el.source.position!.x - 20}
-                  y={mapHeight - el.source.position!.y - 20}
+                  x={cx - 20}
+                  y={cy - 20}
                   width={40}
                   height={40}
-                  fill="white"
                   className="pointer-events-none"
                 />
               )}
-              {el.solvedPercentage == 1 && (
+
+              {/* Fortschrittskreis (äußerer Kreis mit grünem Rand) */}
+              <circle
+                cx={cx}
+                cy={cy}
+                r={outerRadius - 2}
+                fill="none"
+                className="stroke-green-500"
+                strokeWidth={7}
+                strokeDasharray={
+                  Math.round(
+                    el.solvedPercentage * (2 * Math.PI * (radius + 5)),
+                  ) + ' 1000'
+                }
+                transform={`rotate(-90 ${cx} ${cy})`}
+              />
+
+              {/* Haken bei 100% */}
+              {el.solvedPercentage === 1 && (
                 <text
-                  x={el.source.position!.x + 4}
-                  y={mapHeight - el.source.position!.y + 26}
+                  x={cx + 4}
+                  y={cy + 26}
                   fontSize={32}
                   className="fill-green-400 font-bold pointer-events-none"
                 >
                   ✓
                 </text>
               )}
+
+              {/* "Muted"-Kreis */}
               {isMuted && !notMutedYet && (
                 <circle
-                  cx={el.source.position!.x}
-                  cy={mapHeight - el.source.position!.y}
-                  r={40}
-                  className="fill-gray-600/60 pointer-events-none"
-                ></circle>
+                  cx={cx}
+                  cy={cy}
+                  r={radius - 2}
+                  className="fill-gray-200/60 pointer-events-none"
+                />
               )}
             </Fragment>
           )
@@ -489,12 +588,11 @@ export function LearningPathMap() {
   )
 }
 
-interface LearningPathStepParams {
+export interface LearningPathStepParams {
   lesson: Lesson
   solvedPercentage: number
   exam: number
   history?: { push: (url: string) => void }
-  // Only used for video lessons:
   nextElement?: { source: Lesson; solvedPercentage: number }
 }
 
@@ -510,7 +608,6 @@ export function handleLearningPathStepClick({
       console.warn('No next element provided for video lesson')
       return
     }
-
     const lessonDetails = nextElement.source
     const step = lessonDetails.steps[0]
     setupExercise(
@@ -525,7 +622,6 @@ export function handleLearningPathStepClick({
       ExerciseViewStore.update(s => {
         s.tag = `${lessonDetails.title}#${step.exercise.id}#`
         s.completed = s.checks.map((_, i) =>
-          // Decoupled access to the player profile store
           PlayerProfileStore.getRawState().progress[
             exam
           ].learningPathTags.includes(relevantKeys[i]),
@@ -551,7 +647,6 @@ export function handleLearningPathStepClick({
     return
   }
 
-  // Non-video step logic
   if (lesson.steps.length === 1) {
     const step = lesson.steps[0]
     setupExercise(
@@ -604,11 +699,10 @@ export function handleLearningPathStepClick({
       s.needReset2 = true
     })
   } else {
-    // For lessons with multiple steps:
     const exerciseIds = lesson.steps.map(s => s.exercise.id)
     const relevantKeys = findRelevantKeys(lesson)
     ExerciseViewStore.update(s => {
-      s.id = 123456 // temporary id; adjust as needed
+      s.id = 123456 // temporäre ID; bitte anpassen, falls nötig
       s.seed = generateSeed()
       s._exerciseIDs = exerciseIds
       s.dataPerExercise = {}
@@ -694,9 +788,7 @@ export function handleLearningPathStepClick({
       s.tasksCollapseState = s.pages.map(() => false)
       s.showHelp = false
 
-      s.poppy = exerciseIds.some(id => {
-        return id == 129
-      })
+      s.poppy = exerciseIds.some(id => id === 129)
     })
     if (history)
       history.push(
