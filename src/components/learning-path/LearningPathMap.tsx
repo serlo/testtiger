@@ -1,7 +1,7 @@
 import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../store/player-profile-store'
 import { Lesson } from '@/data/types'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import {
   setDisplayIndices,
   setupExercise,
@@ -20,12 +20,13 @@ import {
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const history = useHistory()
+  const [activeBubble, setActiveBubble] = useState<number | null>(null)
 
   // Design-spezifische Offsets und Skalierung
   const path = navigationData[exam].path
   const partVerticalOffset = 2400 // Offset pro Part (Themenpfad)
   const additionalVerticalOffsetPerLesson = 80 // Zusätzlicher Offset pro Lesson innerhalb eines Parts
-  const imageOffset = 7020 // Vertikaler Offset für die Hintergrundbilder
+  const imageOffset = 7020 - 45 // Vertikaler Offset für die Hintergrundbilder
   const verticalScale = 1.1 // Skalierungsfaktor für y-Koordinaten der Elemente
   const circleRadius = 50 // Standardkreisradius (außer bei Challenge)
   const mapHeight =
@@ -75,7 +76,10 @@ export function LearningPathMap() {
   let alreadyHighlighted = false
 
   return (
-    <div className="bg-gradient-to-t from-green-300 to-blue-300">
+    <div
+      className="bg-gradient-to-t from-green-300 to-blue-300"
+      onClick={() => setActiveBubble(null)}
+    >
       <svg viewBox={`0 0 375 ${mapHeight}`}>
         {/* Hintergrundbilder in einer Gruppe mit Translation */}
         <g transform={`translate(0, ${imageOffset})`}>
@@ -132,8 +136,12 @@ export function LearningPathMap() {
             y={-4730}
             width={350}
           />
-
-          <image href="/learning-path/l2h5.svg" x={-75} y={-920} width={220} />
+          <image
+            href="/learning-path/grasbg.svg"
+            x={-150}
+            y={5940}
+            width={400}
+          />
 
           <image href="/learning-path/treer.svg" x={290} y={5780} width={180} />
 
@@ -141,17 +149,12 @@ export function LearningPathMap() {
           <image href="/learning-path/gs2.svg" x={160} y={6630} width={70} />
           <image href="/learning-path/gs3.svg" x={250} y={6600} width={180} />
 
-          <image
-            href="/learning-path/treegroup.svg"
-            x={0}
-            y={5550}
-            width={100}
-          />
-          <image href="/learning-path/trees.svg" x={200} y={5920} width={150} />
-          <image href="/learning-path/trees.svg" x={-50} y={5720} width={150} />
+          <image href="/learning-path/trees.svg" x={260} y={5900} width={150} />
+          <image href="/learning-path/trees.svg" x={-10} y={6000} width={150} />
+          <image href="/learning-path/trees.svg" x={-50} y={5700} width={150} />
           <image href="/learning-path/trees.svg" x={270} y={5220} width={150} />
           <image href="/learning-path/trees.svg" x={0} y={5040} width={130} />
-          <image href="/learning-path/trees.svg" x={0} y={4060} width={170} />
+          <image href="/learning-path/trees.svg" x={0} y={4160} width={170} />
           <image
             href="/learning-path/bigbush.svg"
             x={-70}
@@ -161,11 +164,7 @@ export function LearningPathMap() {
           <image href="/learning-path/gras2.svg" x={340} y={6640} width={80} />
           <image href="/learning-path/grass.svg" x={275} y={6640} width={60} />
 
-          <image href="/learning-path/l2h3.svg" x={-50} y={2890} width={160} />
-          <image href="/learning-path/l2h3.svg" x={-60} y={1660} width={180} />
-          <image href="/learning-path/l2h41.svg" x={220} y={2530} width={230} />
-          <image href="/learning-path/l2h4.svg" x={240} y={-1900} width={220} />
-          <image href="/learning-path/l2h5.svg" x={-40} y={2290} width={150} />
+          <image href="/learning-path/l2h4.svg" x={240} y={-4160} width={220} />
 
           <image
             href="/learning-path/Schienengruppe.png"
@@ -175,32 +174,15 @@ export function LearningPathMap() {
           />
 
           <image href="/learning-path/treer.svg" x={270} y={4835} width={230} />
-          <image
-            href="/learning-path/bigtreegroup.svg"
-            x={-175}
-            y={-1045}
-            width={260}
-          />
-          <image
-            href="/learning-path/balloon.svg"
-            x={310}
-            y={-1500}
-            width={100}
-          />
-          <image
-            href="/learning-path/treegroup.svg"
-            x={-30}
-            y={2380}
-            width={90}
-          />
+
           <image
             href="/learning-path/treehouse.svg"
             x={300}
-            y={2680}
+            y={-4120}
             width={120}
           />
           <image href="/learning-path/tree2.svg" x={275} y={6340} width={120} />
-          <image href="/learning-path/tree1.svg" x={-70} y={6190} width={180} />
+
           <image
             href="/learning-path/icebiom4.svg"
             x={-420}
@@ -219,6 +201,7 @@ export function LearningPathMap() {
             y={4900}
             width={70}
           />
+
           {/* HintergundVektor für 1. Stern*/}
           <image href="/learning-path/gs4.svg" x={80} y={5240} width={380} />
 
@@ -228,8 +211,8 @@ export function LearningPathMap() {
           {/* HintergundVektor für 3. Stern*/}
           <image
             href="/learning-path/starshadow5.svg"
-            x={90}
-            y={3570}
+            x={160}
+            y={3500}
             width={350}
           />
           {/* HintergundVektor für 4. Stern*/}
@@ -286,6 +269,237 @@ export function LearningPathMap() {
             y={-200}
             width={700}
           />
+          <image href="/learning-path/raft.svg" x={250} y={80} width={80} />
+          <image href="/learning-path/wind.svg" x={200} y={-150} width={30} />
+          {/* hill4*/}
+          <image href="/learning-path/l2h5.svg" x={-75} y={-920} width={220} />
+          <image
+            href="/learning-path/bigtreegroup.svg"
+            x={-175}
+            y={-800}
+            width={260}
+          />
+
+          {/* balloon*/}
+          <image
+            href="/learning-path/l2h41.svg"
+            x={190}
+            y={-1370}
+            width={260}
+          />
+          <image
+            href="/learning-path/balloon.svg"
+            x={300}
+            y={-1350}
+            width={120}
+          />
+          <image
+            href="/learning-path/l2h41.svg"
+            x={190}
+            y={-3770}
+            width={260}
+          />
+          <image
+            href="/learning-path/mixedtrees.svg"
+            x={250}
+            y={-3650}
+            width={180}
+          />
+          {/* hill5*/}
+          <image href="/learning-path/l2h3.svg" x={-50} y={-1550} width={160} />
+          {/* hill6*/}
+          <image
+            href="/learning-path/l2h5.svg"
+            x={-60}
+            y={2290 - 4300}
+            width={200}
+          />
+          {/* hill7*/}
+          <image
+            href="/learning-path/l2h2.svg"
+            x={240}
+            y={410 - 2200}
+            width={180}
+          />
+          <image
+            href="/learning-path/forest.svg"
+            x={265}
+            y={500 - 2200}
+            width={240}
+          />
+          {/* hillnext*/}
+          <image
+            href="/learning-path/l2h2.svg"
+            x={240}
+            y={410 - 3400}
+            width={180}
+          />
+          <image
+            href="/learning-path/forest.svg"
+            x={265}
+            y={500 - 3400}
+            width={240}
+          />
+
+          <image
+            href="/learning-path/treegroup.svg"
+            x={-30}
+            y={2380 - 4250}
+            width={90}
+          />
+          {/* hill7*/}
+          <image href="/learning-path/l2h3.svg" x={-50} y={-3290} width={180} />
+          {/* hill8*/}
+          <image
+            href="/learning-path/bighill.svg"
+            x={175}
+            y={-2450}
+            width={380}
+          />
+          <image
+            href="/learning-path/bighill2.svg"
+            x={-190}
+            y={-4550}
+            width={380}
+          />
+
+          {/* trees on river*/}
+
+          <image
+            href="/learning-path/treegroup.svg"
+            x={180 + 10}
+            y={4960 + 50}
+            width={60}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={210}
+            y={4960 + 50}
+            width={100}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={290 + 10}
+            y={4990 + 50}
+            width={60}
+          />
+          {/*Trees under stage 2*/}
+          <image
+            href="/learning-path/bgtrees.svg"
+            x={160 + 30}
+            y={4990 - 3880}
+            width={200}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={180 + 30}
+            y={4960 - 3880}
+            width={60}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={240 + 30}
+            y={4960 - 3880}
+            width={60}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={290 + 30}
+            y={4990 - 3880}
+            width={60}
+          />
+
+          <image
+            href="/learning-path/treegroup.svg"
+            x={180 + 10 + 30}
+            y={4960 + 50 - 3880}
+            width={60}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={210 + 30}
+            y={4960 + 50 - 3880}
+            width={100}
+          />
+          <image
+            href="/learning-path/treegroup.svg"
+            x={290 + 10 + 30}
+            y={4990 + 50 - 3880}
+            width={60}
+          />
+          {/*other Trees*/}
+
+          <image href="/learning-path/trees.svg" x={220} y={4380} width={170} />
+          <image href="/learning-path/trees.svg" x={250} y={3480} width={170} />
+          <image href="/learning-path/trees.svg" x={300} y={3080} width={170} />
+          <image href="/learning-path/trees.svg" x={220} y={2380} width={170} />
+          <image href="/learning-path/tree2.svg" x={275} y={4590} width={120} />
+          <image href="/learning-path/birch.svg" x={-40} y={3200} width={240} />
+          <image
+            href="/learning-path/mixedtrees.svg"
+            x={220}
+            y={3900}
+            width={200}
+          />
+          <image
+            href="/learning-path/mixedtrees.svg"
+            x={-50}
+            y={3650}
+            width={200}
+          />
+          <image
+            href="/learning-path/mixedtrees.svg"
+            x={-50}
+            y={2520}
+            width={200}
+          />
+          <image
+            href="/learning-path/treeelement.svg"
+            x={200}
+            y={2680}
+            width={400}
+          />
+          <image
+            href="/learning-path/treeelement2.svg"
+            x={-190}
+            y={1950}
+            width={400}
+          />
+          <image
+            href="/learning-path/gs2.svg"
+            x={160 - 150}
+            y={6630 - 1000}
+            width={70}
+          />
+          <image
+            href="/learning-path/gs3.svg"
+            x={250 - 150}
+            y={6600 - 1000}
+            width={180}
+          />
+          <image href="/learning-path/tree1.svg" x={-70} y={6190} width={180} />
+          <image href="/learning-path/tree1.svg" x={-70} y={5490} width={180} />
+          <image href="/learning-path/trees.svg" x={-20} y={5280} width={170} />
+          <image href="/learning-path/grass.svg" x={340} y={4700} width={60} />
+          {/*Stage 3*/}
+          <image
+            href="/learning-path/icemountain.svg"
+            x={-200}
+            y={-5690}
+            width={350}
+          />
+          <image
+            href="/learning-path/mudmountain.svg"
+            x={170}
+            y={-5430}
+            width={450}
+          />
+          <image
+            href="/learning-path/iceberg.svg"
+            x={170}
+            y={-5900}
+            width={430}
+          />
         </g>
 
         {exam === 2 && (
@@ -320,9 +534,9 @@ export function LearningPathMap() {
         {/* Linien zwischen den Lessons – abwechselnd links/rechts gekrümmt */}
         {lines.map((l, i) => {
           const x1 = l.start.position!.x
-          const y1 = mapHeight - l.start.position!.y * verticalScale
+          const y1 = mapHeight - l.start.position!.y * verticalScale - 45
           const x2 = l.end.position!.x
-          const y2 = mapHeight - l.end.position!.y * verticalScale
+          const y2 = mapHeight - l.end.position!.y * verticalScale - 45
 
           const midX = (x1 + x2) / 2
           const midY = (y1 + y2) / 2
@@ -393,7 +607,7 @@ export function LearningPathMap() {
 
           // Berechnung der zentrierten Koordinaten mit Skalierung
           const cx = el.source.position!.x + 5
-          const cy = mapHeight - el.source.position!.y * verticalScale
+          const cy = mapHeight - el.source.position!.y * verticalScale - 45
           const isChallenge = el.source.type === 'challenge'
           const radius = isChallenge ? 65 : circleRadius
           const outerRadius = radius + 2
@@ -433,11 +647,11 @@ export function LearningPathMap() {
               )}
 
               {/* Sprechblase mit Button (bei Hervorhebung) */}
-              {thisIsHighlighted && (
-                <>
+              {activeBubble === i && (
+                <g onClick={e => e.stopPropagation()}>
                   <polygon
-                    points={`${cx},${cy + radius - 3} ${cx - 40},${cy + radius + 40} ${cx + 40},${cy + radius + 40}`}
-                    fill="white"
+                    points={`${cx},${cy + radius - 5} ${cx - 20},${cy + radius + 10.5} ${cx + 20},${cy + radius + 10.5}`}
+                    fill="rgba(255,255,255,0.9)"
                     className="filter drop-shadow-md"
                   />
                   <foreignObject
@@ -446,7 +660,7 @@ export function LearningPathMap() {
                     width="80%"
                     height={120}
                   >
-                    <div className="bg-white p-2 rounded-md shadow-md text-center text-sm h-full z-100">
+                    <div className="bg-white bg-opacity-90 p-2 rounded-3xl shadow-md text-center text-sm h-full z-100">
                       <p className="font-bold mt-3 text-lg">
                         {el.source.title}
                       </p>
@@ -454,6 +668,7 @@ export function LearningPathMap() {
                         className="bg-blue-500 text-white py-2 px-4 rounded-full mt-2 hover:bg-blue-600 transition-colors"
                         onClick={e => {
                           e.stopPropagation()
+                          setActiveBubble(null)
                           handleLearningPathStepClick(getClickParams())
                         }}
                       >
@@ -471,7 +686,7 @@ export function LearningPathMap() {
                       </button>
                     </div>
                   </foreignObject>
-                </>
+                </g>
               )}
 
               {/* Klickbarer Kreis (gefüllter Kreis mit weißem Stroke und Drop-Shadow) */}
@@ -498,7 +713,14 @@ export function LearningPathMap() {
                 }}
                 onClick={e => {
                   e.stopPropagation()
-                  handleLearningPathStepClick(getClickParams())
+                  if (activeBubble === i) {
+                    // Sprechblase ist bereits sichtbar: direkt Aufgabe starten und Sprechblase verstecken
+                    setActiveBubble(null)
+                    handleLearningPathStepClick(getClickParams())
+                  } else {
+                    // Sprechblase anzeigen
+                    setActiveBubble(i)
+                  }
                 }}
               />
               {/* Icon, falls definiert */}
@@ -555,22 +777,6 @@ export function LearningPathMap() {
                 />
               )}
 
-              {/* Fortschrittskreis (äußerer Kreis mit grünem Rand) */}
-              <circle
-                cx={cx}
-                cy={cy}
-                r={outerRadius - 2}
-                fill="none"
-                className="stroke-green-500"
-                strokeWidth={7}
-                strokeDasharray={
-                  Math.round(
-                    el.solvedPercentage * (2 * Math.PI * (radius + 5)),
-                  ) + ' 1000'
-                }
-                transform={`rotate(-90 ${cx} ${cy})`}
-              />
-
               {/* Haken bei 100% */}
               {el.solvedPercentage === 1 && (
                 <text
@@ -592,6 +798,21 @@ export function LearningPathMap() {
                   className="fill-gray-200/60 pointer-events-none"
                 />
               )}
+              {/* Fortschrittskreis (äußerer Kreis mit grünem Rand) */}
+              <circle
+                cx={cx}
+                cy={cy}
+                r={outerRadius - 2}
+                fill="none"
+                className="stroke-green-500"
+                strokeWidth={7}
+                strokeDasharray={
+                  Math.round(
+                    el.solvedPercentage * (2 * Math.PI * (radius + 5)),
+                  ) + ' 1000'
+                }
+                transform={`rotate(-90 ${cx} ${cy})`}
+              />
             </Fragment>
           )
         })}
