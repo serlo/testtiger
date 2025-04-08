@@ -675,13 +675,15 @@ export function handleLearningPathStepClick({
       }))
       s.skill = lesson.title
       s.cropImage = false
-      s.completed = s.checks.map(
+      const completed = s.checks.map(
         (_, i) =>
           solvedPercentage < 1 &&
           PlayerProfileStore.getRawState().progress[
             exam
           ].learningPathTags.includes(relevantKeys[i]),
       )
+      s.completed = completed
+      s.navIndicatorPosition = completed.findIndex(item => item === false) || 0
       s.showEndScreen = false
       s.toHome = true
       s.tag = lesson.title + '#'
@@ -689,7 +691,7 @@ export function handleLearningPathStepClick({
       s.examplePrescreen = false
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
-      s.showIntroScreen = true
+      if (solvedPercentage === 0) s.showIntroScreen = true
       s.introCollapseState = s.pages.map(() => false)
       s.tasksCollapseState = s.pages.map(() => false)
       s.showHelp = false
