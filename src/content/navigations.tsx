@@ -2191,7 +2191,7 @@ export const navigationData: { [key: number]: Navigation } = {
       },
     ],
     mapHeight: 6700,
-    breakPoints: [3300, 500],
+    breakPoints: [6800, 1200],
     path: [
       {
         title: 'Grundlagen',
