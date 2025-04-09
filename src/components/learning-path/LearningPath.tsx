@@ -30,11 +30,22 @@ export function LearningPath() {
   }, [])
 
   function getVisiblePart(scrollTop: number) {
-    return scrollTop > navigationData[exam].breakPoints[0] + 400
-      ? 0
-      : scrollTop > navigationData[exam].breakPoints[1] + 400
-        ? 1
-        : 2
+    if (!scrollDiv.current) return 2
+
+    // Ermittle die maximale Scroll-Distanz
+    const container = scrollDiv.current
+    const maxScroll = container.scrollHeight - container.clientHeight
+
+    // Berechne den relativen Scroll-Fortschritt (0 = oben, 1 = ganz unten)
+    const scrollFraction = scrollTop / maxScroll
+
+    // Definiere relative Schwellenwerte (z. B. 33% und 66% der maximalen Scroll-Distanz)
+    if (scrollFraction > 0.57) {
+      return 0
+    } else if (scrollFraction > 0.13) {
+      return 1
+    }
+    return 2
   }
 
   function handleSelect(selected: string) {
