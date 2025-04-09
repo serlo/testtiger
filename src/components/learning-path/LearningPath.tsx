@@ -30,9 +30,9 @@ export function LearningPath() {
   }, [])
 
   function getVisiblePart(scrollTop: number) {
-    return scrollTop > navigationData[exam].breakPoints[0]
+    return scrollTop > navigationData[exam].breakPoints[0] + 200
       ? 0
-      : scrollTop > navigationData[exam].breakPoints[1]
+      : scrollTop > navigationData[exam].breakPoints[1] + 200
         ? 1
         : 2
   }
@@ -50,11 +50,6 @@ export function LearningPath() {
     }
 
     scrollDiv.current.scrollTo({ top: scrollTop, behavior: 'smooth' })
-    const visiblePart = getVisiblePart(scrollTop)
-    LearningPathStore.update(s => {
-      s.part = visiblePart
-      s.scrollPosition = scrollTop
-    })
   }
 
   return (
