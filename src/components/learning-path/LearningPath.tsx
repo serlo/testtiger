@@ -30,9 +30,9 @@ export function LearningPath() {
   }, [])
 
   function getVisiblePart(scrollTop: number) {
-    return scrollTop > navigationData[exam].breakPoints[0] + 1600
+    return scrollTop > navigationData[exam].breakPoints[0] + 400
       ? 0
-      : scrollTop > navigationData[exam].breakPoints[1] + 800
+      : scrollTop > navigationData[exam].breakPoints[1] + 400
         ? 1
         : 2
   }
