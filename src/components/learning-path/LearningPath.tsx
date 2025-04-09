@@ -30,11 +30,22 @@ export function LearningPath() {
   }, [])
 
   function getVisiblePart(scrollTop: number) {
-    return scrollTop > navigationData[exam].breakPoints[0]
-      ? 0
-      : scrollTop > navigationData[exam].breakPoints[1]
-        ? 1
-        : 2
+    if (!scrollDiv.current) return 2
+
+    // Ermittle die maximale Scroll-Distanz
+    const container = scrollDiv.current
+    const maxScroll = container.scrollHeight - container.clientHeight
+
+    // Berechne den relativen Scroll-Fortschritt (0 = oben, 1 = ganz unten)
+    const scrollFraction = scrollTop / maxScroll
+
+    // Definiere relative Schwellenwerte (z. B. 33% und 66% der maximalen Scroll-Distanz)
+    if (scrollFraction > 0.57) {
+      return 0
+    } else if (scrollFraction > 0.13) {
+      return 1
+    }
+    return 2
   }
 
   function handleSelect(selected: string) {
@@ -42,19 +53,18 @@ export function LearningPath() {
 
     let scrollTop = 999999
 
+    // Ermittle die maximale Scroll-Distanz
+    const container = scrollDiv.current
+    const maxScroll = container.scrollHeight - container.clientHeight
+
     if (selected === navigationData[exam].path[1].title) {
-      scrollTop = navigationData[exam].breakPoints[0]
+      scrollTop = maxScroll * 0.57 - container.clientHeight * 0.3
     }
     if (selected === navigationData[exam].path[2].title) {
-      scrollTop = navigationData[exam].breakPoints[1]
+      scrollTop = maxScroll * 0.13 - container.clientHeight * 0.5
     }
 
     scrollDiv.current.scrollTo({ top: scrollTop, behavior: 'smooth' })
-    const visiblePart = getVisiblePart(scrollTop)
-    LearningPathStore.update(s => {
-      s.part = visiblePart
-      s.scrollPosition = scrollTop
-    })
   }
 
   return (

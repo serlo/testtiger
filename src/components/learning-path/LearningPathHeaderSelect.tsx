@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { FaIcon } from '../ui/FaIcon'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
+import { LearningPathStore } from './state/learning-path-store'
 
 interface LearningPathHeaderSelectProp {
   options: Array<{ title: string; percentage: number }>
@@ -16,6 +17,7 @@ export function LearningPathHeaderSelect({
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const dropdownRef = useRef<HTMLUListElement>(null)
+  const part = LearningPathStore.useState(s => s.part)
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -35,6 +37,14 @@ export function LearningPathHeaderSelect({
       dropdownRef.current.style.height = '0px'
     }
   })
+
+  useEffect(() => {
+    if (options.length === 0) return
+    const selectedOption = options.find(
+      option => option.title === options[part].title,
+    )
+    if (selectedOption) setSelected(selectedOption)
+  }, [options, part])
 
   function handleButtonClick() {
     setIsOpen(isOpen => !isOpen)
