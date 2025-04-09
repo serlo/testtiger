@@ -565,11 +565,14 @@ export function handleLearningPathStepClick({
       const relevantKeys = findRelevantKeys(lesson)
       ExerciseViewStore.update(s => {
         s.tag = `${lesson.title}#${step.exercise.id}#`
-        s.completed = s.checks.map((_, i) =>
+        const completed = (s.completed = s.checks.map((_, i) =>
           PlayerProfileStore.getRawState().progress[
             exam
           ].learningPathTags.includes(relevantKeys[i]),
-        )
+        ))
+        s.completed = completed
+        s.navIndicatorPosition =
+          completed.findIndex(item => item === false) || 0
       })
     }
     ExerciseViewStore.update(s => {
@@ -578,6 +581,9 @@ export function handleLearningPathStepClick({
         s.hasExamplePrescreen = true
       }
       s.isChallenge = lesson.type === 'challenge'
+      if (solvedPercentage === 0 && lesson.type === 'challenge') {
+        s.showIntroScreen = true
+      }
       s.introText = lesson.introText
     })
     if (lesson.showExamplePrescreen) {
@@ -691,7 +697,9 @@ export function handleLearningPathStepClick({
       s.examplePrescreen = false
       s.isChallenge = lesson.type === 'challenge'
       s.introText = lesson.introText
-      if (solvedPercentage === 0) s.showIntroScreen = true
+      if (solvedPercentage === 0 && lesson.type === 'challenge') {
+        s.showIntroScreen = true
+      }
       s.introCollapseState = s.pages.map(() => false)
       s.tasksCollapseState = s.pages.map(() => false)
       s.showHelp = false
