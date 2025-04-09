@@ -53,11 +53,15 @@ export function LearningPath() {
 
     let scrollTop = 999999
 
+    // Ermittle die maximale Scroll-Distanz
+    const container = scrollDiv.current
+    const maxScroll = container.scrollHeight - container.clientHeight
+
     if (selected === navigationData[exam].path[1].title) {
-      scrollTop = navigationData[exam].breakPoints[0]
+      scrollTop = maxScroll * 0.57 - container.clientHeight * 0.3
     }
     if (selected === navigationData[exam].path[2].title) {
-      scrollTop = navigationData[exam].breakPoints[1]
+      scrollTop = maxScroll * 0.13 - container.clientHeight * 0.5
     }
 
     scrollDiv.current.scrollTo({ top: scrollTop, behavior: 'smooth' })
