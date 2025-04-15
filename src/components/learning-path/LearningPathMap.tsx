@@ -22,7 +22,7 @@ export function LearningPathMap() {
   const history = useHistory()
   const [activeBubble, setActiveBubble] = useState<number | null>(null)
   const bubbleRef = useRef<HTMLDivElement>(null)
-  const [bubbleHeight, setBubbleHeight] = useState(120)
+  const [bubbleHeight, setBubbleHeight] = useState(124)
 
   useEffect(() => {
     if (activeBubble !== null && bubbleRef.current) {
@@ -676,10 +676,10 @@ export function LearningPathMap() {
                         {/* Pfeil (Polygon) */}
                         <polygon
                           points={`
-              ${cx},${cy + radius - 5}
-              ${cx - 20},${cy + radius + 15.6}
-              ${cx + 20},${cy + radius + 15.6}
-            `}
+                            ${cx},${cy + radius - 5}
+                            ${cx - 20},${cy + radius + 15.6}
+                            ${cx + 20},${cy + radius + 15.6}
+                          `}
                           fill="rgba(255,255,255,0.9)"
                           className="filter drop-shadow-md"
                         />
@@ -689,7 +689,7 @@ export function LearningPathMap() {
                           x={offsetX}
                           y={cy + radius + 15}
                           width={bubbleWidth}
-                          height={bubbleHeight + 4}
+                          height={bubbleHeight}
                         >
                           <div
                             ref={bubbleRef}
