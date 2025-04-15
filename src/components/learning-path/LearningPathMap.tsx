@@ -668,7 +668,7 @@ export function LearningPathMap() {
                     x="10%"
                     y={cy + radius + 10}
                     width="80%"
-                    height={bubbleHeight} // Hier wird die dynamische Höhe genutzt
+                    height={bubbleHeight + 4} // Hier wird die dynamische Höhe genutzt
                   >
                     <div
                       ref={bubbleRef} // Hier wird der Ref gesetzt, damit wir das Element messen können
