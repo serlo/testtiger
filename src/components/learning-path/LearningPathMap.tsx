@@ -23,10 +23,6 @@ export function LearningPathMap() {
   const [activeBubble, setActiveBubble] = useState<number | null>(null)
   const bubbleRef = useRef<HTMLDivElement>(null)
   const [bubbleHeight, setBubbleHeight] = useState(120)
-  const [showArrow, setShowArrow] = useState(false)
-  const [arrowDirection, setArrowDirection] = useState<'up' | 'down' | null>(
-    null,
-  )
 
   useEffect(() => {
     if (activeBubble !== null && bubbleRef.current) {
@@ -841,28 +837,6 @@ export function LearningPathMap() {
           )
         })}
       </svg>
-
-      {/* Test-Pfeil: immer in der Mitte des Screens */}
-      <div
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          cursor: 'pointer',
-          zIndex: 9999,
-        }}
-        onClick={() => {
-          bubbleRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-          })
-        }}
-      >
-        <svg width="40" height="40" viewBox="0 0 24 24">
-          <path d="M12 4l-8 8h16z" fill="black" />
-        </svg>
-      </div>
     </div>
   )
 }
