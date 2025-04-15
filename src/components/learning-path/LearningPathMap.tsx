@@ -1,7 +1,7 @@
 import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../store/player-profile-store'
 import { Lesson } from '@/data/types'
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect, useRef } from 'react'
 import {
   setDisplayIndices,
   setupExercise,
@@ -21,6 +21,20 @@ export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
   const history = useHistory()
   const [activeBubble, setActiveBubble] = useState<number | null>(null)
+  const bubbleRef = useRef<HTMLDivElement>(null)
+  const [bubbleHeight, setBubbleHeight] = useState(120)
+  const [showArrow, setShowArrow] = useState(false)
+  const [arrowDirection, setArrowDirection] = useState<'up' | 'down' | null>(
+    null,
+  )
+
+  useEffect(() => {
+    if (activeBubble !== null && bubbleRef.current) {
+      // Ermittle die aktuelle Höhe des Divs
+      const currentHeight = bubbleRef.current.getBoundingClientRect().height
+      setBubbleHeight(currentHeight)
+    }
+  }, [activeBubble])
 
   // Design-spezifische Offsets und Skalierung
   const path = navigationData[exam].path
@@ -642,7 +656,7 @@ export function LearningPathMap() {
                   r={radius + 5}
                   fill="none"
                   className="stroke-white/50"
-                  strokeWidth={13}
+                  strokeWidth={20}
                 />
               )}
 
@@ -650,7 +664,7 @@ export function LearningPathMap() {
               {activeBubble === i && (
                 <g onClick={e => e.stopPropagation()}>
                   <polygon
-                    points={`${cx},${cy + radius - 5} ${cx - 20},${cy + radius + 10.5} ${cx + 20},${cy + radius + 10.5}`}
+                    points={`${cx},${cy + radius - 5} ${cx - 20},${cy + radius + 10.49} ${cx + 20},${cy + radius + 10.49}`}
                     fill="rgba(255,255,255,0.9)"
                     className="filter drop-shadow-md"
                   />
@@ -658,9 +672,12 @@ export function LearningPathMap() {
                     x="10%"
                     y={cy + radius + 10}
                     width="80%"
-                    height={120}
+                    height={bubbleHeight} // Hier wird die dynamische Höhe genutzt
                   >
-                    <div className="bg-white bg-opacity-90 p-2 rounded-3xl shadow-md text-center text-sm h-full z-100">
+                    <div
+                      ref={bubbleRef} // Hier wird der Ref gesetzt, damit wir das Element messen können
+                      className="bg-white bg-opacity-90 p-4 rounded-3xl shadow-md text-center text-sm z-100"
+                    >
                       <p className="font-bold mt-3 text-lg">
                         {el.source.title}
                       </p>
@@ -706,7 +723,7 @@ export function LearningPathMap() {
                           : 'gray'
                 }
                 stroke="white"
-                strokeWidth={4}
+                strokeWidth={6}
                 style={{
                   filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.25))',
                   cursor: 'pointer',
@@ -746,7 +763,14 @@ export function LearningPathMap() {
                   className="cursor-pointer"
                   onClick={e => {
                     e.stopPropagation()
-                    handleLearningPathStepClick(getClickParams())
+                    if (activeBubble === i) {
+                      // Sprechblase ist bereits sichtbar: direkt Aufgabe starten und Sprechblase verstecken
+                      setActiveBubble(null)
+                      handleLearningPathStepClick(getClickParams())
+                    } else {
+                      // Sprechblase anzeigen
+                      setActiveBubble(i)
+                    }
                   }}
                 />
               )}
@@ -817,6 +841,28 @@ export function LearningPathMap() {
           )
         })}
       </svg>
+
+      {/* Test-Pfeil: immer in der Mitte des Screens */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          cursor: 'pointer',
+          zIndex: 9999,
+        }}
+        onClick={() => {
+          bubbleRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          })
+        }}
+      >
+        <svg width="40" height="40" viewBox="0 0 24 24">
+          <path d="M12 4l-8 8h16z" fill="black" />
+        </svg>
+      </div>
     </div>
   )
 }
