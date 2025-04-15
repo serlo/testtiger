@@ -2441,7 +2441,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreiecksfläche',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
             position: { x: 310, y: 1750 },
             steps: [
@@ -2457,7 +2457,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
             position: { x: 230, y: 1890 },
             steps: [
@@ -2474,7 +2474,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Dreieck zeichnen',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
             position: { x: 100, y: 1900 },
             steps: [
@@ -2814,7 +2814,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
             position: { x: 100, y: 3700 },
             steps: [
@@ -2830,7 +2830,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'new-skill',
             title: 'Satz des Pythagoras',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
             position: { x: 200, y: 3800 },
             steps: [
@@ -2994,7 +2994,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'repetition',
             title: 'Dreieck zeichnen',
-            icon: '/learning-path/NRW_EESA_icons/rechtwinkliges-dreieck.svg',
+            icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
             position: { x: 270, y: 4800 },
             steps: [
