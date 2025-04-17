@@ -649,41 +649,60 @@ export function LearningPathMap() {
               {/* Sprechblase mit Button (bei Hervorhebung) */}
               {activeBubble === i && (
                 <g onClick={e => e.stopPropagation()}>
-                  <polygon
-                    points={`${cx},${cy + radius - 5} ${cx - 20},${cy + radius + 10.5} ${cx + 20},${cy + radius + 10.5}`}
-                    fill="rgba(255,255,255,0.9)"
-                    className="filter drop-shadow-md"
-                  />
-                  <foreignObject
-                    x="10%"
-                    y={cy + radius + 10}
-                    width="80%"
-                    height={120}
-                  >
-                    <div className="bg-white bg-opacity-90 p-2 rounded-3xl shadow-md text-center text-sm h-full z-100 flex flex-col items-center justify-around">
-                      <p className="font-bold text-lg">{el.source.title}</p>
-                      <button
-                        className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition-colors"
-                        onClick={e => {
-                          e.stopPropagation()
-                          setActiveBubble(null)
-                          handleLearningPathStepClick(getClickParams())
-                        }}
-                      >
-                        {el.solvedPercentage > 0
-                          ? el.source.type === 'challenge'
-                            ? 'Challenge weiter'
-                            : el.source.type === 'video'
-                              ? 'Video weiter'
-                              : 'Aufgabe weiter'
-                          : el.source.type === 'challenge'
-                            ? 'Challenge starten'
-                            : el.source.type === 'video'
-                              ? 'Video starten'
-                              : 'Aufgabe starten'}
-                      </button>
-                    </div>
-                  </foreignObject>
+                  {(() => {
+                    const svgWidth = 375 // Breite des viewBox
+                    const bubbleWidth = svgWidth * 0.8 // 80% der Breite (ca. 300px)
+                    const margin = 15 // 15px Abstand zu beiden Rändern
+                    const minX = margin // Minimaler x-Wert für die Bubble
+                    const maxX = svgWidth - bubbleWidth - margin // Maximaler x-Wert
+                    let offsetX = cx - bubbleWidth / 2 // Bubble zentriert zum Knoten
+
+                    if (offsetX < minX) offsetX = minX
+                    if (offsetX > maxX) offsetX = maxX
+
+                    return (
+                      <>
+                        {/* Pfeil (Polygon) */}
+                        <polygon
+                          points={`${cx},${cy + radius - 5} ${cx - 20},${cy + radius + 10.5} ${cx + 20},${cy + radius + 10.5}`}
+                          fill="rgba(255,255,255,0.9)"
+                          className="filter drop-shadow-md"
+                        />
+                        <foreignObject
+                          x={offsetX}
+                          y={cy + radius + 10}
+                          width="80%"
+                          height={120}
+                        >
+                          <div className="bg-white bg-opacity-90 p-2 rounded-3xl shadow-md text-center text-sm h-full z-100 flex flex-col items-center justify-around">
+                            <p className="font-bold text-lg">
+                              {el.source.title}
+                            </p>
+                            <button
+                              className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition-colors"
+                              onClick={e => {
+                                e.stopPropagation()
+                                setActiveBubble(null)
+                                handleLearningPathStepClick(getClickParams())
+                              }}
+                            >
+                              {el.solvedPercentage > 0
+                                ? el.source.type === 'challenge'
+                                  ? 'Challenge weiter'
+                                  : el.source.type === 'video'
+                                    ? 'Video weiter'
+                                    : 'Aufgabe weiter'
+                                : el.source.type === 'challenge'
+                                  ? 'Challenge starten'
+                                  : el.source.type === 'video'
+                                    ? 'Video starten'
+                                    : 'Aufgabe starten'}
+                            </button>
+                          </div>
+                        </foreignObject>{' '}
+                      </>
+                    )
+                  })()}
                 </g>
               )}
 
