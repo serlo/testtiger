@@ -28,7 +28,7 @@ export function LearningPathMap() {
     if (activeBubble !== null && bubbleRef.current) {
       // Ermittle die aktuelle Höhe des Divs
       const currentHeight = bubbleRef.current.getBoundingClientRect().height
-      setBubbleHeight(currentHeight)
+      setBubbleHeight(Math.round(currentHeight + 5))
     }
   }, [activeBubble])
 
