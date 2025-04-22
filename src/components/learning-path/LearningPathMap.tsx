@@ -1,7 +1,14 @@
 import { navigationData } from '@/content/navigations'
 import { PlayerProfileStore } from '../../store/player-profile-store'
 import { Lesson } from '@/data/types'
-import { Fragment, useState } from 'react'
+import {
+  Fragment,
+  useState,
+  useLayoutEffect,
+  useEffect,
+  useRef,
+  useMemo,
+} from 'react'
 import {
   setDisplayIndices,
   setupExercise,
@@ -19,8 +26,15 @@ import {
 
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
+  const examProgress = PlayerProfileStore.useState(
+    s => s.progress[exam], // <-- nur das relevante Teilstück
+  )
+  const progress = PlayerProfileStore.useState(s => s.progress) // komplette Progress‑Map
   const history = useHistory()
   const [activeBubble, setActiveBubble] = useState<number | null>(null)
+  const [showScrollBtn, setShowScrollBtn] = useState(false)
+  const [scrollDir, setScrollDir] = useState<'up' | 'down'>('down')
+  const lastActiveRef = useRef<SVGCircleElement | null>(null)
 
   // Design-spezifische Offsets und Skalierung
   const path = navigationData[exam].path
@@ -31,25 +45,23 @@ export function LearningPathMap() {
   const circleRadius = 50 // Standardkreisradius (außer bei Challenge)
   const mapHeight =
     navigationData[exam].mapHeight + partVerticalOffset * path.length
-
   // Elemente (Lessons) und Linien dazwischen sammeln
-  const elements: { source: Lesson; solvedPercentage: number }[] = []
-  const lines: { start: Lesson; end: Lesson }[] = []
-  let somePartialSolved = false
+  /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  const { elements, lines } = useMemo(() => {
+    const els: { source: Lesson; solvedPercentage: number }[] = []
+    const lns: { start: Lesson; end: Lesson }[] = []
+    void examProgress
 
-  let partIndex = 0
-  for (const part of path) {
-    let prev: Lesson | null = null
-    let lessonIndex = 0
-    const partOffset = partIndex * partVerticalOffset
+    let partIndex = 0
+    for (const part of path) {
+      let prev: Lesson | null = null
+      let lessonIndex = 0
+      const partOffset = partIndex * partVerticalOffset
 
-    for (const lesson of part.lessons) {
-      if (lesson.position) {
+      for (const lesson of part.lessons) {
+        if (!lesson.position) continue
         const solvedPercentage = isWholeLessonDonePercentage(lesson)
-        if (solvedPercentage < 1 && solvedPercentage > 0) {
-          somePartialSolved = true
-        }
-        // Y‑Position anpassen: Originalwert + Part‑Offset + zusätzlicher Offset pro Lesson
+
         const adjustedLesson: Lesson = {
           ...lesson,
           position: {
@@ -60,17 +72,59 @@ export function LearningPathMap() {
               lessonIndex * additionalVerticalOffsetPerLesson,
           },
         }
-        elements.push({ source: adjustedLesson, solvedPercentage })
-        if (prev && prev.position) {
-          lines.push({ start: prev, end: adjustedLesson })
-        }
+        els.push({ source: adjustedLesson, solvedPercentage })
+        if (prev && prev.position)
+          lns.push({ start: prev, end: adjustedLesson })
+
         prev = adjustedLesson
         lessonIndex++
       }
+      partIndex++
     }
-    partIndex++
-  }
 
+    return { elements: els, lines: lns }
+  }, [path, examProgress])
+  useLayoutEffect(() => {
+    if (!lastActiveRef.current) return // 1  ← Vorher‑Zeile 1
+    // 2  ← Vorher‑Zeile 2
+    // 3  ← Vorher‑Zeile 3
+    // erst im nächsten Frame scrollen, wenn das Layout komplett ist
+    requestAnimationFrame(() => {
+      lastActiveRef.current?.scrollIntoView({
+        behavior: 'auto', // kein „sanftes” Nachziehen
+        block: 'center',
+      })
+    })
+  }, [elements])
+  useEffect(() => {
+    // Wenn es noch keinen aktiven Kreis gibt: nichts tun
+    if (!lastActiveRef.current) return
+
+    // 1. Observer anlegen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isOut = !entry.isIntersecting
+        setShowScrollBtn(isOut)
+
+        // Richtung merken
+        if (isOut && lastActiveRef.current) {
+          const rect = lastActiveRef.current.getBoundingClientRect()
+          setScrollDir(rect.top < 0 ? 'up' : 'down')
+        }
+      },
+      {
+        root: null, // Standard‑Viewport
+        rootMargin: '500px', // Puffer
+        threshold: 0, // sobald Pixel sichtbar/unsichtbar
+      },
+    )
+
+    // 2. Element beobachten (null‑Check!)
+    observer.observe(lastActiveRef.current)
+
+    // 3. Aufräumen
+    return () => observer.disconnect()
+  }, [elements]) // <‑ keine deps, der Ref ändert sich nicht
   let allSolved = true
   let isMuted = false
   let alreadyHighlighted = false
@@ -601,9 +655,10 @@ export function LearningPathMap() {
             el.solvedPercentage < 1 &&
             !isMuted
           ) {
-            isMuted = true
-            notMutedYet = true
+            isMuted = true // ab hier wird mute aktiviert
+            notMutedYet = true // dieser Challenge‑Kreis bleibt aber aktiv
           }
+          const isActive = !isMuted || notMutedYet // erst jetzt auswerten
 
           // Berechnung der zentrierten Koordinaten mit Skalierung
           const cx = el.source.position!.x + 5
@@ -710,6 +765,7 @@ export function LearningPathMap() {
               <circle
                 cx={cx}
                 cy={cy}
+                ref={thisIsHighlighted ? lastActiveRef : undefined}
                 r={radius}
                 fill={
                   el.solvedPercentage === 1
@@ -801,18 +857,6 @@ export function LearningPathMap() {
                 />
               )}
 
-              {/* Haken bei 100% */}
-              {el.solvedPercentage === 1 && (
-                <text
-                  x={cx + 4}
-                  y={cy + 26}
-                  fontSize={32}
-                  className="fill-green-400 font-bold pointer-events-none"
-                >
-                  ✓
-                </text>
-              )}
-
               {/* "Muted"-Kreis */}
               {isMuted && !notMutedYet && (
                 <circle
@@ -842,6 +886,21 @@ export function LearningPathMap() {
           )
         })}
       </svg>
+      {showScrollBtn && (
+        <button
+          className="fixed bottom-10 left-1/2 -translate-x-1/2
+               z-50 bg-white text-blue-500 px-4 py-2 rounded-full shadow-2xl
+               transition-opacity duration-300 opacity-90 hover:opacity-100"
+          onClick={() =>
+            lastActiveRef.current?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            })
+          }
+        >
+          {scrollDir === 'up' ? '˄' : '˅'}
+        </button>
+      )}
     </div>
   )
 }
