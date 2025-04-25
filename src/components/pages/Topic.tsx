@@ -91,12 +91,14 @@ export function Topic({ title, color, skillGroups }: TopicProps) {
                                   PlayerProfileStore.getRawState().eventLog.some(
                                     e =>
                                       e.type == 'kann-ich' &&
-                                      e.id == ex.id &&
+                                      Number(e.id) === ex.id &&
                                       countLetter('a', e.index) == p.index,
                                   ),
                                 )
                               : PlayerProfileStore.getRawState().eventLog.some(
-                                  e => e.type == 'kann-ich' && e.id == ex.id,
+                                  e =>
+                                    e.type == 'kann-ich' &&
+                                    Number(e.id) === ex.id,
                                 )) && (
                               <FaIcon
                                 icon={faCheckCircle}
