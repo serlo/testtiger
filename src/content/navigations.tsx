@@ -761,6 +761,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'new-skill',
+            id: 0,
             title: 'Zahlen und Einheiten',
             position: { x: 100, y: 200 },
             steps: [
@@ -771,12 +772,14 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Schätzen und Überschlagen',
             position: { x: 250, y: 350 },
             steps: [{ exercise: { id: 20 } }, { exercise: { id: 14 } }],
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Prozentrechnung',
             position: { x: 100, y: 500 },
             steps: [
@@ -791,6 +794,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 1',
             position: { x: 250, y: 650 },
             steps: [
@@ -801,6 +805,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Proportionalität',
             position: { x: 100, y: 800 },
             steps: [
@@ -820,6 +825,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Umgang mit Formeln und Termen',
             position: { x: 250, y: 950 },
             steps: [
@@ -839,6 +845,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Zahlen und Einheiten',
             position: { x: 100, y: 1100 },
             steps: [
@@ -850,6 +857,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 2',
             position: { x: 250, y: 1250 },
             steps: [
@@ -863,6 +871,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Gleichungssysteme',
             position: { x: 100, y: 1400 },
             steps: [
@@ -880,6 +889,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Quadratische Gleichungen 1',
             position: { x: 250, y: 1550 },
             steps: [
@@ -899,12 +909,14 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Schätzen und Überschlagen',
             position: { x: 100, y: 1700 },
             steps: [{ exercise: { id: 14 } }],
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 3',
             position: { x: 250, y: 1850 },
             steps: [
@@ -918,6 +930,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Oberfläche und Volumen 1',
             position: { x: 100, y: 2000 },
             steps: [
@@ -942,6 +955,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Geometrische Sätze 1',
             position: { x: 250, y: 2150 },
             steps: [
@@ -961,6 +975,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Proportionalität',
             position: { x: 100, y: 2300 },
             steps: [
@@ -974,6 +989,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 4',
             position: { x: 250, y: 2450 },
             steps: [
@@ -998,6 +1014,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Länge von Strecken',
             position: { x: 100, y: 2600 },
             steps: [
@@ -1011,6 +1028,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Wertetabellen',
             position: { x: 250, y: 2750 },
             steps: [
@@ -1030,6 +1048,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Prozentrechnung',
             position: { x: 100, y: 2900 },
             steps: [
@@ -1042,6 +1061,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Punktproben und Funktionswerte',
             position: { x: 250, y: 3050 },
             steps: [
@@ -1061,6 +1081,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 5',
             position: { x: 100, y: 3200 },
             steps: [
@@ -1074,6 +1095,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Lineare Gleichungssysteme',
             position: { x: 250, y: 3350 },
             steps: [
@@ -1087,6 +1109,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Funktionen',
             position: { x: 100, y: 3500 },
             steps: [
@@ -1112,6 +1135,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Graphen',
             position: { x: 250, y: 3650 },
             steps: [
@@ -1125,6 +1149,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Laplace-Experimente',
             position: { x: 100, y: 3800 },
             steps: [
@@ -1138,6 +1163,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 6',
             position: { x: 250, y: 3950 },
             steps: [
@@ -1155,6 +1181,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Lineare Funktionen',
             position: { x: 100, y: 4100 },
             steps: [
@@ -1168,6 +1195,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Quadratische Funktionen 1',
             position: { x: 250, y: 4250 },
             steps: [
@@ -1181,6 +1209,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Diagramme und Kenngrößen',
             position: { x: 100, y: 4400 },
             steps: [
@@ -1204,6 +1233,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Tabellenkalkulation',
             position: { x: 250, y: 4550 },
             steps: [
@@ -1227,6 +1257,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 7',
             position: { x: 100, y: 4700 },
             steps: [
@@ -1264,6 +1295,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'repetition',
+            id: 0,
             title: 'Laplace Experimente',
             position: { x: 100, y: 5000 },
             steps: [
@@ -1277,6 +1309,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Baumdiagramm und Pfadregeln',
             position: { x: 250, y: 5150 },
             steps: [
@@ -1296,6 +1329,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Umgang mit Formeln und Termen',
             position: { x: 100, y: 5300 },
             steps: [
@@ -1309,6 +1343,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Termumformungen',
             position: { x: 250, y: 5450 },
             steps: [
@@ -1333,6 +1368,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 1',
             position: { x: 100, y: 5600 },
             steps: [
@@ -1350,6 +1386,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Oberfläche und Volumen 1',
             position: { x: 250, y: 5750 },
             steps: [
@@ -1368,6 +1405,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Oberfläche und Volumen 2',
             position: { x: 100, y: 5900 },
             steps: [
@@ -1393,6 +1431,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Länge von Strecken',
             position: { x: 250, y: 6050 },
             steps: [
@@ -1406,6 +1445,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Einfluss von Parameteränderungen',
             position: { x: 100, y: 6200 },
             steps: [
@@ -1425,6 +1465,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 2',
             position: { x: 250, y: 6350 },
             steps: [
@@ -1437,6 +1478,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Geometrische Sätze 1',
             position: { x: 100, y: 6500 },
             steps: [
@@ -1450,6 +1492,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Geometrische Sätze 2',
             position: { x: 250, y: 6650 },
             steps: [
@@ -1475,6 +1518,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Fläche und Umfang',
             position: { x: 100, y: 6800 },
             steps: [
@@ -1500,6 +1544,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Diagramme und Kenngrößen',
             position: { x: 250, y: 6950 },
             steps: [
@@ -1517,6 +1562,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 3',
             position: { x: 100, y: 7100 },
             steps: [
@@ -1535,6 +1581,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Figuren zeichnen',
             position: { x: 250, y: 7250 },
             steps: [
@@ -1548,6 +1595,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Quadratische Funktionen 1',
             position: { x: 100, y: 7400 },
             steps: [
@@ -1561,6 +1609,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Quadratische Funktionen 2',
             position: { x: 250, y: 7550 },
             steps: [
@@ -1585,6 +1634,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 4',
             position: { x: 100, y: 7700 },
             steps: [
@@ -1617,6 +1667,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Wertetabellen',
             position: { x: 250, y: 7850 },
             steps: [
@@ -1630,6 +1681,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Wachstum',
             position: { x: 100, y: 8000 },
             steps: [
@@ -1655,6 +1707,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Punktproben und Funktionswerte',
             position: { x: 250, y: 8150 },
             steps: [
@@ -1668,6 +1721,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Exponentialfunktion',
             position: { x: 100, y: 8300 },
             steps: [
@@ -1693,6 +1747,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 5',
             position: { x: 250, y: 8450 },
             steps: [
@@ -1705,6 +1760,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Quadratische Gleichungen 1',
             position: { x: 100, y: 8600 },
             steps: [
@@ -1718,6 +1774,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Exponentialgleichungen',
             position: { x: 250, y: 8750 },
             steps: [
@@ -1737,6 +1794,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Tabellenkalkulation',
             position: { x: 100, y: 8900 },
             steps: [
@@ -1750,6 +1808,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Muster erkennen und anwenden',
             position: { x: 250, y: 9050 },
             steps: [
@@ -1784,6 +1843,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 6',
             position: { x: 100, y: 9200 },
             steps: [
@@ -1801,36 +1861,42 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 1',
             position: { x: 250, y: 9400 },
             steps: [{ exercise: { id: 7 } }],
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 2',
             position: { x: 100, y: 9500 },
             steps: [{ exercise: { id: 55 } }],
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 3',
             position: { x: 250, y: 9600 },
             steps: [{ exercise: { id: 37 } }],
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 4',
             position: { x: 100, y: 9700 },
             steps: [{ exercise: { id: 30 } }],
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 5',
             position: { x: 250, y: 9800 },
             steps: [{ exercise: { id: 38 } }],
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Challenge 6',
             position: { x: 100, y: 9900 },
             steps: [{ exercise: { id: 47 } }],
@@ -2199,6 +2265,7 @@ export const navigationData: { [key: number]: Navigation } = {
           {
             type: 'video',
             title: 'Video 1',
+            id: 0,
             videoUrl:
               'https://testtige.uber.space/testtiger/Zahlen_vergleichen_MINI.mp4',
             position: { x: 80, y: 170 },
@@ -2206,6 +2273,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Intro: Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
             iconSize: 22,
@@ -2214,6 +2282,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'video',
+            id: 0,
             title: 'Video 2',
             videoUrl:
               'https://testtige.uber.space/testtiger/bruechevergleichen_MINI.mp4',
@@ -2222,6 +2291,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Zahlen vergleichen',
             icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
             iconSize: 22,
@@ -2230,6 +2300,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Einheiten',
             icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 210, y: 440 },
@@ -2238,6 +2309,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Schriftliches Addieren',
             icon: '/learning-path/NRW_EESA_icons/schriftliches-addieren.svg',
             position: { x: 90, y: 500 },
@@ -2245,6 +2317,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'video',
+            id: 0,
             title: 'Video 3',
             videoUrl:
               'https://testtige.uber.space/testtiger/schaetzen_MINI.mp4',
@@ -2253,6 +2326,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Schätzen & Überschlagen',
             icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
             iconSize: 30,
@@ -2261,6 +2335,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Grundlagen - Challenge 1',
             introText: (
               <>
@@ -2281,6 +2356,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Proportionale Zuordnung',
             icon: '/learning-path/NRW_EESA_icons/proportionale-zuordnung.svg',
             iconSize: 45,
@@ -2297,6 +2373,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Rechnen mit proportionalen Größen',
             icon: '/learning-path/NRW_EESA_icons/proportionale-zuordnung.svg',
             iconSize: 45,
@@ -2313,6 +2390,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Prozentrechnung',
             icon: '/learning-path/NRW_EESA_icons/prozentrechnung.svg',
             iconSize: 30,
@@ -2329,6 +2407,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Grundlagen - Challenge 2',
             introText: (
               <>
@@ -2351,6 +2430,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Termwert bestimmen',
             icon: '/learning-path/NRW_EESA_icons/termwert.svg',
             iconSize: 50,
@@ -2366,6 +2446,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Gleichungen',
             icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
             iconSize: 32,
@@ -2381,6 +2462,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Gleichungen',
             icon: '/learning-path/NRW_EESA_icons/gleichung.svg',
             iconSize: 32,
@@ -2397,6 +2479,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Grundlagen - Challenge 3',
             introText: (
               <>
@@ -2425,6 +2508,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Quadrat',
             icon: '/learning-path/NRW_EESA_icons/quadrat.svg',
             iconSize: 50,
@@ -2440,6 +2524,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Dreiecksfläche',
             icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
@@ -2456,6 +2541,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Dreieck zeichnen',
             icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
@@ -2473,6 +2559,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Dreieck zeichnen',
             icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
@@ -2491,6 +2578,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Grundlagen - Challenge 4',
             introText: (
               <>
@@ -2519,6 +2607,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Oberfläche und Volumen Quader',
             icon: '/learning-path/NRW_EESA_icons/quader.svg',
             iconSize: 30,
@@ -2535,6 +2624,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Balkendiagramm',
             icon: '/learning-path/NRW_EESA_icons/diagramm.svg',
             position: { x: 100, y: 2210 },
@@ -2550,6 +2640,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Statistik',
             icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 290, y: 2300 },
@@ -2566,6 +2657,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Grundlagen - Challenge 5',
             introText: (
               <>
@@ -2614,6 +2706,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
+            id: 0,
             title: 'Graphen zuordnen',
             icon: '/learning-path/NRW_EESA_icons/graph.svg',
             iconSize: 28,
@@ -2630,6 +2723,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
+            id: 0,
             title: 'Informationen aus Graph ablesen',
             icon: '/learning-path/NRW_EESA_icons/graph.svg',
             iconSize: 28,
@@ -2651,6 +2745,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
+            id: 0,
             title: 'Laplace Experimente',
             icon: '/learning-path/NRW_EESA_icons/kreisdiagramm.svg',
             iconSize: 32,
@@ -2668,6 +2763,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Grundlagen - Challenge 6',
             introText: (
               <>
@@ -2716,6 +2812,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Funktionen',
             icon: '/learning-path/NRW_EESA_icons/graph.svg',
             position: { x: 250, y: 3050 },
@@ -2731,6 +2828,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Funktionen',
             icon: '/learning-path/NRW_EESA_icons/gerade.svg',
             iconSize: 33,
@@ -2748,6 +2846,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Tabelle auswerten',
             icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 240, y: 3250 },
@@ -2766,6 +2865,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Lineare Funktionen',
             icon: '/learning-path/NRW_EESA_icons/gerade.svg',
             iconSize: 33,
@@ -2784,6 +2884,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Skill-Profi - Challenge 1',
             introText: (
               <>
@@ -2813,6 +2914,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'new-skill',
+            id: 0,
             title: 'Satz des Pythagoras',
             icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
@@ -2829,6 +2931,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Satz des Pythagoras',
             icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
@@ -2844,6 +2947,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Kreisumfang',
             icon: '/learning-path/NRW_EESA_icons/kreis.svg',
             iconSize: 32,
@@ -2859,6 +2963,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Kreisfläche',
             icon: '/learning-path/NRW_EESA_icons/kreis.svg',
             iconSize: 32,
@@ -2874,6 +2979,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Kreisring',
             icon: '/learning-path/NRW_EESA_icons/kreis.svg',
             iconSize: 32,
@@ -2890,6 +2996,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Skill-Profi - Challenge 2',
             introText: (
               <>
@@ -2912,6 +3019,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Mit Längen argumentieren',
             icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 250, y: 4220 },
@@ -2926,6 +3034,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Quadervolumen',
             icon: '/learning-path/NRW_EESA_icons/quader.svg',
             iconSize: 30,
@@ -2940,6 +3049,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Zusammengesetzter Körper',
             icon: '/learning-path/NRW_EESA_icons/viele-quader.svg',
             iconSize: 32,
@@ -2948,6 +3058,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Kugelvolumen',
             icon: '/learning-path/NRW_EESA_icons/kugel.svg',
             iconSize: 33,
@@ -2956,6 +3067,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Volumen Tetraeder',
             icon: '/learning-path/NRW_EESA_icons/tetraeder.svg',
             iconSize: 60,
@@ -2971,6 +3083,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Skill-Profi - Challenge 3',
             introText: (
               <>
@@ -2993,6 +3106,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Dreieck zeichnen',
             icon: '/learning-path/NRW_EESA_icons/drawtriangle.svg',
             iconSize: 50,
@@ -3008,6 +3122,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Im richtigen Maßstab zeichnen',
             icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 100, y: 4900 },
@@ -3022,6 +3137,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Messen und Anwenden des Maßstabs',
             icon: '/learning-path/NRW_EESA_icons/einheiten-umrechnen.svg',
             position: { x: 200, y: 5000 },
@@ -3036,6 +3152,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Symmetrie',
             icon: '/learning-path/NRW_EESA_icons/symmetrie.svg',
             position: { x: 270, y: 5110 },
@@ -3050,6 +3167,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Körpernetz',
             icon: '/learning-path/NRW_EESA_icons/viele-quader.svg',
             iconSize: 32,
@@ -3065,6 +3183,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Skill-Profi - Challenge 4',
             introText: (
               <>
@@ -3086,6 +3205,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Tabelle auswerten & Kreisdiagramm',
             icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 250, y: 5420 },
@@ -3100,6 +3220,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Tabellenkalkulation',
             icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 100, y: 5520 },
@@ -3114,6 +3235,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'new-skill',
+            id: 0,
             title: 'Tabellenkalkulation',
             icon: '/learning-path/NRW_EESA_icons/tabelle.svg',
             position: { x: 280, y: 5650 },
@@ -3128,6 +3250,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'repetition',
+            id: 0,
             title: 'Laplace Experimente',
             icon: '/learning-path/NRW_EESA_icons/kreisdiagramm.svg',
             iconSize: 32,
@@ -3144,6 +3267,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Skill-Profi - Challenge 5',
             introText: (
               <>
@@ -3171,6 +3295,7 @@ export const navigationData: { [key: number]: Navigation } = {
         lessons: [
           {
             type: 'challenge',
+            id: 0,
             title: 'Prüfungsfit - Challenge 1',
             position: { x: 250, y: 6050 },
             steps: [
@@ -3203,6 +3328,7 @@ export const navigationData: { [key: number]: Navigation } = {
           },
           {
             type: 'challenge',
+            id: 0,
             title: 'Prüfungsfit - Challenge 2',
             position: { x: 100, y: 6190 },
             steps: [{ exercise: { id: 119 } }],
@@ -3210,6 +3336,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Prüfungsfit - Challenge 3',
             position: { x: 250, y: 6350 },
             steps: [
@@ -3223,6 +3350,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Prüfungsfit - Challenge 4',
             position: { x: 100, y: 6480 },
             steps: [
@@ -3236,6 +3364,7 @@ export const navigationData: { [key: number]: Navigation } = {
 
           {
             type: 'challenge',
+            id: 0,
             title: 'Prüfungsfit - Challenge 5',
             position: { x: 250, y: 6620 },
             steps: [
