@@ -6,7 +6,7 @@ export type PlayerProfileStoreProps = {
   name: string
   currentExam: number
   progress: { [key: number]: ExamProgress }
-  eventLog: { id: number; index: number; ts: number; type: 'kann-ich' }[]
+  eventLog: { id:string; index: number; ts: number; type: 'kann-ich' | 'lesson-solved' }[]
   statsLog: string[]
   original: boolean
   key?: string

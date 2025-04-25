@@ -8,11 +8,14 @@ import { extractor } from '../extractor/extractor'
 import { IMessage, SkillExercisePage } from '@/data/types'
 import { makePost } from '@/helper/make-post'
 import { countLetter } from '@/helper/count-letter'
-import {
-  PlayerProfileStore,
-  updatePlayerProfileStore,
-} from '../../../store/player-profile-store'
 
+import {
+    PlayerProfileStore,
+    updatePlayerProfileStore,
+  } from '../../../store/player-profile-store'
+  
+  // ⇣ NEU ⇣  Navigation-Metadaten für Lesson-Lookup
+  import { navigationData } from '@/content/navigations'
 export function setupExercise(
   id: number,
   skill?: string,
@@ -137,7 +140,7 @@ export function markCurrentExerciseAsComplete() {
   updatePlayerProfileStore(s => {
     s.eventLog.push({
       type: 'kann-ich',
-      id: state.id,
+      id: state.id.toString(),
       ts: new Date().getTime(),
       index:
         state.pages[state.navIndicatorPosition].index.charCodeAt(0) -
@@ -349,6 +352,37 @@ export function done() {
     }
   })
   markCurrentExerciseAsComplete()
+  const allDone = ExerciseViewStore.getRawState().completed.every(x => x)
+if (allDone) {
+    const exam = PlayerProfileStore.getRawState().currentExam
+    // Lesson-ID anhand des Titels bestimmen
+    const lessonTitle = ExerciseViewStore.getRawState().skill
+    let lessonId: string | null = null
+    for (const part of navigationData[exam].path) {
+      const lesson = part.lessons.find(l => l.title === lessonTitle)
+      if (lesson) {
+        lessonId = lesson.title 
+        break
+      }
+    }
+    if (
+      lessonId !== null &&
+      !PlayerProfileStore.getRawState().eventLog.some(
+                e => e.type === 'lesson-solved' && e.id === lessonId,
+      )
+    ) {
+      updatePlayerProfileStore(s => {
+        s.eventLog.push({
+          id: lessonId!,
+          index: 0,
+          ts: Date.now(),
+          type: 'lesson-solved',
+        })
+      })
+    }
+  }
+  // --------------------------------------------------------------------
+
 }
 
 export function showSolution() {
