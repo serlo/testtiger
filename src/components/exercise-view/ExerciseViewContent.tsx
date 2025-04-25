@@ -487,6 +487,7 @@ export function ExerciseViewContent() {
                 onClick={() => {
                   handleLearningPathStepClick({
                     lesson: {
+                      id: 1, // Add a unique ID for the lesson
                       type: 'video',
                       title: 'Video 1',
                       videoUrl:
@@ -498,6 +499,7 @@ export function ExerciseViewContent() {
                     exam: 2,
                     nextElement: {
                       source: {
+                        id: 1, // Add a unique ID for the lesson
                         type: 'new-skill',
                         title: 'Intro: Zahlen vergleichen',
                         icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
@@ -520,6 +522,7 @@ export function ExerciseViewContent() {
                 onClick={() => {
                   handleLearningPathStepClick({
                     lesson: {
+                      id: 3, // Add a unique ID for the lesson
                       type: 'video',
                       title: 'Video 2',
                       videoUrl:
@@ -528,9 +531,10 @@ export function ExerciseViewContent() {
                       steps: [],
                     },
                     solvedPercentage: 1,
-                    exam: 2,
+                    exam: 3,
                     nextElement: {
                       source: {
+                        id: 4, // Add a unique ID for the lesson
                         type: 'new-skill',
                         title: 'Zahlen vergleichen',
                         icon: '/learning-path/NRW_EESA_icons/zahlen-vergleichen.svg',
@@ -553,6 +557,7 @@ export function ExerciseViewContent() {
                 onClick={() => {
                   handleLearningPathStepClick({
                     lesson: {
+                      id: 7, // Add a unique ID for the lesson
                       type: 'video',
                       title: 'Video 3',
                       videoUrl:
@@ -561,9 +566,10 @@ export function ExerciseViewContent() {
                       steps: [],
                     },
                     solvedPercentage: 0,
-                    exam: 2,
+                    exam: 7,
                     nextElement: {
                       source: {
+                        id: 8, // Added unique id for new-skill lesson
                         type: 'new-skill',
                         title: 'Schätzen & Überschlagen',
                         icon: '/learning-path/NRW_EESA_icons/schätzen-überschlagen.svg',
