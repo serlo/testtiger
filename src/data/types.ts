@@ -70,6 +70,7 @@ export interface Lesson {
   icon?: string
   iconSize?: number
   title: string
+  id: number
   steps: Step[]
   videoUrl?: string
   showExamplePrescreen?: boolean

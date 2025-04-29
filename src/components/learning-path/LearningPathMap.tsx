@@ -1,7 +1,17 @@
 import { navigationData } from '@/content/navigations'
-import { PlayerProfileStore } from '../../store/player-profile-store'
+import {
+  PlayerProfileStore,
+  updatePlayerProfileStore, //  ← neu dazu
+} from '../../store/player-profile-store'
 import { Lesson } from '@/data/types'
-import { Fragment, useState } from 'react'
+import {
+  Fragment,
+  useState,
+  useLayoutEffect,
+  useEffect,
+  useRef,
+  useMemo,
+} from 'react'
 import {
   setDisplayIndices,
   setupExercise,
@@ -17,10 +27,25 @@ import {
   isWholeLessonDonePercentage,
 } from '../../store/actions'
 
+type CloudPair = {
+  from: number
+  to: number
+  id: number
+  hidden: boolean
+}
+
 export function LearningPathMap() {
   const exam = PlayerProfileStore.useState(s => s.currentExam)
+  const examProgress = PlayerProfileStore.useState(
+    s => s.progress[exam], // <-- nur das relevante Teilstück
+  )
+  const progress = PlayerProfileStore.useState(s => s.progress) // komplette Progress‑Map
   const history = useHistory()
   const [activeBubble, setActiveBubble] = useState<number | null>(null)
+  const [showScrollBtn, setShowScrollBtn] = useState(false)
+  const [scrollDir, setScrollDir] = useState<'up' | 'down'>('down')
+  const lastActiveRef = useRef<SVGCircleElement | null>(null)
+  const [dismissedGroups, setDismissedGroups] = useState<number[]>([])
 
   // Design-spezifische Offsets und Skalierung
   const path = navigationData[exam].path
@@ -31,25 +56,23 @@ export function LearningPathMap() {
   const circleRadius = 50 // Standardkreisradius (außer bei Challenge)
   const mapHeight =
     navigationData[exam].mapHeight + partVerticalOffset * path.length
-
   // Elemente (Lessons) und Linien dazwischen sammeln
-  const elements: { source: Lesson; solvedPercentage: number }[] = []
-  const lines: { start: Lesson; end: Lesson }[] = []
-  let somePartialSolved = false
+  /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  const { elements, lines } = useMemo(() => {
+    const els: { source: Lesson; solvedPercentage: number }[] = []
+    const lns: { start: Lesson; end: Lesson }[] = []
+    void examProgress
 
-  let partIndex = 0
-  for (const part of path) {
-    let prev: Lesson | null = null
-    let lessonIndex = 0
-    const partOffset = partIndex * partVerticalOffset
+    let partIndex = 0
+    for (const part of path) {
+      let prev: Lesson | null = null
+      let lessonIndex = 0
+      const partOffset = partIndex * partVerticalOffset
 
-    for (const lesson of part.lessons) {
-      if (lesson.position) {
+      for (const lesson of part.lessons) {
+        if (!lesson.position) continue
         const solvedPercentage = isWholeLessonDonePercentage(lesson)
-        if (solvedPercentage < 1 && solvedPercentage > 0) {
-          somePartialSolved = true
-        }
-        // Y‑Position anpassen: Originalwert + Part‑Offset + zusätzlicher Offset pro Lesson
+
         const adjustedLesson: Lesson = {
           ...lesson,
           position: {
@@ -60,20 +83,143 @@ export function LearningPathMap() {
               lessonIndex * additionalVerticalOffsetPerLesson,
           },
         }
-        elements.push({ source: adjustedLesson, solvedPercentage })
-        if (prev && prev.position) {
-          lines.push({ start: prev, end: adjustedLesson })
-        }
+        els.push({ source: adjustedLesson, solvedPercentage })
+        if (prev && prev.position)
+          lns.push({ start: prev, end: adjustedLesson })
+
         prev = adjustedLesson
         lessonIndex++
       }
+      partIndex++
     }
-    partIndex++
-  }
 
+    return { elements: els, lines: lns }
+  }, [path, examProgress])
+  useLayoutEffect(() => {
+    if (!lastActiveRef.current) return // 1  ← Vorher‑Zeile 1
+    // 2  ← Vorher‑Zeile 2
+    // 3  ← Vorher‑Zeile 3
+    // erst im nächsten Frame scrollen, wenn das Layout komplett ist
+    requestAnimationFrame(() => {
+      lastActiveRef.current?.scrollIntoView({
+        behavior: 'auto', // kein „sanftes” Nachziehen
+        block: 'center',
+      })
+    })
+  }, [elements])
+  useEffect(() => {
+    // Wenn es noch keinen aktiven Kreis gibt: nichts tun
+    if (!lastActiveRef.current) return
+
+    // 1. Observer anlegen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isOut = !entry.isIntersecting
+        setShowScrollBtn(isOut)
+
+        // Richtung merken
+        if (isOut && lastActiveRef.current) {
+          const rect = lastActiveRef.current.getBoundingClientRect()
+          setScrollDir(rect.top < 0 ? 'up' : 'down')
+        }
+      },
+      {
+        root: null, // Standard‑Viewport
+        rootMargin: '500px', // Puffer
+        threshold: 0, // sobald Pixel sichtbar/unsichtbar
+      },
+    )
+
+    // 2. Element beobachten (null‑Check!)
+    observer.observe(lastActiveRef.current)
+
+    // 3. Aufräumen
+    return () => observer.disconnect()
+  }, [elements]) // <‑ keine deps, der Ref ändert sich nicht
+
+  useEffect(() => {
+    elements.forEach((el, i) => {
+      if (el.source.type === 'challenge' && el.solvedPercentage === 1) {
+        const tag = `cloudCleared#${i}` // i == from-Index
+        if (
+          !PlayerProfileStore.getRawState().progress[
+            exam
+          ].learningPathTags.includes(tag)
+        ) {
+          updatePlayerProfileStore(s => {
+            s.progress[exam].learningPathTags.push(tag)
+          })
+        }
+      }
+    })
+  }, [elements, exam])
   let allSolved = true
-  let isMuted = false
-  let alreadyHighlighted = false
+
+  // ---- NEU: immer „der erste ungelöste nach der zuletzt erledigten Lesson“ ----
+  // ---- NEU: “zuerst letzter solved, dann erstes unsolved danach” ----------------
+  // ---- Highlight-Berechnung über `eventLog` (Zeitstempel!) -----------------------
+  const eventLog = PlayerProfileStore.useState(s => s.eventLog)
+
+  // ID der **zuletzt** gelösten Lesson laut Zeitstempel
+  const lastSolvedLessonId = useMemo(() => {
+    const last = [...eventLog]
+      .filter(e => e.type === 'lesson-solved')
+      .sort((a, b) => b.ts - a.ts)[0]
+    return last?.id ?? null
+  }, [eventLog])
+
+  const highlightIndex = useMemo(() => {
+    // 1. Wo liegt diese Lesson im Pfad?
+
+    const solvedIdx = elements.findIndex(
+      el => el.source.title === lastSolvedLessonId,
+    )
+
+    // 2. Suche ab dem **darauffolgenden** Element den ersten ungelösten
+    for (let j = Math.max(0, solvedIdx + 1); j < elements.length; j++) {
+      if (elements[j].solvedPercentage < 1) return j
+    }
+
+    // Fallbacks:
+    // – wenn es noch keinen 'lesson-solved'-Eintrag gibt  →  erstes ungelöstes überhaupt
+    // – wenn alles fertig ist                            →  -1  (kein Highlight)
+    return elements.findIndex(e => e.solvedPercentage < 1)
+  }, [elements, lastSolvedLessonId])
+
+  // -------------------------------------------------------------------------------
+  /* ---------- FOG-OF-WAR : viele Mini-Wolken zwischen je zwei Challenge-Sternen ---------- */
+  const cloudPairs: CloudPair[] = useMemo(() => {
+    /* Index-Liste aller Challenge-Sterne im Pfad */
+    const starIdx = elements
+      .map((e, i) => (e.source.type === 'challenge' ? i : -1))
+      .filter(i => i !== -1)
+
+    /*  ➜  Paare  (Stern 0 → Stern 1), (1→2), (2→3) …   */
+    return starIdx.slice(0, -1).map((from, idx) => {
+      const to = starIdx[idx + 1]
+
+      /* Wolken verschwinden, wenn der VORDER-Stern gelöst ist */
+      const starSolved = elements[from].solvedPercentage === 1
+
+      /* schon dauerhaft im Profil gespeicherte Clear-Tags holen  */
+      const cleared = PlayerProfileStore.getRawState()
+        .progress[exam].learningPathTags.filter(t =>
+          t.startsWith('cloudCleared#'),
+        )
+        .map(t => +t.split('#')[1])
+
+      return {
+        from,
+        to,
+        id: idx, // eindeutige ID (0,1,2,…)
+        hidden:
+          starSolved || // automatisch gelöst
+          dismissedGroups.includes(idx) || // manuell geklickt (Session)
+          cleared.includes(idx), // dauerhaft aus Profil
+      }
+    })
+  }, [elements, dismissedGroups, exam])
+  // -------------------------------------------------------------------------------
 
   return (
     <div
@@ -81,6 +227,25 @@ export function LearningPathMap() {
       onClick={() => setActiveBubble(null)}
     >
       <svg viewBox={`0 0 375 ${mapHeight}`}>
+        {/* ▲▲  Wolken-Animation – Style in <defs>, kein externes CSS  ▲▲ */}
+        <defs>
+          <style>{`
+          
+           @keyframes hideLeft  {to{transform:translateX(-620px);opacity:0}}
+            @keyframes hideRight {to{transform:translateX( 620px);opacity:0}}
+
+            .cloud{
+              fill:#FFFFFF;
+              fill-opacity:.85;
+              animation:cloudFloat 6s ease-in-out infinite;
+              stroke:none;
+            }
+
+            /* weichere 1 s Ease-in-out-Kurve */
+            .cloud.l.leave{animation:hideLeft  .9s cubic-bezier(.25,.8,.25,1) forwards;}
+            .cloud.r.leave{animation:hideRight .9s cubic-bezier(.25,.8,.25,1) forwards;}
+          `}</style>
+        </defs>
         {/* Hintergrundbilder in einer Gruppe mit Translation */}
         <g transform={`translate(0, ${imageOffset})`}>
           <image
@@ -502,35 +667,6 @@ export function LearningPathMap() {
           />
         </g>
 
-        {exam === 2 && (
-          <>
-            <rect
-              x={200}
-              y={12750}
-              width={200}
-              height={50}
-              rx={10}
-              fill="white"
-              stroke="black"
-              strokeWidth={1}
-              className="cursor-pointer"
-              onClick={() => {
-                history.push('/feedback')
-              }}
-            />
-            <text
-              x={200 + 100}
-              y={12750 + 30}
-              fontSize={20}
-              fill="#007EC1"
-              textAnchor="middle"
-              className="pointer-events-none"
-            >
-              Feedback
-            </text>
-          </>
-        )}
-
         {/* Linien zwischen den Lessons – abwechselnd links/rechts gekrümmt */}
         {lines.map((l, i) => {
           const x1 = l.start.position!.x
@@ -583,28 +719,11 @@ export function LearningPathMap() {
 
         {/* Darstellung der Lessons */}
         {elements.map((el, i) => {
-          let thisIsHighlighted = false
-          if (
-            el.solvedPercentage < 1 &&
-            elements.slice(i + 1).every(e => e.solvedPercentage < 1) &&
-            !alreadyHighlighted
-          ) {
-            thisIsHighlighted = true
-            alreadyHighlighted = true
-          }
-          if (el.solvedPercentage < 1 && allSolved) {
-            allSolved = false
-          }
-          let notMutedYet = false
-          if (
-            el.source.type === 'challenge' &&
-            el.solvedPercentage < 1 &&
-            !isMuted
-          ) {
-            isMuted = true
-            notMutedYet = true
-          }
+          const thisIsHighlighted = i === highlightIndex
 
+          const isMutedCircle =
+            el.solvedPercentage < 1 &&
+            !thisIsHighlighted /* ungelöst & nicht aktiv */
           // Berechnung der zentrierten Koordinaten mit Skalierung
           const cx = el.source.position!.x + 5
           const cy = mapHeight - el.source.position!.y * verticalScale - 45
@@ -635,7 +754,7 @@ export function LearningPathMap() {
           return (
             <Fragment key={i}>
               {/* Weißer Highlight-Kreis */}
-              {thisIsHighlighted && el.solvedPercentage === 0 && (
+              {thisIsHighlighted && el.solvedPercentage < 1 && (
                 <circle
                   cx={cx}
                   cy={cy}
@@ -710,6 +829,7 @@ export function LearningPathMap() {
               <circle
                 cx={cx}
                 cy={cy}
+                ref={thisIsHighlighted ? lastActiveRef : undefined}
                 r={radius}
                 fill={
                   el.solvedPercentage === 1
@@ -801,20 +921,8 @@ export function LearningPathMap() {
                 />
               )}
 
-              {/* Haken bei 100% */}
-              {el.solvedPercentage === 1 && (
-                <text
-                  x={cx + 4}
-                  y={cy + 26}
-                  fontSize={32}
-                  className="fill-green-400 font-bold pointer-events-none"
-                >
-                  ✓
-                </text>
-              )}
-
               {/* "Muted"-Kreis */}
-              {isMuted && !notMutedYet && (
+              {isMutedCircle && (
                 <circle
                   cx={cx}
                   cy={cy}
@@ -841,7 +949,107 @@ export function LearningPathMap() {
             </Fragment>
           )
         })}
+
+        {/* ─── FOG-OF-WAR Wolken-Gruppen ─── */}
+        {cloudPairs.map(pair => {
+          const isLeaving = pair.hidden
+
+          const aY = elements[pair.from].source.position!.y
+          const bY = elements[pair.to].source.position!.y
+          const step = 120 // vertikaler Abstand der Wolken
+          const rows = Math.floor(Math.abs(bY - aY) / step) + 5
+
+          // Hilfs-Funktion für eine Wolke (Polygon-Ovale)
+          const mkCloud = (
+            x: number,
+            y: number,
+            side: 'l' | 'r',
+            idx: number,
+          ) => {
+            const variations = [
+              { w: 180, h: 60, rx: 28 },
+              { w: 240, h: 80, rx: 38 },
+              { w: 300, h: 90, rx: 50 },
+              { w: 350, h: 120, rx: 60 },
+              { w: 400, h: 160, rx: 80 },
+            ]
+            const v = variations[idx % variations.length]
+            return (
+              <rect
+                key={`${side}${idx}`}
+                className={`cloud ${side}${isLeaving ? ' leave' : ''}`}
+                x={x - v.w / 2}
+                y={y - v.h / 2}
+                width={v.w}
+                height={v.h}
+                rx={v.rx}
+                ry={v.rx}
+              />
+            )
+          }
+          return (
+            <g
+              key={'fog' + pair.id}
+              onClick={() => setDismissedGroups(d => [...d, pair.id])}
+            >
+              {Array.from({ length: rows + 1 }).map((_, row) => {
+                const ySvg = mapHeight - (aY + row * step) * verticalScale - 45
+
+                /* horizontale Jitter für organischere Überlappung  */
+                const jitterX = (Math.random() - 0.5) * 0
+
+                return [
+                  mkCloud(2 + jitterX, ySvg + 30, 'l', row * 2),
+                  mkCloud(300 + jitterX, ySvg - 25, 'r', row * 2 + 1),
+                ]
+              })}
+            </g>
+          )
+        })}
+        {exam === 2 && (
+          <>
+            <rect
+              x={200}
+              y={12750}
+              width={200}
+              height={50}
+              rx={10}
+              fill="white"
+              stroke="black"
+              strokeWidth={1}
+              className="cursor-pointer"
+              onClick={() => {
+                history.push('/feedback')
+              }}
+            />
+            <text
+              x={200 + 100}
+              y={12750 + 30}
+              fontSize={20}
+              fill="#007EC1"
+              textAnchor="middle"
+              className="pointer-events-none"
+            >
+              Feedback
+            </text>
+          </>
+        )}
       </svg>
+      {showScrollBtn && (
+        <button
+          className="fixed bottom-10 left-1/2 -translate-x-1/2
+               z-50 bg-white text-blue-500 px-4 py-2 rounded-full shadow-2xl
+               transition-opacity duration-300 opacity-90 hover:opacity-100"
+          onClick={() =>
+            lastActiveRef.current?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            })
+          }
+        >
+          {scrollDir === 'up' ? '˄' : '˅'}
+        </button>
+      )}
     </div>
   )
 }
