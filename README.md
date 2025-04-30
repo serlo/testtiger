@@ -41,7 +41,7 @@ Install three programs on your computer:
 
 Now open GitHub Desktop, sign in, and use "clone repository" to save TestTiger on your computer. Choose a folder for it.
 
-Start Code, click "open folder," and open the selected folder. Click "trust" if prompted.
+Start Code, click "open folder" and open the selected folder. Click "trust" if prompted.
 
 Open a terminal in Code with **Ctrl-ö** and execute the following command: `npm install`.
 
